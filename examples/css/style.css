@@ -1,0 +1,85 @@
+html, body {
+    font-size: 14px;
+    margin: 0;
+    font-family: "Helvetica";
+    overflow: none;
+}
+
+#sidebar, #waypointscontainer {
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 335px;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: none;
+}
+
+#sidebar {
+    right: 0;
+}
+#waypointscontainer {
+    display: none;
+    left: 0;
+}
+
+.waypointform {
+    line-height: 25px;
+}
+
+.waypointform input {
+    margin-right: 0px;
+}
+
+#footer {
+    display: block;
+    width: 40%;
+    height: 295px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: auto;
+    background-color: #F7F953;
+}
+
+#popupform, #controlform, #inputfileform, #result {
+    display: none;
+    display: block;
+    width: 300px;
+    background-color: #ccc;
+    color: #000;
+    padding: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+#popupform {
+    // display: none;
+}
+
+#popupform label {
+    font-size: 110%;
+    font-style: italic;
+    margin: 0.5em 0;
+}
+
+#controlform {
+    background-color: #cc0000;
+}
+
+#listaplanina, #listatipova {
+    display: block;
+    width: 300px;
+    border: 1px solid #666;
+    margin: 0.5em 0;
+    background-color: #ddd;
+    font-size: 90%;
+}
+
+#listaplanina {
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.countrylabel {
+    font-size: 120%;
+}

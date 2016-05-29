@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Display a popup on hover, When a user hovers over a marker, show a popup containing more information.</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+<style>
+    .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
+
+    .marker-title {
+        font-weight: 700;
+    }
+</style>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
+
+
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v8',
+    center: [17.798585, 43.67365],
+    zoom: 11.15
+});
+
+map.on('style.load', function() {
+    // Add marker data as a new GeoJSON source.
+    map.addSource("markers", {
+        "type": "geojson",
+        "data": "http://localhost/generalDev/data/19.json"
+    });
+
+    // Add a layer showing the markers.
+    map.addLayer({
+        "id": "markers",
+        "interactive": true,
+        "type": "symbol",
+        "source": "markers",
+        "layout": {
+            "icon-image": "monument-15",
+            "icon-allow-overlap": true
+        }
+    });
+});
+
+// Create a popup, but don't add it to the map yet.
+var popup = new mapboxgl.Popup({
+    closeButton: false,
+    closeOnClick: false
+});
+
+var activePoint = [];
+
+map.on('mousemove', function(e) {
+    map.featuresAt(e.point, {
+        radius: 7.5, // Half the marker size (15px).
+        includeGeometry: true,
+        layer: 'markers'
+    }, function(err, features) {
+        // Change the cursor style as a UI indicator.
+        map.getCanvas().style.cursor = (!err && features.length) ? 'pointer' : '';
+
+        if (err || !features.length) {
+            popup.remove();
+            return;
+        } 
+
+        var feature = features[0];
+
+        if (feature.geometry.coordinates[0] === activePoint[0] && feature.geometry.coordinates[1] === activePoint[1]) {
+            // console.log('old');
+            // console.log(feature.geometry.coordinates);
+            // console.log(activePoint);
+            return;
+        } else {
+            // console.log('new');
+            activePoint = feature.geometry.coordinates;
+            // console.log('after');
+            // console.log(feature.geometry.coordinates);
+            // console.log(activePoint);
+        }
+
+        // Initialize a popup and set its coordinates
+        // based on the feature found.
+        // console.log(feature.geometry.coordinates);
+        
+        popup.setLngLat(feature.geometry.coordinates)
+        // popup.setLngLat(new mapboxgl.LngLat(feature.geometry.coordinates[0], feature.geometry.coordinates[1]))
+            .setHTML(feature.properties.desc)
+            .addTo(map);
+    });
+});
+</script>
+
+</body>
+</html>

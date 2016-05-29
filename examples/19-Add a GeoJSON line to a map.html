@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Add a GeoJSON line to a map.</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v8',
+    center: [17.761543, 43.655446],
+    zoom: 15
+});
+
+
+// var xmlhttp = new XMLHttpRequest();
+// var url = 'data/19.json';
+// var lineCollection = {};
+
+// xmlhttp.onreadystatechange = function() {
+//     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+//         var myArr = JSON.parse(xmlhttp.responseText);
+//         lineCollection = myArr;
+//     }
+// };
+// xmlhttp.open("GET", url, true);
+// xmlhttp.send();
+
+// console.log(lineCollection);
+
+
+map.on('style.load', function () {
+    map.addSource("route", {
+        "type": "geojson",
+        // "data": lineCollection
+        "data": "http://localhost/generalDev/data/19.json"
+    });
+
+
+
+    map.addLayer({
+        "id": "route",
+        "type": "line",
+        "source": "route",
+        "layout": {
+            "line-join": "round",
+            "line-cap": "round"
+        },
+        "paint": {
+            "line-color": "#888",
+            "line-width": 2
+        }
+    });
+
+    // map.addSource("waypoints", {
+    //     "type": "geojson",
+    //     "data": lineCollection
+    // });
+
+    // map.addLayer({
+    //     "id": "waypoints",
+    //     "type": "symbol",
+    //     "source": "waypoints"
+    // });
+
+});
+</script>
+
+</body>
+</html>

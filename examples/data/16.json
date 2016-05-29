@@ -1,0 +1,42 @@
+{
+    "type": "geojson",
+    "data": {
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Feature",
+                "properties": {},
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -91.395263671875,
+                        -0.9145729757782163
+
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {},
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -90.32958984375,
+                        -0.6344474832838974
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {},
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                        -91.34033203125,
+                        0.01647949196029245
+                    ]
+                }
+            }
+        ]
+    }
+}

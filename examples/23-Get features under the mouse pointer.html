@@ -1,0 +1,65 @@
+<!-- 
+Load complete map from JSON file
+ -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Get features under the mouse pointer</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<style>
+    #features {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 300px;
+        overflow: auto;
+        background: rgba(255, 255, 255, 0.8);
+    }
+</style>
+<div id='map'></div>
+<pre id='features'></pre>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
+
+mapboxgl.util.getJSON('https://api.mapbox.com/styles/v1/mapbox/streets-v8?access_token=' + mapboxgl.accessToken, 
+
+    function (err, style) {
+    
+        if (err) throw err;
+
+        style.layers.forEach(function (layer) {
+            layer.interactive = true;
+        });
+
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mersadpasic/cik8g7xyp00mcbum7a4odkw9g',
+            // style: style,
+            center: [-96, 37.8],
+            zoom: 3
+        });
+
+        map.on('mousemove', function (e) {
+            // no explicit layer defined
+            // 
+            map.featuresAt(e.point, {radius: 5}, function (err, features) {
+                if (err) throw err;
+                document.getElementById('features').innerHTML = JSON.stringify(features, null, 2);
+            });
+        });
+});
+</script>
+
+</body>
+</html>

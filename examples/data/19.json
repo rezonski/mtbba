@@ -1,0 +1,311 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "002",
+                "desc": "03,0#\n\n215-90-180#\n\nSkrenuti lijevo nazad uzbrdo prema vidikovcu Bacina (1,2km)",
+                "time": "2013-05-11T09:36:41Z",
+                "sym": "Flag, Blue"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    17.782708,
+                    43.656986,
+                    449
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Asfalt",
+                "desc": "24,0#\n\n90#\n\nAsfalt. Oprez, cesta je pokrivena sitnim sljunkom i jako nepregledna.",
+                "time": "2013-05-11T12:15:30Z",
+                "sym": "Flag, Blue"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    17.774392,
+                    43.667928,
+                    348
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Krivina",
+                "desc": "20,4#\n\n315-90#\n\nSkrenuti desno i nastaviti nizbrdo makadamom narednih 2,3km",
+                "time": "2013-05-11T11:57:10Z",
+                "sym": "Flag, Blue"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    17.798585,
+                    43.67365,
+                    606
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Krstac",
+                "desc": "07,9#\n\n90#\n\nSelo Krstac, nastaviti pravo glavim putem kroz selo.",
+                "time": "2013-05-11T10:27:06Z",
+                "sym": "Flag, Blue"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    17.799024,
+                    43.652919,
+                    597
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "M-17",
+                "desc": "25,3#\n\n0-180#\n\nRestoran Maksumic. Nastaviti desno magitralnim putem do Jablanice i polazne tacke.",
+                "time": "2013-05-11T12:20:03Z",
+                "sym": "Flag, Blue"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    17.768176,
+                    43.663996,
+                    228
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Makdam",
+                "desc": "08,8#\n\n90-45-135#\n\nPocetak makadamskog uspona, nastaviti putem pravo narednih 3,8km",
+                "time": "2013-05-11T10:31:15Z",
+                "sym": "Flag, Blue"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    17.805456,
+                    43.658926,
+                    579
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Most na Neretvi",
+                "desc": "00,0#\n\n90#\n\nStart sa mosta na Nertvi u Jablanici. Krenuti uzbrdo prema prugi.",
+                "time": "2013-05-12T08:22:49Z",
+                "sym": "Flag, Blue"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    17.761543,
+                    43.655446,
+                    186
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "od Vidikovca",
+                "desc": "05,4#\n\n135-215-315#\n\nNastaviti uzbrdo asfaltom 800m.",
+                "time": "2013-05-11T09:57:59Z",
+                "sym": "Flag, Blue"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    17.783102,
+                    43.65657,
+                    447
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Prevoj",
+                "desc": "11,9#\n\n90#\n\nLivada na prevoju. Dalje nastaviti makadamskim putem nizbrdo.",
+                "time": "2013-05-12T08:50:04Z",
+                "sym": "Flag, Blue"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    17.8217033,
+                    43.658612,
+                    835
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Pruga",
+                "desc": "00,5#\n\n180-90#\n\nIspod pruge proci pjesackim podvoznjakom i dalje nastaviti makadamskim putem uzbrdo paralelno sa cestom 150m a potom asfaltom.",
+                "time": "2013-05-11T09:07:37Z",
+                "sym": "Flag, Blue"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    17.764192,
+                    43.653287,
+                    225
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Raskrsnica1",
+                "desc": "20,0#\n\n90-45-225#\n\nNastaviti pravo nizbrdo makadamom narednih 450m.",
+                "time": "2013-05-11T11:55:46Z",
+                "sym": "Flag, Blue"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    17.798691,
+                    43.674263,
+                    652
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Raskrsnica3",
+                "desc": "25,0#\n\n180-0#\n\nNastaviti lijevo narednih 300m.",
+                "time": "2013-05-11T12:18:13Z",
+                "sym": "Flag, Blue"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    17.768069,
+                    43.666602,
+                    253
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Sporedni put1",
+                "desc": "12,7#\n\n90-135#\n\nNastaviti nizbrdo glavnim putem 570m",
+                "time": "2013-05-11T11:44:36Z",
+                "sym": "Flag, Blue"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    17.823427,
+                    43.663414,
+                    836
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Vidikovac",
+                "desc": "04,2#\n\n270#\n\nVidikovac Bacina. Povratak istim putem nazad do asfalta (1,2km)",
+                "time": "2013-05-12T08:39:54Z",
+                "sym": "Flag, Blue"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    17.7697201,
+                    43.6582912,
+                    448
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "za Dobrigosce",
+                "desc": "19,5#\n\n90-225#\n\nLijevo put za selo Dobrigosce. Nastaviti pravo nizbrdo 450m.",
+                "time": "2013-05-11T11:54:03Z",
+                "sym": "Flag, Blue"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    17.803849,
+                    43.672741,
+                    672
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "za G.Paprasko",
+                "desc": "22,7#\n\n135-0-45-225-315#\n\nNastaviti glavnim putem pravo prema Jablanici narednih 1,3km",
+                "time": "2013-05-11T12:10:32Z",
+                "sym": "Flag, Blue"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    17.776042,
+                    43.671864,
+                    471
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "za Gradac",
+                "desc": "13,2#\n\n135-90#\n\nOdvajanje za vrh Gradac (2km). U povratku nastaviti putem nizbrdo 2,4km",
+                "time": "2013-05-12T08:53:09Z",
+                "sym": "Flag, Blue"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    17.8238618,
+                    43.6671089,
+                    816
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "za Krstac",
+                "desc": "06,2#\n\n180-0#\n\nNastaviti glavnom cestom uzbrdo jos 1,7km do sela Krstac.",
+                "time": "2013-05-11T10:05:06Z",
+                "sym": "Flag, Blue"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    17.786872,
+                    43.650816,
+                    480
+                ]
+            }
+        }
+    ]
+}

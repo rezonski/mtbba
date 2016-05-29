@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Add GeoJSON markers, Add markers from a GeoJSON collection to a map.</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v8',
+    center: [-96, 37.8],
+    zoom: 3
+});
+
+map.on('style.load', function () {
+    map.addSource("markers", {
+        "type": "geojson",
+/*        "data": {
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [-77.03238901390978, 38.913188059745586]
+                },
+                "properties": {
+                    "title": "Mapbox DC",
+                    "marker-symbol": "monument"
+                }
+            }, {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [-122.414, 37.776]
+                },
+                "properties": {
+                    "title": "Mapbox SF",
+                    "marker-symbol": "harbor"
+                }
+            }]
+        }*/
+        "data": "http://localhost/generalDev/examples/data/19.json"
+    });
+
+    map.addLayer({
+        "id": "markers",
+        "type": "symbol",
+        "source": "markers",
+        "layout": {
+            // "icon-image": "{marker-symbol}-15",
+            "icon-image": "monument-15",
+            "text-field": "{name}",
+            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+            "text-offset": [0, 0.6],
+            "text-anchor": "top"
+        }
+    });
+});
+</script>
+
+</body>
+</html>

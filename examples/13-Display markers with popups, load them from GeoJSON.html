@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Display markers with popups, Show a popup with information about a marker when it is clicked</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.13.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.13.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<style>
+    .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
+
+    .marker-title {
+        font-weight: 700;
+    }
+</style>
+<div id='map'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
+
+
+
+
+var xmlhttp = new XMLHttpRequest();
+var url = 'data/13.json';
+var markers = {};
+
+xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        var myArr = JSON.parse(xmlhttp.responseText);
+        markers = myArr;
+    }
+};
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+
+// map initialization
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v8',
+    center: [-77.04, 38.907],
+    zoom: 11.15
+});
+
+// map listener, on load map run inner function
+map.on('style.load', function () {
+    // Add marker data as a new GeoJSON source.
+    // https://www.mapbox.com/mapbox-gl-js/api/#Map.addSource
+    // 1st parameter: ID of the source. Must not be used by any existing source.
+    // 2nd parameter: source specification, following the Mapbox GL Style Reference
+
+    map.addSource("markers", {
+        "type": "geojson", // https://www.mapbox.com/mapbox-gl-style-spec/#sources-geojson
+        "data": markers
+    });
+
+    // Add a layer showing the markers.
+    // addLayer always combines with addSource
+    map.addLayer({
+        "id": "markers",
+        "interactive": true,
+        "type": "symbol",
+        "source": "markers",
+        "layout": {
+            "icon-image": "{marker-symbol}-15"
+        }
+    });
+});
+
+// When a click event occurs near a marker icon, open a popup at the location of
+// the feature, with description HTML from its properties.
+// 
+// https://www.mapbox.com/mapbox-gl-js/api/#Evented.on
+// 
+// https://www.mapbox.com/mapbox-gl-js/api/#Map.click
+// 
+// https://www.mapbox.com/mapbox-gl-js/api/#EventData
+// 
+// map.on -> click -> EventData:
+// 1. originalEvent - The original DOM event
+// 2. point - The pixel location of the event - USES MOSTLY ONLY THIS
+// 3. lngLat - The geographic location of the event
+
+map.on('click', function (e) { // e - object of EventData
+    
+    // https://www.mapbox.com/mapbox-gl-js/api/#Map.featuresAt
+    // featuresAt (point, params, callback)
+    // Query features at a point, or within a certain radius thereof.
+    
+    // QUERY: on click on any marker from marker layers in radius of 10px, returns array of objects/markers and passes it to the "featuresCallback" callback function...
+    map.featuresAt(
+
+        // POINT
+        e.point, 
+        
+        // PARAMS
+        {
+            layer: 'markers', // Only return features from a given layer or array of layers
+            radius: 10, // Radius in pixels to search in
+            includeGeometry: true // If true, geometry of features will be included in the results at the expense of a much slower query time.
+        }, 
+
+        
+        // CALLBACK FUNCTION
+        // Callback to receive results from Map#featuresAt and Map#featuresIn.
+        function (err, features) {
+        
+            if (err || !features.length) // ???
+                return;
+            // console.log(features);
+            var feature = features[0]; // Takes only first array element
+
+            // https://www.mapbox.com/mapbox-gl-js/api/#Popup
+            new mapboxgl.Popup()
+                // https://www.mapbox.com/mapbox-gl-js/api/#Popup.setLngLat
+                .setLngLat(feature.geometry.coordinates)
+                // https://www.mapbox.com/mapbox-gl-js/api/#Popup.setHTML
+                .setHTML(feature.properties.description)
+                // https://www.mapbox.com/mapbox-gl-js/api/#Control.addTo
+                .addTo(map);
+        });
+});
+
+// Use the same approach as above to indicate that the symbols are clickable
+// by changing the cursor style to 'pointer'.
+map.on('mousemove', 
+    function (e) { // e - object of EventData "move"
+    map.featuresAt(
+        e.point, // use e EventData point (location)
+        {layer: 'markers', radius: 10}, // filter only points in radius of 10px
+        function (err, features) {
+            // https://www.mapbox.com/mapbox-gl-js/api/#Map.getCanvas
+            // Get the Map's canvas as an HTML canvas
+            // map.getCanvas() returns whole canvas HTML DOM Element and change cursor on it
+            // 
+            // console.log(map.getCanvas());
+            map.getCanvas().style.cursor = (!err && features.length) ? 'pointer' : '';
+        });
+});
+</script>
+
+</body>
+</html>

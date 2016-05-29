@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>First try;)</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+        input { position:absolute; top:0; left:0;}
+        #features {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 300px;
+            overflow: auto;
+            background: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body>
+<div id='map'></div>
+<pre id='features'></pre>
+<input type="range" min="2003" max="2012" value="0" step="3" onchange="showValue(this.value)" />
+<script>
+
+
+    mapboxgl.accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
+    
+    var bounds = [
+        [-148.24023728157542,14.139958816954504], // Southwest coordinates
+        [72.9362506867329,71.40888917132798]  // Northeast coordinates
+    ];
+
+    var map = new mapboxgl.Map({
+        container: 'map',
+        // style: 'mapbox://styles/mapbox/streets-v8',
+        style: 'mapbox://styles/mersadpasic/cik8g7xyp00mcbum7a4odkw9g',
+        center: [30, 0],
+        zoom: 2,
+        maxBounds: bounds
+    });
+
+    map.on('style.load', function () {
+
+        map.addSource('countries', {
+          'type': 'vector',
+          // 'url': 'mapbox://mersadpasic.9508s6q4'
+          'url': 'mapbox://justin.d6fe2f0a'
+        });
+
+        map.addLayer({
+            'id': 'countries',
+            'type': 'fill',
+            'source': 'countries',
+            'layout': {},
+            'paint': {
+              'fill-color': '#28792A',
+              'fill-opacity': 0.5
+            }
+        });
+    });
+
+    map.on('mousemove', function (e) {
+        // no explicit layer defined
+        // 
+        map.featuresAt(e.point, {radius: 5}, function (err, features) {
+            if (err) throw err;
+            document.getElementById('features').innerHTML = JSON.stringify(features, null, 2);
+        });
+    });
+    // console.log(geoJsonDataString);
+
+
+</script>
+</body>
+</html>

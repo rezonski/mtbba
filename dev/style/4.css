@@ -1,0 +1,426 @@
+body { 
+    margin:0; 
+    padding:0; 
+    font-family: 'Roboto Condensed', sans-serif;
+    overflow:hidden;
+}
+input { 
+    position:absolute; 
+    top:0; 
+    left:0;
+}
+
+input[list] {
+    width: 300px;
+    margin: 25px;
+}
+
+select {
+    margin: auto;
+    padding: 0.2em;
+    font-size: 1em;
+}
+
+#map {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width:100%;
+    height:100%;
+    z-index: 10;  
+}
+#container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    align-content: stretch;
+}
+
+#header {
+    display: flex;
+    z-index: 20;
+    flex-flow: column nowrap;
+}
+
+#title {
+    display: flex;
+    min-height: 2em;
+    font-size: 1.2em;
+    background-color: #ccc;
+    justify-content: center;
+    align-items: center; 
+    opacity: 0.8;
+}
+
+#variables-switch {
+    display: none;
+}
+
+#map-overlay {
+    display: flex;
+    background-color: #333;
+}
+
+#footer {
+    /*display: flex;*/
+    display: none;
+    background-color: #666;
+}
+
+#features {
+    position: absolute;
+    display: none;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    overflow: auto;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+#yearslidercontainer {
+    display: flex;
+    flex-flow: row nowrap;
+    background-color: #eee;
+    opacity: 0.8;
+}
+
+#yearslider {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    height: 1em;
+    padding: 25px 10px 10px 10px; 
+}
+
+#yearslidermobile {
+    display: none;
+}
+
+.yearitem {
+    display: flex;
+    align-self: center;
+    flex-grow: 2;
+    flex-basis: 2px;
+    height: 100%;
+    width: 1px;
+    border-left: 2px solid #999;
+    /*padding-left: 3px;*/
+    font-size: 1px;
+    color: #eee;
+}
+
+.yearitem:hover, .yearitemhover {
+    display: flex;
+    cursor: pointer;
+    align-self: flex-end;
+    align-content: flex-start;
+    height: 35px;
+    font-size: 1em;
+}
+
+.yearitem:hover {
+    border-left: 2px solid #999;
+    color: #999;
+}
+
+.yearitemhover {
+    border-left: 2px solid #111;
+    color: #111;
+    font-weight: 600;
+}
+
+#bottomyearlabel, #topyearlabel {
+    display: flex;
+    flex-flow: row nowrap;
+    font-weight: bold;
+    align-content: center;
+    align-items: center;
+    padding-top: 15px;
+    color: #999;
+    cursor: pointer;
+}
+
+#bottomyearlabel {
+    padding-left: 15px;
+}
+
+#topyearlabel {
+    padding-right: 15px;
+}
+
+.material-icons {
+    font-size: 1.5em;
+    width: 1em;
+    line-height: 1.5em;
+}
+
+#chart-container {
+    display: flex;
+    width: 65%;
+    height: 30%;
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    background-color: #fff;
+    opacity: 0.7;
+    z-index: 20;
+    /*border: 1px solid #666;*/
+}
+
+#legend-container {
+    display: flex;
+    flex-flow: column nowrap;
+    /* width: 20%; */
+    /*height: 30%;*/
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background-color: #fff;
+    opacity: 0.7;
+    z-index: 20;
+    /*border: 1px solid #666;*/
+}
+
+.legendcutpoint {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    margin: 0 1em 0.7em 1em;
+    cursor: pointer;
+}
+
+.cutpointtitle {
+    display: flex;
+    margin: 1em;
+    font-size: 0.8em; 
+}
+
+.circle {
+    display: flex;
+    width: 15px;
+    height: 15px;
+    border-radius: 7px;
+}
+
+.cutpoint-label {
+    display: flex;
+    font-size: 0.7em;  
+    margin: 0 0 0 1em;
+}
+
+#playstopcontainer {
+    display: flex;
+    flex-flow: row nowrap;
+    position: relative;
+    left: 10px;
+    top: 5px;
+    opacity: 0.8;
+    z-index: 20;
+    cursor: pointer;
+}
+
+.controlcontainer {
+    display: flex;
+    color: #333;
+}
+
+.destroy {
+    display: none;
+}
+
+.mapboxgl-ctrl-bottom-left {
+    display: none!important;
+}
+
+@media screen and (max-width: 480px) {
+    
+    #yearslidercontainer {
+        font-size: 1em;
+        padding: 0px;
+        justify-content: space-around;
+    }
+    #yearslidermobile {
+        display: flex;
+    }
+    #yearslider {
+        padding: 15px 3px 5px 3px;
+        height: 2em;
+        display: none;
+    }
+    #dropdownlistyears {
+        height: 30px;
+    }
+    .yearitem, .yearitem:hover, .yearitemhover {
+        border-left: 1px solid #999;
+        align-self: flex-end;
+    }
+    .yearitem {
+        height: 10px;
+    }
+    .yearitemhover {
+        border-left: 1px solid #111;
+    }
+    .yearitem:hover, .yearitemhover {
+        height: 25px;
+        font-size: 1.5em;
+    }
+
+    .inverseposition {
+        position: relative;
+        left: -30px;
+    }
+
+    #legend-container {
+        display: none;
+    }
+    #chart-container {
+        width: 100%;
+        height: 40%;
+        position: absolute;
+        left: 0px;
+        bottom: -12px;
+    }
+    #bottomyearlabel, #topyearlabel {
+        display: flex;
+    }
+
+    #yearslidermobile {
+        display: flex;
+    }
+
+    #bottomyearlabel {
+        padding: 0px 0px 0px 5px;
+    }
+
+    #topyearlabel {
+        padding: 0px 5px 0px 0px;
+    }
+
+    #title {
+        text-align: center;
+        font-size: 1em;
+        padding: 5px 10px 5px 10px;
+    }
+
+}
+
+@media screen and (min-width: 480px) and (max-width: 700px) {
+    
+    #yearslidercontainer {
+        font-size: 1em;
+        padding: 0px;
+    }
+    #yearslider {
+        padding: 0px 3px 0px 3px;
+        height: 2.2em;
+        display: flex;
+    }
+    #yearslidermobile {
+        display: none;
+    }
+    .yearitem, .yearitem:hover, .yearitemhover {
+        border-left: 1px solid #999;
+        align-self: flex-end;
+    }
+    .yearitem {
+        height: 15px;
+    }
+    .yearitem:hover {
+        border-left: 2px solid #999;
+    }
+    .yearitemhover {
+        border-left: 2px solid #111;
+    }
+    .yearitem:hover, .yearitemhover {
+        height: 30px;
+        font-size: 0.8em;
+    }
+
+    #legend-container {
+        display: none;
+    }
+
+    #chart-container {
+        width: 100%;
+        height: 40%;
+        position: absolute;
+        left: 0px;
+        bottom: -12px;
+    }
+
+    #title {
+        text-align: center;
+        font-size: 1em;
+        padding: 5px 10px 5px 10px;
+    }
+
+    #bottomyearlabel, #topyearlabel {
+        padding-top: 5px;
+        font-size: 1em;
+    }
+}
+
+
+
+@media screen and (min-width: 701px) and (max-width: 900px) {
+    
+    #yearslidercontainer {
+        font-size: 1em;
+        padding: 0px;
+    }
+    #yearslider {
+        padding: 0px 3px 0px 3px;
+        height: 2.2em;
+    }
+    .yearitem, .yearitem:hover, .yearitemhover {
+        border-left: 2px solid #999;
+        align-self: flex-end;
+    }
+    .yearitem {
+        height: 15px;
+    }
+    .yearitem:hover {
+        border-left: 2px solid #999;
+    }
+    .yearitemhover {
+        border-left: 2px solid #111;
+    }
+    .yearitem:hover, .yearitemhover {
+        height: 30px;
+        font-size: 0.8em;
+    }
+
+    #legend-container {
+        display: none;
+    }
+
+    #chart-container {
+        width: 100%;
+        height: 40%;
+        position: absolute;
+        left: 0px;
+        bottom: -12px;
+    }
+
+    #title {
+        text-align: center;
+        font-size: 1em;
+        padding: 0px 10px 0px 10px;
+    }
+
+    #bottomyearlabel, #topyearlabel {
+        padding-top: 5px;
+        font-size: 1em;
+    }
+
+}

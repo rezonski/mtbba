@@ -1,0 +1,21 @@
+node_modules
+bower_components
+
+# logs
+*.log
+
+# Jetbrains WebStorm
+.idea/
+*.iml
+*.ipr
+*.iws
+
+*/demo
+*/*/demo
+*/dist
+*/*/dist
+shapes/19aa8b0a-b8b1-4cbe-88c0-135abb475838 (1).zip
+shapes/19aa8b0a-b8b1-4cbe-88c0-135abb475838.zip
+shapes/3e256818-b9ea-4c81-b663-f887f7ae7317.zip
+shapes/40980e96-b766-41f2-b7f7-39cf848797c3.zip
+shapes/ne_110m_admin_1_states_provinces.zip

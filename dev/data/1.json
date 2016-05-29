@@ -1,0 +1,312 @@
+{
+  "features": [
+  {
+    "country": "USA",
+    "year": 2000,
+    "gdp": 28701.93,
+    "lat": 37.1679,
+    "lon": -95.845
+  },
+  {
+    "country": "USA",
+    "year": 2001,
+    "gdp": 28726.09,
+    "lat": 37.1679,
+    "lon": -95.845
+  },
+  {
+    "country": "USA",
+    "year": 2002,
+    "gdp": 28976.93,
+    "lat": 37.1679,
+    "lon": -95.845
+  },
+  {
+    "country": "USA",
+    "year": 2003,
+    "gdp": 29458.92,
+    "lat": 37.1679,
+    "lon": -95.845
+  },
+  {
+    "country": "USA",
+    "year": 2004,
+    "gdp": 30199.8,
+    "lat": 37.1679,
+    "lon": -95.845
+  },
+  {
+    "country": "USA",
+    "year": 2005,
+    "gdp": 30841.65,
+    "lat": 37.1679,
+    "lon": -95.845
+  },
+  {
+    "country": "USA",
+    "year": 2006,
+    "gdp": 31357.54,
+    "lat": 37.1679,
+    "lon": -95.845
+  },
+  {
+    "country": "USA",
+    "year": 2007,
+    "gdp": 31654.93,
+    "lat": 37.1679,
+    "lon": -95.845
+  },
+  {
+    "country": "USA",
+    "year": 2008,
+    "gdp": 31251.27,
+    "lat": 37.1679,
+    "lon": -95.845
+  },
+  {
+    "country": "USA",
+    "year": 2009,
+    "gdp": 29898.64,
+    "lat": 37.1679,
+    "lon": -95.845
+  },
+  {
+    "country": "USA",
+    "year": 2010,
+    "gdp": 30491.34,
+    "lat": 37.1679,
+    "lon": -95.845
+  },
+  {
+    "country": "France",
+    "year": 2000,
+    "gdp": 20391.88,
+    "lat": 46.7107,
+    "lon": 1.7182
+  },
+  {
+    "country": "France",
+    "year": 2001,
+    "gdp": 20648.03,
+    "lat": 46.7107,
+    "lon": 1.7182
+  },
+  {
+    "country": "France",
+    "year": 2002,
+    "gdp": 20719.53,
+    "lat": 46.7107,
+    "lon": 1.7182
+  },
+  {
+    "country": "France",
+    "year": 2003,
+    "gdp": 20789.05,
+    "lat": 46.7107,
+    "lon": 1.7182
+  },
+  {
+    "country": "France",
+    "year": 2004,
+    "gdp": 21193.4,
+    "lat": 46.7107,
+    "lon": 1.7182
+  },
+  {
+    "country": "France",
+    "year": 2005,
+    "gdp": 21450,
+    "lat": 46.7107,
+    "lon": 1.7182
+  },
+  {
+    "country": "France",
+    "year": 2006,
+    "gdp": 21841.59,
+    "lat": 46.7107,
+    "lon": 1.7182
+  },
+  {
+    "country": "France",
+    "year": 2007,
+    "gdp": 22202.17,
+    "lat": 46.7107,
+    "lon": 1.7182
+  },
+  {
+    "country": "France",
+    "year": 2008,
+    "gdp": 22057.35,
+    "lat": 46.7107,
+    "lon": 1.7182
+  },
+  {
+    "country": "France",
+    "year": 2009,
+    "gdp": 21244.21,
+    "lat": 46.7107,
+    "lon": 1.7182
+  },
+  {
+    "country": "France",
+    "year": 2010,
+    "gdp": 21477.48,
+    "lat": 46.7107,
+    "lon": 1.7182
+  },
+  {
+    "country": "Germany",
+    "year": 2000,
+    "gdp": 18943.52,
+    "lat": 51.1642,
+    "lon": 10.4542
+  },
+  {
+    "country": "Germany",
+    "year": 2001,
+    "gdp": 19156.69,
+    "lat": 51.1642,
+    "lon": 10.4542
+  },
+  {
+    "country": "Germany",
+    "year": 2002,
+    "gdp": 19140.38,
+    "lat": 51.1642,
+    "lon": 10.4542
+  },
+  {
+    "country": "Germany",
+    "year": 2003,
+    "gdp": 19087.57,
+    "lat": 51.1642,
+    "lon": 10.4542
+  },
+  {
+    "country": "Germany",
+    "year": 2004,
+    "gdp": 19283.67,
+    "lat": 51.1642,
+    "lon": 10.4542
+  },
+  {
+    "country": "Germany",
+    "year": 2005,
+    "gdp": 19417.06,
+    "lat": 51.1642,
+    "lon": 10.4542
+  },
+  {
+    "country": "Germany",
+    "year": 2006,
+    "gdp": 20040.62,
+    "lat": 51.1642,
+    "lon": 10.4542
+  },
+  {
+    "country": "Germany",
+    "year": 2007,
+    "gdp": 20546.94,
+    "lat": 51.1642,
+    "lon": 10.4542
+  },
+  {
+    "country": "Germany",
+    "year": 2008,
+    "gdp": 20801.44,
+    "lat": 51.1642,
+    "lon": 10.4542
+  },
+  {
+    "country": "Germany",
+    "year": 2009,
+    "gdp": 19789.85,
+    "lat": 51.1642,
+    "lon": 10.4542
+  },
+  {
+    "country": "Germany",
+    "year": 2010,
+    "gdp": 20661.45,
+    "lat": 51.1642,
+    "lon": 10.4542
+  },
+  {
+    "country": "Canada",
+    "year": 2000,
+    "gdp": 22487.71,
+    "lat": 56.9547,
+    "lon": -98.309
+  },
+  {
+    "country": "Canada",
+    "year": 2001,
+    "gdp": 22686.65,
+    "lat": 56.9547,
+    "lon": -98.309
+  },
+  {
+    "country": "Canada",
+    "year": 2002,
+    "gdp": 23155.14,
+    "lat": 56.9547,
+    "lon": -98.309
+  },
+  {
+    "country": "Canada",
+    "year": 2003,
+    "gdp": 23406.98,
+    "lat": 56.9547,
+    "lon": -98.309
+  },
+  {
+    "country": "Canada",
+    "year": 2004,
+    "gdp": 23952.91,
+    "lat": 56.9547,
+    "lon": -98.309
+  },
+  {
+    "country": "Canada",
+    "year": 2005,
+    "gdp": 24484.34,
+    "lat": 56.9547,
+    "lon": -98.309
+  },
+  {
+    "country": "Canada",
+    "year": 2006,
+    "gdp": 24967.17,
+    "lat": 56.9547,
+    "lon": -98.309
+  },
+  {
+    "country": "Canada",
+    "year": 2007,
+    "gdp": 25300.08,
+    "lat": 56.9547,
+    "lon": -98.309
+  },
+  {
+    "country": "Canada",
+    "year": 2008,
+    "gdp": 25262.07,
+    "lat": 56.9547,
+    "lon": -98.309
+  },
+  {
+    "country": "Canada",
+    "year": 2009,
+    "gdp": 24361.02,
+    "lat": 56.9547,
+    "lon": -98.309
+  },
+  {
+    "country": "Canada",
+    "year": 2010,
+    "gdp": 24941.24,
+    "lat": 56.9547,
+    "lon": -98.309
+  }
+]
+}

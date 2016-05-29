@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Get coordinates of the mouse pointer</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<style type='text/css'>
+    #info {
+        display: block;
+        position: relative;
+        margin: 0px auto;
+        width: 50%;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        font-size: 12px;
+        text-align: center;
+        color: #222;
+        background: #fff;
+    }
+    #box {
+        display: flex;
+        background-color: #fff;
+        position: absolute;
+        width: 20%;
+        height: 15%;
+    }
+</style>
+<div id='map'></div>
+<div id='box'></div>
+<pre id='info'></pre>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
+
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/mapbox/streets-v8',
+    center: [-74.50, 40], // starting position
+    zoom: 9 // starting zoom
+});
+
+var pointCounter = 0;
+
+map.on('mousemove', function (e) {
+    document.getElementById('info').innerHTML =
+        // e.point is the x, y coordinates of the mousemove event relative
+        // to the top-left corner of the map
+        JSON.stringify(e.point) + '<br />' +
+            // e.lngLat is the longitude, latitude geographical position of the event
+        JSON.stringify(e.lngLat);
+});
+
+map.on('click', function (e) {
+    console.log('click on ' + JSON.stringify(e.point) + ' geo: ' + JSON.stringify(e.lngLat));
+    pointCounter++;
+    console.log(pointCounter);
+
+    map.addSource("newpoint"+pointCounter, {
+        "type": "geojson",
+        "data": {
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [e.lngLat.lng, e.lngLat.lat]
+                },
+                "properties": {
+                    "title": "Mapbox DC",
+                    "marker-symbol": "monument"
+                }
+            }]
+        }
+    });
+
+    map.addLayer({
+        "id": "newpoint"+pointCounter,
+        "type": "symbol",
+        "source": "newpoint"+pointCounter,
+        "layout": {
+            // "icon-image": "{marker-symbol}-15",
+            "icon-image": "monument-15",
+            "text-field": "{name}",
+            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+            "text-offset": [0, 0.6],
+            "text-anchor": "top"
+        }
+    });
+
+    document.getElementById('box').style.left = e.point.x + "px";
+    document.getElementById('box').style.top = e.point.y + "px";
+    document.getElementById('box').innerHTML = JSON.stringify(e.point) + ' geo: ' + JSON.stringify(e.lngLat);
+
+});
+
+
+</script>
+
+</body>
+</html>

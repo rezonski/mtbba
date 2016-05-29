@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>GDP Per Capita in 1990 International Dollars Since 1870 # DEMO</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge;" />
+    
+    <link href="//fonts.googleapis.com/css?family=Roboto:400,300,700,500" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
+    <link href="//api.tiles.mapbox.com/mapbox-gl-js/v0.14.2/mapbox-gl.css" rel="stylesheet" />
+    <link href="style/4.css" rel="stylesheet" />
+    
+    <script src="//api.tiles.mapbox.com/mapbox-gl-js/v0.14.2/mapbox-gl.js"></script>
+    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="//code.highcharts.com/highcharts.js"></script>
+    <script src="//code.highcharts.com/modules/exporting.js"></script>
+    <script src="//hammerjs.github.io/dist/hammer.js"></script>
+    <script src="js/5.js"></script>
+</head>
+<body>
+<div id="map"></div>
+<div id="container">
+    <div id="header">
+        <div id="title">Real GDP Capita in 1990 International Dollars since 1870</div>
+        <div id="variables-switch"></div>
+        <div id="yearslidercontainer">
+            <div id="bottomyearlabel">
+                <div>1870</div>
+                <div><i class="material-icons">chevron_left</i></div>
+            </div>
+            <div id="yearslider"></div>
+            <div id="yearslidermobile"></div>
+            <div id="topyearlabel">
+                <div><i class="material-icons">chevron_right</i></div>
+                <div>2010</div>
+            </div>
+        </div>
+    </div>
+    <div id="map-overlay">
+        <div id="playstopcontainer"></div>
+        <div id="legend-container"></div>
+        <div id="chart-container"></div>
+    </div>
+    <div id="footer"></div>
+</div>
+<div id="features"></div>
+<script>
+    
+    var yearsArray = [];
+    var countriesArray = [];
+    var annotationsArray = [];
+    var cutpointsArray = [];
+    var datasetsArray = [];
+    var currentLayers = [];
+    var newLayers = [];
+    var currentActiveYear = 2010;
+    var maxGdpOverall;
+    var yearChartLoaded = false;
+    var timeChartEnabled = true;
+    var tim;
+    var countrylabelscreated = false;
+    var chart;
+    var map;
+    var xmlhttp = new XMLHttpRequest();
+    var url = "data/5.json";
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            
+            var myArr = JSON.parse(xmlhttp.responseText);
+            var element;
+
+            mapboxgl.accessToken = "pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg";
+            map = new mapboxgl.Map({
+                container: "map",
+                // style: "mapbox://styles/mersadpasic/cik8g7xyp00mcbum7a4odkw9g",  // LightWorld
+                style: "mapbox://styles/mersadpasic/ciksc414q003rbdklgfyxn9df", // LightWorld2
+                center: [-10, 0],
+                zoom: 0,
+                // maxBounds: bounds
+                attributionControl: {
+                    position: "bottom-left"
+                }
+            });
+
+            element = myArr;
+            yearsArray = element.years;
+            countriesArray = element.countries;
+            countriespropertiesArray = element.countriesproperties;
+            annotationsArray = element.annotations;
+            cutpointsArray = element.cutpoints;
+            datasetsArray = element.dataset;
+            
+            var incrementYearDom = document.getElementById("topyearlabel");
+            incrementYearDom.onclick = function() {
+                if (currentActiveYear < yearsArray[yearsArray.length-1]) {
+                    setYear(currentActiveYear+1);
+                    stopYears();
+                };
+            }
+            incrementYearDom.onmouseover = function() {
+                if (currentActiveYear < yearsArray[yearsArray.length-1]) {
+                    playYears();
+                };
+            }
+            incrementYearDom.onmouseout = function() {
+                if (currentActiveYear < yearsArray[yearsArray.length-1]) {
+                    stopYears();
+                };
+            }
+
+            var decrementYearDom = document.getElementById("bottomyearlabel");
+            decrementYearDom.onclick = function() {
+                if (currentActiveYear > yearsArray[0]) {
+                    setYear(currentActiveYear-1);
+                    stopYears();
+                };
+            }
+            decrementYearDom.onmouseover = function() {
+                if (currentActiveYear > yearsArray[0]) {
+                    playReverseYears();
+                };
+            }
+            decrementYearDom.onmouseout = function() {
+                if (currentActiveYear > yearsArray[0]) {
+                    stopYears();
+                };
+            }
+
+            map.on("style.load", function () {
+                map.addSource("contours", {
+                    type: "vector",
+                    url: "mapbox://mersadpasic.duylb9xo"
+                    // url: "mapbox://mapbox.mapbox-streets-v6"
+                });
+                map.addSource("countrieslabels", {
+                    type: "vector",
+                    url: "mapbox://mapbox.mapbox-streets-v6"
+                });
+                map.addSource('gdpdata', {
+                    'type': 'geojson',
+                    'data': getGeoJsonDataset(element)
+                });
+                // for click purpose
+                map.addLayer({
+                    "id": "basicCountries",
+                    "type": "fill",
+                    "source": "contours",
+                    "paint": {
+                        "fill-opacity": 0
+                    },
+                    "source-layer": "ne_110m_admin_0_countries"
+                    // "source-layer": "admin"
+                });
+                map.fire('loaded');
+            });
+
+            map.on('loaded', function(){
+                maxGdpOverall = getMaxGdp(datasetsArray);
+                createYearSlider(yearsArray);
+                setCountriesLayerSet();
+                setYear(2009);
+                setYear(2010);
+                setLegend();
+                setPlayStopContainer();
+                setKeyboardListeners();
+                resolutionControler();
+                console.log(getGeoJsonDataset(element));
+            });
+
+            map.on("mousemove", function (e) {
+                map.featuresAt(e.point, {radius: 5}, function (err, features) {
+                    if (err) throw err;
+                    document.getElementById("features").innerHTML = JSON.stringify(features, null, 2);
+                });
+            });
+
+            map.on("click", function (e) {
+                map.featuresAt(
+                    e.point, 
+                    {
+                        radius: 5
+                    }, 
+                    function (err, features) {
+                        if (err) throw err;
+                        // console.log(countriesArray[0]);  
+                        
+                        if (timeChartEnabled) {
+                            if (features.length > 0) {
+                                if (countriesArray.indexOf(features[0].properties.admin) > -1) {
+                                    stopYears();
+                                    setTimeChart(getChartSeries(features[0].properties.admin));
+                                    resolutionControler();
+                                } else {
+                                    if (countriesArray.indexOf(features[0].properties.name) > -1) {
+                                        stopYears();
+                                        setTimeChart(getChartSeries(features[0].properties.name));
+                                        resolutionControler();
+                                    } else {
+                                        if (countriesArray.indexOf(features[0].properties.name_en) > -1) {
+                                            stopYears();
+                                            setTimeChart(getChartSeries(features[0].properties.name_en));
+                                            resolutionControler();
+                                        }
+                                    }
+                                }
+                            } else {
+                                stopYears();
+                                setTimeChart(getChartSeries(''));  
+                            }      
+                        }
+                    });
+            });
+
+
+            var swipeSensor = new Hammer(document.getElementById("header"));
+            // swipe left
+            swipeSensor.on("swipeleft", function() {
+                if (currentActiveYear < yearsArray[yearsArray.length-1]) {
+                    setYear(currentActiveYear+1);
+                    stopYears();
+                };
+            });
+            // swipe right
+            swipeSensor.on("swiperight", function() {
+                if (currentActiveYear > yearsArray[0]) {
+                    setYear(currentActiveYear-1);
+                    stopYears();
+                };
+            });
+
+            window.addEventListener("resize", function() {
+                resolutionControler();
+            });
+
+        }
+    };
+
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+
+</script>
+</body>
+</html>
