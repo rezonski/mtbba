@@ -1,3 +1,9 @@
+function generateDesc(wp) {
+  var returnDesc;
+  console.log(JSON.stringify(wp));
+  return returnDesc;
+}
+
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -18,8 +24,8 @@ function sortFunction(a, b) {
 function symbolFromDesc(inputDesc, inputPictogram, inputName) {
   var returnVal = 'CROSS';
   var found = false;
-  var desc = inputDesc.toLowerCase();
-  var pictogram = inputPictogram.toLowerCase();
+  var desc = (inputDesc !== undefined && inputDesc.length > 0) ? inputDesc.toLowerCase() : '';
+  var pictogram = (inputPictogram !== undefined && inputPictogram.length > 0) ? inputPictogram.toLowerCase() : '';
   var name = inputName.toLowerCase();
 
   // VODA

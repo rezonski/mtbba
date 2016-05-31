@@ -69,6 +69,7 @@ function makeWaypointsEditor(inWaypoints) {
         tempElement += '</select><br>';
         tempElement += '<textarea  rows="5" cols="41" id="desc' + wpindex + '">' + wp.desc + '</textarea><br>';
         tempElement += 'Foto URL: <input type="text" size="27" id="pictureurl' + wpindex + '" value="' + wp.pictureurl + '">';
+        tempElement += '<textarea  rows="5" cols="41" id="desc' + wpindex + '">' + generateDesc(wp) + '</textarea><br>';
         tempElement += '</form><hr>';
      });
 

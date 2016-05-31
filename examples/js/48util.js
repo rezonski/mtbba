@@ -361,12 +361,15 @@ function fixWaypoints() {
   
       console.log(wpoint.properties.name + ' odometar: ' + Math.round(odometar*100)/100 + ' elevation gain ' + elevationgain + ' loss ' + elevationloss);
 
-      if (wpoint.properties.desc.indexOf('#')  > -1 ) {
+      if (wpoint.properties.desc !== undefined && wpoint.properties.desc.indexOf('#')  > -1 ) {
         var tempDescArray = wpoint.properties.desc.replace("#\n\n","#\n").replace("#\n\n","#\n").replace("#\n","#").replace("#\n","#").split("#");
         tempDesc = tempDescArray[2];
         tempPictogram = tempDescArray[1];
-      } else {
+      } else if (wpoint.properties.desc !== undefined) {
         tempDesc = wpoint.properties.desc;
+        tempPictogram = (wpoint.properties.pictogram != undefined) ? wpoint.properties.pictogram : '90';
+      } else {
+        tempDesc = '';
         tempPictogram = (wpoint.properties.pictogram != undefined) ? wpoint.properties.pictogram : '90';
       }
 
