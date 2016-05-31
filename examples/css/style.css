@@ -5,14 +5,38 @@ html, body {
     overflow: none;
 }
 
+.map { 
+    position:absolute; 
+    top:0; 
+    bottom:0; 
+    width:100%; 
+}
+
+#rawprofile {
+    position:absolute; 
+    bottom:0; 
+    width:100%;
+    height: 300px; 
+}
+
+#rawprofilecontainer {
+    display: block;
+    width: 50%;
+    height: 300px;
+    margin: auto;
+    background-color: #ccee00;
+    z-index: 99999;
+}
+
 #sidebar, #waypointscontainer {
     display: block;
     position: absolute;
     top: 0;
-    width: 335px;
+    width: 345px;
     height: 100%;
     overflow-y: scroll;
     overflow-x: none;
+    background-color: #ededed;
 }
 
 #sidebar {
@@ -23,8 +47,14 @@ html, body {
     left: 0;
 }
 
+#rawprofile {
+
+}
+
 .waypointform {
     line-height: 25px;
+    font-size: 95%;
+    padding-left: 10px;
 }
 
 .waypointform input {

@@ -57,18 +57,18 @@ function makeWaypointsEditor(inWaypoints) {
      inWaypoints.forEach(function(wp, wpindex) {
         tempElement += '<form action="#" class="waypointform" id="form' + wpindex + '" name="form' + wpindex + '">';
         tempElement += 'ID: <input type="text" size="1" id="id' + wpindex + '" value="' + wp.id + '">';
-        tempElement += ' Predjeno: <input type="text" size="2" id="odometer' + wpindex + '" value="' + wp.odometer + '">[km]';
-        tempElement += ' N.visina: <input type="text" size="3" id="elevation' + wpindex + '" value="' + wp.elevation + '">[m]<br>';
-        tempElement += 'Ime: <input type="text" size="18" id="name' + wpindex + '" value="' + wp.name + '">';
+        tempElement += ' Put: <input type="text" size="2" id="odometer' + wpindex + '" value="' + wp.odometer + '"> [km]';
+        tempElement += ' Visina: <input type="text" size="2" id="elevation' + wpindex + '" value="' + wp.elevation + '"> [mnv]<br>';
+        tempElement += 'Ime: <input type="text" size="20" id="name' + wpindex + '" value="' + wp.name + '">';
         tempElement += ' Visinski profil: <input type="checkbox" id="elevationprofile' + wpindex + '" value="' + wp.elevationprofile + '" ' + ((wp.elevationprofile === 1) ? 'checked' : '') + '><br>';
-        tempElement += 'Pictog: <input type="text" size="11" id="pictogram' + wpindex + '" value="' + wp.pictogram + '">';
-        tempElement += 'Tacka: <select id="pointtype' + wpindex + '" onchange=changeWpointType(' + wpindex + ')>';
+        tempElement += 'Pikto: <input type="text" size="12" id="pictogram' + wpindex + '" value="' + wp.pictogram + '">';
+        tempElement += ' Tacka: <select id="pointtype' + wpindex + '" onchange=changeWpointType(' + wpindex + ')>';
         pointtypesArray.forEach(function (pointtype, pointindex) {
             tempElement += '<option value="' + pointtype.symbol_code +'" ' + ((pointtype.symbol_code === wp.symbol) ? 'selected' : '') + '>' + pointtype.desc +'</option>';
         })
         tempElement += '</select><br>';
         tempElement += '<textarea  rows="5" cols="41" id="desc' + wpindex + '">' + wp.desc + '</textarea><br>';
-        tempElement += 'URL fotografije: <input type="text" size="27" id="pictureurl' + wpindex + '" value="' + wp.pictureurl + '">';
+        tempElement += 'Foto URL: <input type="text" size="27" id="pictureurl' + wpindex + '" value="' + wp.pictureurl + '">';
         tempElement += '</form><hr>';
      });
 

@@ -7,9 +7,11 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="//code.highcharts.com/highcharts.js"></script>
     <script src="//code.highcharts.com/modules/exporting.js"></script>
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.css' rel='stylesheet' />
-    <script src='//api.mapbox.com/mapbox.js/plugins/turf/v2.0.2/turf.min.js'></script>
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.js"></script>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.18.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.0.1/mapbox-gl-compare.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.0.1/mapbox-gl-compare.css" type="text/css" />
+    <script src='https://api.mapbox.com/mapbox.js/plugins/turf/v2.0.2/turf.min.js'></script>
     <script src="js/48layout.js"></script>
     <script src="js/48util.js"></script>
     <script src="js/multicolor_series.js"></script>
@@ -20,7 +22,8 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-    <div id="map"></div>
+    <div id="mapbefore" class="map"></div>
+    <div id="mapafter" class="map"></div>
     <div id="sidebar">
         <div id="inputfileform">
             <label for="inputfile">Odaberi file (gpx ili kml)</label>
@@ -35,7 +38,7 @@
                 <button type="button" id="buttonsendpath2db" onclick="actionSend('path')" disabled="true">Path</button>
                 <button type="button" id="buttonprepwpoints" onclick="makeWaypointsEditor(newWaypointsExport)" disabled="true">show WP</button>
                 <button type="button" id="buttonwpoints2db" onclick="actionSend('waypoints')" disabled="true">WP2DB</button>
-                <button type="button" id="buttonshowelev" onclick="setElevationProfile(pathLine,newWaypointsChart,sastavArray)" disabled="true">Elev</button>
+                <button type="button" id="buttonshowelev" onclick="setElevationProfile('container',pathLine,newWaypointsChart,sastavArray)" disabled="true">Elev</button>
             </form>
         </div>
         <div id="resultform">
@@ -44,18 +47,23 @@
         </div>
     </div>
     <div id="waypointscontainer"></div>
+    <div id="rawprofile">
+        <div id="rawprofilecontainer"></div>
+    </div>
 
 </body>
-<script src='//api.mapbox.com/mapbox.js/plugins/turf/v2.0.2/turf.min.js'></script>
+<script src='https://api.mapbox.com/mapbox.js/plugins/turf/v2.0.2/turf.min.js'></script>
 <script>
     var xmlhttp = new XMLHttpRequest();
     var url = "Jabranica.json";
     var pathLine = [];
     var newPathLine = [];
 
-    var map;
+    var mapbefore;
+    var mapafter;
 
     var importedfilename = '';
+    var rawTrailName = '';
     
     var waypoints = [];
     var newWaypointsExport = [];
@@ -73,6 +81,8 @@
     
     var typesArray = [];
 
+    var parsedJSON = {};
+
     document.getElementById('fileinput').addEventListener('change', readSingleFile, false);
 
     xmlhttp.onreadystatechange = function() {
@@ -83,7 +93,7 @@
             typesArray = response.types;
             pointtypesArray = response.pointtypes;
             makePopupForm(countriesArray, mountainsArray, typesArray);
-            createMap();
+            
         }
     };
     xmlhttp.open("GET", "getmnts.php", true);

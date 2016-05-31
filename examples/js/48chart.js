@@ -1,4 +1,4 @@
-function setElevationProfile(pathLine,wayPoints,sastavArray) {
+function setElevationProfile(chartContainer,pathLine,wayPoints,sastavArray) {
     
     var dataset = [];
     var odometer = [0];
@@ -46,13 +46,13 @@ function setElevationProfile(pathLine,wayPoints,sastavArray) {
 
     // console.log(dataset);
 
-    document.getElementById("container").style.display = "block";
+    document.getElementById(chartContainer).style.display = "block";
 
 
     $(function () {
-        $('#container').highcharts({
+        $('#' + chartContainer).highcharts({
             chart: {
-                renderTo: 'container',
+                renderTo: chartContainer,
                 type: 'coloredarea',
                 zoomType: 'xy',
                 borderWidth: 5,
@@ -61,20 +61,23 @@ function setElevationProfile(pathLine,wayPoints,sastavArray) {
                 backgroundColor: '#f7f7f7'
             },
             title: {
-                text: 'Variable profile'
+                text: rawTrailName.toString()
+            },
+            legend: {
+                enabled: false
             },
             xAxis: {
                 type: 'integer',
                 // categories: odometer,
                 // tickInterval: 2,
                 title: {
-                    text: 'Variable A'
+                    text: 'Predjeni put [km]'
                 },
                 plotLines: plotlines
             },
             yAxis: {
                 title: {
-                    text: 'Variable B'
+                    text: 'Nadmorska visina [m]'
                 },
                 plotLines: [{
                     value: 0,
@@ -85,9 +88,15 @@ function setElevationProfile(pathLine,wayPoints,sastavArray) {
                 max: 2000
             },
             tooltip: {
+                // shared: true,
+                // valueSuffix: ' m',
+                // crosshairs: true
+
                 shared: true,
-                valueSuffix: ' m',
-                crosshairs: true
+                useHTML: true,
+                headerFormat: '<b>{point.key} km</b><br>',
+                pointFormat: '{point.y} mnv',
+                valueDecimals: 2
             },
             credits: {
                 enabled: false
@@ -106,10 +115,31 @@ function setElevationProfile(pathLine,wayPoints,sastavArray) {
                             }
                         }
                     }
+                },
+                series: {
+                    cursor: 'pointer',
+                    point: {
+                        events: {
+                            click: function () {
+                                // console.log('Click: ' + (Math.round(this.x * 100) / 100));
+                                document.getElementById("sastavodometar").value = (Math.round(this.x * 100) / 100);
+                            },
+                            mouseOver: function () {
+                                // console.log('Over: ' + (Math.round(this.x * 100) / 100));
+                                // console.log('Coordinates: ' + pathLine[this.index][0] + ' , ' + pathLine[this.index][1]);
+                                // currentLocSourceObject.geometry.coordinates = [pathLine[this.index][0],pathLine[this.index][1]];
+                                animateMarker([pathLine[this.index][0], pathLine[this.index][1]]);
+                                // if (Number.isInteger(this.index) && pathLine[this.index][0] !== undefined && pathLine[this.index][1] !== undefined) {
+                                // } else {
+                                //     console.log('NO INT');
+                                // }
+                            }
+                        }
+                    }
                 }
             },
             series: [{
-                name: 'Variable',
+                name: 'Nadmorska visina',
                 type: 'coloredarea',
                 turboThreshold: 2000,
                 data: dataset

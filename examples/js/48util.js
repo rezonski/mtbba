@@ -34,6 +34,7 @@ function handleSastav() {
   console.log('sastavArray');
   console.log(sastavArray);
   document.getElementById('sastavtrailatext').value = JSON.stringify(sastavArray);
+  document.getElementById('sastavodometar').value = '';
   document.getElementById('sastavtype').value = '';
 }
 
@@ -102,15 +103,18 @@ function readSingleFile(evt) {
       var r = new FileReader();
       r.onload = function(e) {   
           importedfilename = f.name;
+          rawTrailName = importedfilename.replace('.gpx', '').replace('_profil', ' ').replace('_', ' ').capitalizeFirstLetter();
+          document.getElementById("trailname").value = rawTrailName;
           var contents = e.target.result;
           var dom = (new DOMParser()).parseFromString(contents, 'text/xml');
           if (f.name.toLowerCase().indexOf('.gpx') > 0) {
-            makeTrail(toGeoJSON.gpx(dom));
+            parsedJSON = toGeoJSON.gpx(dom);
           } else if (f.name.toLowerCase().indexOf('.kml') > 0) {
-            makeTrail(toGeoJSON.kml(dom));
+            parsedJSON = toGeoJSON.kml(dom);
           } else {
              alert( "Unsuported file type");
           } 
+          makeTrail(parsedJSON);
       }
       r.readAsText(f);
     } else { 
@@ -216,9 +220,20 @@ function fixPathArray() {
   newPathLine = [];
   var prevLoc = {};
   var currLocOut = {};
+
+  var maxLon = 0;
+  var minLon = 999999;
+  var maxLat = 0;
+  var minLat = 999999;
+  var maxElev = 0;
+  var minElev = 999999;
+
   pathLine.forEach(function(location, index) {
+    
+    var elevationCalc
+
     if (index > 0) {
-      var elevationCalc = (location[2] === undefined) ? prevLoc.elevation : location[2];
+      elevationCalc = (location[2] === undefined) ? prevLoc.elevation : location[2];
       var currLoc = {
         lon: location[0],
         lat: location[1],
@@ -232,7 +247,7 @@ function fixPathArray() {
       newPathLine.push(currLoc);
       currLocOut = JSON.parse(JSON.stringify(currLoc));
     } else {
-      var elevationCalc = (location[2] === undefined) ? 0 : location[2];
+      elevationCalc = (location[2] === undefined) ? 0 : location[2];
       var currLoc = {
         lon: location[0],
         lat: location[1],
@@ -243,7 +258,30 @@ function fixPathArray() {
       newPathLine.push(currLoc);
       currLocOut = JSON.parse(JSON.stringify(currLoc));
     }
+    
+    if (location[0] >= maxLon) {
+      maxLon = location[0];
+    }
+    if (location[0] <= minLon) {
+      minLon = location[0];
+    }
+
+    if (location[1] >= maxLat) {
+      maxLat = location[1];
+    }
+    if (location[1] <= minLat) {
+      minLat = location[1];
+    }
+
+    if (elevationCalc >= maxElev) {
+      maxElev = elevationCalc;
+    }
+    if (elevationCalc <= minElev) {
+      minElev = elevationCalc;
+    }
+
     prevLoc = JSON.parse(JSON.stringify(currLocOut));
+
   });
 
   var totaldistance = 0; // in kms
@@ -262,6 +300,23 @@ function fixPathArray() {
   generalFact.distance = totaldistance;
   generalFact.elevgain = totalelevgain;
   generalFact.elevloss = totalelevloss;
+
+  var lonDelta = (maxLon - minLon) / 1;
+  var latDelta = (maxLat - minLat) / 1;
+
+  // generalFact.bounds = [[(maxLat + latDelta),(maxLon + lonDelta)],[(maxLat - latDelta),(maxLon - lonDelta)]];
+  generalFact.bounds = [[(maxLon + lonDelta),(maxLat + latDelta)],[(minLon - lonDelta),(minLat - latDelta)]];
+
+
+
+  generalFact.lonCenter = (maxLon + minLon)/2;
+  generalFact.latCenter = (maxLat + minLat)/2;
+  generalFact.elevMin = minElev;
+  generalFact.elevMax = maxElev;
+
+  createMap();
+
+  setElevationProfile('rawprofilecontainer',pathLine,waypoints,sastavArray);
 
 }
 
