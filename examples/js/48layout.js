@@ -53,8 +53,20 @@ function makePopupForm(countries, mountains, types) {
 
 function makeWaypointsEditor(inWaypoints) {
     var container = document.getElementById('waypointscontainer');
+    var tempWp = {};
     var tempElement = '';  
      inWaypoints.forEach(function(wp, wpindex) {
+        if (wpindex < (inWaypoints.length - 1)) {
+            tempWp = {
+                current: wp,
+                next: inWaypoints[wpindex+1]
+            }
+        } else {
+            tempWp = {
+                current: wp,
+                next: null
+            }
+        }
         tempElement += '<form action="#" class="waypointform" id="form' + wpindex + '" name="form' + wpindex + '">';
         tempElement += 'ID: <input type="text" size="1" id="id' + wpindex + '" value="' + wp.id + '">';
         tempElement += ' Put: <input type="text" size="2" id="odometer' + wpindex + '" value="' + wp.odometer + '"> [km]';
@@ -69,7 +81,7 @@ function makeWaypointsEditor(inWaypoints) {
         tempElement += '</select><br>';
         tempElement += '<textarea  rows="5" cols="41" id="desc' + wpindex + '">' + wp.desc + '</textarea><br>';
         tempElement += 'Foto URL: <input type="text" size="27" id="pictureurl' + wpindex + '" value="' + wp.pictureurl + '">';
-        tempElement += '<textarea  rows="5" cols="41" id="desc' + wpindex + '">' + generateDesc(wp) + '</textarea><br>';
+        tempElement += '<textarea  rows="5" cols="41" id="desc' + wpindex + '">' + generateDesc(tempWp) + '</textarea><br>';
         tempElement += '</form><hr>';
      });
 

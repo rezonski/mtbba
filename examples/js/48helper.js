@@ -1,7 +1,111 @@
 function generateDesc(wp) {
-  var returnDesc;
-  console.log(JSON.stringify(wp));
+  var returnDesc = JSON.stringify(wp);
+  returnDesc = getElementByKey(pointtypesArray,'symbol_code','CROSSROAD','desc');
+  
+  if (wp.next !== undefined && wp.next !== null) {
+    
+    var directionText = getElementByKey(pointtypesArray,'symbol_code', wp.current.symbol,'desc') + ' ' + wp.current.name + '. Nastaviti ';
+    var otherDirections = ' Sporedni putevi ';
+    var waterSupplyText = ' Izvor vode ';
+    var forbiddenDirectionText = ' Zabranjen smjer ';
+
+    var pictogramArray = wp.current.pictogram.split('-');
+
+    pictogramArray.forEach(function(element, index) {
+      if (index === 0) {
+        directionText += parseDirection(element) + ' drzeci se glavnog puta.';
+      } else if (element.toLowerCase().indexOf('v') > -1) {
+        waterSupplyText += parseDirection(element.toLowerCase().replace('v','')) + ', ';
+      } else if (element.toLowerCase().indexOf('z') > -1) {
+        forbiddenDirectionText += parseDirection(element.toLowerCase().replace('v','')) + ', ';
+      } else {
+        otherDirections += parseDirection(element) + ', ';
+      }
+    });
+
+    if (waterSupplyText.length > (' Izvor vode ').length) {
+      waterSupplyText = waterSupplyText.substring(0, (waterSupplyText.length - 2)) + '.';
+    } else {
+      waterSupplyText = '';
+    }
+
+    if (forbiddenDirectionText.length > (' Zabranjen smjer ').length) {
+      forbiddenDirectionText = forbiddenDirectionText.substring(0, (forbiddenDirectionText.length - 2)) + '.';
+    } else {
+      forbiddenDirectionText = '';
+    }
+
+    if (otherDirections.length > (' Sporedni putevi ').length) {
+      otherDirections = otherDirections.substring(0, (otherDirections.length - 2)) + '.';
+    } else {
+      otherDirections = '';
+    }
+
+    directionText += otherDirections + forbiddenDirectionText  + waterSupplyText;
+
+    directionText += ' Slijedi sekcija duzine ' + wp.current.nextstepdist + ' km'; 
+    if (wp.current.nextelevgain > 0) {
+      directionText += ' sa ' + wp.current.nextelevgain +  ' m visinskog uspona'; 
+    }
+    if (Math.abs(wp.current.nextelevloss) > 0) {
+      directionText += ' i ' + Math.abs(wp.current.nextelevloss) + ' m visinskog spusta';
+    }
+    directionText += '. Sljedeca kontrolna tacka je ' + getElementByKey(pointtypesArray,'symbol_code', wp.next.symbol,'desc').toLowerCase() + ' "' + wp.next.name + '" (' + wp.next.odometer + ' km od starta, na ' + wp.next.elevation + ' mnv).';
+
+    returnDesc = directionText;
+    
+  } else {
+    returnDesc = 'Stigli ste na odrediste';
+  }
+
+
   return returnDesc;
+}
+
+function parseDirection(position) {
+    var returnText = '';
+    switch (parseInt(position,10)) {
+      case 0:
+        returnText = 'desno';
+        break;
+      case 45:
+        returnText = 'pravo polu-desno';
+        break;
+      case 90:
+        returnText = 'pravo';
+        break;
+      case 135:
+        returnText = 'pravo polu-lijevo';
+        break;
+      case 180:
+        returnText = 'lijevo';
+        break;
+      case 225:
+        returnText = 'ostro/natrag lijevo';
+        break;
+      case 270:
+        returnText = 'natrag istim putem';
+        break;
+      case 315:
+        returnText = 'ostro/natrag desno';
+        break;
+      default:
+        returnText = 'pravo';
+    }
+    return returnText;
+}
+
+function parseSurfaceTransition(odoStart, odoEnd, surfaceArray) {
+  var surface = surfaceArray.unshift([0,"A"]);
+  
+}
+
+function getElementByKey(inputArray, keyName, keyValue, getKeyName) {
+  for (var i=0; i<inputArray.length; i++) {
+    if (inputArray[i][keyName] == keyValue) {
+      return inputArray[i][getKeyName];
+    }
+  }
 }
 
 function capitalizeFirstLetter(string) {
@@ -22,7 +126,7 @@ function sortFunction(a, b) {
 }
 
 function symbolFromDesc(inputDesc, inputPictogram, inputName) {
-  var returnVal = 'CROSS';
+  var returnVal = 'CROSSROAD';
   var found = false;
   var desc = (inputDesc !== undefined && inputDesc.length > 0) ? inputDesc.toLowerCase() : '';
   var pictogram = (inputPictogram !== undefined && inputPictogram.length > 0) ? inputPictogram.toLowerCase() : '';
@@ -40,17 +144,43 @@ function symbolFromDesc(inputDesc, inputPictogram, inputName) {
     returnVal = 'WATER';
   }
 
-  // MJESTO
+  // SELO
   if (!found && ( desc.indexOf('selo ') === 0 || 
                   name.indexOf('selo ') === 0 || 
                   desc.indexOf('zaseok ') === 0 || 
-                  name.indexOf('zaseok ') === 0 || 
-                  desc.indexOf('lokalitet ') === 0 ||
+                  name.indexOf('zaseok ') === 0)) {
+    found = true;
+    returnVal = 'VILLAGE';
+  }
+
+  // LOKALITET
+  if (!found && ( desc.indexOf('lokalitet ') === 0 ||
                   name.indexOf('lokalitet ') === 0 ||
-                  desc.indexOf('grad ') === 0 ||
+                  desc.indexOf('lokacija ') === 0 ||
+                  name.indexOf('lokacija ') === 0)) {
+    found = true;
+    returnVal = 'LOCATION';
+  }
+
+  // GRAD
+  if (!found && ( desc.indexOf('grad ') === 0 || 
                   name.indexOf('grad ') === 0 )) {
     found = true;
-    returnVal = 'PLACE';
+    returnVal = 'CITY';
+  }
+
+
+  // MOST
+  if (!found && ( desc.indexOf('most ') === 0 || 
+                  name.indexOf('most ') === 0 || 
+                  desc.indexOf('splav ') === 0 || 
+                  name.indexOf('splav ') === 0 || 
+                  desc.indexOf('rijeka ') === 0 || 
+                  name.indexOf('rijeka ') === 0 || 
+                  desc.indexOf('potok ') === 0 || 
+                  name.indexOf('potok ') === 0 )) {
+    found = true;
+    returnVal = 'RIVER';
   }
 
   // START
@@ -59,9 +189,9 @@ function symbolFromDesc(inputDesc, inputPictogram, inputName) {
                   desc.indexOf('pocetak ture ') === 0 || 
                   name.indexOf('pocetak ture ') === 0 || 
                   desc.indexOf('pocetak staze ') === 0 || 
-                  name.indexOf('pocetak staze ') === 0)) {
+                  name.indexOf('pocetak staze ') === 0 )) {
     found = true;
-    returnVal = 'START';
+    returnVal = 'TRAILSTART';
   }
 
   // KRAJ
@@ -72,7 +202,7 @@ function symbolFromDesc(inputDesc, inputPictogram, inputName) {
                   desc.indexOf('kraj staze ') === 0 || 
                   name.indexOf('kraj staze ') === 0)) {
     found = true;
-    returnVal = 'END';
+    returnVal = 'TRAILEND';
   }
 
   // HRANA
@@ -163,7 +293,6 @@ function symbolFromDesc(inputDesc, inputPictogram, inputName) {
 
 }
 
-
 function getDistance(first, second) {
   
     var lon1 = first[0];
@@ -226,7 +355,6 @@ function getSegmentColor(segmentName) {
 
     return segmentColor;
 }
-
 
 function getSegmentName(odometar, sastavArray) {
     
