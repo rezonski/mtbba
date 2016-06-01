@@ -4,10 +4,10 @@ function generateDesc(wp) {
   
   if (wp.next !== undefined && wp.next !== null) {
     
-    var directionText = getElementByKey(pointtypesArray,'symbol_code', wp.current.symbol,'desc') + ' ' + wp.current.name + '. Nastaviti ';
-    var otherDirections = ' Sporedni putevi ';
-    var waterSupplyText = ' Izvor vode ';
-    var forbiddenDirectionText = ' Zabranjen smjer ';
+    var directionText = getElementByKey(pointtypesArray,'symbol_code', wp.current.symbol,'desc') + ' "' + wp.current.name + '". Nastaviti ';
+    var otherDirections = ' Sporedni putevi: ';
+    var waterSupplyText = ' Izvor vode: ';
+    var forbiddenDirectionText = ' Zabranjen smjer: ';
 
     var pictogramArray = wp.current.pictogram.split('-');
 
@@ -23,19 +23,19 @@ function generateDesc(wp) {
       }
     });
 
-    if (waterSupplyText.length > (' Izvor vode ').length) {
+    if (waterSupplyText.length > (' Izvor vode: ').length) {
       waterSupplyText = waterSupplyText.substring(0, (waterSupplyText.length - 2)) + '.';
     } else {
       waterSupplyText = '';
     }
 
-    if (forbiddenDirectionText.length > (' Zabranjen smjer ').length) {
+    if (forbiddenDirectionText.length > (' Zabranjen smjer: ').length) {
       forbiddenDirectionText = forbiddenDirectionText.substring(0, (forbiddenDirectionText.length - 2)) + '.';
     } else {
       forbiddenDirectionText = '';
     }
 
-    if (otherDirections.length > (' Sporedni putevi ').length) {
+    if (otherDirections.length > (' Sporedni putevi: ').length) {
       otherDirections = otherDirections.substring(0, (otherDirections.length - 2)) + '.';
     } else {
       otherDirections = '';
@@ -69,13 +69,13 @@ function parseDirection(position) {
         returnText = 'desno';
         break;
       case 45:
-        returnText = 'pravo polu-desno';
+        returnText = 'polu-desno';
         break;
       case 90:
         returnText = 'pravo';
         break;
       case 135:
-        returnText = 'pravo polu-lijevo';
+        returnText = 'polu-lijevo';
         break;
       case 180:
         returnText = 'lijevo';
@@ -97,7 +97,7 @@ function parseDirection(position) {
 
 function parseSurfaceTransition(odoStart, odoEnd, surfaceArray) {
   var surface = surfaceArray.unshift([0,"A"]);
-  
+
 }
 
 function getElementByKey(inputArray, keyName, keyValue, getKeyName) {
