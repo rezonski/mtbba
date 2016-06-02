@@ -36,10 +36,10 @@ html, body {
     height: 100%;
     overflow-y: scroll;
     overflow-x: none;
-    background-color: #ededed;
 }
 
 #sidebar {
+    background-color: #ededed;
     right: 0;
 }
 #waypointscontainer {
@@ -55,6 +55,16 @@ html, body {
     line-height: 25px;
     font-size: 95%;
     padding-left: 10px;
+    opacity: 0.4;
+    border-bottom: 2px solid #333;
+    background-color: #eee;
+}
+
+.waypointform:hover {
+    opacity: 1;
+    border-top: 3px solid #ff0000;
+    border-bottom: 3px solid #ff0000;
+    background-color: #FFFBA0;
 }
 
 .waypointform input {

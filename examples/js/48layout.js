@@ -35,7 +35,7 @@ function makePopupForm(countries, mountains, types) {
     <label for="tiptraila">Sastav traila</label><br>
     <div id="sastavtraila">
         <form action="" id="tiptraila" name="tiptraila">
-            <textarea disabled id="sastavtrailatext" name="sastavtrailatext" placeholder="[[1.5, 'M'],[4.5, 'M'],[5.5, 'A'],[7.1, 'S'],[8.5, 'N'],[11.5, 'M'],[13.5, 'S'],[14.5, 'S']]" rows="2" cols="40"></textarea><br>
+            <textarea id="sastavtrailatext" name="sastavtrailatext" placeholder="[[1.5, 'M'],[4.5, 'M'],[5.5, 'A'],[7.1, 'S'],[8.5, 'N'],[11.5, 'M'],[13.5, 'S'],[14.5, 'S']]" rows="2" cols="40"></textarea><br>
             <input id="sastavodometar" name="sastavodometar" type="text" size="4" placeholder="km"> km
             <input id="sastavtype" list="podloga" name="podloga" type="text" size="4">
             <datalist id="podloga">
@@ -73,7 +73,7 @@ function makeWaypointsEditor(inWaypoints) {
         tempElement += ' Visina: <input type="text" size="2" id="elevation' + wpindex + '" value="' + wp.elevation + '"> [mnv]<br>';
         tempElement += 'Ime: <input type="text" size="20" id="name' + wpindex + '" value="' + wp.name + '">';
         tempElement += ' Visinski profil: <input type="checkbox" id="elevationprofile' + wpindex + '" value="' + wp.elevationprofile + '" ' + ((wp.elevationprofile === 1) ? 'checked' : '') + '><br>';
-        tempElement += 'Pikto: <input type="text" size="12" id="pictogram' + wpindex + '" value="' + wp.pictogram + '">';
+        tempElement += 'Pikto: <input onClick="setFocus([' + wp.lon + ',' + wp.lat + '])" type="text" size="12" id="pictogram' + wpindex + '" value="' + wp.pictogram + '">';
         tempElement += ' Tacka: <select id="pointtype' + wpindex + '" onchange=changeWpointType(' + wpindex + ')>';
         pointtypesArray.forEach(function (pointtype, pointindex) {
             tempElement += '<option value="' + pointtype.symbol_code +'" ' + ((pointtype.symbol_code === wp.symbol) ? 'selected' : '') + '>' + pointtype.desc +'</option>';
@@ -82,7 +82,7 @@ function makeWaypointsEditor(inWaypoints) {
         tempElement += '<textarea  rows="5" cols="41" id="desc' + wpindex + '">' + wp.desc + '</textarea><br>';
         tempElement += 'Foto URL: <input type="text" size="27" id="pictureurl' + wpindex + '" value="' + wp.pictureurl + '">';
         tempElement += '<textarea  rows="5" cols="41" id="desc' + wpindex + '">' + generateDesc(tempWp) + '</textarea><br>';
-        tempElement += '</form><hr>';
+        tempElement += '</form>';
      });
 
     container.style.display = 'block';

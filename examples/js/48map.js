@@ -21,7 +21,6 @@ function createMap() {
             "type": "geojson",
             "data": parsedJSON
         });
-        
         mapbefore.addSource('pointbefore', {
             "type": "geojson",
             "data": {
@@ -29,7 +28,13 @@ function createMap() {
                 "coordinates": [0,0]
             }
         });
-
+        mapbefore.addSource('focuswpbefore', {
+            "type": "geojson",
+            "data": {
+                "type": "Point",
+                "coordinates": [0,0]
+            }
+        });
         mapbefore.addLayer({
             "id": "route",
             "type": "line",
@@ -62,14 +67,24 @@ function createMap() {
                 "icon-image": "circle-15",
             }
         });
+        mapbefore.addLayer({
+            'id': 'focuscirclebefore',
+            'interactive': true,
+            'type': 'circle',
+            'source': 'focuswpbefore',
+            'paint': {
+                'circle-color': '#FFFBA0', // mag[1],
+                'circle-opacity': 0.7,
+                'circle-radius': 30 // (mag[0] - 4) * 10 // Nice radius value
+            }
+        });
     });
 
     mapafter.on('load', function () {
         mapafter.addSource("rawjson", {
             "type": "geojson",
             "data": parsedJSON
-        });
-                
+        });       
         mapafter.addSource('pointafter', {
             "type": "geojson",
             "data": {
@@ -77,7 +92,13 @@ function createMap() {
                 "coordinates": [0,0]
             }
         });
-
+        mapafter.addSource('focuswpafter', {
+            "type": "geojson",
+            "data": {
+                "type": "Point",
+                "coordinates": [0,0]
+            }
+        });
         mapafter.addLayer({
             "id": "route",
             "type": "line",
@@ -110,6 +131,17 @@ function createMap() {
                 "icon-image": "circle-15",
             }
         });
+        mapafter.addLayer({
+            'id': 'focuscircleafter',
+            'interactive': true,
+            'type': 'circle',
+            'source': 'focuswpafter',
+            'paint': {
+                'circle-color': '#FFFBA0', // mag[1],
+                'circle-opacity': 0.7,
+                'circle-radius': 30 // (mag[0] - 4) * 10 // Nice radius value
+            }
+        });
     });
 
 }
@@ -128,4 +160,10 @@ function animateMarker(coordinates) {
     var data = pointOnCircle(coordinates);
     mapbefore.getSource('pointbefore').setData(data);
     mapafter.getSource('pointafter').setData(data);
+}
+
+function setFocus(coordinates) {
+    var data = pointOnCircle(coordinates);
+    mapbefore.getSource('focuswpbefore').setData(data);
+    mapafter.getSource('focuswpafter').setData(data);
 }

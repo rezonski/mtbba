@@ -50,7 +50,10 @@ function generateDesc(wp) {
     if (Math.abs(wp.current.nextelevloss) > 0) {
       directionText += ' i ' + Math.abs(wp.current.nextelevloss) + ' m visinskog spusta';
     }
-    directionText += '. Sljedeca kontrolna tacka je ' + getElementByKey(pointtypesArray,'symbol_code', wp.next.symbol,'desc').toLowerCase() + ' "' + wp.next.name + '" (' + wp.next.odometer + ' km od starta, na ' + wp.next.elevation + ' mnv).';
+    
+    directionText += parseSurfaceTransition(wp.current.odometer, wp.next.odometer, sastavArray);
+
+    directionText += '. Sljedeca kontrolna tacka je ' + getElementByKey(pointtypesArray,'symbol_code', wp.next.symbol,'desc').toLowerCase() + ' "' + wp.next.name + '" (' + wp.next.odometer + ' km od starta na ' + wp.next.elevation + ' mnv).';
 
     returnDesc = directionText;
     
@@ -96,8 +99,43 @@ function parseDirection(position) {
 }
 
 function parseSurfaceTransition(odoStart, odoEnd, surfaceArray) {
-  var surface = surfaceArray.unshift([0,"A"]);
+  var surface = surfaceArray;
+  surface.unshift([0,"A"]);
+  var startSurfaceIndex = null;
+  var endSurfaceIndex = null;
+  var output = ' sa promjenama podloge: ';
 
+  for (var i = 0; i < surface.length; i++) {
+    if (surface[i][0] <= odoStart && surface[i+1] !== undefined && surface[i+1][0] >= odoStart) {
+      startSurfaceIndex = i;
+      i = surface.length;
+    }
+  }
+
+  startSurfaceIndex = (startSurfaceIndex === null) ?  (surface.length - 1) : startSurfaceIndex;
+
+  for (var j = 0; j < surface.length; j++) {
+    if (surface[j][0] <= odoEnd 
+          && ((surface[j+1] !== undefined && surface[j+1][0]  >= odoEnd) || (surface[j+1] === undefined))) {
+      endSurfaceIndex = j;
+      j = surface.length;
+    }
+  }
+  
+  endSurfaceIndex = (endSurfaceIndex === null) ?  (surface.length - 1) : endSurfaceIndex;
+
+  if (startSurfaceIndex < endSurfaceIndex) {
+    for (var z = startSurfaceIndex; z <= endSurfaceIndex; z++) {
+      if (z === startSurfaceIndex) {
+        output += getSegmentDesc(surface[z][1]);
+      } else {
+        output += ' -> ' + getSegmentDesc(surface[z][1]) + '(' + surface[z][0] + 'km)';
+      }
+    }
+  } else {
+    output = ' bez promjene podloge (' + getSegmentDesc(surface[startSurfaceIndex][1]) + ')';
+  }
+  return output;
 }
 
 function getElementByKey(inputArray, keyName, keyValue, getKeyName) {
@@ -354,6 +392,25 @@ function getSegmentColor(segmentName) {
     }
 
     return segmentColor;
+}
+
+function getSegmentDesc(segmentName) {
+    
+    // console.log('getSegmentColor for ' + segmentName);
+
+    var segmentDesc;
+
+    if (segmentName === 'M') {
+        segmentDesc = 'makadam'; // narandzasta
+    } else if (segmentName === 'S') {
+        segmentDesc = 'staza'; // crvena
+    } else if (segmentName === 'N') {
+        segmentDesc = 'nevozljivo'; // crno
+    } else {
+        segmentDesc = 'asfalt'; // asfalt, sivo
+    }
+
+    return segmentDesc;
 }
 
 function getSegmentName(odometar, sastavArray) {
