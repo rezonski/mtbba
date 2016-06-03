@@ -53,7 +53,7 @@ function generateDesc(wp) {
     
     directionText += parseSurfaceTransition(wp.current.odometer, wp.next.odometer, sastavArray);
 
-    directionText += '. Sljedeca kontrolna tacka je ' + getElementByKey(pointtypesArray,'symbol_code', wp.next.symbol,'desc').toLowerCase() + ' "' + wp.next.name + '" (' + wp.next.odometer + ' km od starta na ' + wp.next.elevation + ' mnv).';
+    directionText += '. Sljedeca kontrolna tacka je ' + getElementByKey(pointtypesArray,'symbol_code', wp.next.symbol,'desc')/*.toLowerCase()*/ + ' "' + wp.next.name + '" (' + wp.next.odometer + ' km od starta na ' + wp.next.elevation + ' mnv).';
 
     returnDesc = directionText;
     

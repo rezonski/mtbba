@@ -46,10 +46,10 @@
             <div id="container" style="display: block; height: 350px; margin: 0 auto"></div>
         </div>
     </div>
-    <div id="waypointscontainer"></div>
     <div id="rawprofile">
         <div id="rawprofilecontainer"></div>
     </div>
+    <div id="waypointscontainer"></div>
 
 </body>
 <script src='https://api.mapbox.com/mapbox.js/plugins/turf/v2.0.2/turf.min.js'></script>
@@ -58,8 +58,11 @@
     var url = "Jabranica.json";
     var pathLine = [];
     var newPathLine = [];
+    var pathLineMasterd = [];
     var mapbefore;
     var mapafter;
+
+    var selectedPointOnTrail = [];
 
     var importedfilename = '';
     var rawTrailName = '';

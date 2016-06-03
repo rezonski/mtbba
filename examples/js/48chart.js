@@ -123,6 +123,7 @@ function setElevationProfile(chartContainer,pathLine,wayPoints,sastavArray) {
                             click: function () {
                                 // console.log('Click: ' + (Math.round(this.x * 100) / 100));
                                 document.getElementById("sastavodometar").value = (Math.round(this.x * 100) / 100);
+                                selectedPointOnTrail = pathLineMasterd[this.index];
                             },
                             mouseOver: function () {
                                 // console.log('Over: ' + (Math.round(this.x * 100) / 100));

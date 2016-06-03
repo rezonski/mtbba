@@ -2,6 +2,10 @@ function changeWpointType(wid) {
   console.log('changeWpointType(' + wid + ')');
 }
 
+function saveSastav(){
+  sastavArray = JSON.parse(document.getElementById('sastavtrailatext').value);
+}
+
 function handleSastav() {
 
   if (parseFloat(document.getElementById('sastavodometar').value) > -0.1 
@@ -30,13 +34,50 @@ function handleSastav() {
   } else {
     alert('Greska u unesenim parametrima');
   }
-  sastavArray = sastavArray.sort(sortFunction);
+  C = sastavArray.sort(sortFunction);
   console.log('sastavArray');
   console.log(sastavArray);
   document.getElementById('sastavtrailatext').value = JSON.stringify(sastavArray);
   document.getElementById('sastavodometar').value = '';
   document.getElementById('sastavtype').value = '';
 }
+
+
+function handleNewWP() {
+
+  if (document.getElementById('newwpname').value.length > 5 && document.getElementById('newwppictogram').value.length > 3) {
+    
+    var tempWp = {
+      "type": "Feature",
+      "properties": {
+        "name": document.getElementById('newwpname').value,
+        "desc": "",
+        "time": "",
+        "pictogram": document.getElementById('newwppictogram').value
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": selectedPointOnTrail
+      }
+    };
+
+    waypoints.push(tempWp);
+    parsedJSON.features.push(tempWp);
+    fixWaypoints();
+    mapbefore.getSource('rawjson').setData(parsedJSON);
+    mapafter.getSource('rawjson').setData(parsedJSON);
+    document.getElementById('waypointscontainer').innerHTML = null;
+    makeWaypointsEditor(newWaypointsExport);
+  } else {
+    alert('Greska WP');
+  }
+
+
+  document.getElementById('newwpname').value = '';
+  document.getElementById('newwppictogram').value = '';
+}
+
+
 
 function selectMnt(mntid) {
   // console.log('before');
@@ -244,8 +285,6 @@ function fixPathArray() {
       // console.log('currLoc/prevLoc');
       // console.log(currLoc);
       // console.log(prevLoc);
-      newPathLine.push(currLoc);
-      currLocOut = JSON.parse(JSON.stringify(currLoc));
     } else {
       elevationCalc = (location[2] === undefined) ? 0 : location[2];
       var currLoc = {
@@ -255,9 +294,10 @@ function fixPathArray() {
         prev_dist: 0,
         prev_elev: 0
       };
-      newPathLine.push(currLoc);
-      currLocOut = JSON.parse(JSON.stringify(currLoc));
     }
+    currLocOut = JSON.parse(JSON.stringify(currLoc));
+    newPathLine.push(currLoc);
+    pathLineMasterd.push([location[0],location[1],elevationCalc]);
     
     if (location[0] >= maxLon) {
       maxLon = location[0];
@@ -316,7 +356,7 @@ function fixPathArray() {
 
   createMap();
 
-  setElevationProfile('rawprofilecontainer',pathLine,waypoints,sastavArray);
+  setElevationProfile('rawprofilecontainer',pathLineMasterd,waypoints,sastavArray);
 
 }
 
@@ -326,14 +366,15 @@ function fixWaypoints() {
 
   waypoints.forEach(function(wpoint) {
   
-    var tempDistance = 0;
+    var tempDistance = 9999999;
     var tempIndex = -1;
     var tempDesc = '';
     var tempPictogram = '';
     
     newPathLine.forEach(function(ppoint, pindex) {
       var currentDistance = getDistanceFromLatLonInKm(wpoint.geometry.coordinates[0], wpoint.geometry.coordinates[1], ppoint.lon, ppoint.lat);
-      if ((currentDistance < tempDistance || tempDistance === 0) && currentDistance > 0 && currentDistance < 0.2) {
+      // if ((currentDistance < tempDistance || tempDistance === -1) && currentDistance > 0 && currentDistance < 0.2) {
+      if ((currentDistance < tempDistance) && currentDistance < 0.2) {
         tempDistance = currentDistance;
         tempIndex = pindex;
       }

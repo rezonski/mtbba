@@ -35,9 +35,9 @@ function makePopupForm(countries, mountains, types) {
     <label for="tiptraila">Sastav traila</label><br>
     <div id="sastavtraila">
         <form action="" id="tiptraila" name="tiptraila">
-            <textarea id="sastavtrailatext" name="sastavtrailatext" placeholder="[[1.5, 'M'],[4.5, 'M'],[5.5, 'A'],[7.1, 'S'],[8.5, 'N'],[11.5, 'M'],[13.5, 'S'],[14.5, 'S']]" rows="2" cols="40"></textarea><br>
-            <input id="sastavodometar" name="sastavodometar" type="text" size="4" placeholder="km"> km
-            <input id="sastavtype" list="podloga" name="podloga" type="text" size="4">
+            <textarea id="sastavtrailatext" name="sastavtrailatext" rows="2" cols="40"></textarea><br>
+            <input id="sastavodometar" name="sastavodometar" type="text" size="4" placeholder="km" value="0"> km
+            <input id="sastavtype" list="podloga" name="podloga" type="text" size="4" value="A">
             <datalist id="podloga">
                 <option value="A">Asfalt</option>
                 <option value="M">Makadam</option>
@@ -45,6 +45,17 @@ function makePopupForm(countries, mountains, types) {
                 <option value="N">Nevozljivo</option>
             </datalist>
             <button type="button" onclick="handleSastav()">+/-</button>
+            <button type="button" onclick="saveSastav()">Save</button>
+            <br>
+        </form>
+    </div>
+
+    <label for="newwp">Dodaj novu tacku</label><br>
+    <div id="novawp">
+        <form action="" id="newwp" name="newwp">
+            <input id="newwpname" name="newwpname" type="text" size="30" placeholder="Ime tacke..">
+            <input id="newwppictogram" name="newwppictogram" type="text" size="20" placeholder="90-...">
+            <button type="button" onclick="handleNewWP()">+WP</button>
             <br>
         </form>
     </div>
@@ -67,13 +78,13 @@ function makeWaypointsEditor(inWaypoints) {
                 next: null
             }
         }
-        tempElement += '<form action="#" class="waypointform" id="form' + wpindex + '" name="form' + wpindex + '">';
+        tempElement += '<form onmouseover="setFocus([' + wp.lon + ',' + wp.lat + '])" action="#" class="waypointform" id="form' + wpindex + '" name="form' + wpindex + '">';
         tempElement += 'ID: <input type="text" size="1" id="id' + wpindex + '" value="' + wp.id + '">';
         tempElement += ' Put: <input type="text" size="2" id="odometer' + wpindex + '" value="' + wp.odometer + '"> [km]';
         tempElement += ' Visina: <input type="text" size="2" id="elevation' + wpindex + '" value="' + wp.elevation + '"> [mnv]<br>';
         tempElement += 'Ime: <input type="text" size="20" id="name' + wpindex + '" value="' + wp.name + '">';
         tempElement += ' Visinski profil: <input type="checkbox" id="elevationprofile' + wpindex + '" value="' + wp.elevationprofile + '" ' + ((wp.elevationprofile === 1) ? 'checked' : '') + '><br>';
-        tempElement += 'Pikto: <input onClick="setFocus([' + wp.lon + ',' + wp.lat + '])" type="text" size="12" id="pictogram' + wpindex + '" value="' + wp.pictogram + '">';
+        tempElement += 'Pikto: <input type="text" size="12" id="pictogram' + wpindex + '" value="' + wp.pictogram + '">';
         tempElement += ' Tacka: <select id="pointtype' + wpindex + '" onchange=changeWpointType(' + wpindex + ')>';
         pointtypesArray.forEach(function (pointtype, pointindex) {
             tempElement += '<option value="' + pointtype.symbol_code +'" ' + ((pointtype.symbol_code === wp.symbol) ? 'selected' : '') + '>' + pointtype.desc +'</option>';
