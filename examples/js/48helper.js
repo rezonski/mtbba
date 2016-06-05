@@ -379,16 +379,23 @@ function getSegmentColor(segmentName) {
     
     // console.log('getSegmentColor for ' + segmentName);
 
-    var segmentColor;
+    var segmentColor = {
+      rgb: '',
+      hex: ''
+    };
 
     if (segmentName === 'M') {
-        segmentColor = 'rgba(255,128,0,0.5)'; // narandzasta
+        segmentColor.rgb = 'rgba(255,128,0,0.5)'; // narandzasta
+        segmentColor.hex = '#ff6600'; // narandzasta
     } else if (segmentName === 'S') {
-        segmentColor = 'rgba(255,0,0,0.5)'; // crvena
+        segmentColor.rgb = 'rgba(255,128,0,0.5)'; // narandzasta
+        segmentColor.hex = '#cc3300'; // crvena
     } else if (segmentName === 'N') {
-        segmentColor = 'rgba(0,0,0,0.6)'; // crno
+        segmentColor.rgb = 'rgba(0,0,0,0.6)'; // crno
+        segmentColor.hex = '#000000'; // crno
     } else {
-        segmentColor = 'rgba(150,150,150,0.5)'; // asfalt, sivo
+        segmentColor.rgb = 'rgba(150,150,150,0.5)'; // asfalt, sivo
+        segmentColor.hex = '#999999'; // asfalt, sivo
     }
 
     return segmentColor;

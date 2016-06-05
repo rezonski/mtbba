@@ -36,6 +36,7 @@
             <form id="kontrole" name="kontrole">
                 <button type="button" onclick="actionSend('general')">Head</button>
                 <button type="button" id="buttonsendpath2db" onclick="actionSend('path')" disabled="true">Path</button>
+                <button type="button" id="addmpath" onclick="addMulticolorPath('nesto')">MultiPath</button>
                 <button type="button" id="buttonprepwpoints" onclick="makeWaypointsEditor(newWaypointsExport)" disabled="true">show WP</button>
                 <button type="button" id="buttonwpoints2db" onclick="actionSend('waypoints')" disabled="true">WP2DB</button>
                 <button type="button" id="buttonshowelev" onclick="setElevationProfile('container',pathLine,newWaypointsChart,sastavArray)" disabled="true">Elev</button>
@@ -59,6 +60,14 @@
     var pathLine = [];
     var newPathLine = [];
     var pathLineMasterd = [];
+
+    var sastavPathsArray = [];
+
+    var sastavPathsCollection = {
+      "type": "FeatureCollection",
+      "features": []
+    };
+
     var mapbefore;
     var mapafter;
 
