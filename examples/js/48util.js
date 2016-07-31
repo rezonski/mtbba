@@ -109,6 +109,7 @@ function selectType(typeId) {
 }
 
 function makeTrail(parsedObject) {
+  console.info('makeTrail()');
   var sastavArray = parsedObject.sastav;
   var features = parsedObject.features;
   waypoints = [];
@@ -130,16 +131,17 @@ function makeTrail(parsedObject) {
           // console.log('Add waypoint ' + feature.properties.name);
       }
   });
-  fixPathArray();
-  fixWaypoints();
+  checkAddElevation();
+  
   // makeWaypointsEditor(newWaypointsExport);
   // setElevationProfile(pathLine,newWaypointsChart,sastavArray);
 }
 
+
 function readSingleFile(evt) {
     //Retrieve the first (and only!) File from the FileList object
     var f = evt.target.files[0]; 
-
+    console.info('readSingleFile()');
     if (f) {
       var r = new FileReader();
       r.onload = function(e) {   
@@ -257,7 +259,74 @@ function respond() {
     }
 }
 
+function checkAddElevation() {
+  var badPoints = [];
+  var parsedPoints = '';
+  var maxPoints = 90;
+  var xmlhttpElevation = new XMLHttpRequest();
+  
+  pathLine.forEach(function(location, index) {
+    if ((badPoints.length <= maxPoints ) && (location[2] === undefined || location[2] === 0)) {
+      // console.info('Missing elevation on location ' + location[0] + ' - ' + location[1]);
+      if (badPoints.length < maxPoints) {
+        badPoints.push({
+          "pathIndex": index,
+          "point": location
+        });
+        parsedPoints += location[0] + ',' + location[1] + ';';
+        // parsedPoints += location[0] + ',' + location[1] + '|';
+      } else {
+        xmlhttpElevation.onreadystatechange = function() {
+            if (xmlhttpElevation.readyState == 4 && xmlhttpElevation.status == 200) {
+                var response = JSON.parse(xmlhttpElevation.responseText);
+                var elevatedPoints = response.results;
+                var tempElevation = 0;
+                elevatedPoints.forEach(function (elPoint, pointIndex) {
+                  if (elPoint.ele) {
+                    tempElevation = elPoint.ele;
+                    // tempElevation = elPoint.elevation;
+                    pathLine[badPoints[pointIndex].pathIndex][2] = parseInt(elPoint.ele, 10);
+                    // pathLine[badPoints[pointIndex].pathIndex][2] = parseInt(elPoint.elevation, 10);
+                  } else {
+                    pathLine[badPoints[pointIndex].pathIndex][2] = parseInt(tempElevation, 10);
+                  }
+                });
+                console.info('badPoints.length = ' + badPoints.length);
+                if (badPoints.length === maxPoints) {
+                  checkAddElevation();          
+                } else {
+                  badPoints = [];
+                }
+            }
+        };
+        
+      }
+    } else {
+      // console.info('OK location ' + location[0] + ' - ' + location[1]);
+    }
+  });
+
+  var endpoint = 'https://api.mapbox.com/v4/surface/mapbox.mapbox-terrain-v1.json?layer=contour&fields=ele&points=' + parsedPoints.substring(0, parsedPoints.length - 1) + '&access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpbG10dnA3NzY3OTZ0dmtwejN2ZnUycjYifQ.1W5oTOnWXQ9R1w8u3Oo1yA';
+  // var endpoint = 'https://maps.googleapis.com/maps/api/elevation/json?locations=' + parsedPoints.substring(0, parsedPoints.length - 1) + '&key=AIzaSyDJOri7DbQEliNmWM3L7yyVZko6MrAasJE';
+  console.info(endpoint);
+  console.info('endpoint.length = ' + endpoint.length + ' , badPoints.length = ' + badPoints.length);
+  xmlhttpElevation.open('GET', endpoint , true);
+  xmlhttpElevation.send();
+
+  if (badPoints.length === 0) {
+    console.info('All elevation data ok');
+    fixPathArray();
+    fixWaypoints();
+  } else if (badPoints.length === 0) {
+    // console.info('Missing elevation on some locations');
+  }
+  else {
+    // console.info('Missing elevation on some locations');
+  }
+}
+
 function fixPathArray() {
+  console.info('fixPathArray()');
   newPathLine = [];
   var prevLoc = {};
   var currLocOut = {};
@@ -361,7 +430,7 @@ function fixPathArray() {
 }
 
 function fixWaypoints() {
-  
+  console.info('fixWaypoints()');
   var newWaypoints = [];
 
   waypoints.forEach(function(wpoint) {
