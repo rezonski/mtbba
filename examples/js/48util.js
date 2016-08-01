@@ -116,7 +116,8 @@ function makeTrail(parsedObject) {
   features.forEach(function(feature){
       
       if (feature.geometry.type === 'LineString') {
-          pathLine = feature.geometry.coordinates;
+          unfilteredPathLine = unfilteredPathLine.concat(feature.geometry.coordinates);
+          // pathLine = feature.geometry.coordinates;
           generalFact = feature.properties;
           if (feature.properties.id != undefined) {
               generalFact.newupdate = 'update';
@@ -131,10 +132,19 @@ function makeTrail(parsedObject) {
           // console.log('Add waypoint ' + feature.properties.name);
       }
   });
+
+  filterPathLinePoints();
+
   checkAddElevation();
   
   // makeWaypointsEditor(newWaypointsExport);
   // setElevationProfile(pathLine,newWaypointsChart,sastavArray);
+}
+
+function filterPathLinePoints() {
+  console.info('filterPathLinePoints(): unfilteredPathLine.length = ' + unfilteredPathLine.length);
+  pathLine = simplifyPath(unfilteredPathLine, 0.1);
+  console.info('filterPathLinePoints(): pathLine.length = ' + pathLine.length);
 }
 
 
@@ -273,8 +283,8 @@ function checkAddElevation() {
           "pathIndex": index,
           "point": location
         });
-        parsedPoints += location[0] + ',' + location[1] + ';';
-        // parsedPoints += location[0] + ',' + location[1] + '|';
+        // parsedPoints += location[0] + ',' + location[1] + ';';
+        parsedPoints += location[1] + ',' + location[0] + '|';
       } else {
         xmlhttpElevation.onreadystatechange = function() {
             if (xmlhttpElevation.readyState == 4 && xmlhttpElevation.status == 200) {
@@ -282,11 +292,11 @@ function checkAddElevation() {
                 var elevatedPoints = response.results;
                 var tempElevation = 0;
                 elevatedPoints.forEach(function (elPoint, pointIndex) {
-                  if (elPoint.ele) {
-                    tempElevation = elPoint.ele;
-                    // tempElevation = elPoint.elevation;
-                    pathLine[badPoints[pointIndex].pathIndex][2] = parseInt(elPoint.ele, 10);
-                    // pathLine[badPoints[pointIndex].pathIndex][2] = parseInt(elPoint.elevation, 10);
+                  if (elPoint.ele || elPoint.elevation) {
+                    // tempElevation = elPoint.ele;
+                    // pathLine[badPoints[pointIndex].pathIndex][2] = parseInt(elPoint.ele, 10);
+                    tempElevation = elPoint.elevation;
+                    pathLine[badPoints[pointIndex].pathIndex][2] = parseInt(elPoint.elevation, 10);
                   } else {
                     pathLine[badPoints[pointIndex].pathIndex][2] = parseInt(tempElevation, 10);
                   }
@@ -306,22 +316,17 @@ function checkAddElevation() {
     }
   });
 
-  var endpoint = 'https://api.mapbox.com/v4/surface/mapbox.mapbox-terrain-v1.json?layer=contour&fields=ele&points=' + parsedPoints.substring(0, parsedPoints.length - 1) + '&access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpbG10dnA3NzY3OTZ0dmtwejN2ZnUycjYifQ.1W5oTOnWXQ9R1w8u3Oo1yA';
-  // var endpoint = 'https://maps.googleapis.com/maps/api/elevation/json?locations=' + parsedPoints.substring(0, parsedPoints.length - 1) + '&key=AIzaSyDJOri7DbQEliNmWM3L7yyVZko6MrAasJE';
+  // var endpoint = 'https://api.mapbox.com/v4/surface/mapbox.mapbox-terrain-v1.json?layer=contour&fields=ele&points=' + parsedPoints.substring(0, parsedPoints.length - 1) + '&access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpbG10dnA3NzY3OTZ0dmtwejN2ZnUycjYifQ.1W5oTOnWXQ9R1w8u3Oo1yA';
+  var endpoint = 'https://maps.googleapis.com/maps/api/elevation/json?locations=' + parsedPoints.substring(0, parsedPoints.length - 1) + '&key=AIzaSyDJOri7DbQEliNmWM3L7yyVZko6MrAasJE';
   console.info(endpoint);
   console.info('endpoint.length = ' + endpoint.length + ' , badPoints.length = ' + badPoints.length);
   xmlhttpElevation.open('GET', endpoint , true);
   xmlhttpElevation.send();
 
-  if (badPoints.length === 0) {
+  if (badPoints.length === 0 || (badPoints.length > 0 && badPoints.length < maxPoints)) {
     console.info('All elevation data ok');
     fixPathArray();
     fixWaypoints();
-  } else if (badPoints.length === 0) {
-    // console.info('Missing elevation on some locations');
-  }
-  else {
-    // console.info('Missing elevation on some locations');
   }
 }
 

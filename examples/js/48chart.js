@@ -142,7 +142,7 @@ function setElevationProfile(chartContainer,pathLine,wayPoints,sastavArray) {
             series: [{
                 name: 'Nadmorska visina',
                 type: 'coloredarea',
-                turboThreshold: 2000,
+                turboThreshold: 4000,
                 data: dataset
                 // data: [[0, 150],[0.7, 110],[2.3, 133],[4.56, 50],[5.88, 40]],
                 //color: '#35C22E'
