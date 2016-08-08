@@ -1,73 +1,49 @@
-function simplifyPath(points, tolerance ) {
+function simplifyPath(points, tolerance) {
 
-  // helper classes 
-  var Vector = function( x, y ) {
-    this.x = x;
-    this.y = y;
-    
-  };
-  var Line = function( p1, p2 ) {
-    this.p1 = p1;
-    this.p2 = p2;
-    
-    this.distanceToPoint = function( point ) {
-      // slope
-      var m = ( this.p2.y - this.p1.y ) / ( this.p2.x - this.p1.x ),
-        // y offset
-        b = this.p1.y - ( m * this.p1.x ),
-        d = [];
-      // distance to the linear equation
-      d.push( Math.abs( point.y - ( m * point.x ) - b ) / Math.sqrt( Math.pow( m, 2 ) + 1 ) );
-      // distance to p1
-      d.push( Math.sqrt( Math.pow( ( point.x - this.p1.x ), 2 ) + Math.pow( ( point.y - this.p1.y ), 2 ) ) );
-      // distance to p2
-      d.push( Math.sqrt( Math.pow( ( point.x - this.p2.x ), 2 ) + Math.pow( ( point.y - this.p2.y ), 2 ) ) );
-      // return the smallest distance
-      return d.sort( function( a, b ) {
-        return ( a - b ); //causes an array to be sorted numerically and ascending
-      } )[0];
-    };
-  };
+  var returnArray = [points[0]];
   
-  var douglasPeucker = function( points, tolerance ) {
-    if ( points.length <= 2 ) {
-      return [points[0]];
-    }
-    var returnPoints = [],
-      // make line from start to end 
-      line = new Line( points[0], points[points.length - 1] ),
-      // find the largest distance from intermediate poitns to this line
-      maxDistance = 0,
-      maxDistanceIndex = 0,
-      p;
-    for( var i = 1; i <= points.length - 2; i++ ) {
-      var distance = line.distanceToPoint( points[ i ] );
-      if( distance > maxDistance ) {
-        maxDistance = distance;
-        maxDistanceIndex = i;
+  var maxIndx = points.length - 1;
+  var currentIndex;
+  var iterator = 1;
+  var nextIndex;
+  var excaped = false;
+  var tempDistance = 0;
+
+  while (iterator < maxIndx) {
+    currentIndex = iterator;
+    escaped = false;
+    console.info('current: ' + currentIndex);
+    nextIndex = iterator + 1;
+    
+    while (nextIndex < maxIndx) {
+      iterator = parseInt(nextIndex, 10);
+      tempDistance = getDistanceFromLatLonInKm(points[currentIndex][0], points[currentIndex][1], points[nextIndex][0], points[nextIndex][1]);
+      if (tempDistance > tolerance) {
+        console.info('current[' + currentIndex + '] - next[' + nextIndex + '] = ' + tempDistance);
+        returnArray.push(points[nextIndex]);   
+        escaped = true;
+        currentIndex = parseInt(nextIndex, 10);
+        nextIndex = parseInt(maxIndx, 10); // Escape
+      } else {
+        nextIndex++; // Check next point
       }
     }
-    // check if the max distance is greater than our tollerance allows 
-    if ( maxDistance >= tolerance ) {
-      p = points[maxDistanceIndex];
-      line.distanceToPoint( p, true );
-      // include this point in the output 
-      returnPoints = returnPoints.concat( douglasPeucker( points.slice( 0, maxDistanceIndex + 1 ), tolerance ) );
-      // returnPoints.push( points[maxDistanceIndex] );
-      returnPoints = returnPoints.concat( douglasPeucker( points.slice( maxDistanceIndex, points.length ), tolerance ) );
+
+    if (nextIndex === maxIndx && !escaped) {
+      console.info('current: ' + currentIndex);
+      iterator = maxIndx;
     } else {
-      // ditching this point
-      p = points[maxDistanceIndex];
-      line.distanceToPoint( p, true );
-      returnPoints = [points[0]];
+      console.info('impossible , iterator = ' + iterator);
+      iterator = currentIndex;
     }
-    return returnPoints;
-  };
-  var arr = douglasPeucker( points, tolerance );
-  // always have to push the very last point on so it doesn't get left off
-  arr.push( points[points.length - 1 ] );
-  return arr;
+
+  }
+  returnArray.push(points[maxIndx]);
+  console.info('#1 points.length = ' + (maxIndx + 1) );
+  console.info('#1 returnArray.length = ' + returnArray.length);
+  return returnArray;
 };
+
 
 function generateDesc(wp) {
   var returnDesc = JSON.stringify(wp);
@@ -459,8 +435,8 @@ function getSegmentColor(segmentName) {
         segmentColor.rgb = 'rgba(255,128,0,0.5)'; // narandzasta
         segmentColor.hex = '#ff6600'; // narandzasta
     } else if (segmentName === 'S') {
-        segmentColor.rgb = 'rgba(255,128,0,0.5)'; // narandzasta
-        segmentColor.hex = '#cc3300'; // crvena
+        segmentColor.rgb = 'rgba(255,0,0,0.5)'; // narandzasta
+        segmentColor.hex = '#ff0000'; // crvena
     } else if (segmentName === 'N') {
         segmentColor.rgb = 'rgba(0,0,0,0.6)'; // crno
         segmentColor.hex = '#000000'; // crno

@@ -132,18 +132,15 @@ function makeTrail(parsedObject) {
           // console.log('Add waypoint ' + feature.properties.name);
       }
   });
-
   filterPathLinePoints();
-
   checkAddElevation();
-  
   // makeWaypointsEditor(newWaypointsExport);
   // setElevationProfile(pathLine,newWaypointsChart,sastavArray);
 }
 
 function filterPathLinePoints() {
   console.info('filterPathLinePoints(): unfilteredPathLine.length = ' + unfilteredPathLine.length);
-  pathLine = simplifyPath(unfilteredPathLine, 0.1);
+  pathLine = simplifyPath(unfilteredPathLine, 0.02);
   console.info('filterPathLinePoints(): pathLine.length = ' + pathLine.length);
 }
 
@@ -348,7 +345,7 @@ function fixPathArray() {
     var elevationCalc
 
     if (index > 0) {
-      elevationCalc = (location[2] === undefined) ? prevLoc.elevation : location[2];
+      elevationCalc = (!location[2]) ? prevLoc.elevation : location[2];
       var currLoc = {
         lon: location[0],
         lat: location[1],
