@@ -19,7 +19,7 @@ function handleSastav() {
     
     sastavArray.forEach(function(combination, index) {
       if (combination[0] == currentValue[0] && combination[1] == currentValue[1]) {
-        sastavArray.splice(index,1);
+        // sastavArray.splice(index,1);
         found = true;
       } else if (combination[0] == parseFloat(document.getElementById('sastavodometar').value)) {
         sastavArray[index][1] = document.getElementById('sastavtype').value;

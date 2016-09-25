@@ -21,6 +21,7 @@ html, body {
 
 #rawprofilecontainer {
     display: block;
+    display: none;
     width: 50%;
     height: 300px;
     margin: auto;
