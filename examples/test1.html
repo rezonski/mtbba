@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Display a map</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <style>
+        body { margin:0; padding:0; }
+        #container { 
+            display: flex;
+            flex-flow: row nowrap;
+        }
+        #lowsat, #highsat {
+            display: flex;
+            flex: 1 1 50%;
+            flex-flow: column nowrap;
+        }
+        .outter {
+            display: flex;
+            flex-flow: row nowrap;
+            padding: 5px;
+            border: 1px solid #000000;
+        }
+        .inner {
+            /*flex: 1 1 50%;*/
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="lowsat">
+    </div>
+    <div id="highsat">
+    </div>
+</div>
+<script>
+    
+    function shuffleArray(arr) {
+        var array = [];
+        while(arr.length > 0) {
+            array.push(arr.splice(Math.round(Math.random() * (arr.length - 1)), 1)[0]);
+        }   
+        return array;
+    }
+
+    var ranges = [
+            {
+                'id': 'lowsat',
+                'range': [30,84]
+            },
+            {
+                'id': 'highsat',
+                'range': [168,225]
+            }
+        ];
+
+    var content = '';
+
+    var rangArray = [];
+
+    // Loops Low/High saturation ranges
+    for (var rangIndex = 0; rangIndex < ranges.length; rangIndex++) {
+        var rangStep = Math.floor((ranges[rangIndex].range[1] - ranges[rangIndex].range[0]) / 10);
+        console.info(rangStep);
+        
+        // Loops saturation differences steps
+        for (var diffIndex = 0; diffIndex < 10; diffIndex++) {
+            var offset = diffIndex*rangStep;
+            
+            // Loop lower/upper part of step
+            for (var i = 0; i < 2; i++) {
+                var valueRange = [];
+                if (i) {
+                    // Lower
+                    var min = ranges[rangIndex].range[0];
+                    var max = ranges[rangIndex].range[1] - offset;
+                    // Loop two random examples
+                    for (var j = 0; j < 2; j++) {
+                        var randomisedLower = Math.floor(Math.random() * (max - min + 1)) + min;
+                        rangArray.push({
+                            'id': ranges[rangIndex].id,
+                            'difference': diffIndex*10,
+                            'range': [randomisedLower, randomisedLower + offset]
+                        });
+                    }
+                } else {
+                    // Upper
+                    var min = ranges[rangIndex].range[0] + offset;
+                    var max = ranges[rangIndex].range[1];
+                    for (var j = 0; j < 2; j++) {
+                        var randomisedUpper = Math.floor(Math.random() * (max - min + 1)) + min;
+                        rangArray.push({
+                            'id': ranges[rangIndex].id,
+                            'difference': diffIndex*10,
+                            'range': [randomisedUpper - offset, randomisedUpper]
+                        });
+                    }
+                }
+                
+
+            }
+        }
+    }
+
+    console.log(rangArray);
+
+    console.log('Shufle');
+
+    var shuffledArray = shuffleArray(rangArray);
+    console.log(shuffledArray);
+
+    for (var x = 0; x < shuffledArray.length; x++) {
+        var left = shuffledArray[x].range[0].toString(16);
+        var right = shuffledArray[x].range[1].toString(16);
+        var same = (left == right);
+        document.getElementById(shuffledArray[x].id).innerHTML += '<div id="' + x + '" class="outter"><div class="inner left" style="background-color: #' + left + left + left + '">#' + left + '</div><div class="inner right" style="background-color: #' + right + right + right + '">#' + right + '</div>' + same.toString() + ' - difference ' + shuffledArray[x].difference + '%</div>';
+    }
+
+</script>
+</body>
+</html>
