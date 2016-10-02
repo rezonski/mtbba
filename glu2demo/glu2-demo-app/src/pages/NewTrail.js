@@ -1,18 +1,14 @@
 import React from 'react';
 import BasePage from '../components/BasePage';
 import SwipeMap from '../components/map/SwipeMap';
-import MapController from '../controllers/MapController';
 
-class MapPage extends BasePage {
+class NewTrail extends BasePage {
     constructor(params) {
         super(params);
-        this.activateControllers(
-            MapController,
-        );
     }
 
     componentDidMount() {
-        console.info('MapPage DidMount');
+        console.info('NewTrail DidMount');
         this.emit('RETRIEVE_MAP_INIT');
     }
 
@@ -31,4 +27,4 @@ class MapPage extends BasePage {
 
 }
 
-export default MapPage;
+export default NewTrail;

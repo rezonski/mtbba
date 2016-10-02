@@ -2,6 +2,7 @@
 import React from 'react';
 import BasePage from '../BasePage';
 // import ReactMapboxGl, { ScaleControl, ZoomControl } from 'react-mapbox-gl';
+import MessageEvents from '../../enums/MessageEvents';
 
 
 class SwipeMap extends BasePage {
@@ -43,6 +44,14 @@ class SwipeMap extends BasePage {
             maxBounds: this.state.setup.maxBounds,
         });
         this.combined = new mapboxgl.Compare(this.mapprim, this.mapsec);
+
+        this.mapprim.on('load', () => {
+            this.emit(MessageEvents.ERROR_MESSAGE, 'Loaded first map');
+        });
+
+        this.mapsec.on('load', () => {
+            this.emit(MessageEvents.ERROR_MESSAGE, 'Loaded second map');
+        });
     }
 
     render() {
