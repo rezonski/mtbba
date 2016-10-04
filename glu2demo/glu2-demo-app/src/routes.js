@@ -14,5 +14,5 @@ export default () => {
         <Route path="/" component={App}>
             <Route path="admin/new" component={NewTrail} />
         </Route>
-    </Router>, document.querySelector('#application'));
+    </Router>, document.querySelector('#map-application'));
 };

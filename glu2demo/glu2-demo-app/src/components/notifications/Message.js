@@ -1,9 +1,9 @@
 import React from 'react';
-import BusComponent from '../BusComponent';
+import BasePage from '../BasePage';
 import MessageEvents from '../../enums/MessageEvents';
 import Snackbar from 'material-ui/Snackbar';
 
-class Message extends BusComponent {
+class Message extends BasePage {
     constructor(props) {
         super(props);
 
@@ -62,7 +62,7 @@ class Message extends BusComponent {
                 className={this.state.type}
                 open={this.state.open}
                 message={this.state.message}
-                autoHideDuration={3000}
+                autoHideDuration={2000}
                 onRequestClose={this.onCloseMessage.bind(this)}/>
         );
     }

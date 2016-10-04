@@ -17,11 +17,7 @@ class NewTrail extends BasePage {
     }
 
     render() {
-        return (
-            <div>
-                <SwipeMap/>
-            </div>
-        );
+        return (<SwipeMap/>);
     }
 
 

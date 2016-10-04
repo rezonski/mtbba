@@ -1,6 +1,8 @@
 import React from 'react';
 import BasePage from '../components/BasePage';
 import Message from '../components/notifications/Message';
+import AddNewTrail from '../components/forms/AddNewTrail';
+import MainToolbar from '../components/menu/MainToolbar';
 import MapController from '../controllers/MapController';
 
 class Root extends BasePage {
@@ -24,14 +26,16 @@ class Root extends BasePage {
     }
 
     render() {
-        const style = {
-            fontFamily: this.context.muiTheme.fontFamily,
-        };
-
         return (
-            <div style={style} >
-                {this.props.children}
-                <Message />
+            <div id="root-container">
+                <div id="toolbar-container">
+                    <MainToolbar />
+                </div>
+                <div id="map-container">
+                    {this.props.children}
+                    <Message />
+                    <AddNewTrail />
+                </div>
             </div>
         );
     }
@@ -39,10 +43,6 @@ class Root extends BasePage {
 
 Root.propTypes = {
     route: React.PropTypes.object.isRequired,
-};
-
-Root.contextTypes = {
-    muiTheme: React.PropTypes.object.isRequired,
 };
 
 export default Root;
