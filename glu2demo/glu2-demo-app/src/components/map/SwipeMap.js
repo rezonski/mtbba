@@ -61,7 +61,7 @@ class SwipeMap extends BasePage {
         </div>);
     }
     initMap(initSetup) {
-        console.log(initSetup);
+        // console.log(initSetup);
         if (initSetup) {
             this.setState({
                 initialized: true,
