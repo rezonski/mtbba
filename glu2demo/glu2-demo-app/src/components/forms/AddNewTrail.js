@@ -1,9 +1,12 @@
 import React from 'react';
 import BasePage from '../BasePage';
 import AppEvents from '../../enums/AppEvents';
+import Enum from '../../enums/Enum';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
+// import Divider from 'material-ui/Divider';
 
 class AddNewTrail extends BasePage {
     constructor(props) {
@@ -13,6 +16,7 @@ class AddNewTrail extends BasePage {
             open: false,
             message: '',
             type: null,
+            data: {},
         };
 
         this.onCloseEvent = this.handleClose.bind(this);
@@ -21,7 +25,12 @@ class AddNewTrail extends BasePage {
 
         this.bindGluBusEvents({
             [AppEvents.ADD_NEW_TRAIL]: this.onAddNewTrailRequest,
+            [Enum.MapEvents.INITIAL_DATA_SETUP_RETRIEVED]: this.onInitialDataRetrieved,
         });
+    }
+
+    componentDidMount() {
+        this.emit(Enum.MapEvents.RETRIEVE_INITIAL_DATA_SETUP);
     }
 
     componentWillUnmount() {
@@ -36,6 +45,12 @@ class AddNewTrail extends BasePage {
 
     onUploadDone(event) {
         console.info(event.target.value);
+    }
+
+    onInitialDataRetrieved(payload) {
+        this.setState({
+            data: payload,
+        });
     }
 
     render() {
@@ -54,16 +69,16 @@ class AddNewTrail extends BasePage {
           />,
         ];
 
+        console.info(this.state.data);
+
         return (<div>
-                    <Dialog
-                        title="Nova staza"
-                        actions={actions}
-                        modal={false}
-                        open={this.state.open}
-                        onRequestClose={this.onCloseEvent}
-                    >
-                        Učitaj novu GPX ili KML datoteku.
-                        <input type="file" onChange={this.onUploadDoneEvent}/>
+                    <Dialog title="New" actions={actions} modal={false} open={this.state.open} onRequestClose={this.onCloseEvent}>
+                        <br />
+                        Add new geo data file: <input type="file" onChange={this.onUploadDoneEvent}/>
+                        <br />
+                        <TextField fullWidth={true} hintText="Hint Text" floatingLabelText="Floating Label Text"/>
+                        <br />
+                        <TextField fullWidth={true} hintText="Message Field" floatingLabelText="MultiLine and FloatingLabel" multiLine={true} rows={4}/>
                     </Dialog>
                 </div>);
     }

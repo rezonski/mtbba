@@ -1,4 +1,3 @@
-// import Api from '/apis/Api';
 import GLU from '/../../glu2.js/src/index';
 
 class MapModel extends GLU.DataSource {
@@ -31,6 +30,11 @@ class MapModel extends GLU.DataSource {
             value: 'mapbox://styles/mapbox/dark-v9',
           },
         ];
+
+        this._countries = [];
+        this._mountains = [];
+        this._trailTypes = [];
+        this._pointTypes = [];
     }
 
     get accessToken() {
@@ -49,6 +53,22 @@ class MapModel extends GLU.DataSource {
         return this._initialZoomLevels;
     }
 
+    get countries() {
+        return this._countries;
+    }
+
+    get mountains() {
+        return this._mountains;
+    }
+
+    get trailTypes() {
+        return this._trailTypes;
+    }
+
+    get pointTypes() {
+        return this._pointTypes;
+    }
+
     getInitialSetup() {
         return {
             accessToken: this.accessToken,
@@ -58,6 +78,14 @@ class MapModel extends GLU.DataSource {
             center: this.initialCenter,
             zoom: this.initialZoomLevels,
         };
+    }
+
+    parseSetupData(rawData) {
+        const data = JSON.parse(rawData);
+        this._countries = data.countries;
+        this._mountains = data.mountains;
+        this._trailTypes = data.types;
+        this._pointTypes = data.pointtypes;
     }
 
     getPrimaryStyle() {

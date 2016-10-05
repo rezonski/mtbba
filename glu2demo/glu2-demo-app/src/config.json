@@ -1,68 +1,12 @@
 {
-    "options": {
-        "accounts": {
-            "profilePart": "#/account/details",
-            "signupPart": "#/account/signup?",
-            "loginPart": "#/account/login?",
-            "continuePart": "continue=",
-            "teamPrefix": "#/team/",
-            "teamPostfix": "/details"
-        }
-    },
-    "local": {
-        "environment": "local",
-        "accounts": {
-            "baseURL": "http://localhost:5554/"
-        },
-        "vizwiz": {
-            "baseURL": "http://localhost:5555/"
-        },
-        "backends": {
-            "accounts": "http://localhost:10011",
-            "chart": "http://localhost:10008",
-            "realtime": "ws://localhost:10007/"
-        }
-    },
-    "development": {
-        "environment": "development",
-        "accounts": {
-            "baseURL": "https://dev-accounts.socialexplorer.com/"
-        },
-        "vizwiz": {
-            "baseURL": "https://dev-vizwiz.socialexplorer.com/"
-        },
-        "backends": {
-            "accounts": "https://dev-datahub.socialexplorer.com/account",
-            "chart": "https://dev-datahub.socialexplorer.com/chart",
-            "realtime": "wss://dev-datahub.socialexplorer.com/realtime/"
-        }
-    },
-    "rc": {
-        "environment": "rc",
-        "accounts": {
-            "baseURL": "https://rc-accounts.socialexplorer.com/"
-        },
-        "vizwiz": {
-            "baseURL": "https://rc-vizwiz.socialexplorer.com/"
-        },
-        "backends": {
-            "accounts": "https://rc-datahub.socialexplorer.com/account",
-            "chart": "https://rc-datahub.socialexplorer.com/chart",
-            "realtime": "wss://rc-datahub.socialexplorer.com/realtime/"
-        }
-    },
-    "production": {
-        "environment": "production",
-        "accounts": {
-            "baseURL": "https://accounts.socialexplorer.com/"
-        },
-        "vizwiz": {
-            "baseURL": "https://vizwiz.socialexplorer.com/"
-        },
-        "backends": {
-            "accounts": "https://datahub.socialexplorer.com/account",
-            "chart": "https://datahub.socialexplorer.com/chart",
-            "realtime": "wss://datahub.socialexplorer.com/realtime/"
-        }
-    }
+  "local": {
+    "environment": "local",
+    "projects": "projects/",
+    "server": "http://localhost/sandbox/examples/"
+  },
+  "production": {
+    "environment": "production",
+    "projects": "projects/",
+    "server": "http://localhost/sandbox/examples/"
+  }
 }

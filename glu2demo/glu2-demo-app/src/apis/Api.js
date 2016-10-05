@@ -1,11 +1,8 @@
-import Accounts from '/apis/AccountsApi';
-import Chart from '/apis/ChartApi';
-
 import AppConfig from '/appConfig';
+import Trails from '/apis/TrailsApi';
 
 let Api = {
-    Accounts: new Accounts(AppConfig.constants.backends.accounts),
-    Chart: new Chart(AppConfig.constants.backends.chart),
+    Trails: new Trails(AppConfig.constants.server),
 };
 
 export default Api;

@@ -18,7 +18,7 @@ class MainToolbar extends BasePage {
     constructor(props) {
         super(props);
         this.state = {
-            activeTitle: 'Nova staza',
+            activeTitle: 'New',
             value: 3,
         };
         this.onNewTrailEvent = this.onNewTrail.bind(this);
@@ -49,7 +49,7 @@ class MainToolbar extends BasePage {
                         <MenuItem primaryText="Download" />
                         <MenuItem primaryText="More Info" />
                     </IconMenu>
-                    <RaisedButton label="Nova" primary={true} onTouchTap={this.onNewTrailEvent} />
+                    <RaisedButton label="New" primary={true} onTouchTap={this.onNewTrailEvent} />
                 </ToolbarGroup>
             </Toolbar>
         );
