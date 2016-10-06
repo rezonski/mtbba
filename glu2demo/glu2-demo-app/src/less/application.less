@@ -16,3 +16,39 @@
     #mapa {
     }
 }
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+
+    &.column  {
+        flex-direction: column;
+    }
+
+    &.row {
+        flex-direction: row;
+    }
+
+    &.row-reverse {
+        flex-direction: row-reverse;
+    }
+
+    .flex-element {
+    
+        &.column  {
+            flex-direction: column;
+        }
+
+        &.row {
+            flex-direction: row;
+        }
+
+        &.wider {
+            flex: 1 1 60%;
+        }
+
+        &.narower {
+            flex: 0 1 40%;
+        }
+    }
+}
