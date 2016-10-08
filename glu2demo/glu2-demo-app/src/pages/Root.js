@@ -4,6 +4,7 @@ import Message from '../components/notifications/Message';
 import AddNewTrail from '../components/forms/AddNewTrail';
 import MainToolbar from '../components/menu/MainToolbar';
 import MapController from '../controllers/MapController';
+import DataController from '../controllers/DataController';
 
 class Root extends BasePage {
     constructor(params) {
@@ -14,6 +15,7 @@ class Root extends BasePage {
 
         this.activateControllers(
             MapController,
+            DataController,
         );
 
         this.bindGluBusEvents({

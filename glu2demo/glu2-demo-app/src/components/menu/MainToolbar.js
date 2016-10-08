@@ -1,7 +1,7 @@
 import React from 'react';
 import BasePage from '../BasePage';
 // import MessageEvents from '../../enums/MessageEvents';
-import AppEvents from '../../enums/AppEvents';
+import Enum from '../../enums/Enum';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 // import FontIcon from 'material-ui/FontIcon';
@@ -26,7 +26,7 @@ class MainToolbar extends BasePage {
 
     onNewTrail() {
         // console.info('ok');
-        this.emit(AppEvents.ADD_NEW_TRAIL);
+        this.emit(Enum.AppEvents.OPEN_FORM_NEW_TRAIL);
     }
 
     render() {
