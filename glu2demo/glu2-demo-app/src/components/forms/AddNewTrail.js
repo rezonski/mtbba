@@ -18,7 +18,8 @@ class AddNewTrail extends BasePage {
 
         this.onCloseEvent = this.handleClose.bind(this);
         this.onSaveAddedTrail = this.saveAddedTrail.bind(this);
-        this.onUploadDoneEvent = this.onUploadDone.bind(this);
+        this.onUploadGeoEvent = this.onUploadGeo.bind(this);
+        this.onUploadImageEvent = this.onUploadImage.bind(this);
 
         this.bindGluBusEvents({
             [Enum.AppEvents.OPEN_FORM_NEW_TRAIL]: this.onOpenFormRequest,
@@ -35,8 +36,12 @@ class AddNewTrail extends BasePage {
         });
     }
 
-    onUploadDone(event) {
+    onUploadGeo(event) {
         console.info(event.target.value);
+    }
+
+    onUploadImage(event) {
+        console.info(event.target.files[0]);
     }
 
     render() {
@@ -76,9 +81,7 @@ class AddNewTrail extends BasePage {
                     onRequestClose={this.onCloseEvent}>
                         <div className="flex-container row">
                             <div className="flex-element column wider">
-                                Add new geo data file:
-                                <br />
-                                <input type="file" onChange={this.onUploadDoneEvent}/>
+                                Add new geo data file: <input type="file" onChange={this.onUploadGeoEvent}/>
                                 <br />
                                 <InputTextBox
                                     key="trailName"
@@ -104,6 +107,8 @@ class AddNewTrail extends BasePage {
                                     filedHintText="Choose only one from list"
                                     floatingLabelText="Choose trail type"
                                 />
+                                <br />
+                                Add featuring image: <input type="file" onChange={this.onUploadImageEvent}/>
                             </div>
                             <div className="flex-element column narower">
                                 <MountainMultiSelection />
