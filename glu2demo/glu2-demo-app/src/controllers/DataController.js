@@ -3,6 +3,7 @@ import DataModel from '/dataSources/DataModel';
 import MessageEvents from '/enums/MessageEvents';
 import Enum from '/enums/Enum';
 import API from '/apis/Api';
+import { handleReject } from '/helpers/RejectHandler';
 
 class DataController extends GLU.Controller {
     constructor() {
@@ -14,6 +15,7 @@ class DataController extends GLU.Controller {
             [Enum.MapEvents.RETRIEVE_INITIAL_DATA_SETUP]: this.getDataInitSetup,
             [Enum.DataEvents.SAVE_TRAILDATA2MODEL]: this.setTrailData2Model,
             [Enum.DataEvents.RETRIEVE_TRAIL_DATA]: this.getTrailData,
+            [Enum.DataEvents.START_IMAGE_UPLOAD]: this.uploadImage,
         });
     }
 
@@ -61,6 +63,39 @@ class DataController extends GLU.Controller {
             mountainIDs: DataModel.mountainIDs,
         };
         GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
+    }
+
+    uploadImage(payload) {
+        DataModel.uploadImage(payload.file)
+            .then(response => {
+                GLU.bus.emit(MessageEvents.ERROR_MESSAGE, response);
+            }, handleReject);
+    }
+
+    uploadImage(params) {
+        // Attachments.createUploadUrl(params).
+        //     then(response => {
+        //         params.signedUrl = response.signedUrl;
+        //         const attachmentUuid = response.attachmentUuid;
+        //         FileUpload.uploadFile(params)
+        //             .then(uploadInfo => {
+        //                 Attachments.completeUpload(uploadInfo, attachmentUuid)
+        //                     .then(attachments => {
+        //                         GLU.bus.emit('FILE_UPLOAD_INFO_CHANGED', uploadInfo);
+        //                         GLU.bus.emit('ATTACHMENTS_RETRIEVED', attachments);
+        //                     }, handleReject);
+        //             }, handleReject);
+        //     });
+
+        DataModel.uploadFile(params)
+            .then(uploadInfo => {
+                console.info(uploadInfo);
+                // Attachments.completeUpload(uploadInfo, attachmentUuid)
+                //     .then(attachments => {
+                //         GLU.bus.emit('FILE_UPLOAD_INFO_CHANGED', uploadInfo);
+                //         GLU.bus.emit('ATTACHMENTS_RETRIEVED', attachments);
+                //     }, handleReject);
+            }, handleReject);
     }
 }
 

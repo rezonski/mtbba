@@ -7,6 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import MountainMultiSelection from '../forms/MountainMultiSelection';
 import InputTextBox from '../forms/InputTextBox';
 import ListSelection from '../forms/ListSelection';
+import UploadAttachment from '../forms/UploadAttachment';
 
 class AddNewTrail extends BasePage {
     constructor(props) {
@@ -14,6 +15,7 @@ class AddNewTrail extends BasePage {
 
         this.state = {
             open: false,
+            selectedFile: '',
         };
 
         this.onCloseEvent = this.handleClose.bind(this);
@@ -42,6 +44,9 @@ class AddNewTrail extends BasePage {
 
     onUploadImage(event) {
         console.info(event.target.files[0]);
+        this.emit(Enum.DataEvents.START_IMAGE_UPLOAD, {
+            file: event.target.files[0],
+        });
     }
 
     render() {
@@ -108,7 +113,7 @@ class AddNewTrail extends BasePage {
                                     floatingLabelText="Choose trail type"
                                 />
                                 <br />
-                                Add featuring image: <input type="file" onChange={this.onUploadImageEvent}/>
+                                <UploadAttachment />
                             </div>
                             <div className="flex-element column narower">
                                 <MountainMultiSelection />

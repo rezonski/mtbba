@@ -1,4 +1,7 @@
 import GLU from '/../../glu2.js/src/index';
+// import API from '/apis/Api';
+// import { error } from '/helpers/ResolveMessages';
+import { fileUpload } from '/helpers/FileUpload';
 
 class DataModel extends GLU.DataSource {
     constructor() {
@@ -11,6 +14,7 @@ class DataModel extends GLU.DataSource {
         this._trailDesc = '';
         this._trailTypeID = null;
         this._mountainIDs = [];
+        this._xhrs = [];
     }
 
     get countries() {
@@ -91,6 +95,42 @@ class DataModel extends GLU.DataSource {
         this._mountains = data.mountains;
         this._trailTypes = data.types;
         this._pointTypes = data.pointtypes;
+    }
+
+    uploadFile(uploadInfo) {
+        uploadInfo.uploadId = this._xhrs.length;
+        uploadInfo.isCanceled = false;
+        uploadInfo.isCompleted = false;
+        uploadInfo.progress = 0;
+
+        const promise = new Promise((resolve, reject) => {
+            console.info('FILE_UPLOAD_STARTED');
+            this.emit('FILE_UPLOAD_STARTED', uploadInfo);
+            fileUpload({
+                file: uploadInfo.file,
+                method: 'PUT',
+                // url: uploadInfo.signedUrl,
+                url: 'http://localhost/sandbox/examples/upload/upload.php',
+                headers: {
+                    'Content-Type': uploadInfo.file.type,
+                },
+                onFileUploadProgress: this.onFileUploadChange.bind(this, uploadInfo),
+                onXhrReady: xhr => {
+                    this._xhrs[uploadInfo.uploadId] = xhr;
+                },
+            }).then(() => {
+                this._xhrs[uploadInfo.uploadId] = undefined;
+                resolve(uploadInfo);
+            })
+            .catch(reject);
+        });
+        return promise;
+    }
+
+    onFileUploadChange(uploadInfo, event) {
+        const progress = (event.loaded / event.total) * 100;
+        uploadInfo.progress = progress;
+        this.emit('FILE_UPLOAD_PROGRESS_CHANGED', uploadInfo);
     }
 }
 
