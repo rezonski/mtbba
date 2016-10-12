@@ -1,7 +1,6 @@
 import React from 'react';
 import BasePage from '../components/BasePage';
 import Message from '../components/notifications/Message';
-import ModalMessage from '../components/notifications/ModalMessage';
 import AddNewTrail from '../components/forms/AddNewTrail';
 import MainToolbar from '../components/menu/MainToolbar';
 import MapController from '../controllers/MapController';
@@ -37,7 +36,6 @@ class Root extends BasePage {
                 <div id="map-container">
                     {this.props.children}
                     <Message />
-                    <ModalMessage />
                     <AddNewTrail />
                 </div>
             </div>

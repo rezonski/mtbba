@@ -8,6 +8,7 @@ import MountainMultiSelection from '../forms/MountainMultiSelection';
 import InputTextBox from '../forms/InputTextBox';
 import ListSelection from '../forms/ListSelection';
 import UploadAttachment from '../forms/UploadAttachment';
+import StatusProgress from '../forms/StatusProgress';
 
 class AddNewTrail extends BasePage {
     constructor(props) {
@@ -114,6 +115,7 @@ class AddNewTrail extends BasePage {
                                 />
                                 <br />
                                 <UploadAttachment />
+                                <StatusProgress />
                             </div>
                             <div className="flex-element column narower">
                                 <MountainMultiSelection />

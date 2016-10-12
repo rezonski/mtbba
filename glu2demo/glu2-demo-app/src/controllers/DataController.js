@@ -1,6 +1,7 @@
 import GLU from '/../../glu2.js/src/index';
 import DataModel from '/dataSources/DataModel';
 import MessageEvents from '/enums/MessageEvents';
+import Globals from '/Globals';
 import Enum from '/enums/Enum';
 import API from '/apis/Api';
 // import { handleReject } from '/helpers/RejectHandler';
@@ -80,17 +81,26 @@ class DataController extends GLU.Controller {
                         data: 'Unknown error occurred: [' + request.responseText + ']',
                     };
                 }
-                GLU.bus.emit(MessageEvents.STATUS_MESSAGE, { status: resp.status + ': ' + resp.data });
-                console.log(resp.status + ': ' + resp.data);
+                const statusPayload = {
+                    status: resp.status,
+                    message: resp.data,
+                    imgURL: Globals.IMAGE_UPLOAD_PATH + payload.fileName,
+                };
+                GLU.bus.emit(MessageEvents.PICTURE_UPLOAD_STATUS, statusPayload);
             }
         };
 
         request.upload.addEventListener('progress', (e) => {
-            GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, { loaded: e.loaded, total: e.total });
+            const progressPayload = {
+                    status: 'progress',
+                    loaded: e.loaded,
+                    total: e.total,
+                };
+            GLU.bus.emit(MessageEvents.PICTURE_UPLOAD_PROGRESS, progressPayload);
             // _progress.style.width = Math.ceil(e.loaded/e.total) * 100 + '%';
         }, false);
 
-        request.open('POST', 'http://www.mtb.ba/webdev/upload/upload.php');
+        request.open('POST', Globals.IMAGE_UPLOADER_PATH);
         request.send(data);
     }
 }
