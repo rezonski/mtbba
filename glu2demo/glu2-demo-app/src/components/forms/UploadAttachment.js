@@ -1,6 +1,6 @@
 import React from 'react';
 import BusComponent from '../BusComponent';
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import Enum from '../../enums/Enum';
 
 const style = {
@@ -38,7 +38,7 @@ class UploadAttachment extends BusComponent {
     render() {
         return (
             <div>
-                <FlatButton label="Dodaj sliku"
+                <RaisedButton label="Dodaj sliku"
                             onTouchTap={this.onAttachmentUploadClicked.bind(this)} />
                 <input type="file"
                        key={this.state.selectedFile}

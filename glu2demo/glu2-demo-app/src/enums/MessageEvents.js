@@ -2,6 +2,8 @@ const MessageEvents = {
     ERROR_MESSAGE: '__ERROR_MESSAGE__',
     WARNING_MESSAGE: '__WARNING_MESSAGE__',
     INFO_MESSAGE: '__ERROR_MESSAGE__',
+    PROGRESS_MESSAGE: '__PROGRESS_MESSAGE__',
+    STATUS_MESSAGE: '__STATUS_MESSAGE__',
 };
 
 export default MessageEvents;

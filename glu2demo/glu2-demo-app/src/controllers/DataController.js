@@ -3,7 +3,7 @@ import DataModel from '/dataSources/DataModel';
 import MessageEvents from '/enums/MessageEvents';
 import Enum from '/enums/Enum';
 import API from '/apis/Api';
-import { handleReject } from '/helpers/RejectHandler';
+// import { handleReject } from '/helpers/RejectHandler';
 
 class DataController extends GLU.Controller {
     constructor() {
@@ -66,36 +66,32 @@ class DataController extends GLU.Controller {
     }
 
     uploadImage(payload) {
-        DataModel.uploadImage(payload.file)
-            .then(response => {
-                GLU.bus.emit(MessageEvents.ERROR_MESSAGE, response);
-            }, handleReject);
-    }
+        const data = new FormData();
+        data.append('SelectedFile', payload.file);
+        const request = new XMLHttpRequest();
+        let resp;
+        request.onreadystatechange = function() {
+            if (request.readyState === 4) {
+                try {
+                    resp = JSON.parse(request.response);
+                } catch (e) {
+                    resp = {
+                        status: 'error',
+                        data: 'Unknown error occurred: [' + request.responseText + ']',
+                    };
+                }
+                GLU.bus.emit(MessageEvents.STATUS_MESSAGE, { status: resp.status + ': ' + resp.data });
+                console.log(resp.status + ': ' + resp.data);
+            }
+        };
 
-    uploadImage(params) {
-        // Attachments.createUploadUrl(params).
-        //     then(response => {
-        //         params.signedUrl = response.signedUrl;
-        //         const attachmentUuid = response.attachmentUuid;
-        //         FileUpload.uploadFile(params)
-        //             .then(uploadInfo => {
-        //                 Attachments.completeUpload(uploadInfo, attachmentUuid)
-        //                     .then(attachments => {
-        //                         GLU.bus.emit('FILE_UPLOAD_INFO_CHANGED', uploadInfo);
-        //                         GLU.bus.emit('ATTACHMENTS_RETRIEVED', attachments);
-        //                     }, handleReject);
-        //             }, handleReject);
-        //     });
+        request.upload.addEventListener('progress', (e) => {
+            GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, { loaded: e.loaded, total: e.total });
+            // _progress.style.width = Math.ceil(e.loaded/e.total) * 100 + '%';
+        }, false);
 
-        DataModel.uploadFile(params)
-            .then(uploadInfo => {
-                console.info(uploadInfo);
-                // Attachments.completeUpload(uploadInfo, attachmentUuid)
-                //     .then(attachments => {
-                //         GLU.bus.emit('FILE_UPLOAD_INFO_CHANGED', uploadInfo);
-                //         GLU.bus.emit('ATTACHMENTS_RETRIEVED', attachments);
-                //     }, handleReject);
-            }, handleReject);
+        request.open('POST', 'http://www.mtb.ba/webdev/upload/upload.php');
+        request.send(data);
     }
 }
 
