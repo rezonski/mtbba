@@ -19,13 +19,16 @@ class MainToolbar extends BasePage {
         super(props);
         this.state = {
             activeTitle: 'New',
+            newEditButtonLabel: 'New',
             value: 3,
         };
         this.onNewTrailEvent = this.onNewTrail.bind(this);
     }
 
     onNewTrail() {
-        // console.info('ok');
+        this.setState({
+            newEditButtonLabel: 'Edit',
+        });
         this.emit(Enum.AppEvents.OPEN_FORM_NEW_TRAIL);
     }
 
@@ -49,7 +52,10 @@ class MainToolbar extends BasePage {
                         <MenuItem primaryText="Download" />
                         <MenuItem primaryText="More Info" />
                     </IconMenu>
-                    <RaisedButton label="New" primary={true} onTouchTap={this.onNewTrailEvent} />
+                    <RaisedButton
+                        label={this.state.newEditButtonLabel}
+                        primary={true}
+                        onTouchTap={this.onNewTrailEvent} />
                 </ToolbarGroup>
             </Toolbar>
         );

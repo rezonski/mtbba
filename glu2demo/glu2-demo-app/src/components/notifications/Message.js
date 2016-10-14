@@ -16,6 +16,7 @@ class Message extends BasePage {
         this.bindGluBusEvents({
             [MessageEvents.ERROR_MESSAGE]: this.onErrorMessage,
             [MessageEvents.WARNING_MESSAGE]: this.onWarningMessage,
+            [MessageEvents.PICTURE_UPLOAD_STATUS]: this.onUploadStatus,
             [MessageEvents.INFO_MESSAGE]: this.onInfoMessage,
         });
     }
@@ -45,6 +46,14 @@ class Message extends BasePage {
             open: true,
             message,
             type: 'error',
+        });
+    }
+
+    onUploadStatus(payload) {
+        this.setState({
+            open: true,
+            message: payload.message,
+            type: 'info',
         });
     }
 

@@ -9,7 +9,7 @@ const style = {
     },
 };
 
-class UploadAttachment extends BusComponent {
+class UploadImage extends BusComponent {
     constructor(props) {
         super(props);
 
@@ -38,8 +38,10 @@ class UploadAttachment extends BusComponent {
     render() {
         return (
             <div>
-                <RaisedButton label="Dodaj sliku"
-                            onTouchTap={this.onAttachmentUploadClicked.bind(this)} />
+                <RaisedButton
+                    label="Add image"
+                    secondary={true}
+                    onTouchTap={this.onAttachmentUploadClicked.bind(this)} />
                 <input type="file"
                        key={this.state.selectedFile}
                        ref="fileUpload"
@@ -50,4 +52,4 @@ class UploadAttachment extends BusComponent {
     }
 }
 
-export default UploadAttachment;
+export default UploadImage;

@@ -1,5 +1,6 @@
 import GLU from '/../../glu2.js/src/index';
-import DataModel from '/dataSources/DataModel';
+import CommonDataModel from '/dataSources/CommonDataModel';
+import TrailDataModel from '/dataSources/TrailDataModel';
 import MessageEvents from '/enums/MessageEvents';
 import Globals from '/Globals';
 import Enum from '/enums/Enum';
@@ -25,18 +26,13 @@ class DataController extends GLU.Controller {
         API.Trails.getInitialSetup({
                 query: {},
             })
-            .then(response => DataModel.parseSetupData(response.text))
+            .then(response => CommonDataModel.parseSetupData(response.text))
             .catch(err => this.getSetupDataError(err));
         GLU.bus.emit(MessageEvents.ERROR_MESSAGE, 'Initial data loaded');
     }
 
     getDataInitSetup() {
-        const dataSetup = {
-            countries: DataModel.countries,
-            mountains: DataModel.mountains,
-            trailTypes: DataModel.trailTypes,
-            pointTypes: DataModel.pointTypes,
-        };
+        const dataSetup = CommonDataModel.getSetup();
         GLU.bus.emit(Enum.MapEvents.INITIAL_DATA_SETUP_RETRIEVED, dataSetup);
     }
 
@@ -53,16 +49,11 @@ class DataController extends GLU.Controller {
     }
 
     setTrailData2Model(payload) {
-        DataModel.setDataByName(payload.name, payload.value);
+        TrailDataModel.setDataByName(payload.name, payload.value);
     }
 
     getTrailData() {
-        const trailData = {
-            trailName: DataModel.trailName,
-            trailDesc: DataModel.trailDesc,
-            trailTypeID: DataModel.trailTypeID,
-            mountainIDs: DataModel.mountainIDs,
-        };
+        const trailData = TrailDataModel.getTrailData();
         GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
     }
 

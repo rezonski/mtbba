@@ -162,11 +162,11 @@ FROM repo_regions AS reg1, repo_regions AS reg2 where reg2.id = reg1.id_parent a
     ]';
 
     $output .= ',
-"types": [';
+"trailTypes": [';
 
         $sql = 
 "SELECT t.id, t.name, t.desc, (select count(v.id) from trail_versions v where v.trail_type = t.id and v.active = 1) as total
-from repo_types t order by t.id asc"; 
+from repo_types t where t.cat_id = 0 order by t.id asc"; 
 
         $counter = 0;
         $result = $conn->query($sql);
@@ -190,9 +190,69 @@ from repo_types t order by t.id asc";
 
         $output .= '
     ]';
-    
+
+$output .= ',
+"fitnessLevels": [';
+
+        $sql = 
+"SELECT t.id, t.name, t.desc, (select count(v.id) from trail_versions v where v.required_fitness = t.id and v.active = 1) as total
+from repo_types t where t.cat_id = 1 order by t.id asc"; 
+
+        $counter = 0;
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while($row = $result->fetch_assoc()) {
+                if ($counter > 0) {
+                    $output .= ',';
+                }
+                $counter++;
+                $output .= 
+'
+    {
+        "id": '.$row["id"].',
+        "name": "'.$row["name"].'",
+        "desc": "'.$row["desc"].'",
+        "total": '.$row["total"].'
+    }';
+            }
+        };
+
+        $output .= '
+    ]';
+
+$output .= ',
+"techniqueLevels": [';
+
+        $sql = 
+"SELECT t.id, t.name, t.desc, (select count(v.id) from trail_versions v where v.required_technique = t.id and v.active = 1) as total
+from repo_types t where t.cat_id = 2 order by t.id asc"; 
+
+        $counter = 0;
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while($row = $result->fetch_assoc()) {
+                if ($counter > 0) {
+                    $output .= ',';
+                }
+                $counter++;
+                $output .= 
+'
+    {
+        "id": '.$row["id"].',
+        "name": "'.$row["name"].'",
+        "desc": "'.$row["desc"].'",
+        "total": '.$row["total"].'
+    }';
+            }
+        };
+
+        $output .= '
+    ]';
+
     $output .= ',
-"pointtypes": [';
+"pointTypes": [';
 
         $sql = "SELECT `symbol_code`, `desc`, `desc_en` FROM `repo_point_symbol`";
 
