@@ -251,7 +251,38 @@ from repo_types t where t.cat_id = 2 order by t.id asc";
         $output .= '
     ]';
 
-    $output .= ',
+$output .= ',
+"surfaceTypes": [';
+
+        $sql = 
+"SELECT t.id, t.name, t.desc, t.meta1, t.meta2
+from repo_types t where t.cat_id = 10 order by t.id asc"; 
+
+        $counter = 0;
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while($row = $result->fetch_assoc()) {
+                if ($counter > 0) {
+                    $output .= ',';
+                }
+                $counter++;
+                $output .= 
+'
+    {
+        "id": '.$row["id"].',
+        "name": "'.$row["name"].'",
+        "desc": "'.$row["desc"].'",
+        "colorRGBA": "'.$row["meta1"].'",
+        "colorHex": "'.$row["meta2"].'"
+    }';
+            }
+        };
+
+        $output .= '
+    ]';
+
+$output .= ',
 "pointTypes": [';
 
         $sql = "SELECT `symbol_code`, `desc`, `desc_en` FROM `repo_point_symbol`";

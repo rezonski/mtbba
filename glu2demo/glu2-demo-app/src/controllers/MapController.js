@@ -1,9 +1,8 @@
 import GLU from '/../../glu2.js/src/index';
 import MapModel from '/dataSources/MapModel';
 import MessageEvents from '/enums/MessageEvents';
-// import AppEvents from '/enums/AppEvents';
 import Enum from '/enums/Enum';
-// import API from '/apis/Api';
+import Lang from '/helpers/Lang';
 
 class MapController extends GLU.Controller {
     constructor() {
@@ -17,7 +16,7 @@ class MapController extends GLU.Controller {
 
     getMapInitSetup() {
         const mapSetup = MapModel.getInitialSetup();
-        GLU.bus.emit(MessageEvents.ERROR_MESSAGE, 'Start loading map');
+        GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('startLoadingMap'));
         GLU.bus.emit(Enum.MapEvents.INITIAL_MAP_SETUP_RETRIEVED, mapSetup);
     }
 

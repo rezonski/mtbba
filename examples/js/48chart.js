@@ -1,4 +1,4 @@
-function setElevationProfile(chartContainer,pathLine,wayPoints,sastavArray) {
+function setElevationProfile(chartContainer,pathLine,wayPoints,surfaceCollection) {
     
     var dataset = [];
     var odometer = [0];
@@ -18,9 +18,9 @@ function setElevationProfile(chartContainer,pathLine,wayPoints,sastavArray) {
         // dataset.push(odometer[index], element[2]);
         if (element[2] > 0) {
             // console.log(odometer[index]);
-            dataset.push({x: odometer[index], y: element[2], segmentColor: getSegmentColor(getSegmentName(odometer[index], sastavArray)).rgb});
-            // dataset.push({y: element[2], segmentColor: getSegmentColor(getSegmentName(odometer[index], sastavArray))});
-            // dataset.push([odometer[index], element[2], getSegmentColor(getSegmentName(odometer[index], sastavArray))]);
+            dataset.push({x: odometer[index], y: element[2], segmentColor: getSegmentColor(getSegmentName(odometer[index], surfaceCollection)).rgb});
+            // dataset.push({y: element[2], segmentColor: getSegmentColor(getSegmentName(odometer[index], surfaceCollection))});
+            // dataset.push([odometer[index], element[2], getSegmentColor(getSegmentName(odometer[index], surfaceCollection))]);
             // dataset.push([odometer[index], element[2]]);
         }
     });

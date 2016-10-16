@@ -1,7 +1,8 @@
 import React from 'react';
 import BusComponent from '../BusComponent';
 import RaisedButton from 'material-ui/RaisedButton';
-import Enum from '../../enums/Enum';
+import Enum from '/enums/Enum';
+import Lang from '/helpers/Lang';
 
 const style = {
     inputFile: {
@@ -9,7 +10,7 @@ const style = {
     },
 };
 
-class UploadGeoFile extends BusComponent {
+class UploadImage extends BusComponent {
     constructor(props) {
         super(props);
 
@@ -29,7 +30,7 @@ class UploadGeoFile extends BusComponent {
     }
 
     onStartUpload() {
-        this.emit(Enum.DataEvents.START_GEO_FILE_UPLOAD, {
+        this.emit(Enum.DataEvents.START_IMAGE_UPLOAD, {
             fileName: this.state.selectedFile.name,
             file: this.state.selectedFile,
         });
@@ -39,8 +40,8 @@ class UploadGeoFile extends BusComponent {
         return (
             <div>
                 <RaisedButton
-                    label="Add .gpx /.kml"
-                    primary={true}
+                    label={Lang.label('addImageFile')}
+                    secondary={true}
                     onTouchTap={this.onAttachmentUploadClicked.bind(this)} />
                 <input type="file"
                        key={this.state.selectedFile}
@@ -52,4 +53,4 @@ class UploadGeoFile extends BusComponent {
     }
 }
 
-export default UploadGeoFile;
+export default UploadImage;

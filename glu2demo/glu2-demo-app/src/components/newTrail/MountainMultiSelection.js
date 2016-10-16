@@ -1,6 +1,6 @@
 import React from 'react';
 import BasePage from '../BasePage';
-import Enum from '../../enums/Enum';
+import Enum from '/enums/Enum';
 import Divider from 'material-ui/Divider';
 import Checkbox from 'material-ui/Checkbox';
 

@@ -3,7 +3,7 @@ import React from 'react';
 import BasePage from '../BasePage';
 // import ReactMapboxGl, { ScaleControl, ZoomControl } from 'react-mapbox-gl';
 import MessageEvents from '../../enums/MessageEvents';
-
+import Lang from '/helpers/Lang';
 
 class SwipeMap extends BasePage {
     constructor(props) {
@@ -23,7 +23,7 @@ class SwipeMap extends BasePage {
     }
 
     componentDidUpdate() {
-        console.info('SwipeMap DidUpdate');
+        // console.info('SwipeMap DidUpdate');
         mapboxgl.accessToken = this.state.setup.accessToken;
         this.mapprim = new mapboxgl.Map({
             container: 'mapprim',
@@ -46,11 +46,11 @@ class SwipeMap extends BasePage {
         this.combined = new mapboxgl.Compare(this.mapprim, this.mapsec);
 
         this.mapprim.on('load', () => {
-            this.emit(MessageEvents.ERROR_MESSAGE, 'Loaded first map');
+            this.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('firstMapLoaded'));
         });
 
         this.mapsec.on('load', () => {
-            this.emit(MessageEvents.ERROR_MESSAGE, 'Loaded second map');
+            this.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('secondMapLoaded'));
         });
     }
 

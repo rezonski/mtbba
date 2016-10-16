@@ -12,6 +12,7 @@ class TrailDataModel extends GLU.DataSource {
         this._fitnessLevelID = null;
         this._techniqueLevelID = null;
         this._mountainIDs = [];
+        this._surfaceCollection = [];
     }
 
     get trailName() {
@@ -73,22 +74,19 @@ class TrailDataModel extends GLU.DataSource {
             this._mountainIDs = newMntArray;
         }
     }
+
+    get surfaceCollection() {
+        return this._surfaceCollection;
+    }
+
+    set surfaceCollection(newSurfaceSetup) {
+        if (newSurfaceSetup) {
+            this._surfaceCollection = newSurfaceSetup;
+        }
+    }
+
     setDataByName(propName, propValue) {
         this[propName] = propValue;
-        // switch (propName) {
-        //     case 'trailName':
-        //         this.trailName = propValue;
-        //         break;
-        //     case 'trailDesc':
-        //         this.trailDesc = propValue;
-        //         break;
-        //     case 'trailTypeID':
-        //         this.trailTypeID = propValue;
-        //         break;
-        //     case 'mountainIDs':
-        //         this.mountainIDs = propValue;
-        //         break;
-        // }
     }
 
     getTrailData() {
@@ -99,6 +97,7 @@ class TrailDataModel extends GLU.DataSource {
             fitnessLevelID: this.fitnessLevelID,
             techniqueLevelID: this.techniqueLevelID,
             mountainIDs: this.mountainIDs,
+            surfaceCollection: this.surfaceCollection,
         };
     }
 }

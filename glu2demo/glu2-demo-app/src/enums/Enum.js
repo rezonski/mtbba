@@ -7,6 +7,7 @@ const Enum = {
     },
     AppEvents: {
         OPEN_FORM_NEW_TRAIL: '__OPEN_FORM_NEW_TRAIL__',
+        CHANGE_LANGUAGE: '__CHANGE_LANGUAGE__',
     },
     DataEvents: {
         SAVE_TRAILDATA2MODEL: '_SAVE_TRAILDATA2MODEL_',

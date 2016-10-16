@@ -1,25 +1,25 @@
 import React from 'react';
 import BasePage from '../BasePage';
-import Enum from '../../enums/Enum';
+import Enum from '/enums/Enum';
+import Lang from '/helpers/Lang';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import MountainMultiSelection from '../forms/MountainMultiSelection';
-import InputTextBox from '../forms/InputTextBox';
-import ListSelection from '../forms/ListSelection';
-import UploadImage from '../forms/UploadImage';
-import UploadGeoFile from '../forms/UploadGeoFile';
-import StatusProgress from '../forms/StatusProgress';
+import MountainMultiSelection from '../newTrail/MountainMultiSelection';
+import InputTextBox from '../newTrail/InputTextBox';
+import ListSelection from '../newTrail/ListSelection';
+import UploadImage from '../newTrail/UploadImage';
+import UploadGeoFile from '../newTrail/UploadGeoFile';
+import StatusProgress from '../newTrail/StatusProgress';
 
 class AddNewTrail extends BasePage {
     constructor(props) {
         super(props);
-
         this.state = {
             open: false,
             selectedFile: '',
+            title: Lang.label('newTrail'),
         };
-
         this.onCloseEvent = this.handleClose.bind(this);
         this.onSaveAddedTrail = this.saveAddedTrail.bind(this);
 
@@ -51,13 +51,13 @@ class AddNewTrail extends BasePage {
 
         const actions = [
           <RaisedButton
-            label="Spasi"
+            label={Lang.label('save')}
             primary={true}
             keyboardFocused={true}
             onTouchTap={this.onSaveAddedTrail}
           />,
           <FlatButton
-            label="Poništi"
+            label={Lang.label('cancel')}
             primary={true}
             keyboardFocused={false}
             onTouchTap={this.onCloseEvent}
@@ -68,7 +68,7 @@ class AddNewTrail extends BasePage {
         return (<Dialog
                     className="dialog"
                     contentStyle={styles.dialogContentStyle}
-                    title="New"
+                    title={this.state.title}
                     actions={actions}
                     modal={false}
                     open={this.state.open}
@@ -84,37 +84,37 @@ class AddNewTrail extends BasePage {
                                     fieldName="trailName"
                                     isMultiline={false}
                                     noRows={1}
-                                    filedHintText="E.g. 'Sarajevo-Nahorevo-Skakavac'"
-                                    filedLabel="Trail name"
+                                    filedLabel={Lang.label('trailName')}
+                                    filedHintText={Lang.label('trailNameHint')}
                                 />
                                 <InputTextBox
                                     key="trailDesc"
                                     fieldName="trailDesc"
                                     isMultiline={true}
                                     noRows={4}
-                                    filedHintText="Between 200 and 400 character"
-                                    filedLabel="Trail description"
+                                    filedLabel={Lang.label('trailDesc')}
+                                    filedHintText={Lang.label('trailDescHint')}
                                 />
                                 <ListSelection
                                     key="trailTypeID"
                                     fieldName="trailTypeID"
                                     sourceName="trailTypes"
-                                    filedHintText="Choose only one from list"
-                                    floatingLabelText="Choose trail type"
+                                    floatingLabelText={Lang.label('chooseTrailType')}
+                                    filedHintText={Lang.label('listSelectionHint')}
                                 />
                                 <ListSelection
                                     key="fitnessLevelID"
                                     fieldName="fitnessLevelID"
                                     sourceName="fitnessLevels"
-                                    filedHintText="Choose only one from list"
-                                    floatingLabelText="Choose required fitness level"
+                                    floatingLabelText={Lang.label('chooseFitnessLevel')}
+                                    filedHintText={Lang.label('listSelectionHint')}
                                 />
                                 <ListSelection
                                     key="techniqueLevelID"
                                     fieldName="techniqueLevelID"
                                     sourceName="techniqueLevels"
-                                    filedHintText="Choose only one from list"
-                                    floatingLabelText="Choose required technique level"
+                                    floatingLabelText={Lang.label('chooseTechniqueLevel')}
+                                    filedHintText={Lang.label('listSelectionHint')}
                                 />
                             </div>
                             <div className="flex-element column narower">

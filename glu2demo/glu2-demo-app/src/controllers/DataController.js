@@ -4,6 +4,7 @@ import TrailDataModel from '/dataSources/TrailDataModel';
 import MessageEvents from '/enums/MessageEvents';
 import Globals from '/Globals';
 import Enum from '/enums/Enum';
+import Lang from '/helpers/Lang';
 import API from '/apis/Api';
 // import { handleReject } from '/helpers/RejectHandler';
 
@@ -22,13 +23,13 @@ class DataController extends GLU.Controller {
     }
 
     getMapInitSetup() {
-        GLU.bus.emit(MessageEvents.ERROR_MESSAGE, 'Start loading initial data');
+        GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('startInitialDataLoading'));
         API.Trails.getInitialSetup({
                 query: {},
             })
             .then(response => CommonDataModel.parseSetupData(response.text))
             .catch(err => this.getSetupDataError(err));
-        GLU.bus.emit(MessageEvents.ERROR_MESSAGE, 'Initial data loaded');
+        GLU.bus.emit(MessageEvents.INFO_MESSAGE,  Lang.msg('endInitialDataLoading'));
     }
 
     getDataInitSetup() {
@@ -42,10 +43,8 @@ class DataController extends GLU.Controller {
 
     getSetupDataError(err) {
         console.error(err);
-        GLU.bus.emit(Enum.Enum.AppEvents.ERROR_OCCURRED, {
-            title: 'Error',
-            errormessage: err && err.response ? err.response.text : err.toString(),
-        });
+        const msg = (err && err.response) ? err.response.text : err.toString();
+        GLU.bus.emit(MessageEvents.ERROR_MESSAGE, msg);
     }
 
     setTrailData2Model(payload) {

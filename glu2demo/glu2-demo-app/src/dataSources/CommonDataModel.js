@@ -12,6 +12,7 @@ class CommonDataModel extends GLU.DataSource {
         this._fitnessLevels = [];
         this._techniqueLevels = [];
         this._pointTypes = [];
+        this._surfaceTypes = [];
     }
 
     get countries() {
@@ -38,6 +39,10 @@ class CommonDataModel extends GLU.DataSource {
         return this._techniqueLevels;
     }
 
+    get surfaceTypes() {
+        return this._surfaceTypes;
+    }
+
     parseSetupData(rawData) {
         const data = JSON.parse(rawData);
         this._countries = data.countries;
@@ -46,6 +51,7 @@ class CommonDataModel extends GLU.DataSource {
         this._fitnessLevels = data.fitnessLevels;
         this._techniqueLevels = data.techniqueLevels;
         this._pointTypes = data.pointTypes;
+        this._surfaceTypes = data.surfaceTypes;
     }
 
     getSetup() {
@@ -56,6 +62,7 @@ class CommonDataModel extends GLU.DataSource {
             fitnessLevels: this.fitnessLevels,
             techniqueLevels: this.techniqueLevels,
             pointTypes: this.pointTypes,
+            surfaceTypes: this.surfaceTypes,
         };
     }
 }

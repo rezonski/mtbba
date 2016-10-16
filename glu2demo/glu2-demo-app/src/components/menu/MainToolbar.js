@@ -1,16 +1,12 @@
 import React from 'react';
 import BasePage from '../BasePage';
-// import MessageEvents from '../../enums/MessageEvents';
-import Enum from '../../enums/Enum';
+import Enum from '/enums/Enum';
+import Lang from '/helpers/Lang';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
-// import FontIcon from 'material-ui/FontIcon';
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/more-vert';
 import MenuItem from 'material-ui/MenuItem';
-// import DropDownMenu from 'material-ui/DropDownMenu';
 import RaisedButton from 'material-ui/RaisedButton';
-// import FloatingActionButton from 'material-ui/FloatingActionButton';
-// import ContentAdd from 'material-ui/svg-icons/content/add';
 import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
 
 class MainToolbar extends BasePage {
@@ -18,8 +14,8 @@ class MainToolbar extends BasePage {
     constructor(props) {
         super(props);
         this.state = {
-            activeTitle: 'New',
-            newEditButtonLabel: 'New',
+            activeTitle: Lang.label('newTrail'),
+            newEditButtonLabel: Lang.label('new'),
             value: 3,
         };
         this.onNewTrailEvent = this.onNewTrail.bind(this);
@@ -27,7 +23,7 @@ class MainToolbar extends BasePage {
 
     onNewTrail() {
         this.setState({
-            newEditButtonLabel: 'Edit',
+            newEditButtonLabel: Lang.label('edit'),
         });
         this.emit(Enum.AppEvents.OPEN_FORM_NEW_TRAIL);
     }

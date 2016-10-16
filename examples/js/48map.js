@@ -177,16 +177,16 @@ function addMulticolorPath(nesto) {
     var layersArray = [];
 
     var i=0;
-    sastavArray.forEach(function (element, index) {
-        if (index === 0 && index !== (sastavArray.length -1)) {
+    surfaceCollection.forEach(function (element, index) {
+        if (index === 0 && index !== (surfaceCollection.length -1)) {
             startOdometer = 0;
-            endOdometer = sastavArray[index+1][0];
-        } else if (index === (sastavArray.length -1)) {
+            endOdometer = surfaceCollection[index+1][0];
+        } else if (index === (surfaceCollection.length -1)) {
             startOdometer = element[0];
             endOdometer = 99999;
         } else {
             startOdometer = element[0];
-            endOdometer = sastavArray[index+1][0];
+            endOdometer = surfaceCollection[index+1][0];
         }
         var totalOdometer = 0;
         

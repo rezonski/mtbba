@@ -39,7 +39,7 @@
                 <button type="button" id="addmpath" onclick="addMulticolorPath('nesto')">MultiPath</button>
                 <button type="button" id="buttonprepwpoints" onclick="makeWaypointsEditor(newWaypointsExport)" disabled="true">show WP</button>
                 <button type="button" id="buttonwpoints2db" onclick="actionSend('waypoints')" disabled="true">WP2DB</button>
-                <button type="button" id="buttonshowelev" onclick="setElevationProfile('container',pathLine,newWaypointsChart,sastavArray)" disabled="true">Elev</button>
+                <button type="button" id="buttonshowelev" onclick="setElevationProfile('container',pathLine,newWaypointsChart,surfaceCollection)" disabled="true">Elev</button>
             </form>
         </div>
         <div id="resultform">
@@ -81,7 +81,7 @@
     var newWaypointsExport = [];
     var newWaypointsChart = [];
     
-    var sastavArray = [];
+    var surfaceCollection = [];
     var generalFact = {};
     var xmlhttp;
 

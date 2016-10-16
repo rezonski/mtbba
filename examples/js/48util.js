@@ -3,7 +3,7 @@ function changeWpointType(wid) {
 }
 
 function saveSastav(){
-  sastavArray = JSON.parse(document.getElementById('sastavtrailatext').value);
+  surfaceCollection = JSON.parse(document.getElementById('sastavtrailatext').value);
 }
 
 function handleSastav() {
@@ -17,27 +17,27 @@ function handleSastav() {
 
     var found = false;
     
-    sastavArray.forEach(function(combination, index) {
+    surfaceCollection.forEach(function(combination, index) {
       if (combination[0] == currentValue[0] && combination[1] == currentValue[1]) {
-        // sastavArray.splice(index,1);
+        // surfaceCollection.splice(index,1);
         found = true;
       } else if (combination[0] == parseFloat(document.getElementById('sastavodometar').value)) {
-        sastavArray[index][1] = document.getElementById('sastavtype').value;
+        surfaceCollection[index][1] = document.getElementById('sastavtype').value;
         found = true;
       }
     });
     
     if (!found) {
-      sastavArray.push(currentValue);
+      surfaceCollection.push(currentValue);
     }
 
   } else {
     alert('Greska u unesenim parametrima');
   }
-  C = sastavArray.sort(sortFunction);
-  console.log('sastavArray');
-  console.log(sastavArray);
-  document.getElementById('sastavtrailatext').value = JSON.stringify(sastavArray);
+  C = surfaceCollection.sort(sortFunction);
+  console.log('surfaceCollection');
+  console.log(surfaceCollection);
+  document.getElementById('sastavtrailatext').value = JSON.stringify(surfaceCollection);
   document.getElementById('sastavodometar').value = '';
   document.getElementById('sastavtype').value = '';
 }
@@ -110,7 +110,7 @@ function selectType(typeId) {
 
 function makeTrail(parsedObject) {
   console.info('makeTrail()');
-  var sastavArray = parsedObject.sastav;
+  var surfaceCollection = parsedObject.sastav;
   var features = parsedObject.features;
   waypoints = [];
   features.forEach(function(feature){
@@ -135,7 +135,7 @@ function makeTrail(parsedObject) {
   filterPathLinePoints();
   checkAddElevation();
   // makeWaypointsEditor(newWaypointsExport);
-  // setElevationProfile(pathLine,newWaypointsChart,sastavArray);
+  // setElevationProfile(pathLine,newWaypointsChart,surfaceCollection);
 }
 
 function filterPathLinePoints() {
@@ -174,8 +174,8 @@ function readSingleFile(evt) {
 
 
 function funkcija() {
-  console.log('sastavArray');
-  console.log(sastavArray);
+  console.log('surfaceCollection');
+  console.log(surfaceCollection);
   console.log('waypoints');
   console.log(waypoints);
   actionSend('waypoints');
@@ -217,7 +217,7 @@ function actionSend(type) {
             if (document.getElementById('trailname').value.length < 5 ||
                 document.getElementById('traildescription').value.length < 50 || 
                 tempMountains.length < 1 ||
-                sastavArray.length < 1 ||
+                surfaceCollection.length < 1 ||
                 tempTrailType === undefined) {
               alert('Enter proper trail properties (name, desc, mountain and type');
             } else {
@@ -225,7 +225,7 @@ function actionSend(type) {
               generalFact.description = document.getElementById('traildescription').value.replace(/(?:\r\n|\r|\n)/g, ' ');
               generalFact.idtrailtype = tempTrailType;
               generalFact.idplanine = tempMountains;
-              generalFact.sastav = JSON.stringify(sastavArray);
+              generalFact.sastav = JSON.stringify(surfaceCollection);
               generalFact.inputfilename = importedfilename;
               myJsonString = JSON.stringify(generalFact);
               destination = "api_general.php";
@@ -427,7 +427,7 @@ function fixPathArray() {
 
   createMap();
 
-  setElevationProfile('rawprofilecontainer',pathLineMasterd,waypoints,sastavArray);
+  setElevationProfile('rawprofilecontainer',pathLineMasterd,waypoints,surfaceCollection);
 
 }
 
