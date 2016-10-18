@@ -1,6 +1,7 @@
 import GLU from '/../../glu2.js/src/index';
-import MessageEvents from '/enums/MessageEvents';
+import Enum from '/enums/Enum';
 import CommonHelper from '/helpers/CommonHelper';
+import TrailHelper from '/helpers/TrailHelper';
 
 class WaypointHelper extends GLU.Controller {
     constructor(props) {
@@ -17,10 +18,10 @@ class WaypointHelper extends GLU.Controller {
 
     generateDesc(wp, surfaceCollection) {
         let returnDesc = JSON.stringify(wp);
-        returnDesc = CommonHelper.getElementByKey(this.pointTypes,'symbol_code','CROSSROAD','desc');
+        returnDesc = CommonHelper.getElementByKey(this.pointTypes, 'symbol_code', 'CROSSROAD', 'desc');
 
         if (wp.next !== undefined && wp.next !== null) {
-            let directionText = CommonHelper.getElementByKey(this.pointTypes,'symbol_code', wp.current.symbol,'desc') + ' "' + wp.current.name + '". Nastaviti ';
+            let directionText = CommonHelper.getElementByKey(this.pointTypes, 'symbol_code', wp.current.symbol, 'desc') + ' "' + wp.current.name + '". Nastaviti ';
             let otherDirections = ' Sporedni putevi: ';
             let waterSupplyText = ' Izvor vode: ';
             let forbiddenDirectionText = ' Zabranjen smjer: ';
@@ -30,53 +31,48 @@ class WaypointHelper extends GLU.Controller {
                 if (index === 0) {
                     directionText += this.parseDirection(element) + ' drzeci se glavnog puta.';
                 } else if (element.toLowerCase().indexOf('v') > -1) {
-                    waterSupplyText += this.parseDirection(element.toLowerCase().replace('v','')) + ', ';
+                    waterSupplyText += this.parseDirection(element.toLowerCase().replace('v', '')) + ', ';
                 } else if (element.toLowerCase().indexOf('z') > -1) {
-                    forbiddenDirectionText += this.parseDirection(element.toLowerCase().replace('v','')) + ', ';
+                    forbiddenDirectionText += this.parseDirection(element.toLowerCase().replace('v', '')) + ', ';
                 } else {
                     otherDirections += this.parseDirection(element) + ', ';
                 }
             });
 
             if (waterSupplyText.length > (' Izvor vode: ').length) {
-              waterSupplyText = waterSupplyText.substring(0, (waterSupplyText.length - 2)) + '.';
+                waterSupplyText = waterSupplyText.substring(0, (waterSupplyText.length - 2)) + '.';
             } else {
-              waterSupplyText = '';
+                waterSupplyText = '';
             }
 
             if (forbiddenDirectionText.length > (' Zabranjen smjer: ').length) {
-              forbiddenDirectionText = forbiddenDirectionText.substring(0, (forbiddenDirectionText.length - 2)) + '.';
+                forbiddenDirectionText = forbiddenDirectionText.substring(0, (forbiddenDirectionText.length - 2)) + '.';
             } else {
-              forbiddenDirectionText = '';
+                forbiddenDirectionText = '';
             }
 
             if (otherDirections.length > (' Sporedni putevi: ').length) {
-              otherDirections = otherDirections.substring(0, (otherDirections.length - 2)) + '.';
+                otherDirections = otherDirections.substring(0, (otherDirections.length - 2)) + '.';
             } else {
-              otherDirections = '';
+                otherDirections = '';
             }
 
-            directionText += otherDirections + forbiddenDirectionText  + waterSupplyText;
+            directionText += otherDirections + forbiddenDirectionText + waterSupplyText;
 
-            directionText += ' Slijedi sekcija duzine ' + wp.current.nextstepdist + ' km'; 
+            directionText += ' Slijedi sekcija duzine ' + wp.current.nextstepdist + ' km';
             if (wp.current.nextelevgain > 0) {
-              directionText += ' sa ' + wp.current.nextelevgain +  ' m visinskog uspona'; 
+                directionText += ' sa ' + wp.current.nextelevgain +  ' m visinskog uspona';
             }
             if (Math.abs(wp.current.nextelevloss) > 0) {
-              directionText += ' i ' + Math.abs(wp.current.nextelevloss) + ' m visinskog spusta';
+                directionText += ' i ' + Math.abs(wp.current.nextelevloss) + ' m visinskog spusta';
             }
 
             directionText += this.parseSurfaceTransition(wp.current.odometer, wp.next.odometer, surfaceCollection);
-
-            directionText += '. Sljedeca kontrolna tacka je ' + CommonHelper.getElementByKey(this.pointTypes,'symbol_code', wp.next.symbol,'desc')/*.toLowerCase()*/ + ' "' + wp.next.name + '" (' + wp.next.odometer + ' km od starta na ' + wp.next.elevation + ' mnv).';
-
+            directionText += '. Sljedeca kontrolna tacka je ' + CommonHelper.getElementByKey(this.pointTypes, 'symbol_code', wp.next.symbol, 'desc') + ' "' + wp.next.name + '" (' + wp.next.odometer + ' km od starta na ' + wp.next.elevation + ' mnv).';
             returnDesc = directionText;
-
         } else {
-        returnDesc = 'Stigli ste na odrediste';
+            returnDesc = 'Stigli ste na odrediste';
         }
-
-
         return returnDesc;
     }
 
@@ -133,50 +129,49 @@ class WaypointHelper extends GLU.Controller {
                 desc: 'desno',
             },
         ];
-        directions.forEach((direction, index) => {
+        directions.forEach((direction) => {
             if (angle >= direction.from && angle <= direction.to) {
                 return direction.desc;
             }
             return 'dalje';
-        })
+        });
     }
 
     parseSurfaceTransition(odoStart, odoEnd, surfaceArray) {
         let surface = JSON.stringify(surfaceArray);
-        surface.unshift([0,"A"]);
+        surface.unshift([0, 'A']);
         let startSurfaceIndex = null;
         let endSurfaceIndex = null;
         let output = ' sa promjenama podloge: ';
 
         for (let i = 0; i < surface.length; i++) {
-            if (surface[i][0] <= odoStart && surface[i+1] !== undefined && surface[i+1][0] >= odoStart) {
+            if (surface[i][0] <= odoStart && surface[i + 1] !== undefined && surface[i + 1][0] >= odoStart) {
                 startSurfaceIndex = i;
                 i = surface.length;
             }
         }
 
-        startSurfaceIndex = (startSurfaceIndex === null) ?  (surface.length - 1) : startSurfaceIndex;
+        startSurfaceIndex = (startSurfaceIndex === null) ? (surface.length - 1) : startSurfaceIndex;
 
         for (let j = 0; j < surface.length; j++) {
-            if (surface[j][0] <= odoEnd 
-                    && ((surface[j+1] !== undefined && surface[j+1][0]  >= odoEnd) || (surface[j+1] === undefined))) {
-                endSurfaceIndex = j;
+            if (surface[j][0] <= odoEnd && ((surface[j + 1] !== undefined && surface[j + 1][0]  >= odoEnd) || (surface[j + 1] === undefined))) {
+                endSurfaceIndex = parseInt(j, 10);
                 j = surface.length;
             }
         }
 
-        endSurfaceIndex = (endSurfaceIndex === null) ?  (surface.length - 1) : endSurfaceIndex;
+        endSurfaceIndex = (endSurfaceIndex === null) ? (surface.length - 1) : endSurfaceIndex;
 
         if (startSurfaceIndex < endSurfaceIndex) {
             for (let z = startSurfaceIndex; z <= endSurfaceIndex; z++) {
                 if (z === startSurfaceIndex) {
-                    output += getSegmentDesc(surface[z][1]);
+                    output += TrailHelper.getSurfaceTypeByName(surface[z][1]).desc;
                 } else {
-                    output += ' -> ' + getSegmentDesc(surface[z][1]) + '(' + surface[z][0] + 'km)';
+                    output += ' -> ' + TrailHelper.getSurfaceTypeByName(surface[z][1]).desc + '(' + surface[z][0] + 'km)';
                 }
             }
         } else {
-            output = ' bez promjene podloge (' + getSegmentDesc(surface[startSurfaceIndex][1]) + ')';
+            output = ' bez promjene podloge (' + TrailHelper.getSurfaceTypeByName(surface[startSurfaceIndex][1]).desc + ')';
         }
         return output;
     }

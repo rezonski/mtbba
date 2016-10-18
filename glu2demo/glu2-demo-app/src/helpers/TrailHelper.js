@@ -1,5 +1,7 @@
 import GLU from '/../../glu2.js/src/index';
 import MessageEvents from '/enums/MessageEvents';
+import Enum from '/enums/Enum';
+import Lang from '/helpers/Lang';
 
 class TrailHelper extends GLU.Controller {
     constructor(props) {
@@ -45,7 +47,7 @@ class TrailHelper extends GLU.Controller {
             }
 
             if (nextIndex === maxIndx && !escaped) {
-                if (currentIndex%10 === 0) {
+                if (currentIndex % 10 === 0) {
                     progressPayload = {
                         status: 'progress',
                         loaded: currentIndex,
@@ -63,18 +65,18 @@ class TrailHelper extends GLU.Controller {
         return returnArray;
     }
 
-    getDistanceFromLatLonInMeters(lon1,lat1,lon2,lat2) {
-        const R = 6371; // Radius of the earth in km
-        const dLat = this.deg2rad(lat2-lat1);  // deg2rad below
-        const dLon = this.deg2rad(lon2-lon1); 
-        const a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2); 
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-        const d = R * c * 1000; // Distance in km
+    getDistanceFromLatLonInMeters(lon1, lat1, lon2, lat2) {
+        const R = 6371;
+        const dLat = this.deg2rad(lat2 - lat1);
+        const dLon = this.deg2rad(lon2 - lon1);
+        const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        const d = R * c * 1000;
         return d;
     }
 
     deg2rad(deg) {
-        return deg * (Math.PI/180)
+        return deg * (Math.PI / 180);
     }
 
     getSegmentByOdometer(odometer, surfaceCollection) {
@@ -86,6 +88,17 @@ class TrailHelper extends GLU.Controller {
             });
         }
         return surfaceCollection[0];
+    }
+
+    getSurfaceTypeByName(name) {
+        if (this.surfaceTypes !== undefined && this.surfaceTypes.length > 0) {
+            this.surfaceTypes.forEach((element) => {
+                if (element.name === name) {
+                    return element;
+                }
+            });
+        }
+        return this.surfaceTypes[0];
     }
 }
 export default new TrailHelper();
