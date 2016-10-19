@@ -1,7 +1,7 @@
 import React from 'react';
 import BasePage from '../components/BasePage';
 import Message from '../components/notifications/Message';
-import AddNewTrail from '../components/newTrail/AddNewTrail';
+import StepperContainer from '../components/newTrail/StepperContainer';
 import MainToolbar from '../components/menu/MainToolbar';
 import MapController from '../controllers/MapController';
 import DataController from '../controllers/DataController';
@@ -36,7 +36,7 @@ class Root extends BasePage {
                 <div id="map-container">
                     {this.props.children}
                     <Message />
-                    <AddNewTrail />
+                    <StepperContainer />
                 </div>
             </div>
         );

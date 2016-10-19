@@ -18,6 +18,7 @@ const Enum = {
     },
     ChartEvents: {
         CHART_POINT_CLICKED: '_CHART_POINT_CLICKED_',
+        CHART_POINT_HOVERED: '_CHART_POINT_HOVERED_',
     },
 };
 

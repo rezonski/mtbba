@@ -61,7 +61,7 @@ class WaypointHelper extends GLU.Controller {
 
             directionText += ' Slijedi sekcija duzine ' + wp.current.nextstepdist + ' km';
             if (wp.current.nextelevgain > 0) {
-                directionText += ' sa ' + wp.current.nextelevgain +  ' m visinskog uspona';
+                directionText += ' sa ' + wp.current.nextelevgain + ' m visinskog uspona';
             }
             if (Math.abs(wp.current.nextelevloss) > 0) {
                 directionText += ' i ' + Math.abs(wp.current.nextelevloss) + ' m visinskog spusta';
@@ -154,7 +154,7 @@ class WaypointHelper extends GLU.Controller {
         startSurfaceIndex = (startSurfaceIndex === null) ? (surface.length - 1) : startSurfaceIndex;
 
         for (let j = 0; j < surface.length; j++) {
-            if (surface[j][0] <= odoEnd && ((surface[j + 1] !== undefined && surface[j + 1][0]  >= odoEnd) || (surface[j + 1] === undefined))) {
+            if (surface[j][0] <= odoEnd && ((surface[j + 1] !== undefined && surface[j + 1][0] >= odoEnd) || (surface[j + 1] === undefined))) {
                 endSurfaceIndex = parseInt(j, 10);
                 j = surface.length;
             }

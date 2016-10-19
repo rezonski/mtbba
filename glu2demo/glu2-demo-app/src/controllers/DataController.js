@@ -29,7 +29,7 @@ class DataController extends GLU.Controller {
             })
             .then(response => CommonDataModel.parseSetupData(response.text))
             .catch(err => this.getSetupDataError(err));
-        GLU.bus.emit(MessageEvents.INFO_MESSAGE,  Lang.msg('endInitialDataLoading'));
+        GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endInitialDataLoading'));
     }
 
     getDataInitSetup() {

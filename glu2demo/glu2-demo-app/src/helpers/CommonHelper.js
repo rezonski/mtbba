@@ -6,7 +6,7 @@ class CommonHelper {
     }
 
     getElementByKey(inputArray, keyName, keyValue, getKeyName) {
-        for (let i=0; i<inputArray.length; i++) {
+        for (let i = 0; i < inputArray.length; i++) {
             if (inputArray[i][keyName] === keyValue) {
                 return inputArray[i][getKeyName];
             }
@@ -14,12 +14,8 @@ class CommonHelper {
     }
 
     sortFunction(a, b) {
-        if (a[0] === b[0]) {
-            return 0;
-        }
-        else {
-            return (a[0] < b[0]) ? -1 : 1;
-        }
+        const c = (a[0] < b[0]) ? -1 : 1;
+        return (a[0] === b[0]) ? 0 : c;
     }
 }
 export default new CommonHelper();

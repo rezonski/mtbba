@@ -90,7 +90,7 @@ class ChartHelper extends GLU.Controller {
         return dataset;
     }
 
-    getChartSetup(chartContainer, trailName, plotlines, minY, maxY) {
+    getChartSetup(chartContainer, trailName, plotlines, pathLine, dataset, minY, maxY) {
         return {
             chart: {
                 renderTo: chartContainer,
@@ -161,23 +161,23 @@ class ChartHelper extends GLU.Controller {
                         events: {
                             click: () => {
                                 const xVal = Math.round(this.x * 100) / 100;
-                                GLU.bus.emit(Event.ChartEvents.POINT_SELECTED, xVal);
+                                GLU.bus.emit(Enum.ChartEvents.CHART_POINT_CLICKED, xVal);
                             },
                             mouseOver: () => {
-                                animateMarker([pathLine[this.index][0], pathLine[this.index][1]]);
-                            }
-                        }
-                    }
-                }
+                                GLU.bus.emit(Enum.ChartEvents.CHART_POINT_HOVERED, pathLine[this.index]);
+                            },
+                        },
+                    },
+                },
             },
-            series: [{
-                name: 'Nadmorska visina',
-                type: 'coloredarea',
-                turboThreshold: 4000,
-                data: dataset
-                // data: [[0, 150],[0.7, 110],[2.3, 133],[4.56, 50],[5.88, 40]],
-                //color: '#35C22E'
-            }]
+            series: [
+                {
+                    name: 'Nadmorska visina',
+                    type: 'coloredarea',
+                    turboThreshold: 4000,
+                    data: dataset,
+                },
+            ],
         };
     }
 
