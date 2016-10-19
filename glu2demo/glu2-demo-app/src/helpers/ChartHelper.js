@@ -17,16 +17,16 @@ class ChartHelper extends GLU.Controller {
 
     getDistancePositionXaxis(distance, odometer) {
         let returnVal = 0;
-        odometer.forEach(function(point, index){
-            if (distance < point && distance >= odometer[index-1]) {
+        odometer.forEach(function(point, index) {
+            if (distance < point && distance >= odometer[index - 1]) {
                 returnVal = index;
             }
         });
         return returnVal;
     }
 
-    getSegment(segmentName) { 
-        this.surfaceTypes.forEach((segment, index) => {
+    getSegment(segmentName) {
+        this.surfaceTypes.forEach((segment) => {
             if (segment.name === segmentName) {
                 return segment;
             }
@@ -90,7 +90,7 @@ class ChartHelper extends GLU.Controller {
         return dataset;
     }
 
-    getChartSetup() {
+    getChartSetup(chartContainer, trailName, plotlines, minY, maxY) {
         return {
             chart: {
                 renderTo: chartContainer,
@@ -99,74 +99,71 @@ class ChartHelper extends GLU.Controller {
                 borderWidth: 5,
                 borderColor: '#e8eaeb',
                 borderRadius: 0,
-                backgroundColor: '#f7f7f7'
+                backgroundColor: '#f7f7f7',
             },
             title: {
-                text: rawTrailName.toString()
+                text: trailName.toString(),
             },
             legend: {
-                enabled: false
+                enabled: false,
             },
             xAxis: {
                 type: 'integer',
                 // categories: odometer,
                 // tickInterval: 2,
                 title: {
-                    text: 'Predjeni put [km]'
+                    text: 'Predjeni put [km]',
                 },
-                plotLines: plotlines
+                plotLines: plotlines,
             },
             yAxis: {
                 title: {
-                    text: 'Nadmorska visina [m]'
+                    text: 'Nadmorska visina [m]',
                 },
-                plotLines: [{
-                    value: 0,
-                    width: 1,
-                    color: '#808080'
-                }],
-                min: 0,
-                max: 2000
+                plotLines: [
+                    {
+                        value: 0,
+                        width: 1,
+                        color: '#808080',
+                    },
+                ],
+                min: (minY) ? minY : 0,
+                max: (maxY) ? minY : 2000,
             },
             tooltip: {
-                // shared: true,
-                // valueSuffix: ' m',
-                // crosshairs: true
-
                 shared: true,
                 useHTML: true,
                 headerFormat: '<b>{point.key} km</b><br>',
                 pointFormat: '{point.y} mnv',
-                valueDecimals: 2
+                valueDecimals: 2,
             },
             credits: {
-                enabled: false
+                enabled: false,
             },
             plotOptions: {
                 area: {
                     fillOpacity: 0.1,
-                    connectNulls : true,
+                    connectNulls: true,
                     marker: {
                         enabled: false,
                         symbol: 'circle',
                         radius: 2,
                         states: {
                             hover: {
-                                enabled: true
-                            }
-                        }
-                    }
+                                enabled: true,
+                            },
+                        },
+                    },
                 },
                 series: {
                     cursor: 'pointer',
                     point: {
                         events: {
-                            click: function () {
-                                // console.log('Click: ' + (Math.round(this.x * 100) / 100));
-                                document.getElementById("sastavodometar").value = (Math.round(this.x * 100) / 100);
-                                selectedPointOnTrail = pathLineMasterd[this.index];
+                            click: () => {
+                                const xVal = Math.round(this.x * 100) / 100;
+                                GLU.bus.emit(Event.ChartEvents.POINT_SELECTED, xVal);
                             },
-                            mouseOver: function () {
+                            mouseOver: () => {
                                 animateMarker([pathLine[this.index][0], pathLine[this.index][1]]);
                             }
                         }

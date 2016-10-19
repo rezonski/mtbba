@@ -16,6 +16,9 @@ const Enum = {
         START_IMAGE_UPLOAD: '_START_IMAGE_UPLOAD_',
         START_GEO_FILE_UPLOAD: '_START_GEO_FILE_UPLOAD_',
     },
+    ChartEvents: {
+        CHART_POINT_CLICKED: '_CHART_POINT_CLICKED_',
+    },
 };
 
 export default Enum;
