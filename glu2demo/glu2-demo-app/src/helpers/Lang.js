@@ -42,6 +42,18 @@ const labels = {
         bos: 'Opis staze',
         eng: 'Trail description',
     },
+    externalLink: {
+        bos: 'Web adresa dodatnog opisa',
+        eng: 'External web address link',
+    },
+    externalLinkHint: {
+        bos: 'http://www.mtba.ba/...',
+        eng: 'http://www.mtba.ba/...',
+    },
+    selectMountain: {
+        bos: 'Odaberi planinu',
+        eng: 'Select mountain',
+    },
     trailDescHint: {
         bos: 'Poruka od 300 do 600 slova',
         eng: 'Between 300 and 600 character',
@@ -61,6 +73,22 @@ const labels = {
     listSelectionHint: {
         bos: 'Odaberi jednu od ponuđenih opcija',
         eng: 'Choose only one from list',
+    },
+    stepperStep0: {
+        bos: 'Dodaj gpx/kml',
+        eng: 'Add gpx/kml',
+    },
+    stepperStep1: {
+        bos: 'Opis i slika',
+        eng: 'Description',
+    },
+    stepperStep2: {
+        bos: 'Parametri staze',
+        eng: 'Trail parameters',
+    },
+    stepperStep3: {
+        bos: 'Procesiranje',
+        eng: 'Processing',
     },
 };
 
@@ -92,6 +120,22 @@ const messages = {
     endSimplifyingRoute: {
         bos: 'Završeno reduciranje tačaka',
         eng: 'End simplifying route',
+    },
+    fileLoadFailed: {
+        bos: 'Greška u datoteci',
+        eng: 'Failed to load file',
+    },
+    fileFormatUnsuported: {
+        bos: 'Format datoteke nije podržan',
+        eng: 'Unsuported file type',
+    },
+    startGeoFileReading: {
+        bos: 'Počinje učitavanje gpx/kml datoteke',
+        eng: 'Start loading gpx/kml file',
+    },
+    endGeoFileReading: {
+        bos: 'Završeno učitavanje gpx/kml datoteke',
+        eng: 'Gpx/kml file data loaded',
     },
 };
 

@@ -7,11 +7,13 @@ class TrailDataModel extends GLU.DataSource {
         super();
         this._trailName = '';
         this._trailDesc = '';
+        this._externalLink = '';
         this._trailTypeID = null;
         this._fitnessLevelID = null;
         this._techniqueLevelID = null;
         this._mountainIDs = [];
         this._surfaceCollection = [];
+        this._parsedInitialFile = {};
     }
 
     get trailName() {
@@ -31,6 +33,16 @@ class TrailDataModel extends GLU.DataSource {
     set trailDesc(newDesc) {
         if (newDesc) {
             this._trailDesc = newDesc;
+        }
+    }
+
+    get externalLink() {
+        return this._externalLink;
+    }
+
+    set externalLink(newLink) {
+        if (newLink) {
+            this._externalLink = newLink;
         }
     }
 
@@ -84,6 +96,16 @@ class TrailDataModel extends GLU.DataSource {
         }
     }
 
+    get parsedInitialFile() {
+        return this._parsedInitialFile;
+    }
+
+    set parsedInitialFile(newFile) {
+        if (newFile) {
+            this._parsedInitialFile = newFile;
+        }
+    }
+
     setDataByName(propName, propValue) {
         this[propName] = propValue;
     }
@@ -92,6 +114,7 @@ class TrailDataModel extends GLU.DataSource {
         return {
             trailName: this.trailName,
             trailDesc: this.trailDesc,
+            externalLink: this.externalLink,
             trailTypeID: this.trailTypeID,
             fitnessLevelID: this.fitnessLevelID,
             techniqueLevelID: this.techniqueLevelID,

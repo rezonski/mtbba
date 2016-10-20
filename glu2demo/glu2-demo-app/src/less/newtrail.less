@@ -1,0 +1,36 @@
+.status-progress-box {
+    // height: 25px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    
+    .status-text {
+        line-height: 15px;
+        font-size: 12px;
+        padding: 5px;
+
+        &.initial {
+            background-color: #eee;
+            color: #000000;
+        }
+
+        &.success {
+            background-color: #00FF00;
+            color: #000000;
+        }
+
+        &.error {
+            background-color: #FF0000;
+            color: #FFFFFF;
+        }
+    }
+}
+
+.image-preview {
+    flex: 1 1 100%;
+    background-color: #efefef;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 400px;
+}

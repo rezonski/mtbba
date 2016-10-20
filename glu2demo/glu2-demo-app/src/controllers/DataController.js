@@ -1,3 +1,4 @@
+/* global toGeoJSON */
 import GLU from '/../../glu2.js/src/index';
 import CommonDataModel from '/dataSources/CommonDataModel';
 import TrailDataModel from '/dataSources/TrailDataModel';
@@ -19,6 +20,7 @@ class DataController extends GLU.Controller {
             [Enum.DataEvents.SAVE_TRAILDATA2MODEL]: this.setTrailData2Model,
             [Enum.DataEvents.RETRIEVE_TRAIL_DATA]: this.getTrailData,
             [Enum.DataEvents.START_IMAGE_UPLOAD]: this.uploadImage,
+            [Enum.DataEvents.SAVE_INITIAL_GEO_FILE]: this.saveInitalGeoFile,
         });
     }
 
@@ -54,6 +56,38 @@ class DataController extends GLU.Controller {
     getTrailData() {
         const trailData = TrailDataModel.getTrailData();
         GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
+    }
+
+    saveInitalGeoFile(payload) {
+        if (payload.file) {
+            const r = new FileReader();
+            r.onload = (e) => {
+                TrailDataModel.trailName = payload.file.name.replace('.gpx', '').replace('_profil', ' ').replace('_', ' ');
+                
+
+                TrailDataModel.parsedInitialFile = payload.file;
+
+                var contents = e.target.result;
+                var dom = (new DOMParser()).parseFromString(contents, 'text/xml');
+                
+                if (payload.file.name.toLowerCase().indexOf('.gpx') > 0) {
+                    parsedJSON = toGeoJSON.gpx(dom);
+                } else if (payload.file.name.toLowerCase().indexOf('.kml') > 0) {
+                    parsedJSON = toGeoJSON.kml(dom);
+                } else {
+                    GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('fileFormatUnsuported'));
+                }
+
+                GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endGeoFileReading'));
+                const trailData = TrailDataModel.getTrailData();
+                GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
+                // makeTrail(parsedJSON);
+            }
+            GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('startGeoFileReading'));
+            r.readAsText(payload.file);
+        } else { 
+            GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('fileLoadFailed'));
+        }
     }
 
     uploadImage(payload) {

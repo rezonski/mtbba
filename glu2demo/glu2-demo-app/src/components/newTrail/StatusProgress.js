@@ -8,10 +8,12 @@ class StatusProgress extends BasePage {
         super(props);
 
         this.state = {
-            progressVal: 0,
+            geoFileProcessProgressVal: 0,
+            imageUploadProgressVal: 0,
         };
         this.bindGluBusEvents({
-            [MessageEvents.PICTURE_UPLOAD_PROGRESS]: this.onProgressStatus,
+            [MessageEvents.GEOFILE_PROCESS_PROGRESS]: this.onGeoFileProcessProgress,
+            [MessageEvents.PICTURE_UPLOAD_PROGRESS]: this.onPictureUploadProgress,
         });
     }
 
@@ -19,18 +21,35 @@ class StatusProgress extends BasePage {
         this.unbindGluBusEvents();
     }
 
-    onProgressStatus(payload) {
+    onGeoFileProcessProgress(payload) {
         if (payload.loaded && payload.total) {
             this.setState({
-                progressVal: ((payload.loaded / payload.total) * 100),
+                geoFileProcessProgressVal: ((payload.loaded / payload.total) * 100),
+            });
+        }
+    }
+
+    onPictureUploadProgress(payload) {
+        if (payload.loaded && payload.total) {
+            this.setState({
+                imageUploadProgressVal: ((payload.loaded / payload.total) * 100),
             });
         }
     }
 
     render() {
-        return (<div className={'status-progress-box'}>
-                    <LinearProgress color="#FF0000" mode="determinate" value={this.state.progressVal} />
-                </div>);
+        let content;
+        switch (this.props.id) {
+            case 'geoFileProcess':
+                content = <LinearProgress color="#FF0000" mode="determinate" value={this.state.geoFileProcessProgressVal} />;
+                break;
+            case 'imageFileProcess':
+                content = <LinearProgress color="#FF0000" mode="determinate" value={this.state.imageUploadProgressVal} />;
+                break;
+            default:
+                content = <LinearProgress color="#FF0000" mode="determinate" value={1} />;
+        }
+        return (<div className={'status-progress-box'}>{content}</div>);
     }
 }
 

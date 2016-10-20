@@ -30,7 +30,7 @@ class UploadGeoFile extends BusComponent {
     }
 
     onStartUpload() {
-        this.emit(Enum.DataEvents.START_GEO_FILE_UPLOAD, {
+        this.emit(Enum.DataEvents.SAVE_INITIAL_GEO_FILE, {
             fileName: this.state.selectedFile.name,
             file: this.state.selectedFile,
         });
