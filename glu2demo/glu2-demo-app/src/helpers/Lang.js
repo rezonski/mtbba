@@ -19,7 +19,7 @@ const labels = {
         eng: 'Cancel',
     },
     newTrail: {
-        bos: 'Nova staza',
+        bos: 'Test',
         eng: 'Nova staza',
     },
     addGeoFile: {
@@ -136,6 +136,18 @@ const messages = {
     endGeoFileReading: {
         bos: 'Završeno učitavanje gpx/kml datoteke',
         eng: 'Gpx/kml file data loaded',
+    },
+    endGeoFileParsing: {
+        bos: 'Završeno prva obrada gpx/kml datoteke',
+        eng: 'Gpx/kml file data parsed',
+    },
+    endGeoFileSimplifying: {
+        bos: 'Završeno reduciranje tačaka rute',
+        eng: 'Trail simplifying completed',
+    },
+    endAddingElevation: {
+        bos: 'Završeno dodavanje visinskih koordinata',
+        eng: 'Elevation adding completed',
     },
 };
 

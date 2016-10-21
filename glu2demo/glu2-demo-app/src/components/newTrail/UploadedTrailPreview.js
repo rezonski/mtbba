@@ -5,12 +5,11 @@ import MessageEvents from '../..//enums/MessageEvents';
 class UploadedTrailPreview extends BasePage {
     constructor(props) {
         super(props);
-
         this.state = {
-            imageURL: '',
+            messages: [],
         };
         this.bindGluBusEvents({
-            [MessageEvents.PICTURE_UPLOAD_STATUS]: this.onPictureUploadStatus,
+            [MessageEvents.INFO_MESSAGE]: this.onNewMessageReceived,
         });
     }
 
@@ -18,19 +17,30 @@ class UploadedTrailPreview extends BasePage {
         this.unbindGluBusEvents();
     }
 
-    onPictureUploadStatus(payload) {
-        if (payload.imgURL) {
+    onNewMessageReceived(payload) {
+        const today = new Date();
+        const h = today.getHours();
+        const m = today.getMinutes();
+        const s = today.getSeconds();
+        if (payload) {
+            const currentMessages = this.state.messages;
+            currentMessages.push([h + ':' + m + ':' + s, payload]);
             this.setState({
-                imageURL: payload.imgURL,
+                messages: currentMessages,
             });
         }
     }
 
     render() {
-        const contentStyle = {
-            backgroundImage: 'url("' + this.state.imageURL + '")',
-        };
-        return (<div className="image-preview" style={contentStyle}></div>);
+        let content = [];
+        this.state.messages.forEach((message, index) => {
+            content.push((<li key={'msg-log-' + index}><span className="time">{message[0]}</span>{message[1]}</li>));
+        });
+        return (<div className="code-message-preview">
+                    <ul>
+                        {content}
+                    </ul>
+                </div>);
     }
 }
 

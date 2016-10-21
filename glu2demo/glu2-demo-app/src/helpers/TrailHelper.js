@@ -29,9 +29,9 @@ class TrailHelper extends GLU.Controller {
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('startSimplifyingRoute'));
 
         while (iterator < maxIndx) {
-            currentIndex = iterator;
+            currentIndex = parseInt(iterator, 10);
             escaped = false;
-            nextIndex = iterator + 1;
+            nextIndex = parseInt(iterator, 10) + 1;
 
             while (nextIndex < maxIndx) {
                 iterator = parseInt(nextIndex, 10);
@@ -47,21 +47,21 @@ class TrailHelper extends GLU.Controller {
             }
 
             if (nextIndex === maxIndx && !escaped) {
-                if (currentIndex % 10 === 0) {
+                iterator = parseInt(maxIndx, 10);
+            } else {
+                iterator = parseInt(currentIndex, 10);
+                if (iterator % 10 === 0) {
                     progressPayload = {
                         status: 'progress',
-                        loaded: currentIndex,
+                        loaded: iterator,
                         total: maxIndx,
                     };
                     GLU.bus.emit(MessageEvents.SIMPLIFY_PROGRESS, progressPayload);
                 }
-                iterator = maxIndx;
-            } else {
-                iterator = currentIndex;
             }
         }
         returnArray.push(inputPointsArray[maxIndx]);
-        GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('startSimplifyingRoute'));
+        GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endSimplifyingRoute'));
         return returnArray;
     }
 

@@ -59,34 +59,57 @@ class DataController extends GLU.Controller {
     }
 
     saveInitalGeoFile(payload) {
+        let progressPayload = {
+            status: 'progress',
+            loaded: 0,
+            total: 100,
+        };
         if (payload.file) {
             const r = new FileReader();
             r.onload = (e) => {
+                // Save trail name
                 TrailDataModel.trailName = payload.file.name.replace('.gpx', '').replace('_profil', ' ').replace('_', ' ');
-                
 
-                TrailDataModel.parsedInitialFile = payload.file;
-
-                var contents = e.target.result;
-                var dom = (new DOMParser()).parseFromString(contents, 'text/xml');
-                
+                // Save parsed file
+                const domParser = (new DOMParser()).parseFromString(e.target.result, 'text/xml');
                 if (payload.file.name.toLowerCase().indexOf('.gpx') > 0) {
-                    parsedJSON = toGeoJSON.gpx(dom);
+                    TrailDataModel.parsedInitialFile = toGeoJSON.gpx(domParser);
                 } else if (payload.file.name.toLowerCase().indexOf('.kml') > 0) {
-                    parsedJSON = toGeoJSON.kml(dom);
+                    TrailDataModel.parsedInitialFile = toGeoJSON.kml(domParser);
                 } else {
                     GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('fileFormatUnsuported'));
+                    return;
                 }
-
+                progressPayload.loaded = 10;
+                GLU.bus.emit(MessageEvents.GEOFILE_PROCESS_PROGRESS, progressPayload);
                 GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endGeoFileReading'));
+
+                // Parse JSON to structures
+                TrailDataModel.parseInitialFile();
+                progressPayload.loaded = 20;
+                GLU.bus.emit(MessageEvents.GEOFILE_PROCESS_PROGRESS, progressPayload);
+                GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endGeoFileParsing'));
+
+                // Filter
+                TrailDataModel.reducePathLinePoints();
+                progressPayload.loaded = 30;
+                GLU.bus.emit(MessageEvents.GEOFILE_PROCESS_PROGRESS, progressPayload);
+                GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endGeoFileSimplifying'));
+
+                this.checkAddElevation(TrailDataModel.pathLine);
+                progressPayload.loaded = 80;
+                GLU.bus.emit(MessageEvents.GEOFILE_PROCESS_PROGRESS, progressPayload);
+                GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endAddingElevation'));
+
+                // Get Trail data
                 const trailData = TrailDataModel.getTrailData();
                 GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
-                // makeTrail(parsedJSON);
-            }
+            };
             GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('startGeoFileReading'));
             r.readAsText(payload.file);
-        } else { 
+        } else {
             GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('fileLoadFailed'));
+            return;
         }
     }
 
@@ -127,6 +150,68 @@ class DataController extends GLU.Controller {
         request.open('POST', Globals.IMAGE_UPLOADER_PATH);
         request.send(data);
     }
+
+    checkAddElevation() {
+        let badPoints = [];
+        let parsedPoints = '';
+        let maxPoints = 90;
+        const xmlhttpElevation = new XMLHttpRequest();
+        let elevatedPathLine = JSON.parse(JSON.stringify(TrailDataModel.pathLine));
+        let progressPayload = {
+                                status: 'progress',
+                                loaded: 0,
+                                total: TrailDataModel.pathLine.length,
+                            };
+
+        elevatedPathLine.forEach((location, index) => {
+            if ((badPoints.length <= maxPoints ) && (location[2] === undefined || location[2] === 0)) {
+                // console.info('Fix elevation index ' + index);
+                if (index % 10 === 0) {
+                    progressPayload.loaded = index;
+                    GLU.bus.emit(MessageEvents.TRAIL_ELEVATION_FIX_PROGRESS, progressPayload);
+                }
+                if (badPoints.length < maxPoints) {
+                    badPoints.push({
+                        pathIndex: index,
+                        point: location,
+                    });
+                    parsedPoints += location[1] + ',' + location[0] + '|';
+                } else {
+                    xmlhttpElevation.onreadystatechange = () => {
+                        if (xmlhttpElevation.readyState === 4 && xmlhttpElevation.status === 200) {
+                            const response = JSON.parse(xmlhttpElevation.responseText);
+                            const elevatedPoints = response.results;
+                            let tempElevation = 0;
+                            elevatedPoints.forEach((elPoint, pointIndex) => {
+                                if (elPoint.ele || elPoint.elevation) {
+                                    tempElevation = elPoint.elevation;
+                                    console.info('Fix elevation index ' + index);
+                                    elevatedPathLine[badPoints[pointIndex].pathIndex][2] = parseInt(elPoint.elevation, 10);
+                                } else {
+                                    elevatedPathLine[badPoints[pointIndex].pathIndex][2] = parseInt(tempElevation, 10);
+                                }
+                            });
+                            if (badPoints.length === maxPoints) {
+                                this.checkAddElevation();
+                            } else {
+                                badPoints = [];
+                            }
+                        }
+                    };
+                }
+            }
+            TrailDataModel.pathLine = elevatedPathLine;
+        });
+        const endpoint = Globals.ELEVATION_SERVICE_PATH + parsedPoints.substring(0, parsedPoints.length - 1) + Globals.ELEVATION_SERVICE_KEY;
+        xmlhttpElevation.open('GET', endpoint, true);
+        xmlhttpElevation.send();
+    }
+        // if (badPoints.length === 0 || (badPoints.length > 0 && badPoints.length < maxPoints)) {
+        // console.info('All elevation data ok');
+        // fixPathArray();
+        // fixWaypoints();
+        // }
+        // }
 }
 
 export default new DataController();

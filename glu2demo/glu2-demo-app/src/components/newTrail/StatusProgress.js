@@ -8,11 +8,14 @@ class StatusProgress extends BasePage {
         super(props);
 
         this.state = {
-            geoFileProcessProgressVal: 0,
-            imageUploadProgressVal: 0,
+            activeID: this.props.id,
+            barColor: '#FF0000',
+            progressVal: 0,
         };
         this.bindGluBusEvents({
             [MessageEvents.GEOFILE_PROCESS_PROGRESS]: this.onGeoFileProcessProgress,
+            [MessageEvents.SIMPLIFY_PROGRESS]: this.onGeoFileSimplifyProgress,
+            [MessageEvents.TRAIL_ELEVATION_FIX_PROGRESS]: this.onTrailElevationProgress,
             [MessageEvents.PICTURE_UPLOAD_PROGRESS]: this.onPictureUploadProgress,
         });
     }
@@ -24,7 +27,26 @@ class StatusProgress extends BasePage {
     onGeoFileProcessProgress(payload) {
         if (payload.loaded && payload.total) {
             this.setState({
-                geoFileProcessProgressVal: ((payload.loaded / payload.total) * 100),
+                barColor: '#FF0000',
+                progressVal: ((payload.loaded / payload.total) * 100),
+            });
+        }
+    }
+
+    onGeoFileSimplifyProgress(payload) {
+        if (payload.loaded && payload.total) {
+            this.setState({
+                barColor: '#1FFF00',
+                progressVal: ((payload.loaded / payload.total) * 100),
+            });
+        }
+    }
+
+    onTrailElevationProgress(payload) {
+        if (payload.loaded && payload.total) {
+            this.setState({
+                barColor: '#FF00DF',
+                progressVal: ((payload.loaded / payload.total) * 100),
             });
         }
     }
@@ -32,24 +54,19 @@ class StatusProgress extends BasePage {
     onPictureUploadProgress(payload) {
         if (payload.loaded && payload.total) {
             this.setState({
-                imageUploadProgressVal: ((payload.loaded / payload.total) * 100),
+                barColor: '#FFFF00',
+                progressVal: ((payload.loaded / payload.total) * 100),
             });
         }
     }
 
     render() {
-        let content;
-        switch (this.props.id) {
-            case 'geoFileProcess':
-                content = <LinearProgress color="#FF0000" mode="determinate" value={this.state.geoFileProcessProgressVal} />;
-                break;
-            case 'imageFileProcess':
-                content = <LinearProgress color="#FF0000" mode="determinate" value={this.state.imageUploadProgressVal} />;
-                break;
-            default:
-                content = <LinearProgress color="#FF0000" mode="determinate" value={1} />;
-        }
-        return (<div className={'status-progress-box'}>{content}</div>);
+        return (<div className={'status-progress-box'}>
+                    <LinearProgress
+                        color={this.state.barColor}
+                        mode="determinate"
+                        value={this.state.progressVal} />
+                </div>);
     }
 }
 

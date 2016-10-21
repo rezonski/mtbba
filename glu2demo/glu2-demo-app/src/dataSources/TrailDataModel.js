@@ -1,6 +1,6 @@
 import GLU from '/../../glu2.js/src/index';
 // import API from '/apis/Api';
-// import { error } from '/helpers/ResolveMessages';
+import TrailHelper from '/helpers/TrailHelper';
 
 class TrailDataModel extends GLU.DataSource {
     constructor() {
@@ -14,6 +14,10 @@ class TrailDataModel extends GLU.DataSource {
         this._mountainIDs = [];
         this._surfaceCollection = [];
         this._parsedInitialFile = {};
+        this._generalFact = {};
+        this._waypoints = [];
+        this._unfilteredPathLine = [];
+        this._pathLine = [];
     }
 
     get trailName() {
@@ -104,6 +108,37 @@ class TrailDataModel extends GLU.DataSource {
         if (newFile) {
             this._parsedInitialFile = newFile;
         }
+    }
+
+    get pathLine() {
+        return this._pathLine;
+    }
+
+    set pathLine(newLine) {
+        if (newLine) {
+            this._pathLine = newLine;
+        }
+    }
+
+    parseInitialFile() {
+        this.surfaceCollection = this.parsedInitialFile.sastav;
+        this.parsedInitialFile.features.forEach((feature) => {
+            if (feature.geometry.type === 'LineString') {
+                this._unfilteredPathLine = this._unfilteredPathLine.concat(feature.geometry.coordinates);
+                this._generalFact = feature.properties;
+                if (feature.properties.id !== undefined) {
+                    this._generalFact.newupdate = 'update';
+                } else {
+                    this._generalFact.newupdate = 'new';
+                }
+            } else if (feature.geometry.type === 'Point') {
+                this._waypoints.push(feature);
+            }
+        });
+    }
+
+    reducePathLinePoints() {
+        this._pathLine = TrailHelper.simplifyPath(this._unfilteredPathLine, 0.02);
     }
 
     setDataByName(propName, propValue) {

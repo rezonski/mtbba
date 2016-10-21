@@ -1,8 +1,9 @@
 .status-progress-box {
-    // height: 25px;
-    margin-top: 10px;
     display: flex;
+    flex: 1 1 100%;
+    height: 25px;
     flex-direction: column;
+    margin-top: 10px;
     
     .status-text {
         line-height: 15px;
@@ -33,4 +34,24 @@
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 400px;
+}
+
+.code-message-preview {
+    flex: 1 1 100%;
+    height: 400px;
+    overflow-y: scroll;
+    background-color: #efefef;
+    color: @color-gray;
+    padding: @padding;
+    line-height: @padding-sm;
+    font-size: @padding;
+
+    ul {
+        list-style: none;
+    }
+}
+
+.time {
+    margin: 0 @padding;
+    font-style: italic;
 }
