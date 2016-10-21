@@ -34,7 +34,9 @@ class UploadedTrailPreview extends BasePage {
     render() {
         let content = [];
         this.state.messages.forEach((message, index) => {
-            content.push((<li key={'msg-log-' + index}><span className="time">{message[0]}</span>{message[1]}</li>));
+            content.push((<li key={'msg-log-' + index}>
+                            <span className="time">{message[0]}</span><br/>{message[1]}
+                        </li>));
         });
         return (<div className="code-message-preview">
                     <ul>

@@ -53,10 +53,11 @@ class TrailHelper extends GLU.Controller {
                 if (iterator % 10 === 0) {
                     progressPayload = {
                         status: 'progress',
+                        id: 'simplifyPath',
                         loaded: iterator,
                         total: maxIndx,
                     };
-                    GLU.bus.emit(MessageEvents.SIMPLIFY_PROGRESS, progressPayload);
+                    GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, progressPayload);
                 }
             }
         }

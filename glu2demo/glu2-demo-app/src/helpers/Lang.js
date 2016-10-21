@@ -90,6 +90,22 @@ const labels = {
         bos: 'Procesiranje',
         eng: 'Processing',
     },
+    generalProcesProgres: {
+        bos: 'Generalni progres',
+        eng: 'Genral progress',
+    },
+    simplifyingPathProgres: {
+        bos: 'Reduciranje tačaka',
+        eng: 'Simplifying path progress',
+    },
+    addingElevationProgres: {
+        bos: 'Elevacijski podaci',
+        eng: 'Adding elevation data',
+    },
+    imageUploadProgres: {
+        bos: 'Progres podizanja slike',
+        eng: 'Uploading data',
+    },
 };
 
 const messages = {

@@ -6,6 +6,7 @@ import InputTextBox from '../newTrail/InputTextBox';
 import UploadGeoFile from '../newTrail/UploadGeoFile';
 import StatusProgress from '../newTrail/StatusProgress';
 import UploadedTrailPreview from '../newTrail/UploadedTrailPreview';
+import Divider from 'material-ui/Divider';
 
 class Step0 extends BasePage {
     constructor(props) {
@@ -26,13 +27,27 @@ class Step0 extends BasePage {
     render() {
         return (<div className="flex-container row">
             <div className="flex-element column margined-right">
-                <div className="flex-container row">
+                <div className="flex-container column">
                     <UploadGeoFile />
                 </div>
                 <div className="flex-container row">
-                    <StatusProgress key="geoFileProcess" id="geoFileProcess"/>
                 </div>
-                <div className="flex-container row">
+                <div className="flex-container column">
+                    <div className="flex-container row">{Lang.label('generalProcesProgres')}</div>
+                    <StatusProgress key="generalProgress" id="generalProgress" barColor="#FF0000"/>
+                    <Divider />
+                </div>
+                <div className="flex-container column">
+                    <div className="flex-container row">{Lang.label('simplifyingPathProgres')}</div>
+                    <StatusProgress key="simplifyPath" id="simplifyPath" barColor="#FF0000"/>
+                    <Divider />
+                </div>
+                <div className="flex-container column">
+                    <div className="flex-container row">{Lang.label('addingElevationProgres')}</div>
+                    <StatusProgress key="elevationPath" id="elevationPath" barColor="#FF0000"/>
+                    <Divider />
+                </div>
+                <div className="flex-container column">
                     <InputTextBox
                         key="trailName"
                         fieldName="trailName"

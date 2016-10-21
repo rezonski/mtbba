@@ -52,7 +52,10 @@ class Step1 extends BasePage {
                     <UploadImage />
                 </div>
                 <div className="flex-container row">
-                    <StatusProgress key="imageFileProcess" id="imageFileProcess"/>
+                </div>
+                <div className="flex-container column">
+                    <div className="flex-container row">{Lang.label('imageUploadProgres')}</div>
+                    <StatusProgress key="uploadImage" id="uploadImage"  barColor="#33FFFF"/>
                 </div>
                 <div className="flex-container row">
                     <UploadedImagePreview/>

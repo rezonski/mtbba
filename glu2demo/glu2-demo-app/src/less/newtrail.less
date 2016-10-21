@@ -37,21 +37,31 @@
 }
 
 .code-message-preview {
+    display: flex;
     flex: 1 1 100%;
+    flex-direction: column;
     height: 400px;
     overflow-y: scroll;
     background-color: #efefef;
     color: @color-gray;
     padding: @padding;
-    line-height: @padding-sm;
-    font-size: @padding;
+    font-size: 12px;
+    box-shadow: 1px 1px 10px 0px #dedede inset;
+    font-family: monospace;
 
     ul {
         list-style: none;
-    }
-}
+        padding: 0;
+        margin: 0;
 
-.time {
-    margin: 0 @padding;
-    font-style: italic;
+        li {
+            border-bottom: 1px solid @color-light-gray;
+            
+            .time {
+                margin: 0;
+                font-style: italic;
+                color: @color-black;
+            }
+        }
+    }
 }
