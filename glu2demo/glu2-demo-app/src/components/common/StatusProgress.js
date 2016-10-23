@@ -22,9 +22,10 @@ class StatusProgress extends BasePage {
 
     onProcessProgress(payload) {
         if (payload.id === this.state.activeID && payload.loaded && payload.total) {
-            console.info('Progres ' + this.state.activeID + ' : ' + ((payload.loaded / payload.total) * 100) + '%');
+            const prog = parseInt(((payload.loaded / payload.total) * 100), 10);
+            console.info('Progres ' + this.state.activeID + ' : ' + prog + '%');
             this.setState({
-                progressVal: ((payload.loaded / payload.total) * 100),
+                progressVal: prog,
             });
         }
     }
@@ -34,6 +35,7 @@ class StatusProgress extends BasePage {
                     <LinearProgress
                         color={this.state.barColor}
                         mode="determinate"
+                        style={{ height: '6px' }}
                         value={this.state.progressVal} />
                 </div>);
     }

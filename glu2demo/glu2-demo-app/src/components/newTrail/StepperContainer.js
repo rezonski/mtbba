@@ -8,9 +8,10 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 // import ExpandTransition from 'material-ui/internal/ExpandTransition';
 // import TextField from 'material-ui/TextField';
-import Step0 from '../newTrail/Step0';
-import Step1 from '../newTrail/Step1';
-import Step2 from '../newTrail/Step2';
+import StepUpload from '../newTrail/StepUpload';
+import StepDescription from '../newTrail/StepDescription';
+import StepParameters from '../newTrail/StepParameters';
+import StepProcessing from '../newTrail/StepProcessing';
 
 
 class StepperContainer extends BasePage {
@@ -18,13 +19,15 @@ class StepperContainer extends BasePage {
         super(props);
         this.state = {
             open: false,
+            finished: false,
             selectedFile: '',
             title: Lang.label('newTrail'),
-            finished: false,
             stepIndex: 0,
         };
         this.onCloseEvent = this.handleClose.bind(this);
         this.onSaveAddedTrail = this.saveAddedTrail.bind(this);
+        this.onHandleNext = this.handleNext.bind(this);
+        this.onHandlePrev = this.handlePrev.bind(this);
 
         this.bindGluBusEvents({
             [Enum.AppEvents.OPEN_FORM_NEW_TRAIL]: this.onOpenFormRequest,
@@ -44,19 +47,13 @@ class StepperContainer extends BasePage {
     getStepContent(stepIndex) {
         switch (stepIndex) {
             case 0:
-                return (<Step0/>);
+                return (<StepUpload/>);
             case 1:
-                return (<Step1/>);
+                return (<StepProcessing/>);
             case 2:
-                return (<Step2/>);
+                return (<StepParameters/>);
             case 3:
-                return (
-                    <p>
-                    Try out different ad text to see what brings in the most customers, and learn how to
-                    enhance your ads using features like ad extensions. If you run into any problems with your
-                    ads, find out how to tell if they're running and how to resolve approval issues.
-                    </p>
-                );
+                return (<StepDescription/>);
             default:
                 return 'You\'re a long way from home sonny jim!';
         }
@@ -64,57 +61,50 @@ class StepperContainer extends BasePage {
 
     render() {
         const stepIndex = this.state.stepIndex;
-
         const styles = {
-            block: {
-                maxWidth: 250,
-            },
             dialogContentStyle: {
-                width: '70%',
+                width: '80%',
                 maxWidth: 'none',
             },
         };
-
-        const actions = [
-          <RaisedButton
-            label={Lang.label('save')}
-            primary={true}
-            keyboardFocused={true}
-            onTouchTap={this.onSaveAddedTrail}
-          />,
-          <FlatButton
-            label={Lang.label('cancel')}
-            primary={true}
-            keyboardFocused={false}
-            onTouchTap={this.onCloseEvent}
-          />,
-        ];
 
         return (
             <Dialog
                 className="dialog"
                 contentStyle={styles.dialogContentStyle}
                 title={this.state.title}
-                actions={actions}
                 modal={false}
                 open={this.state.open}
                 onRequestClose={this.onCloseEvent}>
-                <Stepper linear={false} activeStep={stepIndex}>
+                <Stepper activeStep={stepIndex}>
                     <Step>
-                        <StepButton onClick={() => this.setState({ stepIndex: 0 })}>{Lang.label('stepperStep0')}</StepButton>
+                        <StepButton onClick={() => this.setState({ stepIndex: 0 })}>{Lang.label('stepperStepUpload')}</StepButton>
                     </Step>
                     <Step>
-                        <StepButton onClick={() => this.setState({ stepIndex: 1 })}>{Lang.label('stepperStep1')}</StepButton>
+                        <StepButton onClick={() => this.setState({ stepIndex: 1 })}>{Lang.label('stepperStepProcessing')}</StepButton>
                     </Step>
                     <Step>
-                        <StepButton onClick={() => this.setState({ stepIndex: 2 })}>{Lang.label('stepperStep2')}</StepButton>
+                        <StepButton onClick={() => this.setState({ stepIndex: 2 })}>{Lang.label('stepperStepParameters')}</StepButton>
                     </Step>
                     <Step>
-                        <StepButton onClick={() => this.setState({ stepIndex: 3 })}>{Lang.label('stepperStep3')}</StepButton>
+                        <StepButton onClick={() => this.setState({ stepIndex: 3 })}>{Lang.label('stepperStepDescription')}</StepButton>
                     </Step>
                 </Stepper>
                 <div className="stepper-container">
                     {this.getStepContent(stepIndex)}
+                    <div style={{ marginTop: 12 }}>
+                        <FlatButton
+                            label={Lang.label('previous')}
+                            disabled={stepIndex === 0}
+                            onTouchTap={this.onHandlePrev}
+                            style={{ marginRight: 12 }}
+                        />
+                        <RaisedButton
+                            label={stepIndex === 3 ? Lang.label('save') : Lang.label('next')}
+                            primary={true}
+                            onTouchTap={this.state.finished ? this.onSaveAddedTrail : this.onHandleNext}
+                        />
+                    </div>
                 </div>
             </Dialog>
         );
@@ -123,12 +113,29 @@ class StepperContainer extends BasePage {
     handleClose() {
         this.setState({
             open: false,
+            stepIndex: 0,
+            finished: false,
         });
     }
 
     saveAddedTrail() {
         console.info('spasi');
         console.info(this.refs);
+    }
+
+    handleNext() {
+        const stepIndex = this.state.stepIndex;
+        this.setState({
+            stepIndex: (stepIndex >= 3) ? stepIndex : (stepIndex + 1),
+            finished: stepIndex >= 3,
+        });
+    }
+
+    handlePrev() {
+        const stepIndex = this.state.stepIndex;
+        if (stepIndex > 0) {
+            this.setState({ stepIndex: stepIndex - 1 });
+        }
     }
 }
 

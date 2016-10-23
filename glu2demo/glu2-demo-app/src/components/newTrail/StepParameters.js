@@ -3,9 +3,9 @@ import BasePage from '../BasePage';
 // import Enum from '/enums/Enum';
 import Lang from '/helpers/Lang';
 import MountainMultiSelection from '../newTrail/MountainMultiSelection';
-import ListSelection from '../newTrail/ListSelection';
+import ListSelection from '../common/ListSelection';
 
-class Step2 extends BasePage {
+class StepParameters extends BasePage {
     constructor(props) {
         super(props);
         this.state = {
@@ -30,7 +30,6 @@ class Step2 extends BasePage {
                         fieldName="trailTypeID"
                         sourceName="trailTypes"
                         floatingLabelText={Lang.label('chooseTrailType')}
-                        filedHintText={Lang.label('listSelectionHint')}
                     />
                 </div>
                 <div className="flex-container row">
@@ -39,7 +38,6 @@ class Step2 extends BasePage {
                         fieldName="fitnessLevelID"
                         sourceName="fitnessLevels"
                         floatingLabelText={Lang.label('chooseFitnessLevel')}
-                        filedHintText={Lang.label('listSelectionHint')}
                     />
                 </div>
                 <div className="flex-container row">
@@ -48,11 +46,10 @@ class Step2 extends BasePage {
                         fieldName="techniqueLevelID"
                         sourceName="techniqueLevels"
                         floatingLabelText={Lang.label('chooseTechniqueLevel')}
-                        filedHintText={Lang.label('listSelectionHint')}
                     />
                 </div>
             </div>
-            <div className="flex-element column margined-right">
+            <div className="flex-element column">
                 <div className="flex-container row">
                     {Lang.label('selectMountain') + ': '}
                 </div>
@@ -64,4 +61,4 @@ class Step2 extends BasePage {
     }
 }
 
-export default Step2;
+export default StepParameters;

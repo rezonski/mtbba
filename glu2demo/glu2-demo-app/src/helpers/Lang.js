@@ -2,6 +2,18 @@ import GLU from '/../../glu2.js/src/index';
 import Enum from '/enums/Enum';
 
 const labels = {
+    next: {
+        bos: 'Sljedeće',
+        eng: 'Next',
+    },
+    previous: {
+        bos: 'Prethodno',
+        eng: 'Previous',
+    },
+    finish: {
+        bos: 'Završi',
+        eng: 'Finish',
+    },
     new: {
         bos: 'Nova',
         eng: 'New',
@@ -60,7 +72,6 @@ const labels = {
     },
     chooseTrailType: {
         bos: 'Odaberi tip staze',
-        eng: 'Choose trail type',
     },
     chooseFitnessLevel: {
         bos: 'Odaberi nivo potrebne fizičke kondicije',
@@ -74,33 +85,45 @@ const labels = {
         bos: 'Odaberi jednu od ponuđenih opcija',
         eng: 'Choose only one from list',
     },
-    stepperStep0: {
+    stepperStepUpload: {
         bos: 'Dodaj gpx/kml',
         eng: 'Add gpx/kml',
     },
-    stepperStep1: {
+    stepperStepDescription: {
         bos: 'Opis i slika',
         eng: 'Description',
     },
-    stepperStep2: {
+    stepperStepParameters: {
         bos: 'Parametri staze',
         eng: 'Trail parameters',
     },
-    stepperStep3: {
+    stepperStepProcessing: {
         bos: 'Procesiranje',
         eng: 'Processing',
     },
+    startProcessing: {
+        bos: 'Započni procesiranje',
+        eng: 'Start processing',
+    },
     generalProcesProgres: {
         bos: 'Generalni progres',
-        eng: 'Genral progress',
+        eng: 'General progress',
     },
     simplifyingPathProgres: {
-        bos: 'Reduciranje tačaka',
-        eng: 'Simplifying path progress',
+        bos: 'Čišćenje putanje',
+        eng: 'Simplifying',
     },
     addingElevationProgres: {
-        bos: 'Elevacijski podaci',
-        eng: 'Adding elevation data',
+        bos: 'Dodavanje visine',
+        eng: 'Elevation data',
+    },
+    flattenPathProgres: {
+        bos: 'Ujednačavanje profila',
+        eng: 'Flattening',
+    },
+    WPFixProgres: {
+        bos: 'Obrada putnih tačaka',
+        eng: 'Waypoints',
     },
     imageUploadProgres: {
         bos: 'Progres podizanja slike',
@@ -161,9 +184,21 @@ const messages = {
         bos: 'Završeno reduciranje tačaka rute',
         eng: 'Trail simplifying completed',
     },
+    totalBadElevatedPoints: {
+        bos: 'Ukupno nekompletnih visinskih koordinata: ',
+        eng: 'Total number of points missing elevation: ',
+    },
     endAddingElevation: {
         bos: 'Završeno dodavanje visinskih koordinata',
         eng: 'Elevation adding completed',
+    },
+    endPathFlattening: {
+        bos: 'Završeno čišćenje i peglanje putanje',
+        eng: 'Flattening path line completed',
+    },
+    endGeneralFactsGenerating: {
+        bos: 'Završeno definisanje parametara staze',
+        eng: 'Trail general facts computed',
     },
 };
 

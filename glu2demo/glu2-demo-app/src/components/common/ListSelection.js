@@ -77,9 +77,7 @@ class ListSelection extends BasePage {
                     key={'selectList' + this.props.fieldName}
                     onChange={this.onListValueChangedEvent}
                     value={this.state.value}
-                    hintText={this.props.filedHintText}
                     floatingLabelText={this.props.floatingLabelText}
-                    floatingLabelFixed={true}
                     maxHeight={300}
                     fullWidth={true} >
                     {listElements}

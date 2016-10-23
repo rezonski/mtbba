@@ -8,6 +8,7 @@ class TrailDataModel extends GLU.DataSource {
         this._trailName = '';
         this._trailDesc = '';
         this._externalLink = '';
+        this._imageURL = '';
         this._trailTypeID = null;
         this._fitnessLevelID = null;
         this._techniqueLevelID = null;
@@ -18,6 +19,7 @@ class TrailDataModel extends GLU.DataSource {
         this._waypoints = [];
         this._unfilteredPathLine = [];
         this._pathLine = [];
+        this._profileMapPathLine = [];
     }
 
     get trailName() {
@@ -47,6 +49,16 @@ class TrailDataModel extends GLU.DataSource {
     set externalLink(newLink) {
         if (newLink) {
             this._externalLink = newLink;
+        }
+    }
+
+    get imageURL() {
+        return this._imageURL;
+    }
+
+    set imageURL(newLink) {
+        if (newLink) {
+            this._imageURL = newLink;
         }
     }
 
@@ -120,6 +132,41 @@ class TrailDataModel extends GLU.DataSource {
         }
     }
 
+    get profileMapPathLine() {
+        return this._profileMapPathLine;
+    }
+
+    set profileMapPathLine(newLine) {
+        if (newLine) {
+            this._profileMapPathLine = newLine;
+        }
+    }
+
+    get generalFact() {
+        return this._generalFact;
+    }
+
+    set generalFact(newPropertiesObject) {
+        if (newPropertiesObject) {
+            this._generalFact = newPropertiesObject;
+        }
+    }
+
+    flattenPathLine() {
+        this.pathLine = TrailHelper.flattenPathLine(this.pathLine).enrichedPathLine;
+        this.profileMapPathLine = TrailHelper.flattenPathLine(this.pathLine).mapProfilePathLine;
+    }
+
+    generateGeneralFacts() {
+        this.generalFact = TrailHelper.getGeneralFacts(this.pathLine);
+    }
+
+    setElevationOnPathByIndex(pointIndex, elevation) {
+        const preElevation = parseInt(this._pathLine[pointIndex][2], 10);
+        this._pathLine[pointIndex][2] = elevation;
+        console.log('# ' + pointIndex + ' elevated ' + preElevation + ' -> ' + elevation);
+    }
+
     parseInitialFile() {
         this.surfaceCollection = this.parsedInitialFile.sastav;
         this.parsedInitialFile.features.forEach((feature) => {
@@ -150,6 +197,7 @@ class TrailDataModel extends GLU.DataSource {
             trailName: this.trailName,
             trailDesc: this.trailDesc,
             externalLink: this.externalLink,
+            imageURL: this.imageURL,
             trailTypeID: this.trailTypeID,
             fitnessLevelID: this.fitnessLevelID,
             techniqueLevelID: this.techniqueLevelID,

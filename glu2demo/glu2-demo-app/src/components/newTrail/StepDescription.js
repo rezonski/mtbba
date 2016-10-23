@@ -4,10 +4,10 @@ import BasePage from '../BasePage';
 import Lang from '/helpers/Lang';
 import UploadImage from '../newTrail/UploadImage';
 import UploadedImagePreview from '../newTrail/UploadedImagePreview';
-import StatusProgress from '../newTrail/StatusProgress';
-import InputTextBox from '../newTrail/InputTextBox';
+import StatusProgress from '../common/StatusProgress';
+import InputTextBox from '../common/InputTextBox';
 
-class Step1 extends BasePage {
+class StepDescription extends BasePage {
     constructor(props) {
         super(props);
         this.state = {
@@ -47,7 +47,7 @@ class Step1 extends BasePage {
                     />
                 </div>
             </div>
-            <div className="flex-element column margined-right">
+            <div className="flex-element column">
                 <div className="flex-container row">
                     <UploadImage />
                 </div>
@@ -55,7 +55,7 @@ class Step1 extends BasePage {
                 </div>
                 <div className="flex-container column">
                     <div className="flex-container row">{Lang.label('imageUploadProgres')}</div>
-                    <StatusProgress key="uploadImage" id="uploadImage"  barColor="#33FFFF"/>
+                    <StatusProgress key="uploadImage" id="uploadImage" barColor="#33FFFF"/>
                 </div>
                 <div className="flex-container row">
                     <UploadedImagePreview/>
@@ -65,4 +65,4 @@ class Step1 extends BasePage {
     }
 }
 
-export default Step1;
+export default StepDescription;

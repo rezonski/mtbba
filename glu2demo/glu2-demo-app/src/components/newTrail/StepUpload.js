@@ -2,13 +2,11 @@ import React from 'react';
 import BasePage from '../BasePage';
 // import Enum from '/enums/Enum';
 import Lang from '/helpers/Lang';
-import InputTextBox from '../newTrail/InputTextBox';
+import InputTextBox from '../common/InputTextBox';
 import UploadGeoFile from '../newTrail/UploadGeoFile';
-import StatusProgress from '../newTrail/StatusProgress';
 import UploadedTrailPreview from '../newTrail/UploadedTrailPreview';
-import Divider from 'material-ui/Divider';
 
-class Step0 extends BasePage {
+class StepUpload extends BasePage {
     constructor(props) {
         super(props);
         this.state = {
@@ -30,23 +28,6 @@ class Step0 extends BasePage {
                 <div className="flex-container column">
                     <UploadGeoFile />
                 </div>
-                <div className="flex-container row">
-                </div>
-                <div className="flex-container column">
-                    <div className="flex-container row">{Lang.label('generalProcesProgres')}</div>
-                    <StatusProgress key="generalProgress" id="generalProgress" barColor="#FF0000"/>
-                    <Divider />
-                </div>
-                <div className="flex-container column">
-                    <div className="flex-container row">{Lang.label('simplifyingPathProgres')}</div>
-                    <StatusProgress key="simplifyPath" id="simplifyPath" barColor="#FF0000"/>
-                    <Divider />
-                </div>
-                <div className="flex-container column">
-                    <div className="flex-container row">{Lang.label('addingElevationProgres')}</div>
-                    <StatusProgress key="elevationPath" id="elevationPath" barColor="#FF0000"/>
-                    <Divider />
-                </div>
                 <div className="flex-container column">
                     <InputTextBox
                         key="trailName"
@@ -58,7 +39,7 @@ class Step0 extends BasePage {
                     />
                 </div>
             </div>
-            <div className="flex-element column margined-right">
+            <div className="flex-element column">
                 <div className="flex-container row">
                     <UploadedTrailPreview/>
                 </div>
@@ -67,4 +48,4 @@ class Step0 extends BasePage {
     }
 }
 
-export default Step0;
+export default StepUpload;
