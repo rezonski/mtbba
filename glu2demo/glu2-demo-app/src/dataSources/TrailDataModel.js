@@ -15,7 +15,7 @@ class TrailDataModel extends GLU.DataSource {
         this._fitnessLevelID = null;
         this._techniqueLevelID = null;
         this._mountainIDs = [];
-        this._surfaceCollection = [];
+        this._surfaceCollection = [[0,'A']];
         this._parsedInitialFile = {};
         this._generalFact = {};
         this._waypoints = [];
@@ -26,8 +26,9 @@ class TrailDataModel extends GLU.DataSource {
     }
 
     flattenPathLine() {
-        this.pathLine = TrailHelper.flattenPathLine(this.pathLine).enrichedPathLine;
-        this.profileMapPathLine = TrailHelper.flattenPathLine(this.pathLine).mapProfilePathLine;
+        const flattenPathLineResponse = TrailHelper.flattenPathLine(this.pathLine);
+        this.pathLine = JSON.parse(JSON.stringify(flattenPathLineResponse.enrichedPathLine));
+        this.profileMapPathLine = JSON.parse(JSON.stringify(flattenPathLineResponse.mapProfilePathLine));
     }
 
     generateGeneralFacts() {

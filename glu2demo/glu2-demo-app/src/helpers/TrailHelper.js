@@ -112,10 +112,15 @@ class TrailHelper extends GLU.Controller {
                 GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, flattenProgressPayload);
             }
         });
-        return {
-            enrichedPathLine: newPathLine,
-            mapProfilePathLine: pathLineMasterd,
+        // console.log('helper flattenPathLine newPathLine');
+        // console.log(newPathLine);
+        // console.log('helper flattenPathLine pathLineMasterd');
+        // console.log(pathLineMasterd);
+        const retObj = {
+            enrichedPathLine: JSON.parse(JSON.stringify(newPathLine)),
+            mapProfilePathLine: JSON.parse(JSON.stringify(pathLineMasterd)),
         };
+        return retObj;
     }
 
     getGeneralFacts(newPathLine) {

@@ -55,7 +55,7 @@ class DataController extends GLU.Controller {
     }
 
     getSetupDataError(err) {
-        console.error(err);
+        // console.error(err);
         const msg = (err && err.response) ? err.response.text : err.toString();
         GLU.bus.emit(MessageEvents.ERROR_MESSAGE, msg);
     }
@@ -116,7 +116,7 @@ class DataController extends GLU.Controller {
     }
 
     checkAddElevation(badPoints, startIndex) {
-        console.log('checkAddElevation(' + badPoints.length + ', ' + startIndex + ')');
+        // console.log('checkAddElevation(' + badPoints.length + ', ' + startIndex + ')');
         let currentProgressPayload = {
                                 status: 'progress',
                                 id: 'progressElevationPath',
@@ -227,8 +227,8 @@ class DataController extends GLU.Controller {
     onFixWaypointsRequest() {
         if (TrailDataModel.waypoints.length > 0) {
             TrailDataModel.generateWaypoints();
-            console.info(TrailDataModel.waypoints);
-            console.info(TrailDataModel.chartWaypoints);
+            // console.info(TrailDataModel.waypoints);
+            // console.info(TrailDataModel.chartWaypoints);
         } else {
             GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, {
                 status: 'progress',
