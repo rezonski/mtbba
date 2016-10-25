@@ -1,4 +1,5 @@
 import GLU from '/../../glu2.js/src/index';
+import MessageEvents from '/enums/MessageEvents';
 import Enum from '/enums/Enum';
 import CommonHelper from '/helpers/CommonHelper';
 import TrailHelper from '/helpers/TrailHelper';
@@ -328,5 +329,110 @@ class WaypointHelper extends GLU.Controller {
         return returnVal;
     }
 
+    generateWaypoints(inputWaypoints, inputPathLine) {
+        let newWaypoints = [];
+        let newWaypointsChart = [];
+        let newWaypointsExport = [];
+        let waypointsProgressPayload = {
+            status: 'progress',
+            id: 'progressFixWPs',
+            loaded: 0,
+            total: inputWaypoints.length,
+        };
+
+        inputWaypoints.forEach((wpoint, wpindex) => {
+            let tempDistance = 9999999;
+            let tempIndex = -1;
+            let tempDesc = '';
+            let tempPictogram = '';
+
+            inputPathLine.forEach((ppoint, pindex) => {
+                let currentDistance = TrailHelper.getDistanceFromLatLonInMeters(wpoint.geometry.coordinates[0], wpoint.geometry.coordinates[1], ppoint.lon, ppoint.lat);
+                // if ((currentDistance < tempDistance || tempDistance === -1) && currentDistance > 0 && currentDistance < 0.2) {
+                if ((currentDistance < tempDistance) && currentDistance < 100) {
+                    tempDistance = currentDistance;
+                    tempIndex = pindex;
+                }
+            });
+
+            let odometar = null;
+            let elevationgain = 0;
+            let elevationloss = 0;
+
+            if (tempIndex > -1) {
+                for (let i = 0; i <= tempIndex; i++) {
+                    odometar += inputPathLine[i].prev_dist;
+                }
+
+                odometar = Math.round(odometar * 100) / 100;
+                for (let i = 0; i <= tempIndex; i++) {
+                    if (inputPathLine[i].prev_elev > 0) {
+                        elevationgain += inputPathLine[i].prev_elev;
+                    } else {
+                        elevationloss += inputPathLine[i].prev_elev;
+                    }
+                }
+                elevationgain = Math.round(elevationgain * 100) / 100;
+                elevationloss = Math.round(elevationloss * 100) / 100;
+
+                if (wpoint.properties.desc !== undefined && wpoint.properties.desc.indexOf('#') > -1 ) {
+                    let tempDescArray = wpoint.properties.desc.replace('#\n\n', '#\n').replace('#\n\n', '#\n').replace('#\n', '#').replace('#\n', '#').split('#');
+                    tempDesc = tempDescArray[2];
+                    tempPictogram = tempDescArray[1];
+                } else if (wpoint.properties.desc !== undefined) {
+                    tempDesc = wpoint.properties.desc;
+                    tempPictogram = (wpoint.properties.pictogram !== undefined) ? wpoint.properties.pictogram : '90';
+                } else {
+                    tempDesc = '';
+                    tempPictogram = (wpoint.properties.pictogram !== undefined) ? wpoint.properties.pictogram : '90';
+                }
+
+                newWaypoints.push({
+                    id: 0,
+                    time: (wpoint.properties.time !== undefined) ? wpoint.properties.time : null,
+                    // name: encodeURIComponent(wpoint.properties.name),
+                    // desc: encodeURIComponent(tempDesc),
+                    name: wpoint.properties.name,
+                    desc: tempDesc,
+                    lon: wpoint.geometry.coordinates[0],
+                    lat: wpoint.geometry.coordinates[1],
+                    elevation: Math.round(inputPathLine[tempIndex].elevation),
+                    elevgain: Math.round(elevationgain),
+                    elevloss: Math.round(elevationloss),
+                    nextelevgain: 0,
+                    nextelevloss: 0,
+                    odometer: odometar,
+                    nextstepdist: 0,
+                    symbol: this.symbolFromDesc(tempDesc, tempPictogram, wpoint.properties.name),
+                    pictogram: tempPictogram,
+                    pictureurl: (wpoint.properties.pictureurl !== undefined) ? wpoint.properties.pictureurl : '',
+                    elevationprofile: 0,
+                });
+
+                newWaypointsChart.push({
+                    name: (Number.isInteger(parseInt(wpoint.properties.name, 10))) ? tempDesc : wpoint.properties.name,
+                    odometer: odometar,
+                });
+            }
+            waypointsProgressPayload.loaded = parseInt((wpindex + 1), 10);
+            GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, waypointsProgressPayload);
+        });
+
+        newWaypointsExport = CommonHelper.sortArrayByKey(newWaypoints, 'odometer');
+
+        newWaypointsExport.forEach((element, index) => {
+            newWaypointsExport[index].id = (index + 1) * 10;
+            if (index < (newWaypointsExport.length - 1)) {
+                newWaypointsExport[index].nextstepdist = Math.round((newWaypointsExport[index + 1].odometer - newWaypointsExport[index].odometer) * 100) / 100;
+                newWaypointsExport[index].nextelevgain = Math.round((newWaypointsExport[index + 1].elevgain - newWaypointsExport[index].elevgain) * 100) / 100;
+                newWaypointsExport[index].nextelevloss = Math.round((newWaypointsExport[index + 1].elevloss - newWaypointsExport[index].elevloss) * 100) / 100;
+            }
+        });
+
+        return {
+            waypoints: newWaypointsExport,
+            chartWaypoints: newWaypointsChart,
+        };
+    }
 }
 export default new WaypointHelper();

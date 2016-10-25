@@ -12,6 +12,7 @@ import StepUpload from '../newTrail/StepUpload';
 import StepDescription from '../newTrail/StepDescription';
 import StepParameters from '../newTrail/StepParameters';
 import StepProcessing from '../newTrail/StepProcessing';
+import StepChartPreview from '../newTrail/StepChartPreview';
 
 
 class StepperContainer extends BasePage {
@@ -54,8 +55,10 @@ class StepperContainer extends BasePage {
                 return (<StepParameters/>);
             case 3:
                 return (<StepDescription/>);
+            case 4:
+                return (<StepChartPreview/>);
             default:
-                return 'You\'re a long way from home sonny jim!';
+                return 'Ouuuooops!';
         }
     }
 
@@ -89,6 +92,9 @@ class StepperContainer extends BasePage {
                     <Step>
                         <StepButton onClick={() => this.setState({ stepIndex: 3 })}>{Lang.label('stepperStepDescription')}</StepButton>
                     </Step>
+                    <Step>
+                        <StepButton onClick={() => this.setState({ stepIndex: 4 })}>{Lang.label('stepperStepPreview')}</StepButton>
+                    </Step>
                 </Stepper>
                 <div className="stepper-container">
                     {this.getStepContent(stepIndex)}
@@ -100,7 +106,7 @@ class StepperContainer extends BasePage {
                             style={{ marginRight: 12 }}
                         />
                         <RaisedButton
-                            label={stepIndex === 3 ? Lang.label('save') : Lang.label('next')}
+                            label={stepIndex === 4 ? Lang.label('save') : Lang.label('next')}
                             primary={true}
                             onTouchTap={this.state.finished ? this.onSaveAddedTrail : this.onHandleNext}
                         />
@@ -126,8 +132,8 @@ class StepperContainer extends BasePage {
     handleNext() {
         const stepIndex = this.state.stepIndex;
         this.setState({
-            stepIndex: (stepIndex >= 3) ? stepIndex : (stepIndex + 1),
-            finished: stepIndex >= 3,
+            stepIndex: (stepIndex >= 4) ? stepIndex : (stepIndex + 1),
+            finished: stepIndex >= 4,
         });
     }
 

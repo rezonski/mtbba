@@ -32,24 +32,24 @@ class StepProcessing extends BasePage {
         return (<div className="flex-container row">
             <div className="flex-element column wider">
                 <div className="flex-container row margined-bottom">
-                    <div className="flex-container margined-right" style={{ minWidth: '180px' }}>{Lang.label('generalProcesProgres') + ': '}</div>
-                    <StatusProgress key="generalProgress" id="generalProgress" barColor="#FF0000"/>
+                    <div className="flex-container margined-right label-width">{Lang.label('generalProcesProgres') + ': '}</div>
+                    <StatusProgress key="progressGeneral" id="progressGeneral" barColor="#FF0000"/>
                 </div>
                 <div className="flex-container row margined-bottom">
-                    <div className="flex-container margined-right" style={{ minWidth: '180px' }}>{Lang.label('simplifyingPathProgres') + ': '}</div>
-                    <StatusProgress key="simplifyPath" id="simplifyPath" barColor="#FF0000"/>
+                    <div className="flex-container margined-right label-width">{Lang.label('simplifyingPathProgres') + ': '}</div>
+                    <StatusProgress key="progressSimplifyPath" id="progressSimplifyPath" barColor="#FF0000"/>
                 </div>
                 <div className="flex-container row margined-bottom">
-                    <div className="flex-container margined-right" style={{ minWidth: '180px' }}>{Lang.label('addingElevationProgres') + ': '}</div>
-                    <StatusProgress key="elevationPath" id="elevationPath" barColor="#FF0000"/>
+                    <div className="flex-container margined-right label-width">{Lang.label('addingElevationProgres') + ': '}</div>
+                    <StatusProgress key="progressElevationPath" id="progressElevationPath" barColor="#FF0000"/>
                 </div>
                 <div className="flex-container row margined-bottom">
-                    <div className="flex-container margined-right" style={{ minWidth: '180px' }}>{Lang.label('flattenPathProgres') + ': '}</div>
-                    <StatusProgress key="flattenPath" id="flattenPath" barColor="#FF0000"/>
+                    <div className="flex-container margined-right label-width">{Lang.label('flattenPathProgres') + ': '}</div>
+                    <StatusProgress key="progressFlattenPath" id="progressFlattenPath" barColor="#FF0000"/>
                 </div>
                 <div className="flex-container row margined-bottom">
-                    <div className="flex-container margined-right" style={{ minWidth: '180px' }}>{Lang.label('WPFixProgres') + ': '}</div>
-                    <StatusProgress key="fixWPs" id="fixWPs" barColor="#FF0000"/>
+                    <div className="flex-container margined-right label-width">{Lang.label('WPFixProgres') + ': '}</div>
+                    <StatusProgress key="progressFixWPs" id="progressFixWPs" barColor="#FF0000"/>
                 </div>
                 <div className="flex-container row margined-bottom">
                     <RaisedButton

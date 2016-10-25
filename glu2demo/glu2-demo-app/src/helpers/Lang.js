@@ -101,6 +101,10 @@ const labels = {
         bos: 'Procesiranje',
         eng: 'Processing',
     },
+    stepperStepPreview: {
+        bos: 'Pregled',
+        eng: 'Preview',
+    },
     startProcessing: {
         bos: 'Započni procesiranje',
         eng: 'Start processing',
@@ -128,6 +132,18 @@ const labels = {
     imageUploadProgres: {
         bos: 'Progres podizanja slike',
         eng: 'Uploading data',
+    },
+    generalFactsDistance: {
+        bos: 'Dužina staze [km]',
+        eng: 'Trail length [km]',
+    },
+    generalElevationGain: {
+        bos: 'Visinski uspon [m]',
+        eng: 'Elevation gain [m]',
+    },
+    generalElevationLoss: {
+        bos: 'Visinski uspon [m]',
+        eng: 'Elevation oss [m]',
     },
 };
 
@@ -199,6 +215,10 @@ const messages = {
     endGeneralFactsGenerating: {
         bos: 'Završeno definisanje parametara staze',
         eng: 'Trail general facts computed',
+    },
+    endWaypointsGenerating: {
+        bos: 'Završena obrada putnih tačaka',
+        eng: 'Waypoints generating completed',
     },
 };
 

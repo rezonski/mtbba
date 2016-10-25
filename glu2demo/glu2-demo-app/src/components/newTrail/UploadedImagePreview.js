@@ -1,7 +1,7 @@
 import React from 'react';
 import BasePage from '../BasePage';
-import MessageEvents from '../..//enums/MessageEvents';
-import Enum from '../..//enums/Enum';
+import MessageEvents from '../../enums/MessageEvents';
+import Enum from '../../enums/Enum';
 
 class UploadedImagePreview extends BasePage {
     constructor(props) {

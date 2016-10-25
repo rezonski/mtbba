@@ -71,13 +71,18 @@ var SUPPORTED_ENVIRONMENTS = ['local', 'development', 'rc', 'production'];
  * (and also files that should be copied such as fonts, images etc...) */
 var VENDOR_DEPENDENCIES =
     [
-        // {
-        //     name: 'highstock-release',
-        //     jsFiles: [
-        //         'highstock.src.js',
-        //         'modules/exporting.src.js',
-        //     ],
-        // },
+        {
+            name: 'hammerjs',
+            jsFiles: [
+                'hammer.js',
+            ],
+        },
+        {
+            name: 'highcharts-release',
+            jsFiles: [
+                'highcharts.js',
+            ],
+        },
     ];
 
 /* Browserify options */

@@ -16,7 +16,7 @@ class TrailHelper extends GLU.Controller {
         this.surfaceTypes = payload.surfaceTypes;
     }
 
-    simplifyPath(inputPointsArray, toleranceInMeters) {
+    reducePathLinePoints(inputPointsArray, toleranceInMeters) {
         let returnArray = [];
         const maxIndx = inputPointsArray.length - 1;
         let currentIndex;
@@ -46,17 +46,19 @@ class TrailHelper extends GLU.Controller {
                 }
             }
 
+            progressPayload = {
+                status: 'progress',
+                id: 'progressSimplifyPath',
+                loaded: nextIndex,
+                total: maxIndx,
+            };
+
             if (nextIndex === maxIndx && !escaped) {
                 iterator = parseInt(maxIndx, 10);
+                GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, progressPayload);
             } else {
                 iterator = parseInt(currentIndex, 10);
                 if (iterator % 10 === 0) {
-                    progressPayload = {
-                        status: 'progress',
-                        id: 'simplifyPath',
-                        loaded: iterator,
-                        total: maxIndx,
-                    };
                     GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, progressPayload);
                 }
             }
@@ -71,6 +73,12 @@ class TrailHelper extends GLU.Controller {
         let pathLineMasterd = [];
         let prevLoc = {};
         let currLocOut = {};
+        let flattenProgressPayload = {
+            status: 'progress',
+            id: 'progressFlattenPath',
+            loaded: 0,
+            total: pathLine.length,
+        };
         pathLine.forEach((location, index) => {
             let elevationCalc = 0;
             let currLoc;
@@ -99,6 +107,10 @@ class TrailHelper extends GLU.Controller {
             newPathLine.push(currLoc);
             // For vertical profile and map
             pathLineMasterd.push([location[0], location[1], elevationCalc]);
+            if (index % 10 === 0) {
+                flattenProgressPayload.loaded = parseInt(index / 2, 10);
+                GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, flattenProgressPayload);
+            }
         });
         return {
             enrichedPathLine: newPathLine,
@@ -117,6 +129,12 @@ class TrailHelper extends GLU.Controller {
         let totalelevgain = 0; // in kms
         let totalelevloss = 0; // in kms
         let exportGeneralFacts = {};
+        let generateGeneralFactsProgressPayload = {
+            status: 'progress',
+            id: 'progressFlattenPath',
+            loaded: 0,
+            total: 100,
+        };
 
         newPathLine.forEach((location) => {
             if (location.lon >= maxLon) {
@@ -138,6 +156,9 @@ class TrailHelper extends GLU.Controller {
                 minElev = location.elevation;
             }
         });
+
+        generateGeneralFactsProgressPayload.loaded = 80;
+        GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, generateGeneralFactsProgressPayload);
 
         // Distance and elevation
 
@@ -162,6 +183,10 @@ class TrailHelper extends GLU.Controller {
         exportGeneralFacts.latCenter = (maxLat + minLat) / 2;
         exportGeneralFacts.elevMin = minElev;
         exportGeneralFacts.elevMax = maxElev;
+
+        generateGeneralFactsProgressPayload.loaded = 100;
+        GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, generateGeneralFactsProgressPayload);
+
         return exportGeneralFacts;
     }
 

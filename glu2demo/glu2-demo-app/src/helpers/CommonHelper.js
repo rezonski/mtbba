@@ -17,5 +17,14 @@ class CommonHelper {
         const c = (a[0] < b[0]) ? -1 : 1;
         return (a[0] === b[0]) ? 0 : c;
     }
+
+    sortArrayByKey(array, key) {
+        return array.sort((a, b) => {
+            const x = a[key];
+            const y = b[key];
+            const ret = (x > y) ? 1 : 0;
+            return ((x < y) ? -1 : ret);
+        });
+    }
 }
 export default new CommonHelper();

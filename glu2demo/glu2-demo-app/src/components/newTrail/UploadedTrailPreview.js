@@ -1,6 +1,6 @@
 import React from 'react';
 import BasePage from '../BasePage';
-import MessageEvents from '../..//enums/MessageEvents';
+import MessageEvents from '../../enums/MessageEvents';
 
 class UploadedTrailPreview extends BasePage {
     constructor(props) {

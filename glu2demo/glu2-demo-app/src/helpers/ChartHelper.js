@@ -90,7 +90,7 @@ class ChartHelper extends GLU.Controller {
         return dataset;
     }
 
-    getChartSetup(chartContainer, trailName, plotlines, pathLine, dataset, minY, maxY) {
+    getChartSetup(chartContainer, trailName, trailWayPoints, pathLine, surfaceCollection, minY, maxY) {
         return {
             chart: {
                 renderTo: chartContainer,
@@ -114,7 +114,7 @@ class ChartHelper extends GLU.Controller {
                 title: {
                     text: 'Predjeni put [km]',
                 },
-                plotLines: plotlines,
+                plotLines: this.getPlotlines(trailWayPoints),
             },
             yAxis: {
                 title: {
@@ -175,7 +175,7 @@ class ChartHelper extends GLU.Controller {
                     name: 'Nadmorska visina',
                     type: 'coloredarea',
                     turboThreshold: 4000,
-                    data: dataset,
+                    data: this.getDataSegments(pathLine, surfaceCollection),
                 },
             ],
         };
