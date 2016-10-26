@@ -157,21 +157,21 @@ class ChartHelper extends GLU.Controller {
                 },
                 series: {
                     cursor: 'pointer',
-                    point: {
-                        events: {
-                            click: () => {
-                                console.info('event click');
-                                console.info(this);
-                                const xVal = Math.round(this.x * 100) / 100;
-                                GLU.bus.emit(Enum.ChartEvents.CHART_POINT_CLICKED, xVal);
-                            },
-                            mouseOver: () => {
-                                console.info('event hover');
-                                console.info(this);
-                                GLU.bus.emit(Enum.ChartEvents.CHART_POINT_HOVERED, pathLine[this.index]);
-                            },
-                        },
-                    },
+                    // point: {
+                    //     events: {
+                    //         click: () => {
+                    //             console.info('event click');
+                    //             console.info(this);
+                    //             const xVal = Math.round(this.x * 100) / 100;
+                    //             GLU.bus.emit(Enum.ChartEvents.CHART_POINT_CLICKED, xVal);
+                    //         },
+                    //         mouseOver: () => {
+                    //             console.info('event hover');
+                    //             console.info(this);
+                    //             GLU.bus.emit(Enum.ChartEvents.CHART_POINT_HOVERED, pathLine[this.index]);
+                    //         },
+                    //     },
+                    // },
                 },
             },
             series: [
