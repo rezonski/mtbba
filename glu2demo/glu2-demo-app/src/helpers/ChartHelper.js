@@ -90,7 +90,7 @@ class ChartHelper extends GLU.Controller {
         return dataset;
     }
 
-    getChartSetup(chartContainer, trailName, trailWayPoints, pathLine, surfaceCollection, minY, maxY) {
+    getChartSetup(chartContainer, trailName, trailWayPoints, pathLine, surfaceCollection) {
         return {
             chart: {
                 renderTo: chartContainer,
@@ -127,8 +127,8 @@ class ChartHelper extends GLU.Controller {
                         color: '#808080',
                     },
                 ],
-                min: (minY) ? minY : 0,
-                max: (maxY) ? minY : 2000,
+                min: 0,
+                max: 2000,
             },
             tooltip: {
                 shared: true,
@@ -160,10 +160,14 @@ class ChartHelper extends GLU.Controller {
                     point: {
                         events: {
                             click: () => {
+                                console.info('event click');
+                                console.info(this);
                                 const xVal = Math.round(this.x * 100) / 100;
                                 GLU.bus.emit(Enum.ChartEvents.CHART_POINT_CLICKED, xVal);
                             },
                             mouseOver: () => {
+                                console.info('event hover');
+                                console.info(this);
                                 GLU.bus.emit(Enum.ChartEvents.CHART_POINT_HOVERED, pathLine[this.index]);
                             },
                         },

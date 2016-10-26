@@ -32,7 +32,14 @@ class DataController extends GLU.Controller {
             [Enum.DataEvents.START_ELEVATING_PATH]: this.onElevatePathRequest,
             [Enum.DataEvents.START_FLATTENING_PATH]: this.onFlattenPathRequest,
             [Enum.DataEvents.START_FIXING_WAYPOINTS]: this.onFixWaypointsRequest,
+            [Enum.ChartEvents.CHART_POINT_CLICKED]: this.onChartEvent,
+            [Enum.ChartEvents.CHART_POINT_HOVERED]: this.onChartEvent,
         });
+    }
+
+    onChartEvent() {
+        // console.info('onChartEvent');
+        // console.info(e);
     }
 
     getMapInitSetup() {

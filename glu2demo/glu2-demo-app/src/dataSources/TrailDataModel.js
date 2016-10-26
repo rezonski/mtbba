@@ -15,7 +15,7 @@ class TrailDataModel extends GLU.DataSource {
         this._fitnessLevelID = null;
         this._techniqueLevelID = null;
         this._mountainIDs = [];
-        this._surfaceCollection = [[0,'A']];
+        this._surfaceCollection = [[0, 'A']];
         this._parsedInitialFile = {};
         this._generalFact = {};
         this._waypoints = [];
@@ -95,7 +95,7 @@ class TrailDataModel extends GLU.DataSource {
     }
 
     getChartData(containerId) {
-        const chartData = ChartHelper.getChartSetup(containerId, this.trailName, this.chartWaypoints, this.profileMapPathLine, this.surfaceCollection, 0, 2000);
+        const chartData = ChartHelper.getChartSetup(containerId, this.trailName, this.chartWaypoints, this.profileMapPathLine, this.surfaceCollection);
         return chartData;
     }
 

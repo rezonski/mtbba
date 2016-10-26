@@ -77,12 +77,12 @@ var VENDOR_DEPENDENCIES =
                 'hammer.js',
             ],
         },
-        {
-            name: 'highcharts-release',
-            jsFiles: [
-                'highcharts.js',
-            ],
-        },
+        // {
+        //     name: 'highcharts-release',
+        //     jsFiles: [
+        //         'highcharts.js',
+        //     ],
+        // },
     ];
 
 /* Browserify options */
