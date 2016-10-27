@@ -210,14 +210,15 @@ class TrailHelper extends GLU.Controller {
     }
 
     getSegmentByOdometer(odometer, surfaceCollection) {
+        let retSegment = surfaceCollection[0];
         if (surfaceCollection !== undefined && surfaceCollection.length > 0) {
             surfaceCollection.forEach((cutpoint) => {
                 if (odometer > cutpoint[0]) {
-                    return cutpoint;
+                    retSegment = cutpoint;
                 }
             });
         }
-        return surfaceCollection[0];
+        return retSegment;
     }
 
     getSurfaceTypeByName(name) {

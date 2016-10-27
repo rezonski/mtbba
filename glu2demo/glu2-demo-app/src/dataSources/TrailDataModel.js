@@ -15,7 +15,7 @@ class TrailDataModel extends GLU.DataSource {
         this._fitnessLevelID = null;
         this._techniqueLevelID = null;
         this._mountainIDs = [];
-        this._surfaceCollection = [[0, 'A']];
+        this._surfaceCollection = [[0, 'A'], [5, 'M'], [10, 'S'], [15, 'A']];
         this._parsedInitialFile = {};
         this._generalFact = {};
         this._waypoints = [];

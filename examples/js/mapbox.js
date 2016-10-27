@@ -27,7 +27,16 @@
         function o(e, t) {
             mapboxgl.util.bindHandlers(this);
             var n = document.createElement("div");
-            n.className = "compare-swiper", n.addEventListener("mousedown", this._onDown), n.addEventListener("touchstart", this._onDown), this._container = document.createElement("div"), this._container.className = "mapboxgl-compare", this._container.appendChild(n), e.getContainer().appendChild(this._container), this._clippedMap = t, this._bounds = t.getContainer().getBoundingClientRect(), this._setPosition(this._bounds.width / 2), i(e, t), t.on("resize", function() {
+            n.className = "compare-swiper";
+            n.addEventListener("mousedown", this._onDown);
+            n.addEventListener("touchstart", this._onDown);
+            this._container = document.createElement("div");
+            this._container.className = "mapboxgl-compare";
+            this._container.appendChild(n);
+            e.getContainer().appendChild(this._container);
+            this._clippedMap = t;
+            this._bounds = t.getContainer().getBoundingClientRect();
+            this._setPosition(this._bounds.width / 2), i(e, t), t.on("resize", function() {
                 this._bounds = t.getContainer().getBoundingClientRect(), this._x && this._setPosition(this._x)
             }.bind(this))
         }

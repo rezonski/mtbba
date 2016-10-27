@@ -26,12 +26,13 @@ class ChartHelper extends GLU.Controller {
     }
 
     getSegment(segmentName) {
+        let retSegment = this.surfaceTypes[0];
         this.surfaceTypes.forEach((segment) => {
             if (segment.name === segmentName) {
-                return segment;
+                retSegment = segment;
             }
         });
-        return this.surfaceTypes[0];
+        return retSegment;
     }
 
     getDistance(first, second) {
