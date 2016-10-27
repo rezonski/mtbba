@@ -8,7 +8,7 @@ class TrailFactsDescription extends BasePage {
         super(props);
         this.state = {
             id: 'generalFact',
-            data: undefined,
+            data: null,
         };
     }
 
@@ -25,29 +25,30 @@ class TrailFactsDescription extends BasePage {
 
     onTrailDataRetrieved(payload) {
         if (payload[this.state.id]) {
+            const newData = JSON.parse(JSON.stringify(payload[this.state.id]));
             this.setState({
-                data: payload[this.state.id],
+                data: newData,
             });
         }
     }
 
     render() {
-        if (!this.data) {
+        if (!this.state.data) {
             return <div/>;
         }
         return (<div className={'trail-data-box'}>
                     <div className="flex-container column">
                         <div className="flex-container row margined-bottom">
                             <div className="flex-element margined-right label-width">{Lang.label('generalFactsDistance') + ': '}</div>
-                            <div className="flex-element">{this.data.distance}</div>
+                            <div className="flex-element">{this.state.data.distance}</div>
                         </div>
                         <div className="flex-container row margined-bottom">
                             <div className="flex-element margined-right label-width">{Lang.label('generalElevationGain') + ': '}</div>
-                            <div className="flex-element">{this.data.elevgain}</div>
+                            <div className="flex-element">{this.state.data.elevgain}</div>
                         </div>
                         <div className="flex-container row margined-bottom">
                             <div className="flex-element margined-right label-width">{Lang.label('generalElevationLoss') + ': '}</div>
-                            <div className="flex-element">{this.data.elevloss}</div>
+                            <div className="flex-element">{this.state.data.elevloss}</div>
                         </div>
                     </div>
                 </div>);

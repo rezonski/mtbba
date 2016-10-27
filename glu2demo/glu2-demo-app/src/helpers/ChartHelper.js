@@ -97,10 +97,10 @@ class ChartHelper extends GLU.Controller {
                 renderTo: chartContainer,
                 type: 'coloredarea',
                 zoomType: 'xy',
-                borderWidth: 5,
-                borderColor: '#e8eaeb',
+                // borderWidth: 5,
+                // borderColor: '#e8eaeb',
                 borderRadius: 0,
-                backgroundColor: '#f7f7f7',
+                // backgroundColor: '#f7f7f7',
             },
             title: {
                 text: trailName.toString(),
@@ -158,21 +158,19 @@ class ChartHelper extends GLU.Controller {
                 },
                 series: {
                     cursor: 'pointer',
-                    // point: {
-                    //     events: {
-                    //         click: () => {
-                    //             console.info('event click');
-                    //             console.info(this);
-                    //             const xVal = Math.round(this.x * 100) / 100;
-                    //             GLU.bus.emit(Enum.ChartEvents.CHART_POINT_CLICKED, xVal);
-                    //         },
-                    //         mouseOver: () => {
-                    //             console.info('event hover');
-                    //             console.info(this);
-                    //             GLU.bus.emit(Enum.ChartEvents.CHART_POINT_HOVERED, pathLine[this.index]);
-                    //         },
-                    //     },
-                    // },
+                    point: {
+                        events: {
+                            mouseOver: (event) => {
+                                console.info(pathLine[event.target.index]);
+                                GLU.bus.emit(Enum.ChartEvents.CHART_POINT_HOVERED, pathLine[this.index]);
+                            },
+                            click: (event) => {
+                                const xVal = Math.round(event.point.x * 100) / 100;
+                                console.info(xVal);
+                                GLU.bus.emit(Enum.ChartEvents.CHART_POINT_CLICKED, xVal);
+                            },
+                        },
+                    },
                 },
             },
             series: [
