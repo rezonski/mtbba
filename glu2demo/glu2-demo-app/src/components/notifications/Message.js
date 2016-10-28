@@ -11,6 +11,7 @@ class Message extends BasePage {
             open: false,
             message: '',
             type: null,
+            duration: 2000,
         };
 
         this.bindGluBusEvents({
@@ -18,6 +19,7 @@ class Message extends BasePage {
             [MessageEvents.WARNING_MESSAGE]: this.onWarningMessage,
             [MessageEvents.PICTURE_UPLOAD_STATUS]: this.onUploadStatus,
             [MessageEvents.INFO_MESSAGE]: this.onInfoMessage,
+            [MessageEvents.LONGER_INFO_MESSAGE]: this.onLongerInfoMessage,
         });
     }
 
@@ -29,6 +31,16 @@ class Message extends BasePage {
         this.setState({
             open: true,
             message,
+            duration: 2000,
+            type: 'info',
+        });
+    }
+
+    onLongerInfoMessage(message) {
+        this.setState({
+            open: true,
+            message,
+            duration: 4000,
             type: 'info',
         });
     }
@@ -37,6 +49,7 @@ class Message extends BasePage {
         this.setState({
             open: true,
             message,
+            duration: 2000,
             type: 'warning',
         });
     }
@@ -45,6 +58,7 @@ class Message extends BasePage {
         this.setState({
             open: true,
             message,
+            duration: 2000,
             type: 'error',
         });
     }
@@ -53,6 +67,7 @@ class Message extends BasePage {
         this.setState({
             open: true,
             message: payload.message,
+            duration: 2000,
             type: 'info',
         });
     }
@@ -61,6 +76,7 @@ class Message extends BasePage {
         this.setState({
             open: false,
             message: '',
+            duration: 2000,
             type: null,
         });
     }
@@ -71,7 +87,7 @@ class Message extends BasePage {
                 className={this.state.type}
                 open={this.state.open}
                 message={this.state.message}
-                autoHideDuration={2000}
+                autoHideDuration={this.state.duration}
                 onRequestClose={this.onCloseMessage.bind(this)}/>
         );
     }

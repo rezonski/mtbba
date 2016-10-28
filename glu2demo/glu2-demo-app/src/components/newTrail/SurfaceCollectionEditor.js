@@ -42,9 +42,9 @@ class SurfaceCollectionEditor extends BasePage {
     }
 
     onKeyDown(e) {
-        if (e.keyCode === 77) {
+        if (e.keyCode === 77 || e.keyCode === 65 || e.keyCode === 83 || e.keyCode === 78) {
             e.preventDefault();
-            this.state.surfaceCollection.push([this.newSurfaceOdometer, 'M']);
+            this.state.surfaceCollection.push([this.newSurfaceOdometer, String.fromCharCode(e.keyCode)]);
             const payload = {
                 name: this.state.id,
                 value: this.state.surfaceCollection,
@@ -72,7 +72,9 @@ class SurfaceCollectionEditor extends BasePage {
         }
         const tableStyle = {
             column: {
-                width: '40px',
+                width: '50px',
+                paddingLeft: '0px',
+                paddingRight: '10px',
             },
         };
         let rows = [];

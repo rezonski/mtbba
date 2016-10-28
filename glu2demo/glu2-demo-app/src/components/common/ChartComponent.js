@@ -16,6 +16,13 @@ class ChartComponent extends BasePage {
         );
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.chart = new Highcharts.Chart(
+            nextProps.containerId,
+            nextProps.options
+        );
+    }
+
     render() {
         return React.createElement('div', { id: this.props.containerId, className: (this.props.className ? this.props.className : null) });
     }

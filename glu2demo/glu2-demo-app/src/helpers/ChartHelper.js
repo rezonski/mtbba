@@ -41,7 +41,8 @@ class ChartHelper extends GLU.Controller {
         const lon2 = second[0];
         const lat2 = second[1];
         const p = 0.017453292519943295; // Math.PI / 180
-        const c = Math.cos;        const a = 0.5 - c((lat2 - lat1) * p) / 2 +
+        const c = Math.cos;
+        const a = 0.5 - c((lat2 - lat1) * p) / 2 +
             c(lat1 * p) * c(lat2 * p) *
             (1 - c((lon2 - lon1) * p)) / 2;
         return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
@@ -161,12 +162,12 @@ class ChartHelper extends GLU.Controller {
                         events: {
                             mouseOver: (event) => {
                                 // console.info(pathLine[event.target.index]);
-                                GLU.bus.emit(Enum.ChartEvents.CHART_POINT_HOVERED, pathLine[this.index]);
+                                GLU.bus.emit(Enum.ChartEvents.CHART_POINT_HOVERED, pathLine[event.target.index]);
                             },
                             click: (event) => {
-                                const xVal = Math.round(event.point.x * 100) / 100;
-                                console.info(xVal);
-                                GLU.bus.emit(Enum.ChartEvents.CHART_POINT_CLICKED, xVal);
+                                const odometer = Math.round(event.point.x * 10) / 10;
+                                // console.info(odometer);
+                                GLU.bus.emit(Enum.ChartEvents.CHART_POINT_CLICKED, odometer);
                             },
                         },
                     },

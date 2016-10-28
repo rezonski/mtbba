@@ -33,14 +33,13 @@ class DataController extends GLU.Controller {
             [Enum.DataEvents.START_ELEVATING_PATH]: this.onElevatePathRequest,
             [Enum.DataEvents.START_FLATTENING_PATH]: this.onFlattenPathRequest,
             [Enum.DataEvents.START_FIXING_WAYPOINTS]: this.onFixWaypointsRequest,
-            [Enum.ChartEvents.CHART_POINT_CLICKED]: this.onChartEvent,
-            [Enum.ChartEvents.CHART_POINT_HOVERED]: this.onChartEvent,
+            [Enum.ChartEvents.CHART_POINT_CLICKED]: this.onChartClickEvent,
+            // [Enum.ChartEvents.CHART_POINT_HOVERED]: this.onChartHoverEvent,
         });
     }
 
-    onChartEvent() {
-        // console.info('onChartEvent');
-        // console.info(e);
+    onChartClickEvent() {
+        GLU.bus.emit(MessageEvents.LONGER_INFO_MESSAGE, Lang.msg('keypress4surfaceType'));
     }
 
     getMapInitSetup() {
@@ -76,6 +75,7 @@ class DataController extends GLU.Controller {
         TrailDataModel.setDataByName(payload.name, payload.value);
         const trailData = TrailDataModel.getTrailData();
         GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
+        GLU.bus.emit(Enum.DataEvents.RETRIEVE_CHART_DATA, 'chartcontainer');
     }
 
     getTrailData() {

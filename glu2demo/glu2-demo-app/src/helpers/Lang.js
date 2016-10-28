@@ -232,6 +232,10 @@ const messages = {
         bos: 'Završena obrada putnih tačaka',
         eng: 'Waypoints generating completed',
     },
+    keypress4surfaceType: {
+        bos: 'Pritisni A - asfalt / M - makadam / S - staza / N - nevozljivo',
+        eng: 'Press A - asphalt / M - macadam / S - trail / N - hiking',
+    },
 };
 
 class Lang extends GLU.Controller {
