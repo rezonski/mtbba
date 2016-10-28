@@ -145,6 +145,18 @@ const labels = {
         bos: 'Visinski uspon [m]',
         eng: 'Elevation oss [m]',
     },
+    odometer: {
+        bos: 'Distanca',
+        eng: 'Distance',
+    },
+    surfaceDesc: {
+        bos: 'Opis podloge',
+        eng: 'Surface description',
+    },
+    deleteSegment: {
+        bos: 'Obriši segment',
+        eng: 'Delete segment',
+    },
 };
 
 const messages = {

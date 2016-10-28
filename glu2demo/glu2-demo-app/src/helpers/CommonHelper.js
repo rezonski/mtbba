@@ -26,5 +26,14 @@ class CommonHelper {
             return ((x < y) ? -1 : ret);
         });
     }
+
+    sortArrayByElementIndex(array, index) {
+        return array.sort((a, b) => {
+            const x = a[index];
+            const y = b[index];
+            const ret = (x > y) ? 1 : 0;
+            return ((x < y) ? -1 : ret);
+        });
+    }
 }
 export default new CommonHelper();

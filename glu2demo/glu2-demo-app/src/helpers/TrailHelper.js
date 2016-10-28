@@ -222,14 +222,15 @@ class TrailHelper extends GLU.Controller {
     }
 
     getSurfaceTypeByName(name) {
+        let returnSurfaceType = this.surfaceTypes[0];
         if (this.surfaceTypes !== undefined && this.surfaceTypes.length > 0) {
             this.surfaceTypes.forEach((element) => {
                 if (element.name === name) {
-                    return element;
+                    returnSurfaceType = element;
                 }
             });
         }
-        return this.surfaceTypes[0];
+        return returnSurfaceType;
     }
 }
 export default new TrailHelper();

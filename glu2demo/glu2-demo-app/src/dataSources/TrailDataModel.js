@@ -3,6 +3,7 @@ import GLU from '/../../glu2.js/src/index';
 import TrailHelper from '/helpers/TrailHelper';
 import WaypointHelper from '/helpers/WaypointHelper';
 import ChartHelper from '/helpers/ChartHelper';
+import CommonHelper from '/helpers/CommonHelper';
 
 class TrailDataModel extends GLU.DataSource {
     constructor() {
@@ -243,7 +244,8 @@ class TrailDataModel extends GLU.DataSource {
 
     set surfaceCollection(newSurfaceSetup) {
         if (newSurfaceSetup) {
-            this._surfaceCollection = newSurfaceSetup;
+            const collArray = CommonHelper.sortArrayByElementIndex(newSurfaceSetup, 0);
+            this._surfaceCollection = collArray;
         }
     }
 

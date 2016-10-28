@@ -3,7 +3,7 @@ import BasePage from '../BasePage';
 import Enum from '/enums/Enum';
 // import Lang from '/helpers/Lang';
 import Chart from '../common/ChartComponent';
-import TrailFactsDescription from '../newTrail/TrailFactsDescription';
+import SurfaceCollectionEditor from '../newTrail/SurfaceCollectionEditor';
 // import RaisedButton from 'material-ui/RaisedButton';
 
 
@@ -49,12 +49,12 @@ class StepChartPreview extends BasePage {
                             />);
         }
         return (<div className="flex-container row">
-            <div className="flex-element column wider2">
+            <div className="flex-element column wider">
                 {chartContent}
             </div>
-            <div className="flex-element column narower2 margined-left">
+            <div className="flex-element column narower margined-left">
                 <div className="flex-container row">
-                    <TrailFactsDescription/>
+                    <SurfaceCollectionEditor/>
                 </div>
             </div>
         </div>);

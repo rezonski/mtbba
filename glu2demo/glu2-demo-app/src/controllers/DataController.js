@@ -24,6 +24,7 @@ class DataController extends GLU.Controller {
             [Enum.MapEvents.RETRIEVE_MAP_INIT]: this.getMapInitSetup,
             [Enum.MapEvents.RETRIEVE_INITIAL_DATA_SETUP]: this.getDataInitSetup,
             [Enum.DataEvents.SAVE_TRAILDATA2MODEL]: this.setTrailData2Model,
+            [Enum.DataEvents.UPDATE_TRAILDATA2MODEL]: this.updateTrailData2Model,
             [Enum.DataEvents.RETRIEVE_TRAIL_DATA]: this.getTrailData,
             [Enum.DataEvents.RETRIEVE_CHART_DATA]: this.getChartData,
             [Enum.DataEvents.START_IMAGE_UPLOAD]: this.uploadImage,
@@ -69,6 +70,12 @@ class DataController extends GLU.Controller {
 
     setTrailData2Model(payload) {
         TrailDataModel.setDataByName(payload.name, payload.value);
+    }
+
+    updateTrailData2Model(payload) {
+        TrailDataModel.setDataByName(payload.name, payload.value);
+        const trailData = TrailDataModel.getTrailData();
+        GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
     }
 
     getTrailData() {
