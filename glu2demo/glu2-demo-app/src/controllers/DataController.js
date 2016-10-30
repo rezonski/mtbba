@@ -23,6 +23,7 @@ class DataController extends GLU.Controller {
         this.bindGluBusEvents({
             [Enum.MapEvents.RETRIEVE_MAP_INIT]: this.getMapInitSetup,
             [Enum.MapEvents.RETRIEVE_INITIAL_DATA_SETUP]: this.getDataInitSetup,
+            [Enum.MapEvents.REQUEST_DATA_4_MAP]: this.getMapLayers,
             [Enum.DataEvents.SAVE_TRAILDATA2MODEL]: this.setTrailData2Model,
             [Enum.DataEvents.UPDATE_TRAILDATA2MODEL]: this.updateTrailData2Model,
             [Enum.DataEvents.RETRIEVE_TRAIL_DATA]: this.getTrailData,
@@ -55,6 +56,10 @@ class DataController extends GLU.Controller {
     getDataInitSetup() {
         const dataSetup = CommonDataModel.getSetup();
         GLU.bus.emit(Enum.MapEvents.INITIAL_DATA_SETUP_RETRIEVED, dataSetup);
+    }
+
+    getMapLayers(maps) {
+        TrailDataModel.getMapLayers(maps);
     }
 
     onDeactivate() {

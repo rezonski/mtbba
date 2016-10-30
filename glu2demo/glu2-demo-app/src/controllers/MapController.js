@@ -11,6 +11,7 @@ class MapController extends GLU.Controller {
     onActivate() {
         this.bindGluBusEvents({
             [Enum.MapEvents.RETRIEVE_MAP_INIT]: this.getMapInitSetup,
+            // [Enum.MapEvents.REQUEST_DISPLAY_MAP]: this.getMapInitSetup,
         });
     }
 

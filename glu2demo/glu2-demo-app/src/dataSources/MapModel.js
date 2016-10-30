@@ -18,16 +18,16 @@ class MapModel extends GLU.DataSource {
             value: 'mapbox://styles/mapbox/outdoors-v9',
           },
           {
-            name: 'basic',
-            value: 'mapbox://styles/mapbox/basic-v9',
+            name: 'dark',
+            value: 'mapbox://styles/mapbox/dark-v9',
           },
           {
             name: 'sattelite',
             value: 'mapbox://styles/mapbox/sattelite-v9',
           },
           {
-            name: 'dark',
-            value: 'mapbox://styles/mapbox/dark-v9',
+            name: 'basic',
+            value: 'mapbox://styles/mapbox/basic-v9',
           },
         ];
     }

@@ -1,6 +1,7 @@
 import GLU from '/../../glu2.js/src/index';
 // import API from '/apis/Api';
 import TrailHelper from '/helpers/TrailHelper';
+import MapHelper from '/helpers/MapHelper';
 import WaypointHelper from '/helpers/WaypointHelper';
 import ChartHelper from '/helpers/ChartHelper';
 import CommonHelper from '/helpers/CommonHelper';
@@ -24,6 +25,10 @@ class TrailDataModel extends GLU.DataSource {
         this._unfilteredPathLine = [];
         this._pathLine = [];
         this._profileMapPathLine = [];
+    }
+
+    getMapLayers(maps) {
+        MapHelper.addMulticolorPath(maps.leftMap, maps.rightMap, this.surfaceCollection, this.pathLine, this.generalFact);
     }
 
     flattenPathLine() {

@@ -166,13 +166,13 @@ class WaypointHelper extends GLU.Controller {
         if (startSurfaceIndex < endSurfaceIndex) {
             for (let z = startSurfaceIndex; z <= endSurfaceIndex; z++) {
                 if (z === startSurfaceIndex) {
-                    output += TrailHelper.getSurfaceTypeByName(surface[z][1]).desc;
+                    output += TrailHelper.getSurfaceTypeByName(surface[z][1]).shortdesc;
                 } else {
-                    output += ' -> ' + TrailHelper.getSurfaceTypeByName(surface[z][1]).desc + '(' + surface[z][0] + 'km)';
+                    output += ' -> ' + TrailHelper.getSurfaceTypeByName(surface[z][1]).shortdesc + '(' + surface[z][0] + 'km)';
                 }
             }
         } else {
-            output = ' bez promjene podloge (' + TrailHelper.getSurfaceTypeByName(surface[startSurfaceIndex][1]).desc + ')';
+            output = ' bez promjene podloge (' + TrailHelper.getSurfaceTypeByName(surface[startSurfaceIndex][1]).shortdesc + ')';
         }
         return output;
     }

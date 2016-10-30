@@ -3,18 +3,20 @@ import React from 'react';
 import BasePage from '../BasePage';
 // import ReactMapboxGl, { ScaleControl, ZoomControl } from 'react-mapbox-gl';
 import MessageEvents from '../../enums/MessageEvents';
+import Enum from '../../enums/Enum';
 import Lang from '/helpers/Lang';
 
 class SwipeMap extends BasePage {
     constructor(props) {
         super(props);
         this.bindGluBusEvents({
-            INITIAL_MAP_SETUP_RETRIEVED: this.initMap,
+            [Enum.MapEvents.INITIAL_MAP_SETUP_RETRIEVED]: this.initMap,
+            [Enum.MapEvents.REQUEST_DISPLAY_MAP]: this.onReuestDisplayMap,
         });
     }
 
     componentDidMount() {
-        console.info('SwipeMap DidMount');
+        this.emit(Enum.MapEvents.RETRIEVE_MAP_INIT);
     }
 
     componentWillUnmount() {
@@ -52,6 +54,14 @@ class SwipeMap extends BasePage {
         this.mapsec.on('load', () => {
             this.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('secondMapLoaded'));
         });
+    }
+
+    onReuestDisplayMap() {
+        const maps = {
+            leftMap: this.mapprim,
+            rightMap: this.mapsec,
+        };
+        this.emit(Enum.MapEvents.REQUEST_DATA_4_MAP, maps);
     }
 
     render() {

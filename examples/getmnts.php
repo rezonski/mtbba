@@ -255,7 +255,7 @@ $output .= ',
 "surfaceTypes": [';
 
         $sql = 
-"SELECT t.id, t.name, t.desc, t.meta1, t.meta2
+"SELECT t.id, t.name, t.desc, t.shortdesc, t.meta1, t.meta2
 from repo_types t where t.cat_id = 10 order by t.id asc"; 
 
         $counter = 0;
@@ -273,6 +273,7 @@ from repo_types t where t.cat_id = 10 order by t.id asc";
         "id": '.$row["id"].',
         "name": "'.$row["name"].'",
         "desc": "'.$row["desc"].'",
+        "shortdesc": "'.$row["shortdesc"].'",
         "colorRGBA": "'.$row["meta1"].'",
         "colorHex": "'.$row["meta2"].'"
     }';

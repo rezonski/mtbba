@@ -125,8 +125,8 @@ class StepperContainer extends BasePage {
     }
 
     saveAddedTrail() {
-        console.info('spasi');
-        console.info(this.refs);
+        this.emit(Enum.MapEvents.REQUEST_DISPLAY_MAP);
+        this.onCloseEvent();
     }
 
     handleNext() {
