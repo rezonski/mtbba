@@ -106,7 +106,7 @@ class MapHelper {
             layerStyle.paint = {};
             layerStyle.paint['line-color'] = TrailHelper.getSurfaceTypeByName(surfaceElement[1]).colorRGBA;
             layerStyle.paint['line-width'] = 4;
-            layerStyle.paint['line-dasharray'] = [4, 10];
+            // layerStyle.paint['line-dasharray'] = [4, 10];
             layerStyle.filter = ['==', 'name', surfaceElement[1] + '-' + surfaceIndex];
             layersArray.push(layerStyle);
             sastavPathsArray.push(JSON.parse(JSON.stringify(currentSection)));
