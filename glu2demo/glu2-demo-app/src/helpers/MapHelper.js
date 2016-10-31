@@ -59,7 +59,7 @@ class MapHelper {
         baseLayerStyle.layout['line-cap'] = 'round';
         baseLayerStyle.paint = {};
         baseLayerStyle.paint['line-color'] = 'rgba(255,255,255,1)';
-        baseLayerStyle.paint['line-width'] = 6;
+        baseLayerStyle.paint['line-width'] = 8;
         baseLayerStyle.filter = ['==', 'name', 'basePath'];
         layersArray.push(baseLayerStyle);
         sastavPathsArray.push(JSON.parse(JSON.stringify(basePath)));
