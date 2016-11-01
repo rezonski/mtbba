@@ -25,7 +25,7 @@ class BusComponent extends React.Component {
 
     emit(eventName, payload) {
         console.info(eventName);
-        console.info(payload);
+        // console.info(payload);
         const hadListeners = GLU.bus.emit(eventName, payload);
         if (!hadListeners) {
             console.warn(`No one listened to event ${eventName}`);

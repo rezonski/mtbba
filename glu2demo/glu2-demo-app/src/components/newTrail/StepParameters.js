@@ -29,6 +29,7 @@ class StepParameters extends BasePage {
                         key="trailTypeID"
                         fieldName="trailTypeID"
                         sourceName="trailTypes"
+                        defaultValueIndex={1}
                         floatingLabelText={Lang.label('chooseTrailType')}
                     />
                 </div>
@@ -37,6 +38,7 @@ class StepParameters extends BasePage {
                         key="fitnessLevelID"
                         fieldName="fitnessLevelID"
                         sourceName="fitnessLevels"
+                        defaultValueIndex={1}
                         floatingLabelText={Lang.label('chooseFitnessLevel')}
                     />
                 </div>
@@ -45,6 +47,7 @@ class StepParameters extends BasePage {
                         key="techniqueLevelID"
                         fieldName="techniqueLevelID"
                         sourceName="techniqueLevels"
+                        defaultValueIndex={1}
                         floatingLabelText={Lang.label('chooseTechniqueLevel')}
                     />
                 </div>

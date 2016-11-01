@@ -49,6 +49,7 @@ class ListSelection extends BasePage {
     onInitialSetupRetrieved(payload) {
         this.setState({
             initialSetup: payload,
+            value: payload[this.props.sourceName][this.props.defaultValueIndex].id,
         });
         this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA);
     }

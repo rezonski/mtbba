@@ -7,6 +7,8 @@ class MapModel extends GLU.DataSource {
         this._accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
         this._initialMaxBounds = [[13, 45.38], [22, 42.42]];
         this._initialCenter = [17.67696, 43.920101];
+        this._leftMap = {};
+        this._rightMap = {};
         this._initialZoomLevels = {
           base: 6,
           min: 5,
@@ -14,22 +16,42 @@ class MapModel extends GLU.DataSource {
         };
         this._mapStyles = [
           {
-            name: 'outdoors',
+            name: 'Outdoors',
             value: 'mapbox://styles/mapbox/outdoors-v9',
           },
           {
-            name: 'satellite',
-            value: 'mapbox://styles/mapbox/satellite-v9',
+            name: 'Satellite',
+            value: 'mapbox://styles/mapbox/satellite-hybrid-v8',
           },
           {
-            name: 'dark',
+            name: 'Dark',
             value: 'mapbox://styles/mapbox/dark-v9',
           },
           {
-            name: 'basic',
+            name: 'Basic',
             value: 'mapbox://styles/mapbox/basic-v9',
           },
         ];
+    }
+
+    get leftMap() {
+        return this._leftMap;
+    }
+
+    set leftMap(newMap) {
+        if (newMap) {
+            this._leftMap = newMap;
+        }
+    }
+
+    get rightMap() {
+        return this._rightMap;
+    }
+
+    set rightMap(newMap) {
+        if (newMap) {
+            this._rightMap = newMap;
+        }
     }
 
     get accessToken() {
@@ -46,6 +68,10 @@ class MapModel extends GLU.DataSource {
 
     get initialZoomLevels() {
         return this._initialZoomLevels;
+    }
+
+    get mapStyles() {
+        return this._mapStyles;
     }
 
     getInitialSetup() {

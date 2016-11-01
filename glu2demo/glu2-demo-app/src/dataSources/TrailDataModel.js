@@ -25,10 +25,11 @@ class TrailDataModel extends GLU.DataSource {
         this._unfilteredPathLine = [];
         this._pathLine = [];
         this._profileMapPathLine = [];
+        this._mapPathLayers = [];
     }
 
-    getMapLayers(maps) {
-        MapHelper.addMulticolorPath(maps.leftMap, maps.rightMap, this.surfaceCollection, this.pathLine, this.generalFact);
+    rebuildMapLayers(maps) {
+        this.mapPathLayers = MapHelper.rebuildPathLayers(this.mapPathLayers, maps.leftMap, maps.rightMap, this.surfaceCollection, this.pathLine, this.generalFact);
     }
 
     flattenPathLine() {
@@ -281,6 +282,16 @@ class TrailDataModel extends GLU.DataSource {
     set profileMapPathLine(newLine) {
         if (newLine) {
             this._profileMapPathLine = newLine;
+        }
+    }
+
+    get mapPathLayers() {
+        return this._mapPathLayers;
+    }
+
+    set mapPathLayers(newArray) {
+        if (newArray) {
+            this._mapPathLayers = newArray;
         }
     }
 

@@ -2,6 +2,7 @@
 import GLU from '/../../glu2.js/src/index';
 import CommonDataModel from '/dataSources/CommonDataModel';
 import TrailDataModel from '/dataSources/TrailDataModel';
+import MapModel from '/dataSources/MapModel';
 import MessageEvents from '/enums/MessageEvents';
 import Globals from '/Globals';
 import Enum from '/enums/Enum';
@@ -23,7 +24,8 @@ class DataController extends GLU.Controller {
         this.bindGluBusEvents({
             [Enum.MapEvents.RETRIEVE_MAP_INIT]: this.getMapInitSetup,
             [Enum.MapEvents.RETRIEVE_INITIAL_DATA_SETUP]: this.getDataInitSetup,
-            [Enum.MapEvents.REQUEST_DATA_4_MAP]: this.getMapLayers,
+            [Enum.MapEvents.REBUILD_PATH_LAYERS]: this.rebuildMapLayers,
+            [Enum.MapEvents.REQUEST_DISPLAY_PATH_LAYERS]: this.onRequestMapLayers,
             [Enum.DataEvents.SAVE_TRAILDATA2MODEL]: this.setTrailData2Model,
             [Enum.DataEvents.UPDATE_TRAILDATA2MODEL]: this.updateTrailData2Model,
             [Enum.DataEvents.RETRIEVE_TRAIL_DATA]: this.getTrailData,
@@ -35,7 +37,6 @@ class DataController extends GLU.Controller {
             [Enum.DataEvents.START_FLATTENING_PATH]: this.onFlattenPathRequest,
             [Enum.DataEvents.START_FIXING_WAYPOINTS]: this.onFixWaypointsRequest,
             [Enum.ChartEvents.CHART_POINT_CLICKED]: this.onChartClickEvent,
-            // [Enum.ChartEvents.CHART_POINT_HOVERED]: this.onChartHoverEvent,
         });
     }
 
@@ -58,8 +59,17 @@ class DataController extends GLU.Controller {
         GLU.bus.emit(Enum.MapEvents.INITIAL_DATA_SETUP_RETRIEVED, dataSetup);
     }
 
-    getMapLayers(maps) {
-        TrailDataModel.getMapLayers(maps);
+    rebuildMapLayers() {
+        const maps = {
+            leftMap: MapModel.leftMap,
+            rightMap: MapModel.rightMap,
+        };
+        TrailDataModel.rebuildMapLayers(maps);
+    }
+
+    onRequestMapLayers() {
+        const pathLayers = TrailDataModel.mapPathLayers;
+        GLU.bus.emit(Enum.MapEvents.DISPLAY_PATH_LAYERS_ON_MAP, pathLayers);
     }
 
     onDeactivate() {
@@ -81,6 +91,9 @@ class DataController extends GLU.Controller {
         const trailData = TrailDataModel.getTrailData();
         GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
         GLU.bus.emit(Enum.DataEvents.RETRIEVE_CHART_DATA, 'chartcontainer');
+        if (payload.name === 'surfaceCollection') {
+            GLU.bus.emit(Enum.MapEvents.REBUILD_PATH_LAYERS);
+        }
     }
 
     getTrailData() {

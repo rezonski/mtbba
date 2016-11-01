@@ -157,6 +157,14 @@ const labels = {
         bos: 'Obriši segment',
         eng: 'Delete segment',
     },
+    leftMap: {
+        bos: 'Lijeva mapa',
+        eng: 'Left map',
+    },
+    rightMap: {
+        bos: 'Desna mapa',
+        eng: 'Right map',
+    },
 };
 
 const messages = {
@@ -235,6 +243,10 @@ const messages = {
     keypress4surfaceType: {
         bos: 'Pritisni A - asfalt / M - makadam / S - staza / N - nevozljivo',
         eng: 'Press A - asphalt / M - macadam / S - trail / N - hiking',
+    },
+    mapPathLayersRebuilt: {
+        bos: 'Slojevi osvježeni',
+        eng: 'Path layers rebuilt',
     },
 };
 

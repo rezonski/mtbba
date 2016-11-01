@@ -117,6 +117,7 @@ class StepperContainer extends BasePage {
     }
 
     handleClose() {
+        this.emit(Enum.MapEvents.REQUEST_DISPLAY_PATH_LAYERS);
         this.setState({
             open: false,
             stepIndex: 0,
@@ -125,7 +126,6 @@ class StepperContainer extends BasePage {
     }
 
     saveAddedTrail() {
-        this.emit(Enum.MapEvents.REQUEST_DISPLAY_MAP);
         this.onCloseEvent();
     }
 

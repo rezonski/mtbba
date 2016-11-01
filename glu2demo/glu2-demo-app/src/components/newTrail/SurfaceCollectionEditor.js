@@ -32,6 +32,10 @@ class SurfaceCollectionEditor extends BasePage {
         window.removeEventListener('keydown', this.keyListener, false);
     }
 
+    // componentDidUpdate() {
+    //     this.emit(Enum.MapEvents.REBUILD_PATH_LAYERS);
+    // }
+
     onTrailDataRetrieved(payload) {
         if (payload[this.state.id]) {
             const newData = JSON.parse(JSON.stringify(payload[this.state.id]));

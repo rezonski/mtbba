@@ -11,7 +11,8 @@ class MapController extends GLU.Controller {
     onActivate() {
         this.bindGluBusEvents({
             [Enum.MapEvents.RETRIEVE_MAP_INIT]: this.getMapInitSetup,
-            // [Enum.MapEvents.REQUEST_DISPLAY_MAP]: this.getMapInitSetup,
+            [Enum.MapEvents.SAVE_LEFT_MAP]: this.saveLeftMap,
+            [Enum.MapEvents.SAVE_RIGHT_MAP]: this.saveRightMap,
         });
     }
 
@@ -19,6 +20,16 @@ class MapController extends GLU.Controller {
         const mapSetup = MapModel.getInitialSetup();
         GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('startLoadingMap'));
         GLU.bus.emit(Enum.MapEvents.INITIAL_MAP_SETUP_RETRIEVED, mapSetup);
+        const mapStyles = MapModel.mapStyles;
+        GLU.bus.emit(Enum.MapEvents.MAP_STYLES_RETRIEVED, mapStyles);
+    }
+
+    saveLeftMap(map) {
+        MapModel.leftMap = map;
+    }
+
+    saveRightMap(map) {
+        MapModel.rightMap = map;
     }
 
     onDeactivate() {
