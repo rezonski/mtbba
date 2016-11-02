@@ -17,18 +17,22 @@ class MapModel extends GLU.DataSource {
         this._mapStyles = [
           {
             name: 'Outdoors',
+            type: 'terrain',
             value: 'mapbox://styles/mapbox/outdoors-v9',
           },
           {
             name: 'Satellite',
+            type: 'satellite',
             value: 'mapbox://styles/mapbox/satellite-hybrid-v8',
           },
           {
             name: 'Dark',
+            type: 'terrain',
             value: 'mapbox://styles/mapbox/dark-v9',
           },
           {
             name: 'Basic',
+            type: 'terrain',
             value: 'mapbox://styles/mapbox/basic-v9',
           },
         ];
