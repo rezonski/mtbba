@@ -68,6 +68,11 @@ class DataController extends GLU.Controller {
     }
 
     onRequestMapLayers() {
+        const maps = {
+            leftMap: MapModel.leftMap,
+            rightMap: MapModel.rightMap,
+        };
+        TrailDataModel.rebuildWaypoints(maps);
         const pathLayers = TrailDataModel.mapPathLayers;
         GLU.bus.emit(Enum.MapEvents.DISPLAY_PATH_LAYERS_ON_MAP, pathLayers);
     }
@@ -258,7 +263,11 @@ class DataController extends GLU.Controller {
 
     onFixWaypointsRequest() {
         if (TrailDataModel.waypoints.length > 0) {
-            TrailDataModel.generateWaypoints();
+            const maps = {
+                leftMap: MapModel.leftMap,
+                rightMap: MapModel.rightMap,
+            };
+            TrailDataModel.generateWaypoints(maps);
             // console.info(TrailDataModel.waypoints);
             // console.info(TrailDataModel.chartWaypoints);
         } else {

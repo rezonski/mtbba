@@ -12,13 +12,11 @@ class StatusProgress extends BasePage {
             barColor: this.props.barColor,
             progressVal: 0,
         };
-        this.bindGluBusEvents({
-            [MessageEvents.PROGRESS_MESSAGE]: this.onProcessProgress,
-        });
     }
 
     componentDidMount() {
         this.bindGluBusEvents({
+            [MessageEvents.PROGRESS_MESSAGE]: this.onProcessProgress,
             [Enum.DataEvents.TRAIL_DATA_RETRIEVED]: this.onTrailDataRetrieved,
         });
         this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA);

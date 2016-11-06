@@ -329,7 +329,7 @@ class WaypointHelper extends GLU.Controller {
         return returnVal;
     }
 
-    generateWaypoints(inputWaypoints, inputPathLine) {
+    generateWaypoints(leftMap, rightMap, inputWaypoints, inputPathLine, surfaceCollection) {
         let newWaypoints = [];
         let newWaypointsChart = [];
         let newWaypointsExport = [];
@@ -338,6 +338,11 @@ class WaypointHelper extends GLU.Controller {
             id: 'progressFixWPs',
             loaded: 0,
             total: inputWaypoints.length,
+        };
+
+        let mapWaypointsCollection = {
+            type: 'FeatureCollection',
+            features: [],
         };
 
         inputWaypoints.forEach((wpoint, wpindex) => {
@@ -393,7 +398,8 @@ class WaypointHelper extends GLU.Controller {
                     // name: encodeURIComponent(wpoint.properties.name),
                     // desc: encodeURIComponent(tempDesc),
                     name: wpoint.properties.name,
-                    desc: tempDesc,
+                    descoriginal: tempDesc,
+                    descgenerated: null,
                     lon: wpoint.geometry.coordinates[0],
                     lat: wpoint.geometry.coordinates[1],
                     elevation: Math.round(inputPathLine[tempIndex].elevation),
@@ -423,15 +429,76 @@ class WaypointHelper extends GLU.Controller {
         newWaypointsExport.forEach((element, index) => {
             newWaypointsExport[index].id = (index + 1) * 10;
             if (index < (newWaypointsExport.length - 1)) {
+                newWaypointsExport[index].id = index * 10;
+                newWaypointsExport[index].descgenerated = this.generateDesc(newWaypointsExport, surfaceCollection);
                 newWaypointsExport[index].nextstepdist = Math.round((newWaypointsExport[index + 1].odometer - newWaypointsExport[index].odometer) * 100) / 100;
                 newWaypointsExport[index].nextelevgain = Math.round((newWaypointsExport[index + 1].elevgain - newWaypointsExport[index].elevgain) * 100) / 100;
                 newWaypointsExport[index].nextelevloss = Math.round((newWaypointsExport[index + 1].elevloss - newWaypointsExport[index].elevloss) * 100) / 100;
             }
         });
 
+        newWaypointsExport.forEach((wp) => {
+            mapWaypointsCollection.features.push({
+                type: 'Feature',
+                properties: {
+                    id: wp.id,
+                    time: wp.time,
+                    name: wp.name,
+                    descoriginal: wp.descoriginal,
+                    descgenerated: wp.descgenerated,
+                    odometer: wp.odometar,
+                    nextstepdist: wp.nextstepdist,
+                    elevgain: wp.elevgain,
+                    elevloss: wp.elevloss,
+                    nextelevgain: wp.nextelevgain,
+                    nextelevloss: wp.nextelevloss,
+                    symbol: wp.symbol,
+                    pictogram: wp.pictogram,
+                    pictureurl: wp.pictureurl,
+                    elevationprofile: wp.elevationprofile,
+                },
+                geometry: {
+                    type: 'Point',
+                    coordinates: [wp.lon, wp.lat, wp.elevation],
+                },
+            });
+        });
+
+        if (leftMap.getSource('waypoints')) {
+            leftMap.removeLayer('waypoints');
+            leftMap.removeSource('waypoints');
+        }
+        if (rightMap.getSource('waypoints')) {
+            rightMap.removeLayer('waypoints');
+            rightMap.removeSource('waypoints');
+        }
+        leftMap.addSource('waypoints', {
+            type: 'geojson',
+            data: mapWaypointsCollection,
+        });
+        rightMap.addSource('waypoints', {
+            type: 'geojson',
+            data: mapWaypointsCollection,
+        });
+
+        const pointLayer = {};
+        pointLayer.id = 'waypoints';
+        pointLayer.type = 'symbol';
+        pointLayer.source = 'waypoints';
+        pointLayer.layout = {};
+        pointLayer.layout['icon-image'] = 'monument-15';
+        pointLayer.layout['text-field'] = '{id}';
+        pointLayer.paint = {};
+        pointLayer.paint['icon-color'] = '#FF0000';
+        pointLayer.paint['icon-halo-color'] = '#FFFFFF';
+
+        leftMap.addLayer(pointLayer);
+        rightMap.addLayer(pointLayer);
+
         return {
             waypoints: newWaypointsExport,
             chartWaypoints: newWaypointsChart,
+            mapWaypoints: mapWaypointsCollection.features,
         };
     }
 }

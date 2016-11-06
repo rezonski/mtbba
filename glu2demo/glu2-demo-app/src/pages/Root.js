@@ -5,6 +5,8 @@ import StepperContainer from '../components/newTrail/StepperContainer';
 import MainToolbar from '../components/menu/MainToolbar';
 import MapController from '../controllers/MapController';
 import DataController from '../controllers/DataController';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 class Root extends BasePage {
     constructor(params) {
@@ -37,6 +39,11 @@ class Root extends BasePage {
                     {this.props.children}
                     <Message />
                     <StepperContainer />
+                    <div className="overlay bottom right">
+                        <FloatingActionButton>
+                            <ContentAdd />
+                        </FloatingActionButton>
+                    </div>
                 </div>
             </div>
         );

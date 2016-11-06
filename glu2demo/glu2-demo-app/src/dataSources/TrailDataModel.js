@@ -22,6 +22,7 @@ class TrailDataModel extends GLU.DataSource {
         this._generalFact = {};
         this._waypoints = [];
         this._chartWaypoints = [];
+        this._mapWaypoints = [];
         this._unfilteredPathLine = [];
         this._pathLine = [];
         this._profileMapPathLine = [];
@@ -30,6 +31,14 @@ class TrailDataModel extends GLU.DataSource {
 
     rebuildMapLayers(maps) {
         this.mapPathLayers = MapHelper.rebuildPathLayers(this.mapPathLayers, maps.leftMap, maps.rightMap, this.surfaceCollection, this.pathLine, this.generalFact);
+    }
+
+    rebuildWaypoints(maps) {
+        const currentWaypoints = JSON.parse(JSON.stringify(this._mapWaypoints));
+        const computedWaypoints = WaypointHelper.generateWaypoints(maps.leftMap, maps.rightMap, currentWaypoints, this.pathLine, this.surfaceCollection);
+        this._waypoints = JSON.parse(JSON.stringify(computedWaypoints.waypoints));
+        this._chartWaypoints = JSON.parse(JSON.stringify(computedWaypoints.chartWaypoints));
+        this._mapWaypoints = JSON.parse(JSON.stringify(computedWaypoints.mapWaypoints));
     }
 
     flattenPathLine() {
@@ -42,10 +51,12 @@ class TrailDataModel extends GLU.DataSource {
         this.generalFact = TrailHelper.getGeneralFacts(this.pathLine);
     }
 
-    generateWaypoints() {
+    generateWaypoints(maps) {
         const currentWaypoints = JSON.parse(JSON.stringify(this._waypoints));
-        this._waypoints = WaypointHelper.generateWaypoints(currentWaypoints, this.pathLine).waypoints;
-        this._chartWaypoints = WaypointHelper.generateWaypoints(currentWaypoints, this.pathLine).chartWaypoints;
+        const computedWaypoints = WaypointHelper.generateWaypoints(maps.leftMap, maps.rightMap, currentWaypoints, this.pathLine, this.surfaceCollection);
+        this._waypoints = JSON.parse(JSON.stringify(computedWaypoints.waypoints));
+        this._chartWaypoints = JSON.parse(JSON.stringify(computedWaypoints.chartWaypoints));
+        this._mapWaypoints = JSON.parse(JSON.stringify(computedWaypoints.mapWaypoints));
     }
 
     setElevationOnPathByIndex(pointIndex, elevation) {
@@ -92,6 +103,7 @@ class TrailDataModel extends GLU.DataSource {
             surfaceCollection: this.surfaceCollection,
             waypoints: this.waypoints,
             chartWaypoints: this.chartWaypoints,
+            mapWaypoints: this.mapWaypoints,
             generalFact: this.generalFact,
             progressGeneral: this.progressGeneral,
             progressSimplifyPath: this.progressSimplifyPath,
@@ -162,6 +174,10 @@ class TrailDataModel extends GLU.DataSource {
 
     get chartWaypoints() {
         return this._chartWaypoints;
+    }
+
+    get mapWaypoints() {
+        return this._mapWaypoints;
     }
 
     get trailName() {
