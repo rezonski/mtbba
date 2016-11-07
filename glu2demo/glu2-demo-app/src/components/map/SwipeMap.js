@@ -9,14 +9,15 @@ import Lang from '/helpers/Lang';
 class SwipeMap extends BasePage {
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
         this.bindGluBusEvents({
             [Enum.MapEvents.INITIAL_MAP_SETUP_RETRIEVED]: this.initMap,
             [Enum.MapEvents.DISPLAY_PATH_LAYERS_ON_MAP]: this.onPathLayersRetrieved,
             [Enum.MapEvents.CHANGE_MAP_STYLE]: this.onMapStyleChanged,
+            [Enum.MapEvents.MAP_RESET_2_NORTH]: this.onOrientate2North,
         });
-    }
-
-    componentDidMount() {
         this.emit(Enum.MapEvents.RETRIEVE_MAP_INIT);
     }
 
@@ -59,6 +60,10 @@ class SwipeMap extends BasePage {
             this.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('secondMapLoaded'));
             this.emit(Enum.MapEvents.SAVE_RIGHT_MAP, this.rightmap);
         });
+    }
+
+    onOrientate2North() {
+        this.leftmap.resetNorth();
     }
 
     onPathLayersRetrieved(layers) {

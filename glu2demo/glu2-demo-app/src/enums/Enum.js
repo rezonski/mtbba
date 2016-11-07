@@ -11,6 +11,7 @@ const Enum = {
         REBUILD_PATH_LAYERS: '__REBUILD_PATH_LAYERS__',
         SAVE_LEFT_MAP: '__SAVE_LEFT_MAP__',
         SAVE_RIGHT_MAP: '__SAVE_RIGHT_MAP__',
+        MAP_RESET_2_NORTH: '__MAP_RESET_2_NORTH__',
     },
     AppEvents: {
         OPEN_FORM_NEW_TRAIL: '__OPEN_FORM_NEW_TRAIL__',

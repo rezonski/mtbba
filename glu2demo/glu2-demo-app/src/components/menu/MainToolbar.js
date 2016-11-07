@@ -6,7 +6,7 @@ import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
-import RaisedButton from 'material-ui/RaisedButton';
+// import RaisedButton from 'material-ui/RaisedButton';
 import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
 // import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/more-vert';
 // import NavLayers from 'material-ui/svg-icons/maps/layers';
@@ -78,10 +78,6 @@ class MainToolbar extends BasePage {
         return (
             <Toolbar style={style}>
                 <ToolbarGroup>
-                    <RaisedButton
-                        label={this.state.newEditButtonLabel}
-                        primary={true}
-                        onTouchTap={this.onNewTrailEvent} />
                     <ToolbarTitle text={this.state.activeTitle} />
                 </ToolbarGroup>
                 <ToolbarGroup>

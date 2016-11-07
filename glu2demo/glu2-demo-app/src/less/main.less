@@ -62,15 +62,24 @@ body {
                 .overlay {
                     display: block;
                     position: absolute;
-                    width: 100px;
-                    height: 100px;
+                    padding: 30px;
 
                     &.bottom {
                         bottom: 0;
                     }
 
+                    &.top {
+                        top: 60px;
+                    }
+
                     &.right {
                         right: 0;
+                        text-align: right;
+                    }
+
+                    &.left {
+                        left: 0;
+                        text-align: left;
                     }
                 }
             }
