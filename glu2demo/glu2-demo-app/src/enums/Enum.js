@@ -16,6 +16,7 @@ const Enum = {
     AppEvents: {
         OPEN_FORM_NEW_TRAIL: '__OPEN_FORM_NEW_TRAIL__',
         CHANGE_LANGUAGE: '__CHANGE_LANGUAGE__',
+        TOGGLE_WP_DRAWER: '__TOGGLE_WP_DRAWER__',
     },
     DataEvents: {
         SAVE_TRAILDATA2MODEL: '__SAVE_TRAILDATA2MODEL__',

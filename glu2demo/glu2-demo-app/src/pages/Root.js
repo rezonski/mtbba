@@ -7,6 +7,7 @@ import StepperContainer from '../components/newTrail/StepperContainer';
 import MainToolbar from '../components/menu/MainToolbar';
 import MapController from '../controllers/MapController';
 import DataController from '../controllers/DataController';
+import WPDrawer from '../components/wpEditor/WPDrawer';
 
 class Root extends BasePage {
     constructor(params) {
@@ -39,6 +40,7 @@ class Root extends BasePage {
                     {this.props.children}
                     <Message />
                     <StepperContainer />
+                    <WPDrawer />
                     <div className="overlay bottom right">
                         <NewEditActionButton />
                     </div>

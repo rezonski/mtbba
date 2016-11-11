@@ -63,7 +63,8 @@ class SwipeMap extends BasePage {
     }
 
     onOrientate2North() {
-        this.leftmap.resetNorth();
+        this.leftmap.setBearing(0);
+        this.rightmap.setBearing(0);
     }
 
     onPathLayersRetrieved(layers) {

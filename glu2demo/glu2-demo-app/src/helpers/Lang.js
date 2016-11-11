@@ -165,6 +165,14 @@ const labels = {
         bos: 'Desna mapa',
         eng: 'Right map',
     },
+    waypoints: {
+        bos: 'Putne tačke',
+        eng: 'Waypoints',
+    },
+    maplayers: {
+        bos: 'Slojevi karte',
+        eng: 'Map layers',
+    },
 };
 
 const messages = {
