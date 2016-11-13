@@ -12,6 +12,7 @@ class CommonDataModel extends GLU.DataSource {
         this._techniqueLevels = [];
         this._pointTypes = [];
         this._surfaceTypes = [];
+        this._trails = [];
     }
 
     get countries() {
@@ -40,6 +41,16 @@ class CommonDataModel extends GLU.DataSource {
 
     get surfaceTypes() {
         return this._surfaceTypes;
+    }
+
+    get trails() {
+        return this._trails;
+    }
+
+    set trails(newTrailsSet) {
+        if (newTrailsSet) {
+            this._trails = newTrailsSet;
+        }
     }
 
     parseSetupData(rawData) {

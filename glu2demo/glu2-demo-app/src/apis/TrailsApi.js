@@ -4,12 +4,26 @@ class TrailsApi extends GLU.Api {
     constructor(endpoint) {
         super(endpoint);
 
-        this.createApiActions({
+        this.createApiActions(
+        {
             name: 'getInitialSetup',
             method: GLU.Api.Get,
             path: 'getmnts.php',
             credentials: false,
-        }, {
+        },
+        {
+            name: 'getTrailsList',
+            method: GLU.Api.Get,
+            path: 'getactivetrails.php',
+            credentials: false,
+        },
+        {
+            name: 'getToken',
+            method: GLU.Api.Get,
+            path: 'gettoken.php',
+            credentials: false,
+        },
+        {
             name: 'uploadImage',
             method: GLU.Api.Post,
             path: '/upload/upload.php',

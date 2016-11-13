@@ -3,6 +3,7 @@ import MapModel from '/dataSources/MapModel';
 import MessageEvents from '/enums/MessageEvents';
 import Enum from '/enums/Enum';
 import Lang from '/helpers/Lang';
+import API from '/apis/Api';
 
 class MapController extends GLU.Controller {
     constructor() {
@@ -10,7 +11,7 @@ class MapController extends GLU.Controller {
     }
     onActivate() {
         this.bindGluBusEvents({
-            [Enum.MapEvents.RETRIEVE_MAP_INIT]: this.getMapInitSetup,
+            [Enum.MapEvents.RETRIEVE_MAP_INIT]: this.getToken,
             [Enum.MapEvents.SAVE_LEFT_MAP]: this.saveLeftMap,
             [Enum.MapEvents.SAVE_RIGHT_MAP]: this.saveRightMap,
         });
@@ -22,6 +23,21 @@ class MapController extends GLU.Controller {
         GLU.bus.emit(Enum.MapEvents.INITIAL_MAP_SETUP_RETRIEVED, mapSetup);
         const mapStyles = MapModel.mapStyles;
         GLU.bus.emit(Enum.MapEvents.MAP_STYLES_RETRIEVED, mapStyles);
+    }
+
+    getToken() {
+        API.Trails.getToken({
+                query: {},
+            })
+            .then((payload) => {
+                const newToken = payload.text;
+                MapModel.accessToken = newToken;
+                this.getMapInitSetup();
+            })
+            .catch((err) => {
+                const msg = (err && err.response) ? err.response.text : err.toString();
+                GLU.bus.emit(MessageEvents.ERROR_MESSAGE, msg);
+            });
     }
 
     saveLeftMap(map) {

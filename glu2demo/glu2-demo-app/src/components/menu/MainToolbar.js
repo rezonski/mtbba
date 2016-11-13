@@ -16,6 +16,8 @@ import NumList from 'material-ui/svg-icons/editor/format-list-numbered';
 import NavTerrain from 'material-ui/svg-icons/maps/terrain';
 import NavSatellite from 'material-ui/svg-icons/maps/satellite';
 import ArrowDropDown from 'material-ui/svg-icons/navigation/arrow-drop-down';
+import SaveTrailIcon from 'material-ui/svg-icons/file/cloud-upload';
+import OpenTrailIcon from 'material-ui/svg-icons/file/cloud-download';
 
 class MainToolbar extends BasePage {
 
@@ -27,11 +29,13 @@ class MainToolbar extends BasePage {
             mapStyles: [],
             openMapLayers: false,
             disabledWaypoints: true,
+            disabledSaveTrail: true,
         };
         this.onNewTrailEvent = this.onNewTrail.bind(this);
         this.onOpenMapLayersEvent = this.onOpenMapLayers.bind(this);
         this.onCloseMapLayersEvent = this.onCloseMapLayers.bind(this);
         this.onToggleWPDrawerEvent = this.onToggleWPDrawer.bind(this);
+        this.onOpenTrailReuestEvent = this.onOpenTrailReuest.bind(this);
         this.bindGluBusEvents({
             [Enum.MapEvents.MAP_STYLES_RETRIEVED]: this.onMapStylesRetrieved,
             [Enum.MapEvents.REQUEST_DISPLAY_PATH_LAYERS]: this.onWaypointEnabled,
@@ -71,6 +75,10 @@ class MainToolbar extends BasePage {
         this.emit(Enum.AppEvents.TOGGLE_WP_DRAWER);
     }
 
+    onOpenTrailReuest() {
+        this.emit(Enum.AppEvents.OPEN_FORM_OPEN_TRAIL);
+    }
+
     onCloseMapLayers() {
         this.setState({
             openMapLayers: false,
@@ -80,6 +88,7 @@ class MainToolbar extends BasePage {
     onWaypointEnabled() {
         this.setState({
             disabledWaypoints: false,
+            disabledSaveTrail: false,
         });
     }
 
@@ -113,6 +122,19 @@ class MainToolbar extends BasePage {
                     <ToolbarTitle text={this.state.activeTitle} />
                 </ToolbarGroup>
                 <ToolbarGroup>
+                    <FlatButton
+                        label={Lang.label('opentrail')}
+                        primary={true}
+                        onTouchTap={this.onOpenTrailReuestEvent}
+                        icon={<OpenTrailIcon />}
+                    />
+                    <FlatButton
+                        label={Lang.label('savetrail')}
+                        primary={true}
+                        disabled={this.state.disabledWaypoints}
+                        onTouchTap={this.onToggleWPDrawerEvent}
+                        icon={<SaveTrailIcon />}
+                    />
                     <FlatButton
                         label={Lang.label('waypoints')}
                         primary={true}

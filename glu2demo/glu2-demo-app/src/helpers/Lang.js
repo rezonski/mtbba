@@ -166,12 +166,36 @@ const labels = {
         eng: 'Right map',
     },
     waypoints: {
-        bos: 'Putne tačke',
+        bos: 'Tačke',
         eng: 'Waypoints',
     },
     maplayers: {
-        bos: 'Slojevi karte',
+        bos: 'Slojevi',
         eng: 'Map layers',
+    },
+    savetrail: {
+        bos: 'Spasi',
+        eng: 'Save',
+    },
+    opentrail: {
+        bos: 'Otvori',
+        eng: 'Open',
+    },
+    name: {
+        bos: 'Naziv',
+        eng: 'Name',
+    },
+    distance: {
+        bos: 'Dužina',
+        eng: 'Distance',
+    },
+    elevationgain: {
+        bos: 'V.uspon',
+        eng: 'El.gain',
+    },
+    trailtype: {
+        bos: 'Tip',
+        eng: 'Type',
     },
 };
 
@@ -183,6 +207,14 @@ const messages = {
     endInitialDataLoading: {
         bos: 'Završeno učitavanje inicijalnih postavki',
         eng: 'Initial data loaded',
+    },
+    startTrailsListLoading: {
+        bos: 'Počinje učitavanje liste staza',
+        eng: 'Start loading trails list',
+    },
+    endTrailsListLoading: {
+        bos: 'Završeno učitavanje liste staza',
+        eng: 'Trails list loaded',
     },
     startLoadingMap: {
         bos: 'Počinje učitavanje mape',

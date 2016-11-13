@@ -30,6 +30,7 @@ class DataController extends GLU.Controller {
             [Enum.DataEvents.UPDATE_TRAILDATA2MODEL]: this.updateTrailData2Model,
             [Enum.DataEvents.RETRIEVE_TRAIL_DATA]: this.getTrailData,
             [Enum.DataEvents.RETRIEVE_CHART_DATA]: this.getChartData,
+            [Enum.DataEvents.RETRIEVE_TRAILS_LIST]: this.getTrailsList,
             [Enum.DataEvents.START_IMAGE_UPLOAD]: this.uploadImage,
             [Enum.DataEvents.SAVE_INITIAL_GEO_FILE]: this.saveInitalGeoFile,
             [Enum.DataEvents.START_SIMPLIFYING_PATH]: this.onSimplifyRequest,
@@ -109,6 +110,20 @@ class DataController extends GLU.Controller {
     getChartData(containerId) {
         const chartData = TrailDataModel.getChartData(containerId);
         GLU.bus.emit(Enum.DataEvents.CHART_DATA_RETRIEVED, chartData);
+    }
+
+    getTrailsList() {
+        GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('startTrailsListLoading'));
+        API.Trails.getTrailsList({
+                query: {},
+            })
+            .then((response) => {
+                CommonDataModel.trails = response.text;
+                const curentTrailsList = CommonDataModel.trails;
+                GLU.bus.emit(Enum.DataEvents.TRAILS_LIST_RETRIEVED, curentTrailsList);
+            })
+            .catch(err => this.getSetupDataError(err));
+        GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endTrailsListLoading'));
     }
 
     onSimplifyRequest() {

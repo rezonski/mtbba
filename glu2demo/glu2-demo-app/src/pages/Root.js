@@ -3,7 +3,8 @@ import BasePage from '../components/BasePage';
 import Message from '../components/notifications/Message';
 import NewEditActionButton from '../components/menu/NewEditActionButton';
 import SnapToNorth from '../components/map/SnapToNorth';
-import StepperContainer from '../components/newTrail/StepperContainer';
+import NewTrailContainer from '../components/newTrail/NewTrailContainer';
+import OpenTrailContainer from '../components/openTrail/OpenTrailContainer';
 import MainToolbar from '../components/menu/MainToolbar';
 import MapController from '../controllers/MapController';
 import DataController from '../controllers/DataController';
@@ -39,7 +40,8 @@ class Root extends BasePage {
                 <div id="map-container">
                     {this.props.children}
                     <Message />
-                    <StepperContainer />
+                    <NewTrailContainer />
+                    <OpenTrailContainer />
                     <WPDrawer />
                     <div className="overlay bottom right">
                         <NewEditActionButton />

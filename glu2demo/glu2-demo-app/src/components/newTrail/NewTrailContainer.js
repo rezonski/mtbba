@@ -15,7 +15,7 @@ import StepProcessing from '../newTrail/StepProcessing';
 import StepChartPreview from '../newTrail/StepChartPreview';
 
 
-class StepperContainer extends BasePage {
+class NewTrailContainer extends BasePage {
     constructor(props) {
         super(props);
         this.state = {
@@ -145,4 +145,4 @@ class StepperContainer extends BasePage {
     }
 }
 
-export default StepperContainer;
+export default NewTrailContainer;
