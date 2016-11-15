@@ -82,6 +82,33 @@ class TrailDataModel extends GLU.DataSource {
         });
     }
 
+    parseDownloadedTrail() {
+        this.parsedInitialFile.features.forEach((feature) => {
+            if (feature.geometry.type === 'LineString') {
+                this._unfilteredPathLine = this._unfilteredPathLine.concat(feature.geometry.coordinates);
+                this._generalFact = feature.properties;
+            } else if (feature.geometry.type === 'Point') {
+                this._waypoints.push(feature);
+            }
+        });
+        this._trailName = this._generalFact.trail_name;
+        this._trailDesc = this._generalFact.trail_desc;
+        this._externalLink = this._generalFact.external_link;
+        this._imageURL = this._generalFact.image_url;
+        this._trailTypeID = this._generalFact.type_id;
+        this._fitnessLevelID = this._generalFact.required_fitness;
+        this._techniqueLevelID = this._generalFact.required_technique;
+        this._mountainIDs = this._generalFact.mntns.map((mnt) => {
+            return mnt.id;
+        });
+        this._surfaceCollection = this._generalFact.surface;
+        this._generalFact = this._generalFact;
+        return {
+            center: [this._generalFact.lon_center, this._generalFact.lat_center],
+            bounds: this._generalFact.bounds,
+        };
+    }
+
     reducePathLinePoints() {
         this._pathLine = TrailHelper.reducePathLinePoints(this._unfilteredPathLine, 0.02);
     }

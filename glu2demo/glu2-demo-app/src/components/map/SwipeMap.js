@@ -73,8 +73,6 @@ class SwipeMap extends BasePage {
             this.leftmap.setLayoutProperty(layer.id, 'visibility', 'visible');
             this.rightmap.setLayoutProperty(layer.id, 'visibility', 'visible');
         });
-        console.log(this.leftmap.style._layers);
-        console.log(this.rightmap.style._layers);
     }
 
     onMapStyleChanged(styleSetup) {

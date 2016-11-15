@@ -18,6 +18,7 @@
     $sql = "SELECT trail_id,
                 trail_name,
                 trail_desc,
+                type_id,
                 type_name,
                 type_desc,
                 COALESCE(distance,0) AS `distance`,
@@ -32,7 +33,9 @@
                 COALESCE(required_technique,0) AS `required_technique`,
                 COALESCE(lat_center,0) AS `lat_center`,
                 COALESCE(lon_center,0) AS `lon_center`,
-                COALESCE(bounds,0) AS `bounds` 
+                bounds,
+                external_link,
+                image_url
             FROM active_trails";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -67,11 +70,12 @@
             $trailsarray .='
     {
         "name": "'.$row["trail_name"].'",
-        "trail_id": "'.$row["trail_id"].'",
+        "trail_id": '.$row["trail_id"].',
         "mntns": '.$mntarray.',
         "trail_name": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_name"]).'",
         "trail_desc": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_desc"]).'",
         "surface": '.$row["surface"].',
+        "type_id": '.$row["type_id"].',
         "type_name": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["type_name"]).'",
         "type_desc": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["type_desc"]).'",
         "distance": '.$row["distance"].',
@@ -85,7 +89,9 @@
         "required_technique": '.$row["required_technique"].',
         "lat_center": '.$row["lat_center"].',
         "lon_center": '.$row["lon_center"].',
-        "bounds": '.$row["bounds"].'
+        "bounds": "'.$row["bounds"].'",
+        "external_link": "'.$row["external_link"].'",
+        "image_url": "'.$row["image_url"].'"
     }';
         }
         $trailsarray .=']';   

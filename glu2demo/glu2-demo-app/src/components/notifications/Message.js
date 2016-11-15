@@ -82,6 +82,7 @@ class Message extends BasePage {
     }
 
     render() {
+        console.info('# ' + this.state.message);
         return (
             <Snackbar
                 className={this.state.type}

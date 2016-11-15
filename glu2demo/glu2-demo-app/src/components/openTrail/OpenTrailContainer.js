@@ -1,5 +1,6 @@
 import React from 'react';
 import BasePage from '../BasePage';
+// import TrailListRow from '../openTrail/TrailListRow';
 import Enum from '/enums/Enum';
 import Lang from '/helpers/Lang';
 import Dialog from 'material-ui/Dialog';
@@ -8,11 +9,11 @@ import {
     TableBody,
     TableHeader,
     TableHeaderColumn,
-    TableRow,
-    TableRowColumn
+    TableRowColumn,
+    TableRow
 } from 'material-ui/Table';
-// import RaisedButton from 'material-ui/RaisedButton';
-// import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 
 
 class OpenTrailContainer extends BasePage {
@@ -23,14 +24,19 @@ class OpenTrailContainer extends BasePage {
             title: Lang.label('opentrail'),
             trails: [],
             height: '300px',
+            selectedTrailIdxs: [],
+            // openDisabled: true,
         };
         this.onCloseEvent = this.handleClose.bind(this);
+        this.onOpenSelectedTrailEvent = this.onOpenSelectedTrail.bind(this);
+        this.onRowSelectedEvent = this.onRowSelected.bind(this);
     }
 
     componentDidMount() {
         this.bindGluBusEvents({
             [Enum.AppEvents.OPEN_FORM_OPEN_TRAIL]: this.onOpenFormRequest,
             [Enum.DataEvents.TRAILS_LIST_RETRIEVED]: this.onTrailsListRetrieved,
+            [Enum.DataEvents.TRAIL_DOWNLOADED]: this.onCloseEvent,
         });
         this.emit(Enum.DataEvents.RETRIEVE_TRAILS_LIST);
     }
@@ -46,11 +52,19 @@ class OpenTrailContainer extends BasePage {
     }
 
     onTrailsListRetrieved(payload) {
-        const trailsParsed = JSON.parse(payload);
-        console.log(trailsParsed);
         this.setState({
-            trails: trailsParsed,
+            trails: payload,
         });
+    }
+
+    onOpenSelectedTrail() {
+        const trailId = this.state.trails[this.selectedIndex].trail_id;
+        this.emit(Enum.DataEvents.DOWNLOAD_TRAIL, trailId);
+    }
+
+    onRowSelected(rows) {
+        console.info(rows);
+        this.selectedIndex = (rows.length > 0) ? rows[0] : null;
     }
 
     render() {
@@ -73,13 +87,30 @@ class OpenTrailContainer extends BasePage {
                 paddingRight: '10px',
             },
         };
+
+        const actions = [
+            <FlatButton
+                label={Lang.label('cancel')}
+                primary={true}
+                onTouchTap={this.handleClose}
+            />,
+            <RaisedButton
+                label={Lang.label('opentrail')}
+                primary={true}
+                // disabled={this.state.openDisabled}
+                onTouchTap={this.onOpenSelectedTrailEvent}
+            />,
+        ];
+
         const trailstable = this.state.trails.map((trail, trailIdx) => {
-            return(<TableRow key={'trail-row-' + trailIdx}>
-                        <TableRowColumn style={styles.columnNarow}>{trail['trail_id']}</TableRowColumn>
-                        <TableRowColumn>{trail['trail_name']}</TableRowColumn>
-                        <TableRowColumn style={styles.columnNarower}>{trail['distance'].toFixed(2) + 'km'}</TableRowColumn>
-                        <TableRowColumn style={styles.columnNarower}>{trail['elev_gain'].toFixed(2)}</TableRowColumn>
-                        <TableRowColumn style={styles.columnNarower}>{trail['type_name']}</TableRowColumn>
+            return (<TableRow
+                        key={'trail-row-' + trailIdx}
+                    >
+                        <TableRowColumn style={styles.columnNarow}>{trail.trail_id}</TableRowColumn>
+                        <TableRowColumn>{trail.trail_name}</TableRowColumn>
+                        <TableRowColumn style={styles.columnNarower}>{trail.distance.toFixed(2) + 'km'}</TableRowColumn>
+                        <TableRowColumn style={styles.columnNarower}>{trail.elev_gain.toFixed(2)}</TableRowColumn>
+                        <TableRowColumn style={styles.columnNarower}>{trail.type_name}</TableRowColumn>
                     </TableRow>);
         });
         return (
@@ -89,9 +120,13 @@ class OpenTrailContainer extends BasePage {
                 title={this.state.title}
                 modal={false}
                 open={this.state.open}
-                onRequestClose={this.onCloseEvent}>
+                actions={actions}
+                onRequestClose={this.onCloseEvent}
+            >
                 <Table
-                    height={this.state.height}>
+                    height={this.state.height}
+                    onRowSelection={this.onRowSelectedEvent}
+                >
                     <TableHeader>
                         <TableRow>
                             <TableHeaderColumn style={styles.columnNarow}>ID</TableHeaderColumn>
@@ -110,31 +145,9 @@ class OpenTrailContainer extends BasePage {
     }
 
     handleClose() {
-        this.emit(Enum.MapEvents.REQUEST_DISPLAY_PATH_LAYERS);
         this.setState({
             open: false,
-            stepIndex: 0,
-            finished: false,
         });
-    }
-
-    saveAddedTrail() {
-        this.onCloseEvent();
-    }
-
-    handleNext() {
-        const stepIndex = this.state.stepIndex;
-        this.setState({
-            stepIndex: (stepIndex >= 4) ? stepIndex : (stepIndex + 1),
-            finished: stepIndex >= 4,
-        });
-    }
-
-    handlePrev() {
-        const stepIndex = this.state.stepIndex;
-        if (stepIndex > 0) {
-            this.setState({ stepIndex: stepIndex - 1 });
-        }
     }
 }
 

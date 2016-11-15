@@ -72,6 +72,7 @@ if (isset($_GET['trailid'])) {
     "SELECT trail_id,
             trail_name,
             trail_desc,
+            type_id,
             type_name,
             type_desc,
             COALESCE(distance,0) AS `distance`,
@@ -86,7 +87,9 @@ if (isset($_GET['trailid'])) {
             COALESCE(required_technique,0) AS `required_technique`,
             COALESCE(lat_center,0) AS `lat_center`,
             COALESCE(lon_center,0) AS `lon_center`,
-            COALESCE(bounds,0) AS `bounds` 
+            bounds,
+            external_link,
+            image_url
     FROM active_trails 
     where trail_id = ".$id;
 
@@ -98,12 +101,13 @@ if (isset($_GET['trailid'])) {
 '{
         "type": "Feature",
         "properties": {
-            "name": "'.$row["trail_name"].'",
+            "name": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_name"]).'",
             "trail_id": "'.$row["trail_id"].'",
             "mntns": '.$mntarray.',
-            "trail_name": "'.$row["trail_name"].'",
-            "trail_desc": "'.$row["trail_desc"].'",
+            "trail_name": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_name"]).'",
+            "trail_desc": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_desc"]).'",
             "surface": '.$row["surface"].',
+            "type_id": "'.$row["type_id"].'",
             "type_name": "'.$row["type_name"].'",
             "type_desc": "'.$row["type_desc"].'",
             "distance": '.$row["distance"].',
@@ -117,7 +121,9 @@ if (isset($_GET['trailid'])) {
             "required_technique": '.$row["required_technique"].',
             "lat_center": '.$row["lat_center"].',
             "lon_center": '.$row["lon_center"].',
-            "bounds": '.$row["bounds"].'
+            "bounds": "'.$row["bounds"].'",
+            "external_link": "'.$row["external_link"].'",
+            "image_url": "'.$row["image_url"].'"
         },
         "geometry": {
             "type": "LineString",

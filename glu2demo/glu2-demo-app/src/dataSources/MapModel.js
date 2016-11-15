@@ -66,8 +66,20 @@ class MapModel extends GLU.DataSource {
         return this._initialMaxBounds;
     }
 
+    set initialMaxBounds(newBounds) {
+        if (newBounds) {
+            this._initialMaxBounds = newBounds;
+        }
+    }
+
     get initialCenter() {
         return this._initialCenter;
+    }
+
+    set initialCenter(newCenter) {
+        if (newCenter) {
+            this._initialCenter = newCenter;
+        }
     }
 
     get initialZoomLevels() {

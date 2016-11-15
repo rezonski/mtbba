@@ -216,6 +216,14 @@ const messages = {
         bos: 'Završeno učitavanje liste staza',
         eng: 'Trails list loaded',
     },
+    startDownloadingTrailLoading: {
+        bos: 'Počinje učitavanje staze ID ',
+        eng: 'Start loading trail ID ',
+    },
+    endDownloadingTrailLoading: {
+        bos: 'Završeno učitavanje staze ID ',
+        eng: 'Loaded trail ID ',
+    },
     startLoadingMap: {
         bos: 'Počinje učitavanje mape',
         eng: 'Start loading map',
@@ -239,6 +247,10 @@ const messages = {
     fileLoadFailed: {
         bos: 'Greška u datoteci',
         eng: 'Failed to load file',
+    },
+    trailLoadFailed: {
+        bos: 'Greška u podacima',
+        eng: 'Failed to load',
     },
     fileFormatUnsuported: {
         bos: 'Format datoteke nije podržan',

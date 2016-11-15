@@ -31,6 +31,7 @@ class DataController extends GLU.Controller {
             [Enum.DataEvents.RETRIEVE_TRAIL_DATA]: this.getTrailData,
             [Enum.DataEvents.RETRIEVE_CHART_DATA]: this.getChartData,
             [Enum.DataEvents.RETRIEVE_TRAILS_LIST]: this.getTrailsList,
+            [Enum.DataEvents.DOWNLOAD_TRAIL]: this.downloadTrail,
             [Enum.DataEvents.START_IMAGE_UPLOAD]: this.uploadImage,
             [Enum.DataEvents.SAVE_INITIAL_GEO_FILE]: this.saveInitalGeoFile,
             [Enum.DataEvents.START_SIMPLIFYING_PATH]: this.onSimplifyRequest,
@@ -50,7 +51,10 @@ class DataController extends GLU.Controller {
         API.Trails.getInitialSetup({
                 query: {},
             })
-            .then(response => CommonDataModel.parseSetupData(response.text))
+            .then((response) => {
+                CommonDataModel.parseSetupData(response.text);
+                this.getDataInitSetup();
+            })
             .catch(err => this.getSetupDataError(err));
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endInitialDataLoading'));
     }
@@ -66,6 +70,7 @@ class DataController extends GLU.Controller {
             rightMap: MapModel.rightMap,
         };
         TrailDataModel.rebuildMapLayers(maps);
+        GLU.bus.emit(Enum.MapEvents.REQUEST_DISPLAY_PATH_LAYERS);
     }
 
     onRequestMapLayers() {
@@ -118,12 +123,51 @@ class DataController extends GLU.Controller {
                 query: {},
             })
             .then((response) => {
-                CommonDataModel.trails = response.text;
+                CommonDataModel.trails = JSON.parse(response.text);
                 const curentTrailsList = CommonDataModel.trails;
                 GLU.bus.emit(Enum.DataEvents.TRAILS_LIST_RETRIEVED, curentTrailsList);
             })
-            .catch(err => this.getSetupDataError(err));
+            .catch((err) => {
+                const msg = (err && err.response) ? err.response.text : err.toString();
+                // console.log('getTrailList: ' + msg);
+                GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('trailLoadFailed') + msg);
+            });
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endTrailsListLoading'));
+    }
+
+    downloadTrail(trailId) {
+        const query = {
+            trailid: trailId,
+        };
+        GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('startDownloadingTrailLoading'));
+        API.Trails.getTrail({ query })
+            .then((response) => {
+                TrailDataModel.parsedInitialFile = JSON.parse(response.text);
+                const geoSetup = TrailDataModel.parseDownloadedTrail(); // Runs parsing
+                MapModel.initialCenter = JSON.parse(JSON.stringify(geoSetup.center));
+                MapModel.initialMaxBounds = JSON.parse(JSON.stringify(geoSetup.bounds));
+                console.info('# 1');
+                this.onSimplifyRequest();
+                // console.info('# 2');
+                // this.onElevatePathRequest();
+                // console.info('# 3');
+                // this.onFlattenPathRequest();
+                // console.info('# 4');
+                // this.onFixWaypointsRequest();
+                // console.info('# 5');
+                // this.rebuildMapLayers();
+                // console.info('# 6');
+                // this.onRequestMapLayers();
+                // console.info('# 7');
+                const trailData = TrailDataModel.getTrailData();
+                GLU.bus.emit(Enum.DataEvents.TRAIL_DOWNLOADED, trailData);
+            })
+            .catch((err) => {
+                const msg = (err && err.response) ? err.response.text : err.toString();
+                // console.log('downloadTrail: ' + msg);
+                GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('trailLoadFailed') + msg);
+            });
+        GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endDownloadingTrailLoading'));
     }
 
     onSimplifyRequest() {
@@ -264,11 +308,13 @@ class DataController extends GLU.Controller {
 
     onFlattenPathRequest() {
         TrailDataModel.flattenPathLine();
+        console.info('# 21');
         this.progressPayload.loaded = 82;
         GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, this.progressPayload);
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endPathFlattening'));
 
         TrailDataModel.generateGeneralFacts();
+        console.info('# 22');
         this.progressPayload.loaded = 85;
         GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, this.progressPayload);
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endGeneralFactsGenerating'));
@@ -296,6 +342,8 @@ class DataController extends GLU.Controller {
         this.progressPayload.loaded = 100;
         GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, this.progressPayload);
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endWaypointsGenerating'));
+
+        GLU.bus.emit(Enum.MapEvents.REBUILD_PATH_LAYERS);
     }
 
     uploadImage(payload) {

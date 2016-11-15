@@ -18,6 +18,12 @@ class TrailsApi extends GLU.Api {
             credentials: false,
         },
         {
+            name: 'getTrail',
+            method: GLU.Api.Get,
+            path: 'gettrail.php',
+            credentials: false,
+        },
+        {
             name: 'getToken',
             method: GLU.Api.Get,
             path: 'gettoken.php',
