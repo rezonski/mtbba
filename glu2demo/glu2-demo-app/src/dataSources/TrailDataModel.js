@@ -113,8 +113,12 @@ class TrailDataModel extends GLU.DataSource {
         this._pathLine = TrailHelper.reducePathLinePoints(this._unfilteredPathLine, 0.02);
     }
 
-    setDataByName(propName, propValue) {
-        this[propName] = propValue;
+    setDataByName(propName, propIndex, propProp, propValue) {
+        if (propIndex && propProp) {
+            this['_' + propName][propIndex][propProp] = propValue;
+        } else {
+            this[propName] = propValue;
+        }
     }
 
     getTrailData() {

@@ -443,7 +443,8 @@ class WaypointHelper extends GLU.Controller {
                 };
             }
             console.log(tempWp);
-            element.id = (index + 1) * 10;
+            // element.id = (index + 1) * 10;
+            element.id = index;
             element.descgenerated = this.generateDesc(tempWp, surfaceCollection);
         });
 

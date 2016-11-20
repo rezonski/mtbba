@@ -23,8 +23,10 @@ class SingleWPEditor extends BasePage {
     render() {
         return (<div className="flex-container row">
             <InputTextBox
-                key="trailName"
-                fieldName="trailName"
+                key={'waypoints'}
+                fieldName={'waypoints'}
+                fieldIndex={this.props.wp.properties.id}
+                fieldProp={'descgenerated'}
                 isMultiline={true}
                 noRows={6}
                 filedLabel={Lang.label('wpDesc')}

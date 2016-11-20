@@ -94,7 +94,7 @@ class DataController extends GLU.Controller {
     }
 
     setTrailData2Model(payload) {
-        TrailDataModel.setDataByName(payload.name, payload.value);
+        TrailDataModel.setDataByName(payload.name, payload.index, payload.prop, payload.value);
     }
 
     updateTrailData2Model(payload) {
