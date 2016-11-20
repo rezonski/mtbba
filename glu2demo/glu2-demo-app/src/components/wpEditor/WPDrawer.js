@@ -5,6 +5,7 @@ import Drawer from 'material-ui/Drawer';
 import { Step, Stepper, StepButton, StepContent } from 'material-ui/Stepper';
 // import RaisedButton from 'material-ui/RaisedButton';
 // import FlatButton from 'material-ui/FlatButton';
+import SingleWPEditor from '../wpEditor/SingleWPEditor';
 
 class WPDRawer extends BasePage {
     constructor(props) {
@@ -14,13 +15,13 @@ class WPDRawer extends BasePage {
             drawerOpen: false,
             stepIndex: 0,
         };
-    }
-
-    componentDidMount() {
         this.bindGluBusEvents({
             [Enum.DataEvents.TRAIL_DATA_RETRIEVED]: this.onTrailDataRetrieved,
             [Enum.AppEvents.TOGGLE_WP_DRAWER]: this.onToggleOpenDrawer,
         });
+    }
+
+    componentDidMount() {
         this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA);
     }
 
@@ -53,13 +54,19 @@ class WPDRawer extends BasePage {
             return null;
         }
 
+        const style = {
+            drawer: {
+                overflow: 'hidden',
+            },
+        };
+
         const steps = this.state.waypoints.map((wp, wpIdx) => {
             return (<Step key={'wp-step-' + wpIdx}>
                         <StepButton onTouchTap={this.onSetStep.bind(this, wpIdx)}>
                             {wp.properties.odometer + 'km - ' + wp.properties.name}
                         </StepButton>
                         <StepContent>
-                            <p>{wp.properties.descgenerated}</p>
+                            <SingleWPEditor wp={wp}/>
                         </StepContent>
                     </Step>);
         });
@@ -75,9 +82,12 @@ class WPDRawer extends BasePage {
         return (<Drawer
                     open={this.state.drawerOpen}
                     width={400}
+                    containerStyle={style.drawer}
                 >
                     <div className="wp-drawer-container">
-                        {content}
+                        <div className="wp-drawer-container header">Header</div>
+                        <div className="wp-drawer-container body">{content}</div>
+                        <div className="wp-drawer-container footer">Footer</div>
                     </div>
                 </Drawer>);
     }

@@ -197,6 +197,10 @@ const labels = {
         bos: 'Tip',
         eng: 'Type',
     },
+    wpDesc: {
+        bos: 'Opis tačke',
+        eng: 'Waypoint description',
+    },
 };
 
 const messages = {

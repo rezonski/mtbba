@@ -161,6 +161,7 @@ class DataController extends GLU.Controller {
                 // console.info('# 7');
                 const trailData = TrailDataModel.getTrailData();
                 GLU.bus.emit(Enum.DataEvents.TRAIL_DOWNLOADED, trailData);
+                GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
             })
             .catch((err) => {
                 const msg = (err && err.response) ? err.response.text : err.toString();
