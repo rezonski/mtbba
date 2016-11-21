@@ -1,4 +1,4 @@
-import GLU from '/../../glu2.js/src/index';
+// import GLU from '/../../glu2.js/src/index';
 // import API from '/apis/Api';
 import TrailHelper from '/helpers/TrailHelper';
 import MapHelper from '/helpers/MapHelper';
@@ -6,9 +6,8 @@ import WaypointHelper from '/helpers/WaypointHelper';
 import ChartHelper from '/helpers/ChartHelper';
 import CommonHelper from '/helpers/CommonHelper';
 
-class TrailDataModel extends GLU.DataSource {
+class Trail {
     constructor() {
-        super();
         this._trailName = '';
         this._trailDesc = '';
         this._externalLink = '';
@@ -353,4 +352,4 @@ class TrailDataModel extends GLU.DataSource {
     }
 }
 
-export default new TrailDataModel();
+export default Trail;
