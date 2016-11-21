@@ -26,6 +26,8 @@ class InputTextBox extends BasePage {
     onTextFieldChanged(event) {
         const payload = {
             name: this.props.fieldName,
+            index: this.props.fieldIndex,
+            prop: this.props.fieldProp,
             value: event.target.value,
         };
         this.emit(Enum.DataEvents.SAVE_TRAILDATA2MODEL, payload);
@@ -35,16 +37,25 @@ class InputTextBox extends BasePage {
     }
 
     onTrailDataRetrieved(payload) {
-        if (payload[this.props.fieldName] !== this.state.value) {
-            this.setState({
-                value: payload[this.props.fieldName],
-            });
+        if (this.props.fieldIndex && this.props.fieldProp) {
+            if (payload[this.props.fieldName][this.props.fieldIndex][this.props.fieldProp] !== this.state.value) {
+                this.setState({
+                    value: payload[this.props.fieldName][this.props.fieldIndex][this.props.fieldProp],
+                });
+            }
+        } else {
+            if (payload[this.props.fieldName] !== this.state.value) {
+                this.setState({
+                    value: payload[this.props.fieldName],
+                });
+            }
         }
     }
 
     render() {
+        const key = (this.props.fieldIndex && this.props.fieldProp) ? 'input' + this.props.fieldName + this.props.fieldIndex + this.props.fieldProp : 'input' + this.props.fieldName;
         return (<TextField
-                    key={'input' + this.props.fieldName}
+                    key={key}
                     onChange={this.onTextFieldChangedEvent}
                     multiLine={this.props.isMultiline}
                     rows={this.props.noRows}

@@ -21,7 +21,7 @@ class WaypointHelper extends GLU.Controller {
         let returnDesc = JSON.stringify(wp);
         returnDesc = CommonHelper.getElementByKey(this.pointTypes, 'symbol_code', 'CROSSROAD', 'desc');
 
-        if (wp.next !== undefined && wp.next !== null) {
+        if (wp.next !== null) {
             let directionText = CommonHelper.getElementByKey(this.pointTypes, 'symbol_code', wp.current.symbol, 'desc') + ' "' + wp.current.name + '". Nastaviti ';
             let otherDirections = ' Sporedni putevi: ';
             let waterSupplyText = ' Izvor vode: ';
@@ -67,7 +67,7 @@ class WaypointHelper extends GLU.Controller {
             if (Math.abs(wp.current.nextelevloss) > 0) {
                 directionText += ' i ' + Math.abs(wp.current.nextelevloss) + ' m visinskog spusta';
             }
-
+            console.log('wp.current.odometer = ' + wp.current.odometer + ' , wp.next.odometer = ' + wp.next.odometer);
             directionText += this.parseSurfaceTransition(wp.current.odometer, wp.next.odometer, surfaceCollection);
             directionText += '. Sljedeca kontrolna tacka je ' + CommonHelper.getElementByKey(this.pointTypes, 'symbol_code', wp.next.symbol, 'desc') + ' "' + wp.next.name + '" (' + wp.next.odometer + ' km od starta na ' + wp.next.elevation + ' mnv).';
             returnDesc = directionText;
@@ -139,8 +139,8 @@ class WaypointHelper extends GLU.Controller {
     }
 
     parseSurfaceTransition(odoStart, odoEnd, surfaceArray) {
-        let surface = JSON.stringify(surfaceArray);
-        surface.unshift([0, 'A']);
+        let surface = JSON.parse(JSON.stringify(surfaceArray));
+        // surface.unshift([0, 'A']);
         let startSurfaceIndex = null;
         let endSurfaceIndex = null;
         let output = ' sa promjenama podloge: ';
@@ -360,16 +360,16 @@ class WaypointHelper extends GLU.Controller {
                 }
             });
 
-            let odometar = null;
+            let odometer = null;
             let elevationgain = 0;
             let elevationloss = 0;
 
             if (tempIndex > -1) {
                 for (let i = 0; i <= tempIndex; i++) {
-                    odometar += inputPathLine[i].prev_dist;
+                    odometer += inputPathLine[i].prev_dist;
                 }
 
-                odometar = Math.round(odometar * 100) / 100;
+                odometer = Math.round(odometer * 100) / 100;
                 for (let i = 0; i <= tempIndex; i++) {
                     if (inputPathLine[i].prev_elev > 0) {
                         elevationgain += inputPathLine[i].prev_elev;
@@ -407,7 +407,7 @@ class WaypointHelper extends GLU.Controller {
                     elevloss: Math.round(elevationloss),
                     nextelevgain: 0,
                     nextelevloss: 0,
-                    odometer: odometar,
+                    odometer,
                     nextstepdist: 0,
                     symbol: this.symbolFromDesc(tempDesc, tempPictogram, wpoint.properties.name),
                     pictogram: tempPictogram,
@@ -417,7 +417,7 @@ class WaypointHelper extends GLU.Controller {
 
                 newWaypointsChart.push({
                     name: (Number.isInteger(parseInt(wpoint.properties.name, 10))) ? tempDesc : wpoint.properties.name,
-                    odometer: odometar,
+                    odometer,
                 });
             }
             waypointsProgressPayload.loaded = parseInt((wpindex + 1), 10);
@@ -427,15 +427,37 @@ class WaypointHelper extends GLU.Controller {
         newWaypointsExport = CommonHelper.sortArrayByKey(newWaypoints, 'odometer');
 
         newWaypointsExport.forEach((element, index) => {
-            newWaypointsExport[index].id = (index + 1) * 10;
+            let tempWp = {};
             if (index < (newWaypointsExport.length - 1)) {
-                newWaypointsExport[index].id = index * 10;
-                newWaypointsExport[index].descgenerated = this.generateDesc(newWaypointsExport, surfaceCollection);
-                newWaypointsExport[index].nextstepdist = Math.round((newWaypointsExport[index + 1].odometer - newWaypointsExport[index].odometer) * 100) / 100;
-                newWaypointsExport[index].nextelevgain = Math.round((newWaypointsExport[index + 1].elevgain - newWaypointsExport[index].elevgain) * 100) / 100;
-                newWaypointsExport[index].nextelevloss = Math.round((newWaypointsExport[index + 1].elevloss - newWaypointsExport[index].elevloss) * 100) / 100;
+                tempWp = {
+                    current: element,
+                    next: newWaypointsExport[index + 1],
+                };
+                element.nextstepdist = Math.round((newWaypointsExport[index + 1].odometer - element.odometer) * 100) / 100;
+                element.nextelevgain = Math.round((newWaypointsExport[index + 1].elevgain - element.elevgain) * 100) / 100;
+                element.nextelevloss = Math.round((newWaypointsExport[index + 1].elevloss - element.elevloss) * 100) / 100;
+            } else {
+                tempWp = {
+                    current: element,
+                    next: null,
+                };
             }
+            console.log(tempWp);
+            // element.id = (index + 1) * 10;
+            element.id = index;
+            element.descgenerated = this.generateDesc(tempWp, surfaceCollection);
         });
+
+        // newWaypointsExport.forEach((element, index) => {
+        //     newWaypointsExport[index].id = (index + 1) * 10;
+        //     if (index < (newWaypointsExport.length - 1)) {
+        //         newWaypointsExport[index].id = index * 10;
+        //         newWaypointsExport[index].descgenerated = this.generateDesc(newWaypointsExport, surfaceCollection);
+        //         newWaypointsExport[index].nextstepdist = Math.round((newWaypointsExport[index + 1].odometer - newWaypointsExport[index].odometer) * 100) / 100;
+        //         newWaypointsExport[index].nextelevgain = Math.round((newWaypointsExport[index + 1].elevgain - newWaypointsExport[index].elevgain) * 100) / 100;
+        //         newWaypointsExport[index].nextelevloss = Math.round((newWaypointsExport[index + 1].elevloss - newWaypointsExport[index].elevloss) * 100) / 100;
+        //     }
+        // });
 
         newWaypointsExport.forEach((wp) => {
             mapWaypointsCollection.features.push({
@@ -446,7 +468,7 @@ class WaypointHelper extends GLU.Controller {
                     name: wp.name,
                     descoriginal: wp.descoriginal,
                     descgenerated: wp.descgenerated,
-                    odometer: wp.odometar,
+                    odometer: wp.odometer,
                     nextstepdist: wp.nextstepdist,
                     elevgain: wp.elevgain,
                     elevloss: wp.elevloss,

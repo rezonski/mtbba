@@ -94,7 +94,7 @@ class DataController extends GLU.Controller {
     }
 
     setTrailData2Model(payload) {
-        TrailDataModel.setDataByName(payload.name, payload.value);
+        TrailDataModel.setDataByName(payload.name, payload.index, payload.prop, payload.value);
     }
 
     updateTrailData2Model(payload) {
@@ -161,6 +161,7 @@ class DataController extends GLU.Controller {
                 // console.info('# 7');
                 const trailData = TrailDataModel.getTrailData();
                 GLU.bus.emit(Enum.DataEvents.TRAIL_DOWNLOADED, trailData);
+                GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
             })
             .catch((err) => {
                 const msg = (err && err.response) ? err.response.text : err.toString();
