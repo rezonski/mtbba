@@ -1,7 +1,8 @@
 /* global toGeoJSON */
 import GLU from '/../../glu2.js/src/index';
 import CommonDataModel from '/dataSources/CommonDataModel';
-import TrailDataModel from '/dataSources/TrailDataModel';
+import TrailsDataModel from '/dataSources/TrailsDataModel';
+import Trail from '/objects/Trail';
 import MapModel from '/dataSources/MapModel';
 import MessageEvents from '/enums/MessageEvents';
 import Globals from '/Globals';
@@ -69,7 +70,7 @@ class DataController extends GLU.Controller {
             leftMap: MapModel.leftMap,
             rightMap: MapModel.rightMap,
         };
-        TrailDataModel.rebuildMapLayers(maps);
+        TrailsDataModel.activeTrail.rebuildMapLayers(maps);
         GLU.bus.emit(Enum.MapEvents.REQUEST_DISPLAY_PATH_LAYERS);
     }
 
@@ -78,8 +79,8 @@ class DataController extends GLU.Controller {
             leftMap: MapModel.leftMap,
             rightMap: MapModel.rightMap,
         };
-        TrailDataModel.rebuildWaypoints(maps);
-        const pathLayers = TrailDataModel.mapPathLayers;
+        TrailsDataModel.activeTrail.rebuildWaypoints(maps);
+        const pathLayers = TrailsDataModel.activeTrail.mapPathLayers;
         GLU.bus.emit(Enum.MapEvents.DISPLAY_PATH_LAYERS_ON_MAP, pathLayers);
     }
 
@@ -94,12 +95,12 @@ class DataController extends GLU.Controller {
     }
 
     setTrailData2Model(payload) {
-        TrailDataModel.setDataByName(payload.name, payload.index, payload.prop, payload.value);
+        TrailsDataModel.activeTrail.setDataByName(payload.name, payload.index, payload.prop, payload.value);
     }
 
     updateTrailData2Model(payload) {
-        TrailDataModel.setDataByName(payload.name, payload.value);
-        const trailData = TrailDataModel.getTrailData();
+        TrailsDataModel.activeTrail.setDataByName(payload.name, payload.value);
+        const trailData = TrailsDataModel.activeTrail.getTrailData();
         GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
         GLU.bus.emit(Enum.DataEvents.RETRIEVE_CHART_DATA, 'chartcontainer');
         if (payload.name === 'surfaceCollection') {
@@ -108,12 +109,16 @@ class DataController extends GLU.Controller {
     }
 
     getTrailData() {
-        const trailData = TrailDataModel.getTrailData();
-        GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
+        if (TrailsDataModel.activeTrail === undefined) {
+            TrailsDataModel.trail = new Trail();
+        } else {
+            const trailData = TrailsDataModel.activeTrail.getTrailData();
+            GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
+        }
     }
 
     getChartData(containerId) {
-        const chartData = TrailDataModel.getChartData(containerId);
+        const chartData = TrailsDataModel.activeTrail.getChartData(containerId);
         GLU.bus.emit(Enum.DataEvents.CHART_DATA_RETRIEVED, chartData);
     }
 
@@ -142,24 +147,14 @@ class DataController extends GLU.Controller {
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('startDownloadingTrailLoading'));
         API.Trails.getTrail({ query })
             .then((response) => {
-                TrailDataModel.parsedInitialFile = JSON.parse(response.text);
-                const geoSetup = TrailDataModel.parseDownloadedTrail(); // Runs parsing
+                TrailsDataModel.trail = new Trail();
+                TrailsDataModel.activeTrail.parsedInitialFile = JSON.parse(response.text);
+                const geoSetup = TrailsDataModel.activeTrail.parseDownloadedTrail(); // Runs parsing
                 MapModel.initialCenter = JSON.parse(JSON.stringify(geoSetup.center));
                 MapModel.initialMaxBounds = JSON.parse(JSON.stringify(geoSetup.bounds));
                 console.info('# 1');
                 this.onSimplifyRequest();
-                // console.info('# 2');
-                // this.onElevatePathRequest();
-                // console.info('# 3');
-                // this.onFlattenPathRequest();
-                // console.info('# 4');
-                // this.onFixWaypointsRequest();
-                // console.info('# 5');
-                // this.rebuildMapLayers();
-                // console.info('# 6');
-                // this.onRequestMapLayers();
-                // console.info('# 7');
-                const trailData = TrailDataModel.getTrailData();
+                const trailData = TrailsDataModel.activeTrail.getTrailData();
                 GLU.bus.emit(Enum.DataEvents.TRAIL_DOWNLOADED, trailData);
                 GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
             })
@@ -172,7 +167,7 @@ class DataController extends GLU.Controller {
     }
 
     onSimplifyRequest() {
-        TrailDataModel.reducePathLinePoints();
+        TrailsDataModel.activeTrail.reducePathLinePoints();
         this.progressPayload.loaded = 30;
         GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, this.progressPayload);
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endGeoFileSimplifying'));
@@ -181,7 +176,7 @@ class DataController extends GLU.Controller {
 
     onElevatePathRequest() {
         let badPoints = [];
-        let elevatedPathLine = JSON.parse(JSON.stringify(TrailDataModel.pathLine));
+        let elevatedPathLine = JSON.parse(JSON.stringify(TrailsDataModel.activeTrail.pathLine));
         elevatedPathLine.forEach((location, index) => {
             if (location[2] === undefined || location[2] === 0) {
                 badPoints.push({
@@ -248,7 +243,7 @@ class DataController extends GLU.Controller {
                     elevatedPoints.forEach((elPoint, pointIndex) => {
                         const calculatedElevation = (elPoint.ele || elPoint.elevation) ? parseInt(elPoint.elevation, 10) : parseInt(tempElevation, 10);
                         const pointIndexToFix = parseInt(tempBadPoints[pointIndex].pathIndex, 10);
-                        TrailDataModel.setElevationOnPathByIndex(pointIndexToFix, calculatedElevation);
+                        TrailsDataModel.activeTrail.setElevationOnPathByIndex(pointIndexToFix, calculatedElevation);
                         if (pointIndexToFix % 10 === 0) {
                             currentProgressPayload.loaded = parseInt(pointIndexToFix, 10);
                             GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, currentProgressPayload);
@@ -273,15 +268,17 @@ class DataController extends GLU.Controller {
         if (payload.file) {
             const r = new FileReader();
             r.onload = (e) => {
+                TrailsDataModel.trail = new Trail();
+
                 // Save trail name
-                TrailDataModel.trailName = payload.file.name.replace('.gpx', '').replace('_profil', ' ').replace('_', ' ');
+                TrailsDataModel.activeTrail.trailName = payload.file.name.replace('.gpx', '').replace('_profil', ' ').replace('_', ' ');
 
                 // Save parsed file
                 const domParser = (new DOMParser()).parseFromString(e.target.result, 'text/xml');
                 if (payload.file.name.toLowerCase().indexOf('.gpx') > 0) {
-                    TrailDataModel.parsedInitialFile = toGeoJSON.gpx(domParser);
+                    TrailsDataModel.activeTrail.parsedInitialFile = toGeoJSON.gpx(domParser);
                 } else if (payload.file.name.toLowerCase().indexOf('.kml') > 0) {
-                    TrailDataModel.parsedInitialFile = toGeoJSON.kml(domParser);
+                    TrailsDataModel.activeTrail.parsedInitialFile = toGeoJSON.kml(domParser);
                 } else {
                     GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('fileFormatUnsuported'));
                     return;
@@ -291,12 +288,12 @@ class DataController extends GLU.Controller {
                 GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endGeoFileReading'));
 
                 // Parse JSON to structures
-                TrailDataModel.parseInitialFile();
+                TrailsDataModel.activeTrail.parseInitialFile();
                 this.progressPayload.loaded = 20;
                 GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, this.progressPayload);
                 GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endGeoFileParsing'));
 
-                const trailData = TrailDataModel.getTrailData();
+                const trailData = TrailsDataModel.activeTrail.getTrailData();
                 GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
             };
             GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('startGeoFileReading'));
@@ -308,13 +305,13 @@ class DataController extends GLU.Controller {
     }
 
     onFlattenPathRequest() {
-        TrailDataModel.flattenPathLine();
+        TrailsDataModel.activeTrail.flattenPathLine();
         console.info('# 21');
         this.progressPayload.loaded = 82;
         GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, this.progressPayload);
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endPathFlattening'));
 
-        TrailDataModel.generateGeneralFacts();
+        TrailsDataModel.activeTrail.generateGeneralFacts();
         console.info('# 22');
         this.progressPayload.loaded = 85;
         GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, this.progressPayload);
@@ -324,14 +321,14 @@ class DataController extends GLU.Controller {
     }
 
     onFixWaypointsRequest() {
-        if (TrailDataModel.waypoints.length > 0) {
+        if (TrailsDataModel.activeTrail.waypoints.length > 0) {
             const maps = {
                 leftMap: MapModel.leftMap,
                 rightMap: MapModel.rightMap,
             };
-            TrailDataModel.generateWaypoints(maps);
-            // console.info(TrailDataModel.waypoints);
-            // console.info(TrailDataModel.chartWaypoints);
+            TrailsDataModel.activeTrail.generateWaypoints(maps);
+            // console.info(TrailsDataModel.activeTrail.waypoints);
+            // console.info(TrailsDataModel.activeTrail.chartWaypoints);
         } else {
             GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, {
                 status: 'progress',
@@ -362,14 +359,14 @@ class DataController extends GLU.Controller {
                         data: 'Unknown error occurred: [' + request.responseText + ']',
                     };
                 }
-                TrailDataModel.imageURL = Globals.IMAGE_UPLOAD_PATH + payload.fileName;
+                TrailsDataModel.activeTrail.imageURL = Globals.IMAGE_UPLOAD_PATH + payload.fileName;
                 const statusPayload = {
                     status: resp.status,
                     message: resp.data,
                     imgURL: Globals.IMAGE_UPLOAD_PATH + payload.fileName,
                 };
                 GLU.bus.emit(MessageEvents.PICTURE_UPLOAD_STATUS, statusPayload);
-                const trailData = TrailDataModel.getTrailData();
+                const trailData = TrailsDataModel.activeTrail.getTrailData();
                 GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
             }
         };
