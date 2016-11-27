@@ -4,7 +4,7 @@ import BasePage from '../BasePage';
 import Lang from '/helpers/Lang';
 import InputTextBox from '../common/InputTextBox';
 
-class SingleWPEditor extends BasePage {
+class WPEditorTray extends BasePage {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,12 +21,13 @@ class SingleWPEditor extends BasePage {
 
 
     render() {
-        return (<div className="flex-container row">
+        return (<div className="flex-container row single-wp-edit-box">
             <InputTextBox
                 key={'waypoints'}
                 fieldName={'waypoints'}
                 fieldIndex={this.props.wp.properties.id}
                 fieldProp={'descgenerated'}
+                inputBoxStyle={{ fontSize: '80%' }}
                 isMultiline={true}
                 noRows={6}
                 filedLabel={Lang.label('wpDesc')}
@@ -36,4 +37,4 @@ class SingleWPEditor extends BasePage {
     }
 }
 
-export default SingleWPEditor;
+export default WPEditorTray;
