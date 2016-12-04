@@ -35,5 +35,23 @@ class CommonHelper {
             return ((x < y) ? -1 : ret);
         });
     }
+
+    getLineStrings(featuresCollection) {
+        const returnCollection = JSON.parse(JSON.stringify(featuresCollection)).reduce(feature => {
+            if (feature.geometry.type === 'LineString') {
+                return feature;
+            }
+        });
+        return returnCollection;
+    }
+
+    getPoints(featuresCollection) {
+        const returnCollection = JSON.parse(JSON.stringify(featuresCollection)).reduce(feature => {
+            if (feature.geometry.type === 'Point') {
+                return feature;
+            }
+        });
+        return returnCollection;
+    }
 }
 export default new CommonHelper();

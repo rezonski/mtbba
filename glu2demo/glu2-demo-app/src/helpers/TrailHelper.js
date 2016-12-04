@@ -1,7 +1,9 @@
+/* global turf */
 import GLU from '/../../glu2.js/src/index';
 import MessageEvents from '/enums/MessageEvents';
 import Enum from '/enums/Enum';
 import Lang from '/helpers/Lang';
+import CommonHelper from '/helpers/CommonHelper';
 
 class TrailHelper extends GLU.Controller {
     constructor(props) {
@@ -16,69 +18,55 @@ class TrailHelper extends GLU.Controller {
         this.surfaceTypes = payload.surfaceTypes;
     }
 
-    reducePathLinePoints(inputPointsArray, toleranceInMeters) {
-        let returnArray = [];
-        const maxIndx = inputPointsArray.length - 1;
-        let currentIndex;
-        let iterator = 1;
-        let nextIndex;
-        let escaped = false;
-        let tempDistance = 0;
-        let progressPayload;
-
-        GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('startSimplifyingRoute'));
-
-        while (iterator < maxIndx) {
-            currentIndex = parseInt(iterator, 10);
-            escaped = false;
-            nextIndex = parseInt(iterator, 10) + 1;
-
-            while (nextIndex < maxIndx) {
-                iterator = parseInt(nextIndex, 10);
-                tempDistance = this.getDistanceFromLatLonInMeters(inputPointsArray[currentIndex][0], inputPointsArray[currentIndex][1], inputPointsArray[nextIndex][0], inputPointsArray[nextIndex][1]);
-                if (tempDistance > toleranceInMeters) {
-                    returnArray.push(inputPointsArray[nextIndex]);
-                    escaped = true;
-                    currentIndex = parseInt(nextIndex, 10);
-                    nextIndex = parseInt(maxIndx, 10); // Escape
-                } else {
-                    nextIndex++; // Check next point
-                }
-            }
-
-            progressPayload = {
-                status: 'progress',
-                id: 'progressSimplifyPath',
-                loaded: nextIndex,
-                total: maxIndx,
-            };
-
-            if (nextIndex === maxIndx && !escaped) {
-                iterator = parseInt(maxIndx, 10);
-                GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, progressPayload);
-            } else {
-                iterator = parseInt(currentIndex, 10);
-                if (iterator % 10 === 0) {
-                    GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, progressPayload);
-                }
-            }
-        }
-        returnArray.push(inputPointsArray[maxIndx]);
+    simplifyLineString(featuresCollection) {
+        let returnCollection = JSON.parse(JSON.stringify(featuresCollection));
+        CommonHelper.getLineStrings(returnCollection).forEach((feature, featureIndex) => {
+            returnCollection[featureIndex] = turf.simplify(feature, 0.01, true); // feature, tolerance, highQuality
+        });
+        const progressPayload = {
+            status: 'progress',
+            id: 'progressSimplifyPath',
+            loaded: 1,
+            total: 1,
+        };
+        GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, progressPayload);
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endSimplifyingRoute'));
-        return returnArray;
+        return returnCollection;
     }
 
-    flattenPathLine(pathLine) {
-        let newPathLine = [];
+    flattenPathLine(featuresCollection) {
         let pathLineMasterd = [];
         let prevLoc = {};
-        let currLocOut = {};
+        const pathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
         let flattenProgressPayload = {
             status: 'progress',
             id: 'progressFlattenPath',
             loaded: 0,
             total: pathLine.length,
         };
+        pathLine.forEach((location, index) => {
+            let elevationCalc = 0;
+            if (index > 0) {
+                elevationCalc = (!location[2]) ? prevLoc.elevation : location[2];
+            } else {
+                elevationCalc = (location[2] === undefined) ? 0 : location[2];
+            }
+            pathLineMasterd.push([location[0], location[1], elevationCalc]);
+            if (index % 10 === 0) {
+                flattenProgressPayload.loaded = parseInt(index / 2, 10);
+                GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, flattenProgressPayload);
+            }
+        });
+        let flattenFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
+        CommonHelper.getLineStrings(flattenFeaturesCollection)[0].geometry.coordinates = pathLineMasterd;
+        return flattenFeaturesCollection;
+    }
+
+    enrichPathLine(featuresCollection) {
+        let newPathLine = [];
+        let prevLoc = {};
+        let currLocOut = {};
+        const pathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
         pathLine.forEach((location, index) => {
             let elevationCalc = 0;
             let currLoc;
@@ -103,24 +91,12 @@ class TrailHelper extends GLU.Controller {
             }
             currLocOut = JSON.parse(JSON.stringify(currLoc));
             prevLoc = JSON.parse(JSON.stringify(currLocOut));
-            // New enriched path line
             newPathLine.push(currLoc);
-            // For vertical profile and map
-            pathLineMasterd.push([location[0], location[1], elevationCalc]);
-            if (index % 10 === 0) {
-                flattenProgressPayload.loaded = parseInt(index / 2, 10);
-                GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, flattenProgressPayload);
-            }
         });
-        // console.log('helper flattenPathLine newPathLine');
-        // console.log(newPathLine);
-        // console.log('helper flattenPathLine pathLineMasterd');
-        // console.log(pathLineMasterd);
-        const retObj = {
-            enrichedPathLine: JSON.parse(JSON.stringify(newPathLine)),
-            mapProfilePathLine: JSON.parse(JSON.stringify(pathLineMasterd)),
-        };
-        return retObj;
+
+        let enrichedFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
+        CommonHelper.getLineStrings(enrichedFeaturesCollection)[0].geometry.coordinates = newPathLine;
+        return enrichedFeaturesCollection;
     }
 
     getGeneralFacts(newPathLine) {
