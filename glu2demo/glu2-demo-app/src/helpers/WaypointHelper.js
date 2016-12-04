@@ -67,7 +67,7 @@ class WaypointHelper extends GLU.Controller {
             if (Math.abs(wp.current.nextelevloss) > 0) {
                 directionText += ' i ' + Math.abs(wp.current.nextelevloss) + ' m visinskog spusta';
             }
-            console.log('wp.current.odometer = ' + wp.current.odometer + ' , wp.next.odometer = ' + wp.next.odometer);
+            // console.log('wp.current.odometer = ' + wp.current.odometer + ' , wp.next.odometer = ' + wp.next.odometer);
             directionText += this.parseSurfaceTransition(wp.current.odometer, wp.next.odometer, surfaceCollection);
             directionText += '. Sljedeca kontrolna tacka je ' + CommonHelper.getElementByKey(this.pointTypes, 'symbol_code', wp.next.symbol, 'desc') + ' "' + wp.next.name + '" (' + wp.next.odometer + ' km od starta na ' + wp.next.elevation + ' mnv).';
             returnDesc = directionText;
@@ -442,7 +442,7 @@ class WaypointHelper extends GLU.Controller {
                     next: null,
                 };
             }
-            console.log(tempWp);
+            // console.log(tempWp);
             // element.id = (index + 1) * 10;
             element.id = index;
             element.descgenerated = this.generateDesc(tempWp, surfaceCollection);
