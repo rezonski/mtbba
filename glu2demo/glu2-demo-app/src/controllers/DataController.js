@@ -295,7 +295,7 @@ class DataController extends GLU.Controller {
     }
 
     onFlattenPathRequest() {
-        TrailsDataModel.activeTrail.flattenPathLine();
+        TrailsDataModel.activeTrail.nivelatePathLine();
         console.info('# 21');
         this.progressPayload.loaded = 82;
         GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, this.progressPayload);

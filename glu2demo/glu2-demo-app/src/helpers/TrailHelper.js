@@ -34,7 +34,7 @@ class TrailHelper extends GLU.Controller {
         return returnCollection;
     }
 
-    flattenPathLine(featuresCollection) {
+    nivelatePathLine(featuresCollection) {
         let pathLineMasterd = [];
         let prevLoc = {};
         const pathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
@@ -57,17 +57,48 @@ class TrailHelper extends GLU.Controller {
                 GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, flattenProgressPayload);
             }
         });
-        let flattenFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
-        CommonHelper.getLineStrings(flattenFeaturesCollection)[0].geometry.coordinates = pathLineMasterd;
-        return flattenFeaturesCollection;
+        let elevationNivelatedFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
+        CommonHelper.getLineStrings(elevationNivelatedFeaturesCollection)[0].geometry.coordinates = pathLineMasterd;
+        return elevationNivelatedFeaturesCollection;
     }
 
     enrichPathLine(featuresCollection) {
-        let newPathLine = [];
+        let interpolatedPathLine = [];
+        let enrichedPathLine = [];
         let prevLoc = {};
-        let currLocOut = {};
+        let prevPoint = [];
+        // let currLocOut = {};
         const pathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
+
         pathLine.forEach((location, index) => {
+            const segmentDistanceMeters = (turf.distance(prevPoint, location) / 1000); // in meters
+            if (index > 0) {
+                if (segmentDistanceMeters > 10) {
+                    const countAdditionSegments = Math.round((turf.distance(prevPoint, location) / 1000) / 10);
+                    const elevStep = (location[2] - prevPoint[2]) / countAdditionSegments;
+                    const lineSegment = {
+                        type: 'Feature',
+                        geometry: {
+                            type: 'LineString',
+                            coordinates: [prevPoint, location],
+                        },
+                    };
+                    for (let i = 0; i < countAdditionSegments; i++) {
+                        const segment = turf.along(lineSegment, i / 1000 * segmentDistanceMeters, 'kilometers');
+                        const newPoint = segment.geometry.coordinates;
+                        newPoint.push(prevPoint[2] + (i * elevStep)); // add elevation to new points
+                        interpolatedPathLine.push(newPoint);
+                    }
+                } else {
+                    interpolatedPathLine.push(location);
+                }
+            } else {
+                interpolatedPathLine.push(location);
+            }
+            prevPoint = JSON.parse(JSON.stringify(location));
+        });
+
+        interpolatedPathLine.forEach((location, index) => {
             let elevationCalc = 0;
             let currLoc;
             if (index > 0) {
@@ -76,7 +107,7 @@ class TrailHelper extends GLU.Controller {
                     lon: location[0],
                     lat: location[1],
                     elevation: elevationCalc,
-                    prev_dist: this.getDistanceFromLatLonInMeters(prevLoc.lon, prevLoc.lat, location[0], location[1]) / 1000,
+                    prev_dist: turf.distance(prevPoint, location) / 1000,
                     prev_elev: elevationCalc - prevLoc.elevation,
                 };
             } else {
@@ -89,13 +120,14 @@ class TrailHelper extends GLU.Controller {
                     prev_elev: 0,
                 };
             }
-            currLocOut = JSON.parse(JSON.stringify(currLoc));
-            prevLoc = JSON.parse(JSON.stringify(currLocOut));
-            newPathLine.push(currLoc);
+            enrichedPathLine.push(currLoc);
+            // currLocOut = JSON.parse(JSON.stringify(currLoc));
+            prevLoc = JSON.parse(JSON.stringify(currLoc));
+            prevPoint = JSON.parse(JSON.stringify(location));
         });
 
         let enrichedFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
-        CommonHelper.getLineStrings(enrichedFeaturesCollection)[0].geometry.coordinates = newPathLine;
+        CommonHelper.getLineStrings(enrichedFeaturesCollection)[0].geometry.coordinates = enrichedPathLine;
         return enrichedFeaturesCollection;
     }
 

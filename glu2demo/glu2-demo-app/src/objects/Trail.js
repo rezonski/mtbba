@@ -13,7 +13,7 @@ class Trail {
         this._parsedFeaturesCollection = {};
         this._simplifiedFeaturesCollection = {}; // Simplified
         this._elevatedFeaturesCollection = {}; // Elevated
-        this._flattenFeaturesCollection = {}; // Flatten elevation LineString
+        this._elevationNivelatedFeaturesCollection = {}; // Flatten elevation LineString
 
         this._trailDesc = '';
         this._externalLink = '';
@@ -77,17 +77,17 @@ class Trail {
         this.simplifiedFeaturesCollection = TrailHelper.simplifyLineString(this._parsedFeaturesCollection);
     }
 
-    flattenPathLine() {
-        this.flattenFeaturesCollection = TrailHelper.flattenPathLine(this.elevatedFeaturesCollection);
+    nivelatePathLine() {
+        this.elevationNivelatedFeaturesCollection = TrailHelper.nivelatePathLine(this.elevatedFeaturesCollection);
     }
 
     getEnrichedFeatureCollection() {
-        const enriched = TrailHelper.enrichPathLine(this.flattenFeaturesCollection);
+        const enriched = TrailHelper.enrichPathLine(this.elevationNivelatedFeaturesCollection);
         return enriched;
     }
 
     generateGeneralFacts() {
-        TrailHelper.getGeneralFacts(this.flattenFeaturesCollection);
+        TrailHelper.getGeneralFacts(this.elevationNivelatedFeaturesCollection);
     }
 
     generateWaypoints(maps) {
@@ -359,13 +359,13 @@ class Trail {
         }
     }
 
-    get flattenFeaturesCollection() {
-        return this._flattenFeaturesCollection;
+    get elevationNivelatedFeaturesCollection() {
+        return this._elevationNivelatedFeaturesCollection;
     }
 
-    set flattenFeaturesCollection(newFeaturesCollection) {
+    set elevationNivelatedFeaturesCollection(newFeaturesCollection) {
         if (newFeaturesCollection) {
-            this._flattenFeaturesCollection = newFeaturesCollection;
+            this._elevationNivelatedFeaturesCollection = newFeaturesCollection;
         }
     }
 

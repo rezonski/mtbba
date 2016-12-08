@@ -20,7 +20,9 @@ var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v9',
     center: [18.372284173965454, 43.85512489891371],
-    zoom: 16
+    pitch: 45,
+    bearing: 45,
+    zoom: 16,
 });
 
 var linija = {
@@ -124,16 +126,13 @@ function getRect(line) {
     var d = 0.0001;
     var AB = turf.distance(turf.point(A), turf.point(B));
     var AC = turf.distance(turf.point(A), turf.point(C));
-
     var alfa = Math.acos(AC/AB);
     var sin = Math.sin(alfa);
     var cos = Math.cos(alfa);
-
     var P1 = [];
     var P2 = [];
     var P3 = [];
     var P4 = [];
-
     P1.push(B[0] + d/2 * cos);
     P1.push(B[1] - d/2 * sin);
     P2.push(B[0] - d/2 * cos);
@@ -142,9 +141,6 @@ function getRect(line) {
     P3.push(A[1] + d/2 * sin);
     P4.push(A[0] + d/2 * cos);
     P4.push(A[1] - d/2 * sin);
-
-    console.log(JSON.stringify([P1,P2,P3,P4,P1]));
-
     return [P1,P2,P3,P4,P1];
 }
 
