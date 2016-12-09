@@ -296,14 +296,20 @@ class DataController extends GLU.Controller {
 
     onFlattenPathRequest() {
         TrailsDataModel.activeTrail.nivelatePathLine();
-        console.info('# 21');
+        // console.info('# 21');
         this.progressPayload.loaded = 82;
         GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, this.progressPayload);
-        GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endPathFlattening'));
+        GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endPathNivelating'));
+
+        TrailsDataModel.activeTrail.interpolatePathLine();
+        // console.info('# 22');
+        this.progressPayload.loaded = 84;
+        GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, this.progressPayload);
+        GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endPathInterpolating'));
 
         TrailsDataModel.activeTrail.generateGeneralFacts();
-        console.info('# 22');
-        this.progressPayload.loaded = 85;
+        // console.info('# 23');
+        this.progressPayload.loaded = 86;
         GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, this.progressPayload);
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endGeneralFactsGenerating'));
 
@@ -311,7 +317,7 @@ class DataController extends GLU.Controller {
     }
 
     onFixWaypointsRequest() {
-        if (TrailsDataModel.activeTrail.waypoints.length > 0) {
+        if (CommonHelper.getPoints(TrailsDataModel.activeTrail.getEnrichedFeatureCollection()).length > 0) {
             const maps = {
                 leftMap: MapModel.leftMap,
                 rightMap: MapModel.rightMap,

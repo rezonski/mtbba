@@ -284,9 +284,13 @@ const messages = {
         bos: 'Završeno dodavanje visinskih koordinata',
         eng: 'Elevation adding completed',
     },
-    endPathFlattening: {
+    endPathNivelating: {
         bos: 'Završeno čišćenje i peglanje putanje',
-        eng: 'Flattening path line completed',
+        eng: 'Nivelating path line completed',
+    },
+    endPathInterpolating: {
+        bos: 'Završeno čišćenje i peglanje putanje',
+        eng: 'Interpolating path line completed',
     },
     endGeneralFactsGenerating: {
         bos: 'Završeno definisanje parametara staze',

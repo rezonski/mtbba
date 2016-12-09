@@ -14,23 +14,86 @@ class Trail {
         this._simplifiedFeaturesCollection = {}; // Simplified
         this._elevatedFeaturesCollection = {}; // Elevated
         this._elevationNivelatedFeaturesCollection = {}; // Flatten elevation LineString
+        this._interpolatedFeaturesCollection = {}; // Flatten elevation LineString
+    }
 
-        this._trailDesc = '';
-        this._externalLink = '';
-        this._imageURL = '';
-        this._trailTypeID = null;
-        this._fitnessLevelID = null;
-        this._techniqueLevelID = null;
-        this._mountainIDs = [];
-        this._surfaceCollection = [[0, 'A']];
-        this._generalFact = {};
-        this._waypoints = [];
-        this._chartWaypoints = [];
-        this._mapWaypoints = [];
-        this._unfilteredPathLine = [];
-        this._pathLine = [];
-        this._profileMapPathLine = [];
-        this._mapPathLayers = [];
+    // Treba doraditi da radi sad kolekcijom
+    // parseDownloadedTrail() {
+    //     this.parsedFeaturesCollection.features.forEach((feature) => {
+    //         if (feature.geometry.type === 'LineString') {
+    //             this._unfilteredPathLine = this._unfilteredPathLine.concat(feature.geometry.coordinates);
+    //             this._generalFact = feature.properties;
+    //         } else if (feature.geometry.type === 'Point') {
+    //             this._waypoints.push(feature);
+    //         }
+    //     });
+    //     this._trailName = this._generalFact.trail_name;
+    //     this._trailDesc = this._generalFact.trail_desc;
+    //     this._externalLink = this._generalFact.external_link;
+    //     this._imageURL = this._generalFact.image_url;
+    //     this._trailTypeID = this._generalFact.type_id;
+    //     this._fitnessLevelID = this._generalFact.required_fitness;
+    //     this._techniqueLevelID = this._generalFact.required_technique;
+    //     this._mountainIDs = this._generalFact.mntns.map((mnt) => {
+    //         return mnt.id;
+    //     });
+    //     this._surfaceCollection = this._generalFact.surface;
+    //     this._generalFact = this._generalFact;
+    //     return {
+    //         center: [this._generalFact.lon_center, this._generalFact.lat_center],
+    //         bounds: this._generalFact.bounds,
+    //     };
+    // }
+
+    simplifyTrailLineString() {
+        this.simplifiedFeaturesCollection = TrailHelper.simplifyLineString(this._parsedFeaturesCollection);
+    }
+
+    nivelatePathLine() {
+        this.elevationNivelatedFeaturesCollection = TrailHelper.nivelatePathLine(this.elevatedFeaturesCollection);
+    }
+
+    interpolatePathLine() {
+        this.interpolatedFeaturesCollection = TrailHelper.interpolatePathLine(this.elevationNivelatedFeaturesCollection);
+    }
+
+    getEnrichedFeatureCollection() {
+        const enriched = TrailHelper.enrichPathLine(this.interpolatedFeaturesCollection);
+        return enriched;
+    }
+
+    getGeneralFacts() {
+        return JSON.parse(JSON.stringify(CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].properties));
+    }
+
+    setGeneralFacts(newGeneralFacts) {
+        CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].properties = newGeneralFacts;
+        CommonHelper.getLineStrings(this.simplifiedFeaturesCollection)[0].properties = newGeneralFacts;
+        CommonHelper.getLineStrings(this.elevatedFeaturesCollection)[0].properties = newGeneralFacts;
+        CommonHelper.getLineStrings(this.elevationNivelatedFeaturesCollection)[0].properties = newGeneralFacts;
+        CommonHelper.getLineStrings(this.interpolatedFeaturesCollection)[0].properties = newGeneralFacts;
+    }
+
+    generateGeneralFacts() {
+        const trail = this.getEnrichedFeatureCollection();
+        const generalFacts = TrailHelper.getGeneralFacts(trail);
+        this.setGeneralFacts(generalFacts);
+    }
+
+    setWaypoints(waypoints) {
+        waypoints.forEach((wp, idx) => {
+            CommonHelper.getPoints(this.parsedFeaturesCollection)[idx] = wp;
+            CommonHelper.getPoints(this.simplifiedFeaturesCollection)[idx] = wp;
+            CommonHelper.getPoints(this.elevatedFeaturesCollection)[idx] = wp;
+            CommonHelper.getPoints(this.elevationNivelatedFeaturesCollection)[idx] = wp;
+            CommonHelper.getPoints(this.interpolatedFeaturesCollection)[idx] = wp;
+        });
+    }
+
+    generateWaypoints(maps) {
+        const enrichedFeaturesCollection = TrailHelper.enrichPathLine(this.interpolatedFeaturesCollection);
+        const computedWaypoints = WaypointHelper.generateWaypoints(maps.leftMap, maps.rightMap, enrichedFeaturesCollection);
+        this.setWaypoints(computedWaypoints);
     }
 
     rebuildMapLayers(maps) {
@@ -45,143 +108,46 @@ class Trail {
         this._mapWaypoints = JSON.parse(JSON.stringify(computedWaypoints.mapWaypoints));
     }
 
-    parseDownloadedTrail() {
-        this.parsedFeaturesCollection.features.forEach((feature) => {
-            if (feature.geometry.type === 'LineString') {
-                this._unfilteredPathLine = this._unfilteredPathLine.concat(feature.geometry.coordinates);
-                this._generalFact = feature.properties;
-            } else if (feature.geometry.type === 'Point') {
-                this._waypoints.push(feature);
-            }
-        });
-        this._trailName = this._generalFact.trail_name;
-        this._trailDesc = this._generalFact.trail_desc;
-        this._externalLink = this._generalFact.external_link;
-        this._imageURL = this._generalFact.image_url;
-        this._trailTypeID = this._generalFact.type_id;
-        this._fitnessLevelID = this._generalFact.required_fitness;
-        this._techniqueLevelID = this._generalFact.required_technique;
-        this._mountainIDs = this._generalFact.mntns.map((mnt) => {
-            return mnt.id;
-        });
-        this._surfaceCollection = this._generalFact.surface;
-        this._generalFact = this._generalFact;
-        return {
-            center: [this._generalFact.lon_center, this._generalFact.lat_center],
-            bounds: this._generalFact.bounds,
-        };
-    }
-
-    simplifyTrailLineString() {
-        // this._pathLine = TrailHelper.simplifyTrailLineString(this._unfilteredPathLine, 0.02);
-        this.simplifiedFeaturesCollection = TrailHelper.simplifyLineString(this._parsedFeaturesCollection);
-    }
-
-    nivelatePathLine() {
-        this.elevationNivelatedFeaturesCollection = TrailHelper.nivelatePathLine(this.elevatedFeaturesCollection);
-    }
-
-    getEnrichedFeatureCollection() {
-        const enriched = TrailHelper.enrichPathLine(this.elevationNivelatedFeaturesCollection);
-        return enriched;
-    }
-
-    generateGeneralFacts() {
-        TrailHelper.getGeneralFacts(this.elevationNivelatedFeaturesCollection);
-    }
-
-    generateWaypoints(maps) {
-        const currentWaypoints = JSON.parse(JSON.stringify(this._waypoints));
-        const computedWaypoints = WaypointHelper.generateWaypoints(maps.leftMap, maps.rightMap, currentWaypoints, this.pathLine, this.surfaceCollection);
-        this._waypoints = JSON.parse(JSON.stringify(computedWaypoints.waypoints));
-        this._chartWaypoints = JSON.parse(JSON.stringify(computedWaypoints.chartWaypoints));
-        this._mapWaypoints = JSON.parse(JSON.stringify(computedWaypoints.mapWaypoints));
-    }
-
+    // koristeno i za WP, sad taj dio treba izdvojiti
     setDataByName(propName, propIndex, propProp, propValue) {
+        const generalFacts = this.getGeneralFacts();
         if (propIndex && propProp) {
-            this['_' + propName][propIndex][propProp] = propValue;
+            generalFacts[propName][propIndex][propProp] = propValue;
         } else {
-            this[propName] = propValue;
+            generalFacts[propName] = propValue;
         }
+        this.setGeneralFacts(generalFacts);
     }
 
     getTrailData() {
+        const trailFacts = this.getGeneralFacts();
         return {
-            trailName: this.trailName,
-            trailDesc: this.trailDesc,
-            externalLink: this.externalLink,
-            imageURL: this.imageURL,
-            trailTypeID: this.trailTypeID,
-            fitnessLevelID: this.fitnessLevelID,
-            techniqueLevelID: this.techniqueLevelID,
-            mountainIDs: this.mountainIDs,
-            surfaceCollection: this.surfaceCollection,
-            waypoints: this.waypoints,
-            chartWaypoints: this.chartWaypoints,
-            mapWaypoints: this.mapWaypoints,
-            generalFact: this.generalFact,
-            progressGeneral: this.progressGeneral,
-            progressSimplifyPath: this.progressSimplifyPath,
-            progressElevationPath: this.progressElevationPath,
-            progressFlattenPath: this.progressFlattenPath,
-            progressFixWPs: this.progressFixWPs,
+            trailName: trailFacts.trailName,
+            trailDesc: trailFacts.trailDesc,
+            externalLink: trailFacts.externalLink,
+            imageURL: trailFacts.imageURL,
+            trailTypeID: trailFacts.trailTypeID,
+            fitnessLevelID: trailFacts.fitnessLevelID,
+            techniqueLevelID: trailFacts.techniqueLevelID,
+            mountainIDs: trailFacts.mountainIDs,
+            surfaceCollection: trailFacts.surfaceCollection,
+            
+            waypoints: trailFacts.waypoints,
+            chartWaypoints: trailFacts.chartWaypoints,
+            
+            mapWaypoints: trailFacts.mapWaypoints,
+            generalFact: trailFacts.generalFact,
+            progressGeneral: trailFacts.progressGeneral,
+            progressSimplifyPath: trailFacts.progressSimplifyPath,
+            progressElevationPath: trailFacts.progressElevationPath,
+            progressFlattenPath: trailFacts.progressFlattenPath,
+            progressFixWPs: trailFacts.progressFixWPs,
         };
     }
 
     getChartData(containerId) {
         const chartData = ChartHelper.getChartSetup(containerId, this.trailName, this.chartWaypoints, this.profileMapPathLine, this.surfaceCollection);
         return chartData;
-    }
-
-    get progressFixWPs() {
-        return this._progressFixWPs;
-    }
-
-    set progressFixWPs(newValue) {
-        if (newValue) {
-            this._progressFixWPs = newValue;
-        }
-    }
-
-    get progressFlattenPath() {
-        return this._progressFlattenPath;
-    }
-
-    set progressFlattenPath(newValue) {
-        if (newValue) {
-            this._progressFlattenPath = newValue;
-        }
-    }
-
-    get progressElevationPath() {
-        return this._progressElevationPath;
-    }
-
-    set progressElevationPath(newValue) {
-        if (newValue) {
-            this._progressElevationPath = newValue;
-        }
-    }
-
-    get progressSimplifyPath() {
-        return this._progressSimplifyPath;
-    }
-
-    set progressSimplifyPath(newValue) {
-        if (newValue) {
-            this._progressSimplifyPath = newValue;
-        }
-    }
-
-    get progressGeneral() {
-        return this._progressGeneral;
-    }
-
-    set progressGeneral(newValue) {
-        if (newValue) {
-            this._progressGeneral = newValue;
-        }
     }
 
     get waypoints() {
@@ -366,6 +332,16 @@ class Trail {
     set elevationNivelatedFeaturesCollection(newFeaturesCollection) {
         if (newFeaturesCollection) {
             this._elevationNivelatedFeaturesCollection = newFeaturesCollection;
+        }
+    }
+
+    get interpolatedFeaturesCollection() {
+        return this._interpolatedFeaturesCollection;
+    }
+
+    set interpolatedFeaturesCollection(newFeaturesCollection) {
+        if (newFeaturesCollection) {
+            this._interpolatedFeaturesCollection = newFeaturesCollection;
         }
     }
 

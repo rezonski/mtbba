@@ -1,3 +1,4 @@
+/* global turf */
 import GLU from '/../../glu2.js/src/index';
 import MessageEvents from '/enums/MessageEvents';
 import Enum from '/enums/Enum';
@@ -329,7 +330,10 @@ class WaypointHelper extends GLU.Controller {
         return returnVal;
     }
 
-    generateWaypoints(leftMap, rightMap, inputWaypoints, inputPathLine, surfaceCollection) {
+    generateWaypoints(leftMap, rightMap, featuresCollection) {
+        const inputPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
+        const inputWaypoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(featuresCollection)));
+        const surfaceCollection = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].properties.surfaceCollection;
         let newWaypoints = [];
         let newWaypointsChart = [];
         let newWaypointsExport = [];
@@ -353,7 +357,7 @@ class WaypointHelper extends GLU.Controller {
 
             inputPathLine.forEach((ppoint, pindex) => {
                 let currentDistance = TrailHelper.getDistanceFromLatLonInMeters(wpoint.geometry.coordinates[0], wpoint.geometry.coordinates[1], ppoint.lon, ppoint.lat);
-                // if ((currentDistance < tempDistance || tempDistance === -1) && currentDistance > 0 && currentDistance < 0.2) {
+                let currentDistance = 
                 if ((currentDistance < tempDistance) && currentDistance < 100) {
                     tempDistance = currentDistance;
                     tempIndex = pindex;
@@ -395,8 +399,6 @@ class WaypointHelper extends GLU.Controller {
                 newWaypoints.push({
                     id: 0,
                     time: (wpoint.properties.time !== undefined) ? wpoint.properties.time : null,
-                    // name: encodeURIComponent(wpoint.properties.name),
-                    // desc: encodeURIComponent(tempDesc),
                     name: wpoint.properties.name,
                     descoriginal: tempDesc,
                     descgenerated: null,
@@ -447,17 +449,6 @@ class WaypointHelper extends GLU.Controller {
             element.id = index;
             element.descgenerated = this.generateDesc(tempWp, surfaceCollection);
         });
-
-        // newWaypointsExport.forEach((element, index) => {
-        //     newWaypointsExport[index].id = (index + 1) * 10;
-        //     if (index < (newWaypointsExport.length - 1)) {
-        //         newWaypointsExport[index].id = index * 10;
-        //         newWaypointsExport[index].descgenerated = this.generateDesc(newWaypointsExport, surfaceCollection);
-        //         newWaypointsExport[index].nextstepdist = Math.round((newWaypointsExport[index + 1].odometer - newWaypointsExport[index].odometer) * 100) / 100;
-        //         newWaypointsExport[index].nextelevgain = Math.round((newWaypointsExport[index + 1].elevgain - newWaypointsExport[index].elevgain) * 100) / 100;
-        //         newWaypointsExport[index].nextelevloss = Math.round((newWaypointsExport[index + 1].elevloss - newWaypointsExport[index].elevloss) * 100) / 100;
-        //     }
-        // });
 
         newWaypointsExport.forEach((wp) => {
             mapWaypointsCollection.features.push({
