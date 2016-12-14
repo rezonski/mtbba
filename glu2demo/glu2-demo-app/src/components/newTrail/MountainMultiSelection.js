@@ -10,7 +10,7 @@ class MountainMultiSelection extends BasePage {
 
         this.state = {
             initialSetup: {},
-            mountainIDs: [],
+            mntns: [],
         };
 
         this.bindGluBusEvents({
@@ -30,7 +30,7 @@ class MountainMultiSelection extends BasePage {
     }
 
     onFormChangeMountain(mntID, event, isChecked) {
-        let temp = this.state.mountainIDs;
+        let temp = this.state.mntns;
         if (isChecked) {
             if (temp.indexOf(mntID) === -1) {
                 temp.push(mntID);
@@ -41,19 +41,19 @@ class MountainMultiSelection extends BasePage {
             }
         }
         const payload = {
-            name: this.props.fieldName,
+            name: 'mntns',
             value: temp,
         };
         this.emit(Enum.DataEvents.SAVE_TRAILDATA2MODEL, payload);
         this.setState({
-            mountainIDs: temp,
+            mntns: temp,
         });
     }
 
     onDataRetrieved(payload) {
-        if (payload.mountainIDs) {
+        if (payload.mntns) {
             this.setState({
-                mountainIDs: payload.mountainIDs,
+                mntns: payload.mntns,
             });
         }
     }
@@ -93,7 +93,7 @@ class MountainMultiSelection extends BasePage {
     }
 
     mntChecked(mntID) {
-        if (this.state.mountainIDs.indexOf(mntID) > -1) {
+        if (this.state.mntns.indexOf(mntID) > -1) {
             return true;
         }
         return false;

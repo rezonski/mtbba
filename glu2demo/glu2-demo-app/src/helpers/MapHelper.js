@@ -26,7 +26,7 @@ class MapHelper {
         rightMap.getSource('focuswpafter').setData(data);
     }
 
-    rebuildPathLayers(currentLayers, leftMap, rightMap, surfaceCollection, pathLine, generalFact) {
+    reBuildPathLayers(currentLayers, leftMap, rightMap, surfaceCollection, pathLine, generalFact) {
         let startOdometer = 0;
         let endOdometer = 99999;
         let sastavPathsArray = [];

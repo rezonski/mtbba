@@ -22,7 +22,7 @@ class WPDRawer extends BasePage {
     }
 
     componentDidMount() {
-        this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA);
+        this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA, 'waypoints');
     }
 
     componentWillUnmount() {

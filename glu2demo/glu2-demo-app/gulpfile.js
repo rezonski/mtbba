@@ -56,13 +56,16 @@ var TEMPLATE_CSS_FILES = [
 
 /* Build source paths */
 var JS_SRC = './src';
+var JS_VENDOR_SRC = './js';
 var LESS_SRC = './src/less';
 var ASSETS_SRC = './assets';
 
 /* Build destination paths */
 var JS_DEST = './demo/js';
+var JS_VENDOR_DEST = './demo/js';
 var CSS_DEST = './demo/css';
 var ASSETS_DEST = './demo';
+
 var COMPILED_TEMPLATE_FILE_DEST = './demo';
 
 var SUPPORTED_ENVIRONMENTS = ['local', 'development', 'rc', 'production'];
@@ -174,6 +177,12 @@ gulp.task('copy:assets', function() {
         .pipe(gulp.dest(ASSETS_DEST));
 });
 
+/* copy:vendors task - copies vendors */
+gulp.task('copy:vendors', function() {
+    return gulp.src(JS_VENDOR_SRC + '/**/*')
+        .pipe(gulp.dest(JS_VENDOR_DEST));
+});
+
 /* copy:fonts task - copies css fonts */
 gulp.task('copy:fonts', function() {
     return gulp.src('../css/dist/fonts/**/*')
@@ -251,6 +260,7 @@ SUPPORTED_ENVIRONMENTS.forEach(function(env) {
         sequence('clean',
             'eslint', [
                 'copy:assets',
+                'copy:vendors',
                 'copy:fonts',
                 'vendor',
                 'less:build',
@@ -266,6 +276,7 @@ SUPPORTED_ENVIRONMENTS.forEach(function(env) {
         sequence('clean',
             'eslint', [
                 'copy:assets',
+                'copy:vendors',
                 'copy:fonts',
                 'vendor:ugly',
                 'less:build:ugly',

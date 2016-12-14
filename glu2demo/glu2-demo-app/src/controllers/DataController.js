@@ -26,7 +26,7 @@ class DataController extends GLU.Controller {
         this.bindGluBusEvents({
             [Enum.MapEvents.RETRIEVE_MAP_INIT]: this.getMapInitSetup,
             [Enum.MapEvents.RETRIEVE_INITIAL_DATA_SETUP]: this.getDataInitSetup,
-            [Enum.MapEvents.REBUILD_PATH_LAYERS]: this.rebuildMapLayers,
+            [Enum.MapEvents.REBUILD_PATH_LAYERS]: this.reBuildMapLayers,
             [Enum.MapEvents.REQUEST_DISPLAY_PATH_LAYERS]: this.onRequestMapLayers,
             [Enum.DataEvents.SAVE_TRAILDATA2MODEL]: this.setTrailData2Model,
             [Enum.DataEvents.UPDATE_TRAILDATA2MODEL]: this.updateTrailData2Model,
@@ -66,12 +66,12 @@ class DataController extends GLU.Controller {
         GLU.bus.emit(Enum.MapEvents.INITIAL_DATA_SETUP_RETRIEVED, dataSetup);
     }
 
-    rebuildMapLayers() {
+    reBuildMapLayers() {
         const maps = {
             leftMap: MapModel.leftMap,
             rightMap: MapModel.rightMap,
         };
-        TrailsDataModel.activeTrail.rebuildMapLayers(maps);
+        TrailsDataModel.activeTrail.reBuildMapLayers(maps);
         GLU.bus.emit(Enum.MapEvents.REQUEST_DISPLAY_PATH_LAYERS);
     }
 
@@ -80,7 +80,7 @@ class DataController extends GLU.Controller {
             leftMap: MapModel.leftMap,
             rightMap: MapModel.rightMap,
         };
-        TrailsDataModel.activeTrail.rebuildWaypoints(maps);
+        TrailsDataModel.activeTrail.generateWaypoints(maps);
         const pathLayers = TrailsDataModel.activeTrail.mapPathLayers;
         GLU.bus.emit(Enum.MapEvents.DISPLAY_PATH_LAYERS_ON_MAP, pathLayers);
     }
@@ -109,12 +109,17 @@ class DataController extends GLU.Controller {
         }
     }
 
-    getTrailData() {
+    getTrailData(payload) {
         if (TrailsDataModel.activeTrail === undefined) {
             TrailsDataModel.trail = new Trail();
         } else {
-            const trailData = TrailsDataModel.activeTrail.getTrailData();
-            GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
+            if (payload && payload === 'waypoint') {
+                const trailData = TrailsDataModel.activeTrail.getTrailData();
+                GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
+            } else {
+                const trailData = TrailsDataModel.activeTrail.getTrailData();
+                GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
+            }
         }
     }
 
@@ -141,6 +146,36 @@ class DataController extends GLU.Controller {
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endTrailsListLoading'));
     }
 
+    saveInitalGeoFile(payload) {
+        if (payload.file) {
+            const r = new FileReader();
+            r.onload = (e) => {
+                TrailsDataModel.trail = new Trail();
+                // Save trail name
+                TrailsDataModel.activeTrail.trailName = payload.file.name.replace('.gpx', '').replace('_profil', ' ').replace('_', ' ');
+                // Save parsed file
+                const domParser = (new DOMParser()).parseFromString(e.target.result, 'text/xml');
+                if (payload.file.name.toLowerCase().indexOf('.gpx') > 0) {
+                    TrailsDataModel.activeTrail.parsedFeaturesCollection = toGeoJSON.gpx(domParser);
+                } else if (payload.file.name.toLowerCase().indexOf('.kml') > 0) {
+                    TrailsDataModel.activeTrail.parsedFeaturesCollection = toGeoJSON.kml(domParser);
+                } else {
+                    GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('fileFormatUnsuported'));
+                    return;
+                }
+                TrailsDataModel.activeTrail.newTrail();
+                TrailsDataModel.activeTrail.parseInitialFeaturesCollection();
+                const trailData = TrailsDataModel.activeTrail.getTrailData();
+                GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
+            };
+            GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('startGeoFileReading'));
+            r.readAsText(payload.file);
+        } else {
+            GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('fileLoadFailed'));
+            return;
+        }
+    }
+
     downloadTrail(trailId) {
         const query = {
             trailid: trailId,
@@ -150,7 +185,8 @@ class DataController extends GLU.Controller {
             .then((response) => {
                 TrailsDataModel.trail = new Trail();
                 TrailsDataModel.activeTrail.parsedFeaturesCollection = JSON.parse(response.text);
-                const geoSetup = TrailsDataModel.activeTrail.parseDownloadedTrail(); // Runs parsing
+                TrailsDataModel.activeTrail.parseInitialFeaturesCollection();
+                const geoSetup = TrailsDataModel.activeTrail.getTrailGeoLocation(); // Runs parsing
                 MapModel.initialCenter = JSON.parse(JSON.stringify(geoSetup.center));
                 MapModel.initialMaxBounds = JSON.parse(JSON.stringify(geoSetup.bounds));
                 console.info('# 1');
@@ -262,35 +298,6 @@ class DataController extends GLU.Controller {
             GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, this.progressPayload);
             GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endAddingElevation'));
             GLU.bus.emit(Enum.DataEvents.START_FLATTENING_PATH);
-        }
-    }
-
-    saveInitalGeoFile(payload) {
-        if (payload.file) {
-            const r = new FileReader();
-            r.onload = (e) => {
-                TrailsDataModel.trail = new Trail();
-                // Save trail name
-                TrailsDataModel.activeTrail.trailName = payload.file.name.replace('.gpx', '').replace('_profil', ' ').replace('_', ' ');
-                // Save parsed file
-                const domParser = (new DOMParser()).parseFromString(e.target.result, 'text/xml');
-                if (payload.file.name.toLowerCase().indexOf('.gpx') > 0) {
-                    TrailsDataModel.activeTrail.parsedFeaturesCollection = toGeoJSON.gpx(domParser);
-                } else if (payload.file.name.toLowerCase().indexOf('.kml') > 0) {
-                    TrailsDataModel.activeTrail.parsedFeaturesCollection = toGeoJSON.kml(domParser);
-                } else {
-                    GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('fileFormatUnsuported'));
-                    return;
-                }
-                TrailsDataModel.activeTrail.newTrail();
-                const trailData = TrailsDataModel.activeTrail.getTrailData();
-                GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
-            };
-            GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('startGeoFileReading'));
-            r.readAsText(payload.file);
-        } else {
-            GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('fileLoadFailed'));
-            return;
         }
     }
 

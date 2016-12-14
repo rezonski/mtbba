@@ -68,7 +68,7 @@ class TrailHelper extends GLU.Controller {
         // let currLocOut = {};
         const nivelatedPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
         nivelatedPathLine.forEach((location, index) => {
-            const segmentDistanceMeters = (turf.distance(prevPoint, location) * 1000); // in meters
+            const segmentDistanceMeters = (turf.distance(turf.point([prevPoint[0], prevPoint[1]]), turf.point([location[0], location[1]])) * 1000); // in meters
             if (index > 0) {
                 if (segmentDistanceMeters > 10) {
                     const countAdditionSegments = Math.round(segmentDistanceMeters / 5);
@@ -113,12 +113,17 @@ class TrailHelper extends GLU.Controller {
             let currLoc;
             if (index > 0) {
                 elevationCalc = (!location[2]) ? prevLoc.elevation : location[2];
+                const prevDist = turf.distance(turf.point([prevPoint[0], prevPoint[1]]), turf.point([location[0], location[1]]));
+                const elevDelta = elevationCalc - prevLoc.elevation;
                 currLoc = {
                     lon: location[0],
                     lat: location[1],
                     elevation: elevationCalc,
-                    prev_dist: turf.distance(prevPoint, location),
-                    prev_elev: elevationCalc - prevLoc.elevation,
+                    prev_elev: elevDelta,
+                    elev_gain: (elevDelta > 0) ? (prevLoc.elev_gain + elevDelta) : prevLoc.elev_gain,
+                    elev_lost: (elevDelta < 0) ? (prevLoc.elev_lost + elevDelta) : prevLoc.elev_lost,
+                    odometer: prevLoc.odometer + prevDist,
+                    prev_dist: prevDist,
                 };
             } else {
                 elevationCalc = (location[2] === undefined) ? 0 : location[2];
@@ -126,8 +131,11 @@ class TrailHelper extends GLU.Controller {
                     lon: location[0],
                     lat: location[1],
                     elevation: elevationCalc,
-                    prev_dist: 0,
                     prev_elev: 0,
+                    elev_gain: 0,
+                    elev_lost: 0,
+                    odometer: 0,
+                    prev_dist: 0,
                 };
             }
             enrichedPathLine.push(currLoc);
@@ -184,18 +192,19 @@ class TrailHelper extends GLU.Controller {
             }
         }
         exportGeneralFacts.distance = totaldistance;
-        exportGeneralFacts.elevgain = totalelevgain;
-        exportGeneralFacts.elevloss = totalelevloss;
+        exportGeneralFacts.elev_gain = totalelevgain;
+        exportGeneralFacts.elev_loss = totalelevloss;
 
         // Bounds calculation
         const lonDelta = (maxLon - minLon) / 1;
         const latDelta = (maxLat - minLat) / 1;
         exportGeneralFacts.bounds = [[(maxLon + lonDelta), (maxLat + latDelta)], [(minLon - lonDelta), (minLat - latDelta)]];
 
-        exportGeneralFacts.lonCenter = (maxLon + minLon) / 2;
-        exportGeneralFacts.latCenter = (maxLat + minLat) / 2;
-        exportGeneralFacts.elevMin = minElev;
-        exportGeneralFacts.elevMax = maxElev;
+        const lonCenter = (maxLon + minLon) / 2;
+        const latCenter = (maxLat + minLat) / 2;
+        exportGeneralFacts.center = [lonCenter, latCenter];
+        exportGeneralFacts.elev_min = minElev;
+        exportGeneralFacts.elev_max = maxElev;
 
         generateGeneralFactsProgressPayload.loaded = 100;
         GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, generateGeneralFactsProgressPayload);
@@ -203,15 +212,15 @@ class TrailHelper extends GLU.Controller {
         return exportGeneralFacts;
     }
 
-    getDistanceFromLatLonInMeters(lon1, lat1, lon2, lat2) {
-        const R = 6371;
-        const dLat = this.deg2rad(lat2 - lat1);
-        const dLon = this.deg2rad(lon2 - lon1);
-        const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        const d = R * c * 1000;
-        return d;
-    }
+    // getDistanceFromLatLonInMeters(lon1, lat1, lon2, lat2) {
+    //     const R = 6371;
+    //     const dLat = this.deg2rad(lat2 - lat1);
+    //     const dLon = this.deg2rad(lon2 - lon1);
+    //     const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    //     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    //     const d = R * c * 1000;
+    //     return d;
+    // }
 
     deg2rad(deg) {
         return deg * (Math.PI / 180);

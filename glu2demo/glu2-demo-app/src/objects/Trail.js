@@ -1,3 +1,4 @@
+/* global turf */
 // import GLU from '/../../glu2.js/src/index';
 // import API from '/apis/Api';
 import TrailHelper from '/helpers/TrailHelper';
@@ -10,6 +11,7 @@ class Trail {
     constructor() {
         this._trailName = '';
         this._newTrail = false;
+        this._mapPathLayers = [];
         this._parsedFeaturesCollection = {};
         this._simplifiedFeaturesCollection = {}; // Simplified
         this._elevatedFeaturesCollection = {}; // Elevated
@@ -17,33 +19,43 @@ class Trail {
         this._interpolatedFeaturesCollection = {}; // Flatten elevation LineString
     }
 
-    // Treba doraditi da radi sad kolekcijom
-    // parseDownloadedTrail() {
-    //     this.parsedFeaturesCollection.features.forEach((feature) => {
-    //         if (feature.geometry.type === 'LineString') {
-    //             this._unfilteredPathLine = this._unfilteredPathLine.concat(feature.geometry.coordinates);
-    //             this._generalFact = feature.properties;
-    //         } else if (feature.geometry.type === 'Point') {
-    //             this._waypoints.push(feature);
-    //         }
-    //     });
-    //     this._trailName = this._generalFact.trail_name;
-    //     this._trailDesc = this._generalFact.trail_desc;
-    //     this._externalLink = this._generalFact.external_link;
-    //     this._imageURL = this._generalFact.image_url;
-    //     this._trailTypeID = this._generalFact.type_id;
-    //     this._fitnessLevelID = this._generalFact.required_fitness;
-    //     this._techniqueLevelID = this._generalFact.required_technique;
-    //     this._mountainIDs = this._generalFact.mntns.map((mnt) => {
-    //         return mnt.id;
-    //     });
-    //     this._surfaceCollection = this._generalFact.surface;
-    //     this._generalFact = this._generalFact;
-    //     return {
-    //         center: [this._generalFact.lon_center, this._generalFact.lat_center],
-    //         bounds: this._generalFact.bounds,
-    //     };
-    // }
+    parseInitialFeaturesCollection() {
+        let features = [];
+        let pathline = [];
+        let generalFacts = {};
+        CommonHelper.getLineStrings(this.parsedFeaturesCollection).forEach((feature) => {
+            if (feature.geometry.type === 'LineString') {
+                pathline = pathline.concat(feature.geometry.coordinates);
+                generalFacts = feature.properties;
+            } else if (feature.geometry.type === 'Point') {
+                features.push(feature);
+            }
+        });
+        let path = turf.linestring(pathline);
+        path.properties = generalFacts;
+        if (path.properties.mntns instanceof String) {
+            path.properties.mntns = JSON.parse(path.properties.mntns);
+        }
+        if (path.properties.surfaceCollection instanceof String) {
+            path.properties.surfaceCollection = JSON.parse(path.properties.surfaceCollection);
+        }
+        if (path.properties.bounds instanceof String) {
+            path.properties.bounds = JSON.parse(path.properties.bounds);
+        }
+        if (path.properties.center instanceof String) {
+            path.properties.center = JSON.parse(path.properties.center);
+        }
+        features.push(path);
+        this.parsedFeaturesCollection = turf.featurecollection(features);
+    }
+
+    getTrailGeoLocation() {
+        const path = CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].properties;
+        return {
+            center: path.center,
+            bounds: path.bounds,
+        };
+    }
 
     simplifyTrailLineString() {
         this.simplifiedFeaturesCollection = TrailHelper.simplifyLineString(this._parsedFeaturesCollection);
@@ -63,7 +75,7 @@ class Trail {
     }
 
     getGeneralFacts() {
-        return JSON.parse(JSON.stringify(CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].properties));
+        return JSON.parse(JSON.stringify(CommonHelper.getLineStrings(this.interpolatedFeaturesCollection)[0].properties));
     }
 
     setGeneralFacts(newGeneralFacts) {
@@ -80,43 +92,41 @@ class Trail {
         this.setGeneralFacts(generalFacts);
     }
 
-    setWaypoints(waypoints) {
-        waypoints.forEach((wp, idx) => {
-            CommonHelper.getPoints(this.parsedFeaturesCollection)[idx] = wp;
-            CommonHelper.getPoints(this.simplifiedFeaturesCollection)[idx] = wp;
-            CommonHelper.getPoints(this.elevatedFeaturesCollection)[idx] = wp;
-            CommonHelper.getPoints(this.elevationNivelatedFeaturesCollection)[idx] = wp;
-            CommonHelper.getPoints(this.interpolatedFeaturesCollection)[idx] = wp;
-        });
-    }
-
     generateWaypoints(maps) {
         const enrichedFeaturesCollection = TrailHelper.enrichPathLine(this.interpolatedFeaturesCollection);
         const computedWaypoints = WaypointHelper.generateWaypoints(maps.leftMap, maps.rightMap, enrichedFeaturesCollection);
-        this.setWaypoints(computedWaypoints);
+        this.waypoints = computedWaypoints;
     }
 
-    rebuildMapLayers(maps) {
-        this.mapPathLayers = MapHelper.rebuildPathLayers(this.mapPathLayers, maps.leftMap, maps.rightMap, this.surfaceCollection, this.pathLine, this.generalFact);
+    reBuildMapLayers(maps) {
+        // this.mapPathLayers = MapHelper.reBuildPathLayers(this.mapPathLayers, maps.leftMap, maps.rightMap, this.surfaceCollection, this.pathLine, this.generalFact);
+        this.mapPathLayers = MapHelper.reBuildPathLayers(this.mapPathLayers, maps.leftMap, maps.rightMap, this.surfaceCollection, this.pathLine, this.generalFact);
     }
 
-    rebuildWaypoints(maps) {
-        const currentWaypoints = JSON.parse(JSON.stringify(this._mapWaypoints));
-        const computedWaypoints = WaypointHelper.generateWaypoints(maps.leftMap, maps.rightMap, currentWaypoints, this.pathLine, this.surfaceCollection);
-        this._waypoints = JSON.parse(JSON.stringify(computedWaypoints.waypoints));
-        this._chartWaypoints = JSON.parse(JSON.stringify(computedWaypoints.chartWaypoints));
-        this._mapWaypoints = JSON.parse(JSON.stringify(computedWaypoints.mapWaypoints));
-    }
+    // rebuildWaypoints(maps) {
+    //     const currentWaypoints = JSON.parse(JSON.stringify(this._mapWaypoints));
+    //     const computedWaypoints = WaypointHelper.generateWaypoints(maps.leftMap, maps.rightMap, currentWaypoints, this.pathLine, this.surfaceCollection);
+    //     this._waypoints = JSON.parse(JSON.stringify(computedWaypoints.waypoints));
+    //     this._chartWaypoints = JSON.parse(JSON.stringify(computedWaypoints.chartWaypoints));
+    //     this._mapWaypoints = JSON.parse(JSON.stringify(computedWaypoints.mapWaypoints));
+    // }
 
     // koristeno i za WP, sad taj dio treba izdvojiti
     setDataByName(propName, propIndex, propProp, propValue) {
-        const generalFacts = this.getGeneralFacts();
         if (propIndex && propProp) {
-            generalFacts[propName][propIndex][propProp] = propValue;
+            const tempWaypoints = JSON.parse(JSON.stringify(this.waypoints));
+            tempWaypoints[propIndex][propProp] = propValue;
+            this.waypoints = tempWaypoints;
         } else {
+            const generalFacts = this.getGeneralFacts();
             generalFacts[propName] = propValue;
+            this.setGeneralFacts(generalFacts);
         }
-        this.setGeneralFacts(generalFacts);
+        // if (propIndex && propProp) {
+        //     generalFacts[propName][propIndex][propProp] = propValue;
+        // } else {
+        //     generalFacts[propName] = propValue;
+        // }
     }
 
     getTrailData() {
@@ -129,13 +139,8 @@ class Trail {
             trailTypeID: trailFacts.trailTypeID,
             fitnessLevelID: trailFacts.fitnessLevelID,
             techniqueLevelID: trailFacts.techniqueLevelID,
-            mountainIDs: trailFacts.mountainIDs,
+            mntns: trailFacts.mntns,
             surfaceCollection: trailFacts.surfaceCollection,
-            
-            waypoints: trailFacts.waypoints,
-            chartWaypoints: trailFacts.chartWaypoints,
-            
-            mapWaypoints: trailFacts.mapWaypoints,
             generalFact: trailFacts.generalFact,
             progressGeneral: trailFacts.progressGeneral,
             progressSimplifyPath: trailFacts.progressSimplifyPath,
@@ -145,111 +150,35 @@ class Trail {
         };
     }
 
+    get waypoints() {
+        return CommonHelper.getPoints(this.interpolatedFeaturesCollection);
+    }
+
+    set waypoints(waypoints) {
+        waypoints.forEach((wp, idx) => {
+            // pitanje hoce li ovo raditi, getPoint radi sa reduce, ne znam da li ce prepoznati referencu
+            CommonHelper.getPoints(this.parsedFeaturesCollection)[idx] = wp;
+            CommonHelper.getPoints(this.simplifiedFeaturesCollection)[idx] = wp;
+            CommonHelper.getPoints(this.elevatedFeaturesCollection)[idx] = wp;
+            CommonHelper.getPoints(this.elevationNivelatedFeaturesCollection)[idx] = wp;
+            CommonHelper.getPoints(this.interpolatedFeaturesCollection)[idx] = wp;
+        });
+    }
+
     getChartData(containerId) {
         const chartData = ChartHelper.getChartSetup(containerId, this.trailName, this.chartWaypoints, this.profileMapPathLine, this.surfaceCollection);
         return chartData;
     }
 
-    get waypoints() {
-        return this._waypoints;
+/* NEW */
+
+    get mapPathLayers() {
+        return this._mapPathLayers;
     }
 
-    get chartWaypoints() {
-        return this._chartWaypoints;
-    }
-
-    get mapWaypoints() {
-        return this._mapWaypoints;
-    }
-
-    get trailName() {
-        return this._trailName;
-    }
-
-    set trailName(newName) {
-        if (newName) {
-            this._trailName = newName;
-        }
-    }
-
-    get trailDesc() {
-        return this._trailDesc;
-    }
-
-    set trailDesc(newDesc) {
-        if (newDesc) {
-            this._trailDesc = newDesc;
-        }
-    }
-
-    get externalLink() {
-        return this._externalLink;
-    }
-
-    set externalLink(newLink) {
-        if (newLink) {
-            this._externalLink = newLink;
-        }
-    }
-
-    get imageURL() {
-        return this._imageURL;
-    }
-
-    set imageURL(newLink) {
-        if (newLink) {
-            this._imageURL = newLink;
-        }
-    }
-
-    get trailTypeID() {
-        return this._trailTypeID;
-    }
-
-    set trailTypeID(newValue) {
-        if (newValue) {
-            this._trailTypeID = newValue;
-        }
-    }
-
-    get fitnessLevelID() {
-        return this._fitnessLevelID;
-    }
-
-    set fitnessLevelID(newValue) {
-        if (newValue) {
-            this._fitnessLevelID = newValue;
-        }
-    }
-
-    get techniqueLevelID() {
-        return this._techniqueLevelID;
-    }
-
-    set techniqueLevelID(newValue) {
-        if (newValue) {
-            this._techniqueLevelID = newValue;
-        }
-    }
-
-    get mountainIDs() {
-        return this._mountainIDs;
-    }
-
-    set mountainIDs(newMntArray) {
-        if (newMntArray) {
-            this._mountainIDs = newMntArray;
-        }
-    }
-
-    get surfaceCollection() {
-        return this._surfaceCollection;
-    }
-
-    set surfaceCollection(newSurfaceSetup) {
-        if (newSurfaceSetup) {
-            const collArray = CommonHelper.sortArrayByElementIndex(newSurfaceSetup, 0);
-            this._surfaceCollection = collArray;
+    set mapPathLayers(newArray) {
+        if (newArray) {
+            this._mapPathLayers = newArray;
         }
     }
 
@@ -262,48 +191,6 @@ class Trail {
             this._parsedFeaturesCollection = newFile;
         }
     }
-
-    get pathLine() {
-        return this._pathLine;
-    }
-
-    set pathLine(newLine) {
-        if (newLine) {
-            this._pathLine = newLine;
-        }
-    }
-
-    get profileMapPathLine() {
-        return this._profileMapPathLine;
-    }
-
-    set profileMapPathLine(newLine) {
-        if (newLine) {
-            this._profileMapPathLine = newLine;
-        }
-    }
-
-    get mapPathLayers() {
-        return this._mapPathLayers;
-    }
-
-    set mapPathLayers(newArray) {
-        if (newArray) {
-            this._mapPathLayers = newArray;
-        }
-    }
-
-    get generalFact() {
-        return this._generalFact;
-    }
-
-    set generalFact(newPropertiesObject) {
-        if (newPropertiesObject) {
-            this._generalFact = newPropertiesObject;
-        }
-    }
-
-/* NEW */
 
     get simplifiedFeaturesCollection() {
         return this._simplifiedFeaturesCollection;

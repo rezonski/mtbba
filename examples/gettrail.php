@@ -85,8 +85,7 @@ if (isset($_GET['trailid'])) {
             COALESCE(review_fun,0) AS `review_fun`,
             COALESCE(required_fitness,0) AS `required_fitness`,
             COALESCE(required_technique,0) AS `required_technique`,
-            COALESCE(lat_center,0) AS `lat_center`,
-            COALESCE(lon_center,0) AS `lon_center`,
+            CONCAT('[', COALESCE(lon_center,0), ',', COALESCE(lat_center,0), ']') AS `center`,
             bounds,
             external_link,
             image_url
@@ -106,7 +105,7 @@ if (isset($_GET['trailid'])) {
             "mntns": '.$mntarray.',
             "trail_name": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_name"]).'",
             "trail_desc": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_desc"]).'",
-            "surface": '.$row["surface"].',
+            "surfaceCollection": '.$row["surface"].',
             "type_id": "'.$row["type_id"].'",
             "type_name": "'.$row["type_name"].'",
             "type_desc": "'.$row["type_desc"].'",
@@ -119,8 +118,7 @@ if (isset($_GET['trailid'])) {
             "review_fun": '.$row["review_fun"].',
             "required_fitness": '.$row["required_fitness"].',
             "required_technique": '.$row["required_technique"].',
-            "lat_center": '.$row["lat_center"].',
-            "lon_center": '.$row["lon_center"].',
+            "center": '.$row["center"].',
             "bounds": "'.$row["bounds"].'",
             "external_link": "'.$row["external_link"].'",
             "image_url": "'.$row["image_url"].'"
