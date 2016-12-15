@@ -145,13 +145,18 @@ class Trail {
     set waypoints(waypoints) {
         console.log('set waypoints(waypoints)');
         console.log(this.parsedFeaturesCollection.features[15].properties);
+        // CommonHelper.getPoints(this.parsedFeaturesCollection) = JSON.parse(JSON.stringify(waypoints));
+        // CommonHelper.getPoints(this.simplifiedFeaturesCollection) = JSON.parse(JSON.stringify(waypoints));
+        // CommonHelper.getPoints(this.elevatedFeaturesCollection) = JSON.parse(JSON.stringify(waypoints));
+        // CommonHelper.getPoints(this.elevationNivelatedFeaturesCollection) = JSON.parse(JSON.stringify(waypoints));
+        // CommonHelper.getPoints(this.interpolatedFeaturesCollection) = JSON.parse(JSON.stringify(waypoints));
         waypoints.forEach((wp, idx) => {
             // pitanje hoce li ovo raditi, getPoint radi sa reduce, ne znam da li ce prepoznati referencu
-            CommonHelper.getPoints(this.parsedFeaturesCollection)[idx] = wp;
-            CommonHelper.getPoints(this.simplifiedFeaturesCollection)[idx] = wp;
-            CommonHelper.getPoints(this.elevatedFeaturesCollection)[idx] = wp;
-            CommonHelper.getPoints(this.elevationNivelatedFeaturesCollection)[idx] = wp;
-            CommonHelper.getPoints(this.interpolatedFeaturesCollection)[idx] = wp;
+            CommonHelper.getPoints(this.parsedFeaturesCollection)[idx].properties = JSON.parse(JSON.stringify(wp.properties));
+            CommonHelper.getPoints(this.simplifiedFeaturesCollection)[idx] = JSON.parse(JSON.stringify(wp.properties));
+            CommonHelper.getPoints(this.elevatedFeaturesCollection)[idx] = JSON.parse(JSON.stringify(wp.properties));
+            CommonHelper.getPoints(this.elevationNivelatedFeaturesCollection)[idx] = JSON.parse(JSON.stringify(wp.properties));
+            CommonHelper.getPoints(this.interpolatedFeaturesCollection)[idx] = JSON.parse(JSON.stringify(wp.properties));
         });
         // console.log(this.elevationNivelatedFeaturesCollection);
         console.log(this.parsedFeaturesCollection.features[15].properties);
