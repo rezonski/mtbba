@@ -32,7 +32,6 @@ class MapHelper {
         let endOdometer = 99999;
         let sastavPathsArray = [];
         let layersArray = [];
-        
         const generalFact = JSON.parse(JSON.stringify(featuresCollection)).features[0].properties;
         const surfaceCollection = generalFact.surfaceCollection;
         const pathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;

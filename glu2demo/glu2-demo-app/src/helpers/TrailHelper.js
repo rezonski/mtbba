@@ -81,9 +81,9 @@ class TrailHelper extends GLU.Controller {
                         },
                     };
                     for (let i = 0; i < countAdditionSegments; i++) {
-                        console.log('Calculate distance using Turf.js');
+                        // console.log('Calculate distance using Turf.js');
                         const segment = turf.along(lineSegment, i / (segmentDistanceMeters * 1000), 'kilometers'); // ovo je ok
-                        console.log('Distance: ' + segment);
+                        // console.log('Distance: ' + segment);
                         const newPoint = segment.geometry.coordinates;
                         newPoint.push((prevPoint[2] + (i * elevStep))); // add elevation to new points
                         interpolatedPathLine.push(newPoint);
@@ -121,7 +121,7 @@ class TrailHelper extends GLU.Controller {
                     elevation: elevationCalc,
                     prev_elev: elevDelta,
                     elev_gain: (elevDelta > 0) ? (prevLoc.elev_gain + elevDelta) : prevLoc.elev_gain,
-                    elev_lost: (elevDelta < 0) ? (prevLoc.elev_lost + elevDelta) : prevLoc.elev_lost,
+                    elev_loss: (elevDelta < 0) ? (prevLoc.elev_loss + elevDelta) : prevLoc.elev_loss,
                     odometer: prevLoc.odometer + prevDist,
                     prev_dist: prevDist,
                 };
@@ -133,7 +133,7 @@ class TrailHelper extends GLU.Controller {
                     elevation: elevationCalc,
                     prev_elev: 0,
                     elev_gain: 0,
-                    elev_lost: 0,
+                    elev_loss: 0,
                     odometer: 0,
                     prev_dist: 0,
                 };
@@ -159,7 +159,7 @@ class TrailHelper extends GLU.Controller {
         let totaldistance = 0; // in kms
         let totalelevgain = 0; // in kms
         let totalelevloss = 0; // in kms
-        let exportGeneralFacts = JSON.parse(JSON.stringify(featuresCollection)).features[0].properties;
+        let exportGeneralFacts = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].properties;
         let generateGeneralFactsProgressPayload = {
             status: 'progress',
             id: 'progressFlattenPath',

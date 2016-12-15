@@ -23,7 +23,7 @@ class Trail {
         let features = [];
         let pathline = [];
         let generalFacts = {};
-        CommonHelper.getLineStrings(this.parsedFeaturesCollection).forEach((feature) => {
+        this.parsedFeaturesCollection.features.forEach((feature) => {
             if (feature.geometry.type === 'LineString') {
                 pathline = pathline.concat(feature.geometry.coordinates);
                 generalFacts = feature.properties;
@@ -32,19 +32,7 @@ class Trail {
             }
         });
         let path = turf.linestring(pathline);
-        path.properties = generalFacts;
-        if (path.properties.mntns instanceof String) {
-            path.properties.mntns = JSON.parse(path.properties.mntns);
-        }
-        if (path.properties.surfaceCollection instanceof String) {
-            path.properties.surfaceCollection = JSON.parse(path.properties.surfaceCollection);
-        }
-        if (path.properties.bounds instanceof String) {
-            path.properties.bounds = JSON.parse(path.properties.bounds);
-        }
-        if (path.properties.center instanceof String) {
-            path.properties.center = JSON.parse(path.properties.center);
-        }
+        path.properties = JSON.parse(JSON.stringify(generalFacts));
         features.push(path);
         this.parsedFeaturesCollection = turf.featurecollection(features);
     }
@@ -155,6 +143,8 @@ class Trail {
     }
 
     set waypoints(waypoints) {
+        console.log('set waypoints(waypoints)');
+        console.log(this.parsedFeaturesCollection.features[15].properties);
         waypoints.forEach((wp, idx) => {
             // pitanje hoce li ovo raditi, getPoint radi sa reduce, ne znam da li ce prepoznati referencu
             CommonHelper.getPoints(this.parsedFeaturesCollection)[idx] = wp;
@@ -163,6 +153,8 @@ class Trail {
             CommonHelper.getPoints(this.elevationNivelatedFeaturesCollection)[idx] = wp;
             CommonHelper.getPoints(this.interpolatedFeaturesCollection)[idx] = wp;
         });
+        // console.log(this.elevationNivelatedFeaturesCollection);
+        console.log(this.parsedFeaturesCollection.features[15].properties);
     }
 
     getChartData(containerId) {

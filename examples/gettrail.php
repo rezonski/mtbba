@@ -119,7 +119,7 @@ if (isset($_GET['trailid'])) {
             "required_fitness": '.$row["required_fitness"].',
             "required_technique": '.$row["required_technique"].',
             "center": '.$row["center"].',
-            "bounds": "'.$row["bounds"].'",
+            "bounds": '.$row["bounds"].',
             "external_link": "'.$row["external_link"].'",
             "image_url": "'.$row["image_url"].'"
         },

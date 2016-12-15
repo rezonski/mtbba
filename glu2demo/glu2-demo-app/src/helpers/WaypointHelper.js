@@ -61,12 +61,12 @@ class WaypointHelper extends GLU.Controller {
 
             directionText += otherDirections + forbiddenDirectionText + waterSupplyText;
 
-            directionText += ' Slijedi sekcija duzine ' + wp.current.nextstepdist + ' km';
-            if (wp.current.nextelevgain > 0) {
-                directionText += ' sa ' + wp.current.nextelevgain + ' m visinskog uspona';
+            directionText += ' Slijedi sekcija duzine ' + wp.current.next_step_dist + ' km';
+            if (wp.current.next_elev_gain > 0) {
+                directionText += ' sa ' + wp.current.next_elev_gain + ' m visinskog uspona';
             }
-            if (Math.abs(wp.current.nextelevloss) > 0) {
-                directionText += ' i ' + Math.abs(wp.current.nextelevloss) + ' m visinskog spusta';
+            if (Math.abs(wp.current.next_elev_loss) > 0) {
+                directionText += ' i ' + Math.abs(wp.current.next_elev_loss) + ' m visinskog spusta';
             }
             // console.log('wp.current.odometer = ' + wp.current.odometer + ' , wp.next.odometer = ' + wp.next.odometer);
             directionText += this.parseSurfaceTransition(wp.current.odometer, wp.next.odometer, surfaceCollection);
@@ -364,29 +364,7 @@ class WaypointHelper extends GLU.Controller {
                     tempIndex = pindex;
                 }
             });
-
-            let odometer = null;
-            let elevationgain = 0;
-            let elevationloss = 0;
-
             if (tempIndex > -1) {
-                // for (let i = 0; i <= tempIndex; i++) {
-                //     odometer += inputPathLine[i].prev_dist;
-                // }
-                // odometer = inputPathLine[tempIndex];
-                odometer = Math.round(inputPathLine[tempIndex] * 100) / 100;
-                // for (let i = 0; i <= tempIndex; i++) {
-                //     if (inputPathLine[i].prev_elev > 0) {
-                //         elevationgain += inputPathLine[i].prev_elev;
-                //     } else {
-                //         elevationloss += inputPathLine[i].prev_elev;
-                //     }
-                // }
-                // elevationgain = Math.round(elevationgain * 100) / 100;
-                // elevationloss = Math.round(elevationloss * 100) / 100;
-                elevationgain = Math.round(inputPathLine[tempIndex].elev_gain * 100) / 100;
-                elevationloss = Math.round(inputPathLine[tempIndex].elev_loss * 100) / 100;
-
                 if (wpoint.properties.desc !== undefined && wpoint.properties.desc.indexOf('#') > -1 ) {
                     let tempDescArray = wpoint.properties.desc.replace('#\n\n', '#\n').replace('#\n\n', '#\n').replace('#\n', '#').replace('#\n', '#').split('#');
                     tempDesc = tempDescArray[2];
@@ -404,27 +382,20 @@ class WaypointHelper extends GLU.Controller {
                     time: (wpoint.properties.time !== undefined) ? wpoint.properties.time : null,
                     name: wpoint.properties.name,
                     desc: tempDesc,
-                    // descoriginal: tempDesc,
-                    // descgenerated: null,
-                    // lon: wpoint.geometry.coordinates[0],
-                    // lat: wpoint.geometry.coordinates[1],
-                    // elevation: Math.round(inputPathLine[tempIndex].elevation),
-                    elevgain: Math.round(elevationgain),
-                    elevloss: Math.round(elevationloss),
-                    nextelevgain: 0,
-                    nextelevloss: 0,
-                    odometer,
-                    nextstepdist: 0,
+                    elev_gain: Math.round(inputPathLine[tempIndex].elev_gain * 100) / 100,
+                    elev_loss: Math.round(inputPathLine[tempIndex].elev_loss * 100) / 100,
+                    next_elev_gain: 0,
+                    next_elev_loss: 0,
+                    odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
+                    next_step_dist: 0,
                     symbol: this.symbolFromDesc(tempDesc, tempPictogram, wpoint.properties.name),
                     pictogram: tempPictogram,
                     pictureurl: (wpoint.properties.pictureurl !== undefined) ? wpoint.properties.pictureurl : '',
-                    elevationprofile: 0,
+                    elevation_profile: 0,
+                    lon: inputPathLine[tempIndex].lon,
+                    lat: inputPathLine[tempIndex].lat,
+                    elevation: inputPathLine[tempIndex].elevation,
                 });
-
-                // newWaypointsChart.push({
-                //     name: (Number.isInteger(parseInt(wpoint.properties.name, 10))) ? tempDesc : wpoint.properties.name,
-                //     odometer,
-                // });
             }
             waypointsProgressPayload.loaded = parseInt((wpindex + 1), 10);
             GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, waypointsProgressPayload);
@@ -439,17 +410,15 @@ class WaypointHelper extends GLU.Controller {
                     current: element,
                     next: newWaypointsExport[index + 1],
                 };
-                element.nextstepdist = Math.round((newWaypointsExport[index + 1].odometer - element.odometer) * 100) / 100;
-                element.nextelevgain = Math.round((newWaypointsExport[index + 1].elevgain - element.elevgain) * 100) / 100;
-                element.nextelevloss = Math.round((newWaypointsExport[index + 1].elevloss - element.elevloss) * 100) / 100;
+                element.next_step_dist = Math.round((newWaypointsExport[index + 1].odometer - element.odometer) * 100) / 100;
+                element.next_elev_gain = Math.round((newWaypointsExport[index + 1].elev_gain - element.elev_gain) * 100) / 100;
+                element.next_elev_loss = Math.round((newWaypointsExport[index + 1].elev_loss - element.elev_loss) * 100) / 100;
             } else {
                 tempWp = {
                     current: element,
                     next: null,
                 };
             }
-            // console.log(tempWp);
-            // element.id = (index + 1) * 10;
             element.id = index;
             element.descgenerated = this.generateDesc(tempWp, surfaceCollection);
         });
@@ -462,7 +431,6 @@ class WaypointHelper extends GLU.Controller {
         });
 
         // Adding to map
-
         if (leftMap.getSource('waypoints')) {
             leftMap.removeLayer('waypoints');
             leftMap.removeSource('waypoints');
