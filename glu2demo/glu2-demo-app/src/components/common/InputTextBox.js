@@ -40,7 +40,7 @@ class InputTextBox extends BasePage {
         if (this.props.fieldIndex !== undefined && this.props.fieldProp) {
             if (payload[this.props.fieldName][this.props.fieldIndex][this.props.fieldProp] !== this.state.value) {
                 this.setState({
-                    value: payload[this.props.fieldName][this.props.fieldIndex][this.props.fieldProp],
+                    value: payload[this.props.fieldName][this.props.fieldIndex].properties[this.props.fieldProp],
                 });
             }
         } else {

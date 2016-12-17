@@ -141,11 +141,22 @@ class Trail {
             progressElevationPath: trailFacts.progressElevationPath,
             progressFlattenPath: trailFacts.progressFlattenPath,
             progressFixWPs: trailFacts.progressFixWPs,
+            waypoints: this.waypoints,
         };
     }
 
     get waypoints() {
         return CommonHelper.getPoints(this.interpolatedFeaturesCollection);
+    }
+
+    get chartWaypoints() {
+        const waypoints = CommonHelper.getPoints(this.interpolatedFeaturesCollection).map((point) => {
+            return {
+                odometer: point.odometer,
+                name: point.name,
+            };
+        });
+        return waypoints;
     }
 
     set waypoints(waypoints) {
@@ -171,7 +182,9 @@ class Trail {
     }
 
     getChartData(containerId) {
-        const chartData = ChartHelper.getChartSetup(containerId, this.trailName, this.chartWaypoints, this.profileMapPathLine, this.surfaceCollection);
+        // const chartData = ChartHelper.getChartSetup(containerId, trailFacts.trailName, this.chartWaypoints, this.profileMapPathLine, this.surfaceCollection);
+        const enrichedFeaturesCollection = this.getSimpleEnrichedFeatureCollection();
+        const chartData = ChartHelper.getChartSetup(containerId, enrichedFeaturesCollection);
         return chartData;
     }
 

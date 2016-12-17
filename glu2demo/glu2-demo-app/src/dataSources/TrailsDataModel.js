@@ -16,7 +16,7 @@ class TrailsDataModel extends GLU.DataSource {
     }
 
     set trail(newTrail) {
-        console.log('set trail(' + newTrail + ')');
+        // console.log('set trail(' + newTrail + ')');
         if (newTrail) {
             this.trails.push(newTrail);
             this._trailsMaxIndex += 1;
@@ -24,7 +24,7 @@ class TrailsDataModel extends GLU.DataSource {
     }
 
     get activeTrail() {
-        console.log('get activeTrail()');
+        // console.log('get activeTrail()');
         return this.trails[this.trailsMaxIndex];
     }
 }

@@ -25,7 +25,7 @@ class WPEditorTray extends BasePage {
             <InputTextBox
                 key={'waypoints'}
                 fieldName={'waypoints'}
-                fieldIndex={this.props.wp.properties.id}
+                fieldIndex={this.props.wpIndex}
                 fieldProp={'descgenerated'}
                 inputBoxStyle={{ fontSize: '80%' }}
                 isMultiline={true}

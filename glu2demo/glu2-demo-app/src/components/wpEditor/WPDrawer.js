@@ -30,9 +30,9 @@ class WPDRawer extends BasePage {
     }
 
     onTrailDataRetrieved(payload) {
-        if (payload.mapWaypoints !== this.state.waypoints) {
+        if (payload.waypoints !== this.state.waypoints) {
             this.setState({
-                waypoints: payload.mapWaypoints,
+                waypoints: payload.waypoints,
             });
         }
     }
@@ -67,7 +67,8 @@ class WPDRawer extends BasePage {
                         </StepButton>
                         <StepContent>
                             <WPEditorTray
-                                wp={wp}
+                                wp={wp.properties}
+                                wpIndex={wpIdx}
                             />
                         </StepContent>
                     </Step>);

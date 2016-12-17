@@ -99,6 +99,25 @@ class DataController extends GLU.Controller {
         TrailsDataModel.activeTrail.setDataByName(payload.name, payload.index, payload.prop, payload.value);
     }
 
+    getTrailData(payload) {
+        if (TrailsDataModel.activeTrail === undefined) {
+            TrailsDataModel.trail = new Trail();
+        } else {
+            console.info('DataController.getTrailData(' + payload + ')');
+            const trailData = TrailsDataModel.activeTrail.getTrailData();
+            GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
+            // if (payload && payload === 'waypoints') {
+            //     const trailData = {
+            //         waypoints: TrailsDataModel.activeTrail.waypoints,
+            //     };
+            //     GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
+            // } else {
+            //     const trailData = TrailsDataModel.activeTrail.getTrailData();
+            //     GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
+            // }
+        }
+    }
+
     updateTrailData2Model(payload) {
         TrailsDataModel.activeTrail.setDataByName(payload.name, payload.value);
         const trailData = TrailsDataModel.activeTrail.getTrailData();
@@ -106,20 +125,6 @@ class DataController extends GLU.Controller {
         GLU.bus.emit(Enum.DataEvents.RETRIEVE_CHART_DATA, 'chartcontainer');
         if (payload.name === 'surfaceCollection') {
             GLU.bus.emit(Enum.MapEvents.REBUILD_PATH_LAYERS);
-        }
-    }
-
-    getTrailData(payload) {
-        if (TrailsDataModel.activeTrail === undefined) {
-            TrailsDataModel.trail = new Trail();
-        } else {
-            if (payload && payload === 'waypoint') {
-                const trailData = TrailsDataModel.activeTrail.getTrailData();
-                GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
-            } else {
-                const trailData = TrailsDataModel.activeTrail.getTrailData();
-                GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
-            }
         }
     }
 
@@ -140,6 +145,8 @@ class DataController extends GLU.Controller {
             })
             .catch((err) => {
                 const msg = (err && err.response) ? err.response.text : err.toString();
+                console.error('DataController.getTrailsList()');
+                console.error(err);
                 // console.log('getTrailList: ' + msg);
                 GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('trailLoadFailed') + msg);
             });
@@ -197,6 +204,8 @@ class DataController extends GLU.Controller {
             })
             .catch((err) => {
                 const msg = (err && err.response) ? err.response.text : err.toString();
+                console.error('DataController.downloadTrail()');
+                console.error(err);
                 // console.log('downloadTrail: ' + msg);
                 GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('trailLoadFailed') + msg);
             });
