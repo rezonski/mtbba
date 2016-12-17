@@ -62,6 +62,11 @@ class Trail {
         return enriched;
     }
 
+    getSimpleEnrichedFeatureCollection() {
+        const enriched = TrailHelper.enrichPathLine(this.elevationNivelatedFeaturesCollection);
+        return enriched;
+    }
+
     getGeneralFacts() {
         return JSON.parse(JSON.stringify(CommonHelper.getLineStrings(this.interpolatedFeaturesCollection)[0].properties));
     }
@@ -81,14 +86,15 @@ class Trail {
     }
 
     generateWaypoints(maps) {
-        const enrichedFeaturesCollection = TrailHelper.enrichPathLine(this.interpolatedFeaturesCollection);
+        const enrichedFeaturesCollection = this.getEnrichedFeatureCollection();
         const computedWaypoints = WaypointHelper.generateWaypoints(maps.leftMap, maps.rightMap, enrichedFeaturesCollection);
         this.waypoints = computedWaypoints;
     }
 
     reBuildMapLayers(maps) {
         // this.mapPathLayers = MapHelper.reBuildPathLayers(this.mapPathLayers, maps.leftMap, maps.rightMap, this.surfaceCollection, this.pathLine, this.generalFact);
-        this.mapPathLayers = MapHelper.reBuildPathLayers(this.mapPathLayers, maps.leftMap, maps.rightMap, this.elevationNivelatedFeaturesCollection);
+        const enrichedFeaturesCollection = this.getSimpleEnrichedFeatureCollection();
+        this.mapPathLayers = MapHelper.reBuildPathLayers(this.mapPathLayers, maps.leftMap, maps.rightMap, enrichedFeaturesCollection);
     }
 
     // rebuildWaypoints(maps) {
@@ -143,23 +149,25 @@ class Trail {
     }
 
     set waypoints(waypoints) {
-        console.log('set waypoints(waypoints)');
-        console.log(this.parsedFeaturesCollection.features[15].properties);
-        // CommonHelper.getPoints(this.parsedFeaturesCollection) = JSON.parse(JSON.stringify(waypoints));
-        // CommonHelper.getPoints(this.simplifiedFeaturesCollection) = JSON.parse(JSON.stringify(waypoints));
-        // CommonHelper.getPoints(this.elevatedFeaturesCollection) = JSON.parse(JSON.stringify(waypoints));
-        // CommonHelper.getPoints(this.elevationNivelatedFeaturesCollection) = JSON.parse(JSON.stringify(waypoints));
-        // CommonHelper.getPoints(this.interpolatedFeaturesCollection) = JSON.parse(JSON.stringify(waypoints));
-        waypoints.forEach((wp, idx) => {
-            // pitanje hoce li ovo raditi, getPoint radi sa reduce, ne znam da li ce prepoznati referencu
-            CommonHelper.getPoints(this.parsedFeaturesCollection)[idx].properties = JSON.parse(JSON.stringify(wp.properties));
-            CommonHelper.getPoints(this.simplifiedFeaturesCollection)[idx] = JSON.parse(JSON.stringify(wp.properties));
-            CommonHelper.getPoints(this.elevatedFeaturesCollection)[idx] = JSON.parse(JSON.stringify(wp.properties));
-            CommonHelper.getPoints(this.elevationNivelatedFeaturesCollection)[idx] = JSON.parse(JSON.stringify(wp.properties));
-            CommonHelper.getPoints(this.interpolatedFeaturesCollection)[idx] = JSON.parse(JSON.stringify(wp.properties));
-        });
-        // console.log(this.elevationNivelatedFeaturesCollection);
-        console.log(this.parsedFeaturesCollection.features[15].properties);
+        const parsedFeaturesCollectionFeatures = JSON.parse(JSON.stringify(waypoints));
+        parsedFeaturesCollectionFeatures.push(CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0]);
+        this.parsedFeaturesCollection = turf.featurecollection(parsedFeaturesCollectionFeatures);
+
+        const simplifiedFeaturesCollectionFeatures = JSON.parse(JSON.stringify(waypoints));
+        simplifiedFeaturesCollectionFeatures.push(CommonHelper.getLineStrings(this.simplifiedFeaturesCollection)[0]);
+        this.simplifiedFeaturesCollection = turf.featurecollection(simplifiedFeaturesCollectionFeatures);
+
+        const elevatedFeaturesCollectionFeatures = JSON.parse(JSON.stringify(waypoints));
+        elevatedFeaturesCollectionFeatures.push(CommonHelper.getLineStrings(this.elevatedFeaturesCollection)[0]);
+        this.elevatedFeaturesCollection = turf.featurecollection(elevatedFeaturesCollectionFeatures);
+
+        const elevationNivelatedFeaturesCollectionFeatures = JSON.parse(JSON.stringify(waypoints));
+        elevationNivelatedFeaturesCollectionFeatures.push(CommonHelper.getLineStrings(this.elevationNivelatedFeaturesCollection)[0]);
+        this.elevationNivelatedFeaturesCollection = turf.featurecollection(elevationNivelatedFeaturesCollectionFeatures);
+
+        const interpolatedFeaturesCollectionFeatures = JSON.parse(JSON.stringify(waypoints));
+        interpolatedFeaturesCollectionFeatures.push(CommonHelper.getLineStrings(this.interpolatedFeaturesCollection)[0]);
+        this.interpolatedFeaturesCollection = turf.featurecollection(interpolatedFeaturesCollectionFeatures);
     }
 
     getChartData(containerId) {
