@@ -16,24 +16,75 @@
     var centroidPt = turf.centroid(hresa);
     var coordinates = centroidPt.geometry.coordinates[0] + ',' + centroidPt.geometry.coordinates[1];
     var simplified = turf.simplify(hresa.features[0], 0.001, false);
-    // simplified = polyline.decode('kumwFrjvbMaf%40kuD%7BnCkS');
-    console.log(simplified);
+    
+    // console.log('kumwFrjvbMaf%40kuD%7BnCkS');
+    // console.log(decodeURIComponent('kumwFrjvbMaf%40kuD%7BnCkS'));
+    
+    // var decoded = polyline.decode('kumwFrjvbMaf%40kuD%7BnCkS');
+    var decoded = polyline.decode(decodeURIComponent('kumwFrjvbMaf%40kuD%7BnCkS'));
+    // console.log(decoded);
+    // console.log(polyline.encode(decoded));
+    // console.log(polyline.encode(decoded));
+    
     simplified.geometry.coordinates = simplified.geometry.coordinates.map(function(point) {
         return [Math.round(point[0] * 10000) / 10000, Math.round(point[1] * 10000) / 10000];
     });
-    var poly = polyline.fromGeoJSON(simplified);
-    var poly = JSON.stringify(simplified.geometry.coordinates);
+    // var poly = JSON.stringify(simplified.geometry.coordinates);
     // console.log(poly);
     // poly = 'kumwFrjvbMaf%40kuD%7BnCkS';
     // console.log(poly);
-    // var url = baseURL + '-5+003300-1+0000ff-0(' + poly + ')/' + coordinates + ',12/500x300.png?access_token=' + token;
     simplified.properties.stroke = '#CC0000';
     simplified.properties['stroke-width'] = 4;
     simplified.properties['stroke-opacity'] = 0.6;
-
     var geo = encodeURIComponent(JSON.stringify(turf.featurecollection([simplified])));
     var url = baseURL + 'geojson(' + geo + ')/' + coordinates + ',7/500x300.png?access_token=' + token;
     console.log(url);
+
+    console.log('####');
+
+    // var poly = polyline.encode(hresaPoly);
+    // var poly = encodeURIComponent(polyline.encode(hresaPoly));
+    // var poly = encodeURIComponent(hresaPoly);
+    // var poly = hresaPoly;
+    simplified.properties = {};
+    console.log(simplified);
+    var poly =  polyline.fromGeoJSON({
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            18.49445343017578,
+            43.833783817208456
+          ],
+          [
+            18.51539611816406,
+            43.82635365818388
+          ],
+          [
+            18.525009155273434,
+            43.82263823180498
+          ],
+          [
+            18.541831970214844,
+            43.82288593409113
+          ],
+          [
+            18.546981811523438,
+            43.830316524772385
+          ],
+          [
+            18.53565216064453,
+            43.837746190472366
+          ]
+        ]
+      }
+    });
+    var poly =  encodeURIComponent(polyline.fromGeoJSON(simplified));
+    var url = 'https://api.mapbox.com/v4/mapbox.streets/path-5+f44-0.5+f44-0.2(' + poly + ')/' + coordinates + ',10/500x300.png?access_token=pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg'
+    console.log(url);
+
     // window.location = url;
 </script>
 </body>
