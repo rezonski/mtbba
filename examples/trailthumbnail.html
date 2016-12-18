@@ -82,8 +82,10 @@
       }
     });
     var poly =  encodeURIComponent(polyline.fromGeoJSON(simplified));
-    var url = 'https://api.mapbox.com/v4/mapbox.streets/path-5+f44-0.5+f44-0.2(' + poly + ')/' + coordinates + ',10/500x300.png?access_token=pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg'
-    console.log(url);
+    console.log(poly);
+    // var url = 'https://api.mapbox.com/v4/mapbox.streets/path-5+f44-0.5+f44-0.2(' + poly + ')/' + coordinates + ',10/500x300.png?access_token=pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
+    // console.log(url);
+    // console.log(encodeURIComponent(url));
 
     // window.location = url;
 </script>
