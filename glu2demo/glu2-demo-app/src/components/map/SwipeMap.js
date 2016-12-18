@@ -74,7 +74,7 @@ class SwipeMap extends BasePage {
 
     onPathLayersRetrieved(layers) {
         layers.forEach((layer) => {
-            console.info('setLayoutProperty(' + layer.id + ', visibility, visible)');
+            // console.info('setLayoutProperty(' + layer.id + ', visibility, visible)');
             this.leftmap.setLayoutProperty(layer.id, 'visibility', 'visible');
             this.rightmap.setLayoutProperty(layer.id, 'visibility', 'visible');
         });

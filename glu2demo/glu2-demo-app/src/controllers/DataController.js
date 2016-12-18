@@ -99,11 +99,11 @@ class DataController extends GLU.Controller {
         TrailsDataModel.activeTrail.setDataByName(payload.name, payload.index, payload.prop, payload.value);
     }
 
-    getTrailData(payload) {
+    getTrailData() {
         if (TrailsDataModel.activeTrail === undefined) {
             TrailsDataModel.trail = new Trail();
         } else {
-            console.info('DataController.getTrailData(' + payload + ')');
+            // console.info('DataController.getTrailData(' + payload + ')');
             const trailData = TrailsDataModel.activeTrail.getTrailData();
             GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
             // if (payload && payload === 'waypoints') {
@@ -119,7 +119,11 @@ class DataController extends GLU.Controller {
     }
 
     updateTrailData2Model(payload) {
-        TrailsDataModel.activeTrail.setDataByName(payload.name, payload.value);
+        if (payload.name === 'waypoints') {
+            TrailsDataModel.activeTrail.setDataByName(payload.name, payload.index, payload.prop, payload.value);
+        } else {
+            TrailsDataModel.activeTrail.setDataByName(payload.name, null, null, payload.value);
+        }
         const trailData = TrailsDataModel.activeTrail.getTrailData();
         GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
         GLU.bus.emit(Enum.DataEvents.RETRIEVE_CHART_DATA, 'chartcontainer');

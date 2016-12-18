@@ -53,7 +53,9 @@ class MountainMultiSelection extends BasePage {
     onDataRetrieved(payload) {
         if (payload.mntns) {
             this.setState({
-                mntns: payload.mntns,
+                mntns: payload.mntns.map(m => {
+                    return m.id;
+                }),
             });
         }
     }

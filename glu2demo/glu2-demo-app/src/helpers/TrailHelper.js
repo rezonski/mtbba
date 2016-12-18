@@ -120,8 +120,8 @@ class TrailHelper extends GLU.Controller {
                     lat: location[1],
                     elevation: elevationCalc,
                     prev_elev: elevDelta,
-                    elev_gain: (elevDelta > 0) ? (prevLoc.elev_gain + elevDelta) : prevLoc.elev_gain,
-                    elev_loss: (elevDelta < 0) ? (prevLoc.elev_loss + elevDelta) : prevLoc.elev_loss,
+                    elevGain: (elevDelta > 0) ? (prevLoc.elevGain + elevDelta) : prevLoc.elevGain,
+                    elevLoss: (elevDelta < 0) ? (prevLoc.elevLoss + elevDelta) : prevLoc.elevLoss,
                     odometer: prevLoc.odometer + prevDist,
                     prev_dist: prevDist,
                 };
@@ -132,8 +132,8 @@ class TrailHelper extends GLU.Controller {
                     lat: location[1],
                     elevation: elevationCalc,
                     prev_elev: 0,
-                    elev_gain: 0,
-                    elev_loss: 0,
+                    elevGain: 0,
+                    elevLoss: 0,
                     odometer: 0,
                     prev_dist: 0,
                 };
@@ -192,8 +192,8 @@ class TrailHelper extends GLU.Controller {
             }
         }
         exportGeneralFacts.distance = totaldistance;
-        exportGeneralFacts.elev_gain = totalelevgain;
-        exportGeneralFacts.elev_loss = totalelevloss;
+        exportGeneralFacts.elevGain = totalelevgain;
+        exportGeneralFacts.elevLoss = totalelevloss;
 
         // Bounds calculation
         const lonDelta = (maxLon - minLon) / 1;
@@ -203,8 +203,8 @@ class TrailHelper extends GLU.Controller {
         const lonCenter = (maxLon + minLon) / 2;
         const latCenter = (maxLat + minLat) / 2;
         exportGeneralFacts.center = [lonCenter, latCenter];
-        exportGeneralFacts.elev_min = minElev;
-        exportGeneralFacts.elev_max = maxElev;
+        exportGeneralFacts.elevMin = minElev;
+        exportGeneralFacts.elevMax = maxElev;
 
         generateGeneralFactsProgressPayload.loaded = 100;
         GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, generateGeneralFactsProgressPayload);

@@ -58,7 +58,7 @@ class OpenTrailContainer extends BasePage {
     }
 
     onOpenSelectedTrail() {
-        const trailId = this.state.trails[this.selectedIndex].trail_id;
+        const trailId = this.state.trails[this.selectedIndex].trailID;
         this.emit(Enum.DataEvents.DOWNLOAD_TRAIL, trailId);
     }
 
@@ -106,11 +106,11 @@ class OpenTrailContainer extends BasePage {
             return (<TableRow
                         key={'trail-row-' + trailIdx}
                     >
-                        <TableRowColumn style={styles.columnNarow}>{trail.trail_id}</TableRowColumn>
-                        <TableRowColumn>{trail.trail_name}</TableRowColumn>
+                        <TableRowColumn style={styles.columnNarow}>{trail.trailID}</TableRowColumn>
+                        <TableRowColumn>{trail.trailName}</TableRowColumn>
                         <TableRowColumn style={styles.columnNarower}>{trail.distance.toFixed(2) + 'km'}</TableRowColumn>
-                        <TableRowColumn style={styles.columnNarower}>{trail.elev_gain.toFixed(2)}</TableRowColumn>
-                        <TableRowColumn style={styles.columnNarower}>{trail.type_name}</TableRowColumn>
+                        <TableRowColumn style={styles.columnNarower}>{trail.elevGain.toFixed(2)}</TableRowColumn>
+                        <TableRowColumn style={styles.columnNarower}>{trail.typeName}</TableRowColumn>
                     </TableRow>);
         });
         return (

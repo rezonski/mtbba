@@ -37,7 +37,7 @@ class WPModalEditor extends BasePage {
     }
 
     onOpenSelectedTrail() {
-        const trailId = this.state.trails[this.selectedIndex].trail_id;
+        const trailId = this.state.trails[this.selectedIndex].trailID;
         this.emit(Enum.DataEvents.DOWNLOAD_TRAIL, trailId);
     }
 
