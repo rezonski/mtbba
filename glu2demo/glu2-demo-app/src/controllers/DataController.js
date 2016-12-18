@@ -202,6 +202,7 @@ class DataController extends GLU.Controller {
                 MapModel.initialMaxBounds = JSON.parse(JSON.stringify(geoSetup.bounds));
                 console.info('# 1');
                 this.onSimplifyRequest();
+                TrailsDataModel.activeTrail.setProgressFinished();
                 const trailData = TrailsDataModel.activeTrail.getTrailData();
                 GLU.bus.emit(Enum.DataEvents.TRAIL_DOWNLOADED, trailData);
                 GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);

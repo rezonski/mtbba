@@ -18,6 +18,12 @@ class NewEditActionButton extends BasePage {
         this.onNewTrailEvent = this.onNewTrail.bind(this);
     }
 
+    componentDidMount() {
+        this.bindGluBusEvents({
+            [Enum.DataEvents.TRAIL_DOWNLOADED]: this.onTrailDownloaded,
+        });
+    }
+
     componentWillUnmount() {
         this.unbindGluBusEvents();
     }
@@ -28,6 +34,13 @@ class NewEditActionButton extends BasePage {
             tooltip: Lang.label('edit'),
         });
         this.emit(Enum.AppEvents.OPEN_FORM_NEW_TRAIL);
+    }
+
+    onTrailDownloaded() {
+        this.setState({
+            actionType: 'edit',
+            tooltip: Lang.label('edit'),
+        });
     }
 
     render() {

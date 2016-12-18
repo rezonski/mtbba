@@ -85,6 +85,16 @@ class Trail {
         this.setGeneralFacts(generalFacts);
     }
 
+    setProgressFinished() {
+        const generalFacts = this.getGeneralFacts();
+        generalFacts.progressSimplifyPath = 100;
+        generalFacts.progressElevationPath = 100;
+        generalFacts.progressFlattenPath = 100;
+        generalFacts.progressFixWPs = 100;
+        generalFacts.progressGeneral = 100;
+        this.setGeneralFacts(generalFacts);
+    }
+
     generateWaypoints(maps) {
         const enrichedFeaturesCollection = this.getEnrichedFeatureCollection();
         const computedWaypoints = WaypointHelper.generateWaypoints(maps.leftMap, maps.rightMap, enrichedFeaturesCollection);
