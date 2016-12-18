@@ -1,6 +1,7 @@
 import GLU from '/../../glu2.js/src/index';
 import Enum from '/enums/Enum';
 import TrailHelper from '/helpers/TrailHelper';
+import CommonHelper from '/helpers/CommonHelper';
 
 class ChartHelper extends GLU.Controller {
     constructor(props) {
@@ -35,18 +36,18 @@ class ChartHelper extends GLU.Controller {
         return retSegment;
     }
 
-    getDistance(first, second) {
-        const lon1 = first[0];
-        const lat1 = first[1];
-        const lon2 = second[0];
-        const lat2 = second[1];
-        const p = 0.017453292519943295; // Math.PI / 180
-        const c = Math.cos;
-        const a = 0.5 - c((lat2 - lat1) * p) / 2 +
-            c(lat1 * p) * c(lat2 * p) *
-            (1 - c((lon2 - lon1) * p)) / 2;
-        return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
-    }
+    // getDistance(first, second) {
+    //     const lon1 = first[0];
+    //     const lat1 = first[1];
+    //     const lon2 = second[0];
+    //     const lat2 = second[1];
+    //     const p = 0.017453292519943295; // Math.PI / 180
+    //     const c = Math.cos;
+    //     const a = 0.5 - c((lat2 - lat1) * p) / 2 +
+    //         c(lat1 * p) * c(lat2 * p) *
+    //         (1 - c((lon2 - lon1) * p)) / 2;
+    //     return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
+    // }
 
     getPlotlines(wayPoints) {
         let plotlines = [];
@@ -74,16 +75,18 @@ class ChartHelper extends GLU.Controller {
     getDataSegments(pathLine, surfaceCollection) {
         let dataset = [];
         let odometer = [0];
-        let currentPart = 0;
+        // let currentPart = 0;
         pathLine.forEach((element, index) => {
             if (index > 0) {
-                currentPart = this.getDistance(pathLine[ index - 1 ], element);
-                odometer.push(Math.round((odometer[ index - 1 ] + currentPart) * 100000) / 100000);
+                // currentPart = this.getDistance(pathLine[ index - 1 ], element);
+                odometer.push(Math.round(element.odometer * 100000) / 100000);
             }
-            if (element[2] > 0) {
+            // if (element[2] > 0) {
+            if (element.elevation > 0) {
                 dataset.push({
                     x: odometer[index],
-                    y: element[2],
+                    // y: element[2],
+                    y: element.elevation,
                     segmentColor: this.getSegment(TrailHelper.getSegmentByOdometer(odometer[index], surfaceCollection)[1]).colorRGBA,
                 });
             }
@@ -91,7 +94,19 @@ class ChartHelper extends GLU.Controller {
         return dataset;
     }
 
-    getChartSetup(chartContainer, trailName, trailWayPoints, pathLine, surfaceCollection) {
+    // getChartSetup(chartContainer, trailName, trailWayPoints, pathLine, surfaceCollection) {
+    getChartSetup(chartContainer, featuresCollection) {
+        const pathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
+        const generalFacts = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].properties;
+        const trailName = generalFacts.name;
+        const surfaceCollection = generalFacts.surfaceCollection;
+        const trailWayPoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(featuresCollection))).map((point) => {
+            return {
+                odometer: point.odometer,
+                name: point.name,
+            };
+        });
+
         return {
             chart: {
                 renderTo: chartContainer,

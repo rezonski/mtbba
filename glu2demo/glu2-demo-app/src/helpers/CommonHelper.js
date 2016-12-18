@@ -35,5 +35,37 @@ class CommonHelper {
             return ((x < y) ? -1 : ret);
         });
     }
+
+    getLineStrings(featuresCollection) {
+        // const returnCollection = JSON.parse(JSON.stringify(featuresCollection)).features.reduce(feature => {
+        // const returnCollection = featuresCollection.features.reduce(feature => {
+        //     if (feature.geometry.type === 'LineString') {
+        //         return feature;
+        //     }
+        // });
+        const returnCollection = featuresCollection.features.reduce((total, currentValue) => {
+            if (currentValue.geometry.type === 'LineString') {
+                total.push(currentValue);
+            }
+            return total;
+        }, []);
+        return returnCollection;
+    }
+
+    getPoints(featuresCollection) {
+        // const returnCollection = JSON.parse(JSON.stringify(featuresCollection)).features.reduce(feature => {
+        // const returnCollection = featuresCollection.features.reduce(feature => {
+        //     if (feature.geometry.type === 'Point') {
+        //         return feature;
+        //     }
+        // });
+        const returnCollection = featuresCollection.features.reduce((total, currentValue) => {
+            if (currentValue.geometry.type === 'Point') {
+                total.push(currentValue);
+            }
+            return total;
+        }, []);
+        return returnCollection;
+    }
 }
 export default new CommonHelper();

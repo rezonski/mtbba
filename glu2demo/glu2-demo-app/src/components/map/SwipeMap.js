@@ -47,7 +47,12 @@ class SwipeMap extends BasePage {
             center: this.state.setup.center,
             maxBounds: this.state.setup.maxBounds,
         });
-        this.combined = new mapboxgl.Compare(this.leftmap, this.rightmap);
+        // this.combined = new mapboxgl.Compare(this.leftmap, this.rightmap);
+
+        this.combined = new mapboxgl.Compare(this.leftmap, this.rightmap, {
+            // Set this to enable comparing two maps by mouse movement:
+            // mousemove: true,
+        });
 
         this.leftmap.on('load', () => {
             window.leftmap = this.leftmap;
@@ -69,7 +74,7 @@ class SwipeMap extends BasePage {
 
     onPathLayersRetrieved(layers) {
         layers.forEach((layer) => {
-            console.info('setLayoutProperty(' + layer.id + ', visibility, visible)');
+            // console.info('setLayoutProperty(' + layer.id + ', visibility, visible)');
             this.leftmap.setLayoutProperty(layer.id, 'visibility', 'visible');
             this.rightmap.setLayoutProperty(layer.id, 'visibility', 'visible');
         });

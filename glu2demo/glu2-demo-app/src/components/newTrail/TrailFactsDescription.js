@@ -44,7 +44,7 @@ class TrailFactsDescription extends BasePage {
                         </div>
                         <div className="flex-container row margined-bottom">
                             <div className="flex-element margined-right label-width">{Lang.label('generalElevationGain') + ': '}</div>
-                            <div className="flex-element">{this.state.data.elevgain}</div>
+                            <div className="flex-element">{this.state.data.elevGain}</div>
                         </div>
                         <div className="flex-container row margined-bottom">
                             <div className="flex-element margined-right label-width">{Lang.label('generalElevationLoss') + ': '}</div>

@@ -37,10 +37,10 @@ class InputTextBox extends BasePage {
     }
 
     onTrailDataRetrieved(payload) {
-        if (this.props.fieldIndex && this.props.fieldProp) {
+        if (this.props.fieldIndex !== undefined && this.props.fieldProp) {
             if (payload[this.props.fieldName][this.props.fieldIndex][this.props.fieldProp] !== this.state.value) {
                 this.setState({
-                    value: payload[this.props.fieldName][this.props.fieldIndex][this.props.fieldProp],
+                    value: payload[this.props.fieldName][this.props.fieldIndex].properties[this.props.fieldProp],
                 });
             }
         } else {
@@ -53,9 +53,12 @@ class InputTextBox extends BasePage {
     }
 
     render() {
-        const key = (this.props.fieldIndex && this.props.fieldProp) ? 'input' + this.props.fieldName + this.props.fieldIndex + this.props.fieldProp : 'input' + this.props.fieldName;
+        const key = (this.props.fieldIndex !== undefined && this.props.fieldProp) ? 'input' + this.props.fieldName + this.props.fieldIndex + this.props.fieldProp : 'input' + this.props.fieldName;
+        const inputBoxStyle = (this.props.inputBoxStyle !== undefined) ? this.props.inputBoxStyle : {};
         return (<TextField
                     key={key}
+                    inputStyle={(this.props.isMultiline) ? {} : inputBoxStyle}
+                    textareaStyle={(this.props.isMultiline) ? inputBoxStyle : { }}
                     onChange={this.onTextFieldChangedEvent}
                     multiLine={this.props.isMultiline}
                     rows={this.props.noRows}

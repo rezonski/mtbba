@@ -5,7 +5,7 @@ import Drawer from 'material-ui/Drawer';
 import { Step, Stepper, StepButton, StepContent } from 'material-ui/Stepper';
 // import RaisedButton from 'material-ui/RaisedButton';
 // import FlatButton from 'material-ui/FlatButton';
-import SingleWPEditor from '../wpEditor/SingleWPEditor';
+import WPEditorTray from '../wpEditor/WPEditorTray';
 
 class WPDRawer extends BasePage {
     constructor(props) {
@@ -22,7 +22,7 @@ class WPDRawer extends BasePage {
     }
 
     componentDidMount() {
-        this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA);
+        this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA, 'waypoints');
     }
 
     componentWillUnmount() {
@@ -30,9 +30,9 @@ class WPDRawer extends BasePage {
     }
 
     onTrailDataRetrieved(payload) {
-        if (payload.mapWaypoints !== this.state.waypoints) {
+        if (payload.waypoints !== this.state.waypoints) {
             this.setState({
-                waypoints: payload.mapWaypoints,
+                waypoints: payload.waypoints,
             });
         }
     }
@@ -66,7 +66,10 @@ class WPDRawer extends BasePage {
                             {wp.properties.odometer + 'km - ' + wp.properties.name}
                         </StepButton>
                         <StepContent>
-                            <SingleWPEditor wp={wp}/>
+                            <WPEditorTray
+                                wp={wp.properties}
+                                wpIndex={wpIdx}
+                            />
                         </StepContent>
                     </Step>);
         });
@@ -81,7 +84,7 @@ class WPDRawer extends BasePage {
 
         return (<Drawer
                     open={this.state.drawerOpen}
-                    width={400}
+                    width={500}
                     containerStyle={style.drawer}
                 >
                     <div className="wp-drawer-container">

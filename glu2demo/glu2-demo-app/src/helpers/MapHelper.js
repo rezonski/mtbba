@@ -1,6 +1,7 @@
 import GLU from '/../../glu2.js/src/index';
 import MessageEvents from '/enums/MessageEvents';
 import TrailHelper from '/helpers/TrailHelper';
+import CommonHelper from '/helpers/CommonHelper';
 import Lang from '/helpers/Lang';
 
 class MapHelper {
@@ -26,11 +27,15 @@ class MapHelper {
         rightMap.getSource('focuswpafter').setData(data);
     }
 
-    rebuildPathLayers(currentLayers, leftMap, rightMap, surfaceCollection, pathLine, generalFact) {
+    reBuildPathLayers(currentLayers, leftMap, rightMap, featuresCollection) {
         let startOdometer = 0;
         let endOdometer = 99999;
         let sastavPathsArray = [];
         let layersArray = [];
+        const generalFact = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].properties;
+        const surfaceCollection = generalFact.surfaceCollection;
+        const pathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
+
         let sastavPathsCollection = {
             type: 'FeatureCollection',
             features: [],
@@ -139,8 +144,10 @@ class MapHelper {
         });
 
         layersArray.forEach((layer) => {
-            leftMap.addLayer(layer, 'animpoint');
-            rightMap.addLayer(layer, 'animpoint');
+            // leftMap.addLayer(layer, 'animpoint');
+            // rightMap.addLayer(layer, 'animpoint');
+            leftMap.addLayer(layer);
+            rightMap.addLayer(layer);
         });
 
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('mapPathLayersRebuilt'));

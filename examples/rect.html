@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.28.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.28.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+<script src='//api.tiles.mapbox.com/mapbox.js/plugins/turf/v2.0.0/turf.min.js' charset='utf-8'></script>
+<div id='map'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v9',
+    center: [18.372284173965454, 43.85512489891371],
+    pitch: 45,
+    bearing: 45,
+    zoom: 16,
+});
+
+var linija = {
+  'type': 'FeatureCollection',
+  'features': [
+    {
+      'type': 'Feature',
+      'properties': {},
+      'geometry': {
+        'type': 'LineString',
+        'coordinates': [
+          [
+            18.373228311538696,
+            43.85527189221446
+          ],
+          [
+            18.3714097738266,
+            43.855167449643304
+          ]
+        ]
+      }
+    }
+  ]
+};
+
+var poligon = {
+  'type': 'FeatureCollection',
+  'features': [
+    {
+      "type": "Feature",
+      "properties": {
+        "visina": 60,
+        "boja": '#CC0000'
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": []
+      }
+    }
+  ]
+};
+
+map.on('load', function () {
+    // Add a source and layer displaying a point which will be animated in a circle.
+    map.addSource('route', {
+        'type': 'geojson',
+        'data': linija
+    });
+
+    map.addLayer({
+        'id': 'route',
+        'source': 'route',
+        'type': 'line',
+        'paint': {
+            'line-width': 5,
+            'line-color': '#007cbf'
+        }
+    });
+
+    poligon.features[0].geometry.coordinates = [getRect(linija.features[0].geometry.coordinates)];
+
+    console.log(getRect(linija.features[0].geometry.coordinates));
+
+    map.addSource('poligon', {
+        'type': 'geojson',
+        'data': poligon
+    });
+
+    map.addLayer({
+        'id': 'poligon',
+        'source': 'poligon',
+        'type': 'fill',
+        'paint': {
+            'fill-color': '#007cbf',
+            'fill-opacity': 0.5
+        }
+    });
+
+    map.addLayer({
+        'id': 'room-extrusion',
+        'type': 'fill-extrusion',
+        'source': 'poligon',
+        'paint': {
+            'fill-extrusion-color': {
+                'property': 'boja',
+                'type': 'identity'
+            },
+            'fill-extrusion-height': {
+                'property': 'visina',
+                'type': 'identity'
+            },
+            'fill-extrusion-opacity': 0.5
+        }
+    });
+});
+
+function getRect(line) {
+    var A = line[0];
+    var B = line[1];
+    var C = [line[0][0],line[1][1]];
+    var d = 0.0001;
+    var AB = turf.distance(turf.point(A), turf.point(B));
+    var AC = turf.distance(turf.point(A), turf.point(C));
+    var alfa = Math.acos(AC/AB);
+    var sin = Math.sin(alfa);
+    var cos = Math.cos(alfa);
+    var P1 = [];
+    var P2 = [];
+    var P3 = [];
+    var P4 = [];
+    P1.push(B[0] + d/2 * cos);
+    P1.push(B[1] - d/2 * sin);
+    P2.push(B[0] - d/2 * cos);
+    P2.push(B[1] + d/2 * sin);
+    P3.push(A[0] - d/2 * cos);
+    P3.push(A[1] + d/2 * sin);
+    P4.push(A[0] + d/2 * cos);
+    P4.push(A[1] - d/2 * sin);
+    return [P1,P2,P3,P4,P1];
+}
+
+</script>
+
+</body>
+</html>
