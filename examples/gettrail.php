@@ -154,15 +154,15 @@ if (isset($_GET['trailid'])) {
         "desc": "'.$row["point_desc"].'",
         "symbol": "'.$row["symbol"].'",
         "odometer": '.$row["odometer"].',
-        "nextstepdist": '.$row["nextstepdist"].',
-        "elevgain": '.$row["elevgain"].',
-        "elevloss": '.$row["elevloss"].',
-        "nextelevgain": '.$row["nextelevgain"].',
-        "nextelevloss": '.$row["nextelevloss"].',
+        "nextStepDist": '.$row["nextstepdist"].',
+        "elevGain": '.$row["elevgain"].',
+        "elevLoss": '.$row["elevloss"].',
+        "nextElevGain": '.$row["nextelevgain"].',
+        "nextElevLoss": '.$row["nextelevloss"].',
         "pictogram": "'.$row["pictogram"].'",
-        "pictureurl": "'.$row["pictureurl"].'",
+        "pictureUrl": "'.$row["pictureurl"].'",
         "time": "'.$row["time"].'",
-        "elevationprofile": '.$row["elevationprofile"].'
+        "elevationProfile": '.$row["elevationprofile"].'
       },
       "geometry": {
         "type": "Point",

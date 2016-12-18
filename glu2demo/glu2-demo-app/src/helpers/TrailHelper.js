@@ -119,7 +119,7 @@ class TrailHelper extends GLU.Controller {
                     lon: location[0],
                     lat: location[1],
                     elevation: elevationCalc,
-                    prev_elev: elevDelta,
+                    prevElev: elevDelta,
                     elevGain: (elevDelta > 0) ? (prevLoc.elevGain + elevDelta) : prevLoc.elevGain,
                     elevLoss: (elevDelta < 0) ? (prevLoc.elevLoss + elevDelta) : prevLoc.elevLoss,
                     odometer: prevLoc.odometer + prevDist,
@@ -131,7 +131,7 @@ class TrailHelper extends GLU.Controller {
                     lon: location[0],
                     lat: location[1],
                     elevation: elevationCalc,
-                    prev_elev: 0,
+                    prevElev: 0,
                     elevGain: 0,
                     elevLoss: 0,
                     odometer: 0,
@@ -157,7 +157,7 @@ class TrailHelper extends GLU.Controller {
         let maxElev = 0;
         let minElev = 999999;
         let totaldistance = 0; // in kms
-        let totalelevgain = 0; // in kms
+        let totalelevGain = 0; // in kms
         let totalelevloss = 0; // in kms
         let exportGeneralFacts = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].properties;
         let generateGeneralFactsProgressPayload = {
@@ -185,14 +185,14 @@ class TrailHelper extends GLU.Controller {
 
         for (let i = 0; i < newPathLine.length; i++) {
             totaldistance += newPathLine[i].prev_dist;
-            if (newPathLine[i].prev_elev > 0) {
-                totalelevgain += newPathLine[i].prev_elev;
+            if (newPathLine[i].prevElev > 0) {
+                totalelevGain += newPathLine[i].prevElev;
             } else {
-                totalelevloss += newPathLine[i].prev_elev;
+                totalelevloss += newPathLine[i].prevElev;
             }
         }
         exportGeneralFacts.distance = totaldistance;
-        exportGeneralFacts.elevGain = totalelevgain;
+        exportGeneralFacts.elevGain = totalelevGain;
         exportGeneralFacts.elevLoss = totalelevloss;
 
         // Bounds calculation

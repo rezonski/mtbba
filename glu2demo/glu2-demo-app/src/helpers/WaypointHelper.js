@@ -61,12 +61,12 @@ class WaypointHelper extends GLU.Controller {
 
             directionText += otherDirections + forbiddenDirectionText + waterSupplyText;
 
-            directionText += ' Slijedi sekcija duzine ' + wp.current.next_step_dist + ' km';
-            if (wp.current.next_elevGain > 0) {
-                directionText += ' sa ' + wp.current.next_elevGain + ' m visinskog uspona';
+            directionText += ' Slijedi sekcija duzine ' + wp.current.nextStepDist + ' km';
+            if (wp.current.nextElevGain > 0) {
+                directionText += ' sa ' + wp.current.nextElevGain + ' m visinskog uspona';
             }
-            if (Math.abs(wp.current.next_elevLoss) > 0) {
-                directionText += ' i ' + Math.abs(wp.current.next_elevLoss) + ' m visinskog spusta';
+            if (Math.abs(wp.current.nextElevLoss) > 0) {
+                directionText += ' i ' + Math.abs(wp.current.nextElevLoss) + ' m visinskog spusta';
             }
             // console.log('wp.current.odometer = ' + wp.current.odometer + ' , wp.next.odometer = ' + wp.next.odometer);
             directionText += this.parseSurfaceTransition(wp.current.odometer, wp.next.odometer, surfaceCollection);
@@ -384,14 +384,14 @@ class WaypointHelper extends GLU.Controller {
                     desc: tempDesc,
                     elevGain: Math.round(inputPathLine[tempIndex].elevGain * 100) / 100,
                     elevLoss: Math.round(inputPathLine[tempIndex].elevLoss * 100) / 100,
-                    next_elevGain: 0,
-                    next_elevLoss: 0,
+                    nextElevGain: 0,
+                    nextElevLoss: 0,
                     odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
-                    next_step_dist: 0,
+                    nextStepDist: 0,
                     symbol: this.symbolFromDesc(tempDesc, tempPictogram, wpoint.properties.name),
                     pictogram: tempPictogram,
-                    pictureurl: (wpoint.properties.pictureurl !== undefined) ? wpoint.properties.pictureurl : '',
-                    elevation_profile: 0,
+                    pictureUrl: (wpoint.properties.pictureUrl !== undefined) ? wpoint.properties.pictureUrl : '',
+                    elevationProfile: 0,
                     lon: inputPathLine[tempIndex].lon,
                     lat: inputPathLine[tempIndex].lat,
                     elevation: inputPathLine[tempIndex].elevation,
@@ -410,9 +410,9 @@ class WaypointHelper extends GLU.Controller {
                     current: element,
                     next: newWaypointsExport[index + 1],
                 };
-                element.next_step_dist = Math.round((newWaypointsExport[index + 1].odometer - element.odometer) * 100) / 100;
-                element.next_elevGain = Math.round((newWaypointsExport[index + 1].elevGain - element.elevGain) * 100) / 100;
-                element.next_elevLoss = Math.round((newWaypointsExport[index + 1].elevLoss - element.elevLoss) * 100) / 100;
+                element.nextStepDist = Math.round((newWaypointsExport[index + 1].odometer - element.odometer) * 100) / 100;
+                element.nextElevGain = Math.round((newWaypointsExport[index + 1].elevGain - element.elevGain) * 100) / 100;
+                element.nextElevLoss = Math.round((newWaypointsExport[index + 1].elevLoss - element.elevLoss) * 100) / 100;
             } else {
                 tempWp = {
                     current: element,
