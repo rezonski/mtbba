@@ -7,14 +7,30 @@
 </head>
 <body>
 <script src='//api.tiles.mapbox.com/mapbox.js/plugins/turf/v2.0.0/turf.min.js' charset='utf-8'></script>
-<script src='data/hresaSumbulovac.js' charset='utf-8'></script>
+<script src='data/hresaSumbulovac1.js' charset='utf-8'></script>
 <script src='js/polyline.js'></script>
 <div id='map'></div>
 <script>
+    
+    function generateUUID() {
+        var d = new Date().getTime();
+        if(window.performance && typeof window.performance.now === "function"){
+            d += performance.now();; //use high-precision timer if available
+        }
+        var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = (d + Math.random()*16)%16 | 0;
+            d = Math.floor(d/16);
+            return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+        });
+        return uuid;
+    };
+      
+
     var baseURL = 'https://api.mapbox.com/v4/mapbox.streets/';
     var token = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
     var centroidPt = turf.centroid(hresa);
     var coordinates = centroidPt.geometry.coordinates[0] + ',' + centroidPt.geometry.coordinates[1];
+    var mapParams = coordinates + ',10';
     var simplified = turf.simplify(hresa.features[0], 0.001, false);
     
     // console.log('kumwFrjvbMaf%40kuD%7BnCkS');
@@ -38,16 +54,16 @@
     simplified.properties['stroke-opacity'] = 0.6;
     var geo = encodeURIComponent(JSON.stringify(turf.featurecollection([simplified])));
     var url = baseURL + 'geojson(' + geo + ')/' + coordinates + ',7/500x300.png?access_token=' + token;
-    console.log(url);
+    // console.log(url);
 
-    console.log('####');
+    // console.log('####');
 
     // var poly = polyline.encode(hresaPoly);
     // var poly = encodeURIComponent(polyline.encode(hresaPoly));
     // var poly = encodeURIComponent(hresaPoly);
     // var poly = hresaPoly;
     simplified.properties = {};
-    console.log(simplified);
+    // console.log(simplified);
     var poly =  polyline.fromGeoJSON({
       "type": "Feature",
       "properties": {},
@@ -82,10 +98,20 @@
       }
     });
     var poly =  encodeURIComponent(polyline.fromGeoJSON(simplified));
-    console.log(poly);
-    // var url = 'https://api.mapbox.com/v4/mapbox.streets/path-5+f44-0.5+f44-0.2(' + poly + ')/' + coordinates + ',10/500x300.png?access_token=pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
-    // console.log(url);
+    // console.log(poly);
+    var url = 'https://api.mapbox.com/v4/mapbox.streets/path-4+f44-0.5+f44-0(' + poly + ')/' + coordinates + ',11/500x300.png?access_token=pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
+    console.log(url);
     // console.log(encodeURIComponent(url));
+    
+    
+
+    var snimi = 'http://localhost/sandbox/examples/setfilefromurl.php?polyline=' + poly + '&fileName=' + encodeURIComponent(generateUUID()) + '.png';
+    console.log(snimi);
+
+    console.log(mapParams);
+    console.log(encodeURIComponent(mapParams));
+    var snimi1 = 'http://localhost/sandbox/examples/setfilefromurl2.php?polyline=' + poly + '&mapParams=' + encodeURIComponent(mapParams) + '&fileName=' + encodeURIComponent(generateUUID()) + '.png';
+    console.log(snimi1);
 
     // window.location = url;
 </script>
