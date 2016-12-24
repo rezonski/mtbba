@@ -9,7 +9,7 @@ import CommonHelper from '/helpers/CommonHelper';
 
 class Trail {
     constructor() {
-        this._trailName = '';
+        this._initialised = false;
         this._newTrail = false;
         this._mapPathLayers = [];
         this._parsedFeaturesCollection = {};
@@ -23,6 +23,7 @@ class Trail {
         let features = [];
         let pathline = [];
         let generalFacts = {};
+        this.initialised = true;
         this.parsedFeaturesCollection.features.forEach((feature) => {
             if (feature.geometry.type === 'LineString') {
                 pathline = pathline.concat(feature.geometry.coordinates);
@@ -32,9 +33,35 @@ class Trail {
             }
         });
         let path = turf.linestring(pathline);
-        path.properties = JSON.parse(JSON.stringify(generalFacts));
+        path.properties = this.getInitialGeneralFacts(generalFacts);
         features.push(path);
         this.parsedFeaturesCollection = turf.featurecollection(features);
+    }
+
+    getInitialGeneralFacts(inputGeneralFacts) {
+        let generalFacts = JSON.parse(JSON.stringify(inputGeneralFacts));
+        generalFacts.trailID = (generalFacts.trailID === undefined) ? null : generalFacts.trailID;
+        generalFacts.trailName = (generalFacts.trailName === undefined) ? '' : generalFacts.trailName;
+        generalFacts.trailDesc = (generalFacts.trailDesc === undefined) ? '' : generalFacts.trailDesc;
+        generalFacts.mntns = (generalFacts.mntns === undefined) ? [] : generalFacts.mntns;
+        generalFacts.surfaceCollection = (generalFacts.surfaceCollection === undefined) ? [] : generalFacts.surfaceCollection;
+        generalFacts.typeID = (generalFacts.typeID === undefined) ? null : generalFacts.typeID;
+        generalFacts.typeName = (generalFacts.typeName === undefined) ? '' : generalFacts.typeName;
+        generalFacts.typeDesc = (generalFacts.typeDesc === undefined) ? '' : generalFacts.typeDesc;
+        generalFacts.distance = (generalFacts.distance === undefined) ? 0 : generalFacts.distance;
+        generalFacts.elevMin = (generalFacts.elevMin === undefined) ? 0 : generalFacts.elevMin;
+        generalFacts.elevMax = (generalFacts.elevMax === undefined) ? 0 : generalFacts.elevMax;
+        generalFacts.elevGain = (generalFacts.elevGain === undefined) ? 0 : generalFacts.elevGain;
+        generalFacts.elevLoss = (generalFacts.elevLoss === undefined) ? 0 : generalFacts.elevLoss;
+        generalFacts.reviewLandscape = (generalFacts.reviewLandscape === undefined) ? null : generalFacts.reviewLandscape;
+        generalFacts.reviewFun = (generalFacts.reviewFun === undefined) ? null : generalFacts.reviewFun;
+        generalFacts.requiredFitness = (generalFacts.requiredFitness === undefined) ? null : generalFacts.requiredFitness;
+        generalFacts.requiredTechnique = (generalFacts.requiredTechnique === undefined) ? null : generalFacts.requiredTechnique;
+        generalFacts.center = (generalFacts.center === undefined) ? [] : generalFacts.center;
+        generalFacts.bounds = (generalFacts.bounds === undefined) ? [] : generalFacts.bounds;
+        generalFacts.externalLink = (generalFacts.externalLink === undefined) ? '' : generalFacts.externalLink;
+        generalFacts.imageURL = (generalFacts.imageURL === undefined) ? '' : generalFacts.imageURL;
+        return generalFacts;
     }
 
     getTrailGeoLocation() {
@@ -53,6 +80,13 @@ class Trail {
         this.elevationNivelatedFeaturesCollection = TrailHelper.nivelatePathLine(this.elevatedFeaturesCollection);
     }
 
+    getSimplifiedFeatureCollectionPathOnly() {
+        const lineStringFeature = CommonHelper.getLineStrings(this.elevationNivelatedFeaturesCollection)[0];
+        lineStringFeature.properties = {};
+        const simplified = turf.simplify(lineStringFeature, 0.001, false);
+        return simplified;
+    }
+
     interpolatePathLine() {
         this.interpolatedFeaturesCollection = TrailHelper.interpolatePathLine(this.elevationNivelatedFeaturesCollection);
     }
@@ -68,15 +102,28 @@ class Trail {
     }
 
     getGeneralFacts() {
-        return JSON.parse(JSON.stringify(CommonHelper.getLineStrings(this.interpolatedFeaturesCollection)[0].properties));
+        if (this.interpolatedFeaturesCollection.features) {
+            return JSON.parse(JSON.stringify(CommonHelper.getLineStrings(this.interpolatedFeaturesCollection)[0].properties));
+        }
+        return JSON.parse(JSON.stringify(CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].properties));
     }
 
     setGeneralFacts(newGeneralFacts) {
-        CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].properties = newGeneralFacts;
-        CommonHelper.getLineStrings(this.simplifiedFeaturesCollection)[0].properties = newGeneralFacts;
-        CommonHelper.getLineStrings(this.elevatedFeaturesCollection)[0].properties = newGeneralFacts;
-        CommonHelper.getLineStrings(this.elevationNivelatedFeaturesCollection)[0].properties = newGeneralFacts;
-        CommonHelper.getLineStrings(this.interpolatedFeaturesCollection)[0].properties = newGeneralFacts;
+        if (this.parsedFeaturesCollection.features) {
+            CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].properties = newGeneralFacts;
+        }
+        if (this.simplifiedFeaturesCollection.features) {
+            CommonHelper.getLineStrings(this.simplifiedFeaturesCollection)[0].properties = newGeneralFacts;
+        }
+        if (this.elevatedFeaturesCollection.features) {
+            CommonHelper.getLineStrings(this.elevatedFeaturesCollection)[0].properties = newGeneralFacts;
+        }
+        if (this.elevationNivelatedFeaturesCollection.features) {
+            CommonHelper.getLineStrings(this.elevationNivelatedFeaturesCollection)[0].properties = newGeneralFacts;
+        }
+        if (this.interpolatedFeaturesCollection.features) {
+            CommonHelper.getLineStrings(this.interpolatedFeaturesCollection)[0].properties = newGeneralFacts;
+        }
     }
 
     generateGeneralFacts() {
@@ -257,6 +304,16 @@ class Trail {
     set interpolatedFeaturesCollection(newFeaturesCollection) {
         if (newFeaturesCollection) {
             this._interpolatedFeaturesCollection = newFeaturesCollection;
+        }
+    }
+
+    get initialised() {
+        return this._initialised;
+    }
+
+    set initialised(isInitialised) {
+        if (isInitialised) {
+            this._initialised = isInitialised;
         }
     }
 

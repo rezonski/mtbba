@@ -1,4 +1,5 @@
 /* global toGeoJSON */
+/* global polyline */
 import GLU from '/../../glu2.js/src/index';
 import CommonDataModel from '/dataSources/CommonDataModel';
 import TrailsDataModel from '/dataSources/TrailsDataModel';
@@ -10,6 +11,7 @@ import Enum from '/enums/Enum';
 import Lang from '/helpers/Lang';
 import API from '/apis/Api';
 import CommonHelper from '/helpers/CommonHelper';
+import appConfig from '/appConfig';
 // import { handleReject } from '/helpers/RejectHandler';
 
 class DataController extends GLU.Controller {
@@ -103,18 +105,10 @@ class DataController extends GLU.Controller {
         if (TrailsDataModel.activeTrail === undefined) {
             TrailsDataModel.trail = new Trail();
         } else {
-            // console.info('DataController.getTrailData(' + payload + ')');
-            const trailData = TrailsDataModel.activeTrail.getTrailData();
-            GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
-            // if (payload && payload === 'waypoints') {
-            //     const trailData = {
-            //         waypoints: TrailsDataModel.activeTrail.waypoints,
-            //     };
-            //     GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
-            // } else {
-            //     const trailData = TrailsDataModel.activeTrail.getTrailData();
-            //     GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
-            // }
+            if (TrailsDataModel.activeTrail.initialised) {
+                const trailData = TrailsDataModel.activeTrail.getTrailData();
+                GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
+            }
         }
     }
 
@@ -163,7 +157,6 @@ class DataController extends GLU.Controller {
             r.onload = (e) => {
                 TrailsDataModel.trail = new Trail();
                 // Save trail name
-                TrailsDataModel.activeTrail.trailName = payload.file.name.replace('.gpx', '').replace('_profil', ' ').replace('_', ' ');
                 // Save parsed file
                 const domParser = (new DOMParser()).parseFromString(e.target.result, 'text/xml');
                 if (payload.file.name.toLowerCase().indexOf('.gpx') > 0) {
@@ -174,8 +167,8 @@ class DataController extends GLU.Controller {
                     GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('fileFormatUnsuported'));
                     return;
                 }
-                TrailsDataModel.activeTrail.newTrail();
                 TrailsDataModel.activeTrail.parseInitialFeaturesCollection();
+                TrailsDataModel.activeTrail.setDataByName('trailName', null, null, payload.file.name.replace('.gpx', '').replace('_profil', ' ').replace('_', ' '));
                 const trailData = TrailsDataModel.activeTrail.getTrailData();
                 GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
             };
@@ -334,7 +327,29 @@ class DataController extends GLU.Controller {
         GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, this.progressPayload);
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endGeneralFactsGenerating'));
 
-        GLU.bus.emit(Enum.DataEvents.START_FIXING_WAYPOINTS);
+        const trailCenter = TrailsDataModel.activeTrail.getGeneralFacts().center;
+        const query = {
+            polyline: encodeURIComponent(polyline.fromGeoJSON(TrailsDataModel.activeTrail.getSimplifiedFeatureCollectionPathOnly())),
+            mapParams: trailCenter[0] + ',' + trailCenter[1] + ',10',
+            fileName: encodeURIComponent(CommonHelper.getUUID()) + '.png',
+        };
+
+        API.Trails.getTrailThumbnail({ query })
+        .then((response) => {
+            if (response.text.substring(0, 6) === '#Error') {
+                GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('trailThumbnailGetFailed') + response.text);
+            } else {
+                TrailsDataModel.activeTrail.setDataByName('imageURL', null, null, appConfig.constants.server + response.text);
+                GLU.bus.emit(Enum.DataEvents.START_FIXING_WAYPOINTS);
+            }
+        })
+        .catch((err) => {
+            const msg = (err && err.response) ? err.response.text : err.toString();
+            console.error('API.Trails.getTrailThumbnail()');
+            console.error(err);
+            // console.log('downloadTrail: ' + msg);
+            GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('trailThumbnailGetFailed') + msg);
+        });
     }
 
     onFixWaypointsRequest() {

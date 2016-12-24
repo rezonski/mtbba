@@ -256,6 +256,10 @@ const messages = {
         bos: 'Greška u podacima',
         eng: 'Failed to load',
     },
+    trailThumbnailGetFailed: {
+        bos: 'Greška u generisanju pregledne slike staze',
+        eng: 'Failed to generate trail thumbnail',
+    },
     fileFormatUnsuported: {
         bos: 'Format datoteke nije podržan',
         eng: 'Unsuported file type',

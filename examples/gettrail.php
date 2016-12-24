@@ -100,11 +100,10 @@ if (isset($_GET['trailid'])) {
 '{
         "type": "Feature",
         "properties": {
-            "name": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_name"]).'",
             "trailID": "'.$row["trail_id"].'",
-            "mntns": '.$mntarray.',
             "trailName": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_name"]).'",
             "trailDesc": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_desc"]).'",
+            "mntns": '.$mntarray.',
             "surfaceCollection": '.$row["surface"].',
             "typeID": "'.$row["type_id"].'",
             "typeName": "'.$row["type_name"].'",
@@ -121,7 +120,7 @@ if (isset($_GET['trailid'])) {
             "center": '.$row["center"].',
             "bounds": '.$row["bounds"].',
             "externalLink": "'.$row["external_link"].'",
-            "imageUrl": "'.$row["image_url"].'"
+            "imageURL": "'.$row["image_url"].'"
         },
         "geometry": {
             "type": "LineString",
