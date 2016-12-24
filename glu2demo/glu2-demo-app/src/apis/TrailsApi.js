@@ -34,6 +34,12 @@ class TrailsApi extends GLU.Api {
             method: GLU.Api.Post,
             path: '/upload/upload.php',
             credentials: false,
+        },
+        {
+            name: 'getTrailThumbnail',
+            method: GLU.Api.Get,
+            path: 'getTrailThumbnail.php',
+            credentials: false,
         } /* ,{
             name: 'getIdentity',
             method: GLU.Api.Get,

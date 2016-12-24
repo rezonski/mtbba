@@ -30,7 +30,7 @@ class WPDRawer extends BasePage {
     }
 
     onTrailDataRetrieved(payload) {
-        if (payload.waypoints !== this.state.waypoints) {
+        if (payload.waypoints && payload.waypoints !== this.state.waypoints) {
             this.setState({
                 waypoints: payload.waypoints,
             });

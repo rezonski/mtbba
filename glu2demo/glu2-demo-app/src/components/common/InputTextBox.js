@@ -37,14 +37,14 @@ class InputTextBox extends BasePage {
     }
 
     onTrailDataRetrieved(payload) {
-        if (this.props.fieldIndex !== undefined && this.props.fieldProp) {
+        if (payload[this.props.fieldName] && this.props.fieldIndex !== undefined && this.props.fieldProp) {
             if (payload[this.props.fieldName][this.props.fieldIndex][this.props.fieldProp] !== this.state.value) {
                 this.setState({
                     value: payload[this.props.fieldName][this.props.fieldIndex].properties[this.props.fieldProp],
                 });
             }
         } else {
-            if (payload[this.props.fieldName] !== this.state.value) {
+            if (payload[this.props.fieldName] && payload[this.props.fieldName] !== this.state.value) {
                 this.setState({
                     value: payload[this.props.fieldName],
                 });
