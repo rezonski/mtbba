@@ -57,10 +57,11 @@ if (isset($_GET['trailid'])) {
             if ($tempiterator > 1) {
                 $mntarray .= ',';
             }
-            $mntarray .= '{
-                        "id": '.$row["id"].',
-                        "name": "'.$row["name"].'"
-                    }';
+            // $mntarray .= '{
+            //             "id": '.$row["id"].',
+            //             "name": "'.$row["name"].'"
+            //         }';
+            $mntarray .= $row["id"];
             $tempiterator++;
         }
     }

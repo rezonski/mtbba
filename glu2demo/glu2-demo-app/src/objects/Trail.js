@@ -44,7 +44,7 @@ class Trail {
         generalFacts.trailName = (generalFacts.trailName === undefined) ? '' : generalFacts.trailName;
         generalFacts.trailDesc = (generalFacts.trailDesc === undefined) ? '' : generalFacts.trailDesc;
         generalFacts.mntns = (generalFacts.mntns === undefined) ? [] : generalFacts.mntns;
-        generalFacts.surfaceCollection = (generalFacts.surfaceCollection === undefined) ? [] : generalFacts.surfaceCollection;
+        generalFacts.surfaceCollection = (generalFacts.surfaceCollection === undefined) ? [[ 0, 'A']] : generalFacts.surfaceCollection;
         generalFacts.typeID = (generalFacts.typeID === undefined) ? null : generalFacts.typeID;
         generalFacts.typeName = (generalFacts.typeName === undefined) ? '' : generalFacts.typeName;
         generalFacts.typeDesc = (generalFacts.typeDesc === undefined) ? '' : generalFacts.typeDesc;
@@ -144,6 +144,7 @@ class Trail {
 
     generateWaypoints(maps) {
         const enrichedFeaturesCollection = this.getEnrichedFeatureCollection();
+        // const enrichedFeaturesCollection = this.getSimpleEnrichedFeatureCollection();
         const computedWaypoints = WaypointHelper.generateWaypoints(maps.leftMap, maps.rightMap, enrichedFeaturesCollection);
         this.waypoints = computedWaypoints;
     }
