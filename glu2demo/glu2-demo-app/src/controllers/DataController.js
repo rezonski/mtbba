@@ -327,29 +327,40 @@ class DataController extends GLU.Controller {
         GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, this.progressPayload);
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endGeneralFactsGenerating'));
 
-        const trailCenter = TrailsDataModel.activeTrail.getGeneralFacts().center;
-        const query = {
-            polyline: encodeURIComponent(polyline.fromGeoJSON(TrailsDataModel.activeTrail.getSimplifiedFeatureCollectionPathOnly())),
-            mapParams: trailCenter[0] + ',' + trailCenter[1] + ',10',
-            fileName: encodeURIComponent(CommonHelper.getUUID()) + '.png',
-        };
-
-        API.Trails.getTrailThumbnail({ query })
-        .then((response) => {
-            if (response.text.substring(0, 6) === '#Error') {
-                GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('trailThumbnailGetFailed') + response.text);
-            } else {
-                TrailsDataModel.activeTrail.setDataByName('imageURL', null, null, appConfig.constants.server + response.text);
-                GLU.bus.emit(Enum.DataEvents.START_FIXING_WAYPOINTS);
-            }
-        })
-        .catch((err) => {
-            const msg = (err && err.response) ? err.response.text : err.toString();
-            console.error('API.Trails.getTrailThumbnail()');
-            console.error(err);
-            // console.log('downloadTrail: ' + msg);
-            GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('trailThumbnailGetFailed') + msg);
-        });
+        const trailFacts = TrailsDataModel.activeTrail.getGeneralFacts();
+        if (trailFacts.imageURL === '') {
+            const trailCenter = trailFacts.center;
+            // const query = {
+            //     polyline: encodeURIComponent(polyline.fromGeoJSON(TrailsDataModel.activeTrail.getSimplifiedFeatureCollectionPathOnly())),
+            //     mapParams: trailCenter[0] + ',' + trailCenter[1] + ',10',
+            //     fileName: encodeURIComponent(CommonHelper.getUUID()) + '.png',
+            // };
+            const query = {
+                polyline: polyline.fromGeoJSON(TrailsDataModel.activeTrail.getSimplifiedFeatureCollectionPathOnly()),
+                mapParams: trailCenter[0] + ',' + trailCenter[1] + ',10',
+                fileName: CommonHelper.getUUID() + '.png',
+            };
+            console.log('getTrailThumbnail');
+            console.log(query);
+            API.Trails.getTrailThumbnail({ query })
+            .then((response) => {
+                if (response.text.substring(0, 6) === '#Error') {
+                    GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('trailThumbnailGetFailed') + response.text);
+                } else {
+                    TrailsDataModel.activeTrail.setDataByName('imageURL', null, null, appConfig.constants.server + response.text);
+                    GLU.bus.emit(Enum.DataEvents.START_FIXING_WAYPOINTS);
+                }
+            })
+            .catch((err) => {
+                const msg = (err && err.response) ? err.response.text : err.toString();
+                console.error('API.Trails.getTrailThumbnail()');
+                console.error(err);
+                // console.log('downloadTrail: ' + msg);
+                GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('trailThumbnailGetFailed') + msg);
+            });
+        } else {
+            GLU.bus.emit(Enum.DataEvents.START_FIXING_WAYPOINTS);
+        }
     }
 
     onFixWaypointsRequest() {

@@ -54,7 +54,8 @@
     simplified.properties['stroke-opacity'] = 0.6;
     var geo = encodeURIComponent(JSON.stringify(turf.featurecollection([simplified])));
     var url = baseURL + 'geojson(' + geo + ')/' + coordinates + ',7/500x300.png?access_token=' + token;
-    // console.log(url);
+    console.log('geojson');
+    console.log(url);
 
     // console.log('####');
 

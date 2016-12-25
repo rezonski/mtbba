@@ -14,6 +14,188 @@ class WaypointHelper extends GLU.Controller {
         });
     }
 
+    generateWPointGeoJSON(currentIndex, newWaypoint, inputPathLine) {
+        const pointIndex = parseInt(currentIndex, 10);
+        const offset = 20;
+        const pointFromIndex = ((pointIndex - offset) < 0) ? 0 : (pointIndex - offset);
+        const pointToIndex = ((pointIndex + offset) > (inputPathLine.length - 1)) ? (inputPathLine.length - 1) : (pointIndex + offset);
+        let inPathCoordinates = [];
+        let outPathCoordinates = [];
+        let features = [];
+        for (let i = parseInt(pointFromIndex, 10); i <= pointIndex; i++) {
+            inPathCoordinates.push([inputPathLine[i].lon, inputPathLine[i].lat]);
+        }
+        for (let j = parseInt(pointIndex, 10); j <= pointToIndex; j++) {
+            outPathCoordinates.push([inputPathLine[j].lon, inputPathLine[j].lat]);
+        }
+        const inPathFeature = turf.linestring(inPathCoordinates, {
+            name: 'Input line',
+            stroke: '#CC1111',
+            'stroke-width': 3,
+        });
+        const outPathFeature = turf.linestring(outPathCoordinates, {
+            name: 'Output line',
+            stroke: '#11FF11',
+            'stroke-width': 3,
+        });
+        const currentWaypoint = turf.point([newWaypoint.lon, newWaypoint.lat], {
+            name: newWaypoint.name,
+            'marker-color': '#0033FF',
+            'marker-symbol': 'cross-15',
+        });
+        if (inPathCoordinates.length > 1) {
+            features.push(inPathFeature);
+        }
+        if (outPathCoordinates.length > 1) {
+            features.push(outPathFeature);
+        }
+        features.push(currentWaypoint);
+        const wpGeoJSON = turf.featurecollection(features);
+        newWaypoint.wpGeoJSON = wpGeoJSON;
+    }
+
+    generateWaypoints(leftMap, rightMap, featuresCollection) {
+        const inputPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
+        const inputWaypoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(featuresCollection)));
+        const surfaceCollection = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].properties.surfaceCollection;
+        let newWaypoints = [];
+        // let newWaypointsChart = [];
+        let newWaypointsExport = [];
+        let waypointsProgressPayload = {
+            status: 'progress',
+            id: 'progressFixWPs',
+            loaded: 0,
+            total: inputWaypoints.length,
+        };
+
+        let mapWaypointsCollection = {
+            type: 'FeatureCollection',
+            features: [],
+        };
+
+        inputWaypoints.forEach((wpoint, wpindex) => {
+            let tempDistance = 9999999;
+            let tempIndex = -1;
+            let tempDesc = '';
+            let tempPictogram = '';
+
+            // Calculate closest point on line
+            inputPathLine.forEach((ppoint, pindex) => {
+                // let currentDistance = TrailHelper.getDistanceFromLatLonInMeters(wpoint.geometry.coordinates[0], wpoint.geometry.coordinates[1], ppoint.lon, ppoint.lat);
+                let currentDistance = turf.distance(turf.point([wpoint.geometry.coordinates[0], wpoint.geometry.coordinates[1]]), turf.point([ppoint.lon, ppoint.lat]));
+                if ((currentDistance < tempDistance) && currentDistance < 0.1) { // less than 100m
+                    tempDistance = currentDistance;
+                    tempIndex = pindex;
+                }
+            });
+            if (tempIndex > -1) {
+                if (wpoint.properties.desc !== undefined && wpoint.properties.desc.indexOf('#') > -1 ) {
+                    let tempDescArray = wpoint.properties.desc.replace('#\n\n', '#\n').replace('#\n\n', '#\n').replace('#\n', '#').replace('#\n', '#').split('#');
+                    tempDesc = tempDescArray[2];
+                    tempPictogram = tempDescArray[1];
+                } else if (wpoint.properties.desc !== undefined) {
+                    tempDesc = wpoint.properties.desc;
+                    tempPictogram = (wpoint.properties.pictogram !== undefined) ? wpoint.properties.pictogram : '90';
+                } else {
+                    tempDesc = '';
+                    tempPictogram = (wpoint.properties.pictogram !== undefined) ? wpoint.properties.pictogram : '90';
+                }
+                const newWaypoint = {
+                    id: wpindex,
+                    time: (wpoint.properties.time !== undefined) ? wpoint.properties.time : null,
+                    name: wpoint.properties.name,
+                    desc: tempDesc,
+                    elevGain: Math.round(inputPathLine[tempIndex].elevGain * 100) / 100,
+                    elevLoss: Math.round(inputPathLine[tempIndex].elevLoss * 100) / 100,
+                    nextElevGain: 0,
+                    nextElevLoss: 0,
+                    odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
+                    nextStepDist: 0,
+                    symbol: this.symbolFromDesc(tempDesc, tempPictogram, wpoint.properties.name),
+                    pictogram: tempPictogram,
+                    pictureUrl: (wpoint.properties.pictureUrl !== undefined) ? wpoint.properties.pictureUrl : '',
+                    elevationProfile: 0,
+                    lon: inputPathLine[tempIndex].lon,
+                    lat: inputPathLine[tempIndex].lat,
+                    elevation: inputPathLine[tempIndex].elevation,
+                };
+                this.generateWPointGeoJSON(tempIndex, newWaypoint, inputPathLine);
+                newWaypoints.push(newWaypoint);
+            }
+            waypointsProgressPayload.loaded = parseInt((wpindex + 1), 10);
+            GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, waypointsProgressPayload);
+        });
+
+        newWaypointsExport = CommonHelper.sortArrayByKey(newWaypoints, 'odometer');
+
+        newWaypointsExport.forEach((element, index) => {
+            let tempWp = {};
+            if (index < (newWaypointsExport.length - 1)) {
+                tempWp = {
+                    current: element,
+                    next: newWaypointsExport[index + 1],
+                };
+                element.nextStepDist = Math.round((newWaypointsExport[index + 1].odometer - element.odometer) * 100) / 100;
+                element.nextElevGain = Math.round((newWaypointsExport[index + 1].elevGain - element.elevGain) * 100) / 100;
+                element.nextElevLoss = Math.round((newWaypointsExport[index + 1].elevLoss - element.elevLoss) * 100) / 100;
+            } else {
+                tempWp = {
+                    current: element,
+                    next: null,
+                };
+            }
+            element.id = index;
+            element.descgenerated = this.generateDesc(tempWp, surfaceCollection);
+        });
+
+        newWaypointsExport.forEach((wp, wpIdx) => {
+            const newPoint = turf.point([wp.lon, wp.lat, wp.elevation]);
+            newPoint.properties = wp;
+            newPoint.properties.id = wpIdx;
+            mapWaypointsCollection.features.push(newPoint);
+        });
+
+        // Adding to map
+        if (leftMap.getSource('waypoints')) {
+            leftMap.removeLayer('waypoints');
+            leftMap.removeSource('waypoints');
+        }
+        if (rightMap.getSource('waypoints')) {
+            rightMap.removeLayer('waypoints');
+            rightMap.removeSource('waypoints');
+        }
+        leftMap.addSource('waypoints', {
+            type: 'geojson',
+            data: mapWaypointsCollection,
+        });
+        rightMap.addSource('waypoints', {
+            type: 'geojson',
+            data: mapWaypointsCollection,
+        });
+
+        const pointLayer = {};
+        pointLayer.id = 'waypoints';
+        pointLayer.type = 'symbol';
+        pointLayer.source = 'waypoints';
+        pointLayer.layout = {};
+        pointLayer.layout['icon-image'] = 'monument-15';
+        pointLayer.layout['text-field'] = '{id}';
+        pointLayer.paint = {};
+        pointLayer.paint['icon-color'] = '#FF0000';
+        pointLayer.paint['icon-halo-color'] = '#FFFFFF';
+
+        leftMap.addLayer(pointLayer);
+        rightMap.addLayer(pointLayer);
+
+        // return {
+        //     waypoints: newWaypointsExport,
+        //     chartWaypoints: newWaypointsChart,
+        //     mapWaypoints: mapWaypointsCollection.features,
+        // };
+
+        return mapWaypointsCollection.features;
+    }
+
     onInitialSetupRetrieved(payload) {
         this.pointTypes = payload.pointTypes;
     }
@@ -328,147 +510,6 @@ class WaypointHelper extends GLU.Controller {
             returnVal = 'SLEEP';
         }
         return returnVal;
-    }
-
-    generateWaypoints(leftMap, rightMap, featuresCollection) {
-        const inputPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
-        const inputWaypoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(featuresCollection)));
-        const surfaceCollection = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].properties.surfaceCollection;
-        let newWaypoints = [];
-        // let newWaypointsChart = [];
-        let newWaypointsExport = [];
-        let waypointsProgressPayload = {
-            status: 'progress',
-            id: 'progressFixWPs',
-            loaded: 0,
-            total: inputWaypoints.length,
-        };
-
-        let mapWaypointsCollection = {
-            type: 'FeatureCollection',
-            features: [],
-        };
-
-        inputWaypoints.forEach((wpoint, wpindex) => {
-            let tempDistance = 9999999;
-            let tempIndex = -1;
-            let tempDesc = '';
-            let tempPictogram = '';
-
-            // Calculate closest point on line
-            inputPathLine.forEach((ppoint, pindex) => {
-                // let currentDistance = TrailHelper.getDistanceFromLatLonInMeters(wpoint.geometry.coordinates[0], wpoint.geometry.coordinates[1], ppoint.lon, ppoint.lat);
-                let currentDistance = turf.distance(turf.point([wpoint.geometry.coordinates[0], wpoint.geometry.coordinates[1]]), turf.point([ppoint.lon, ppoint.lat]));
-                if ((currentDistance < tempDistance) && currentDistance < 0.1) { // less than 100m
-                    tempDistance = currentDistance;
-                    tempIndex = pindex;
-                }
-            });
-            if (tempIndex > -1) {
-                if (wpoint.properties.desc !== undefined && wpoint.properties.desc.indexOf('#') > -1 ) {
-                    let tempDescArray = wpoint.properties.desc.replace('#\n\n', '#\n').replace('#\n\n', '#\n').replace('#\n', '#').replace('#\n', '#').split('#');
-                    tempDesc = tempDescArray[2];
-                    tempPictogram = tempDescArray[1];
-                } else if (wpoint.properties.desc !== undefined) {
-                    tempDesc = wpoint.properties.desc;
-                    tempPictogram = (wpoint.properties.pictogram !== undefined) ? wpoint.properties.pictogram : '90';
-                } else {
-                    tempDesc = '';
-                    tempPictogram = (wpoint.properties.pictogram !== undefined) ? wpoint.properties.pictogram : '90';
-                }
-
-                newWaypoints.push({
-                    id: wpindex,
-                    time: (wpoint.properties.time !== undefined) ? wpoint.properties.time : null,
-                    name: wpoint.properties.name,
-                    desc: tempDesc,
-                    elevGain: Math.round(inputPathLine[tempIndex].elevGain * 100) / 100,
-                    elevLoss: Math.round(inputPathLine[tempIndex].elevLoss * 100) / 100,
-                    nextElevGain: 0,
-                    nextElevLoss: 0,
-                    odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
-                    nextStepDist: 0,
-                    symbol: this.symbolFromDesc(tempDesc, tempPictogram, wpoint.properties.name),
-                    pictogram: tempPictogram,
-                    pictureUrl: (wpoint.properties.pictureUrl !== undefined) ? wpoint.properties.pictureUrl : '',
-                    elevationProfile: 0,
-                    lon: inputPathLine[tempIndex].lon,
-                    lat: inputPathLine[tempIndex].lat,
-                    elevation: inputPathLine[tempIndex].elevation,
-                });
-            }
-            waypointsProgressPayload.loaded = parseInt((wpindex + 1), 10);
-            GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, waypointsProgressPayload);
-        });
-
-        newWaypointsExport = CommonHelper.sortArrayByKey(newWaypoints, 'odometer');
-
-        newWaypointsExport.forEach((element, index) => {
-            let tempWp = {};
-            if (index < (newWaypointsExport.length - 1)) {
-                tempWp = {
-                    current: element,
-                    next: newWaypointsExport[index + 1],
-                };
-                element.nextStepDist = Math.round((newWaypointsExport[index + 1].odometer - element.odometer) * 100) / 100;
-                element.nextElevGain = Math.round((newWaypointsExport[index + 1].elevGain - element.elevGain) * 100) / 100;
-                element.nextElevLoss = Math.round((newWaypointsExport[index + 1].elevLoss - element.elevLoss) * 100) / 100;
-            } else {
-                tempWp = {
-                    current: element,
-                    next: null,
-                };
-            }
-            element.id = index;
-            element.descgenerated = this.generateDesc(tempWp, surfaceCollection);
-        });
-
-        newWaypointsExport.forEach((wp, wpIdx) => {
-            const newPoint = turf.point([wp.lon, wp.lat, wp.elevation]);
-            newPoint.properties = wp;
-            newPoint.properties.id = wpIdx;
-            mapWaypointsCollection.features.push(newPoint);
-        });
-
-        // Adding to map
-        if (leftMap.getSource('waypoints')) {
-            leftMap.removeLayer('waypoints');
-            leftMap.removeSource('waypoints');
-        }
-        if (rightMap.getSource('waypoints')) {
-            rightMap.removeLayer('waypoints');
-            rightMap.removeSource('waypoints');
-        }
-        leftMap.addSource('waypoints', {
-            type: 'geojson',
-            data: mapWaypointsCollection,
-        });
-        rightMap.addSource('waypoints', {
-            type: 'geojson',
-            data: mapWaypointsCollection,
-        });
-
-        const pointLayer = {};
-        pointLayer.id = 'waypoints';
-        pointLayer.type = 'symbol';
-        pointLayer.source = 'waypoints';
-        pointLayer.layout = {};
-        pointLayer.layout['icon-image'] = 'monument-15';
-        pointLayer.layout['text-field'] = '{id}';
-        pointLayer.paint = {};
-        pointLayer.paint['icon-color'] = '#FF0000';
-        pointLayer.paint['icon-halo-color'] = '#FFFFFF';
-
-        leftMap.addLayer(pointLayer);
-        rightMap.addLayer(pointLayer);
-
-        // return {
-        //     waypoints: newWaypointsExport,
-        //     chartWaypoints: newWaypointsChart,
-        //     mapWaypoints: mapWaypointsCollection.features,
-        // };
-
-        return mapWaypointsCollection.features;
     }
 }
 export default new WaypointHelper();
