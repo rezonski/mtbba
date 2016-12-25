@@ -56,7 +56,19 @@ class WaypointHelper extends GLU.Controller {
 
     generateWaypoints(leftMap, rightMap, featuresCollection) {
         const inputPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
-        const inputWaypoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(featuresCollection)));
+        let inputWaypoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(featuresCollection)));
+        const startPathPoint = turf.point([inputPathLine[0].lon, inputPathLine[0].lat], { name: 'Start', pictogram: '90' });
+        const endPathPoint = turf.point([inputPathLine[inputPathLine.length - 1].lon, inputPathLine[inputPathLine.length - 1].lat], { name: 'Finish', pictogram: '270' });
+        const firstWP = inputWaypoints[0];
+        const lasttWP = inputWaypoints[inputWaypoints.length - 1];
+        if (inputWaypoints.length === 0) {
+            inputWaypoints = [startPathPoint, endPathPoint];
+        } else if (turf.distance(startPathPoint, firstWP, 'kilometers') > 0.2) {
+            inputWaypoints.unshift(startPathPoint);
+        } else if (turf.distance(lasttWP, endPathPoint, 'kilometers') > 0.2) {
+            inputWaypoints.push(endPathPoint);
+        }
+
         const surfaceCollection = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].properties.surfaceCollection;
         let newWaypoints = [];
         // let newWaypointsChart = [];
@@ -72,6 +84,7 @@ class WaypointHelper extends GLU.Controller {
             type: 'FeatureCollection',
             features: [],
         };
+
 
         inputWaypoints.forEach((wpoint, wpindex) => {
             let tempDistance = 9999999;
