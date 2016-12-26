@@ -260,6 +260,10 @@ const messages = {
         bos: 'Greška u generisanju pregledne slike staze',
         eng: 'Failed to generate trail thumbnail',
     },
+    wpThumbnailGetFailed: {
+        bos: 'Greška u generisanju pregledne slike tacke puta',
+        eng: 'Failed to generate waypoint thumbnail',
+    },
     fileFormatUnsuported: {
         bos: 'Format datoteke nije podržan',
         eng: 'Unsuported file type',

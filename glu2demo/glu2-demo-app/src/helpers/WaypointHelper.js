@@ -16,7 +16,7 @@ class WaypointHelper extends GLU.Controller {
 
     generateWPointGeoJSON(currentIndex, newWaypoint, inputPathLine) {
         const pointIndex = parseInt(currentIndex, 10);
-        const offset = 20;
+        const offset = 40;
         const pointFromIndex = ((pointIndex - offset) < 0) ? 0 : (pointIndex - offset);
         const pointToIndex = ((pointIndex + offset) > (inputPathLine.length - 1)) ? (inputPathLine.length - 1) : (pointIndex + offset);
         let inPathCoordinates = [];
@@ -41,7 +41,7 @@ class WaypointHelper extends GLU.Controller {
         const currentWaypoint = turf.point([newWaypoint.lon, newWaypoint.lat], {
             name: newWaypoint.name,
             'marker-color': '#0033FF',
-            'marker-symbol': 'cross-15',
+            'marker-symbol': 'cross',
         });
         if (inPathCoordinates.length > 1) {
             features.push(inPathFeature);
@@ -59,15 +59,15 @@ class WaypointHelper extends GLU.Controller {
         let inputWaypoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(featuresCollection)));
         const startPathPoint = turf.point([inputPathLine[0].lon, inputPathLine[0].lat], { name: 'Start', pictogram: '90' });
         const endPathPoint = turf.point([inputPathLine[inputPathLine.length - 1].lon, inputPathLine[inputPathLine.length - 1].lat], { name: 'Finish', pictogram: '270' });
-        const firstWP = inputWaypoints[0];
-        const lasttWP = inputWaypoints[inputWaypoints.length - 1];
+        // const firstWP = inputWaypoints[0];
+        // const lasttWP = inputWaypoints[inputWaypoints.length - 1];
         if (inputWaypoints.length === 0) {
             inputWaypoints = [startPathPoint, endPathPoint];
-        } else if (turf.distance(startPathPoint, firstWP, 'kilometers') > 0.2) {
+        } /*else if (turf.distance(startPathPoint, firstWP, 'kilometers') > 0.2) {
             inputWaypoints.unshift(startPathPoint);
         } else if (turf.distance(lasttWP, endPathPoint, 'kilometers') > 0.2) {
             inputWaypoints.push(endPathPoint);
-        }
+        }*/
 
         const surfaceCollection = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].properties.surfaceCollection;
         let newWaypoints = [];
