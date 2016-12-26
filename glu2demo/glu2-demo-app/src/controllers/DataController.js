@@ -346,8 +346,10 @@ class DataController extends GLU.Controller {
             .then((response) => {
                 if (response.text.substring(0, 6) === '#Error') {
                     GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('trailThumbnailGetFailed') + response.text);
-                } else {
-                    TrailsDataModel.activeTrail.setDataByName('imageURL', null, null, appConfig.constants.server + response.text);
+                    console.warn(response.text);
+                } else if (response.text.substring(0, 3) === '#OK') {
+                    const parsedResponseArray = response.text.split(': ');
+                    TrailsDataModel.activeTrail.setDataByName('imageURL', null, null, appConfig.constants.server + parsedResponseArray[1]);
                     GLU.bus.emit(Enum.DataEvents.START_FIXING_WAYPOINTS);
                 }
             })
@@ -369,9 +371,8 @@ class DataController extends GLU.Controller {
                 leftMap: MapModel.leftMap,
                 rightMap: MapModel.rightMap,
             };
-            TrailsDataModel.activeTrail.generateWaypoints(maps);
-            // console.info(TrailsDataModel.activeTrail.waypoints);
-            // console.info(TrailsDataModel.activeTrail.chartWaypoints);
+            const waypoints = TrailsDataModel.activeTrail.generateWaypoints(maps);
+            this.setWaypointsThumbnails(waypoints, 0);
         } else {
             GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, {
                 status: 'progress',
@@ -379,12 +380,60 @@ class DataController extends GLU.Controller {
                 loaded: 1,
                 total: 1,
             });
+            this.progressPayload.loaded = 100;
+            GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, this.progressPayload);
+            GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endWaypointsGenerating'));
+            GLU.bus.emit(Enum.MapEvents.REBUILD_PATH_LAYERS);
         }
-        this.progressPayload.loaded = 100;
-        GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, this.progressPayload);
-        GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endWaypointsGenerating'));
+    }
 
-        GLU.bus.emit(Enum.MapEvents.REBUILD_PATH_LAYERS);
+    setWaypointsThumbnails(waypoints, WPindex) {
+        if (WPindex < waypoints.length) {
+            console.log('progressFixWPs WPindex < waypoints.length!');
+            const query = {
+                geojson: JSON.stringify(waypoints[WPindex].properties.wpGeoJSON),
+                mapParams: waypoints[WPindex].geometry.coordinates[0] + ',' + waypoints[WPindex].geometry.coordinates[1] + ',17',
+                fileName: CommonHelper.getUUID() + '.png',
+            };
+            console.log('setWaypointsThumbnails(' + waypoints + ',' + WPindex + ')');
+            console.log(query);
+            API.Trails.getWPThumbnail({ query })
+            .then((response) => {
+                if (response.text.substring(0, 6) === '#Error') {
+                    GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('wpThumbnailGetFailed') + response.text);
+                    console.warn(response.text);
+                } else if (response.text.substring(0, 3) === '#OK') {
+                    const parsedResponseArray = response.text.split(': ');
+                    TrailsDataModel.activeTrail.setDataByName('waypoints', WPindex, 'pictureUrl', appConfig.constants.server + parsedResponseArray[1]);
+                    console.log('WP thumbnail URL:');
+                    console.log(appConfig.constants.server + parsedResponseArray[1]);
+                    setTimeout(() => {
+                        this.setWaypointsThumbnails(waypoints, WPindex + 1);
+                    }, 100);
+                }
+            })
+            .catch((err) => {
+                const msg = (err && err.response) ? err.response.text : err.toString();
+                console.error('API.Trails.getWPThumbnail()');
+                console.error(err);
+                GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('wpThumbnailGetFailed') + msg);
+                setTimeout(() => {
+                    this.setWaypointsThumbnails(waypoints, WPindex + 1);
+                }, 100);
+            });
+        } else {
+            console.log('progressFixWPs COMPLETED!');
+            GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, {
+                status: 'progress',
+                id: 'progressFixWPs',
+                loaded: 1,
+                total: 1,
+            });
+            this.progressPayload.loaded = 100;
+            GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, this.progressPayload);
+            GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endWaypointsGenerating'));
+            GLU.bus.emit(Enum.MapEvents.REBUILD_PATH_LAYERS);
+        }
     }
 
     uploadImage(payload) {

@@ -40,6 +40,12 @@ class TrailsApi extends GLU.Api {
             method: GLU.Api.Get,
             path: 'getTrailThumbnail.php',
             credentials: false,
+        },
+        {
+            name: 'getWPThumbnail',
+            method: GLU.Api.Get,
+            path: 'getWPThumbnail.php',
+            credentials: false,
         } /* ,{
             name: 'getIdentity',
             method: GLU.Api.Get,

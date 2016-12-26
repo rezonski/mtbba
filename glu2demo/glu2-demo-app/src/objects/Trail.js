@@ -147,6 +147,7 @@ class Trail {
         // const enrichedFeaturesCollection = this.getSimpleEnrichedFeatureCollection();
         const computedWaypoints = WaypointHelper.generateWaypoints(maps.leftMap, maps.rightMap, enrichedFeaturesCollection);
         this.waypoints = computedWaypoints;
+        return this.waypoints;
     }
 
     reBuildMapLayers(maps) {
@@ -165,9 +166,10 @@ class Trail {
 
     // koristeno i za WP, sad taj dio treba izdvojiti
     setDataByName(propName, propIndex, propProp, propValue) {
-        if (propIndex && propProp) {
+        if ((propIndex || propIndex === 0) && propProp) {
+            console.log('seting WP[' + propIndex + '] parameter ' + propProp + ' to value ' + propValue);
             const tempWaypoints = JSON.parse(JSON.stringify(this.waypoints));
-            tempWaypoints[propIndex][propProp] = propValue;
+            tempWaypoints[propIndex].properties[propProp] = propValue;
             this.waypoints = tempWaypoints;
         } else {
             const generalFacts = this.getGeneralFacts();
