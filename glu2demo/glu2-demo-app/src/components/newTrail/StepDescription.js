@@ -3,7 +3,7 @@ import BasePage from '../BasePage';
 // import Enum from '/enums/Enum';
 import Lang from '/helpers/Lang';
 import UploadImage from '../newTrail/UploadImage';
-import UploadedImagePreview from '../newTrail/UploadedImagePreview';
+import ImagePreview from '../common/ImagePreview';
 import StatusProgress from '../common/StatusProgress';
 import InputTextBox from '../common/InputTextBox';
 
@@ -58,7 +58,11 @@ class StepDescription extends BasePage {
                     <StatusProgress key="uploadImage" id="uploadImage" barColor="#33FFFF"/>
                 </div>
                 <div className="flex-container row">
-                    <UploadedImagePreview/>
+                    <ImagePreview
+                        fieldName={'imageURL'}
+                        fieldIndex={undefined}
+                        fieldProp={undefined}
+                    />
                 </div>
             </div>
         </div>);

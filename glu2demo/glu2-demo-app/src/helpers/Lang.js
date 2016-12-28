@@ -201,6 +201,14 @@ const labels = {
         bos: 'Opis tačke',
         eng: 'Waypoint description',
     },
+    pictogram: {
+        bos: 'Shema tačke puta',
+        eng: 'Waypoint pictogram',
+    },
+    pictogramHint: {
+        bos: 'npr. 90-v135-z30',
+        eng: 'eg. 90-v135-z30',
+    },
 };
 
 const messages = {

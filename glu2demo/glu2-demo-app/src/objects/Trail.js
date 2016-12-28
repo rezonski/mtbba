@@ -167,7 +167,7 @@ class Trail {
     // koristeno i za WP, sad taj dio treba izdvojiti
     setDataByName(propName, propIndex, propProp, propValue) {
         if ((propIndex || propIndex === 0) && propProp) {
-            console.log('seting WP[' + propIndex + '] parameter ' + propProp + ' to value ' + propValue);
+            // console.log('seting WP[' + propIndex + '] parameter ' + propProp + ' to value ' + propValue);
             const tempWaypoints = JSON.parse(JSON.stringify(this.waypoints));
             tempWaypoints[propIndex].properties[propProp] = propValue;
             this.waypoints = tempWaypoints;
