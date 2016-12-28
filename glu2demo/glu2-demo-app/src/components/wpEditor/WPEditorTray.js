@@ -3,6 +3,7 @@ import BasePage from '../BasePage';
 // import Enum from '/enums/Enum';
 import Lang from '/helpers/Lang';
 import InputTextBox from '../common/InputTextBox';
+import ImagePreview from '../common/ImagePreview';
 
 class WPEditorTray extends BasePage {
     constructor(props) {
@@ -21,19 +22,51 @@ class WPEditorTray extends BasePage {
 
 
     render() {
-        return (<div className="flex-container row single-wp-edit-box">
-            <InputTextBox
-                key={'waypoints'}
-                fieldName={'waypoints'}
-                fieldIndex={this.props.wpIndex}
-                fieldProp={'descgenerated'}
-                inputBoxStyle={{ fontSize: '80%' }}
-                isMultiline={true}
-                noRows={6}
-                filedLabel={Lang.label('wpDesc')}
-                filedHintText={Lang.label('trailDescHint')}
-            />
-        </div>);
+        return (<div className="flex-container column single-wp-edit-box">
+                    <div className="flex-container row">
+                        <InputTextBox
+                            key={'waypoints'}
+                            fieldName={'waypoints'}
+                            fieldIndex={this.props.wpIndex}
+                            fieldProp={'descgenerated'}
+                            inputBoxStyle={{ fontSize: '80%' }}
+                            isMultiline={true}
+                            noRows={6}
+                            filedLabel={Lang.label('wpDesc')}
+                            filedHintText={Lang.label('trailDescHint')}
+                        />
+                    </div>
+                    <div className="flex-container row">
+                        <div className="flex-element wider">
+                            <ImagePreview
+                                fieldName={'waypoints'}
+                                fieldIndex={this.props.wpIndex}
+                                fieldProp={'pictureUrl'}
+                            />
+                        </div>
+                        <div className="flex-container column narower">
+                            <div className="flex-element wider2">
+                                <ImagePreview
+                                    fieldName={'waypoints'}
+                                    fieldIndex={this.props.wpIndex}
+                                    fieldProp={'pictogram'}
+                                />
+                            </div>
+                            <div className="flex-element narower2">
+                                <InputTextBox
+                                    fieldName={'waypoints'}
+                                    fieldIndex={this.props.wpIndex}
+                                    fieldProp={'pictogram'}
+                                    inputBoxStyle={{ fontSize: '80%' }}
+                                    isMultiline={false}
+                                    noRows={1}
+                                    filedLabel={Lang.label('pictogram')}
+                                    filedHintText={Lang.label('pictogramHint')}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>);
     }
 }
 

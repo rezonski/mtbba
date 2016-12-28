@@ -1,6 +1,6 @@
 /* global turf */
 import GLU from '/../../glu2.js/src/index';
-import MessageEvents from '/enums/MessageEvents';
+// import MessageEvents from '/enums/MessageEvents';
 import Enum from '/enums/Enum';
 import CommonHelper from '/helpers/CommonHelper';
 import TrailHelper from '/helpers/TrailHelper';
@@ -63,7 +63,7 @@ class WaypointHelper extends GLU.Controller {
         // const lasttWP = inputWaypoints[inputWaypoints.length - 1];
         if (inputWaypoints.length === 0) {
             inputWaypoints = [startPathPoint, endPathPoint];
-        } /*else if (turf.distance(startPathPoint, firstWP, 'kilometers') > 0.2) {
+        } /* else if (turf.distance(startPathPoint, firstWP, 'kilometers') > 0.2) {
             inputWaypoints.unshift(startPathPoint);
         } else if (turf.distance(lasttWP, endPathPoint, 'kilometers') > 0.2) {
             inputWaypoints.push(endPathPoint);
@@ -136,7 +136,7 @@ class WaypointHelper extends GLU.Controller {
                 newWaypoints.push(newWaypoint);
             }
             waypointsProgressPayload.loaded = parseInt((wpindex + 1), 10);
-            GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, waypointsProgressPayload);
+            // GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, waypointsProgressPayload);
         });
 
         newWaypointsExport = CommonHelper.sortArrayByKey(newWaypoints, 'odometer');
@@ -326,12 +326,13 @@ class WaypointHelper extends GLU.Controller {
                 desc: 'desno',
             },
         ];
+        let retVar = 'dalje';
         directions.forEach((direction) => {
-            if (angle >= direction.from && angle <= direction.to) {
-                return direction.desc;
+            if (parseInt(angle, 10) >= direction.from && parseInt(angle, 10) <= direction.to) {
+                retVar = direction.desc;
             }
-            return 'dalje';
         });
+        return retVar;
     }
 
     parseSurfaceTransition(odoStart, odoEnd, surfaceArray) {
