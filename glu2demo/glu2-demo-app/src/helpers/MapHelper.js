@@ -1,3 +1,4 @@
+/* global turf */
 import GLU from '/../../glu2.js/src/index';
 import MessageEvents from '/enums/MessageEvents';
 import TrailHelper from '/helpers/TrailHelper';
@@ -25,6 +26,30 @@ class MapHelper {
         let data = this.pointOnCircle(coordinates);
         leftMap.getSource('focuswpbefore').setData(data);
         rightMap.getSource('focuswpafter').setData(data);
+    }
+
+    previewTrailOnMap(featuresCollection, previewMap) {
+        const inputPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
+        if (previewMap.getSource('previewPath')) {
+            previewMap.removeLayer('previewPath');
+            previewMap.removeSource('previewPath');
+        }
+        previewMap.addSource('previewPath', {
+            type: 'geojson',
+            data: featuresCollection,
+        });
+        const previewPathLine = {};
+        previewPathLine.id = 'previewPath';
+        previewPathLine.type = 'line';
+        previewPathLine.source = 'previewPath';
+        previewPathLine.layout = {};
+        previewPathLine.layout['line-join'] = 'round';
+        previewPathLine.layout['line-cap'] = 'round';
+        previewPathLine.paint = {};
+        previewPathLine.paint['line-color'] = 'rgba(255,0,0,1)';
+        previewPathLine.paint['line-width'] = 6;
+        previewMap.addLayer(previewPathLine);
+        previewMap.flyTo({ center: [inputPathLine[0][0], inputPathLine[0][1]], zoom: 15 });
     }
 
     reBuildPathLayers(currentLayers, leftMap, rightMap, featuresCollection) {

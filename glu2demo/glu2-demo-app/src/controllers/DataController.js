@@ -42,6 +42,7 @@ class DataController extends GLU.Controller {
             [Enum.DataEvents.START_ELEVATING_PATH]: this.onElevatePathRequest,
             [Enum.DataEvents.START_FLATTENING_PATH]: this.onFlattenPathRequest,
             [Enum.DataEvents.START_FIXING_WAYPOINTS]: this.onFixWaypointsRequest,
+            // [Enum.DataEvents.TRANSLATE_BY_OFFSET]: this.onTranslateByOffset,
             [Enum.ChartEvents.CHART_POINT_CLICKED]: this.onChartClickEvent,
         });
     }
@@ -49,6 +50,11 @@ class DataController extends GLU.Controller {
     onChartClickEvent() {
         GLU.bus.emit(MessageEvents.LONGER_INFO_MESSAGE, Lang.msg('keypress4surfaceType'));
     }
+
+    // onTranslateByOffset(offset) {
+    //     TrailsDataModel.activeTrail.translateByOffset(offset);
+    //     GLU.bus.emit(Enum.MapEvents.SHOW_PREVIEW_MAP);
+    // }
 
     getMapInitSetup() {
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('startInitialDataLoading'));

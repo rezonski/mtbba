@@ -10,6 +10,7 @@ class MapModel extends GLU.DataSource {
         this._initialCenter = [17.67696, 43.920101];
         this._leftMap = {};
         this._rightMap = {};
+        this._previewMap = {};
         this._initialZoomLevels = {
           base: 6,
           min: 5,
@@ -56,6 +57,16 @@ class MapModel extends GLU.DataSource {
     set rightMap(newMap) {
         if (newMap) {
             this._rightMap = newMap;
+        }
+    }
+
+    get previewMap() {
+        return this._previewMap;
+    }
+
+    set previewMap(newMap) {
+        if (newMap) {
+            this._previewMap = newMap;
         }
     }
 

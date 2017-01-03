@@ -16,7 +16,7 @@ class WaypointHelper extends GLU.Controller {
 
     generateWPointGeoJSON(currentIndex, newWaypoint, inputPathLine) {
         const pointIndex = parseInt(currentIndex, 10);
-        const offset = 40;
+        const offset = 50;
         const pointFromIndex = ((pointIndex - offset) < 0) ? 0 : (pointIndex - offset);
         const pointToIndex = ((pointIndex + offset) > (inputPathLine.length - 1)) ? (inputPathLine.length - 1) : (pointIndex + offset);
         let inPathCoordinates = [];
@@ -128,8 +128,10 @@ class WaypointHelper extends GLU.Controller {
                     pictogram: tempPictogram,
                     pictureUrl: (wpoint.properties.pictureUrl !== undefined) ? wpoint.properties.pictureUrl : '',
                     elevationProfile: 0,
-                    lon: inputPathLine[tempIndex].lon,
-                    lat: inputPathLine[tempIndex].lat,
+                    // lon: inputPathLine[tempIndex].lon,
+                    // lat: inputPathLine[tempIndex].lat,
+                    lon: wpoint.geometry.coordinates[0],
+                    lat: wpoint.geometry.coordinates[1],
                     elevation: inputPathLine[tempIndex].elevation,
                 };
                 this.generateWPointGeoJSON(tempIndex, newWaypoint, inputPathLine);

@@ -1,5 +1,6 @@
 import GLU from '/../../glu2.js/src/index';
 import MapModel from '/dataSources/MapModel';
+import TrailsDataModel from '/dataSources/TrailsDataModel';
 import MessageEvents from '/enums/MessageEvents';
 import Enum from '/enums/Enum';
 import Lang from '/helpers/Lang';
@@ -14,6 +15,8 @@ class MapController extends GLU.Controller {
             [Enum.MapEvents.RETRIEVE_MAP_INIT]: this.getToken,
             [Enum.MapEvents.SAVE_LEFT_MAP]: this.saveLeftMap,
             [Enum.MapEvents.SAVE_RIGHT_MAP]: this.saveRightMap,
+            [Enum.MapEvents.SAVE_PREVIEW_MAP]: this.savePreviewMap,
+            [Enum.MapEvents.SHOW_PREVIEW_MAP]: this.showPreviewMap,
         });
     }
 
@@ -46,6 +49,19 @@ class MapController extends GLU.Controller {
 
     saveRightMap(map) {
         MapModel.rightMap = map;
+    }
+
+    savePreviewMap(map) {
+        MapModel.previewMap = map;
+        TrailsDataModel.activeTrail.previewParsedInitialFeaturesCollection(MapModel.previewMap);
+    }
+
+    showPreviewMap() {
+        console.log('MapController.showPreviewMap()');
+        // const mapa = MapModel.previewMap;
+        // if (mapa.style) {
+        //     TrailsDataModel.activeTrail.previewParsedInitialFeaturesCollection(mapa);
+        // }
     }
 
     onDeactivate() {

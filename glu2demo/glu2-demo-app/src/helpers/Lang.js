@@ -89,6 +89,10 @@ const labels = {
         bos: 'Dodaj gpx/kml',
         eng: 'Add gpx/kml',
     },
+    stepperMapPreview: {
+        bos: 'Pregled staze',
+        eng: 'Trail Preview',
+    },
     stepperStepDescription: {
         bos: 'Opis i slika',
         eng: 'Description',
@@ -248,6 +252,10 @@ const messages = {
         bos: 'Učitana druga mapa',
         eng: 'Loaded second map',
     },
+    previewMapLoaded: {
+        bos: 'Učitana pregledna mapa',
+        eng: 'Loaded preview map',
+    },
     startSimplifyingRoute: {
         bos: 'Počinje reduciranje tačaka',
         eng: 'Start simplifying route',
@@ -323,6 +331,14 @@ const messages = {
     mapPathLayersRebuilt: {
         bos: 'Slojevi osvježeni',
         eng: 'Path layers rebuilt',
+    },
+    clickFirstCoordinate: {
+        bos: 'Kliknite na prvu tacku',
+        eng: 'Click on first point',
+    },
+    clickSecondCoordinate: {
+        bos: 'Kliknite na drugu tacku',
+        eng: 'Click on second point',
     },
 };
 

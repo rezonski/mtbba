@@ -38,6 +38,17 @@ class Trail {
         this.parsedFeaturesCollection = turf.featurecollection(features);
     }
 
+    previewParsedInitialFeaturesCollection(previewMap) {
+        MapHelper.previewTrailOnMap(this.parsedFeaturesCollection, previewMap);
+    }
+
+    translateByOffset(offset) {
+        let path = CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].properties;
+        path = path.map(element => {
+            return [(element[0] + offset[0]), (element[1] + offset[1]), element[2]];
+        });
+    }
+
     getInitialGeneralFacts(inputGeneralFacts) {
         let generalFacts = JSON.parse(JSON.stringify(inputGeneralFacts));
         generalFacts.trailID = (generalFacts.trailID === undefined) ? null : generalFacts.trailID;

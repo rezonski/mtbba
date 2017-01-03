@@ -9,6 +9,7 @@ import FlatButton from 'material-ui/FlatButton';
 // import ExpandTransition from 'material-ui/internal/ExpandTransition';
 // import TextField from 'material-ui/TextField';
 import StepUpload from '../newTrail/StepUpload';
+import StepMapPreview from '../newTrail/StepMapPreview';
 import StepDescription from '../newTrail/StepDescription';
 import StepParameters from '../newTrail/StepParameters';
 import StepProcessing from '../newTrail/StepProcessing';
@@ -50,12 +51,14 @@ class NewTrailContainer extends BasePage {
             case 0:
                 return (<StepUpload/>);
             case 1:
-                return (<StepProcessing/>);
+                return (<StepMapPreview/>);
             case 2:
-                return (<StepParameters/>);
+                return (<StepProcessing/>);
             case 3:
-                return (<StepDescription/>);
+                return (<StepParameters/>);
             case 4:
+                return (<StepDescription/>);
+            case 5:
                 return (<StepChartPreview/>);
             default:
                 return 'Ouuuooops!';
@@ -84,16 +87,19 @@ class NewTrailContainer extends BasePage {
                         <StepButton onClick={() => this.setState({ stepIndex: 0 })}>{Lang.label('stepperStepUpload')}</StepButton>
                     </Step>
                     <Step>
-                        <StepButton onClick={() => this.setState({ stepIndex: 1 })}>{Lang.label('stepperStepProcessing')}</StepButton>
+                        <StepButton onClick={() => this.setState({ stepIndex: 1 })}>{Lang.label('stepperMapPreview')}</StepButton>
                     </Step>
                     <Step>
-                        <StepButton onClick={() => this.setState({ stepIndex: 2 })}>{Lang.label('stepperStepParameters')}</StepButton>
+                        <StepButton onClick={() => this.setState({ stepIndex: 2 })}>{Lang.label('stepperStepProcessing')}</StepButton>
                     </Step>
                     <Step>
-                        <StepButton onClick={() => this.setState({ stepIndex: 3 })}>{Lang.label('stepperStepDescription')}</StepButton>
+                        <StepButton onClick={() => this.setState({ stepIndex: 3 })}>{Lang.label('stepperStepParameters')}</StepButton>
                     </Step>
                     <Step>
-                        <StepButton onClick={() => this.setState({ stepIndex: 4 })}>{Lang.label('stepperStepPreview')}</StepButton>
+                        <StepButton onClick={() => this.setState({ stepIndex: 4 })}>{Lang.label('stepperStepDescription')}</StepButton>
+                    </Step>
+                    <Step>
+                        <StepButton onClick={() => this.setState({ stepIndex: 5 })}>{Lang.label('stepperStepPreview')}</StepButton>
                     </Step>
                 </Stepper>
                 <div className="stepper-container">
