@@ -333,8 +333,8 @@ const messages = {
         eng: 'Path layers rebuilt',
     },
     clickFirstCoordinate: {
-        bos: 'Kliknite na prvu tacku',
-        eng: 'Click on first point',
+        bos: 'Za translatiranje staze kliknite na prvu tacku',
+        eng: 'To translate trail click on first point',
     },
     clickSecondCoordinate: {
         bos: 'Kliknite na drugu tacku',

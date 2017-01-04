@@ -11,6 +11,8 @@ const Enum = {
         REBUILD_PATH_LAYERS: '__REBUILD_PATH_LAYERS__',
         SAVE_LEFT_MAP: '__SAVE_LEFT_MAP__',
         SAVE_RIGHT_MAP: '__SAVE_RIGHT_MAP__',
+        SAVE_PREVIEW_MAP: '__SAVE_PREVIEW_MAP__',
+        SHOW_PREVIEW_MAP: '__SHOW_PREVIEW_MAP__',
         MAP_RESET_2_NORTH: '__MAP_RESET_2_NORTH__',
     },
     AppEvents: {
@@ -37,6 +39,7 @@ const Enum = {
         START_FLATTENING_PATH: '__START_FLATTENING_PATH__',
         START_FIXING_WAYPOINTS: '__START_FIXING_WAYPOINTS__',
         TRANSLATE_BY_OFFSET: '__TRANSLATE_BY_OFFSET__',
+        SAVE2FILE_JSON: '__SAVE2FILE_JSON__',
     },
     ChartEvents: {
         CHART_POINT_CLICKED: '__CHART_POINT_CLICKED__',

@@ -53,15 +53,11 @@ class MapController extends GLU.Controller {
 
     savePreviewMap(map) {
         MapModel.previewMap = map;
-        TrailsDataModel.activeTrail.previewParsedInitialFeaturesCollection(MapModel.previewMap);
+        GLU.bus.emit(Enum.MapEvents.SHOW_PREVIEW_MAP);
     }
 
     showPreviewMap() {
-        console.log('MapController.showPreviewMap()');
-        // const mapa = MapModel.previewMap;
-        // if (mapa.style) {
-        //     TrailsDataModel.activeTrail.previewParsedInitialFeaturesCollection(mapa);
-        // }
+        TrailsDataModel.activeTrail.previewParsedInitialFeaturesCollection(MapModel.previewMap);
     }
 
     onDeactivate() {

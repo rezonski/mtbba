@@ -42,7 +42,8 @@ class DataController extends GLU.Controller {
             [Enum.DataEvents.START_ELEVATING_PATH]: this.onElevatePathRequest,
             [Enum.DataEvents.START_FLATTENING_PATH]: this.onFlattenPathRequest,
             [Enum.DataEvents.START_FIXING_WAYPOINTS]: this.onFixWaypointsRequest,
-            // [Enum.DataEvents.TRANSLATE_BY_OFFSET]: this.onTranslateByOffset,
+            [Enum.DataEvents.TRANSLATE_BY_OFFSET]: this.onTranslateByOffset,
+            [Enum.DataEvents.SAVE2FILE_JSON]: this.onSaveTrail2File,
             [Enum.ChartEvents.CHART_POINT_CLICKED]: this.onChartClickEvent,
         });
     }
@@ -51,10 +52,20 @@ class DataController extends GLU.Controller {
         GLU.bus.emit(MessageEvents.LONGER_INFO_MESSAGE, Lang.msg('keypress4surfaceType'));
     }
 
-    // onTranslateByOffset(offset) {
-    //     TrailsDataModel.activeTrail.translateByOffset(offset);
-    //     GLU.bus.emit(Enum.MapEvents.SHOW_PREVIEW_MAP);
-    // }
+    onTranslateByOffset(offset) {
+        TrailsDataModel.activeTrail.translateByOffset(offset);
+        GLU.bus.emit(Enum.MapEvents.SHOW_PREVIEW_MAP);
+    }
+
+    onSaveTrail2File() {
+        const featuresCollection = TrailsDataModel.activeTrail.parsedFeaturesCollection;
+        if (featuresCollection.features.length > 0) {
+            const a = document.createElement('a');
+            a.setAttribute('href', 'data:text/plain;charset=utf-u,' + encodeURIComponent(JSON.stringify(featuresCollection)));
+            a.setAttribute('download', TrailsDataModel.activeTrail.getTrailData().trailName + '.geojson');
+            a.click();
+        }
+    }
 
     getMapInitSetup() {
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('startInitialDataLoading'));

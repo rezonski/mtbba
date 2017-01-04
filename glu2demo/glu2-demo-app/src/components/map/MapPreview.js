@@ -10,6 +10,7 @@ class MapPreview extends BasePage {
     constructor(props) {
         super(props);
         this.firstPoint = [];
+        this.keyListener = this.onKeyDown.bind(this);
     }
 
     componentDidMount() {
@@ -20,11 +21,13 @@ class MapPreview extends BasePage {
             [Enum.MapEvents.MAP_RESET_2_NORTH]: this.onOrientate2North,
         });
         this.emit(Enum.MapEvents.RETRIEVE_MAP_INIT);
+        window.addEventListener('keydown', this.keyListener, false);
     }
 
     componentWillUnmount() {
         this.unbindGluBusEvents();
         this.deactivateControllers();
+        window.removeEventListener('keydown', this.keyListener, false);
     }
 
     componentDidUpdate() {
@@ -40,29 +43,29 @@ class MapPreview extends BasePage {
         });
         this.mappreview.on('load', () => {
             window.mappreview = this.mappreview;
-            this.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('previewMapLoaded'));
             this.emit(Enum.MapEvents.SAVE_PREVIEW_MAP, this.mappreview);
+            this.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('previewMapLoaded'));
         });
         this.mappreview.on('click', (e) => {
-            console.log(e.point);
-            console.log(e.lngLat);
-            // console.log('MapPreview - onCLick');
-            // this.onNewCoordinate.bind(e.lngLat);
+            if (this.firstPoint.length === 0) {
+                this.firstPoint = [e.lngLat.lng, e.lngLat.lat];
+                this.emit(MessageEvents.INFO_MESSAGE, Lang.msg('clickSecondCoordinate'));
+            } else if (this.firstPoint.length > 0) {
+                const offset = [(e.lngLat.lng - this.firstPoint[0]), (e.lngLat.lat - this.firstPoint[1])];
+                this.firstPoint = [];
+                this.emit(MessageEvents.INFO_MESSAGE, 'Offset: ' + JSON.stringify(offset));
+                this.emit(MessageEvents.INFO_MESSAGE, Lang.msg('clickFirstCoordinate'));
+                this.emit(Enum.DataEvents.TRANSLATE_BY_OFFSET, offset);
+            }
         });
     }
 
-    // onNewCoordinate(coord) {
-    //     console.log('MapPreview - onNewCoordinate(' + JSON.stringify(coord) + ')');
-    //     if (this.firstPoint.length === 0) {
-    //         this.firstPoint = [coord.lng, coord.lat];
-    //         this.emit(MessageEvents.INFO_MESSAGE, Lang.msg('clickSecondCoordinate'));
-    //     } else if (this.firstPoint.length > 0) {
-    //         const offset = [(this.firstPoint[0] - coord.lng), (this.firstPoint[1] - coord.lat)];
-    //         this.firstPoint = [];
-    //         this.emit(MessageEvents.INFO_MESSAGE, 'Offset: ' + JSON.stringify(offset));
-    //         this.emit(Enum.DataEvents.TRANSLATE_BY_OFFSET, offset);
-    //     }
-    // }
+    onKeyDown(e) {
+        if (e.keyCode === 83) {
+            e.preventDefault();
+            this.emit(Enum.DataEvents.SAVE2FILE_JSON);
+        }
+    }
 
     render() {
         if (!this.state) {

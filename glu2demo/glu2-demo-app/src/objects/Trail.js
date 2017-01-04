@@ -39,14 +39,23 @@ class Trail {
     }
 
     previewParsedInitialFeaturesCollection(previewMap) {
+        console.log('Preview');
+        console.log(CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].geometry.coordinates[0]);
         MapHelper.previewTrailOnMap(this.parsedFeaturesCollection, previewMap);
     }
 
     translateByOffset(offset) {
-        let path = CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].properties;
-        path = path.map(element => {
-            return [(element[0] + offset[0]), (element[1] + offset[1]), element[2]];
+        // let path = CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].geometry.coordinates;
+        console.log('Pre offset');
+        // console.log(path[0]);
+        // path = path.map(element => {
+        //     return [(element[0] + offset[0]), (element[1] + offset[1]), element[2]];
+        // });
+        CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].geometry.coordinates.forEach((element, idx) => {
+            CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].geometry.coordinates[idx] = [(element[0] + offset[0]), (element[1] + offset[1]), element[2]];
         });
+        console.log('Post offset');
+        // console.log(path[0]);
     }
 
     getInitialGeneralFacts(inputGeneralFacts) {

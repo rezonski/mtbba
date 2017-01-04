@@ -31,24 +31,39 @@ class MapHelper {
     previewTrailOnMap(featuresCollection, previewMap) {
         const inputPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
         if (previewMap.getSource('previewPath')) {
-            previewMap.removeLayer('previewPath');
+            previewMap.removeLayer('previewPath1');
+            previewMap.removeLayer('previewPath2');
+            previewMap.removeLayer('previewPath3');
             previewMap.removeSource('previewPath');
         }
         previewMap.addSource('previewPath', {
             type: 'geojson',
             data: featuresCollection,
         });
-        const previewPathLine = {};
-        previewPathLine.id = 'previewPath';
-        previewPathLine.type = 'line';
-        previewPathLine.source = 'previewPath';
-        previewPathLine.layout = {};
-        previewPathLine.layout['line-join'] = 'round';
-        previewPathLine.layout['line-cap'] = 'round';
-        previewPathLine.paint = {};
-        previewPathLine.paint['line-color'] = 'rgba(255,0,0,1)';
-        previewPathLine.paint['line-width'] = 6;
-        previewMap.addLayer(previewPathLine);
+        const previewPathLine1 = {};
+        previewPathLine1.id = 'previewPath1';
+        previewPathLine1.type = 'line';
+        previewPathLine1.source = 'previewPath';
+        previewPathLine1.layout = {};
+        previewPathLine1.layout['line-join'] = 'round';
+        previewPathLine1.layout['line-cap'] = 'round';
+        previewPathLine1.paint = {};
+        previewPathLine1.paint['line-color'] = 'rgba(0,0,0,0.8)';
+        previewPathLine1.paint['line-width'] = 8;
+        previewMap.addLayer(previewPathLine1);
+
+        const previewPathLine2 = JSON.parse(JSON.stringify(previewPathLine1));
+        previewPathLine2.id = 'previewPath2';
+        previewPathLine2.paint['line-color'] = 'rgba(255,255,255,1)';
+        previewPathLine2.paint['line-width'] = 6;
+        previewMap.addLayer(previewPathLine2);
+
+        const previewPathLine3 = JSON.parse(JSON.stringify(previewPathLine1));
+        previewPathLine3.id = 'previewPath3';
+        previewPathLine3.paint['line-color'] = 'rgba(255,0,0,1)';
+        previewPathLine3.paint['line-width'] = 2;
+        previewMap.addLayer(previewPathLine3);
+
         previewMap.flyTo({ center: [inputPathLine[0][0], inputPathLine[0][1]], zoom: 15 });
     }
 
