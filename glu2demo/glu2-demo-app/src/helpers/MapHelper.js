@@ -32,8 +32,10 @@ class MapHelper {
         const inputPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
         if (previewMap.getSource('previewPath')) {
             previewMap.removeLayer('previewPath1');
-            previewMap.removeLayer('previewPath2');
+            // previewMap.removeLayer('previewPath2');
             previewMap.removeLayer('previewPath3');
+            previewMap.removeLayer('controlPointsHighlight');
+            previewMap.removeLayer('controlPoints');
             previewMap.removeSource('previewPath');
         }
         previewMap.addSource('previewPath', {
@@ -48,21 +50,43 @@ class MapHelper {
         previewPathLine1.layout['line-join'] = 'round';
         previewPathLine1.layout['line-cap'] = 'round';
         previewPathLine1.paint = {};
-        previewPathLine1.paint['line-color'] = 'rgba(0,0,0,0.8)';
-        previewPathLine1.paint['line-width'] = 8;
+        previewPathLine1.paint['line-color'] = 'rgba(255,0,0,0.6)';
+        previewPathLine1.paint['line-width'] = 6;
         previewMap.addLayer(previewPathLine1);
 
-        const previewPathLine2 = JSON.parse(JSON.stringify(previewPathLine1));
-        previewPathLine2.id = 'previewPath2';
-        previewPathLine2.paint['line-color'] = 'rgba(255,255,255,1)';
-        previewPathLine2.paint['line-width'] = 6;
-        previewMap.addLayer(previewPathLine2);
+        // const previewPathLine2 = JSON.parse(JSON.stringify(previewPathLine1));
+        // previewPathLine2.id = 'previewPath2';
+        // previewPathLine2.paint['line-color'] = 'rgba(255,255,255,1)';
+        // previewPathLine2.paint['line-width'] = 6;
+        // previewMap.addLayer(previewPathLine2);
 
         const previewPathLine3 = JSON.parse(JSON.stringify(previewPathLine1));
         previewPathLine3.id = 'previewPath3';
-        previewPathLine3.paint['line-color'] = 'rgba(255,0,0,1)';
+        previewPathLine3.paint['line-color'] = 'rgba(255,255,255,1)';
         previewPathLine3.paint['line-width'] = 2;
         previewMap.addLayer(previewPathLine3);
+
+        const highlightControlPathPoints = {};
+        highlightControlPathPoints.id = 'controlPointsHighlight';
+        highlightControlPathPoints.type = 'circle';
+        highlightControlPathPoints.source = 'previewPath';
+        highlightControlPathPoints.paint = {};
+        highlightControlPathPoints.paint['circle-radius'] = 16;
+        highlightControlPathPoints.paint['circle-color'] = '#FF0000';
+        highlightControlPathPoints.paint['circle-opacity'] = 0.7;
+        highlightControlPathPoints.filter = ['in', 'highlightId'];
+        previewMap.addLayer(highlightControlPathPoints);
+
+        const previewControlPathPoints = {};
+        previewControlPathPoints.id = 'controlPoints';
+        previewControlPathPoints.type = 'circle';
+        previewControlPathPoints.source = 'previewPath';
+        previewControlPathPoints.paint = {};
+        previewControlPathPoints.paint['circle-radius'] = 6;
+        previewControlPathPoints.paint['circle-color'] = '#000000';
+        previewControlPathPoints.paint['circle-opacity'] = 1;
+        previewControlPathPoints.filter = ['==', 'type', 'controlPoint'];
+        previewMap.addLayer(previewControlPathPoints);
 
         previewMap.flyTo({ center: [inputPathLine[0][0], inputPathLine[0][1]], zoom: 15 });
     }

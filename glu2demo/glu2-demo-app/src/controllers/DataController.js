@@ -52,8 +52,8 @@ class DataController extends GLU.Controller {
         GLU.bus.emit(MessageEvents.LONGER_INFO_MESSAGE, Lang.msg('keypress4surfaceType'));
     }
 
-    onTranslateByOffset(offset) {
-        TrailsDataModel.activeTrail.translateByOffset(offset);
+    onTranslateByOffset(payload) {
+        TrailsDataModel.activeTrail.translateByOffset(payload);
         GLU.bus.emit(Enum.MapEvents.SHOW_PREVIEW_MAP);
     }
 

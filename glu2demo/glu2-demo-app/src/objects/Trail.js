@@ -39,23 +39,46 @@ class Trail {
     }
 
     previewParsedInitialFeaturesCollection(previewMap) {
-        console.log('Preview');
-        console.log(CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].geometry.coordinates[0]);
-        MapHelper.previewTrailOnMap(this.parsedFeaturesCollection, previewMap);
+        // console.log('Preview');
+        // console.log(CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].geometry.coordinates[0]);
+        // MapHelper.previewTrailOnMap(this.parsedFeaturesCollection, previewMap);
+        MapHelper.previewTrailOnMap(this.addPoints2LinePath(this.parsedFeaturesCollection), previewMap);
     }
 
-    translateByOffset(offset) {
+    translateByOffset(payload) {
         // let path = CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].geometry.coordinates;
-        console.log('Pre offset');
+        // console.log('Pre offset');
         // console.log(path[0]);
         // path = path.map(element => {
         //     return [(element[0] + offset[0]), (element[1] + offset[1]), element[2]];
         // });
-        CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].geometry.coordinates.forEach((element, idx) => {
-            CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].geometry.coordinates[idx] = [(element[0] + offset[0]), (element[1] + offset[1]), element[2]];
-        });
-        console.log('Post offset');
+        const offset = payload.offset;
+        const pointIndexes = payload.pointIndexes;
+        if (pointIndexes.length === 0) {
+            CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].geometry.coordinates.forEach((element, idx) => {
+                CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].geometry.coordinates[idx] = [(element[0] + offset[0]), (element[1] + offset[1]), element[2]];
+            });
+        } else {
+            // first 2 element in array are part of filter syntax
+            for (let i = 2; i < pointIndexes.length; i++) {
+                const element = CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].geometry.coordinates[pointIndexes[i]];
+                CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].geometry.coordinates[pointIndexes[i]] = [(element[0] + offset[0]), (element[1] + offset[1]), element[2]];
+            }
+        }
+        // console.log('Post offset');
         // console.log(path[0]);
+    }
+
+    addPoints2LinePath(featuresCollection) {
+        const outFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
+        let path = CommonHelper.getLineStrings(featuresCollection)[0].geometry.coordinates;
+        path.forEach((pathPoint, pointIdx) => {
+            outFeaturesCollection.features.push(turf.point(pathPoint, {
+                highlightId: pointIdx,
+                type: 'controlPoint',
+            }));
+        });
+        return outFeaturesCollection;
     }
 
     getInitialGeneralFacts(inputGeneralFacts) {

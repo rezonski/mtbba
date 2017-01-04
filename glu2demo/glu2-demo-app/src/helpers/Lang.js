@@ -31,8 +31,8 @@ const labels = {
         eng: 'Cancel',
     },
     newTrail: {
-        bos: 'Test',
-        eng: 'Nova staza',
+        bos: 'Lorem ipsum',
+        eng: 'Lorem ipsum',
     },
     addGeoFile: {
         bos: 'Dodaj .gpx /.kml',
@@ -340,12 +340,16 @@ const messages = {
         bos: 'Kliknite na drugu tacku',
         eng: 'Click on second point',
     },
+    tooManyPointsSelected: {
+        bos: 'Odaberite manji broj tačaka',
+        eng: 'Select a smaller number of features',
+    },
 };
 
 class Lang extends GLU.Controller {
     constructor(props) {
         super(props);
-        this.lang = 'bos';
+        this.lang = 'eng';
         this.bindGluBusEvents({
             [Enum.AppEvents.CHANGE_LANGUAGE]: this.onLanguageChanged,
         });
