@@ -1,4 +1,5 @@
 /* global mapboxgl */
+/* global turf */
 import React from 'react';
 import BasePage from '../BasePage';
 // import ReactMapboxGl, { ScaleControl, ZoomControl } from 'react-mapbox-gl';
@@ -9,20 +10,18 @@ import Lang from '/helpers/Lang';
 class MapPreview extends BasePage {
     constructor(props) {
         super(props);
-        this.firstPoint = [];
         this.keyListener = this.onKeyDown.bind(this);
         this.onMouseDownEvent = this.mouseDown.bind(this);
         this.onMouseMoveEvent = this.mouseMove.bind(this);
         this.onMouseUpEvent = this.mouseUp.bind(this);
         this.onKeyDownEvent = this.keyDown.bind(this);
+        this.onMapMoveEvent = this.mapMove.bind(this);
+        this.onMapUpEvent = this.mapUp.bind(this);
     }
 
     componentDidMount() {
         this.bindGluBusEvents({
             [Enum.MapEvents.INITIAL_MAP_SETUP_RETRIEVED]: this.initMap,
-            [Enum.MapEvents.DISPLAY_PATH_LAYERS_ON_MAP]: this.onPathLayersRetrieved,
-            [Enum.MapEvents.CHANGE_MAP_STYLE]: this.onMapStyleChanged,
-            [Enum.MapEvents.MAP_RESET_2_NORTH]: this.onOrientate2North,
         });
         this.emit(Enum.MapEvents.RETRIEVE_MAP_INIT);
         window.addEventListener('keydown', this.keyListener, false);
@@ -45,37 +44,46 @@ class MapPreview extends BasePage {
             center: this.state.setup.center,
             maxBounds: this.state.setup.maxBounds,
         });
+        this.canvas = this.mappreview.getCanvas();
+        this.canvasContainer = this.mappreview.getCanvasContainer();
+        window.mappreview = this.mappreview;
         this.mappreview.on('load', () => {
-            this.canvas = this.mappreview.getCanvasContainer();
-            this.canvas.addEventListener('mousedown', this.onMouseDownEvent, true);
-            window.mappreview = this.mappreview;
+            this.canvasContainer.addEventListener('mousedown', this.onMouseDownEvent, true);
             this.emit(Enum.MapEvents.SAVE_PREVIEW_MAP, this.mappreview);
             this.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('previewMapLoaded'));
-        });
-        this.mappreview.on('click', (e) => {
-            if (this.firstPoint.length === 0) {
-                this.firstPoint = [e.lngLat.lng, e.lngLat.lat];
-                this.emit(MessageEvents.INFO_MESSAGE, Lang.msg('clickSecondCoordinate'));
-            } else if (this.firstPoint.length > 0) {
-                const offset = [(e.lngLat.lng - this.firstPoint[0]), (e.lngLat.lat - this.firstPoint[1])];
-                const payload = {
-                    offset,
-                    pointIndexes: JSON.parse(JSON.stringify(this.filteredIdxs)),
-                };
-                this.emit(MessageEvents.INFO_MESSAGE, 'Offset: ' + JSON.stringify(offset));
-                this.emit(MessageEvents.INFO_MESSAGE, Lang.msg('clickFirstCoordinate'));
-                this.emit(Enum.DataEvents.TRANSLATE_BY_OFFSET, payload);
-                this.firstPoint = [];
-                this.filteredIdxs = [];
-            }
-        });
-        this.mappreview.on('mousemove', (e) => {
-            const features = this.mappreview.queryRenderedFeatures(e.point, { layers: ['controlPointsHighlight'] });
-            // Change the cursor style as a UI indicator.
-            this.mappreview.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
-            if (!features.length) {
-                return;
-            }
+            // this.mappreview.on('click', (e) => {
+            //     if (this.firstPoint.length === 0) {
+            //         this.firstPoint = [e.lngLat.lng, e.lngLat.lat];
+            //         this.emit(MessageEvents.INFO_MESSAGE, Lang.msg('clickSecondCoordinate'));
+            //     } else if (this.firstPoint.length > 0) {
+            //         const offset = [(e.lngLat.lng - this.firstPoint[0]), (e.lngLat.lat - this.firstPoint[1])];
+            //         const payload = {
+            //             offset,
+            //             pointIndexes: JSON.parse(JSON.stringify(this.filteredIdxs)),
+            //         };
+            //         this.emit(MessageEvents.INFO_MESSAGE, 'Offset: ' + JSON.stringify(offset));
+            //         this.emit(MessageEvents.INFO_MESSAGE, Lang.msg('clickFirstCoordinate'));
+            //         this.emit(Enum.DataEvents.TRANSLATE_BY_OFFSET, payload);
+            //         this.firstPoint = [];
+            //         this.filteredIdxs = [];
+            //     }
+            // });
+            this.mappreview.on('mousemove', (e) => {
+                if (!this.mappreview.getLayer('controlPointsSelected')) return;
+                const selectedFeatures = this.mappreview.queryRenderedFeatures(e.point, { layers: ['controlPointsSelected'] });
+                // Change the cursor style as a UI indicator.
+                // this.canvas.style.cursor = (selectedFeatures.length) ? 'pointer' : '';
+                if (selectedFeatures.length) {
+                    this.canvas.style.cursor = 'move';
+                    this.isCursorOverPoint = true;
+                    this.mappreview.dragPan.disable();
+                } else {
+                    this.canvas.style.cursor = '';
+                    this.isCursorOverPoint = false;
+                    this.mappreview.dragPan.enable();
+                }
+            });
+            this.mappreview.on('mousedown', this.onMouseDownEvent, true);
         });
     }
 
@@ -96,19 +104,79 @@ class MapPreview extends BasePage {
     }
 
     mouseDown(e) {
-        if (!(e.shiftKey && e.button === 0)) return;
-        this.mappreview.dragPan.disable();
-        document.addEventListener('mousemove', this.onMouseMoveEvent);
-        document.addEventListener('mouseup', this.onMouseUpEvent);
-        document.addEventListener('keydown', this.onKeyDownEvent);
-        this.startPoint = this.mousePos(e);
+        // On shift-selection
+        if (e.shiftKey && e.button === 0) {
+            this.mappreview.dragPan.disable();
+            document.addEventListener('mousemove', this.onMouseMoveEvent);
+            document.addEventListener('mouseup', this.onMouseUpEvent);
+            document.addEventListener('keydown', this.onKeyDownEvent);
+            this.startPoint = this.mousePos(e);
+        // On mouse dragging
+        } else if (this.isCursorOverPoint) {
+            this.isDragging = true;
+            this.startedDragging = true;
+            this.canvas.style.cursor = 'grab';
+            this.mappreview.on('mousemove', this.onMapMoveEvent);
+            this.mappreview.once('mouseup', this.onMapUpEvent);
+        }
+    }
+
+    mapMove(e) {
+        if (!this.isDragging) return;
+        const coords = e.lngLat;
+        this.canvas.style.cursor = 'grabbing';
+        if (this.startedDragging) {
+            this.initialPosition = turf.point([coords.lng, coords.lat]);
+            this.startedDragging = false;
+        }
+        const tempPosition = turf.point([coords.lng, coords.lat]);
+        const bearing = turf.bearing(this.initialPosition, tempPosition);
+        const distance = turf.distance(this.initialPosition, tempPosition, 'kilometers');
+        // console.info('bearing: ' + bearing + ' , distance: ' + distance);
+        const tempFeatures = this.selectedControlFeatures.map(feat => {
+            return turf.destination(feat, distance, bearing, 'kilometers');
+        });
+        this.mappreview.getSource('controlPoints').setData({
+            type: 'FeatureCollection',
+            features: tempFeatures,
+        });
+        // Update the Point feature in `geojson` coordinates
+        // and call setData to the source layer `point` on it.
+        // geojson.features[0].geometry.coordinates = [coords.lng, coords.lat];
+        // map.getSource('point').setData(geojson);
+    }
+
+    mapUp(e) {
+        if (!this.isDragging) return;
+        const coords = e.lngLat;
+        const tempPosition = turf.point([coords.lng, coords.lat]);
+        const bearing = turf.bearing(this.initialPosition, tempPosition);
+        const distance = turf.distance(this.initialPosition, tempPosition, 'kilometers');
+        // console.info('bearing: ' + bearing + ' , distance: ' + distance);
+        const tempFeatures = this.selectedControlFeatures.map(feat => {
+            return turf.destination(feat, distance, bearing, 'kilometers');
+        });
+        this.mappreview.getSource('controlPoints').setData({
+            type: 'FeatureCollection',
+            features: tempFeatures,
+        });
+        // console.info([coords.lng, coords.lat]);
+        // Print the coordinates of where the point had
+        // finished being dragged to on the map.
+        // coordinates.style.display = 'block';
+        // coordinates.innerHTML = 'Longitude: ' + coords.lng + '<br />Latitude: ' + coords.lat;
+        this.canvas.style.cursor = '';
+        this.isDragging = false;
+
+        // Unbind mouse events
+        this.mappreview.off('mousemove', this.onMapMoveEvent);
     }
 
     mousePos(e) {
-        const rect = this.canvas.getBoundingClientRect();
+        const rect = this.canvasContainer.getBoundingClientRect();
         return new mapboxgl.Point(
-            e.clientX - rect.left - this.canvas.clientLeft,
-            e.clientY - rect.top - this.canvas.clientTop
+            e.clientX - rect.left - this.canvasContainer.clientLeft,
+            e.clientY - rect.top - this.canvasContainer.clientTop
         );
     }
 
@@ -120,7 +188,7 @@ class MapPreview extends BasePage {
         if (!this.box) {
             this.box = document.createElement('div');
             this.box.classList.add('boxdraw');
-            this.canvas.appendChild(this.box);
+            this.canvasContainer.appendChild(this.box);
         }
 
         const minX = Math.min(this.startPoint.x, this.currentPoint.x);
@@ -157,18 +225,24 @@ class MapPreview extends BasePage {
         }
         // If bbox exists. use this value as the argument for `queryRenderedFeatures`
         if (bbox) {
-            const features = this.mappreview.queryRenderedFeatures(bbox, { layers: ['controlPoints'] });
-            if (features.length >= 1000) {
+            this.selectedControlFeatures = this.mappreview.queryRenderedFeatures(bbox, { layers: ['controlPoints'] });
+            if (this.selectedControlFeatures.length >= 1000) {
                 return this.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('tooManyPointsSelected'));
             }
-            // Run through the selected features and set a filter
-            // to match features with unique FIPS codes to activate
+            // Run through the selected selectedControlFeatures and set a filter
+            // to match selectedControlFeatures with unique FIPS codes to activate
             // the `counties-highlighted` layer.
-            this.filteredIdxs = features.reduce((memo, feature) => {
+            // this.initialPosition = this.selectedControlFeatures[0];
+            this.filteredIdxs = this.selectedControlFeatures.reduce((memo, feature) => {
                 memo.push(feature.properties.highlightId);
                 return memo;
             }, ['in', 'highlightId']);
-            this.mappreview.setFilter('controlPointsHighlight', this.filteredIdxs);
+            this.mappreview.setFilter('controlPointsSelected', this.filteredIdxs);
+            // this.mappreview.getSource('controlPoints').setData({
+            //     type: 'FeatureCollection',
+            //     features: this.selectedControlFeatures,
+            // });
+            this.selecteFeaturesPoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(this.mappreview.getSource('previewPath')._data)));
         }
         this.mappreview.dragPan.enable();
     }

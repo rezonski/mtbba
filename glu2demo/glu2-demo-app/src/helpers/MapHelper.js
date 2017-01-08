@@ -30,63 +30,68 @@ class MapHelper {
 
     previewTrailOnMap(featuresCollection, previewMap) {
         const inputPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
-        if (previewMap.getSource('previewPath')) {
-            previewMap.removeLayer('previewPath1');
-            // previewMap.removeLayer('previewPath2');
-            previewMap.removeLayer('previewPath3');
-            previewMap.removeLayer('controlPointsHighlight');
+        if (previewMap.getSource('previewCollection')) {
+            previewMap.removeLayer('previewCollection');
+            previewMap.removeLayer('controlPath');
+            previewMap.removeLayer('controlPointsSelected');
             previewMap.removeLayer('controlPoints');
-            previewMap.removeSource('previewPath');
+            previewMap.removeSource('previewCollection');
+            previewMap.removeSource('controlPath');
+            previewMap.removeSource('controlPoints');
         }
-        previewMap.addSource('previewPath', {
+        previewMap.addSource('previewCollection', {
             type: 'geojson',
             data: featuresCollection,
         });
-        const previewPathLine1 = {};
-        previewPathLine1.id = 'previewPath1';
-        previewPathLine1.type = 'line';
-        previewPathLine1.source = 'previewPath';
-        previewPathLine1.layout = {};
-        previewPathLine1.layout['line-join'] = 'round';
-        previewPathLine1.layout['line-cap'] = 'round';
-        previewPathLine1.paint = {};
-        previewPathLine1.paint['line-color'] = 'rgba(255,0,0,0.6)';
-        previewPathLine1.paint['line-width'] = 6;
-        previewMap.addLayer(previewPathLine1);
+        previewMap.addSource('controlPath', {
+            type: 'geojson',
+            data: featuresCollection,
+        });
+        previewMap.addSource('controlPoints', {
+            type: 'geojson',
+            data: featuresCollection,
+        });
+        const lineLayerPreview = {};
+        lineLayerPreview.id = 'previewCollection';
+        lineLayerPreview.type = 'line';
+        lineLayerPreview.source = 'previewCollection';
+        lineLayerPreview.layout = {};
+        lineLayerPreview.layout['line-join'] = 'round';
+        lineLayerPreview.layout['line-cap'] = 'round';
+        lineLayerPreview.paint = {};
+        lineLayerPreview.paint['line-color'] = 'rgba(255,0,0,0.6)';
+        lineLayerPreview.paint['line-width'] = 6;
+        previewMap.addLayer(lineLayerPreview);
 
-        // const previewPathLine2 = JSON.parse(JSON.stringify(previewPathLine1));
-        // previewPathLine2.id = 'previewPath2';
-        // previewPathLine2.paint['line-color'] = 'rgba(255,255,255,1)';
-        // previewPathLine2.paint['line-width'] = 6;
-        // previewMap.addLayer(previewPathLine2);
+        const lineLayerControl = JSON.parse(JSON.stringify(lineLayerPreview));
+        lineLayerControl.id = 'controlPath';
+        lineLayerControl.source = 'controlPath';
+        lineLayerControl.paint['line-color'] = 'rgba(0,0,0,0.6)';
+        lineLayerControl.paint['line-width'] = 3;
+        previewMap.addLayer(lineLayerControl);
 
-        const previewPathLine3 = JSON.parse(JSON.stringify(previewPathLine1));
-        previewPathLine3.id = 'previewPath3';
-        previewPathLine3.paint['line-color'] = 'rgba(255,255,255,1)';
-        previewPathLine3.paint['line-width'] = 2;
-        previewMap.addLayer(previewPathLine3);
+        const controlPathPointsSelected = {};
+        controlPathPointsSelected.id = 'controlPointsSelected';
+        controlPathPointsSelected.type = 'circle';
+        controlPathPointsSelected.source = 'controlPoints';
+        controlPathPointsSelected.paint = {};
+        controlPathPointsSelected.paint['circle-radius'] = 8;
+        controlPathPointsSelected.paint['circle-color'] = '#FF0000';
+        controlPathPointsSelected.paint['circle-opacity'] = 0.6;
+        controlPathPointsSelected.filter = ['in', 'highlightId'];
+        previewMap.addLayer(controlPathPointsSelected);
 
-        const highlightControlPathPoints = {};
-        highlightControlPathPoints.id = 'controlPointsHighlight';
-        highlightControlPathPoints.type = 'circle';
-        highlightControlPathPoints.source = 'previewPath';
-        highlightControlPathPoints.paint = {};
-        highlightControlPathPoints.paint['circle-radius'] = 16;
-        highlightControlPathPoints.paint['circle-color'] = '#FF0000';
-        highlightControlPathPoints.paint['circle-opacity'] = 0.7;
-        highlightControlPathPoints.filter = ['in', 'highlightId'];
-        previewMap.addLayer(highlightControlPathPoints);
+        const controlPathPoints = {};
+        controlPathPoints.id = 'controlPoints';
+        controlPathPoints.type = 'circle';
+        controlPathPoints.source = 'controlPoints';
+        controlPathPoints.paint = {};
+        controlPathPoints.paint['circle-radius'] = 4;
+        controlPathPoints.paint['circle-color'] = '#000000';
+        controlPathPoints.paint['circle-opacity'] = 1;
+        controlPathPointsSelected.filter = ['==', 'type', 'controlPoint'];
+        previewMap.addLayer(controlPathPoints);
 
-        const previewControlPathPoints = {};
-        previewControlPathPoints.id = 'controlPoints';
-        previewControlPathPoints.type = 'circle';
-        previewControlPathPoints.source = 'previewPath';
-        previewControlPathPoints.paint = {};
-        previewControlPathPoints.paint['circle-radius'] = 6;
-        previewControlPathPoints.paint['circle-color'] = '#000000';
-        previewControlPathPoints.paint['circle-opacity'] = 1;
-        previewControlPathPoints.filter = ['==', 'type', 'controlPoint'];
-        previewMap.addLayer(previewControlPathPoints);
 
         previewMap.flyTo({ center: [inputPathLine[0][0], inputPathLine[0][1]], zoom: 15 });
     }
