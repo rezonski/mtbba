@@ -23,14 +23,14 @@ Use same source in different layers
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v8',
-        // center: [18.41811591, 43.86775491],
-        center: [-90.548630, 14.616599],
+        center: [18.41811591, 43.86775491],
+        // center: [-90.548630, 14.616599],
         // pitch: 45,
         // bearing: 45,
         zoom: 11
     });
 
-    var pt1 = turf.point([-75.343, 39.984, 788]);
+    // var pt1 = turf.point([-75.343, 39.984, 788]);
 
     var trail = {
         "type": "FeatureCollection",
@@ -2061,101 +2061,101 @@ Use same source in different layers
             }
         });
 
-        // var points = trail.features[0].geometry.coordinates;
-        // for (var i = 1; i < points.length; i++) {
-        //     var jedanSegment = {
-        //         "type": "Feature",
-        //         "properties": {
-        //             "visina": 0,
-        //             "boja": '#CC0000'
-        //         },
-        //         "geometry": {
-        //             "type": "Polygon",
-        //             "coordinates": []
-        //         }
-        //     };
-        //     var linija = [[points[i-1][0],points[i-1][1]], [points[i][0],points[i][1]]]
-        //     jedanSegment.properties.visina = (points[i][2] - 500) * 8;
-        //     if (points[i][2] > 1000) {
-        //         jedanSegment.properties.boja =  '#00CC00';  
-        //     }
-        //     if (points[i][2] > 1100) {
-        //         jedanSegment.properties.boja =  '#0000CC';  
-        //     }
-        //     jedanSegment.geometry.coordinates = [getRect(linija)];
-        //     poligon.features.push(jedanSegment);
-        // }
+        var points = trail.features[0].geometry.coordinates;
+        for (var i = 1; i < points.length; i++) {
+            var jedanSegment = {
+                "type": "Feature",
+                "properties": {
+                    "visina": 0,
+                    "boja": '#CC0000'
+                },
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": []
+                }
+            };
+            var linija = [[points[i-1][0],points[i-1][1]], [points[i][0],points[i][1]]]
+            jedanSegment.properties.visina = (points[i][2] - 500) * 8;
+            if (points[i][2] > 1000) {
+                jedanSegment.properties.boja =  '#00CC00';  
+            }
+            if (points[i][2] > 1100) {
+                jedanSegment.properties.boja =  '#0000CC';  
+            }
+            jedanSegment.geometry.coordinates = [getRect(linija)];
+            poligon.features.push(jedanSegment);
+        }
 
-        // map.addSource('poligon', {
+        map.addSource('poligon', {
+            'type': 'geojson',
+            'data': poligon
+        });
+
+        map.addLayer({
+            'id': 'room-extrusion',
+            'type': 'fill-extrusion',
+            'source': 'poligon',
+            'paint': {
+                'fill-extrusion-color': {
+                    'property': 'boja',
+                    'type': 'identity'
+                },
+                'fill-extrusion-height': {
+                    'property': 'visina',
+                    'type': 'identity'
+                },
+                'fill-extrusion-opacity': 0.5
+            }
+        });
+        
+        // var curved = turf.bezier(trail.features[0]);
+
+        // var pt = {
+        //     "type": "Feature",
+        //     "properties": {},
+        //     "geometry": {
+        //         "type": "Point",
+        //         "coordinates": [-90.548630, 14.616599]
+        //     }
+        // };
+        // var unit = 'miles';
+        // var buffered = turf.buffer(pt, 10, unit);
+
+        // var curvedResult = {
+        //     "type": "FeatureCollection",
+        //     "features": [curved]
+        // };
+
+        // map.addSource('curvedResult', {
         //     'type': 'geojson',
-        //     'data': poligon
+        //     'data': curvedResult
         // });
 
         // map.addLayer({
-        //     'id': 'room-extrusion',
-        //     'type': 'fill-extrusion',
-        //     'source': 'poligon',
+        //     'id': 'curvedResult',
+        //     'source': 'curvedResult',
+        //     'type': 'line',
         //     'paint': {
-        //         'fill-extrusion-color': {
-        //             'property': 'boja',
-        //             'type': 'identity'
-        //         },
-        //         'fill-extrusion-height': {
-        //             'property': 'visina',
-        //             'type': 'identity'
-        //         },
-        //         'fill-extrusion-opacity': 0.5
+        //         'line-width': 6,
+        //         'line-opacity': 0.5,
+        //         'line-color': '#FF3F00'
         //     }
         // });
         
-        var curved = turf.bezier(trail.features[0]);
+        // map.addSource('bufferedResult', {
+        //     'type': 'geojson',
+        //     'data': buffered
+        // });
 
-        var pt = {
-            "type": "Feature",
-            "properties": {},
-            "geometry": {
-                "type": "Point",
-                "coordinates": [-90.548630, 14.616599]
-            }
-        };
-        var unit = 'miles';
-        var buffered = turf.buffer(pt, 10, unit);
-
-        var curvedResult = {
-            "type": "FeatureCollection",
-            "features": [curved]
-        };
-
-        map.addSource('curvedResult', {
-            'type': 'geojson',
-            'data': curvedResult
-        });
-
-        map.addLayer({
-            'id': 'curvedResult',
-            'source': 'curvedResult',
-            'type': 'line',
-            'paint': {
-                'line-width': 6,
-                'line-opacity': 0.5,
-                'line-color': '#FF3F00'
-            }
-        });
-        
-        map.addSource('bufferedResult', {
-            'type': 'geojson',
-            'data': buffered
-        });
-
-        map.addLayer({
-            'id': 'bufferedResult',
-            'source': 'bufferedResult',
-            'type': 'fill',
-            'paint': {
-                'fill-color': '#FF3F00',
-                'fill-opacity': 0.5
-            }
-        });
+        // map.addLayer({
+        //     'id': 'bufferedResult',
+        //     'source': 'bufferedResult',
+        //     'type': 'fill',
+        //     'paint': {
+        //         'fill-color': '#FF3F00',
+        //         'fill-opacity': 0.5
+        //     }
+        // });
     });
 
     function getRect(line) {

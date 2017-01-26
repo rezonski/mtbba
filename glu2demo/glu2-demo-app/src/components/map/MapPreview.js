@@ -242,7 +242,7 @@ class MapPreview extends BasePage {
             //     type: 'FeatureCollection',
             //     features: this.selectedControlFeatures,
             // });
-            this.selecteFeaturesPoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(this.mappreview.getSource('previewPath')._data)));
+            // this.selecteFeaturesPoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(this.mappreview.getSource('previewPath')._data)));
         }
         this.mappreview.dragPan.enable();
     }
