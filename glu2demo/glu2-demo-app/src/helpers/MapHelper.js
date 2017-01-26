@@ -28,8 +28,8 @@ class MapHelper {
         rightMap.getSource('focuswpafter').setData(data);
     }
 
-    previewTrailOnMap(featuresCollection, previewMap) {
-        const inputPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
+    previewTrailOnMap(pointsCollection, initCollection, previewMap) {
+        const inputPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(initCollection)))[0].geometry.coordinates;
         if (previewMap.getSource('previewCollection')) {
             previewMap.removeLayer('previewCollection');
             previewMap.removeLayer('controlPath');
@@ -41,15 +41,15 @@ class MapHelper {
         }
         previewMap.addSource('previewCollection', {
             type: 'geojson',
-            data: featuresCollection,
+            data: initCollection,
         });
         previewMap.addSource('controlPath', {
             type: 'geojson',
-            data: featuresCollection,
+            data: JSON.parse(JSON.stringify(initCollection)),
         });
         previewMap.addSource('controlPoints', {
             type: 'geojson',
-            data: featuresCollection,
+            data: pointsCollection,
         });
         const lineLayerPreview = {};
         lineLayerPreview.id = 'previewCollection';
@@ -89,9 +89,8 @@ class MapHelper {
         controlPathPoints.paint['circle-radius'] = 4;
         controlPathPoints.paint['circle-color'] = '#000000';
         controlPathPoints.paint['circle-opacity'] = 1;
-        controlPathPointsSelected.filter = ['==', 'type', 'controlPoint'];
+        // controlPathPointsSelected.filter = ['==', 'type', 'controlPoint'];
         previewMap.addLayer(controlPathPoints);
-
 
         previewMap.flyTo({ center: [inputPathLine[0][0], inputPathLine[0][1]], zoom: 15 });
     }

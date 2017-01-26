@@ -42,7 +42,7 @@ class Trail {
         // console.log('Preview');
         // console.log(CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].geometry.coordinates[0]);
         // MapHelper.previewTrailOnMap(this.parsedFeaturesCollection, previewMap);
-        MapHelper.previewTrailOnMap(this.addPoints2LinePath(this.parsedFeaturesCollection), previewMap);
+        MapHelper.previewTrailOnMap(this.getPoints4LinePath(this.parsedFeaturesCollection), this.parsedFeaturesCollection, previewMap);
     }
 
     translateByOffset(payload) {
@@ -69,8 +69,11 @@ class Trail {
         // console.log(path[0]);
     }
 
-    addPoints2LinePath(featuresCollection) {
-        const outFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
+    getPoints4LinePath(featuresCollection) {
+        const outFeaturesCollection = {
+            type: 'FeatureCollection',
+            features: [],
+        };
         let path = CommonHelper.getLineStrings(featuresCollection)[0].geometry.coordinates;
         path.forEach((pathPoint, pointIdx) => {
             outFeaturesCollection.features.push(turf.point(pathPoint, {

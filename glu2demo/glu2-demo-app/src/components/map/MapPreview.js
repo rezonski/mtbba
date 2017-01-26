@@ -6,6 +6,7 @@ import BasePage from '../BasePage';
 import MessageEvents from '../../enums/MessageEvents';
 import Enum from '../../enums/Enum';
 import Lang from '/helpers/Lang';
+import CommonHelper from '/helpers/CommonHelper';
 
 class MapPreview extends BasePage {
     constructor(props) {
@@ -153,12 +154,26 @@ class MapPreview extends BasePage {
         const bearing = turf.bearing(this.initialPosition, tempPosition);
         const distance = turf.distance(this.initialPosition, tempPosition, 'kilometers');
         // console.info('bearing: ' + bearing + ' , distance: ' + distance);
-        const tempFeatures = this.selectedControlFeatures.map(feat => {
-            return turf.destination(feat, distance, bearing, 'kilometers');
+        // const tempFeatures = this.selectedControlFeatures.map(feat => {
+        //     return turf.destination(feat, distance, bearing, 'kilometers');
+        // });
+
+        const controlPoints = this.mappreview.style.sources.controlPoints._data;
+        const controlPath = this.mappreview.style.sources.controlPath._data;
+
+        this.filteredIdxs.forEach(idx => {
+            const newPoint = turf.destination(controlPath.features[idx], distance, bearing, 'kilometers');
+            controlPoints.features[idx] = newPoint;
+            controlPath.features[0].geometry.coordinates[idx] = newPoint.geometry.coordinates;
         });
-        this.mappreview.getSource('controlPoints').setData({
+
+        this.mappreview.getSource('controlPath').setData({
             type: 'FeatureCollection',
-            features: tempFeatures,
+            features: controlPath,
+        });
+        this.mappreview.getSource('controlPath').setData({
+            type: 'FeatureCollection',
+            features: controlPath,
         });
         // console.info([coords.lng, coords.lat]);
         // Print the coordinates of where the point had
@@ -233,16 +248,24 @@ class MapPreview extends BasePage {
             // to match selectedControlFeatures with unique FIPS codes to activate
             // the `counties-highlighted` layer.
             // this.initialPosition = this.selectedControlFeatures[0];
-            this.filteredIdxs = this.selectedControlFeatures.reduce((memo, feature) => {
-                memo.push(feature.properties.highlightId);
-                return memo;
-            }, ['in', 'highlightId']);
+            // this.filteredIdxs = this.selectedControlFeatures.reduce((memo, feature) => {
+            //     if (feature.properties.highlightId !== undefined) {
+            //         memo.push(feature.properties.highlightId);
+            //     }
+            //     return memo;
+            // });
+            this.filteredIdxs = this.selectedControlFeatures.map(feature => {
+                return feature.properties.highlightId;
+            });
+            const selectionFilter = this.filteredIdxs;
+            selectionFilter.unshift('highlightId');
+            selectionFilter.unshift('in');
             this.mappreview.setFilter('controlPointsSelected', this.filteredIdxs);
             // this.mappreview.getSource('controlPoints').setData({
             //     type: 'FeatureCollection',
             //     features: this.selectedControlFeatures,
             // });
-            // this.selecteFeaturesPoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(this.mappreview.getSource('previewPath')._data)));
+            // this.selectedFeaturesPoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(this.mappreview.getSource('controlPath')._data)));
         }
         this.mappreview.dragPan.enable();
     }
