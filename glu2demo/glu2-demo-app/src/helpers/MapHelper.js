@@ -29,7 +29,12 @@ class MapHelper {
     }
 
     previewTrailOnMap(pointsCollection, initCollection, previewMap) {
-        const inputPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(initCollection)))[0].geometry.coordinates;
+        const lineStrings = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(initCollection)));
+        const firstPoint = lineStrings[0].geometry.coordinates;
+        const controlLineCollection = {
+            type: 'FeatureCollection',
+            features: lineStrings,
+        };
         if (previewMap.getSource('previewCollection')) {
             previewMap.removeLayer('previewCollection');
             previewMap.removeLayer('controlPath');
@@ -45,7 +50,7 @@ class MapHelper {
         });
         previewMap.addSource('controlPath', {
             type: 'geojson',
-            data: JSON.parse(JSON.stringify(initCollection)),
+            data: controlLineCollection,
         });
         previewMap.addSource('controlPoints', {
             type: 'geojson',
@@ -92,7 +97,7 @@ class MapHelper {
         // controlPathPointsSelected.filter = ['==', 'type', 'controlPoint'];
         previewMap.addLayer(controlPathPoints);
 
-        previewMap.flyTo({ center: [inputPathLine[0][0], inputPathLine[0][1]], zoom: 15 });
+        previewMap.flyTo({ center: [firstPoint[0][0], firstPoint[0][1]], zoom: 15 });
     }
 
     reBuildPathLayers(currentLayers, leftMap, rightMap, featuresCollection) {

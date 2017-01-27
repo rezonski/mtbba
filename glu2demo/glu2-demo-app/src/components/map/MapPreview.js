@@ -6,7 +6,7 @@ import BasePage from '../BasePage';
 import MessageEvents from '../../enums/MessageEvents';
 import Enum from '../../enums/Enum';
 import Lang from '/helpers/Lang';
-import CommonHelper from '/helpers/CommonHelper';
+// import CommonHelper from '/helpers/CommonHelper';
 
 class MapPreview extends BasePage {
     constructor(props) {
@@ -127,6 +127,8 @@ class MapPreview extends BasePage {
         const coords = e.lngLat;
         this.canvas.style.cursor = 'grabbing';
         if (this.startedDragging) {
+            this.controlPoints = JSON.parse(JSON.stringify(this.mappreview.getSource('controlPoints')._data));
+            this.controlPath = JSON.parse(JSON.stringify(this.mappreview.getSource('controlPath')._data));
             this.initialPosition = turf.point([coords.lng, coords.lat]);
             this.startedDragging = false;
         }
@@ -134,13 +136,22 @@ class MapPreview extends BasePage {
         const bearing = turf.bearing(this.initialPosition, tempPosition);
         const distance = turf.distance(this.initialPosition, tempPosition, 'kilometers');
         // console.info('bearing: ' + bearing + ' , distance: ' + distance);
-        const tempFeatures = this.selectedControlFeatures.map(feat => {
-            return turf.destination(feat, distance, bearing, 'kilometers');
+        // const tempFeatures = this.selectedControlFeatures.map(feat => {
+        //     return turf.destination(feat, distance, bearing, 'kilometers');
+        // });
+        // console.log('this.filteredIdxs = ' + this.filteredIdxs);
+        this.filteredIdxs.forEach(idx => {
+            const newPoint = turf.destination(this.controlPoints.features[idx], distance, bearing, 'kilometers');
+            this.controlPoints.features[idx].geometry.coordinates[0] = newPoint.geometry.coordinates[0];
+            this.controlPoints.features[idx].geometry.coordinates[1] = newPoint.geometry.coordinates[1];
+            console.info(this.controlPath.features[0].geometry.coordinates[idx]);
+            this.controlPath.features[0].geometry.coordinates[idx][0] = newPoint.geometry.coordinates[0];
+            this.controlPath.features[0].geometry.coordinates[idx][1] = newPoint.geometry.coordinates[1];
         });
-        this.mappreview.getSource('controlPoints').setData({
-            type: 'FeatureCollection',
-            features: tempFeatures,
-        });
+        // console.log(controlPoints);
+        this.mappreview.getSource('controlPoints').setData(this.controlPoints);
+        this.mappreview.getSource('controlPath').setData(this.controlPath);
+        this.initialPosition = tempPosition;
         // Update the Point feature in `geojson` coordinates
         // and call setData to the source layer `point` on it.
         // geojson.features[0].geometry.coordinates = [coords.lng, coords.lat];
@@ -153,28 +164,28 @@ class MapPreview extends BasePage {
         const tempPosition = turf.point([coords.lng, coords.lat]);
         const bearing = turf.bearing(this.initialPosition, tempPosition);
         const distance = turf.distance(this.initialPosition, tempPosition, 'kilometers');
-        // console.info('bearing: ' + bearing + ' , distance: ' + distance);
+        console.info('bearing: ' + bearing + ' , distance: ' + distance);
         // const tempFeatures = this.selectedControlFeatures.map(feat => {
         //     return turf.destination(feat, distance, bearing, 'kilometers');
         // });
 
-        const controlPoints = this.mappreview.style.sources.controlPoints._data;
-        const controlPath = this.mappreview.style.sources.controlPath._data;
+        // const controlPoints = this.mappreview.style.sources.controlPoints._data;
+        // const controlPath = this.mappreview.style.sources.controlPath._data;
 
-        this.filteredIdxs.forEach(idx => {
-            const newPoint = turf.destination(controlPath.features[idx], distance, bearing, 'kilometers');
-            controlPoints.features[idx] = newPoint;
-            controlPath.features[0].geometry.coordinates[idx] = newPoint.geometry.coordinates;
-        });
+        // this.filteredIdxs.forEach(idx => {
+        //     const newPoint = turf.destination(controlPath.features[idx], distance, bearing, 'kilometers');
+        //     controlPoints.features[idx] = newPoint;
+        //     controlPath.features[0].geometry.coordinates[idx] = newPoint.geometry.coordinates;
+        // });
 
-        this.mappreview.getSource('controlPath').setData({
-            type: 'FeatureCollection',
-            features: controlPath,
-        });
-        this.mappreview.getSource('controlPath').setData({
-            type: 'FeatureCollection',
-            features: controlPath,
-        });
+        // this.mappreview.getSource('controlPoints').setData({
+        //     type: 'FeatureCollection',
+        //     features: controlPoints,
+        // });
+        // this.mappreview.getSource('controlPath').setData({
+        //     type: 'FeatureCollection',
+        //     features: controlPath,
+        // });
         // console.info([coords.lng, coords.lat]);
         // Print the coordinates of where the point had
         // finished being dragged to on the map.
@@ -254,13 +265,19 @@ class MapPreview extends BasePage {
             //     }
             //     return memo;
             // });
-            this.filteredIdxs = this.selectedControlFeatures.map(feature => {
-                return feature.properties.highlightId;
+            // this.filteredIdxs = this.selectedControlFeatures.map(feature => {
+            //     return feature.properties.highlightId;
+            // });
+            this.filteredIdxs = [];
+            this.selectedControlFeatures.forEach(feature => {
+                if (this.filteredIdxs.indexOf(feature.properties.highlightId) < 0) {
+                    this.filteredIdxs.push(feature.properties.highlightId);
+                }
             });
-            const selectionFilter = this.filteredIdxs;
+            const selectionFilter = JSON.parse(JSON.stringify(this.filteredIdxs));
             selectionFilter.unshift('highlightId');
             selectionFilter.unshift('in');
-            this.mappreview.setFilter('controlPointsSelected', this.filteredIdxs);
+            this.mappreview.setFilter('controlPointsSelected', selectionFilter);
             // this.mappreview.getSource('controlPoints').setData({
             //     type: 'FeatureCollection',
             //     features: this.selectedControlFeatures,

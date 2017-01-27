@@ -409,7 +409,7 @@ function buildForDevelopment(bundler, sourceFile, destinationFile) {
 
 function buildForServer(bundler, sourceFile, destinationFile) {
     var banner = ['/**',
-        ' * @name geobuffer',
+        ' * @name demotrail',
         ' * @version v<%= pkg.version %>',
         ' */',
         ''].join('\n');
