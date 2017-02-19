@@ -1,4 +1,5 @@
 /* global turf */
+/* global MapboxDraw */
 import GLU from '/../../glu2.js/src/index';
 import MessageEvents from '/enums/MessageEvents';
 import TrailHelper from '/helpers/TrailHelper';
@@ -31,30 +32,13 @@ class MapHelper {
     previewTrailOnMap(pointsCollection, initCollection, previewMap) {
         const lineStrings = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(initCollection)));
         const firstPoint = lineStrings[0].geometry.coordinates;
-        const controlLineCollection = {
-            type: 'FeatureCollection',
-            features: lineStrings,
-        };
         if (previewMap.getSource('previewCollection')) {
             previewMap.removeLayer('previewCollection');
-            previewMap.removeLayer('controlPath');
-            previewMap.removeLayer('controlPointsSelected');
-            previewMap.removeLayer('controlPoints');
             previewMap.removeSource('previewCollection');
-            previewMap.removeSource('controlPath');
-            previewMap.removeSource('controlPoints');
         }
         previewMap.addSource('previewCollection', {
             type: 'geojson',
             data: initCollection,
-        });
-        previewMap.addSource('controlPath', {
-            type: 'geojson',
-            data: controlLineCollection,
-        });
-        previewMap.addSource('controlPoints', {
-            type: 'geojson',
-            data: pointsCollection,
         });
         const lineLayerPreview = {};
         lineLayerPreview.id = 'previewCollection';
@@ -67,37 +51,11 @@ class MapHelper {
         lineLayerPreview.paint['line-color'] = 'rgba(255,0,0,0.6)';
         lineLayerPreview.paint['line-width'] = 6;
         previewMap.addLayer(lineLayerPreview);
-
-        const lineLayerControl = JSON.parse(JSON.stringify(lineLayerPreview));
-        lineLayerControl.id = 'controlPath';
-        lineLayerControl.source = 'controlPath';
-        lineLayerControl.paint['line-color'] = 'rgba(0,0,0,0.6)';
-        lineLayerControl.paint['line-width'] = 3;
-        previewMap.addLayer(lineLayerControl);
-
-        const controlPathPointsSelected = {};
-        controlPathPointsSelected.id = 'controlPointsSelected';
-        controlPathPointsSelected.type = 'circle';
-        controlPathPointsSelected.source = 'controlPoints';
-        controlPathPointsSelected.paint = {};
-        controlPathPointsSelected.paint['circle-radius'] = 8;
-        controlPathPointsSelected.paint['circle-color'] = '#FF0000';
-        controlPathPointsSelected.paint['circle-opacity'] = 0.6;
-        controlPathPointsSelected.filter = ['in', 'highlightId'];
-        previewMap.addLayer(controlPathPointsSelected);
-
-        const controlPathPoints = {};
-        controlPathPoints.id = 'controlPoints';
-        controlPathPoints.type = 'circle';
-        controlPathPoints.source = 'controlPoints';
-        controlPathPoints.paint = {};
-        controlPathPoints.paint['circle-radius'] = 4;
-        controlPathPoints.paint['circle-color'] = '#000000';
-        controlPathPoints.paint['circle-opacity'] = 1;
-        // controlPathPointsSelected.filter = ['==', 'type', 'controlPoint'];
-        previewMap.addLayer(controlPathPoints);
-
         previewMap.flyTo({ center: [firstPoint[0][0], firstPoint[0][1]], zoom: 15 });
+        const Draw = new MapboxDraw({});
+        previewMap.addControl(Draw);
+        const collectionId = Draw.set(initCollection);
+        console.log(collectionId);
     }
 
     reBuildPathLayers(currentLayers, leftMap, rightMap, featuresCollection) {
