@@ -113,6 +113,10 @@ const labels = {
         bos: 'Započni procesiranje',
         eng: 'Start processing',
     },
+    manualEditPath: {
+        bos: 'Rucna popravka staze',
+        eng: 'Manualy edit path',
+    },
     generalProcesProgres: {
         bos: 'Generalni progres',
         eng: 'General progress',

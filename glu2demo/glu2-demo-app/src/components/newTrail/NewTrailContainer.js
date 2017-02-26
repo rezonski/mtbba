@@ -33,6 +33,7 @@ class NewTrailContainer extends BasePage {
 
         this.bindGluBusEvents({
             [Enum.AppEvents.OPEN_FORM_NEW_TRAIL]: this.onOpenFormRequest,
+            [Enum.AppEvents.CLOSE_FORM_NEW_TRAIL]: this.onCloseFormRequest,
         });
     }
 
@@ -43,6 +44,12 @@ class NewTrailContainer extends BasePage {
     onOpenFormRequest() {
         this.setState({
             open: true,
+        });
+    }
+
+    onCloseFormRequest() {
+        this.setState({
+            open: false,
         });
     }
 
@@ -123,7 +130,7 @@ class NewTrailContainer extends BasePage {
     }
 
     handleClose() {
-        this.emit(Enum.MapEvents.REQUEST_DISPLAY_PATH_LAYERS);
+        // this.emit(Enum.MapEvents.REQUEST_DISPLAY_PATH_LAYERS);
         this.setState({
             open: false,
             stepIndex: 0,

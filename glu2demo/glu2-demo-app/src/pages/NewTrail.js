@@ -1,6 +1,7 @@
 import React from 'react';
 import BasePage from '../components/BasePage';
-import SwipeMap from '../components/map/SwipeMap';
+// import SwipeMap from '../components/map/SwipeMap';
+import SingleMap from '../components/map/SingleMap';
 
 class NewTrail extends BasePage {
     constructor(params) {
@@ -17,7 +18,8 @@ class NewTrail extends BasePage {
     }
 
     render() {
-        return (<SwipeMap/>);
+        // return (<SwipeMap/>);
+        return (<SingleMap/>);
     }
 
 

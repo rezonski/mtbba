@@ -32,10 +32,10 @@ class MapHelper {
     previewTrailOnMap(pointsCollection, initCollection, previewMap) {
         const lineStrings = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(initCollection)));
         const firstPoint = lineStrings[0].geometry.coordinates;
-        if (previewMap.getSource('previewCollection')) {
-            previewMap.removeLayer('previewCollection');
-            previewMap.removeSource('previewCollection');
-        }
+        // if (previewMap.getSource('previewCollection')) {
+        //     previewMap.removeLayer('previewCollection');
+        //     previewMap.removeSource('previewCollection');
+        // }
         previewMap.addSource('previewCollection', {
             type: 'geojson',
             data: initCollection,
@@ -49,10 +49,11 @@ class MapHelper {
         lineLayerPreview.layout['line-cap'] = 'round';
         lineLayerPreview.paint = {};
         lineLayerPreview.paint['line-color'] = 'rgba(255,0,0,0.6)';
-        lineLayerPreview.paint['line-width'] = 6;
+        lineLayerPreview.paint['line-width'] = 1;
         previewMap.addLayer(lineLayerPreview);
         previewMap.flyTo({ center: [firstPoint[0][0], firstPoint[0][1]], zoom: 15 });
         const Draw = new MapboxDraw({});
+        window.Draw = Draw;
         previewMap.addControl(Draw);
         const collectionId = Draw.set(initCollection);
         console.log(collectionId);

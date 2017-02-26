@@ -2,7 +2,7 @@ import React from 'react';
 import BasePage from '../components/BasePage';
 import Message from '../components/notifications/Message';
 import NewEditActionButton from '../components/menu/NewEditActionButton';
-import SnapToNorth from '../components/map/SnapToNorth';
+// import SnapToNorth from '../components/map/SnapToNorth';
 import NewTrailContainer from '../components/newTrail/NewTrailContainer';
 import OpenTrailContainer from '../components/openTrail/OpenTrailContainer';
 import MainToolbar from '../components/menu/MainToolbar';
@@ -46,9 +46,9 @@ class Root extends BasePage {
                     <div className="overlay bottom right">
                         <NewEditActionButton />
                     </div>
-                    <div className="overlay top right">
+                    {/*<div className="overlay top right">
                         <SnapToNorth />
-                    </div>
+                    </div>*/}
                 </div>
             </div>
         );

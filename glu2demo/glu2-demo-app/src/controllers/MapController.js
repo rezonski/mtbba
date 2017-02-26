@@ -53,7 +53,6 @@ class MapController extends GLU.Controller {
 
     savePreviewMap(map) {
         MapModel.previewMap = map;
-        GLU.bus.emit(Enum.MapEvents.SHOW_PREVIEW_MAP);
     }
 
     showPreviewMap() {
