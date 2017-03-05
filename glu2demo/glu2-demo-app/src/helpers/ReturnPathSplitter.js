@@ -17,8 +17,9 @@ class ReturnPathSplitter {
 
     onButtonClicked() {
         console.log('splitter clicked');
-        window.leftmap.on('mousemove', e => {
-            console.log(e.point);
+        window.leftmap.on('click', e => {
+            console.log(e.lngLat);
+            window.leftmap.fire('lineSlice', { position: e.lngLat });
         });
     }
 }
