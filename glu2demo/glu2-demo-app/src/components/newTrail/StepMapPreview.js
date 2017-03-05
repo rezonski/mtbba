@@ -8,46 +8,55 @@ import RaisedButton from 'material-ui/RaisedButton';
 class StepMapPreview extends BasePage {
     constructor(props) {
         super(props);
-        this.state = {
-            previewMapInitialised: false,
-        };
         this.bindGluBusEvents({
             // [Enum.AppEvents.OPEN_FORM_NEW_TRAIL]: this.onOpenFormRequest,
         });
         this.onManualyEditPathPointsRequestEvent = this.onManualyEditPathPointsRequest.bind(this);
+        this.onShowPreviewRequestEvent = this.onShowPreviewRequest.bind(this);
+        this.onHidePreviewRequestEvent = this.onHidePreviewRequest.bind(this);
     }
 
     componentDidMount() {
-        if (!this.state.previewMapInitialised) {
-            this.emit(Enum.MapEvents.SHOW_PREVIEW_MAP);
-            this.setState({
-                previewMapInitialised: true,
-            });
-        }
+        this.emit(Enum.MapEvents.SHOW_PREVIEW_MAP);
     }
 
     componentWillUnmount() {
+        this.emit(Enum.MapEvents.HIDE_PREVIEW_MAP);
         this.unbindGluBusEvents();
+    }
+
+    onShowPreviewRequest() {
+        this.emit(Enum.MapEvents.SHOW_PREVIEW_MAP);
+    }
+
+    onHidePreviewRequest() {
+        this.emit(Enum.MapEvents.HIDE_PREVIEW_MAP);
     }
 
     onManualyEditPathPointsRequest() {
         this.emit(Enum.AppEvents.CLOSE_FORM_NEW_TRAIL);
     }
 
-
     render() {
         return (<div className="flex-container row">
-            <div className="flex-element column narower2 margined-right">
+                <RaisedButton
+                    label={Lang.label('showPreviewPath')}
+                    secondary={true}
+                    className="margined-right"
+                    style={{ minWidth: '200px' }}
+                    onTouchTap={this.onShowPreviewRequestEvent} />
                 <RaisedButton
                     label={Lang.label('manualEditPath')}
                     secondary={true}
                     className="margined-right"
                     style={{ minWidth: '200px' }}
                     onTouchTap={this.onManualyEditPathPointsRequestEvent} />
-            </div>
-            {/* <div className="flex-element column wider2">
-                <MapPreview />
-            </div>*/}
+                <RaisedButton
+                    label={Lang.label('hidePreviewPath')}
+                    secondary={true}
+                    className="margined-right"
+                    style={{ minWidth: '200px' }}
+                    onTouchTap={this.onHidePreviewRequestEvent} />
         </div>);
     }
 }

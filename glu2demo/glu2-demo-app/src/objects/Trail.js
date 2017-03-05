@@ -39,10 +39,11 @@ class Trail {
     }
 
     previewParsedInitialFeaturesCollection(previewMap) {
-        // console.log('Preview');
-        // console.log(CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].geometry.coordinates[0]);
-        // MapHelper.previewTrailOnMap(this.parsedFeaturesCollection, previewMap);
         MapHelper.previewTrailOnMap(this.getPoints4LinePath(this.parsedFeaturesCollection), this.parsedFeaturesCollection, previewMap);
+    }
+
+    hideParsedInitialFeaturesCollection(previewMap) {
+        MapHelper.hidePreviewTrailOnMap(previewMap);
     }
 
     translateByOffset(payload) {

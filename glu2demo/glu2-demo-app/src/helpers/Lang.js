@@ -117,6 +117,14 @@ const labels = {
         bos: 'Rucna popravka staze',
         eng: 'Manualy edit path',
     },
+    showPreviewPath: {
+        bos: 'Pregledaj ucitanu stazu',
+        eng: 'Show preview path',
+    },
+    hidePreviewPath: {
+        bos: 'Sakrij ucitanu stazu',
+        eng: 'Hide preview path',
+    },
     generalProcesProgres: {
         bos: 'Generalni progres',
         eng: 'General progress',

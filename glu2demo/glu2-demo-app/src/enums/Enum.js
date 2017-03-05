@@ -13,6 +13,7 @@ const Enum = {
         SAVE_RIGHT_MAP: '__SAVE_RIGHT_MAP__',
         SAVE_PREVIEW_MAP: '__SAVE_PREVIEW_MAP__',
         SHOW_PREVIEW_MAP: '__SHOW_PREVIEW_MAP__',
+        HIDE_PREVIEW_MAP: '__HIDE_PREVIEW_MAP__',
         MAP_RESET_2_NORTH: '__MAP_RESET_2_NORTH__',
     },
     AppEvents: {

@@ -4,6 +4,7 @@ import GLU from '/../../glu2.js/src/index';
 import MessageEvents from '/enums/MessageEvents';
 import TrailHelper from '/helpers/TrailHelper';
 import CommonHelper from '/helpers/CommonHelper';
+import ReturnPathSplitter from '/helpers/ReturnPathSplitter';
 import Lang from '/helpers/Lang';
 
 class MapHelper {
@@ -30,33 +31,48 @@ class MapHelper {
     }
 
     previewTrailOnMap(pointsCollection, initCollection, previewMap) {
-        const lineStrings = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(initCollection)));
-        const firstPoint = lineStrings[0].geometry.coordinates;
-        // if (previewMap.getSource('previewCollection')) {
-        //     previewMap.removeLayer('previewCollection');
-        //     previewMap.removeSource('previewCollection');
-        // }
-        previewMap.addSource('previewCollection', {
-            type: 'geojson',
-            data: initCollection,
-        });
-        const lineLayerPreview = {};
-        lineLayerPreview.id = 'previewCollection';
-        lineLayerPreview.type = 'line';
-        lineLayerPreview.source = 'previewCollection';
-        lineLayerPreview.layout = {};
-        lineLayerPreview.layout['line-join'] = 'round';
-        lineLayerPreview.layout['line-cap'] = 'round';
-        lineLayerPreview.paint = {};
-        lineLayerPreview.paint['line-color'] = 'rgba(255,0,0,0.6)';
-        lineLayerPreview.paint['line-width'] = 1;
-        previewMap.addLayer(lineLayerPreview);
-        previewMap.flyTo({ center: [firstPoint[0][0], firstPoint[0][1]], zoom: 15 });
-        const Draw = new MapboxDraw({});
-        window.Draw = Draw;
-        previewMap.addControl(Draw);
-        const collectionId = Draw.set(initCollection);
-        console.log(collectionId);
+        if (!previewMap.getSource('previewCollection')) {
+            const lineStrings = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(initCollection)));
+            const firstPoint = lineStrings[0].geometry.coordinates;
+            previewMap.addSource('previewCollection', {
+                type: 'geojson',
+                data: initCollection,
+            });
+            const lineLayerPreview = {};
+            lineLayerPreview.id = 'previewCollection';
+            lineLayerPreview.type = 'line';
+            lineLayerPreview.source = 'previewCollection';
+            lineLayerPreview.layout = {};
+            lineLayerPreview.layout['line-join'] = 'round';
+            lineLayerPreview.layout['line-cap'] = 'round';
+            lineLayerPreview.paint = {};
+            lineLayerPreview.paint['line-color'] = 'rgba(255,0,0,0.3)';
+            lineLayerPreview.paint['line-width'] = 3;
+            lineLayerPreview.paint['line-dasharray'] = [1, 1];
+            previewMap.addLayer(lineLayerPreview);
+            previewMap.flyTo({ center: [firstPoint[0][0], firstPoint[0][1]], zoom: 15 });
+            const Draw = new MapboxDraw({});
+            window.Draw = Draw;
+            previewMap.addControl(Draw);
+            const returnPathSplitter = new ReturnPathSplitter({});
+            window.returnPathSplitter = returnPathSplitter;
+            previewMap.addControl(returnPathSplitter);
+
+            // const collectionId = Draw.set(initCollection);
+            // console.log(collectionId);
+        } else {
+            console.info('Source&layer "previewCollection" already exists');
+        }
+    }
+
+    hidePreviewTrailOnMap(previewMap) {
+        if (previewMap.getSource('previewCollection')) {
+            previewMap.removeLayer('previewCollection');
+            previewMap.removeSource('previewCollection');
+            previewMap.removeControl(window.Draw);
+        } else {
+            console.info('No source&layer "previewCollection" found');
+        }
     }
 
     reBuildPathLayers(currentLayers, leftMap, rightMap, featuresCollection) {
