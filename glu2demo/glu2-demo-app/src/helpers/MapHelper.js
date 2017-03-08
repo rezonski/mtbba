@@ -32,12 +32,12 @@ class MapHelper {
 
     previewTrailOnMap(pointsCollection, initCollection, previewMap) {
         if (!previewMap.getSource('previewCollection')) {
+            let intialisedCollection = JSON.parse(JSON.stringify(initCollection));
             const lineStrings = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(initCollection)));
-            const waypoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(initCollection)));
             const firstPoint = lineStrings[0].geometry.coordinates;
             previewMap.addSource('previewCollection', {
                 type: 'geojson',
-                data: initCollection,
+                data: intialisedCollection,
             });
             const lineLayerPreview = {};
             lineLayerPreview.id = 'previewCollection';
@@ -59,17 +59,19 @@ class MapHelper {
             window.returnPathSplitter = returnPathSplitter;
             previewMap.addControl(returnPathSplitter);
             previewMap.on('lineSlice', p => {
+                const waypointsOnly = CommonHelper.getPoints(JSON.parse(JSON.stringify(intialisedCollection)));
+                const linesOnly = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(intialisedCollection)));
                 console.log('position ' + JSON.stringify(p.position) + ' picked');
                 const fromPoint = turf.point(firstPoint[0]);
                 const toPoint = turf.point([p.position.lng, p.position.lat]);
-                console.log('lineStrings length : ' + lineStrings[0].geometry.coordinates.length);
-                const sliced = turf.lineSlice(fromPoint, toPoint, lineStrings[0]);
+                console.log('lineStrings length : ' + linesOnly[0].geometry.coordinates.length);
+                const sliced = turf.lineSlice(fromPoint, toPoint, linesOnly[0]);
                 console.log('sliced length : ' + sliced.geometry.coordinates.length);
                 console.log(sliced);
                 console.log('setting new preview data 4 path line');
-                waypoints.push(sliced);
-                const newCollection = turf.featurecollection(waypoints);
-                previewMap.getSource('previewCollection').setData(newCollection);
+                waypointsOnly.push(sliced);
+                intialisedCollection = turf.featurecollection(waypointsOnly);
+                previewMap.getSource('previewCollection').setData(intialisedCollection);
                 console.log('new preview data set');
             });
             // const collectionId = Draw.set(initCollection);
