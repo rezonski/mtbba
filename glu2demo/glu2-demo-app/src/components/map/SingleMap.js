@@ -5,6 +5,8 @@ import BasePage from '../BasePage';
 import MessageEvents from '../../enums/MessageEvents';
 import Enum from '../../enums/Enum';
 import Lang from '/helpers/Lang';
+import MapTypeControl from '/components/map/MapTypeControl';
+
 
 class SingleMap extends BasePage {
     constructor(props) {
@@ -41,6 +43,9 @@ class SingleMap extends BasePage {
         this.leftmap.on('load', () => {
             window.leftmap = this.leftmap;
             this.leftmap.addControl(new mapboxgl.NavigationControl());
+            const mapTypeControl = new MapTypeControl({});
+            window.mapTypeControl = mapTypeControl;
+            this.leftmap.addControl(mapTypeControl);
             this.leftmap.fitBounds(this.state.setup.bounds);
             this.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('firstMapLoaded'));
             this.emit(Enum.MapEvents.SAVE_LEFT_MAP, this.leftmap);
