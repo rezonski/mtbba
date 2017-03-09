@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1"
+	 id="svg5738" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" sodipodi:docname="trash.svg" inkscape:version="0.91+devel+osxmenu r12911"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px"
+	 viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+<sodipodi:namedview  showgrid="true" inkscape:cy="8.8461307" inkscape:cx="12.128184" inkscape:zoom="22.627417" borderopacity="1.0" bordercolor="#666666" pagecolor="#ffffff" id="base" inkscape:object-nodes="true" inkscape:snap-smooth-nodes="true" inkscape:window-maximized="0" inkscape:window-y="23" inkscape:current-layer="layer1" inkscape:window-x="20" inkscape:pageshadow="2" inkscape:document-units="px" inkscape:pageopacity="0.0" inkscape:window-height="751" inkscape:window-width="1033">
+	<inkscape:grid  type="xygrid" enabled="true" visible="true" empspacing="5" id="grid5746" snapvisiblegridlinesonly="true">
+		</inkscape:grid>
+</sodipodi:namedview>
+<polyline points="1.281,18 5.266,18 9.281,11.344 9.266,4.328 "/>
+<polyline fill="#999999" points="18.969,18.031 14.984,18.031 10.969,11.375 10.984,4.359 "/>
+<g>
+	<line fill="#FFFFFF" x1="10.156" y1="0" x2="10.156" y2="20"/>
+	<g>
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="10.156" y1="0" x2="10.156" y2="0.5"/>
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="1,1" x1="10.156" y1="1.5" x2="10.156" y2="19"/>
+		<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="10.156" y1="19.5" x2="10.156" y2="20"/>
+	</g>
+</g>
+</svg>

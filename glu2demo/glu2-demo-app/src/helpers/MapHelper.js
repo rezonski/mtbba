@@ -2,6 +2,7 @@
 /* global MapboxDraw */
 import GLU from '/../../glu2.js/src/index';
 import Enum from '/enums/Enum';
+import MessageEvents from '/enums/MessageEvents';
 import TrailHelper from '/helpers/TrailHelper';
 import CommonHelper from '/helpers/CommonHelper';
 import ReturnPathSplitterControl from '/components/map/ReturnPathSplitterControl';
@@ -36,7 +37,7 @@ class MapHelper {
             const Draw = new MapboxDraw({
                 displayControlsDefault: false,
                 controls: {
-                    line: true,
+                    line_string: true,
                     point: true,
                     trash: true,
                 },

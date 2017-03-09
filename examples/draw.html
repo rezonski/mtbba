@@ -65,12 +65,14 @@ var map = new mapboxgl.Map({
 });
 
 var Draw = new MapboxDraw({
-    // displayControlsDefault: false,
-    // controls: {
-    //     polygon: true,
-    //     trash: true
-    // }
+    displayControlsDefault: false,
+    controls: {
+        line: true,
+        polygon: true,
+        trash: true
+    }
 });
+Draw = new MapboxDraw({});
 // map.addControl(draw);
 
 map.on('load', function(){
