@@ -304,6 +304,10 @@ const messages = {
         bos: 'Završeno učitavanje gpx/kml datoteke',
         eng: 'Gpx/kml file data loaded',
     },
+    changesSaved: {
+        bos: 'Snimljene izmjene',
+        eng: 'Changes saved',
+    },
     endGeoFileParsing: {
         bos: 'Završeno prva obrada gpx/kml datoteke',
         eng: 'Gpx/kml file data parsed',

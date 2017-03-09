@@ -38,6 +38,7 @@ class DataController extends GLU.Controller {
             [Enum.DataEvents.DOWNLOAD_TRAIL]: this.downloadTrail,
             [Enum.DataEvents.START_IMAGE_UPLOAD]: this.uploadImage,
             [Enum.DataEvents.SAVE_INITIAL_GEO_FILE]: this.saveInitalGeoFile,
+            [Enum.DataEvents.SAVE_MANUAL_EDITED_FILE]: this.saveManualyEditedGeoFile,
             [Enum.DataEvents.START_SIMPLIFYING_PATH]: this.onSimplifyRequest,
             [Enum.DataEvents.START_ELEVATING_PATH]: this.onElevatePathRequest,
             [Enum.DataEvents.START_FLATTENING_PATH]: this.onFlattenPathRequest,
@@ -195,6 +196,11 @@ class DataController extends GLU.Controller {
             GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('fileLoadFailed'));
             return;
         }
+    }
+
+    saveManualyEditedGeoFile(payload) {
+        TrailsDataModel.activeTrail.parsedFeaturesCollection = JSON.parse(JSON.stringify(payload));
+        GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('changesSaved'));
     }
 
     downloadTrail(trailId) {

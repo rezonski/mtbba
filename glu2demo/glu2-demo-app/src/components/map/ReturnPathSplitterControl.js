@@ -1,4 +1,4 @@
-class ReturnPathSplitter {
+class ReturnPathSplitterControl {
     onAdd(map) {
         this._map = map;
         this._container = document.createElement('div');
@@ -29,4 +29,4 @@ class ReturnPathSplitter {
     }
 }
 
-export default ReturnPathSplitter;
+export default ReturnPathSplitterControl;

@@ -1,10 +1,11 @@
 /* global turf */
 /* global MapboxDraw */
 import GLU from '/../../glu2.js/src/index';
-import MessageEvents from '/enums/MessageEvents';
+import Enum from '/enums/Enum';
 import TrailHelper from '/helpers/TrailHelper';
 import CommonHelper from '/helpers/CommonHelper';
-import ReturnPathSplitter from '/helpers/ReturnPathSplitter';
+import ReturnPathSplitterControl from '/components/map/ReturnPathSplitterControl';
+import SavePathControl from '/components/map/SavePathControl';
 import Lang from '/helpers/Lang';
 
 class MapHelper {
@@ -32,13 +33,34 @@ class MapHelper {
 
     previewTrailOnMap(pointsCollection, initCollection, previewMap) {
         if (!previewMap.getSource('previewCollection')) {
+            const Draw = new MapboxDraw({
+                displayControlsDefault: false,
+                controls: {
+                    line: true,
+                    point: true,
+                    trash: true,
+                },
+            });
+            window.Draw = Draw;
+            previewMap.addControl(Draw);
+
+            const returnPathSplitterControl = new ReturnPathSplitterControl({});
+            window.returnPathSplitterControl = returnPathSplitterControl;
+            previewMap.addControl(returnPathSplitterControl);
+
+            const savePathControl = new SavePathControl({});
+            window.savePathControl = savePathControl;
+            previewMap.addControl(savePathControl);
+
             let intialisedCollection = JSON.parse(JSON.stringify(initCollection));
             const lineStrings = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(initCollection)));
             const firstPoint = lineStrings[0].geometry.coordinates;
+
             previewMap.addSource('previewCollection', {
                 type: 'geojson',
                 data: intialisedCollection,
             });
+
             const lineLayerPreview = {};
             lineLayerPreview.id = 'previewCollection';
             lineLayerPreview.type = 'line';
@@ -47,17 +69,16 @@ class MapHelper {
             lineLayerPreview.layout['line-join'] = 'round';
             lineLayerPreview.layout['line-cap'] = 'round';
             lineLayerPreview.paint = {};
-            lineLayerPreview.paint['line-color'] = 'rgba(255,0,0,0.3)';
+            lineLayerPreview.paint['line-color'] = 'rgba(255,255,255,0.8)';
             lineLayerPreview.paint['line-width'] = 3;
-            lineLayerPreview.paint['line-dasharray'] = [1, 1];
+            lineLayerPreview.paint['line-dasharray'] = [2, 2];
             previewMap.addLayer(lineLayerPreview);
+
             previewMap.flyTo({ center: [firstPoint[0][0], firstPoint[0][1]], zoom: 15 });
-            const Draw = new MapboxDraw({});
-            window.Draw = Draw;
-            previewMap.addControl(Draw);
-            const returnPathSplitter = new ReturnPathSplitter({});
-            window.returnPathSplitter = returnPathSplitter;
-            previewMap.addControl(returnPathSplitter);
+
+            const collectionId = Draw.set(intialisedCollection);
+            console.log(collectionId);
+
             previewMap.on('lineSlice', p => {
                 const waypointsOnly = CommonHelper.getPoints(JSON.parse(JSON.stringify(intialisedCollection)));
                 const linesOnly = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(intialisedCollection)));
@@ -72,10 +93,17 @@ class MapHelper {
                 waypointsOnly.push(sliced);
                 intialisedCollection = turf.featurecollection(waypointsOnly);
                 previewMap.getSource('previewCollection').setData(intialisedCollection);
+
+                const newCollectionId = Draw.set(intialisedCollection);
+                console.log(newCollectionId);
+
                 console.log('new preview data set');
             });
-            // const collectionId = Draw.set(initCollection);
-            // console.log(collectionId);
+
+            previewMap.on('saveEditedPath', () => {
+                const editedCollection = window.Draw.getAll();
+                GLU.bus.emit(Enum.DataEvents.SAVE_MANUAL_EDITED_FILE, editedCollection);
+            });
         } else {
             console.info('Source&layer "previewCollection" already exists');
         }
