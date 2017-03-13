@@ -192,7 +192,8 @@ class Trail {
     generateWaypoints(maps) {
         const enrichedFeaturesCollection = this.getEnrichedFeatureCollection();
         // const enrichedFeaturesCollection = this.getSimpleEnrichedFeatureCollection();
-        const computedWaypoints = WaypointHelper.generateWaypoints(maps.leftMap, maps.rightMap, enrichedFeaturesCollection);
+        // const computedWaypoints = WaypointHelper.generateWaypoints(maps.leftMap, maps.rightMap, enrichedFeaturesCollection);
+        const computedWaypoints = WaypointHelper.generateWaypoints(maps.leftMap, enrichedFeaturesCollection);
         this.waypoints = computedWaypoints;
         return this.waypoints;
     }
@@ -200,7 +201,8 @@ class Trail {
     reBuildMapLayers(maps) {
         // this.mapPathLayers = MapHelper.reBuildPathLayers(this.mapPathLayers, maps.leftMap, maps.rightMap, this.surfaceCollection, this.pathLine, this.generalFact);
         const enrichedFeaturesCollection = this.getSimpleEnrichedFeatureCollection();
-        this.mapPathLayers = MapHelper.reBuildPathLayers(this.mapPathLayers, maps.leftMap, maps.rightMap, enrichedFeaturesCollection);
+        // this.mapPathLayers = MapHelper.reBuildPathLayers(this.mapPathLayers, maps.leftMap, maps.rightMap, enrichedFeaturesCollection);
+        this.mapPathLayers = MapHelper.reBuildPathLayers(this.mapPathLayers, maps.leftMap, enrichedFeaturesCollection);
     }
 
     // rebuildWaypoints(maps) {

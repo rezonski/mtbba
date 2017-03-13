@@ -2,20 +2,20 @@ import React from 'react';
 import BasePage from '../BasePage';
 import Enum from '/enums/Enum';
 import Lang from '/helpers/Lang';
-import Popover from 'material-ui/Popover';
-import Menu from 'material-ui/Menu';
+// import Popover from 'material-ui/Popover';
+// import Menu from 'material-ui/Menu';
 import FlatButton from 'material-ui/FlatButton';
 import MenuItem from 'material-ui/MenuItem';
-import Divider from 'material-ui/Divider';
+// import Divider from 'material-ui/Divider';
 // import RaisedButton from 'material-ui/RaisedButton';
 import { Toolbar, ToolbarGroup/* , ToolbarSeparator */, ToolbarTitle } from 'material-ui/Toolbar';
 // import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/more-vert';
 // import NavLayers from 'material-ui/svg-icons/maps/layers';
-import NavMap from 'material-ui/svg-icons/maps/map';
+// import NavMap from 'material-ui/svg-icons/maps/map';
 import NumList from 'material-ui/svg-icons/editor/format-list-numbered';
 import NavTerrain from 'material-ui/svg-icons/maps/terrain';
 import NavSatellite from 'material-ui/svg-icons/maps/satellite';
-import ArrowDropDown from 'material-ui/svg-icons/navigation/arrow-drop-down';
+// import ArrowDropDown from 'material-ui/svg-icons/navigation/arrow-drop-down';
 import SaveTrailIcon from 'material-ui/svg-icons/file/cloud-upload';
 import OpenTrailIcon from 'material-ui/svg-icons/file/cloud-download';
 
@@ -142,7 +142,7 @@ class MainToolbar extends BasePage {
                         onTouchTap={this.onToggleWPDrawerEvent}
                         icon={<NumList />}
                     />
-                    <FlatButton
+                    {/* <FlatButton
                         label={Lang.label('maplayers')}
                         primary={true}
                         onTouchTap={this.onOpenMapLayersEvent}
@@ -168,7 +168,7 @@ class MainToolbar extends BasePage {
                                 menuItems={rightMapStyles}
                             />
                         </Menu>
-                    </Popover>
+                    </Popover> */}
                 </ToolbarGroup>
             </Toolbar>
         );

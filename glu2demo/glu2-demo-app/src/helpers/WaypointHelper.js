@@ -54,7 +54,8 @@ class WaypointHelper extends GLU.Controller {
         newWaypoint.wpGeoJSON = wpGeoJSON;
     }
 
-    generateWaypoints(leftMap, rightMap, featuresCollection) {
+    // generateWaypoints(leftMap, rightMap, featuresCollection) {
+    generateWaypoints(leftMap, featuresCollection) {
         const inputPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
         let inputWaypoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(featuresCollection)));
         const startPathPoint = turf.point([inputPathLine[0].lon, inputPathLine[0].lat], { name: 'Start', pictogram: '90' });
@@ -175,18 +176,18 @@ class WaypointHelper extends GLU.Controller {
             leftMap.removeLayer('waypoints');
             leftMap.removeSource('waypoints');
         }
-        if (rightMap.getSource('waypoints')) {
-            rightMap.removeLayer('waypoints');
-            rightMap.removeSource('waypoints');
-        }
+        // if (rightMap.getSource('waypoints')) {
+        //     rightMap.removeLayer('waypoints');
+        //     rightMap.removeSource('waypoints');
+        // }
         leftMap.addSource('waypoints', {
             type: 'geojson',
             data: mapWaypointsCollection,
         });
-        rightMap.addSource('waypoints', {
-            type: 'geojson',
-            data: mapWaypointsCollection,
-        });
+        // rightMap.addSource('waypoints', {
+        //     type: 'geojson',
+        //     data: mapWaypointsCollection,
+        // });
 
         const pointLayer = {};
         pointLayer.id = 'waypoints';
@@ -200,7 +201,7 @@ class WaypointHelper extends GLU.Controller {
         pointLayer.paint['icon-halo-color'] = '#FFFFFF';
 
         leftMap.addLayer(pointLayer);
-        rightMap.addLayer(pointLayer);
+        // rightMap.addLayer(pointLayer);
 
         // return {
         //     waypoints: newWaypointsExport,

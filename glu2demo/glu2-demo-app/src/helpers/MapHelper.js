@@ -23,13 +23,13 @@ class MapHelper {
     animateMarker(leftMap, rightMap, coordinates) {
         let data = this.pointOnCircle(coordinates);
         leftMap.getSource('pointbefore').setData(data);
-        rightMap.getSource('pointafter').setData(data);
+        // rightMap.getSource('pointafter').setData(data);
     }
 
     setFocus(leftMap, rightMap, coordinates) {
         let data = this.pointOnCircle(coordinates);
         leftMap.getSource('focuswpbefore').setData(data);
-        rightMap.getSource('focuswpafter').setData(data);
+        // rightMap.getSource('focuswpafter').setData(data);
     }
 
     previewTrailOnMap(pointsCollection, initCollection, previewMap) {
@@ -120,7 +120,8 @@ class MapHelper {
         }
     }
 
-    reBuildPathLayers(currentLayers, leftMap, rightMap, featuresCollection) {
+    // reBuildPathLayers(currentLayers, leftMap, rightMap, featuresCollection) {
+    reBuildPathLayers(currentLayers, leftMap, featuresCollection) {
         let startOdometer = 0;
         let endOdometer = 99999;
         let sastavPathsArray = [];
@@ -147,13 +148,13 @@ class MapHelper {
 
         currentLayers.forEach((layer) => {
             leftMap.removeLayer(layer.id);
-            rightMap.removeLayer(layer.id);
+            // rightMap.removeLayer(layer.id);
             if (leftMap.getSource('segments')) {
                 leftMap.removeSource('segments');
             }
-            if (rightMap.getSource('segments')) {
-                rightMap.removeSource('segments');
-            }
+            // if (rightMap.getSource('segments')) {
+                // rightMap.removeSource('segments');
+            // }
         });
 
         for (let i = 0; i < (pathLine.length - 1); i++) {
@@ -231,16 +232,16 @@ class MapHelper {
             data: sastavPathsCollection,
         });
 
-        rightMap.addSource('segments', {
-            type: 'geojson',
-            data: sastavPathsCollection,
-        });
+        // rightMap.addSource('segments', {
+        //     type: 'geojson',
+        //     data: sastavPathsCollection,
+        // });
 
         layersArray.forEach((layer) => {
             // leftMap.addLayer(layer, 'animpoint');
             // rightMap.addLayer(layer, 'animpoint');
             leftMap.addLayer(layer);
-            rightMap.addLayer(layer);
+            // rightMap.addLayer(layer);
         });
 
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('mapPathLayersRebuilt'));
