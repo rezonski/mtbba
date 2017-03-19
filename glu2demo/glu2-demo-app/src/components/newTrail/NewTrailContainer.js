@@ -145,8 +145,8 @@ class NewTrailContainer extends BasePage {
     handleNext() {
         const stepIndex = this.state.stepIndex;
         this.setState({
-            stepIndex: (stepIndex >= 4) ? stepIndex : (stepIndex + 1),
-            finished: stepIndex >= 4,
+            stepIndex: (stepIndex >= 5) ? stepIndex : (stepIndex + 1),
+            finished: stepIndex >= 5,
         });
     }
 

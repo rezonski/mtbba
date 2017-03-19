@@ -46,6 +46,11 @@ class Trail {
         MapHelper.hidePreviewTrailOnMap(previewMap);
     }
 
+    interpolatePathLine() {
+        this.interpolatedFeaturesCollection = JSON.parse(JSON.stringify(this.elevationNivelatedFeaturesCollection));
+        console.info('Trails.interpolatePathLine() - do nothing');
+    }
+
     translateByOffset(payload) {
         // let path = CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].geometry.coordinates;
         // console.log('Pre offset');
@@ -134,16 +139,7 @@ class Trail {
         return simplified;
     }
 
-    interpolatePathLine() {
-        this.interpolatedFeaturesCollection = TrailHelper.interpolatePathLine(this.elevationNivelatedFeaturesCollection);
-    }
-
     getEnrichedFeatureCollection() {
-        const enriched = TrailHelper.enrichPathLine(this.interpolatedFeaturesCollection);
-        return enriched;
-    }
-
-    getSimpleEnrichedFeatureCollection() {
         const enriched = TrailHelper.enrichPathLine(this.elevationNivelatedFeaturesCollection);
         return enriched;
     }
@@ -191,8 +187,6 @@ class Trail {
 
     generateWaypoints(maps) {
         const enrichedFeaturesCollection = this.getEnrichedFeatureCollection();
-        // const enrichedFeaturesCollection = this.getSimpleEnrichedFeatureCollection();
-        // const computedWaypoints = WaypointHelper.generateWaypoints(maps.leftMap, maps.rightMap, enrichedFeaturesCollection);
         const computedWaypoints = WaypointHelper.generateWaypoints(maps.leftMap, enrichedFeaturesCollection);
         this.waypoints = computedWaypoints;
         return this.waypoints;
@@ -200,7 +194,7 @@ class Trail {
 
     reBuildMapLayers(maps) {
         // this.mapPathLayers = MapHelper.reBuildPathLayers(this.mapPathLayers, maps.leftMap, maps.rightMap, this.surfaceCollection, this.pathLine, this.generalFact);
-        const enrichedFeaturesCollection = this.getSimpleEnrichedFeatureCollection();
+        const enrichedFeaturesCollection = this.getEnrichedFeatureCollection();
         // this.mapPathLayers = MapHelper.reBuildPathLayers(this.mapPathLayers, maps.leftMap, maps.rightMap, enrichedFeaturesCollection);
         this.mapPathLayers = MapHelper.reBuildPathLayers(this.mapPathLayers, maps.leftMap, enrichedFeaturesCollection);
     }
@@ -292,7 +286,7 @@ class Trail {
 
     getChartData(containerId) {
         // const chartData = ChartHelper.getChartSetup(containerId, trailFacts.trailName, this.chartWaypoints, this.profileMapPathLine, this.surfaceCollection);
-        const enrichedFeaturesCollection = this.getSimpleEnrichedFeatureCollection();
+        const enrichedFeaturesCollection = this.getEnrichedFeatureCollection();
         const chartData = ChartHelper.getChartSetup(containerId, enrichedFeaturesCollection);
         return chartData;
     }

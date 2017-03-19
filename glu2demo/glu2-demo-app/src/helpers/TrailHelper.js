@@ -19,9 +19,10 @@ class TrailHelper extends GLU.Controller {
     }
 
     simplifyLineString(featuresCollection) {
-        let returnCollection = JSON.parse(JSON.stringify(featuresCollection));
-        CommonHelper.getLineStrings(returnCollection).forEach((feature, featureIndex) => {
-            returnCollection[featureIndex] = turf.simplify(feature, 0.01, true); // feature, tolerance, highQuality
+        const inputLines = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)));
+        let inputPoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(featuresCollection)));
+        inputLines.forEach((feature) => {
+            inputPoints.push(turf.simplify(feature, 0.01, true)); // feature, tolerance, highQuality
         });
         const progressPayload = {
             status: 'progress',
@@ -31,7 +32,7 @@ class TrailHelper extends GLU.Controller {
         };
         GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, progressPayload);
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endSimplifyingRoute'));
-        return returnCollection;
+        return inputPoints;
     }
 
     nivelatePathLine(featuresCollection) {
@@ -62,53 +63,53 @@ class TrailHelper extends GLU.Controller {
         return elevationNivelatedFeaturesCollection;
     }
 
-    interpolatePathLine(featuresCollection) {
-        let interpolatedPathLine = [];
-        let prevPoint = [];
-        // let currLocOut = {};
-        const nivelatedPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
-        nivelatedPathLine.forEach((location, index) => {
-            const segmentDistanceMeters = (turf.distance(turf.point([prevPoint[0], prevPoint[1]]), turf.point([location[0], location[1]])) * 1000); // in meters
-            if (index > 0) {
-                if (segmentDistanceMeters > 10) {
-                    const countAdditionSegments = Math.round(segmentDistanceMeters / 5);
-                    const elevStep = (location[2] - prevPoint[2]) / countAdditionSegments;
-                    const lineSegment = {
-                        type: 'Feature',
-                        geometry: {
-                            type: 'LineString',
-                            coordinates: [prevPoint, location],
-                        },
-                    };
-                    for (let i = 0; i < countAdditionSegments; i++) {
-                        // console.log('Calculate distance using Turf.js');
-                        const segment = turf.along(lineSegment, i / (segmentDistanceMeters * 1000), 'kilometers'); // ovo je ok
-                        // console.log('Distance: ' + segment);
-                        const newPoint = segment.geometry.coordinates;
-                        newPoint.push((prevPoint[2] + (i * elevStep))); // add elevation to new points
-                        interpolatedPathLine.push(newPoint);
-                    }
-                } else {
-                    interpolatedPathLine.push(location);
-                }
-            } else {
-                interpolatedPathLine.push(location);
-            }
-            prevPoint = JSON.parse(JSON.stringify(location));
-        });
+    // interpolatePathLine(featuresCollection) {
+    //     let interpolatedPathLine = [];
+    //     let prevPoint = [];
+    //     // let currLocOut = {};
+    //     const nivelatedPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
+    //     nivelatedPathLine.forEach((location, index) => {
+    //         const segmentDistanceMeters = (turf.distance(turf.point([prevPoint[0], prevPoint[1]]), turf.point([location[0], location[1]])) * 1000); // in meters
+    //         if (index > 0) {
+    //             if (segmentDistanceMeters > 10) {
+    //                 const countAdditionSegments = Math.round(segmentDistanceMeters / 5);
+    //                 const elevStep = (location[2] - prevPoint[2]) / countAdditionSegments;
+    //                 const lineSegment = {
+    //                     type: 'Feature',
+    //                     geometry: {
+    //                         type: 'LineString',
+    //                         coordinates: [prevPoint, location],
+    //                     },
+    //                 };
+    //                 for (let i = 0; i < countAdditionSegments; i++) {
+    //                     // console.log('Calculate distance using Turf.js');
+    //                     const segment = turf.along(lineSegment, i / (segmentDistanceMeters * 1000), 'kilometers'); // ovo je ok
+    //                     // console.log('Distance: ' + segment);
+    //                     const newPoint = segment.geometry.coordinates;
+    //                     newPoint.push((prevPoint[2] + (i * elevStep))); // add elevation to new points
+    //                     interpolatedPathLine.push(newPoint);
+    //                 }
+    //             } else {
+    //                 interpolatedPathLine.push(location);
+    //             }
+    //         } else {
+    //             interpolatedPathLine.push(location);
+    //         }
+    //         prevPoint = JSON.parse(JSON.stringify(location));
+    //     });
 
-        let interpolatedFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
-        CommonHelper.getLineStrings(interpolatedFeaturesCollection)[0].geometry.coordinates = interpolatedPathLine;
-        return interpolatedFeaturesCollection;
-    }
+    //     let interpolatedFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
+    //     CommonHelper.getLineStrings(interpolatedFeaturesCollection)[0].geometry.coordinates = interpolatedPathLine;
+    //     return interpolatedFeaturesCollection;
+    // }
 
     enrichPathLine(featuresCollection) {
         let enrichedPathLine = [];
         let prevLoc = {};
         let prevPoint = [];
         // let currLocOut = {};
-        const interpolatedPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
-        interpolatedPathLine.forEach((location, index) => {
+        const pathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
+        pathLine.forEach((location, index) => {
             let elevationCalc = 0;
             let currLoc;
             if (index > 0) {
@@ -196,13 +197,18 @@ class TrailHelper extends GLU.Controller {
         exportGeneralFacts.elevLoss = totalelevloss;
 
         // Bounds calculation
-        const lonDelta = (maxLon - minLon) / 1;
-        const latDelta = (maxLat - minLat) / 1;
-        exportGeneralFacts.bounds = [[(maxLon + lonDelta), (maxLat + latDelta)], [(minLon - lonDelta), (minLat - latDelta)]];
+        // const lonDelta = (maxLon - minLon) / 1;
+        // const latDelta = (maxLat - minLat) / 1;
+        // exportGeneralFacts.bounds = [[(maxLon + lonDelta), (maxLat + latDelta)], [(minLon - lonDelta), (minLat - latDelta)]];
+        exportGeneralFacts.bounds = turf.bbox(featuresCollection);
 
-        const lonCenter = (maxLon + minLon) / 2;
-        const latCenter = (maxLat + minLat) / 2;
-        exportGeneralFacts.center = [lonCenter, latCenter];
+        // Center
+        // const lonCenter = (maxLon + minLon) / 2;
+        // const latCenter = (maxLat + minLat) / 2;
+        // exportGeneralFacts.center = [lonCenter, latCenter];
+        exportGeneralFacts.center = turf.centerOfMass(featuresCollection).geometry.coordinates;
+
+        // Elevation extremes
         exportGeneralFacts.elevMin = minElev;
         exportGeneralFacts.elevMax = maxElev;
 

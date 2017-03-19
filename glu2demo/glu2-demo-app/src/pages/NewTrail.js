@@ -9,7 +9,7 @@ class NewTrail extends BasePage {
     }
 
     componentDidMount() {
-        console.info('NewTrail DidMount');
+        // console.info('NewTrail DidMount');
         this.emit('RETRIEVE_MAP_INIT');
     }
 

@@ -245,7 +245,8 @@ class DataController extends GLU.Controller {
         let badPoints = [];
         TrailsDataModel.activeTrail.elevatedFeaturesCollection = JSON.parse(JSON.stringify(TrailsDataModel.activeTrail.simplifiedFeaturesCollection));
         const elevatedFeaturesCollection = TrailsDataModel.activeTrail.elevatedFeaturesCollection;
-        let elevatedPathLine = CommonHelper.getLineStrings(elevatedFeaturesCollection)[0].geometry.coordinates;
+        const elevatedPathLines = CommonHelper.getLineStrings(elevatedFeaturesCollection);
+        let elevatedPathLine = elevatedPathLines[0].geometry.coordinates;
         elevatedPathLine.forEach((location, index) => {
             if (location[2] === undefined || location[2] === 0) {
                 badPoints.push({
@@ -411,16 +412,16 @@ class DataController extends GLU.Controller {
     }
 
     setWaypointsThumbnails(waypoints, WPindex) {
-        // console.log('setWaypointsThumbnails(' + waypoints + ', ' + WPindex + ') - -  waypoints.length = ' + waypoints.length);
+        console.log('setWaypointsThumbnails(' + waypoints + ', ' + WPindex + ') - -  waypoints.length = ' + waypoints.length);
         if (WPindex < waypoints.length) {
-            // console.log('progressFixWPs WPindex < waypoints.length!');
+            console.log('progressFixWPs WPindex < waypoints.length!');
             const query = {
                 geojson: JSON.stringify(waypoints[WPindex].properties.wpGeoJSON),
                 mapParams: waypoints[WPindex].geometry.coordinates[0] + ',' + waypoints[WPindex].geometry.coordinates[1] + ',17',
                 fileName: CommonHelper.getUUID() + '.png',
             };
-            // console.log('setWaypointsThumbnails(' + waypoints + ',' + WPindex + ')');
-            // console.log(query);
+            console.log('setWaypointsThumbnails(' + waypoints + ',' + WPindex + ')');
+            console.log(query);
             API.Trails.getWPThumbnail({ query })
             .then((response) => {
                 if (response.text.substring(0, 6) === '#Error') {
@@ -429,8 +430,8 @@ class DataController extends GLU.Controller {
                 } else if (response.text.substring(0, 3) === '#OK') {
                     const parsedResponseArray = response.text.split(': ');
                     TrailsDataModel.activeTrail.setDataByName('waypoints', WPindex, 'pictureUrl', appConfig.constants.server + parsedResponseArray[1]);
-                    // console.log('WP thumbnail URL:');
-                    // console.log(appConfig.constants.server + parsedResponseArray[1]);
+                    console.log('WP thumbnail URL:');
+                    console.log(appConfig.constants.server + parsedResponseArray[1]);
                     GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, {
                         status: 'progress',
                         id: 'progressFixWPs',
@@ -452,7 +453,7 @@ class DataController extends GLU.Controller {
                 }, 100);
             });
         } else {
-            // console.log('progressFixWPs COMPLETED!');
+            console.log('progressFixWPs COMPLETED!');
             GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, {
                 status: 'progress',
                 id: 'progressFixWPs',

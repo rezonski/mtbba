@@ -70,35 +70,59 @@ class MapHelper {
             lineLayerPreview.layout['line-join'] = 'round';
             lineLayerPreview.layout['line-cap'] = 'round';
             lineLayerPreview.paint = {};
-            lineLayerPreview.paint['line-color'] = 'rgba(255,255,255,0.8)';
-            lineLayerPreview.paint['line-width'] = 3;
-            lineLayerPreview.paint['line-dasharray'] = [2, 2];
+            lineLayerPreview.paint['line-color'] = 'rgba(255,0,0,0.1)';
+            lineLayerPreview.paint['line-width'] = 10;
+            // lineLayerPreview.paint['line-dasharray'] = [2, 2];
             previewMap.addLayer(lineLayerPreview);
+
+            // const besierLine = turf.bezier(JSON.parse(JSON.stringify(lineStrings[0])), 100000, 2);
+            // const besierCollection = turf.featurecollection([besierLine]);
+
+            // console.log('Initial: ' + lineStrings[0].geometry.coordinates.length + ' , besier: ' + besierLine.geometry.coordinates.length);
+
+            // previewMap.addSource('besierPreviewCollection', {
+            //     type: 'geojson',
+            //     data: besierCollection,
+            // });
+
+            // const besierLineLayerPreview = {};
+            // besierLineLayerPreview.id = 'besierPreviewCollection';
+            // besierLineLayerPreview.type = 'line';
+            // besierLineLayerPreview.source = 'besierPreviewCollection';
+            // besierLineLayerPreview.layout = {};
+            // besierLineLayerPreview.layout['line-join'] = 'round';
+            // besierLineLayerPreview.layout['line-cap'] = 'round';
+            // besierLineLayerPreview.paint = {};
+            // besierLineLayerPreview.paint['line-color'] = 'rgba(0,255,255,0.6)';
+            // besierLineLayerPreview.paint['line-width'] = 6;
+            // previewMap.addLayer(besierLineLayerPreview);
 
             previewMap.flyTo({ center: [firstPoint[0][0], firstPoint[0][1]], zoom: 15 });
 
-            const collectionId = Draw.set(intialisedCollection);
-            console.log(collectionId);
+            Draw.set(intialisedCollection);
+            // const collectionId = Draw.set(intialisedCollection);
+            // console.log(collectionId);
 
             previewMap.on('lineSlice', p => {
                 const waypointsOnly = CommonHelper.getPoints(JSON.parse(JSON.stringify(intialisedCollection)));
                 const linesOnly = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(intialisedCollection)));
-                console.log('position ' + JSON.stringify(p.position) + ' picked');
+                // console.log('position ' + JSON.stringify(p.position) + ' picked');
                 const fromPoint = turf.point(firstPoint[0]);
                 const toPoint = turf.point([p.position.lng, p.position.lat]);
-                console.log('lineStrings length : ' + linesOnly[0].geometry.coordinates.length);
+                // console.log('lineStrings length : ' + linesOnly[0].geometry.coordinates.length);
                 const sliced = turf.lineSlice(fromPoint, toPoint, linesOnly[0]);
-                console.log('sliced length : ' + sliced.geometry.coordinates.length);
-                console.log(sliced);
-                console.log('setting new preview data 4 path line');
+                // console.log('sliced length : ' + sliced.geometry.coordinates.length);
+                // console.log(sliced);
+                // console.log('setting new preview data 4 path line');
                 waypointsOnly.push(sliced);
                 intialisedCollection = turf.featurecollection(waypointsOnly);
                 previewMap.getSource('previewCollection').setData(intialisedCollection);
 
-                const newCollectionId = Draw.set(intialisedCollection);
-                console.log(newCollectionId);
+                Draw.set(intialisedCollection);
+                // const newCollectionId = Draw.set(intialisedCollection);
+                // console.log(newCollectionId);
 
-                console.log('new preview data set');
+                // console.log('new preview data set');
             });
 
             previewMap.on('saveEditedPath', () => {
@@ -106,7 +130,7 @@ class MapHelper {
                 GLU.bus.emit(Enum.DataEvents.SAVE_MANUAL_EDITED_FILE, editedCollection);
             });
         } else {
-            console.info('Source&layer "previewCollection" already exists');
+            // console.warn('Source&layer "previewCollection" already exists');
         }
     }
 

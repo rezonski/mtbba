@@ -16,7 +16,7 @@ class WaypointHelper extends GLU.Controller {
 
     generateWPointGeoJSON(currentIndex, newWaypoint, inputPathLine) {
         const pointIndex = parseInt(currentIndex, 10);
-        const offset = 50;
+        const offset = 30;
         const pointFromIndex = ((pointIndex - offset) < 0) ? 0 : (pointIndex - offset);
         const pointToIndex = ((pointIndex + offset) > (inputPathLine.length - 1)) ? (inputPathLine.length - 1) : (pointIndex + offset);
         let inPathCoordinates = [];
@@ -57,6 +57,7 @@ class WaypointHelper extends GLU.Controller {
     // generateWaypoints(leftMap, rightMap, featuresCollection) {
     generateWaypoints(leftMap, featuresCollection) {
         const inputPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
+        // const elevatedPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(elevatedFeaturesCollection)))[0].geometry.coordinates;
         let inputWaypoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(featuresCollection)));
         const startPathPoint = turf.point([inputPathLine[0].lon, inputPathLine[0].lat], { name: 'Start', pictogram: '90' });
         const endPathPoint = turf.point([inputPathLine[inputPathLine.length - 1].lon, inputPathLine[inputPathLine.length - 1].lat], { name: 'Finish', pictogram: '270' });
@@ -196,6 +197,8 @@ class WaypointHelper extends GLU.Controller {
         pointLayer.layout = {};
         pointLayer.layout['icon-image'] = 'monument-15';
         pointLayer.layout['text-field'] = '{id}';
+        pointLayer.layout['text-anchor'] = 'top';
+        pointLayer.layout['text-offset'] = [0, 1];
         pointLayer.paint = {};
         pointLayer.paint['icon-color'] = '#FF0000';
         pointLayer.paint['icon-halo-color'] = '#FFFFFF';
