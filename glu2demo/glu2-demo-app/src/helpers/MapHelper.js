@@ -76,7 +76,7 @@ class MapHelper {
             previewMap.addLayer(lineLayerPreview);
 
             // const besierLine = turf.bezier(JSON.parse(JSON.stringify(lineStrings[0])), 100000, 2);
-            // const besierCollection = turf.featurecollection([besierLine]);
+            // const besierCollection = turf.featureCollection([besierLine]);
 
             // console.log('Initial: ' + lineStrings[0].geometry.coordinates.length + ' , besier: ' + besierLine.geometry.coordinates.length);
 
@@ -115,7 +115,7 @@ class MapHelper {
                 // console.log(sliced);
                 // console.log('setting new preview data 4 path line');
                 waypointsOnly.push(sliced);
-                intialisedCollection = turf.featurecollection(waypointsOnly);
+                intialisedCollection = turf.featureCollection(waypointsOnly);
                 previewMap.getSource('previewCollection').setData(intialisedCollection);
 
                 Draw.set(intialisedCollection);

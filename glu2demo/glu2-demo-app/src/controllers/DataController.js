@@ -273,8 +273,7 @@ class DataController extends GLU.Controller {
             GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, elevationProgressPayload);
             GLU.bus.emit(Enum.DataEvents.START_FLATTENING_PATH);
         }
-    }
-
+    }x
     checkAddElevation(elevatedPathLine, badPoints, startIndex) {
         // console.log('checkAddElevation(' + badPoints.length + ', ' + startIndex + ')');
         let currentProgressPayload = {

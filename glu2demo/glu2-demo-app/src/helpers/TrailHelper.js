@@ -22,7 +22,8 @@ class TrailHelper extends GLU.Controller {
         const inputLines = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)));
         let inputPoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(featuresCollection)));
         inputLines.forEach((feature) => {
-            inputPoints.push(turf.simplify(feature, 0.01, true)); // feature, tolerance, highQuality
+            // inputPoints.push(turf.simplify(feature, 0.001, true)); // feature, tolerance, highQuality
+            inputPoints.push(feature); // feature, tolerance, highQuality
         });
         const progressPayload = {
             status: 'progress',
@@ -32,7 +33,8 @@ class TrailHelper extends GLU.Controller {
         };
         GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, progressPayload);
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endSimplifyingRoute'));
-        return inputPoints;
+        const returnCollection = turf.featureCollection(inputPoints);
+        return returnCollection;
     }
 
     nivelatePathLine(featuresCollection) {
@@ -206,7 +208,8 @@ class TrailHelper extends GLU.Controller {
         // const lonCenter = (maxLon + minLon) / 2;
         // const latCenter = (maxLat + minLat) / 2;
         // exportGeneralFacts.center = [lonCenter, latCenter];
-        exportGeneralFacts.center = turf.centerOfMass(featuresCollection).geometry.coordinates;
+        const centerOfMass = turf.center(featuresCollection);
+        exportGeneralFacts.center = centerOfMass.geometry.coordinates;
 
         // Elevation extremes
         exportGeneralFacts.elevMin = minElev;

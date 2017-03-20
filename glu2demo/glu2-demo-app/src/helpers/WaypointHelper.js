@@ -28,12 +28,12 @@ class WaypointHelper extends GLU.Controller {
         for (let j = parseInt(pointIndex, 10); j <= pointToIndex; j++) {
             outPathCoordinates.push([inputPathLine[j].lon, inputPathLine[j].lat]);
         }
-        const inPathFeature = turf.linestring(inPathCoordinates, {
+        const inPathFeature = turf.lineString(inPathCoordinates, {
             name: 'Input line',
             stroke: '#CC1111',
             'stroke-width': 3,
         });
-        const outPathFeature = turf.linestring(outPathCoordinates, {
+        const outPathFeature = turf.lineString(outPathCoordinates, {
             name: 'Output line',
             stroke: '#11FF11',
             'stroke-width': 3,
@@ -50,7 +50,7 @@ class WaypointHelper extends GLU.Controller {
             features.push(outPathFeature);
         }
         features.push(currentWaypoint);
-        const wpGeoJSON = turf.featurecollection(features);
+        const wpGeoJSON = turf.featureCollection(features);
         newWaypoint.wpGeoJSON = wpGeoJSON;
     }
 
