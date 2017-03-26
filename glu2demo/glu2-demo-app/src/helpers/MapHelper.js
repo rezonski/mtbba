@@ -5,7 +5,7 @@ import Enum from '/enums/Enum';
 import MessageEvents from '/enums/MessageEvents';
 import TrailHelper from '/helpers/TrailHelper';
 import CommonHelper from '/helpers/CommonHelper';
-import ReturnPathSplitterControl from '/components/map/ReturnPathSplitterControl';
+import MapEditControl from '/components/map/MapEditControl';
 import SavePathControl from '/components/map/SavePathControl';
 import Lang from '/helpers/Lang';
 
@@ -45,7 +45,7 @@ class MapHelper {
             window.Draw = Draw;
             previewMap.addControl(Draw);
 
-            const returnPathSplitterControl = new ReturnPathSplitterControl({});
+            const returnPathSplitterControl = new MapEditControl({});
             window.returnPathSplitterControl = returnPathSplitterControl;
             previewMap.addControl(returnPathSplitterControl);
 
@@ -126,6 +126,11 @@ class MapHelper {
             });
 
             previewMap.on('saveEditedPath', () => {
+                const editedCollection = window.Draw.getAll();
+                GLU.bus.emit(Enum.DataEvents.SAVE_MANUAL_EDITED_FILE, editedCollection);
+            });
+
+            previewMap.on('askForTerrainCode', () => {
                 const editedCollection = window.Draw.getAll();
                 GLU.bus.emit(Enum.DataEvents.SAVE_MANUAL_EDITED_FILE, editedCollection);
             });
