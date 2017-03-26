@@ -130,10 +130,10 @@ class MapHelper {
                 GLU.bus.emit(Enum.DataEvents.SAVE_MANUAL_EDITED_FILE, editedCollection);
             });
 
-            previewMap.on('askForTerrainCode', () => {
-                const editedCollection = window.Draw.getAll();
-                GLU.bus.emit(Enum.DataEvents.SAVE_MANUAL_EDITED_FILE, editedCollection);
-            });
+            // previewMap.on('askForTerrainCode', () => {
+            //     const editedCollection = window.Draw.getAll();
+            //     GLU.bus.emit(Enum.DataEvents.SAVE_MANUAL_EDITED_FILE, editedCollection);
+            // });
         } else {
             // console.warn('Source&layer "previewCollection" already exists');
         }

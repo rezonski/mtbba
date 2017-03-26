@@ -1,3 +1,7 @@
+import GLU from '/../../glu2.js/src/index';
+import Lang from '/helpers/Lang';
+import MessageEvents from '/enums/MessageEvents';
+
 class MapEditControl {
     onAdd(map) {
         this._map = map;
@@ -5,7 +9,7 @@ class MapEditControl {
         this._container.className = 'mapboxgl-ctrl-group mapboxgl-ctrl';
 
         // Splitter
-        this._trailSpritterButtonActive = false;
+        this.onSplitterEvent = this.onSplitter.bind(this);
         this._trailSpritterButton = document.createElement('button');
         this._trailSpritterButton.className = 'mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw-split';
         this._trailSpritterButton.title = 'Split trail line string near the selected point on map';
@@ -36,14 +40,11 @@ class MapEditControl {
         this._map = undefined;
     }
 
-    onSplitterEvent() {
-        this._trailSpritterButtonActive = false;
+    onSplitter() {
         window.leftmap.on('click', e => {
-            if (!this._trailSpritterButtonActive) {
-                console.log('onSplitterEvent(' + e.lngLat + ')');
-                window.leftmap.fire('lineSlice', { position: e.lngLat });
-                this._trailSpritterButtonActive = true;
-            }
+            console.log('onSplitterEvent(' + e.lngLat + ')');
+            window.leftmap.fire('lineSlice', { position: e.lngLat });
+            window.removeEventListener('click', this.onSplitterEvent, false);
         });
     }
 
@@ -62,8 +63,9 @@ class MapEditControl {
         this._addTerrainSwitchButtonActive = false;
         window.leftmap.on('click', e => {
             if (!this._addTerrainSwitchButtonActive) {
+                GLU.bus.emit(MessageEvents.LONGER_INFO_MESSAGE, Lang.msg('keypress4surfaceType'));
                 this._addTerrainSwitchButtonActive = true;
-                window.leftmap.fire('askForTerrainCode', { position: e.lngLat });
+                // window.leftmap.fire('askForTerrainCode', { position: e.lngLat });
                 console.log('onAddTerrainSwitchEvent(' + e.lngLat + ')');
                 window.addEventListener('keydown', keyEvent => {
                     console.log(keyEvent.keyCode);
