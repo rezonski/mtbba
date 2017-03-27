@@ -9,6 +9,7 @@ import MainToolbar from '../components/menu/MainToolbar';
 import MapController from '../controllers/MapController';
 import DataController from '../controllers/DataController';
 import WPDrawer from '../components/wpEditor/WPDrawer';
+import WPModalEditor from '../components/wpEditor/WPModalEditor';
 
 class Root extends BasePage {
     constructor(params) {
@@ -46,9 +47,7 @@ class Root extends BasePage {
                     <div className="overlay bottom right">
                         <NewEditActionButton />
                     </div>
-                    {/*<div className="overlay top right">
-                        <SnapToNorth />
-                    </div>*/}
+                    <WPModalEditor />
                 </div>
             </div>
         );

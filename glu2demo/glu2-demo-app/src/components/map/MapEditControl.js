@@ -1,6 +1,7 @@
 import GLU from '/../../glu2.js/src/index';
 import Lang from '/helpers/Lang';
 import MessageEvents from '/enums/MessageEvents';
+import Enum from '/enums/Enum';
 
 class MapEditControl {
     onAdd(map) {
@@ -9,7 +10,7 @@ class MapEditControl {
         this._container.className = 'mapboxgl-ctrl-group mapboxgl-ctrl';
 
         // Splitter
-        this.onSplitterEvent = this.onSplitter.bind(this);
+        this._addtrailSpritterButtonActive = false;
         this._trailSpritterButton = document.createElement('button');
         this._trailSpritterButton.className = 'mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw-split';
         this._trailSpritterButton.title = 'Split trail line string near the selected point on map';
@@ -41,10 +42,13 @@ class MapEditControl {
     }
 
     onSplitter() {
+        this._addtrailSpritterButtonActive = false;
         window.leftmap.on('click', e => {
-            console.log('onSplitterEvent(' + e.lngLat + ')');
-            window.leftmap.fire('lineSlice', { position: e.lngLat });
-            window.removeEventListener('click', this.onSplitterEvent, false);
+            if (!this._addtrailSpritterButtonActive) {
+                console.log('onSplitterEvent(' + e.lngLat + ')');
+                window.leftmap.fire('lineSlice', { position: e.lngLat });
+                this._addtrailSpritterButtonActive = true;
+            }
         });
     }
 
@@ -53,7 +57,8 @@ class MapEditControl {
         window.leftmap.on('click', e => {
             if (!this._addWaypointButtonActive) {
                 console.log('onAddWaypointEvent(' + e.lngLat + ')');
-                window.leftmap.fire('addNewWaypoint', { position: e.lngLat });
+                GLU.bus.emit(Enum.DataEvents.ADD_NEW_WAYPOINT, { position: e.lngLat });
+                // window.leftmap.fire('addNewWaypoint', { position: e.lngLat });
                 this._addWaypointButtonActive = true;
             }
         });
@@ -67,10 +72,17 @@ class MapEditControl {
                 this._addTerrainSwitchButtonActive = true;
                 // window.leftmap.fire('askForTerrainCode', { position: e.lngLat });
                 console.log('onAddTerrainSwitchEvent(' + e.lngLat + ')');
+                this._keylistenerActive = false;
                 window.addEventListener('keydown', keyEvent => {
-                    console.log(keyEvent.keyCode);
-                    window.leftmap.fire('addTerrainSwitch', { position: e.lngLat });
-                    window.removeEventListener('keydown', false);
+                    if (!this._keylistenerActive) {
+                        if (keyEvent.keyCode === 77 || keyEvent.keyCode === 65 || keyEvent.keyCode === 83 || keyEvent.keyCode === 78) {
+                            keyEvent.preventDefault();
+                            const parsedChar = String.fromCharCode(keyEvent.keyCode);
+                            console.log('keyEvent.keyCode = ' + keyEvent.keyCode + ' - ' + parsedChar);
+                            window.leftmap.fire('addTerrainSwitch', { position: e.lngLat, surface: parsedChar });
+                            this._keylistenerActive = true;
+                        }
+                    }
                 });
             }
         });

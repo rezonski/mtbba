@@ -115,29 +115,38 @@ class WaypointHelper extends GLU.Controller {
                     tempDesc = '';
                     tempPictogram = (wpoint.properties.pictogram !== undefined) ? wpoint.properties.pictogram : '90';
                 }
-                const newWaypoint = {
-                    id: wpindex,
-                    time: (wpoint.properties.time !== undefined) ? wpoint.properties.time : null,
-                    name: wpoint.properties.name,
-                    desc: tempDesc,
-                    elevGain: Math.round(inputPathLine[tempIndex].elevGain * 100) / 100,
-                    elevLoss: Math.round(inputPathLine[tempIndex].elevLoss * 100) / 100,
-                    nextElevGain: 0,
-                    nextElevLoss: 0,
-                    odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
-                    nextStepDist: 0,
-                    symbol: this.symbolFromDesc(tempDesc, tempPictogram, wpoint.properties.name),
-                    pictogram: tempPictogram,
-                    pictureUrl: (wpoint.properties.pictureUrl !== undefined) ? wpoint.properties.pictureUrl : '',
-                    elevationProfile: 0,
-                    // lon: inputPathLine[tempIndex].lon,
-                    // lat: inputPathLine[tempIndex].lat,
-                    lon: wpoint.geometry.coordinates[0],
-                    lat: wpoint.geometry.coordinates[1],
-                    elevation: inputPathLine[tempIndex].elevation,
-                };
-                this.generateWPointGeoJSON(tempIndex, newWaypoint, inputPathLine);
-                newWaypoints.push(newWaypoint);
+
+                if (wpoint.properties.type && wpoint.properties.type === 'terrainSwitch') {
+                    const payload = {
+                        odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
+                        surfaceType: wpoint.properties.surfaceType,
+                    };
+                    GLU.bus.emit(Enum.DataEvents.ADD_SURFACE_CHANGE, payload);
+                } else {
+                    const newWaypoint = {
+                        id: wpindex,
+                        time: (wpoint.properties.time !== undefined) ? wpoint.properties.time : null,
+                        name: wpoint.properties.name,
+                        desc: tempDesc,
+                        elevGain: Math.round(inputPathLine[tempIndex].elevGain * 100) / 100,
+                        elevLoss: Math.round(inputPathLine[tempIndex].elevLoss * 100) / 100,
+                        nextElevGain: 0,
+                        nextElevLoss: 0,
+                        odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
+                        nextStepDist: 0,
+                        symbol: this.symbolFromDesc(tempDesc, tempPictogram, wpoint.properties.name),
+                        pictogram: tempPictogram,
+                        pictureUrl: (wpoint.properties.pictureUrl !== undefined) ? wpoint.properties.pictureUrl : '',
+                        elevationProfile: 0,
+                        // lon: inputPathLine[tempIndex].lon,
+                        // lat: inputPathLine[tempIndex].lat,
+                        lon: wpoint.geometry.coordinates[0],
+                        lat: wpoint.geometry.coordinates[1],
+                        elevation: inputPathLine[tempIndex].elevation,
+                    };
+                    this.generateWPointGeoJSON(tempIndex, newWaypoint, inputPathLine);
+                    newWaypoints.push(newWaypoint);
+                }
             }
             waypointsProgressPayload.loaded = parseInt((wpindex + 1), 10);
             // GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, waypointsProgressPayload);

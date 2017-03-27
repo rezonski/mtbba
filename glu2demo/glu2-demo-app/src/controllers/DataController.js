@@ -32,6 +32,7 @@ class DataController extends GLU.Controller {
             [Enum.MapEvents.REQUEST_DISPLAY_PATH_LAYERS]: this.onRequestMapLayers,
             [Enum.DataEvents.SAVE_TRAILDATA2MODEL]: this.setTrailData2Model,
             [Enum.DataEvents.UPDATE_TRAILDATA2MODEL]: this.updateTrailData2Model,
+            [Enum.DataEvents.ADD_SURFACE_CHANGE]: this.addSurfaceChange,
             [Enum.DataEvents.RETRIEVE_TRAIL_DATA]: this.getTrailData,
             [Enum.DataEvents.RETRIEVE_CHART_DATA]: this.getChartData,
             [Enum.DataEvents.RETRIEVE_TRAILS_LIST]: this.getTrailsList,
@@ -142,6 +143,15 @@ class DataController extends GLU.Controller {
         if (payload.name === 'surfaceCollection') {
             GLU.bus.emit(Enum.MapEvents.REBUILD_PATH_LAYERS);
         }
+    }
+
+    addSurfaceChange(payload) {
+        let currentSurfaceCollection = TrailsDataModel.activeTrail.getTrailData().surfaceCollection;
+        currentSurfaceCollection.push([payload.odometer, payload.surfaceType]);
+        this.updateTrailData2Model({
+            name: 'surfaceCollection',
+            value: currentSurfaceCollection,
+        });
     }
 
     getChartData(containerId) {

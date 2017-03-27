@@ -33,6 +33,10 @@ class MapHelper {
     }
 
     previewTrailOnMap(pointsCollection, initCollection, previewMap) {
+        let intialisedCollection = JSON.parse(JSON.stringify(initCollection));
+        const lineStrings = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(initCollection)));
+        const firstPoint = lineStrings[0].geometry.coordinates;
+
         if (!previewMap.getSource('previewCollection')) {
             const Draw = new MapboxDraw({
                 displayControlsDefault: false,
@@ -53,9 +57,6 @@ class MapHelper {
             window.savePathControl = savePathControl;
             previewMap.addControl(savePathControl);
 
-            let intialisedCollection = JSON.parse(JSON.stringify(initCollection));
-            const lineStrings = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(initCollection)));
-            const firstPoint = lineStrings[0].geometry.coordinates;
 
             previewMap.addSource('previewCollection', {
                 type: 'geojson',
@@ -72,36 +73,11 @@ class MapHelper {
             lineLayerPreview.paint = {};
             lineLayerPreview.paint['line-color'] = 'rgba(255,0,0,0.1)';
             lineLayerPreview.paint['line-width'] = 10;
-            // lineLayerPreview.paint['line-dasharray'] = [2, 2];
             previewMap.addLayer(lineLayerPreview);
-
-            // const besierLine = turf.bezier(JSON.parse(JSON.stringify(lineStrings[0])), 100000, 2);
-            // const besierCollection = turf.featureCollection([besierLine]);
-
-            // console.log('Initial: ' + lineStrings[0].geometry.coordinates.length + ' , besier: ' + besierLine.geometry.coordinates.length);
-
-            // previewMap.addSource('besierPreviewCollection', {
-            //     type: 'geojson',
-            //     data: besierCollection,
-            // });
-
-            // const besierLineLayerPreview = {};
-            // besierLineLayerPreview.id = 'besierPreviewCollection';
-            // besierLineLayerPreview.type = 'line';
-            // besierLineLayerPreview.source = 'besierPreviewCollection';
-            // besierLineLayerPreview.layout = {};
-            // besierLineLayerPreview.layout['line-join'] = 'round';
-            // besierLineLayerPreview.layout['line-cap'] = 'round';
-            // besierLineLayerPreview.paint = {};
-            // besierLineLayerPreview.paint['line-color'] = 'rgba(0,255,255,0.6)';
-            // besierLineLayerPreview.paint['line-width'] = 6;
-            // previewMap.addLayer(besierLineLayerPreview);
 
             previewMap.flyTo({ center: [firstPoint[0][0], firstPoint[0][1]], zoom: 15 });
 
             Draw.set(intialisedCollection);
-            // const collectionId = Draw.set(intialisedCollection);
-            // console.log(collectionId);
 
             previewMap.on('lineSlice', p => {
                 const waypointsOnly = CommonHelper.getPoints(JSON.parse(JSON.stringify(intialisedCollection)));
@@ -117,12 +93,7 @@ class MapHelper {
                 waypointsOnly.push(sliced);
                 intialisedCollection = turf.featureCollection(waypointsOnly);
                 previewMap.getSource('previewCollection').setData(intialisedCollection);
-
                 Draw.set(intialisedCollection);
-                // const newCollectionId = Draw.set(intialisedCollection);
-                // console.log(newCollectionId);
-
-                // console.log('new preview data set');
             });
 
             previewMap.on('saveEditedPath', () => {
@@ -130,12 +101,25 @@ class MapHelper {
                 GLU.bus.emit(Enum.DataEvents.SAVE_MANUAL_EDITED_FILE, editedCollection);
             });
 
-            // previewMap.on('askForTerrainCode', () => {
-            //     const editedCollection = window.Draw.getAll();
-            //     GLU.bus.emit(Enum.DataEvents.SAVE_MANUAL_EDITED_FILE, editedCollection);
-            // });
+            previewMap.on('addNewWaypoint', p => {
+                const newPoint = turf.point([p.position.lng, p.position.lat], { name: p.name, pictogram: p.pictogram });
+                console.log(newPoint);
+                intialisedCollection.features.push(newPoint);
+                previewMap.getSource('previewCollection').setData(intialisedCollection);
+                Draw.set(intialisedCollection);
+                previewMap.leftmap.fire('saveEditedPath');
+            });
+
+            previewMap.on('addTerrainSwitch', p => {
+                intialisedCollection.features.push(turf.point([p.position.lng, p.position.lat], { type: 'terrainSwitch', surfaceType: p.surface }));
+                previewMap.getSource('previewCollection').setData(intialisedCollection);
+                Draw.set(intialisedCollection);
+                previewMap.leftmap.fire('saveEditedPath');
+            });
         } else {
-            // console.warn('Source&layer "previewCollection" already exists');
+            console.info('Source&layer "previewCollection" already exists');
+            previewMap.getSource('previewCollection').setData(intialisedCollection);
+            window.Draw.set(intialisedCollection);
         }
     }
 

@@ -5,83 +5,92 @@ import Lang from '/helpers/Lang';
 import Dialog from 'material-ui/Dialog';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
-
+import TextField from 'material-ui/TextField';
+import appConfig from '../../appConfig';
 
 class WPModalEditor extends BasePage {
     constructor(props) {
         super(props);
         this.state = {
             open: false,
-            title: Lang.label('opentrail'),
+            title: Lang.label('newWaypoint'),
+            name: 'Place #',
+            pictogram: '90',
         };
         this.onCloseEvent = this.handleClose.bind(this);
+        this.onSaveEvent = this.handleSave.bind(this);
     }
 
     componentDidMount() {
         this.bindGluBusEvents({
-            [Enum.AppEvents.OPEN_FORM_OPEN_TRAIL]: this.onOpenFormRequest,
-            [Enum.DataEvents.TRAILS_LIST_RETRIEVED]: this.onTrailsListRetrieved,
-            [Enum.DataEvents.TRAIL_DOWNLOADED]: this.onCloseEvent,
+            [Enum.DataEvents.ADD_NEW_WAYPOINT]: this.onOpenFormRequest,
         });
-        this.emit(Enum.DataEvents.RETRIEVE_TRAILS_LIST);
     }
 
     componentWillUnmount() {
         this.unbindGluBusEvents();
     }
 
-    onOpenFormRequest() {
+    onOpenFormRequest(payload) {
         this.setState({
             open: true,
+            position: payload.position,
         });
     }
 
-    onOpenSelectedTrail() {
-        const trailId = this.state.trails[this.selectedIndex].trailID;
-        this.emit(Enum.DataEvents.DOWNLOAD_TRAIL, trailId);
-    }
-
-    onRowSelected(rows) {
-        console.info(rows);
-        this.selectedIndex = (rows.length > 0) ? rows[0] : null;
-    }
-
     render() {
-        if (this.state.trails.length === 0) {
-            return null;
-        }
-        const styles = {
-            dialogContentStyle: {
-                width: '80%',
-                maxWidth: 'none',
-            },
+        const contentStyle = {
+            width: 300,
+            height: 300,
+            backgroundImage: 'url("' + appConfig.constants.server + '/svg/getsvg.php?opis=' + this.state.pictogram + '")',
         };
 
         const actions = [
             <FlatButton
                 label={Lang.label('cancel')}
                 primary={true}
-                onTouchTap={this.handleClose}
+                onTouchTap={this.onCloseEvent}
             />,
             <RaisedButton
-                label={Lang.label('opentrail')}
+                label={Lang.label('save')}
                 primary={true}
                 // disabled={this.state.openDisabled}
-                onTouchTap={this.onOpenSelectedTrailEvent}
+                onTouchTap={this.onSaveEvent}
             />,
         ];
 
         return (
             <Dialog
                 className="dialog"
-                contentStyle={styles.dialogContentStyle}
                 title={this.state.title}
                 modal={false}
                 open={this.state.open}
                 actions={actions}
                 onRequestClose={this.onCloseEvent}
             >
-                content
+                <div className="flex-container row">
+                    <div className="flex-container column">
+                        <div
+                            key="pictogram-preview"
+                            className="image-preview"
+                            style={contentStyle}
+                        />
+                    </div>
+                    <div className="flex-container column">
+                        <TextField
+                            id="wp-name"
+                            floatingLabelText="Enter waypoint/place name"
+                            value={this.state.name}
+                            onChange={this.changeName.bind(this)}
+                        />
+                        <TextField
+                            id="wp-pictogram"
+                            floatingLabelText="Enter waypoint pictogram code"
+                            value={this.state.pictogram}
+                            onChange={this.changePictogram.bind(this)}
+                        />
+                    </div>
+                </div>
             </Dialog>
         );
     }
@@ -89,6 +98,29 @@ class WPModalEditor extends BasePage {
     handleClose() {
         this.setState({
             open: false,
+        });
+    }
+
+    handleSave() {
+        window.leftmap.fire('addNewWaypoint', {
+            position: this.state.position,
+            name: this.state.name,
+            pictogram: this.state.pictogram,
+        });
+        this.setState({
+            open: false,
+        });
+    }
+
+    changeName(event) {
+        this.setState({
+            name: event.target.value,
+        });
+    }
+
+    changePictogram(event) {
+        this.setState({
+            pictogram: event.target.value,
         });
     }
 }

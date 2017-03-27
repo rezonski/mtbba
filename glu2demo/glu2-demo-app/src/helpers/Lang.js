@@ -213,6 +213,10 @@ const labels = {
         bos: 'Tip',
         eng: 'Type',
     },
+    newWaypoint: {
+        bos: 'Nova tačaka',
+        eng: 'New waypoint',
+    },
     wpDesc: {
         bos: 'Opis tačke',
         eng: 'Waypoint description',
