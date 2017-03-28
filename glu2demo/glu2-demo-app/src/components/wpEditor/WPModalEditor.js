@@ -78,13 +78,13 @@ class WPModalEditor extends BasePage {
                     </div>
                     <div className="flex-container column">
                         <TextField
-                            id="wp-name"
+                            key="wp-name"
                             floatingLabelText="Enter waypoint/place name"
                             value={this.state.name}
                             onChange={this.changeName.bind(this)}
                         />
                         <TextField
-                            id="wp-pictogram"
+                            key="wp-pictogram"
                             floatingLabelText="Enter waypoint pictogram code"
                             value={this.state.pictogram}
                             onChange={this.changePictogram.bind(this)}

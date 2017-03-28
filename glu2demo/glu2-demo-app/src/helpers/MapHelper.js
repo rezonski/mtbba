@@ -107,14 +107,14 @@ class MapHelper {
                 intialisedCollection.features.push(newPoint);
                 previewMap.getSource('previewCollection').setData(intialisedCollection);
                 Draw.set(intialisedCollection);
-                previewMap.leftmap.fire('saveEditedPath');
+                previewMap.fire('saveEditedPath');
             });
 
             previewMap.on('addTerrainSwitch', p => {
                 intialisedCollection.features.push(turf.point([p.position.lng, p.position.lat], { type: 'terrainSwitch', surfaceType: p.surface }));
                 previewMap.getSource('previewCollection').setData(intialisedCollection);
                 Draw.set(intialisedCollection);
-                previewMap.leftmap.fire('saveEditedPath');
+                previewMap.fire('saveEditedPath');
             });
         } else {
             console.info('Source&layer "previewCollection" already exists');
