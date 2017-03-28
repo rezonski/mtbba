@@ -57,10 +57,14 @@ class MapHelper {
             window.savePathControl = savePathControl;
             previewMap.addControl(savePathControl);
 
-
             previewMap.addSource('previewCollection', {
                 type: 'geojson',
                 data: intialisedCollection,
+            });
+
+            previewMap.addSource('tempCollection', {
+                type: 'geojson',
+                data: turf.featureCollection([]),
             });
 
             const lineLayerPreview = {};
@@ -74,6 +78,18 @@ class MapHelper {
             lineLayerPreview.paint['line-color'] = 'rgba(255,0,0,0.1)';
             lineLayerPreview.paint['line-width'] = 10;
             previewMap.addLayer(lineLayerPreview);
+
+            const tempPointLayerPreview = {};
+            tempPointLayerPreview.id = 'tempCollection';
+            tempPointLayerPreview.type = 'circle';
+            tempPointLayerPreview.source = 'tempCollection';
+            tempPointLayerPreview.paint = {};
+            tempPointLayerPreview.paint['circle-color'] = '#0000FF';
+            tempPointLayerPreview.paint['circle-opacity'] = 0.4;
+            tempPointLayerPreview.paint['circle-radius'] = 6;
+            tempPointLayerPreview.paint['circle-stroke-width'] = 4;
+            tempPointLayerPreview.paint['circle-stroke-color'] = '#FFFFFF';
+            previewMap.addLayer(tempPointLayerPreview);
 
             previewMap.flyTo({ center: [firstPoint[0][0], firstPoint[0][1]], zoom: 15 });
 
@@ -101,9 +117,14 @@ class MapHelper {
                 GLU.bus.emit(Enum.DataEvents.SAVE_MANUAL_EDITED_FILE, editedCollection);
             });
 
+            previewMap.on('displayTempPoint', p => {
+                const tempPoint = turf.point([p.position.lng, p.position.lat]);
+                const tempCollection = turf.featureCollection([tempPoint]);
+                previewMap.getSource('tempCollection').setData(tempCollection);
+            });
+
             previewMap.on('addNewWaypoint', p => {
                 const newPoint = turf.point([p.position.lng, p.position.lat], { name: p.name, pictogram: p.pictogram });
-                console.log(newPoint);
                 intialisedCollection.features.push(newPoint);
                 previewMap.getSource('previewCollection').setData(intialisedCollection);
                 Draw.set(intialisedCollection);
@@ -111,7 +132,8 @@ class MapHelper {
             });
 
             previewMap.on('addTerrainSwitch', p => {
-                intialisedCollection.features.push(turf.point([p.position.lng, p.position.lat], { type: 'terrainSwitch', surfaceType: p.surface }));
+                const newPoint = turf.point([p.position.lng, p.position.lat], { type: 'terrainSwitch', surfaceType: p.surface });
+                intialisedCollection.features.push(newPoint);
                 previewMap.getSource('previewCollection').setData(intialisedCollection);
                 Draw.set(intialisedCollection);
                 previewMap.fire('saveEditedPath');

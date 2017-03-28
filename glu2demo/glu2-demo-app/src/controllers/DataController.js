@@ -146,6 +146,7 @@ class DataController extends GLU.Controller {
     }
 
     addSurfaceChange(payload) {
+        console.log('addSurfaceChange(' + payload.odometer + ', ' + payload.surfaceType + ')');
         let currentSurfaceCollection = TrailsDataModel.activeTrail.getTrailData().surfaceCollection;
         currentSurfaceCollection.push([payload.odometer, payload.surfaceType]);
         TrailsDataModel.activeTrail.setDataByName('surfaceCollection', null, null, currentSurfaceCollection);
