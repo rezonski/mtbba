@@ -72,33 +72,87 @@ var Draw = new MapboxDraw({
         trash: true
     }
 });
-Draw = new MapboxDraw({});
+Draw = new MapboxDraw({
+  // styles: [
+  //   // ACTIVE (being drawn)
+  //   // line stroke
+  //   {
+  //       "id": "gl-draw-line",
+  //       "type": "line",
+  //       "filter": ["all", ["==", "$type", "LineString"], ["!=", "mode", "static"]],
+  //       "layout": {
+  //         "line-cap": "round",
+  //         "line-join": "round"
+  //       },
+  //       "paint": {
+  //         "line-color": "#D20C0C",
+  //         "line-dasharray": [0.2, 2],
+  //         "line-width": 2
+  //       }
+  //   },
+  //   // vertex point halos
+  //   {
+  //     "id": "gl-draw-polygon-and-line-vertex-halo-active",
+  //     "type": "circle",
+  //     "filter": ["all", ["==", "meta", "vertex"], ["==", "$type", "Point"], ["!=", "mode", "static"]],
+  //     "paint": {
+  //       "circle-radius": 5,
+  //       "circle-color": "#FFF"
+  //     }
+  //   },
+  //   // vertex points
+  //   {
+  //     "id": "gl-draw-polygon-and-line-vertex-active",
+  //     "type": "circle",
+  //     "filter": ["all", ["in", "meta", "vertex", "midpoint"], ["==", "$type", "Point"], ["!=", "mode", "static"]],
+  //     "paint": {
+  //       "circle-radius": 3,
+  //       "circle-color": "#D20C0C",
+  //     }
+  //   },
+
+  //   // INACTIVE (static, already drawn)
+  //   // line stroke
+  //   {
+  //       "id": "gl-draw-line-static",
+  //       "type": "line",
+  //       "filter": ["all", ["==", "$type", "LineString"], ["==", "mode", "static"]],
+  //       "layout": {
+  //         "line-cap": "round",
+  //         "line-join": "round"
+  //       },
+  //       "paint": {
+  //         "line-color": "#000",
+  //         "line-width": 3
+  //       }
+  //   }
+  // ]
+});
 // map.addControl(draw);
 
 map.on('load', function(){
     map.addControl(Draw);
-    map.addSource('my-dataset', {
-        type: 'geojson',
-        data: hresa
-    });
-    map.addLayer({
-        "id": "dataset-line",
-        "type": "line",
-        "source": "my-dataset",
-        "layout": {},
-        "paint": {
-            // grab the route's color value
-            "line-color": "#73b6e6",
-        },
-        "filter": [
-            "all",
-            ["==", "$type", "LineString"]
-        ]
-    });
-
+    // map.addSource('my-dataset', {
+    //     type: 'geojson',
+    //     data: hresa
+    // });
+    // map.addLayer({
+    //     "id": "dataset-line",
+    //     "type": "line",
+    //     "source": "my-dataset",
+    //     "layout": {},
+    //     "paint": {
+    //         // grab the route's color value
+    //         "line-color": "#73b6e6",
+    //     },
+    //     "filter": [
+    //         "all",
+    //         ["==", "$type", "LineString"]
+    //     ]
+    // });
     var featureId = Draw.set(hresa);
     // var featureId = Draw.set(hresa.features[0].geometry);
-    console.log(JSON.stringify(Draw.get(featureId), 2, 2));
+    // console.log(JSON.stringify(Draw.get(featureId), 2, 2));
 });
 
 var calcButton = document.getElementById('calculate');

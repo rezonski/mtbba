@@ -125,17 +125,19 @@ class MapHelper {
 
             previewMap.on('addNewWaypoint', p => {
                 const newPoint = turf.point([p.position.lng, p.position.lat], { name: p.name, pictogram: p.pictogram });
-                intialisedCollection.features.push(newPoint);
-                previewMap.getSource('previewCollection').setData(intialisedCollection);
-                Draw.set(intialisedCollection);
+                const currentCollection = window.Draw.getAll();
+                currentCollection.features.push(newPoint);
+                previewMap.getSource('previewCollection').setData(currentCollection);
+                Draw.set(currentCollection);
                 previewMap.fire('saveEditedPath');
             });
 
             previewMap.on('addTerrainSwitch', p => {
                 const newPoint = turf.point([p.position.lng, p.position.lat], { type: 'terrainSwitch', surfaceType: p.surface });
-                intialisedCollection.features.push(newPoint);
-                previewMap.getSource('previewCollection').setData(intialisedCollection);
-                Draw.set(intialisedCollection);
+                const currentCollection = window.Draw.getAll();
+                currentCollection.features.push(newPoint);
+                previewMap.getSource('previewCollection').setData(currentCollection);
+                Draw.set(currentCollection);
                 previewMap.fire('saveEditedPath');
             });
         } else {

@@ -5,7 +5,7 @@ class MapModel extends GLU.DataSource {
         super();
         this._collection = [];
         this._accessToken = null;
-        this._initialMaxBounds = [[13, 41], [22, 47]];
+        this._initialMaxBounds = [[10, 39], [25, 48]];
         this._initialBounds = [[14.69, 42.12], [20.36, 45.67]];
         this._initialCenter = [17.67696, 43.920101];
         this._leftMap = {};
