@@ -35,6 +35,7 @@ class MainToolbar extends BasePage {
         this.onOpenMapLayersEvent = this.onOpenMapLayers.bind(this);
         this.onCloseMapLayersEvent = this.onCloseMapLayers.bind(this);
         this.onToggleWPDrawerEvent = this.onToggleWPDrawer.bind(this);
+        this.onSaveTrailEvent = this.onSaveTrail.bind(this);
         this.onOpenTrailReuestEvent = this.onOpenTrailReuest.bind(this);
         this.bindGluBusEvents({
             [Enum.MapEvents.MAP_STYLES_RETRIEVED]: this.onMapStylesRetrieved,
@@ -73,6 +74,10 @@ class MainToolbar extends BasePage {
 
     onToggleWPDrawer() {
         this.emit(Enum.AppEvents.TOGGLE_WP_DRAWER);
+    }
+
+    onSaveTrail() {
+        this.emit(Enum.DataEvents.UPLOAD_TRAIL);
     }
 
     onOpenTrailReuest() {
@@ -131,7 +136,7 @@ class MainToolbar extends BasePage {
                     <FlatButton
                         label={Lang.label('savetrail')}
                         primary={true}
-                        disabled={this.state.disabledWaypoints}
+                        disabled={this.state.disabledSaveTrail}
                         onTouchTap={this.onToggleWPDrawerEvent}
                         icon={<SaveTrailIcon />}
                     />
@@ -139,36 +144,9 @@ class MainToolbar extends BasePage {
                         label={Lang.label('waypoints')}
                         primary={true}
                         disabled={this.state.disabledWaypoints}
-                        onTouchTap={this.onToggleWPDrawerEvent}
+                        onTouchTap={this.onSaveTrailEvent}
                         icon={<NumList />}
                     />
-                    {/* <FlatButton
-                        label={Lang.label('maplayers')}
-                        primary={true}
-                        onTouchTap={this.onOpenMapLayersEvent}
-                        icon={<NavMap />}
-                    />
-                    <Popover
-                        open={this.state.openMapLayers}
-                        anchorEl={this.state.anchorEl}
-                        anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-                        targetOrigin={{ horizontal: 'left', vertical: 'top' }}
-                        onRequestClose={this.onCloseMapLayersEvent}
-                    >
-                        <Menu>
-                            <MenuItem
-                                primaryText={Lang.label('leftMap')}
-                                leftIcon={<ArrowDropDown />}
-                                menuItems={leftMapStyles}
-                            />
-                            <Divider />
-                            <MenuItem
-                                primaryText={Lang.label('rightMap')}
-                                leftIcon={<ArrowDropDown />}
-                                menuItems={rightMapStyles}
-                            />
-                        </Menu>
-                    </Popover> */}
                 </ToolbarGroup>
             </Toolbar>
         );

@@ -93,8 +93,11 @@ class Trail {
     getInitialGeneralFacts(inputGeneralFacts) {
         let generalFacts = JSON.parse(JSON.stringify(inputGeneralFacts));
         generalFacts.trailID = (generalFacts.trailID === undefined) ? null : generalFacts.trailID;
+        generalFacts.trailVersionID = (generalFacts.trailVersionID === undefined) ? null : generalFacts.trailVersionID;
         generalFacts.trailName = (generalFacts.trailName === undefined) ? '' : generalFacts.trailName;
+        generalFacts.trailNameEn = (generalFacts.trailNameEn === undefined) ? '' : generalFacts.trailNameEn;
         generalFacts.trailDesc = (generalFacts.trailDesc === undefined) ? '' : generalFacts.trailDesc;
+        generalFacts.trailDescEn = (generalFacts.trailDescEn === undefined) ? '' : generalFacts.trailDescEn;
         generalFacts.mntns = (generalFacts.mntns === undefined) ? [] : generalFacts.mntns;
         generalFacts.surfaceCollection = (generalFacts.surfaceCollection === undefined) ? [[ 0, 'A']] : generalFacts.surfaceCollection;
         generalFacts.typeID = (generalFacts.typeID === undefined) ? null : generalFacts.typeID;
@@ -111,6 +114,7 @@ class Trail {
         generalFacts.requiredTechnique = (generalFacts.requiredTechnique === undefined) ? null : generalFacts.requiredTechnique;
         generalFacts.center = (generalFacts.center === undefined) ? [] : generalFacts.center;
         generalFacts.bounds = (generalFacts.bounds === undefined) ? [] : generalFacts.bounds;
+        generalFacts.fileName = (generalFacts.fileName === undefined) ? '' : generalFacts.fileName;
         generalFacts.externalLink = (generalFacts.externalLink === undefined) ? '' : generalFacts.externalLink;
         generalFacts.imageURL = (generalFacts.imageURL === undefined) ? '' : generalFacts.imageURL;
         return generalFacts;
@@ -229,6 +233,7 @@ class Trail {
     getTrailData() {
         const trailFacts = this.getGeneralFacts();
         return {
+            trailID: trailFacts.trailID,
             trailName: trailFacts.trailName,
             trailDesc: trailFacts.trailDesc,
             externalLink: trailFacts.externalLink,

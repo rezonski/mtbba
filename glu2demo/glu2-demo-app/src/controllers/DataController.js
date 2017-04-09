@@ -37,6 +37,7 @@ class DataController extends GLU.Controller {
             [Enum.DataEvents.RETRIEVE_CHART_DATA]: this.getChartData,
             [Enum.DataEvents.RETRIEVE_TRAILS_LIST]: this.getTrailsList,
             [Enum.DataEvents.DOWNLOAD_TRAIL]: this.downloadTrail,
+            [Enum.DataEvents.UPLOAD_TRAIL]: this.uploadTrail,
             [Enum.DataEvents.START_IMAGE_UPLOAD]: this.uploadImage,
             [Enum.DataEvents.SAVE_INITIAL_GEO_FILE]: this.saveInitalGeoFile,
             [Enum.DataEvents.SAVE_MANUAL_EDITED_FILE]: this.saveManualyEditedGeoFile,
@@ -195,6 +196,7 @@ class DataController extends GLU.Controller {
                 }
                 TrailsDataModel.activeTrail.parseInitialFeaturesCollection();
                 TrailsDataModel.activeTrail.setDataByName('trailName', null, null, payload.file.name.replace('.gpx', '').replace('_profil', ' ').replace('_', ' '));
+                TrailsDataModel.activeTrail.setDataByName('fileName', null, null, payload.file.name);
                 const trailData = TrailsDataModel.activeTrail.getTrailData();
                 GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
             };
@@ -239,6 +241,28 @@ class DataController extends GLU.Controller {
                 GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('trailLoadFailed') + msg);
             });
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endDownloadingTrailLoading'));
+    }
+
+    uploadTrail() {
+        const trail = JSON.parse(JSON.stringify(TrailsDataModel.activeTrail.elevationNivelatedFeaturesCollectionFeatures));
+        const lines = CommonHelper.getLineStrings(trail);
+        const waypoints = CommonHelper.getPoints(trail);
+        const generalFacts = JSON.parse(JSON.stringify(TrailsDataModel.activeTrail.getGeneralFacts()));
+        const uploadPayload = JSON.stringify({
+            lines,
+            waypoints,
+            generalFacts,
+        });
+        // Connection
+        const destination = appConfig.constants.server + 'setTrail.php';
+        const xmlhttpUpload = new XMLHttpRequest();
+        xmlhttpUpload.onreadystatechange = () => {
+            if (xmlhttpUpload.readyState === 4 && xmlhttpUpload.status === 200) {
+                console.log(xmlhttpUpload.responseText);
+            }
+        };
+        xmlhttpUpload.open('POST', destination, true);
+        xmlhttpUpload.send(uploadPayload);
     }
 
     onSimplifyRequest() {
