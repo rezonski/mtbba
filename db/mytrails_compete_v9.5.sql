@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2017 at 11:27 PM
--- Server version: 10.1.9-MariaDB
--- PHP Version: 5.6.15
+-- Generation Time: Apr 10, 2017 at 03:42 PM
+-- Server version: 5.6.17
+-- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `mytrails`
@@ -24,7 +24,8 @@ DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `calc_bounds` (IN `p_trail_id` INT)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `calc_bounds`(IN `p_trail_id` INT)
+BEGIN
 	declare maxLon double;
     declare minLon double;
     declare maxLat double;
@@ -53,7 +54,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `calc_bounds` (IN `p_trail_id` INT) 
 	
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `logevent` (IN `puser` TEXT, IN `ptext` TEXT, IN `perror` TEXT)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `logevent`(IN `puser` TEXT, IN `ptext` TEXT, IN `perror` TEXT)
+    NO SQL
 BEGIN
 	INSERT INTO `eventlog` (`date`, `time`, `user`, `text`, `error`)
     VALUES(CURDATE(), NOW(), puser, ptext, perror);
@@ -62,7 +64,8 @@ END$$
 --
 -- Functions
 --
-CREATE DEFINER=`root`@`localhost` FUNCTION `gettoken` () RETURNS VARCHAR(200) CHARSET utf8 BEGIN
+CREATE DEFINER=`root`@`localhost` FUNCTION `gettoken`() RETURNS varchar(200) CHARSET utf8
+BEGIN
 	declare returntoken VARCHAR(200);
 	declare totalcounter integer;
 	SELECT MAX(`token`), (`counter` + 1)
@@ -75,10 +78,12 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `gettoken` () RETURNS VARCHAR(200) CH
 	return returntoken;
 END$$
 
-CREATE DEFINER=`root`@`localhost` FUNCTION `numoftrails` (`p_region_id` INT) RETURNS INT(11) NO SQL
+CREATE DEFINER=`root`@`localhost` FUNCTION `numoftrails`(`p_region_id` INT) RETURNS int(11)
+    NO SQL
 return (SELECT count(*) FROM `trail_regions` where `id_mnt` = p_region_id)$$
 
-CREATE DEFINER=`root`@`localhost` FUNCTION `slug` (`pname` TEXT) RETURNS TEXT CHARSET utf8 NO SQL
+CREATE DEFINER=`root`@`localhost` FUNCTION `slug`(`pname` TEXT) RETURNS text CHARSET utf8
+    NO SQL
 RETURN LOWER(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(TRIM(LOWER(pname)), 'ć', 'c'), 'č', 'c'), 'đ', 'dj'), 'ž', 'z'), 'š', 's'), ',', ''), '.', ''), '/', '-'),  ' ', '-'), '--', '-'))$$
 
 DELIMITER ;
@@ -88,7 +93,7 @@ DELIMITER ;
 --
 -- Stand-in structure for view `active_path`
 --
-CREATE TABLE `active_path` (
+CREATE TABLE IF NOT EXISTS `active_path` (
 `trail_id` int(10) unsigned
 ,`point_id` int(10) unsigned
 ,`lon` double
@@ -97,7 +102,6 @@ CREATE TABLE `active_path` (
 ,`prev_dist` double
 ,`prev_elev` double
 );
-
 -- --------------------------------------------------------
 
 --
@@ -121,19 +125,18 @@ CREATE TABLE IF NOT EXISTS `active_trails` (
 ,`review_fun` int(11)
 ,`required_fitness` int(11)
 ,`required_technique` int(11)
-,`lat_center` double
-,`lon_center` double
+,`center` varchar(100)
 ,`bounds` varchar(500)
+,`inputfilename` varchar(500)
 ,`external_link` varchar(500)
 ,`image_url` varchar(500)
 );
-
 -- --------------------------------------------------------
 
 --
 -- Stand-in structure for view `active_waypoints`
 --
-CREATE TABLE `active_waypoints` (
+CREATE TABLE IF NOT EXISTS `active_waypoints` (
 `trail_id` int(10) unsigned
 ,`point_id` int(10) unsigned
 ,`point_name` varchar(50)
@@ -153,21 +156,22 @@ CREATE TABLE `active_waypoints` (
 ,`time` varchar(500)
 ,`elevationprofile` int(1)
 );
-
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `eventlog`
 --
 
-CREATE TABLE `eventlog` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `eventlog` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
   `time` time NOT NULL,
   `user` varchar(100) DEFAULT NULL,
   `text` text NOT NULL,
-  `error` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `error` text NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`,`date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -175,15 +179,16 @@ CREATE TABLE `eventlog` (
 -- Table structure for table `hist_trail_version_path`
 --
 
-CREATE TABLE `hist_trail_version_path` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `id_version` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `hist_trail_version_path` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_version` int(10) unsigned NOT NULL,
   `lat` double NOT NULL,
   `lon` double NOT NULL,
   `elevation` float DEFAULT NULL,
   `prev_dist` double DEFAULT NULL,
-  `prev_elev` double DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `prev_elev` double DEFAULT NULL,
+  PRIMARY KEY (`id`,`id_version`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1245 ;
 
 --
 -- Dumping data for table `hist_trail_version_path`
@@ -3111,9 +3116,9 @@ INSERT INTO `hist_trail_version_path` (`id`, `id_version`, `lat`, `lon`, `elevat
 -- Table structure for table `hist_trail_version_points`
 --
 
-CREATE TABLE `hist_trail_version_points` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `id_version` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `hist_trail_version_points` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_version` int(10) unsigned NOT NULL,
   `name` varchar(50) NOT NULL,
   `desc` varchar(1000) DEFAULT NULL,
   `lat` double DEFAULT NULL,
@@ -3132,8 +3137,9 @@ CREATE TABLE `hist_trail_version_points` (
   `elevationprofile` tinyint(1) NOT NULL DEFAULT '0',
   `name_en` varchar(50) NOT NULL,
   `desc_en` varchar(1000) NOT NULL,
-  `wp_geojson` varchar(4000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `wp_geojson` varchar(4000) NOT NULL,
+  PRIMARY KEY (`id`,`id_version`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=51 ;
 
 --
 -- Dumping data for table `hist_trail_version_points`
@@ -3156,10 +3162,12 @@ INSERT INTO `hist_trail_version_points` (`id`, `id_version`, `name`, `desc`, `la
 -- Table structure for table `repo_point_symbol`
 --
 
-CREATE TABLE `repo_point_symbol` (
+CREATE TABLE IF NOT EXISTS `repo_point_symbol` (
   `symbol_code` varchar(15) NOT NULL,
   `desc` varchar(100) DEFAULT NULL,
-  `desc_en` varchar(100) DEFAULT NULL
+  `desc_en` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`symbol_code`),
+  UNIQUE KEY `symbol_code_UNIQUE` (`symbol_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -3187,9 +3195,9 @@ INSERT INTO `repo_point_symbol` (`symbol_code`, `desc`, `desc_en`) VALUES
 -- Table structure for table `repo_regions`
 --
 
-CREATE TABLE `repo_regions` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `id_parent` int(10) UNSIGNED DEFAULT NULL,
+CREATE TABLE IF NOT EXISTS `repo_regions` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_parent` int(10) unsigned DEFAULT NULL,
   `name` varchar(50) DEFAULT NULL,
   `region` varchar(100) DEFAULT NULL,
   `slug` varchar(500) DEFAULT NULL,
@@ -3202,8 +3210,10 @@ CREATE TABLE `repo_regions` (
   `lon_min` double DEFAULT NULL,
   `lon_max` double DEFAULT NULL,
   `lat_min` double DEFAULT NULL,
-  `lat_max` double DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `lat_max` double DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `child_parent` (`id_parent`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=184 ;
 
 --
 -- Dumping data for table `repo_regions`
@@ -3311,14 +3321,15 @@ INSERT INTO `repo_regions` (`id`, `id_parent`, `name`, `region`, `slug`, `desc`,
 -- Table structure for table `repo_types`
 --
 
-CREATE TABLE `repo_types` (
+CREATE TABLE IF NOT EXISTS `repo_types` (
   `cat_id` int(11) NOT NULL,
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) unsigned NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `desc` varchar(500) DEFAULT NULL,
   `shortdesc` varchar(50) NOT NULL,
   `meta1` varchar(500) NOT NULL,
-  `meta2` varchar(500) NOT NULL
+  `meta2` varchar(500) NOT NULL,
+  PRIMARY KEY (`cat_id`,`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -3352,7 +3363,7 @@ INSERT INTO `repo_types` (`cat_id`, `id`, `name`, `desc`, `shortdesc`, `meta1`, 
 -- Table structure for table `tokens`
 --
 
-CREATE TABLE `tokens` (
+CREATE TABLE IF NOT EXISTS `tokens` (
   `token` varchar(500) NOT NULL,
   `mapboxacc` varchar(100) NOT NULL,
   `mapboxpass` varchar(100) NOT NULL,
@@ -3367,11 +3378,11 @@ CREATE TABLE `tokens` (
 --
 
 INSERT INTO `tokens` (`token`, `mapboxacc`, `mapboxpass`, `email`, `emailpass`, `mapboxstyle`, `counter`) VALUES
-('pk.eyJ1IjoiY29va2lla3VzaCIsImEiOiJjaXN6eHZ6cjMwMDZvMm9tbjN5ZGxtOHhsIn0.YkSND5AK0HzznBEW6L8Leg', 'cookiekush', 'gradient', 'cookiekush100g@gmail.com', 'gradient', '', 99),
-('pk.eyJ1IjoidmlzaG5hIiwiYSI6ImNpc3p5bnFiaDAwNmkyem1uYnloeTdydzAifQ.CIUSCI9jthTMq8tVr9ucSQ', 'vishna', 'samolagano', 'vishnaskunk38g@mail.com', 'samolagano', '', 99),
-('pk.eyJ1IjoibGp1YmljYXN0aSIsImEiOiJjaXN6eWdkOTEwMDY3MnlwZGhieGswNTNtIn0.kCB_5RS5Q8VVfYoqind-qA', 'ljubicasti', 'samolagano', 'purplehaze25g@mail.com', 'samolagano', '', 98),
-('pk.eyJ1IjoibWlyemEzOCIsImEiOiJjaXN6emNlYnUwMDZqMnRtbmg4ZDdmdnFtIn0.eGg8hy9au6-HJXz6oM7_Ag', 'mirza38', 'samolagano', 'mirza.teletovic@yandex.com', 'samolagano', '', 98),
-('pk.eyJ1IjoiZHphbmFuIiwiYSI6ImNpc3p6ZmZrajAwNnQyb21udGpocmJ2NDgifQ.nT9XVGousc6xZcYGNJQHiQ', 'dzanan', 'samolagano', 'dzanan.musa@yandex.com', 'samolagano', '', 99);
+('pk.eyJ1IjoiY29va2lla3VzaCIsImEiOiJjaXN6eHZ6cjMwMDZvMm9tbjN5ZGxtOHhsIn0.YkSND5AK0HzznBEW6L8Leg', 'cookiekush', 'gradient', 'cookiekush100g@gmail.com', 'gradient', '', 102),
+('pk.eyJ1IjoidmlzaG5hIiwiYSI6ImNpc3p5bnFiaDAwNmkyem1uYnloeTdydzAifQ.CIUSCI9jthTMq8tVr9ucSQ', 'vishna', 'samolagano', 'vishnaskunk38g@mail.com', 'samolagano', '', 102),
+('pk.eyJ1IjoibGp1YmljYXN0aSIsImEiOiJjaXN6eWdkOTEwMDY3MnlwZGhieGswNTNtIn0.kCB_5RS5Q8VVfYoqind-qA', 'ljubicasti', 'samolagano', 'purplehaze25g@mail.com', 'samolagano', '', 101),
+('pk.eyJ1IjoibWlyemEzOCIsImEiOiJjaXN6emNlYnUwMDZqMnRtbmg4ZDdmdnFtIn0.eGg8hy9au6-HJXz6oM7_Ag', 'mirza38', 'samolagano', 'mirza.teletovic@yandex.com', 'samolagano', '', 102),
+('pk.eyJ1IjoiZHphbmFuIiwiYSI6ImNpc3p6ZmZrajAwNnQyb21udGpocmJ2NDgifQ.nT9XVGousc6xZcYGNJQHiQ', 'dzanan', 'samolagano', 'dzanan.musa@yandex.com', 'samolagano', '', 102);
 
 -- --------------------------------------------------------
 
@@ -3379,14 +3390,16 @@ INSERT INTO `tokens` (`token`, `mapboxacc`, `mapboxpass`, `email`, `emailpass`, 
 -- Table structure for table `trails`
 --
 
-CREATE TABLE `trails` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `trails` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `slug` varchar(500) DEFAULT NULL,
   `desc` longtext,
   `name_en` varchar(50) NOT NULL,
-  `desc_en` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `desc_en` varchar(1000) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=59 ;
 
 --
 -- Dumping data for table `trails`
@@ -3441,7 +3454,15 @@ INSERT INTO `trails` (`id`, `name`, `slug`, `desc`, `name_en`, `desc_en`) VALUES
 (46, 'Borasnica, iz Boraka', 'borasnica,-iz-boraka', 'Borasnica, iz BorakaBorasnica, iz BorakaBorasnica, iz BorakaBorasnica, iz BorakaBorasnica, iz BorakaBorasnica, iz BorakaBorasnica, iz Boraka', '', ''),
 (47, 'Borasnica 080618_takeadventure.kml', 'borasnica-080618_takeadventure.kml', 'Borasnica 080618_takeadventure.kmlBorasnica 080618_takeadventure.kmlBorasnica 080618_takeadventure.kmlBorasnica 080618_takeadventure.kmlBorasnica 080618_takeadventure.kmlBorasnica 080618_takeadventure.kml', '', ''),
 (48, 'Borasnica 080618_takeadventure.kml', 'borasnica-080618_takeadventure.kml', 'Borasnica 080618_takeadvBorasnica 080618_takeadvBorasnica 080618_takeadvBorasnica 080618_takeadvBorasnica 080618_takeadv', '', ''),
-(49, 'Vitreusa - isti smjer', 'vitreusa---isti-smjer', 'Vitreusa - isti smjerVitreusa - isti smjerVitreusa - isti smjer', '', '');
+(49, 'Vitreusa - isti smjer', 'vitreusa---isti-smjer', 'Vitreusa - isti smjerVitreusa - isti smjerVitreusa - isti smjer', '', ''),
+(50, 'Sabici-Sinanovici ', 'sabici-sinanovici-', 'dsfasdfa', '', ''),
+(51, 'Sabici-Sinanovici ', 'sabici-sinanovici-', 'dsfasdfa', '', ''),
+(52, 'Sabici-Sinanovici ', 'sabici-sinanovici-', 'dsfasdfa', '', ''),
+(53, 'Sabici-Sinanovici ', 'sabici-sinanovici-', 'dsfasdfa', '', ''),
+(54, 'Sabici-Sinanovici ', 'sabici-sinanovici-', 'werwerqwer', '', ''),
+(55, 'Sabici-Sinanovici ', 'sabici-sinanovici-', 'werwerqwer', '', ''),
+(56, 'Sabici-Sinanovici ', 'sabici-sinanovici-', 'sdfdsfsd', '', ''),
+(57, 'Sabici-Sinanovici ', 'sabici-sinanovici-', 'sdfdsfsd', '', '');
 
 -- --------------------------------------------------------
 
@@ -3449,9 +3470,11 @@ INSERT INTO `trails` (`id`, `name`, `slug`, `desc`, `name_en`, `desc_en`) VALUES
 -- Table structure for table `trail_regions`
 --
 
-CREATE TABLE `trail_regions` (
-  `id_trail` int(10) UNSIGNED NOT NULL,
-  `id_mnt` int(10) UNSIGNED NOT NULL
+CREATE TABLE IF NOT EXISTS `trail_regions` (
+  `id_trail` int(10) unsigned NOT NULL,
+  `id_mnt` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_trail`,`id_mnt`),
+  KEY `regions_fk_idx` (`id_mnt`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -3459,72 +3482,82 @@ CREATE TABLE `trail_regions` (
 --
 
 INSERT INTO `trail_regions` (`id_trail`, `id_mnt`) VALUES
-(1, 104),
-(1, 112),
-(2, 105),
-(2, 129),
-(3, 105),
-(3, 129),
-(4, 109),
-(4, 141),
 (5, 101),
-(5, 130),
-(6, 133),
-(7, 112),
-(7, 133),
-(8, 109),
-(8, 126),
-(9, 112),
-(9, 133),
-(10, 104),
-(10, 118),
-(11, 104),
-(11, 118),
-(12, 109),
-(12, 126),
-(13, 112),
-(13, 118),
-(14, 148),
-(15, 148),
-(16, 104),
-(16, 141),
 (17, 101),
 (18, 101),
 (19, 101),
+(1, 104),
+(10, 104),
+(11, 104),
+(16, 104),
 (20, 104),
-(21, 113),
-(22, 113),
-(23, 107),
-(23, 109),
+(48, 104),
+(2, 105),
+(3, 105),
 (24, 106),
-(25, 126),
-(26, 120),
-(26, 148),
-(27, 115),
 (28, 106),
-(29, 164),
-(30, 164),
-(31, 126),
-(31, 157),
-(32, 133),
-(33, 133),
-(34, 117),
-(35, 117),
-(36, 118),
-(37, 126),
-(38, 133),
-(39, 133),
-(40, 133),
-(41, 118),
-(42, 112),
-(43, 133),
 (44, 106),
 (45, 106),
 (46, 106),
-(47, 118),
-(48, 104),
+(23, 107),
+(51, 107),
+(52, 107),
+(53, 107),
+(54, 107),
+(55, 107),
+(4, 109),
+(8, 109),
+(12, 109),
+(23, 109),
+(54, 109),
+(55, 109),
+(1, 112),
+(7, 112),
+(9, 112),
+(13, 112),
+(42, 112),
 (48, 112),
-(49, 160);
+(21, 113),
+(22, 113),
+(27, 115),
+(34, 117),
+(35, 117),
+(10, 118),
+(11, 118),
+(13, 118),
+(36, 118),
+(41, 118),
+(47, 118),
+(26, 120),
+(8, 126),
+(12, 126),
+(25, 126),
+(31, 126),
+(37, 126),
+(51, 126),
+(52, 126),
+(53, 126),
+(2, 129),
+(3, 129),
+(5, 130),
+(6, 133),
+(7, 133),
+(9, 133),
+(32, 133),
+(33, 133),
+(38, 133),
+(39, 133),
+(40, 133),
+(43, 133),
+(4, 141),
+(16, 141),
+(14, 148),
+(15, 148),
+(26, 148),
+(31, 157),
+(49, 160),
+(29, 164),
+(30, 164);
 
 -- --------------------------------------------------------
 
@@ -3532,12 +3565,12 @@ INSERT INTO `trail_regions` (`id_trail`, `id_mnt`) VALUES
 -- Table structure for table `trail_versions`
 --
 
-CREATE TABLE `trail_versions` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `id_trail` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `trail_versions` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_trail` int(10) unsigned NOT NULL,
   `date` date DEFAULT NULL,
   `active` int(11) NOT NULL DEFAULT '1',
-  `trail_type` int(10) UNSIGNED DEFAULT NULL,
+  `trail_type` int(10) unsigned DEFAULT NULL,
   `distance` float DEFAULT NULL,
   `elev_gain` float DEFAULT NULL,
   `elev_loss` float DEFAULT NULL,
@@ -3552,8 +3585,12 @@ CREATE TABLE `trail_versions` (
   `bounds` varchar(500) DEFAULT NULL,
   `inputfilename` varchar(500) DEFAULT NULL,
   `external_link` varchar(500) NOT NULL,
-  `image_url` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `image_url` varchar(500) NOT NULL,
+  PRIMARY KEY (`id`,`id_trail`,`active`),
+  KEY `indexirano` (`id`,`id_trail`,`trail_type`),
+  KEY `version_trail` (`id_trail`),
+  KEY `version_trail_type` (`trail_type`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=107 ;
 
 --
 -- Dumping data for table `trail_versions`
@@ -3615,15 +3652,17 @@ INSERT INTO `trail_versions` (`id`, `id_trail`, `date`, `active`, `trail_type`, 
 -- Table structure for table `trail_version_path`
 --
 
-CREATE TABLE `trail_version_path` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `id_version` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `trail_version_path` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_version` int(10) unsigned NOT NULL,
   `lat` double NOT NULL,
   `lon` double NOT NULL,
   `elevation` float DEFAULT NULL,
   `prev_dist` double DEFAULT NULL,
-  `prev_elev` double DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `prev_elev` double DEFAULT NULL,
+  PRIMARY KEY (`id`,`id_version`),
+  KEY `version_points0` (`id_version`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5550 ;
 
 --
 -- Dumping data for table `trail_version_path`
@@ -43119,9 +43158,9 @@ INSERT INTO `trail_version_path` (`id`, `id_version`, `lat`, `lon`, `elevation`,
 -- Table structure for table `trail_version_points`
 --
 
-CREATE TABLE `trail_version_points` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `id_version` int(10) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `trail_version_points` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_version` int(10) unsigned NOT NULL,
   `name` varchar(50) NOT NULL,
   `desc` varchar(1000) DEFAULT NULL,
   `lat` double DEFAULT NULL,
@@ -43140,8 +43179,10 @@ CREATE TABLE `trail_version_points` (
   `elevationprofile` int(1) NOT NULL DEFAULT '0',
   `name_en` varchar(50) NOT NULL,
   `desc_en` varchar(1000) NOT NULL,
-  `wp_geojson` varchar(4000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `wp_geojson` varchar(4000) NOT NULL,
+  PRIMARY KEY (`id`,`id_version`),
+  KEY `version_points` (`id_version`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=285 ;
 
 --
 -- Dumping data for table `trail_version_points`
@@ -43412,7 +43453,7 @@ INSERT INTO `trail_version_points` (`id`, `id_version`, `name`, `desc`, `lat`, `
 --
 DROP TABLE IF EXISTS `active_path`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `active_path`  AS  select `t`.`id` AS `trail_id`,`pa`.`id` AS `point_id`,`pa`.`lon` AS `lon`,`pa`.`lat` AS `lat`,`pa`.`elevation` AS `elevation`,`pa`.`prev_dist` AS `prev_dist`,`pa`.`prev_elev` AS `prev_elev` from ((`trails` `t` join `trail_versions` `v`) join `trail_version_path` `pa`) where ((`v`.`id_trail` = `t`.`id`) and (`v`.`active` = 1) and (`pa`.`id_version` = `v`.`id`)) order by `pa`.`id` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `active_path` AS select `t`.`id` AS `trail_id`,`pa`.`id` AS `point_id`,`pa`.`lon` AS `lon`,`pa`.`lat` AS `lat`,`pa`.`elevation` AS `elevation`,`pa`.`prev_dist` AS `prev_dist`,`pa`.`prev_elev` AS `prev_elev` from ((`trails` `t` join `trail_versions` `v`) join `trail_version_path` `pa`) where ((`v`.`id_trail` = `t`.`id`) and (`v`.`active` = 1) and (`pa`.`id_version` = `v`.`id`)) order by `pa`.`id`;
 
 -- --------------------------------------------------------
 
@@ -43421,7 +43462,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `active_trails`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `active_trails`  AS  select `t`.`id` AS `trail_id`,`t`.`name` AS `trail_name`,`t`.`slug` AS `trail_slug`,`t`.`desc` AS `trail_desc`,`ty`.`id` AS `type_id`,`ty`.`name` AS `type_name`,`ty`.`desc` AS `type_desc`,`v`.`distance` AS `distance`,`v`.`elev_min` AS `elev_min`,`v`.`elev_max` AS `elev_max`,`v`.`elev_gain` AS `elev_gain`,`v`.`elev_loss` AS `elev_loss`,`v`.`surface` AS `surface`,`v`.`review_landscape` AS `review_landscape`,`v`.`review_fun` AS `review_fun`,`v`.`required_fitness` AS `required_fitness`,`v`.`required_technique` AS `required_technique`,`v`.`center` AS `center`,`v`.`bounds` AS `bounds`,`v`.`inputfilename` AS `inputfilename`,`v`.`external_link` AS `external_link`,`v`.`image_url` AS `image_url` from ((`trails` `t` join `trail_versions` `v`) join `repo_types` `ty`) where ((`v`.`id_trail` = `t`.`id`) and (`v`.`active` = 1) and (`ty`.`id` = `v`.`trail_type`) and (`ty`.`cat_id` = 0)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `active_trails` AS select `t`.`id` AS `trail_id`,`t`.`name` AS `trail_name`,`t`.`slug` AS `trail_slug`,`t`.`desc` AS `trail_desc`,`ty`.`id` AS `type_id`,`ty`.`name` AS `type_name`,`ty`.`desc` AS `type_desc`,`v`.`distance` AS `distance`,`v`.`elev_min` AS `elev_min`,`v`.`elev_max` AS `elev_max`,`v`.`elev_gain` AS `elev_gain`,`v`.`elev_loss` AS `elev_loss`,`v`.`surface` AS `surface`,`v`.`review_landscape` AS `review_landscape`,`v`.`review_fun` AS `review_fun`,`v`.`required_fitness` AS `required_fitness`,`v`.`required_technique` AS `required_technique`,`v`.`center` AS `center`,`v`.`bounds` AS `bounds`,`v`.`inputfilename` AS `inputfilename`,`v`.`external_link` AS `external_link`,`v`.`image_url` AS `image_url` from ((`trails` `t` join `trail_versions` `v`) join `repo_types` `ty`) where ((`v`.`id_trail` = `t`.`id`) and (`v`.`active` = 1) and (`ty`.`id` = `v`.`trail_type`) and (`ty`.`cat_id` = 0));
 
 -- --------------------------------------------------------
 
@@ -43430,132 +43471,8 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `active_waypoints`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `active_waypoints`  AS  select `t`.`id` AS `trail_id`,`p`.`id` AS `point_id`,`p`.`name` AS `point_name`,`p`.`desc` AS `point_desc`,`p`.`lon` AS `lon`,`p`.`lat` AS `lat`,`p`.`elevation` AS `elevation`,`p`.`elevgain` AS `elevgain`,`p`.`elevloss` AS `elevloss`,`p`.`nextelevgain` AS `nextelevgain`,`p`.`nextelevloss` AS `nextelevloss`,`p`.`odometer` AS `odometer`,`p`.`nextstepdist` AS `nextstepdist`,`p`.`symbol` AS `symbol`,`p`.`pictogram` AS `pictogram`,`p`.`pictureurl` AS `pictureurl`,`p`.`time` AS `time`,`p`.`elevationprofile` AS `elevationprofile` from ((`trails` `t` join `trail_versions` `v`) join `trail_version_points` `p`) where ((`v`.`id_trail` = `t`.`id`) and (`v`.`active` = 1) and (`p`.`id_version` = `v`.`id`)) order by `p`.`id` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `active_waypoints` AS select `t`.`id` AS `trail_id`,`p`.`id` AS `point_id`,`p`.`name` AS `point_name`,`p`.`desc` AS `point_desc`,`p`.`lon` AS `lon`,`p`.`lat` AS `lat`,`p`.`elevation` AS `elevation`,`p`.`elevgain` AS `elevgain`,`p`.`elevloss` AS `elevloss`,`p`.`nextelevgain` AS `nextelevgain`,`p`.`nextelevloss` AS `nextelevloss`,`p`.`odometer` AS `odometer`,`p`.`nextstepdist` AS `nextstepdist`,`p`.`symbol` AS `symbol`,`p`.`pictogram` AS `pictogram`,`p`.`pictureurl` AS `pictureurl`,`p`.`time` AS `time`,`p`.`elevationprofile` AS `elevationprofile` from ((`trails` `t` join `trail_versions` `v`) join `trail_version_points` `p`) where ((`v`.`id_trail` = `t`.`id`) and (`v`.`active` = 1) and (`p`.`id_version` = `v`.`id`)) order by `p`.`id`;
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `eventlog`
---
-ALTER TABLE `eventlog`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`,`date`);
-
---
--- Indexes for table `hist_trail_version_path`
---
-ALTER TABLE `hist_trail_version_path`
-  ADD PRIMARY KEY (`id`,`id_version`);
-
---
--- Indexes for table `hist_trail_version_points`
---
-ALTER TABLE `hist_trail_version_points`
-  ADD PRIMARY KEY (`id`,`id_version`);
-
---
--- Indexes for table `repo_point_symbol`
---
-ALTER TABLE `repo_point_symbol`
-  ADD PRIMARY KEY (`symbol_code`),
-  ADD UNIQUE KEY `symbol_code_UNIQUE` (`symbol_code`);
-
---
--- Indexes for table `repo_regions`
---
-ALTER TABLE `repo_regions`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `child_parent` (`id_parent`);
-
---
--- Indexes for table `repo_types`
---
-ALTER TABLE `repo_types`
-  ADD PRIMARY KEY (`cat_id`,`id`);
-
---
--- Indexes for table `trails`
---
-ALTER TABLE `trails`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id_UNIQUE` (`id`);
-
---
--- Indexes for table `trail_regions`
---
-ALTER TABLE `trail_regions`
-  ADD PRIMARY KEY (`id_trail`,`id_mnt`),
-  ADD KEY `regions_fk_idx` (`id_mnt`);
-
---
--- Indexes for table `trail_versions`
---
-ALTER TABLE `trail_versions`
-  ADD PRIMARY KEY (`id`,`id_trail`,`active`),
-  ADD KEY `indexirano` (`id`,`id_trail`,`trail_type`),
-  ADD KEY `version_trail` (`id_trail`),
-  ADD KEY `version_trail_type` (`trail_type`);
-
---
--- Indexes for table `trail_version_path`
---
-ALTER TABLE `trail_version_path`
-  ADD PRIMARY KEY (`id`,`id_version`),
-  ADD KEY `version_points0` (`id_version`);
-
---
--- Indexes for table `trail_version_points`
---
-ALTER TABLE `trail_version_points`
-  ADD PRIMARY KEY (`id`,`id_version`),
-  ADD KEY `version_points` (`id_version`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `eventlog`
---
-ALTER TABLE `eventlog`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `hist_trail_version_path`
---
-ALTER TABLE `hist_trail_version_path`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1245;
---
--- AUTO_INCREMENT for table `hist_trail_version_points`
---
-ALTER TABLE `hist_trail_version_points`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
---
--- AUTO_INCREMENT for table `repo_regions`
---
-ALTER TABLE `repo_regions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
---
--- AUTO_INCREMENT for table `trails`
---
-ALTER TABLE `trails`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
---
--- AUTO_INCREMENT for table `trail_versions`
---
-ALTER TABLE `trail_versions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
---
--- AUTO_INCREMENT for table `trail_version_path`
---
-ALTER TABLE `trail_version_path`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4476;
---
--- AUTO_INCREMENT for table `trail_version_points`
---
-ALTER TABLE `trail_version_points`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=281;
 --
 -- Constraints for dumped tables
 --

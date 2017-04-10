@@ -137,14 +137,14 @@ class MainToolbar extends BasePage {
                         label={Lang.label('savetrail')}
                         primary={true}
                         disabled={this.state.disabledSaveTrail}
-                        onTouchTap={this.onToggleWPDrawerEvent}
+                        onTouchTap={this.onSaveTrailEvent}
                         icon={<SaveTrailIcon />}
                     />
                     <FlatButton
                         label={Lang.label('waypoints')}
                         primary={true}
                         disabled={this.state.disabledWaypoints}
-                        onTouchTap={this.onSaveTrailEvent}
+                        onTouchTap={this.onToggleWPDrawerEvent}
                         icon={<NumList />}
                     />
                 </ToolbarGroup>

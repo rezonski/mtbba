@@ -244,7 +244,7 @@ class DataController extends GLU.Controller {
     }
 
     uploadTrail() {
-        const trail = JSON.parse(JSON.stringify(TrailsDataModel.activeTrail.elevationNivelatedFeaturesCollectionFeatures));
+        const trail = JSON.parse(JSON.stringify(TrailsDataModel.activeTrail.getEnrichedFeatureCollection()));
         const lines = CommonHelper.getLineStrings(trail);
         const waypoints = CommonHelper.getPoints(trail);
         const generalFacts = JSON.parse(JSON.stringify(TrailsDataModel.activeTrail.getGeneralFacts()));

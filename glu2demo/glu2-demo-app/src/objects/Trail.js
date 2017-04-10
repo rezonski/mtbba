@@ -100,7 +100,7 @@ class Trail {
         generalFacts.trailDescEn = (generalFacts.trailDescEn === undefined) ? '' : generalFacts.trailDescEn;
         generalFacts.mntns = (generalFacts.mntns === undefined) ? [] : generalFacts.mntns;
         generalFacts.surfaceCollection = (generalFacts.surfaceCollection === undefined) ? [[ 0, 'A']] : generalFacts.surfaceCollection;
-        generalFacts.typeID = (generalFacts.typeID === undefined) ? null : generalFacts.typeID;
+        generalFacts.trailTypeID = (generalFacts.trailTypeID === undefined) ? null : generalFacts.trailTypeID;
         generalFacts.typeName = (generalFacts.typeName === undefined) ? '' : generalFacts.typeName;
         generalFacts.typeDesc = (generalFacts.typeDesc === undefined) ? '' : generalFacts.typeDesc;
         generalFacts.distance = (generalFacts.distance === undefined) ? 0 : generalFacts.distance;
@@ -108,10 +108,10 @@ class Trail {
         generalFacts.elevMax = (generalFacts.elevMax === undefined) ? 0 : generalFacts.elevMax;
         generalFacts.elevGain = (generalFacts.elevGain === undefined) ? 0 : generalFacts.elevGain;
         generalFacts.elevLoss = (generalFacts.elevLoss === undefined) ? 0 : generalFacts.elevLoss;
-        generalFacts.reviewLandscape = (generalFacts.reviewLandscape === undefined) ? null : generalFacts.reviewLandscape;
-        generalFacts.reviewFun = (generalFacts.reviewFun === undefined) ? null : generalFacts.reviewFun;
-        generalFacts.requiredFitness = (generalFacts.requiredFitness === undefined) ? null : generalFacts.requiredFitness;
-        generalFacts.requiredTechnique = (generalFacts.requiredTechnique === undefined) ? null : generalFacts.requiredTechnique;
+        generalFacts.reviewLandscape = (generalFacts.reviewLandscape === undefined) ? 0 : generalFacts.reviewLandscape;
+        generalFacts.reviewFun = (generalFacts.reviewFun === undefined) ? 0 : generalFacts.reviewFun;
+        generalFacts.requiredFitness = (generalFacts.requiredFitness === undefined) ? 0 : generalFacts.requiredFitness;
+        generalFacts.requiredTechnique = (generalFacts.requiredTechnique === undefined) ? 0 : generalFacts.requiredTechnique;
         generalFacts.center = (generalFacts.center === undefined) ? [] : generalFacts.center;
         generalFacts.bounds = (generalFacts.bounds === undefined) ? [] : generalFacts.bounds;
         generalFacts.fileName = (generalFacts.fileName === undefined) ? '' : generalFacts.fileName;

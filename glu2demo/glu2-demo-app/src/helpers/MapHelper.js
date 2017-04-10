@@ -239,7 +239,7 @@ class MapHelper {
             };
 
             for (let i = 0; i < (pathLine.length - 1); i++) {
-                totalOdometer += pathLine[i + 1].prev_dist;
+                totalOdometer += pathLine[i + 1].prevDist;
                 if (startOdometer <= totalOdometer && totalOdometer <= endOdometer) {
                     currentSection.geometry.coordinates.push([pathLine[i].lon, pathLine[i].lat]);
                 }

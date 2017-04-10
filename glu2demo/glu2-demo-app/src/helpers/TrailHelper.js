@@ -126,7 +126,7 @@ class TrailHelper extends GLU.Controller {
                     elevGain: (elevDelta > 0) ? (prevLoc.elevGain + elevDelta) : prevLoc.elevGain,
                     elevLoss: (elevDelta < 0) ? (prevLoc.elevLoss + elevDelta) : prevLoc.elevLoss,
                     odometer: prevLoc.odometer + prevDist,
-                    prev_dist: prevDist,
+                    prevDist,
                 };
             } else {
                 elevationCalc = (location[2] === undefined) ? 0 : location[2];
@@ -138,7 +138,7 @@ class TrailHelper extends GLU.Controller {
                     elevGain: 0,
                     elevLoss: 0,
                     odometer: 0,
-                    prev_dist: 0,
+                    prevDist: 0,
                 };
             }
             enrichedPathLine.push(currLoc);
@@ -187,7 +187,7 @@ class TrailHelper extends GLU.Controller {
         // Distance and elevation
 
         for (let i = 0; i < newPathLine.length; i++) {
-            totaldistance += newPathLine[i].prev_dist;
+            totaldistance += newPathLine[i].prevDist;
             if (newPathLine[i].prevElev > 0) {
                 totalelevGain += newPathLine[i].prevElev;
             } else {
@@ -202,7 +202,8 @@ class TrailHelper extends GLU.Controller {
         // const lonDelta = (maxLon - minLon) / 1;
         // const latDelta = (maxLat - minLat) / 1;
         // exportGeneralFacts.bounds = [[(maxLon + lonDelta), (maxLat + latDelta)], [(minLon - lonDelta), (minLat - latDelta)]];
-        exportGeneralFacts.bounds = turf.bbox(featuresCollection);
+        const cBounds = turf.bbox(featuresCollection);
+        exportGeneralFacts.bounds = [[cBounds[0], cBounds[1]], [cBounds[2], cBounds[3]]];
 
         // Center
         // const lonCenter = (maxLon + minLon) / 2;
