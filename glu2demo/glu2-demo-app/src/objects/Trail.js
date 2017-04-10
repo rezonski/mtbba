@@ -100,7 +100,7 @@ class Trail {
         generalFacts.trailDescEn = (generalFacts.trailDescEn === undefined) ? '' : generalFacts.trailDescEn;
         generalFacts.mntns = (generalFacts.mntns === undefined) ? [] : generalFacts.mntns;
         generalFacts.surfaceCollection = (generalFacts.surfaceCollection === undefined) ? [[ 0, 'A']] : generalFacts.surfaceCollection;
-        generalFacts.trailTypeID = (generalFacts.trailTypeID === undefined) ? null : generalFacts.trailTypeID;
+        generalFacts.trailTypeID = (generalFacts.trailTypeID === undefined) ? 0 : generalFacts.trailTypeID;
         generalFacts.typeName = (generalFacts.typeName === undefined) ? '' : generalFacts.typeName;
         generalFacts.typeDesc = (generalFacts.typeDesc === undefined) ? '' : generalFacts.typeDesc;
         generalFacts.distance = (generalFacts.distance === undefined) ? 0 : generalFacts.distance;

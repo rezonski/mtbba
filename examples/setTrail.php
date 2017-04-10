@@ -38,7 +38,7 @@
             $trailID = (int)$generalFacts['trailID'];
             $oldVersionID = (int)$generalFacts['trailVersionID'];
             $logObj->oldVersionID = $oldVersionID;
-            array_push($steps, (object)array("step" => "Parsing ID", "status" => 1, "log" => "Existing trail: $trailID = ".$trailID." , $oldVersionID = ".$oldVersionID));
+            array_push($steps, (object)array("step" => "Parsing ID", "status" => $logObj->status, "log" => "Existing trail: $trailID = ".$trailID." , $oldVersionID = ".$oldVersionID));
         } else {
             $sql = "SELECT MAX(id) as 'id' from `trails`";
             $maxTrailIDresults = mysqli_query($conn,$sql);
@@ -47,7 +47,7 @@
                     $trailID = (int)$row['id'] + 1;
                 }
             }
-            array_push($steps, (object)array("step" => "Parsing ID", "status" => 1, "log" => "New trail: $trailID = ".$trailID));
+            array_push($steps, (object)array("step" => "Parsing ID", "status" => $logObj->status, "log" => "New trail: $trailID = ".$trailID));
         }
 
         $logObj->trailID = $trailID;
@@ -101,9 +101,23 @@
                 array_push($steps, (object)array("segment" => "general", "step" => "INSERT INTO trails", "status" => $logObj->status, "log" => $conn->error, "sql" => (($logObj->status) ? '' : $sql)));
             }
 
+            // GET NEW VERSION ID
+            $result = mysqli_query($conn,"SELECT MAX(id) as 'id' from `trail_versions`");
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $newVersionID = (int)$row['id'] + 1;
+                }
+            }
+
+            $logObj->newVersionID = $newVersionID;
+            $sql = str_replace(array("\n", "\r", "  "), "", $sql);
+            $logObj->status = ($conn->query($sql));
+            array_push($steps, (object)array("segment" => "general", "step" => "GET NEW VERSION ID", "status" => $logObj->status, "log" => "newVersionID = ".$newVersionID));
+
             // INSERT NEW VERSION
             $sql = "INSERT INTO `trail_versions`
                         (
+                            `id`,
                             `id_trail`, 
                             `date`, 
                             `active`,
@@ -126,6 +140,7 @@
                         ) 
                     VALUES
                         (
+                            ".$newVersionID.",
                             ".$trailID.", 
                             CURTIME(),
                             1,
@@ -149,19 +164,6 @@
             $sql = str_replace(array("\n", "\r", "  "), "", $sql);
             $logObj->status = ($conn->query($sql));
             array_push($steps, (object)array("segment" => "general", "step" => "INSERT INTO trail_versions", "status" => $logObj->status, "log" => $conn->error, "sql" => (($logObj->status) ? '' : $sql)));
-
-
-            // GET NEW VERSION ID
-            $result = mysqli_query($conn,"SELECT MAX(id) as 'id' from `trail_versions` where `id_trail` = ".$trailID." and `active` = 1");
-            if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $newVersionID = (int)$row['id'];
-                }
-            }
-            $logObj->newVersionID = $newVersionID;
-            $sql = str_replace(array("\n", "\r", "  "), "", $sql);
-            $logObj->status = ($conn->query($sql));
-            array_push($steps, (object)array("segment" => "general", "step" => "GET NEW VERSION ID", "status" => 1, "log" => "$newVersionID = ".$newVersionID));
         }
 
         // PATH
@@ -232,7 +234,7 @@
                 }
                 $sql = str_replace(array("\n", "\r", "  "), "", $sql);
                 $logObj->status = ($conn->query($sql));
-                array_push($steps, (object)array("segment" => "path", "step" => "INSERT INTO trail_version_path", "status" => 1, "log" => "Total good/bad: ".$goodones."/".$badones));
+                array_push($steps, (object)array("segment" => "path", "step" => "INSERT INTO trail_version_path", "status" => $logObj->status, "log" => "Total good/bad: ".$goodones."/".$badones));
             }
         }
 
@@ -326,7 +328,7 @@
                             ) 
                         VALUES 
                             (
-                                ".(int)$property['id'].",
+                                ".$property['id'].",
                                 ".$newVersionID.", 
                                 '".$property['name']."', 
                                 '".$property['nameEn']."', 
@@ -352,11 +354,13 @@
                     $goodones += 1;
                 } else {
                     $badones += 1;
+                    $sql = str_replace(array("\n", "\r", "  "), "", $sql);
+                    $logObj->status = false;
+                    array_push($steps, (object)array("segment" => "waypoints", "step" => "INSERT INTO trail_version_points", "status" => $logObj->status, "log" => "ERROR: ".$conn->error, "sql" => (($logObj->status) ? '' : $sql)));
                 }
             }
-            $sql = str_replace(array("\n", "\r", "  "), "", $sql);
-            $logObj->status = ($conn->query($sql));
-            array_push($steps, (object)array("segment" => "waypoints", "step" => "INSERT INTO trail_version_points", "status" => 1, "log" => "Total good/bad: ".$goodones."/".$badones));
+            $logObj->status = ($badones === 0);
+            array_push($steps, (object)array("segment" => "waypoints", "step" => "INSERT INTO trail_version_points", "status" => $logObj->status, "log" => "Total good/bad: ".$goodones."/".$badones));
         }
 
         // MOUNTAIN & TRAILS
@@ -373,19 +377,17 @@
             $mntns_list = "TraiID = ".$trailID." , mntns: ";
             foreach ($mntns as $idmnt) {
                 $sql = "INSERT INTO `trail_regions` (`id_trail`,`id_mnt`) VALUES (".$trailID.", ".$idmnt.")";
-                if ($conn->query($sql) === TRUE) {
+                $logObj->status = ($conn->query($sql));
+                if ($logObj->status) {
                     $mntns_list += $idmnt.", ";
                 } else {
                     $sql = str_replace(array("\n", "\r", "  "), "", $sql);
-                    $logObj->status = ($conn->query($sql));
-                    array_push($steps, (object)array("step" => "INSERT INTO trail_regions VALUES (".$trailID.", ".$idmnt.")", "status" => 0, "log" => $conn->error, "sql" => (($logObj->status) ? '' : $sql)));
+                    array_push($steps, (object)array("step" => "INSERT INTO trail_regions VALUES (".$trailID.", ".$idmnt.")", "status" => $logObj->status, "log" => $conn->error, "sql" => (($logObj->status) ? '' : $sql)));
                 }
             }
-            $sql = str_replace(array("\n", "\r", "  "), "", $sql);
-            $logObj->status = ($conn->query($sql));
-            array_push($steps, (object)array("step" => "INSERT INTO trail_regions", "status" => 1, "log" => $mntns_list));
+            array_push($steps, (object)array("step" => "INSERT INTO trail_regions", "status" => $logObj->status, "log" => $mntns_list));
         }
-
+    
         $logObj->log = $steps;
 
         if ($logObj->status) {
