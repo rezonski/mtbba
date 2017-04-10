@@ -87,8 +87,9 @@
                 COALESCE(review_fun,0) AS `review_fun`,
                 COALESCE(required_fitness,0) AS `required_fitness`,
                 COALESCE(required_technique,0) AS `required_technique`,
-                CONCAT('[', COALESCE(lon_center,0), ',', COALESCE(lat_center,0), ']') AS `center`,
+                center,
                 bounds,
+                inputfilename,
                 external_link,
                 image_url
         FROM active_trails 
