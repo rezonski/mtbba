@@ -92,7 +92,7 @@
                                 ".$trailID.", 
                                 '".$generalFacts['trailName']."',
                                 '".$generalFacts['trailNameEn']."',
-                                '".str_replace(array("š","đ","ž","č","ć","!","?",")","(","&"," "), array("s","dj","z","c","c","","","","","","-"), mb_strtolower($generalFacts['trailName']))."',
+                                '".str_replace(array("š","đ","ž","č","ć","!","?",")","(","&"," "), array("s","dj","z","c","c","","","","","","-"), mb_strtolower($generalFacts['trailName']))."-".$trailID."',
                                 '".$generalFacts['trailDesc']."',
                                 '".$generalFacts['trailDescEn']."'
                             )";

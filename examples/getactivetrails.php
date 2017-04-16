@@ -18,6 +18,7 @@
 
     $sql = "SELECT 
                 trail_id,
+                trail_slug,
                 trail_name,
                 trail_desc,
                 type_id,
@@ -75,6 +76,7 @@
                 {
                     "name": "'.$row["trail_name"].'",
                     "trailID": '.$row["trail_id"].',
+                    "trailSlug": '.$row["trail_slug"].',
                     "mntns": '.$mntarray.',
                     "trailName": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_name"]).'",
                     "trailDesc": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_desc"]).'",
