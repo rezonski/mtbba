@@ -1,9 +1,9 @@
 <?php
     header('Access-Control-Allow-Origin: *');
-    $servername = "localhost";
+    $servername = "localhost:3307";
     $username = "root";
-    $password = "";
-    $dbname = "mytrails";
+    $password = "letmein";
+    $dbname = "staze";
 
     if (isset($_GET['trailid'])) {
         $id = $_GET['trailid'];

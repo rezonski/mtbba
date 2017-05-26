@@ -1,9 +1,9 @@
 <?php
     header('Access-Control-Allow-Origin: *');
-    $servername = "localhost";
+    $servername = "localhost:3307";
     $username = "root";
-    $password = "";
-    $dbname = "mytrails";
+    $password = "letmein";
+    $dbname = "staze";
     $conn = new mysqli($servername, $username, $password, $dbname);
 
     /* change character set to utf8 */
