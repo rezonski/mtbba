@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>SVG</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body { margin:0; padding:0; }
+        .svg {
+          width: 150px;
+          height: 150px;
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <div>
+      <img class="svg" id="svg-preview" src="http://localhost/sandbox/examples/svg/getsvg.php?opis=">
+    </div>
+    <div class="input">
+      <form class="w3-container">
+        <label>Input</label>
+        <input class="w3-input" type="text" id="input-field" oninput=>
+      </form>
+    </div>
+  </div>
+<script>
+  var inputField = document.getElementById('input-field');
+  var svgPreview = document.getElementById('svg-preview');  
+  inputField.addEventListener('keydown', function(e) {
+    svgPreview.src = 'http://localhost/sandbox/examples/svg/getsvg.php?opis=' + inputField.value;
+  });
+</script>
+</body>
+</html>

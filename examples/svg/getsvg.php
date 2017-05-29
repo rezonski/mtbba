@@ -23,7 +23,50 @@
 
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/SVG/DTD/svg10.dtd">
 <svg height="900" width="900" xmlns="http://www.w3.org/2000/svg">
-<g>
+  <defs>
+<!--     <pattern id="forestPattern" x="10" y="10" width="100" height="30" patternUnits="userSpaceOnUse">
+      <rect fill="#E4D0C1" width="100" height="30"/>
+      <path fill="#90D193" id="Combined-Shape" d="M0,15.427L15.428,0H29.57L0,29.57V15.427L0,15.427z M100,29.57L70.43,0H84.57L100,15.427V29.57
+      L100,29.57z M15.428,30l30-30h9.143l30,30H70.43L50,9.573L29.573,30H15.428L15.428,30z M45.428,30L50,25.43L54.57,30H45.428
+      L45.428,30z"/>
+    </pattern> -->
+<!--     <pattern id="forestPattern" x="10" y="10" width="200" height="60" patternUnits="userSpaceOnUse">
+      <rect fill="#E4D0C1" width="200" height="60"/>
+      <path fill="#90D193" id="Combined-Shape" d="M0,30.854L30.855,0h28.285L0,59.141V30.854L0,30.854z M200,59.141L140.859,0h28.281L200,30.854
+      V59.141L200,59.141z M30.855,60l60-60h18.286l60,60h-28.281L100,19.146L59.146,60H30.855L30.855,60z M90.855,60L100,50.859
+      L109.141,60H90.855L90.855,60z"/>
+    </pattern> -->
+    <pattern id="forestPattern" x="10" y="10" width="150" height="45" patternUnits="userSpaceOnUse">
+      <rect fill="#D4C2B4" width="150" height="45"/>
+      <path fill="#8FC391" id="Combined-Shape" d="M0,23.141L23.142,0h21.214L0,44.355V23.141L0,23.141z M150,44.355L105.645,0h21.211L150,23.141
+      V44.355L150,44.355z M23.142,45l45-45h13.714l45,45h-21.211L75,14.359L44.36,45H23.142L23.142,45z M68.141,45L75,38.145L81.855,45
+      H68.141L68.141,45z"/>
+    </pattern>
+    <pattern id="grassPattern" x="10" y="10" width="200" height="40" patternUnits="userSpaceOnUse">
+      <rect fill="#C6E4C1" width="200" height="40"/>
+      <path fill="#82DF86" id="Combined-Shape" d="M42.368,40c0.714-0.262,1.439-0.527,2.177-0.805c0.725-0.27,3.196-1.195,3.535-1.322
+      C67.279,30.695,79.294,28,100,28c20.543,0,30.723,2.443,49.258,9.857c1.91,0.764,3.738,1.479,5.5,2.143h12.449
+      c-5.02-1.461-10.277-3.383-16.465-5.857C131.777,26.557,121.125,24,100,24c-21.252,0-33.71,2.795-53.321,10.127
+      c-0.341,0.127-2.812,1.053-3.532,1.322c-4.949,1.848-9.321,3.35-13.447,4.551H42.368L42.368,40z M42.368,0
+      C26.515,5.784,16.153,8,0,8l0,0V4c11.488,0,19.902-1.148,29.699-4H42.368L42.368,0z M154.758,0C170.477,5.933,181.004,8,200,8V4
+      c-13.684,0-22.771-1.084-32.793-4H154.758L154.758,0z M0,28c16.881,0,27.437-2.42,44.545-8.804
+      c0.725-0.27,3.196-1.196,3.535-1.323C67.279,10.695,79.294,8,100,8c20.543,0,30.723,2.443,49.258,9.857
+      C168.223,25.443,178.875,28,200,28v-4c-20.543,0-30.723-2.443-49.258-9.857C131.777,6.557,121.125,4,100,4
+      C78.748,4,66.29,6.795,46.679,14.127c-0.341,0.127-2.812,1.053-3.532,1.322C26.447,21.68,16.327,24,0,24V28L0,28L0,28z"/>
+    </pattern>
+    <pattern id="brickPattern" x="10" y="10" width="210" height="210" patternUnits="userSpaceOnUse">
+      <rect fill="#FFFFFF" id="Combined-Shape" width="210" height="210"/>
+      <path fill="#DFDFDF" d="M5,10h200v95.238H5V10z M0,114.762h100V210H0V114.762z M110,114.762h100V210H110V114.762z"/>
+    </pattern>
+    <pattern id="pointsPattern" x="10" y="10" width="120" height="120" patternUnits="userSpaceOnUse">
+      <rect fill="#CCCCCC" id="Combined-Shape" width="120" height="120"/>
+      <g id="dots" fill="#FFFFFF">
+          <circle id="Oval-377-Copy-9" cx="15" cy="15" r="15"></circle>
+          <circle id="Oval-377-Copy-14" cx="80" cy="80" r="15"></circle>
+      </g>
+    </pattern>
+  </defs>
+  <g>
 
 <?php
   function fugao($vugao) {
@@ -82,7 +125,7 @@
   }
   // Sporedni put
   function printSmjer($ugao) {
-    printPut("#CCCCCC", $ugao);
+    printPut("#AAAAAA", $ugao);
   }
   //Most
   function printMost($ugao) { 
@@ -160,7 +203,23 @@
       <path fill=\"#FEFCF5\" d=\"M463.722,467.337l16.905-21.013c5.761,0.223,12.039-1.685,18.661-4.976l40.683-51.195l-4.093-8.231,l-30.456,38.326c-1.807,2.272-5.118,2.653-7.396,0.845c-2.273-1.809-2.653-5.119-0.845-7.395l30.455-38.324l-6.73-5.348,l-30.455,38.325c-1.808,2.274-5.117,2.655-7.396,0.848c-2.272-1.809-2.653-5.12-0.844-7.395l30.454-38.325l-8.944-2.125,l-41.481,52.203c-1.471,7.158-1.846,13.464-0.218,18.779l-13.522,16.807l-17.869-21.356c4.614-12.09,0.956-28.883-10.461-42.526,c-15.044-17.98-37.854-23.682-50.943-12.734c-13.09,10.951-11.504,34.405,3.544,52.387c11.416,13.644,27.296,20.208,40.016,17.805,    l20.843,24.908l-40.943,50.888c-4.001,5.029-3.163,12.349,1.868,16.347c5.029,3.993,12.351,3.155,16.347-1.874l37.952-47.167,l39.657,47.394c4.12,4.93,11.458,5.582,16.388,1.46c4.926-4.121,5.578-11.46,1.454-16.387L463.722,467.337z\"/>
       </g>";
   }
-
+  //Suma
+  function printBackgroundSuma() { 
+    echo "<g id=\"suma\"><rect x=\"10\" y=\"10\" width=\"900\" height=\"900\" fill=\"url(#forestPattern)\" /></g>";
+  }
+  //Livada
+  function printBackgroundLivada() { 
+    echo "<g id=\"livada\"><rect x=\"10\" y=\"10\" width=\"900\" height=\"900\" fill=\"url(#grassPattern)\" /></g>";
+  }
+  //Grad
+  function printBackgroundGrad() { 
+    echo "<g id=\"grad\"><rect x=\"10\" y=\"10\" width=\"900\" height=\"900\" fill=\"url(#brickPattern)\" /></g>";
+  }
+  //Kamenjar
+  function printBackgroundKamenjar() { 
+    echo "<g id=\"grad\"><rect x=\"10\" y=\"10\" width=\"900\" height=\"900\" fill=\"url(#pointsPattern)\" /></g>";
+  }
+  
   $ulaz = $_GET["opis"];
   $elementi=explode("-",$ulaz);
 
@@ -206,6 +265,18 @@
           printSmjer(substr($elementi[$i],1));
         }
         break;
+      case "s":
+        printBackgroundSuma();
+        break;
+      case "l":
+        printBackgroundLivada();
+        break;
+      case "g":
+        printBackgroundGrad();
+        break;
+      case "k":
+        printBackgroundKamenjar();
+        break;
       default:
         if ($i == 0) {
           printPutanja($elementi[$i]);
@@ -215,6 +286,24 @@
     }
   }
   printPutanja(270);
+  // Putanja         - 
+  // Moguci smjerovi - 
+  // Voda            - v
+  // Zabranjeno      - z
+  // Naselje/kuce    - n
+  // Most            - m
+  // Rijeka/potok    - r
+  // Odmoriste/izlet - o
+  // hrana/restoran  - h
+  // planinarski dom - p
+  // plan.prevoj     - x
+  // tunel           - t
+  // 
+  // Pozadine:
+  // livada          - l
+  // suma            - s
+  // kamenjar        - k
+  // grad/urbano     - g
 ?>
   </g>
 </svg>
