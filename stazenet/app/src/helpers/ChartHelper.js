@@ -98,7 +98,7 @@ class ChartHelper extends GLU.Controller {
     getChartSetup(chartContainer, featuresCollection) {
         const pathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
         const generalFacts = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].properties;
-        const trailName = generalFacts.name;
+        const trailName = generalFacts.trailName;
         const surfaceCollection = generalFacts.surfaceCollection;
         const trailWayPoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(featuresCollection))).map((point) => {
             return {

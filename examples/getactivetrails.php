@@ -76,7 +76,7 @@
                 {
                     "name": "'.$row["trail_name"].'",
                     "trailID": '.$row["trail_id"].',
-                    "trailSlug": '.$row["trail_slug"].',
+                    "trailSlug": "'.$row["trail_slug"].'",
                     "mntns": '.$mntarray.',
                     "trailName": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_name"]).'",
                     "trailDesc": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_desc"]).'",
