@@ -30,6 +30,8 @@ class ListSelection extends BasePage {
     onListValueChanged(event, key, value) {
         const payload = {
             name: this.props.fieldName,
+            index: this.props.fieldIndex,
+            prop: this.props.fieldProp,
             value,
         };
         this.emit(Enum.DataEvents.SAVE_TRAILDATA2MODEL, payload);
@@ -39,10 +41,18 @@ class ListSelection extends BasePage {
     }
 
     onDataRetrieved(payload) {
-        if (payload[this.props.fieldName] && payload[this.props.fieldName] !== this.state.value) {
-            this.setState({
-                value: payload[this.props.fieldName],
-            });
+        if (payload[this.props.fieldName] && this.props.fieldIndex !== undefined && this.props.fieldProp) {
+            if (payload[this.props.fieldName][this.props.fieldIndex][this.props.fieldProp] !== this.state.value) {
+                this.setState({
+                    value: payload[this.props.fieldName][this.props.fieldIndex].properties[this.props.fieldProp],
+                });
+            }
+        } else {
+            if (payload[this.props.fieldName] && payload[this.props.fieldName] !== this.state.value) {
+                this.setState({
+                    value: payload[this.props.fieldName],
+                });
+            }
         }
     }
 

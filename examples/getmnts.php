@@ -301,9 +301,9 @@ $output .= ',
                 $output .= 
 '
     {
-        "symbol_code": "'.$row["symbol_code"].'",
-        "desc": "'.$row["desc"].'",
-        "desc_en": "'.$row["desc_en"].'"
+        "id": "'.$row["symbol_code"].'",
+        "name": "'.$row["desc"].'",
+        "desc": "'.$row["desc_en"].'"
     }';
             }
         };

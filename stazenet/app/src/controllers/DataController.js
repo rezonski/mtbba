@@ -115,6 +115,7 @@ class DataController extends GLU.Controller {
         // console.error(err);
         const msg = (err && err.response) ? err.response.text : err.toString();
         GLU.bus.emit(MessageEvents.ERROR_MESSAGE, msg);
+        throw msg;
     }
 
     setTrailData2Model(payload) {
@@ -174,6 +175,7 @@ class DataController extends GLU.Controller {
                 console.error(err);
                 // console.log('getTrailList: ' + msg);
                 GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('trailLoadFailed') + msg);
+                throw msg;
             });
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endTrailsListLoading'));
     }
@@ -192,7 +194,7 @@ class DataController extends GLU.Controller {
                     TrailsDataModel.activeTrail.parsedFeaturesCollection = toGeoJSON.kml(domParser);
                 } else {
                     GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('fileFormatUnsuported'));
-                    return;
+                    throw Lang.msg('fileFormatUnsuported');
                 }
                 TrailsDataModel.activeTrail.parseInitialFeaturesCollection();
                 TrailsDataModel.activeTrail.setDataByName('trailName', null, null, payload.file.name.replace('.gpx', '').replace('_profil', ' ').replace('_', ' '));
@@ -204,7 +206,7 @@ class DataController extends GLU.Controller {
             r.readAsText(payload.file);
         } else {
             GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('fileLoadFailed'));
-            return;
+            throw Lang.msg('fileLoadFailed');
         }
     }
 
@@ -239,6 +241,7 @@ class DataController extends GLU.Controller {
                 console.error(err);
                 // console.log('downloadTrail: ' + msg);
                 GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('trailLoadFailed') + msg);
+                throw msg;
             });
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endDownloadingTrailLoading'));
     }
@@ -402,6 +405,7 @@ class DataController extends GLU.Controller {
                 if (response.text.substring(0, 6) === '#Error') {
                     GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('trailThumbnailGetFailed') + response.text);
                     console.warn(response.text);
+                    throw response.text;
                 } else if (response.text.substring(0, 3) === '#OK') {
                     const parsedResponseArray = response.text.split(': ');
                     TrailsDataModel.activeTrail.setDataByName('imageURL', null, null, appConfig.constants.server + parsedResponseArray[1]);
@@ -414,6 +418,7 @@ class DataController extends GLU.Controller {
                 console.error(err);
                 // console.log('downloadTrail: ' + msg);
                 GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('trailThumbnailGetFailed') + msg);
+                throw msg;
             });
         } else {
             GLU.bus.emit(Enum.DataEvents.START_FIXING_WAYPOINTS);
@@ -458,6 +463,7 @@ class DataController extends GLU.Controller {
                 if (response.text.substring(0, 6) === '#Error') {
                     GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('wpThumbnailGetFailed') + response.text);
                     console.warn(response.text);
+                    throw response.text;
                 } else if (response.text.substring(0, 3) === '#OK') {
                     const parsedResponseArray = response.text.split(': ');
                     TrailsDataModel.activeTrail.setDataByName('waypoints', WPindex, 'pictureUrl', appConfig.constants.server + parsedResponseArray[1]);

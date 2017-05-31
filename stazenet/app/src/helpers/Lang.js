@@ -229,6 +229,10 @@ const labels = {
         bos: 'npr. 90-v135-z30',
         eng: 'eg. 90-v135-z30',
     },
+    pointTypes: {
+        bos: 'Vrsta tacke puta',
+        eng: 'Waypoint type',
+    },
 };
 
 const messages = {

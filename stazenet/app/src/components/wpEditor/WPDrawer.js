@@ -2,7 +2,6 @@ import React from 'react';
 import BasePage from '../BasePage';
 import Enum from '../../enums/Enum';
 import Drawer from 'material-ui/Drawer';
-import { Step, Stepper, StepButton, StepContent } from 'material-ui/Stepper';
 // import RaisedButton from 'material-ui/RaisedButton';
 // import FlatButton from 'material-ui/FlatButton';
 import WPEditorTray from '../wpEditor/WPEditorTray';
@@ -43,12 +42,6 @@ class WPDRawer extends BasePage {
         });
     }
 
-    onSetStep(stepIndex) {
-        this.setState({
-            stepIndex,
-        });
-    }
-
     render() {
         if (this.state.waypoints.length === 0) {
             return null;
@@ -61,26 +54,18 @@ class WPDRawer extends BasePage {
         };
 
         const steps = this.state.waypoints.map((wp, wpIdx) => {
-            return (<Step key={'wp-step-' + wpIdx}>
-                        <StepButton onTouchTap={this.onSetStep.bind(this, wpIdx)}>
-                            {wp.properties.odometer + 'km - ' + wp.properties.name}
-                        </StepButton>
-                        <StepContent>
+            return (<div
+                        id={'wp-step-' + wpIdx}
+                        className={'wp-step'}
+                        key={'wp-step-' + wpIdx}>
                             <WPEditorTray
                                 wp={wp.properties}
                                 wpIndex={wpIdx}
                             />
-                        </StepContent>
-                    </Step>);
+                    </div>);
         });
 
-        const content = (<Stepper
-                            activeStep={this.state.stepIndex}
-                            linear={false}
-                            orientation="vertical"
-                        >
-                          {steps}
-                        </Stepper>);
+        const content = (<div id="wp-stepper">{steps}</div>);
 
         return (<Drawer
                     open={this.state.drawerOpen}
