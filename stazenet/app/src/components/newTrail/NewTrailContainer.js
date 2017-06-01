@@ -67,8 +67,6 @@ class NewTrailContainer extends BasePage {
                 return (<StepDescription/>);
             case 5:
                 return (<StepChartPreview/>);
-            default:
-                return 'Ouuuooops!';
         }
     }
 
@@ -145,15 +143,18 @@ class NewTrailContainer extends BasePage {
     handleNext() {
         const stepIndex = this.state.stepIndex;
         this.setState({
-            stepIndex: (stepIndex >= 5) ? stepIndex : (stepIndex + 1),
-            finished: stepIndex >= 5,
+            stepIndex: (stepIndex < 5) ? (stepIndex + 1) : stepIndex,
+            finished: stepIndex >= 4,
         });
     }
 
     handlePrev() {
         const stepIndex = this.state.stepIndex;
         if (stepIndex > 0) {
-            this.setState({ stepIndex: stepIndex - 1 });
+            this.setState({
+                stepIndex: stepIndex - 1,
+                finished: stepIndex >= 4,
+            });
         }
     }
 }

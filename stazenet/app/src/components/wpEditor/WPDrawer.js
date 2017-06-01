@@ -37,6 +37,7 @@ class WPDRawer extends BasePage {
     }
 
     onToggleOpenDrawer() {
+        this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA, 'waypoints');
         this.setState({
             drawerOpen: !this.state.drawerOpen,
         });

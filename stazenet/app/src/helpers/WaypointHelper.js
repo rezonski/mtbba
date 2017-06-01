@@ -233,10 +233,10 @@ class WaypointHelper extends GLU.Controller {
 
     generateDesc(wp, surfaceCollection) {
         let returnDesc = JSON.stringify(wp);
-        returnDesc = CommonHelper.getElementByKey(this.pointTypes, 'symbol_code', 'CROSSROAD', 'desc');
+        returnDesc = CommonHelper.getElementByKey(this.pointTypes, 'id', 'CROSSROAD', 'name');
 
         if (wp.next !== null) {
-            let directionText = CommonHelper.getElementByKey(this.pointTypes, 'symbol_code', wp.current.symbol, 'desc') + ' "' + wp.current.name + '". Nastaviti ';
+            let directionText = CommonHelper.getElementByKey(this.pointTypes, 'id', wp.current.symbol, 'name') + ' "' + wp.current.name + '". Nastaviti ';
             let otherDirections = ' Sporedni putevi: ';
             let waterSupplyText = ' Izvor vode: ';
             let forbiddenDirectionText = ' Zabranjen smjer: ';
@@ -283,7 +283,7 @@ class WaypointHelper extends GLU.Controller {
             }
             // console.log('wp.current.odometer = ' + wp.current.odometer + ' , wp.next.odometer = ' + wp.next.odometer);
             directionText += this.parseSurfaceTransition(wp.current.odometer, wp.next.odometer, surfaceCollection);
-            directionText += '. Sljedeca kontrolna tacka je ' + CommonHelper.getElementByKey(this.pointTypes, 'symbol_code', wp.next.symbol, 'desc') + ' "' + wp.next.name + '" (' + wp.next.odometer + ' km od starta na ' + parseInt(wp.next.elevation, 10) + ' mnv).';
+            directionText += '. Sljedeca kontrolna tacka je ' + CommonHelper.getElementByKey(this.pointTypes, 'id', wp.next.symbol, 'name') + ' "' + wp.next.name + '" (' + wp.next.odometer + ' km od starta na ' + parseInt(wp.next.elevation, 10) + ' mnv).';
             returnDesc = directionText;
         } else {
             returnDesc = 'Stigli ste na odrediste';
@@ -425,7 +425,7 @@ class WaypointHelper extends GLU.Controller {
                 desc.indexOf('lokacija ') === 0 ||
                 name.indexOf('lokacija ') === 0)) {
             found = true;
-            returnVal = 'LOCATION';
+            returnVal = 'PLACE';
         }
         // GRAD
         if (!found && (desc.indexOf('grad ') === 0 ||
@@ -453,7 +453,7 @@ class WaypointHelper extends GLU.Controller {
                 desc.indexOf('pocetak staze ') === 0 ||
                 name.indexOf('pocetak staze ') === 0)) {
             found = true;
-            returnVal = 'TRAILSTART';
+            returnVal = 'START';
         }
         // KRAJ
         if (!found && (desc.indexOf('end ') === 0 ||
@@ -463,7 +463,7 @@ class WaypointHelper extends GLU.Controller {
                 desc.indexOf('kraj staze ') === 0 ||
                 name.indexOf('kraj staze ') === 0)) {
             found = true;
-            returnVal = 'TRAILEND';
+            returnVal = 'END';
         }
         // HRANA
         if (!found && (desc.indexOf('restoran ') === 0 ||

@@ -29,7 +29,7 @@ class WPEditorTray extends BasePage {
                             <div className="flex-element narower2">
                                 <ListSelection
                                     key="pointTypes"
-                                    fieldName="pointTypes"
+                                    fieldName="waypoints"
                                     sourceName="pointTypes"
                                     defaultValueIndex={0}
                                     fieldIndex={this.props.wpIndex}
