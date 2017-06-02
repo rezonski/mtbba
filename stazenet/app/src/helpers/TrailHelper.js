@@ -18,6 +18,22 @@ class TrailHelper extends GLU.Controller {
         this.surfaceTypes = payload.surfaceTypes;
     }
 
+    calculateZoomLevel(bounds) {
+        const pt0 = turf.point(bounds[0]);
+        const pt1 = turf.point(bounds[1]);
+        const distance = turf.distance(pt0, pt1);
+        if (distance > 70) {
+            return 8;
+        } else if (distance > 40) {
+            return 9;
+        } else if (distance > 20) {
+            return 10;
+        } else if (distance > 10) {
+            return 11;
+        }
+        return 12;
+    }
+
     simplifyLineString(featuresCollection) {
         const inputLines = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)));
         let inputPoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(featuresCollection)));

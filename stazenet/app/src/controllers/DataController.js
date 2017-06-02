@@ -11,6 +11,7 @@ import Enum from '/enums/Enum';
 import Lang from '/helpers/Lang';
 import API from '/apis/Api';
 import CommonHelper from '/helpers/CommonHelper';
+import TrailHelper from '/helpers/TrailHelper';
 import appConfig from '/appConfig';
 // import { handleReject } from '/helpers/RejectHandler';
 
@@ -308,7 +309,7 @@ class DataController extends GLU.Controller {
             GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, elevationProgressPayload);
             GLU.bus.emit(Enum.DataEvents.START_FLATTENING_PATH);
         }
-    }x
+    }
     checkAddElevation(elevatedPathLine, badPoints, startIndex) {
         // console.log('checkAddElevation(' + badPoints.length + ', ' + startIndex + ')');
         let currentProgressPayload = {
@@ -388,14 +389,19 @@ class DataController extends GLU.Controller {
         const trailFacts = TrailsDataModel.activeTrail.getGeneralFacts();
         if (trailFacts.imageURL === '') {
             const trailCenter = trailFacts.center;
-            // const query = {
-            //     polyline: encodeURIComponent(polyline.fromGeoJSON(TrailsDataModel.activeTrail.getSimplifiedFeatureCollectionPathOnly())),
-            //     mapParams: trailCenter[0] + ',' + trailCenter[1] + ',10',
-            //     fileName: encodeURIComponent(CommonHelper.getUUID()) + '.png',
+            const simplifiedPolyline = TrailsDataModel.activeTrail.getSimplifiedFeatureCollectionPathOnly();
+            // const trailCenter = [-120.95, 40.7];
+            // const simplifiedPolyline = {
+            //     type: 'Feature',
+            //     geometry: {
+            //         type: 'LineString',
+            //         coordinates: [[-120.2, 38.5, 345], [-120.95, 40.7, 345], [-126.453, 43.252, 345]],
+            //     },
+            //     properties: {},
             // };
             const query = {
-                polyline: polyline.fromGeoJSON(TrailsDataModel.activeTrail.getSimplifiedFeatureCollectionPathOnly()),
-                mapParams: trailCenter[0] + ',' + trailCenter[1] + ',10',
+                polyline: polyline.fromGeoJSON(simplifiedPolyline),
+                mapParams: trailCenter[0] + ',' + trailCenter[1] + ',' + TrailHelper.calculateZoomLevel(trailFacts.bounds),
                 fileName: CommonHelper.getUUID() + '.png',
             };
             // console.log('getTrailThumbnail');
