@@ -73,7 +73,8 @@ class MainToolbar extends BasePage {
     }
 
     onToggleWPDrawer() {
-        this.emit(Enum.AppEvents.TOGGLE_WP_DRAWER);
+        // this.emit(Enum.AppEvents.TOGGLE_WP_DRAWER);
+        this.emit(Enum.AppEvents.OPEN_FORM_EDIT_WAYPOINTS);
     }
 
     onSaveTrail() {

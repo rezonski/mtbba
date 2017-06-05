@@ -5,6 +5,7 @@ import NewEditActionButton from '../components/menu/NewEditActionButton';
 // import SnapToNorth from '../components/map/SnapToNorth';
 import NewTrailContainer from '../components/newTrail/NewTrailContainer';
 import OpenTrailContainer from '../components/openTrail/OpenTrailContainer';
+import AllWPEditor from '../components/wpEditor/AllWPEditor';
 import MainToolbar from '../components/menu/MainToolbar';
 import MapController from '../controllers/MapController';
 import DataController from '../controllers/DataController';
@@ -43,6 +44,7 @@ class Root extends BasePage {
                     <Message />
                     <NewTrailContainer />
                     <OpenTrailContainer />
+                    <AllWPEditor />
                     <WPDrawer />
                     <div className="overlay bottom right">
                         <NewEditActionButton />

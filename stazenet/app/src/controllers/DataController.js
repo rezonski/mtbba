@@ -484,7 +484,7 @@ class DataController extends GLU.Controller {
                             total: waypoints.length,
                         });
                         setTimeout(() => {
-                            this.setWaypointsThumbnails(waypoints, WPindex + 1), overrideThumbnails;
+                            this.setWaypointsThumbnails(waypoints, WPindex + 1, overrideThumbnails);
                         }, 100);
                     }
                 })

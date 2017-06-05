@@ -140,7 +140,7 @@ class WaypointHelper extends GLU.Controller {
                         symbol: this.symbolFromDesc(tempDesc, tempPictogram, wpoint.properties.name),
                         pictogram: tempPictogram,
                         pictureUrl: (wpoint.properties.pictureUrl !== undefined) ? wpoint.properties.pictureUrl : '',
-                        elevationProfile: 0,
+                        elevationProfile: true,
                         // lon: inputPathLine[tempIndex].lon,
                         // lat: inputPathLine[tempIndex].lat,
                         lon: wpoint.geometry.coordinates[0],
