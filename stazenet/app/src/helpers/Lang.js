@@ -233,6 +233,10 @@ const labels = {
         bos: 'Vrsta tacke puta',
         eng: 'Waypoint type',
     },
+    overrideThumbnails: {
+        bos: 'Ponovo generisi slicice',
+        eng: 'Override Thumbnails',
+    },
 };
 
 const messages = {

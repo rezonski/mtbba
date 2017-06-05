@@ -5,6 +5,7 @@ import Lang from '/helpers/Lang';
 import StatusProgress from '../common/StatusProgress';
 import UploadedTrailPreview from '../newTrail/UploadedTrailPreview';
 import RaisedButton from 'material-ui/RaisedButton';
+import Switch from '../common/Switch';
 
 
 class StepProcessing extends BasePage {
@@ -58,6 +59,13 @@ class StepProcessing extends BasePage {
                         className="margined-right"
                         style={{ minWidth: '200px' }}
                         onTouchTap={this.onStartProcessingRequestEvent} />
+                    <Switch
+                        key="overrideThumbnails"
+                        fieldName="overrideThumbnails"
+                        label={Lang.label('overrideThumbnails')}
+                        // type="toggle"
+                        type="checkbox"
+                    />
                 </div>
             </div>
             <div className="flex-element column narower margined-left">

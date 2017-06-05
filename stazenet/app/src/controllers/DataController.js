@@ -438,7 +438,8 @@ class DataController extends GLU.Controller {
                 // rightMap: MapModel.rightMap,
             };
             const waypoints = TrailsDataModel.activeTrail.generateWaypoints(maps);
-            this.setWaypointsThumbnails(waypoints, 0);
+            const overrideThumbnails = TrailsDataModel.activeTrail.getTrailData().overrideThumbnails;
+            this.setWaypointsThumbnails(waypoints, 0, overrideThumbnails);
         } else {
             GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, {
                 status: 'progress',
@@ -453,10 +454,10 @@ class DataController extends GLU.Controller {
         }
     }
 
-    setWaypointsThumbnails(waypoints, WPindex) {
+    setWaypointsThumbnails(waypoints, WPindex, overrideThumbnails) {
         // console.log('setWaypointsThumbnails(' + waypoints + ', ' + WPindex + ') - -  waypoints.length = ' + waypoints.length);
         if (WPindex < waypoints.length) {
-            if (!waypoints[WPindex].properties.pictureUrl || waypoints[WPindex].properties.pictureUrl.length === 0) {
+            if (overrideThumbnails || !waypoints[WPindex].properties.pictureUrl || waypoints[WPindex].properties.pictureUrl.length === 0) {
                 // console.log('progressFixWPs WPindex < waypoints.length!');
                 const query = {
                     geojson: JSON.stringify(waypoints[WPindex].properties.wpGeoJSON),
@@ -483,7 +484,7 @@ class DataController extends GLU.Controller {
                             total: waypoints.length,
                         });
                         setTimeout(() => {
-                            this.setWaypointsThumbnails(waypoints, WPindex + 1);
+                            this.setWaypointsThumbnails(waypoints, WPindex + 1), overrideThumbnails;
                         }, 100);
                     }
                 })
@@ -493,7 +494,7 @@ class DataController extends GLU.Controller {
                     console.error(err);
                     GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('wpThumbnailGetFailed') + msg);
                     setTimeout(() => {
-                        this.setWaypointsThumbnails(waypoints, WPindex + 1);
+                        this.setWaypointsThumbnails(waypoints, WPindex + 1, overrideThumbnails);
                     }, 100);
                 });
             } else {

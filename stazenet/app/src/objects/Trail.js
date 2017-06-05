@@ -117,6 +117,7 @@ class Trail {
         generalFacts.fileName = (generalFacts.fileName === undefined) ? '' : generalFacts.fileName;
         generalFacts.externalLink = (generalFacts.externalLink === undefined) ? '' : generalFacts.externalLink;
         generalFacts.imageURL = (generalFacts.imageURL === undefined) ? '' : generalFacts.imageURL;
+        generalFacts.overrideThumbnails = false;
         return generalFacts;
     }
 
@@ -255,6 +256,7 @@ class Trail {
             progressFlattenPath: trailFacts.progressFlattenPath,
             progressFixWPs: trailFacts.progressFixWPs,
             waypoints: this.waypoints,
+            overrideThumbnails: trailFacts.overrideThumbnails,
         };
     }
 

@@ -40,8 +40,8 @@ class WaypointHelper extends GLU.Controller {
         });
         const currentWaypoint = turf.point([newWaypoint.lon, newWaypoint.lat], {
             name: newWaypoint.name,
-            'marker-color': '#0033FF',
-            'marker-symbol': 'cross',
+            'marker-color': '#EC1994',
+            'marker-symbol': 'grocery',
         });
         if (inPathCoordinates.length > 1) {
             features.push(inPathFeature);
