@@ -1,17 +1,5 @@
 <?php
-    header('Access-Control-Allow-Origin: *');
-    $servername = "localhost:3307";
-    $username = "root";
-    $password = "letmein";
-    $dbname = "staze";
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    /* change character set to utf8 */
-    if (!$conn->set_charset("utf8")) {
-      // printf("Error loading character set utf8: %s\n", $conn->error);
-    } else {
-      // printf("Current character set: %s\n", $conn->character_set_name());
-    }
+    include 'dbconnection.php'; 
 
     $sql = "SELECT MAX(token) as maxtok
             FROM tokens

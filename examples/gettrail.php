@@ -1,9 +1,5 @@
 <?php
-    header('Access-Control-Allow-Origin: *');
-    $servername = "localhost:3307";
-    $username = "root";
-    $password = "letmein";
-    $dbname = "staze";
+    include 'dbconnection.php'; 
 
     if (isset($_GET['trailid'])) {
         $id = $_GET['trailid'];

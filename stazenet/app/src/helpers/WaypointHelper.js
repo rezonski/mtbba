@@ -14,6 +14,72 @@ class WaypointHelper extends GLU.Controller {
         });
     }
 
+    getMarkerColor(symbol) {
+        switch (symbol) {
+            case 'CROSSROAD':
+                return '#FAEA19';
+            case 'DANGER':
+                return '#FF0000';
+            case 'END':
+                return '#C00F0F';
+            case 'FOOD':
+                return '#F937EF';
+            case 'MINES':
+                return '#FF0000';
+            case 'PASS':
+                return '#A0FC98';
+            case 'PHOTO':
+                return '#21B4EE';
+            case 'PLACE':
+                return '#F9B837';
+            case 'WATER':
+                return '#1D57EC';
+            case 'RIVER':
+                return '#1D57EC';
+            case 'SLEEP':
+                return '#8697C2';
+            case 'START':
+                return '#06FF00';
+            case 'SUMMIT':
+                return '#C01013';
+            default:
+                return '#FFFFFF';
+        }
+    }
+
+    getMarkerSymbol(symbol) {
+        switch (symbol) {
+            case 'CROSSROAD':
+                return 'cross';
+            case 'DANGER':
+                return 'danger';
+            case 'END':
+                return 'roadblock';
+            case 'FOOD':
+                return 'restaurant';
+            case 'MINES':
+                return 'danger';
+            case 'PASS':
+                return 'triangle-stroked';
+            case 'PHOTO':
+                return 'attraction';
+            case 'PLACE':
+                return 'circle';
+            case 'WATER':
+                return 'drinking-water';
+            case 'RIVER':
+                return 'swimming';
+            case 'SLEEP':
+                return 'lodging';
+            case 'START':
+                return 'bicycle-share';
+            case 'SUMMIT':
+                return 'mountain';
+            default:
+                return 'circle';
+        }
+    }
+
     generateWPointGeoJSON(currentIndex, newWaypoint, inputPathLine) {
         const pointIndex = parseInt(currentIndex, 10);
         const offset = 30;
@@ -40,8 +106,8 @@ class WaypointHelper extends GLU.Controller {
         });
         const currentWaypoint = turf.point([newWaypoint.lon, newWaypoint.lat], {
             name: newWaypoint.name,
-            'marker-color': '#EC1994',
-            'marker-symbol': 'grocery',
+            'marker-color': this.getMarkerColor(newWaypoint.symbol),
+            'marker-symbol': this.getMarkerSymbol(newWaypoint.symbol),
         });
         if (inPathCoordinates.length > 1) {
             features.push(inPathFeature);
