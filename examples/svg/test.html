@@ -15,7 +15,7 @@
 <body>
   <div class="container">
     <div>
-      <img class="svg" id="svg-preview" src="http://localhost/sandbox/examples/svg/getsvg.php?opis=">
+      <img class="svg" id="svg-preview" src="http://127.0.0.1:8080/sandbox/examples/svg/getsvg.php?opis=">
     </div>
     <div class="input">
       <form class="w3-container">
@@ -28,7 +28,7 @@
   var inputField = document.getElementById('input-field');
   var svgPreview = document.getElementById('svg-preview');  
   inputField.addEventListener('keydown', function(e) {
-    svgPreview.src = 'http://localhost/sandbox/examples/svg/getsvg.php?opis=' + inputField.value;
+    svgPreview.src = 'http://127.0.0.1:8080/sandbox/examples/svg/getsvg.php?opis=' + inputField.value;
   });
 </script>
 </body>

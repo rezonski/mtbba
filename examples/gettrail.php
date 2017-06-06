@@ -1,9 +1,9 @@
 <?php
     header('Access-Control-Allow-Origin: *');
-    $servername = "localhost";
+    $servername = "localhost:3307";
     $username = "root";
-    $password = "";
-    $dbname = "mytrails";
+    $password = "letmein";
+    $dbname = "staze";
 
     if (isset($_GET['trailid'])) {
         $id = $_GET['trailid'];
@@ -20,7 +20,15 @@
         Path points properties
          */
 
-        $sqlpathproperties = "SELECT trail_id, point_id, lon, lat, elevation, prev_dist, prev_elev FROM active_path WHERE trail_id = ".$id;
+        $sqlpathproperties = "SELECT
+                                trail_id,
+                                point_id,
+                                lon, lat,
+                                elevation,
+                                prev_dist,
+                                prev_elev 
+                            FROM active_path
+                            WHERE trail_id = ".$id;
 
         $resultpathproperties = $conn->query($sqlpathproperties);
         $pathproperties = '';
@@ -45,8 +53,13 @@
 
         /*Mountains array*/
 
-        $sqlmntarray = 
-        "SELECT r.id, r.name FROM repo_regions r, trail_regions t where r.id = t.id_mnt and t.id_trail = ".$id." order by r.id asc ";
+        $sqlmntarray = "SELECT
+                            r.id,
+                            r.name 
+                        FROM repo_regions r, trail_regions t 
+                        where r.id = t.id_mnt 
+                            and t.id_trail = ".$id."
+                            order by r.id asc";
 
         $resultmntarray = $conn->query($sqlmntarray);
         $mntarray = '[';
@@ -73,7 +86,9 @@
         $sqltrailproperties = 
         "SELECT trail_id,
                 trail_name,
+                trail_name_en,
                 trail_desc,
+                trail_desc_en,
                 type_id,
                 type_name,
                 type_desc,
@@ -87,8 +102,9 @@
                 COALESCE(review_fun,0) AS `review_fun`,
                 COALESCE(required_fitness,0) AS `required_fitness`,
                 COALESCE(required_technique,0) AS `required_technique`,
-                CONCAT('[', COALESCE(lon_center,0), ',', COALESCE(lat_center,0), ']') AS `center`,
+                center,
                 bounds,
+                inputfilename,
                 external_link,
                 image_url
         FROM active_trails 
@@ -104,7 +120,9 @@
             "properties": {
                 "trailID": "'.$row["trail_id"].'",
                 "trailName": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_name"]).'",
+                "trailNameEn": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_name_en"]).'",
                 "trailDesc": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_desc"]).'",
+                "trailDescEN": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_desc_en"]).'",
                 "mntns": '.$mntarray.',
                 "surfaceCollection": '.$row["surface"].',
                 "typeID": "'.$row["type_id"].'",
@@ -136,9 +154,29 @@
         Waypoints properties
          */
 
-        $sqlwaypointsproperties = "SELECT trail_id,point_id,point_name,point_desc,lon,lat,elevation,elevgain,
-        elevloss,nextelevgain,nextelevloss,odometer,nextstepdist,symbol,pictogram,pictureurl,time,elevationprofile
-        FROM `active_waypoints` where trail_id = ".$id;
+        $sqlwaypointsproperties = "SELECT
+                                    trail_id,
+                                    point_id,
+                                    point_name,
+                                    point_name_en,
+                                    point_desc,
+                                    point_desc_en,
+                                    lon,
+                                    lat,
+                                    elevation,
+                                    elevgain,
+                                    elevloss,
+                                    nextelevgain,
+                                    nextelevloss,
+                                    odometer,
+                                    nextstepdist,
+                                    symbol,
+                                    pictogram,
+                                    pictureurl,
+                                    time,
+                                    elevationprofile
+                                FROM `active_waypoints`
+                                where trail_id = ".$id;
 
         $resultwaypointsproperties = $conn->query($sqlwaypointsproperties);
         $waypointsproperties = '';
@@ -152,7 +190,9 @@
           "properties": {
             "id": '.$row["point_id"].',
             "name": "'.$row["point_name"].'",
+            "nameEn": "'.$row["point_name_en"].'",
             "desc": "'.$row["point_desc"].'",
+            "descEn": "'.$row["point_desc_en"].'",
             "symbol": "'.$row["symbol"].'",
             "odometer": '.$row["odometer"].',
             "nextStepDist": '.$row["nextstepdist"].',

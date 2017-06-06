@@ -121,7 +121,7 @@
   }
   // Glavni put
   function printPutanja($ugao) {
-    printPut("#FF0000", $ugao);
+    printPut("#A8FF00", $ugao);
   }
   // Sporedni put
   function printSmjer($ugao) {

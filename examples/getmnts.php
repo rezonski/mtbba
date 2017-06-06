@@ -1,9 +1,9 @@
 <?php
     header('Access-Control-Allow-Origin: *');
-    $servername = "localhost";
+    $servername = "localhost:3307";
     $username = "root";
-    $password = "";
-    $dbname = "mytrails";
+    $password = "letmein";
+    $dbname = "staze";
     $conn = new mysqli($servername, $username, $password, $dbname);
 
     /* change character set to utf8 */
@@ -301,9 +301,9 @@ $output .= ',
                 $output .= 
 '
     {
-        "symbol_code": "'.$row["symbol_code"].'",
-        "desc": "'.$row["desc"].'",
-        "desc_en": "'.$row["desc_en"].'"
+        "id": "'.$row["symbol_code"].'",
+        "name": "'.$row["desc"].'",
+        "desc": "'.$row["desc_en"].'"
     }';
             }
         };

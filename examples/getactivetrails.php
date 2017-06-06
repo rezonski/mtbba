@@ -1,9 +1,9 @@
 <?php
     header('Access-Control-Allow-Origin: *');
-    $servername = "localhost";
+    $servername = "localhost:3307";
     $username = "root";
-    $password = "";
-    $dbname = "mytrails";
+    $password = "letmein";
+    $dbname = "staze";
     $conn = new mysqli($servername, $username, $password, $dbname);
 
     /* change character set to utf8 */
@@ -18,6 +18,7 @@
 
     $sql = "SELECT 
                 trail_id,
+                trail_slug,
                 trail_name,
                 trail_desc,
                 type_id,
@@ -33,7 +34,7 @@
                 COALESCE(review_fun,0) AS `review_fun`,
                 COALESCE(required_fitness,0) AS `required_fitness`,
                 COALESCE(required_technique,0) AS `required_technique`,
-                COALESCE(center,0) AS `center`,
+                center,
                 bounds,
                 inputfilename,
                 external_link,
@@ -75,6 +76,7 @@
                 {
                     "name": "'.$row["trail_name"].'",
                     "trailID": '.$row["trail_id"].',
+                    "trailSlug": "'.$row["trail_slug"].'",
                     "mntns": '.$mntarray.',
                     "trailName": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_name"]).'",
                     "trailDesc": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_desc"]).'",
