@@ -18,20 +18,39 @@ class TrailHelper extends GLU.Controller {
         this.surfaceTypes = payload.surfaceTypes;
     }
 
-    calculateZoomLevel(bounds) {
-        const pt0 = turf.point(bounds[0]);
-        const pt1 = turf.point(bounds[1]);
-        const distance = turf.distance(pt0, pt1);
-        if (distance > 70) {
+    calculateZoomLevel(feature) {
+        const features = turf.featureCollection([feature]);
+        const bbox = turf.bbox(features);
+        const squared = turf.bboxPolygon(turf.square(bbox));
+        const area = turf.area(squared) / 1000000; // in square kilometers
+        const radius = Math.sqrt(area);
+        if (radius > 100) {
+            return 7;
+        } else if (radius > 60) {
             return 8;
-        } else if (distance > 40) {
+        } else if (radius > 30) {
             return 9;
-        } else if (distance > 20) {
+        } else if (radius > 15) {
             return 10;
-        } else if (distance > 10) {
+        } else if (radius > 10) {
             return 11;
+        } else if (radius > 5) {
+            return 12;
         }
-        return 12;
+        return 13;
+        // const pt0 = turf.point(bounds[0]);
+        // const pt1 = turf.point(bounds[1]);
+        // const distance = turf.distance(pt0, pt1);
+        // if (distance > 70) {
+        //     return 8;
+        // } else if (distance > 40) {
+        //     return 9;
+        // } else if (distance > 20) {
+        //     return 10;
+        // } else if (distance > 10) {
+        //     return 11;
+        // }
+        // return 12;
     }
 
     simplifyLineString(featuresCollection) {

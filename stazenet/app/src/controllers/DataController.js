@@ -391,10 +391,10 @@ class DataController extends GLU.Controller {
 
         if (trailFacts.imageURL === '' || overrideThumbnails) {
             const trailCenter = trailFacts.center;
-            const simplifiedPolyline = TrailsDataModel.activeTrail.getSimplifiedFeatureCollectionPathOnly();
+            const simplifiedPolyline = TrailsDataModel.activeTrail.getSimplifiedFeatureCollectionPathNoElevation();
             const query = {
                 polyline: polyline.fromGeoJSON(simplifiedPolyline),
-                mapParams: trailCenter[0] + ',' + trailCenter[1] + ',' + TrailHelper.calculateZoomLevel(trailFacts.bounds),
+                mapParams: trailCenter[0] + ',' + trailCenter[1] + ',' + TrailHelper.calculateZoomLevel(simplifiedPolyline),
                 fileName: CommonHelper.getUUID() + '.png',
                 deleteFile: (trailFacts.imageURL) ? trailFacts.imageURL.replace(appConfig.constants.server, '') : '',
             };

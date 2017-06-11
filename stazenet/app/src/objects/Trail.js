@@ -138,7 +138,13 @@ class Trail {
     }
 
     getSimplifiedFeatureCollectionPathOnly() {
-        const lineStringFeature = CommonHelper.getLineStrings(this.elevationNivelatedFeaturesCollection)[0];
+        const lineStringFeature = JSON.parse(JSON.stringify(CommonHelper.getLineStrings(this.elevationNivelatedFeaturesCollection)[0]));
+        const simplified = turf.simplify(lineStringFeature, 0.001, false);
+        return simplified;
+    }
+
+    getSimplifiedFeatureCollectionPathNoElevation() {
+        const lineStringFeature = JSON.parse(JSON.stringify(CommonHelper.getLineStrings(this.elevationNivelatedFeaturesCollection)[0]));
         lineStringFeature.properties = {};
         const newCoordinates = lineStringFeature.geometry.coordinates.map(c => {
             c.pop();
