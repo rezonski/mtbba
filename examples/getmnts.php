@@ -1,16 +1,5 @@
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "mytrails";
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    /* change character set to utf8 */
-    if (!$conn->set_charset("utf8")) {
-      // printf("Error loading character set utf8: %s\n", $conn->error);
-    } else {
-      // printf("Current character set: %s\n", $conn->character_set_name());
-    }
+    include 'dbconnection.php'; 
 
     $output = '';
 
@@ -300,9 +289,9 @@ $output .= ',
                 $output .= 
 '
     {
-        "symbol_code": "'.$row["symbol_code"].'",
-        "desc": "'.$row["desc"].'",
-        "desc_en": "'.$row["desc_en"].'"
+        "id": "'.$row["symbol_code"].'",
+        "name": "'.$row["desc"].'",
+        "desc": "'.$row["desc_en"].'"
     }';
             }
         };

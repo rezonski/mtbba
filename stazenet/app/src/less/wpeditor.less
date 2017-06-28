@@ -1,0 +1,21 @@
+.wp-drawer-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &.header {
+        flex: 0 0 60px;
+    }
+
+    &.body {
+        flex: 1 1 auto;
+        overflow-y: auto;
+
+        .single-wp-edit-box {
+        }
+    }
+
+    &.footer {
+        flex: 0 0 60px;
+    }
+}
