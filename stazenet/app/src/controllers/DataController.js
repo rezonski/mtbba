@@ -278,46 +278,28 @@ class DataController extends GLU.Controller {
     }
 
     onElevatePathRequest() {
-        let badPoints = [];
         TrailsDataModel.activeTrail.elevatedFeaturesCollection = JSON.parse(JSON.stringify(TrailsDataModel.activeTrail.simplifiedFeaturesCollection));
         const elevatedFeaturesCollection = TrailsDataModel.activeTrail.elevatedFeaturesCollection;
         const elevatedPathLines = CommonHelper.getLineStrings(elevatedFeaturesCollection);
         let elevatedPathLine = elevatedPathLines[0].geometry.coordinates;
-        elevatedPathLine.forEach((location, index) => {
-            if (location[2] === undefined || location[2] === 0) {
-                badPoints.push({
-                    pathIndex: index,
-                    point: location,
-                });
-            }
-        });
-        if (badPoints.length > 0) {
-            // this.checkAddElevation();
-            GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('totalBadElevatedPoints') + badPoints.length);
-            this.checkAddElevation(elevatedPathLine, badPoints, 0);
-        } else {
-            this.progressPayload.loaded = 70;
-            GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, this.progressPayload);
-            GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endAddingElevation'));
-
-            let elevationProgressPayload = {
-                status: 'progress',
-                id: 'progressElevationPath',
-                loaded: 1,
-                total: 1,
+        const badPoints = elevatedPathLine.map((location, index) => {
+            return {
+                pathIndex: index,
+                point: location,
             };
-            GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, elevationProgressPayload);
-            GLU.bus.emit(Enum.DataEvents.START_FLATTENING_PATH);
-        }
+        });
+        GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('totalBadElevatedPoints') + badPoints.length);
+        this.checkAddElevation(elevatedPathLine, badPoints, 0);
     }
+
     checkAddElevation(elevatedPathLine, badPoints, startIndex) {
         // console.log('checkAddElevation(' + badPoints.length + ', ' + startIndex + ')');
         let currentProgressPayload = {
-                                status: 'progress',
-                                id: 'progressElevationPath',
-                                loaded: null,
-                                total: badPoints.length,
-                            };
+                                        status: 'progress',
+                                        id: 'progressElevationPath',
+                                        loaded: null,
+                                        total: badPoints.length,
+                                    };
         let requestPayloadPointsString = '';
         let pointsContainerIndex = 0;
         let passLoopCounter = 0;
@@ -342,11 +324,26 @@ class DataController extends GLU.Controller {
                     // console.log('response xmlhttpElevation');
                     const response = JSON.parse(xmlhttpElevation.responseText);
                     const elevatedPoints = response.results;
-                    let tempElevation = 0;
                     elevatedPoints.forEach((elPoint, pointIndex) => {
-                        const calculatedElevation = (elPoint.ele || elPoint.elevation) ? parseInt(elPoint.elevation, 10) : parseInt(tempElevation, 10);
+                        // threshold
+                        const ta = TrailsDataModel.activeTrail.getElevationTreshold().ta;
+                        const tr = TrailsDataModel.activeTrail.getElevationTreshold().tr;
+                        // Fix index
                         const pointIndexToFix = parseInt(tempBadPoints[pointIndex].pathIndex, 10);
+                        // 0 - lng
+                        // 1 - lat
+                        // 2 - original elevation
+                        const originalElevation = parseInt(elevatedPathLine[pointIndexToFix][2], 10);
+                        const googleElevation = (elPoint.ele || elPoint.elevation) ? parseInt(elPoint.elevation, 10) : 0;
+                        const previousElevation = (pointIndexToFix > 0) ? parseInt(elevatedPathLine[pointIndexToFix - 1][2], 10) : parseInt(originalElevation, 10);
+                        let calculatedElevation = parseInt(originalElevation, 10);
+                        // Fix huge elevation faults
+                        if (originalElevation <= 0 || Math.abs(originalElevation - googleElevation) > ta || Math.abs(originalElevation - previousElevation) > tr) {
+                            calculatedElevation = googleElevation;
+                        }
+                        // Assign final elevation
                         elevatedPathLine[pointIndexToFix][2] = calculatedElevation;
+                        // Progress notification
                         if (pointIndexToFix % 10 === 0) {
                             currentProgressPayload.loaded = parseInt(pointIndexToFix, 10);
                             GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, currentProgressPayload);

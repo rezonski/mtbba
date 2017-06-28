@@ -19,6 +19,13 @@ class Trail {
         this._interpolatedFeaturesCollection = {}; // Flatten elevation LineString
     }
 
+    getElevationTreshold() {
+        return {
+            ta: 30, // Absolute elevation threshold
+            tr: 10, // Relative elevation threshold
+        };
+    }
+
     parseInitialFeaturesCollection() {
         let features = [];
         let pathline = [];
@@ -32,7 +39,14 @@ class Trail {
                 features.push(feature);
             }
         });
-        let path = turf.lineString(pathline);
+        const elevatedPathline = pathline.map(p => {
+            let point = p;
+            if (!point[2]) {
+                point[2] = 0;
+            }
+            return point;
+        });
+        let path = turf.lineString(elevatedPathline);
         path.properties = this.getInitialGeneralFacts(generalFacts);
         features.push(path);
         this.parsedFeaturesCollection = turf.featureCollection(features);
