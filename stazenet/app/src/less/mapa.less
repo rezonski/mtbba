@@ -1,0 +1,61 @@
+#mapa {
+    // display: block;
+    // position: absolute;
+    // left: 0;
+    // top: 0;
+    flex: 1 1 100%;
+    width: 100%;
+    height: 100%;
+
+
+
+    .map {
+        // display: block;
+        position: absolute;
+        // left: 0;
+        // top: 0;
+        width: 100%;
+        height: 100%;
+
+        &.preview {
+            position: relative;
+        }
+    }
+}
+
+.preview {
+    min-height: 400px;
+}
+
+// Map Controls
+.mapbox-gl-draw-pointer {
+    background-image: url('../svg/ic_radio_button_checked_black_24px.svg');
+}
+
+.mapbox-gl-draw-split {
+    background-image: url('../svg/divide.svg');
+}
+
+.mapbox-gl-draw-save {
+    background-image: url('../svg/save.svg');
+}
+
+.mapbox-gl-draw-satellite {
+    background-image: url('../svg/satellite.svg');
+}
+
+.mapbox-gl-draw-outdoors {
+    background-image: url('../svg/terrain.svg');
+}
+
+.mapbox-gl-draw-basic {
+    background-image: url('../svg/streetmap.svg');
+}
+
+.mapbox-gl-draw-add-point {
+    background-image: url('../svg/ic_add_location_black_24px.svg');
+}
+
+.mapbox-gl-draw-add-terrain {
+    background-image: url('../svg/ic_pin_drop_black_24px.svg');
+}

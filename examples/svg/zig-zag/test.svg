@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="900px" height="900px" viewBox="0 0 900 900" enable-background="new 0 0 40 900" xml:space="preserve">
+  <defs>
+    <pattern id="forestPattern" x="10" y="10" width="40" height="12" patternUnits="userSpaceOnUse">
+      <rect fill="#E4D0C1" width="40" height="12"/>
+      <path fill="#90D193" id="Combined-Shape" d="M0,6.171L6.171,0h5.657L0,11.828V6.171L0,6.171z M40,11.828L28.172,0h5.656L40,6.171V11.828L40,11.828z M6.171,12l12-12h3.657l12,12h-5.656L20,3.829L11.829,12H6.171L6.171,12z M18.171,12L20,10.172L21.828,12H18.171L18.171,12z"/>
+    </pattern>
+  </defs>
+  <rect x="10" y="10" width="900" height="900" fill="url(#forestPattern)" />
+</svg>

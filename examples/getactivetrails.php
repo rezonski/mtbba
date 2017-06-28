@@ -1,21 +1,12 @@
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "mytrails";
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    /* change character set to utf8 */
-    if (!$conn->set_charset("utf8")) {
-      // printf("Error loading character set utf8: %s\n", $conn->error);
-    } else {
-      // printf("Current character set: %s\n", $conn->character_set_name());
-    }
+    include 'dbconnection.php'; 
 
     $trailsarray = '[';
     $tempiterator = 0;
 
-    $sql = "SELECT trail_id,
+    $sql = "SELECT 
+                trail_id,
+                trail_slug,
                 trail_name,
                 trail_desc,
                 type_id,
@@ -31,9 +22,9 @@
                 COALESCE(review_fun,0) AS `review_fun`,
                 COALESCE(required_fitness,0) AS `required_fitness`,
                 COALESCE(required_technique,0) AS `required_technique`,
-                COALESCE(lat_center,0) AS `lat_center`,
-                COALESCE(lon_center,0) AS `lon_center`,
+                center,
                 bounds,
+                inputfilename,
                 external_link,
                 image_url
             FROM active_trails";
@@ -47,8 +38,10 @@
             $tempiterator++;
 
             /*Mountains array*/
-            $sqlmntarray = 
-            "SELECT r.id, r.name FROM repo_regions r, trail_regions t where r.id = t.id_mnt and t.id_trail = ".$row["trail_id"]." order by r.id asc ";
+            $sqlmntarray = "SELECT r.id, r.name
+                            FROM repo_regions r, trail_regions t
+                            where r.id = t.id_mnt 
+                            and t.id_trail = ".$row["trail_id"]." order by r.id asc ";
             $resultmntarray = $conn->query($sqlmntarray);
             $mntarray = '[';
             $tempmntiterator = 0;
@@ -68,31 +61,32 @@
             $mntarray .= ']';
             
             $trailsarray .='
-    {
-        "name": "'.$row["trail_name"].'",
-        "trailID": '.$row["trail_id"].',
-        "mntns": '.$mntarray.',
-        "trailName": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_name"]).'",
-        "trailDesc": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_desc"]).'",
-        "surface": '.$row["surface"].',
-        "typeID": '.$row["type_id"].',
-        "typeName": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["type_name"]).'",
-        "typeDesc": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["type_desc"]).'",
-        "distance": '.$row["distance"].',
-        "elevMin": '.$row["elev_min"].',
-        "elevMax": '.$row["elev_max"].',
-        "elevGain": '.$row["elev_gain"].',
-        "elevLoss": '.$row["elev_loss"].',
-        "reviewLandscape": '.$row["review_landscape"].',
-        "reviewFun": '.$row["review_fun"].',
-        "requiredFitness": '.$row["required_fitness"].',
-        "requiredTechnique": '.$row["required_technique"].',
-        "lat_center": '.$row["lat_center"].',
-        "lon_center": '.$row["lon_center"].',
-        "bounds": "'.$row["bounds"].'",
-        "externalLink": "'.$row["external_link"].'",
-        "imageUrl": "'.$row["image_url"].'"
-    }';
+                {
+                    "name": "'.$row["trail_name"].'",
+                    "trailID": '.$row["trail_id"].',
+                    "trailSlug": "'.$row["trail_slug"].'",
+                    "mntns": '.$mntarray.',
+                    "trailName": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_name"]).'",
+                    "trailDesc": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_desc"]).'",
+                    "surface": '.$row["surface"].',
+                    "typeID": '.$row["type_id"].',
+                    "typeName": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["type_name"]).'",
+                    "typeDesc": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["type_desc"]).'",
+                    "distance": '.$row["distance"].',
+                    "elevMin": '.$row["elev_min"].',
+                    "elevMax": '.$row["elev_max"].',
+                    "elevGain": '.$row["elev_gain"].',
+                    "elevLoss": '.$row["elev_loss"].',
+                    "reviewLandscape": '.$row["review_landscape"].',
+                    "reviewFun": '.$row["review_fun"].',
+                    "requiredFitness": '.$row["required_fitness"].',
+                    "requiredTechnique": '.$row["required_technique"].',
+                    "center": "'.$row["center"].'",
+                    "bounds": "'.$row["bounds"].'",
+                    "inputfilename": "'.$row["inputfilename"].'",
+                    "externalLink": "'.$row["external_link"].'",
+                    "imageUrl": "'.$row["image_url"].'"
+                }';
         }
         $trailsarray .=']';   
     };
