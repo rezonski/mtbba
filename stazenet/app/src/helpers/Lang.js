@@ -348,6 +348,10 @@ const messages = {
         bos: 'Završeno definisanje parametara staze',
         eng: 'Trail general facts computed',
     },
+    endPathlineEnriching: {
+        bos: 'Završeno obogacivanje tacaka puta',
+        eng: 'Trail path points enriched',
+    },
     endWaypointsGenerating: {
         bos: 'Završena obrada putnih tačaka',
         eng: 'Waypoints generating completed',

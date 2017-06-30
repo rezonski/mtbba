@@ -17,13 +17,31 @@ class Trail {
         this._elevatedFeaturesCollection = {}; // Elevated
         this._elevationNivelatedFeaturesCollection = {}; // Flatten elevation LineString
         this._interpolatedFeaturesCollection = {}; // Flatten elevation LineString
+        this._enrichedFeaturesCollection = {}; // Flatten elevation LineString
     }
 
     getElevationTreshold() {
         return {
             ta: 30, // Absolute elevation threshold
             tr: 10, // Relative elevation threshold
+            sl: 20, // slope threshold
         };
+    }
+
+    recalculateElevation(enrichedPathLine) {
+        console.info('TrailsDataModel.activeTrail.recalculateElevation(enrichedPathLine)');
+        enrichedPathLine.forEach((pp, idx) => {
+            console.log('this.fixPointElevation(' + idx + ', ' + pp.elevation + ')');
+            // this.fixPointElevation(idx, pp.elevation);
+        });
+    }
+
+    fixPointElevation(index, elevation) {
+        CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].geometry.coordinates[index][2] = elevation;
+        CommonHelper.getLineStrings(this.simplifiedFeaturesCollection)[0].geometry.coordinates[index][2] = elevation;
+        CommonHelper.getLineStrings(this.elevatedFeaturesCollection)[0].geometry.coordinates[index][2] = elevation;
+        CommonHelper.getLineStrings(this.elevationNivelatedFeaturesCollection)[0].geometry.coordinates[index][2] = elevation;
+        CommonHelper.getLineStrings(this.interpolatedFeaturesCollection)[0].geometry.coordinates[index][2] = elevation;
     }
 
     parseInitialFeaturesCollection() {
@@ -41,7 +59,7 @@ class Trail {
         });
         const elevatedPathline = pathline.map(p => {
             let point = p;
-            if (!point[2]) {
+            if (!p[2]) {
                 point[2] = 0;
             }
             return point;
@@ -62,7 +80,7 @@ class Trail {
 
     interpolatePathLine() {
         this.interpolatedFeaturesCollection = JSON.parse(JSON.stringify(this.elevationNivelatedFeaturesCollection));
-        console.info('Trails.interpolatePathLine() - do nothing');
+        // console.info('Trails.interpolatePathLine() - do nothing');
     }
 
     translateByOffset(payload) {
@@ -151,6 +169,10 @@ class Trail {
         this.elevationNivelatedFeaturesCollection = TrailHelper.nivelatePathLine(this.elevatedFeaturesCollection);
     }
 
+    enrichPathLine() {
+        this.enrichedFeaturesCollection = TrailHelper.enrichPathLine(this.elevationNivelatedFeaturesCollection);
+    }
+
     getSimplifiedFeatureCollectionPathOnly() {
         const lineStringFeature = JSON.parse(JSON.stringify(CommonHelper.getLineStrings(this.elevationNivelatedFeaturesCollection)[0]));
         const simplified = turf.simplify(lineStringFeature, 0.001, false);
@@ -167,11 +189,6 @@ class Trail {
         lineStringFeature.geometry.coordinates = newCoordinates;
         const simplified = turf.simplify(lineStringFeature, 0.001, false);
         return simplified;
-    }
-
-    getEnrichedFeatureCollection() {
-        const enriched = TrailHelper.enrichPathLine(this.elevationNivelatedFeaturesCollection);
-        return enriched;
     }
 
     getGeneralFacts() {
@@ -197,11 +214,13 @@ class Trail {
         if (this.interpolatedFeaturesCollection.features) {
             CommonHelper.getLineStrings(this.interpolatedFeaturesCollection)[0].properties = newGeneralFacts;
         }
+        if (this.enrichedFeaturesCollection.features) {
+            CommonHelper.getLineStrings(this.enrichedFeaturesCollection)[0].properties = newGeneralFacts;
+        }
     }
 
     generateGeneralFacts() {
-        const trail = this.getEnrichedFeatureCollection();
-        const generalFacts = TrailHelper.getGeneralFacts(trail);
+        const generalFacts = TrailHelper.getGeneralFacts(this._parsedFeaturesCollection);
         this.setGeneralFacts(generalFacts);
     }
 
@@ -216,7 +235,7 @@ class Trail {
     }
 
     generateWaypoints(maps) {
-        const enrichedFeaturesCollection = this.getEnrichedFeatureCollection();
+        const enrichedFeaturesCollection = this.enrichedFeaturesCollection;
         const computedWaypoints = WaypointHelper.generateWaypoints(maps.leftMap, enrichedFeaturesCollection);
         this.waypoints = computedWaypoints;
         return this.waypoints;
@@ -224,7 +243,7 @@ class Trail {
 
     reBuildMapLayers(maps) {
         // this.mapPathLayers = MapHelper.reBuildPathLayers(this.mapPathLayers, maps.leftMap, maps.rightMap, this.surfaceCollection, this.pathLine, this.generalFact);
-        const enrichedFeaturesCollection = this.getEnrichedFeatureCollection();
+        const enrichedFeaturesCollection = this.enrichedFeaturesCollection;
         // this.mapPathLayers = MapHelper.reBuildPathLayers(this.mapPathLayers, maps.leftMap, maps.rightMap, enrichedFeaturesCollection);
         this.mapPathLayers = MapHelper.reBuildPathLayers(this.mapPathLayers, maps.leftMap, enrichedFeaturesCollection);
     }
@@ -314,11 +333,15 @@ class Trail {
         const interpolatedFeaturesCollectionFeatures = JSON.parse(JSON.stringify(waypoints));
         interpolatedFeaturesCollectionFeatures.push(CommonHelper.getLineStrings(this.interpolatedFeaturesCollection)[0]);
         this.interpolatedFeaturesCollection = turf.featureCollection(interpolatedFeaturesCollectionFeatures);
+
+        const enrichedFeaturesCollectionFeatures = JSON.parse(JSON.stringify(waypoints));
+        enrichedFeaturesCollectionFeatures.push(CommonHelper.getLineStrings(this.enrichedFeaturesCollection)[0]);
+        this.enrichedFeaturesCollection = turf.featureCollection(enrichedFeaturesCollectionFeatures);
     }
 
     getChartData(containerId) {
         // const chartData = ChartHelper.getChartSetup(containerId, trailFacts.trailName, this.chartWaypoints, this.profileMapPathLine, this.surfaceCollection);
-        const enrichedFeaturesCollection = this.getEnrichedFeatureCollection();
+        const enrichedFeaturesCollection = this.enrichedFeaturesCollection;
         const chartData = ChartHelper.getChartSetup(containerId, enrichedFeaturesCollection);
         return chartData;
     }
@@ -382,6 +405,16 @@ class Trail {
     set interpolatedFeaturesCollection(newFeaturesCollection) {
         if (newFeaturesCollection) {
             this._interpolatedFeaturesCollection = newFeaturesCollection;
+        }
+    }
+
+    get enrichedFeaturesCollection() {
+        return this._enrichedFeaturesCollection;
+    }
+
+    set enrichedFeaturesCollection(newFeaturesCollection) {
+        if (newFeaturesCollection) {
+            this._enrichedFeaturesCollection = newFeaturesCollection;
         }
     }
 

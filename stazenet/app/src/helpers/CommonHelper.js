@@ -5,6 +5,15 @@ class CommonHelper {
     constructor() {
     }
 
+    isJSON(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
+
     getUUID() {
         let d = new Date().getTime();
         if (window.performance && typeof window.performance.now === 'function') {

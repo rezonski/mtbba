@@ -4,6 +4,7 @@ import MessageEvents from '/enums/MessageEvents';
 import Enum from '/enums/Enum';
 import Lang from '/helpers/Lang';
 import CommonHelper from '/helpers/CommonHelper';
+import TrailsDataModel from '/dataSources/TrailsDataModel';
 
 class TrailHelper extends GLU.Controller {
     constructor(props) {
@@ -73,31 +74,32 @@ class TrailHelper extends GLU.Controller {
     }
 
     nivelatePathLine(featuresCollection) {
-        let pathLineMasterd = [];
-        let prevLoc = {};
-        const pathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
-        let flattenProgressPayload = {
-            status: 'progress',
-            id: 'progressFlattenPath',
-            loaded: 0,
-            total: pathLine.length,
-        };
-        pathLine.forEach((location, index) => {
-            let elevationCalc = 0;
-            if (index > 0) {
-                elevationCalc = (!location[2]) ? prevLoc.elevation : location[2];
-            } else {
-                elevationCalc = (location[2] === undefined) ? 0 : location[2];
-            }
-            pathLineMasterd.push([location[0], location[1], elevationCalc]);
-            if (index % 10 === 0) {
-                flattenProgressPayload.loaded = parseInt(index / 2, 10);
-                GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, flattenProgressPayload);
-            }
-        });
-        let elevationNivelatedFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
-        CommonHelper.getLineStrings(elevationNivelatedFeaturesCollection)[0].geometry.coordinates = pathLineMasterd;
-        return elevationNivelatedFeaturesCollection;
+        // let pathLineMasterd = [];
+        // let prevLoc = {};
+        // const pathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
+        // let flattenProgressPayload = {
+        //     status: 'progress',
+        //     id: 'progressFlattenPath',
+        //     loaded: 0,
+        //     total: pathLine.length,
+        // };
+        // pathLine.forEach((location, index) => {
+        //     let elevationCalc = 0;
+        //     if (index > 0) {
+        //         elevationCalc = (!location[2]) ? prevLoc.elevation : location[2];
+        //     } else {
+        //         elevationCalc = (location[2] === undefined) ? 0 : location[2];
+        //     }
+        //     pathLineMasterd.push([location[0], location[1], elevationCalc]);
+        //     if (index % 10 === 0) {
+        //         flattenProgressPayload.loaded = parseInt(index / 2, 10);
+        //         GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, flattenProgressPayload);
+        //     }
+        // });
+        // let elevationNivelatedFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
+        // CommonHelper.getLineStrings(elevationNivelatedFeaturesCollection)[0].geometry.coordinates = pathLineMasterd;
+        // return elevationNivelatedFeaturesCollection;
+        return featuresCollection;
     }
 
     // interpolatePathLine(featuresCollection) {
@@ -144,15 +146,27 @@ class TrailHelper extends GLU.Controller {
         let enrichedPathLine = [];
         let prevLoc = {};
         let prevPoint = [];
+        // let recalculateElevation = false;
         // let currLocOut = {};
-        const pathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
+        const inputLines = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)));
+        const pathLine = inputLines[0].geometry.coordinates;
+
         pathLine.forEach((location, index) => {
             let elevationCalc = 0;
             let currLoc;
             if (index > 0) {
                 elevationCalc = (!location[2]) ? prevLoc.elevation : location[2];
                 const prevDist = turf.distance(turf.point([prevPoint[0], prevPoint[1]]), turf.point([location[0], location[1]]));
-                const elevDelta = elevationCalc - prevLoc.elevation;
+                let elevDelta = elevationCalc - prevLoc.elevation;
+                const slope = (elevDelta / (prevDist * 1000)) * 100;
+
+                if (Math.abs(slope) > TrailsDataModel.activeTrail.getElevationTreshold().sl) {
+                    // console.info('Fix elevation ' + elevationCalc + ' on index ' + index + ' slope overload');
+                    elevationCalc = (elevationCalc + prevLoc.elevation) / 2;
+                    elevDelta = elevationCalc - prevLoc.elevation;
+                    // recalculateElevation = true;
+                }
+
                 currLoc = {
                     lon: location[0],
                     lat: location[1],
@@ -162,6 +176,7 @@ class TrailHelper extends GLU.Controller {
                     elevLoss: (elevDelta < 0) ? (prevLoc.elevLoss + elevDelta) : prevLoc.elevLoss,
                     odometer: prevLoc.odometer + prevDist,
                     prevDist,
+                    slope,
                 };
             } else {
                 elevationCalc = (location[2] === undefined) ? 0 : location[2];
@@ -174,6 +189,7 @@ class TrailHelper extends GLU.Controller {
                     elevLoss: 0,
                     odometer: 0,
                     prevDist: 0,
+                    slope: 0,
                 };
             }
             enrichedPathLine.push(currLoc);
@@ -184,6 +200,11 @@ class TrailHelper extends GLU.Controller {
 
         let enrichedFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
         CommonHelper.getLineStrings(enrichedFeaturesCollection)[0].geometry.coordinates = enrichedPathLine;
+
+        // if (recalculateElevation) {
+        //     TrailsDataModel.activeTrail.recalculateElevation(enrichedPathLine);
+        // }
+
         return enrichedFeaturesCollection;
     }
 

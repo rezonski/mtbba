@@ -62,19 +62,19 @@ class WaypointHelper extends GLU.Controller {
             case 'PASS':
                 return 'triangle-stroked';
             case 'PHOTO':
-                return 'attraction';
+                return 'camera';
             case 'PLACE':
                 return 'circle';
             case 'WATER':
-                return 'drinking-water';
+                return 'water';
             case 'RIVER':
                 return 'swimming';
             case 'SLEEP':
                 return 'lodging';
             case 'START':
-                return 'bicycle-share';
+                return 'bicycle';
             case 'SUMMIT':
-                return 'mountain';
+                return 'triangle';
             default:
                 return 'circle';
         }
@@ -82,7 +82,7 @@ class WaypointHelper extends GLU.Controller {
 
     generateWPointGeoJSON(currentIndex, newWaypoint, inputPathLine) {
         const pointIndex = parseInt(currentIndex, 10);
-        const offset = 30;
+        const offset = 20;
         const pointFromIndex = ((pointIndex - offset) < 0) ? 0 : (pointIndex - offset);
         const pointToIndex = ((pointIndex + offset) > (inputPathLine.length - 1)) ? (inputPathLine.length - 1) : (pointIndex + offset);
         let inPathCoordinates = [];

@@ -4,19 +4,26 @@
     array_push($log, "started");
     $return = (object)[];
     $return->success = true;
-    if (isset($_GET['geojson']) && isset($_GET['fileName']) && isset($_GET['mapParams']) && isset($_GET['deleteFile'])) {  
-        $getURL = 'https://api.mapbox.com/v4/mapbox.satellite/geojson('.urlencode($_GET['geojson']).')/'.$_GET['mapParams'].'/300x300.png?access_token=pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
+    if (isset($_GET['geojson']) && isset($_GET['fileName']) && isset($_GET['mapParams']) && isset($_GET['deleteFile']) && isset($_GET['accessToken'])) {  
+        $getURL = 'https://api.mapbox.com/v4/mapbox.satellite/geojson('.urlencode($_GET['geojson']).')/'.$_GET['mapParams'].'/300x300.png?access_token='.$_GET['accessToken'];
         $setURL = 'upload/'.$_GET['fileName'];
         $deleteFile = $_GET['deleteFile'];
         array_push($log, "Get picture from ".$getURL." and save to ".$setURL);
         $file; 
         try {
             $file = file_get_contents($getURL); 
-            if (file_put_contents($setURL, $file) === false) {
+            
+            $mainImage = imagecreatefrompng($file);
+            $logoImage = imagecreatefrompng("upload/watermark/watermark.png");
+            imagecopymerge($mainImage, $logoImage, 0,0,0,0,300,300,100);
+           
+            // if (file_put_contents($setURL, $file) === false) {
+            if (imagejpeg($mainImage, $setURL) === false) {
                 $return->success = false;
                 $return->msg = "Unable to upload";
                 array_push($log, "Error: Unable to upload");
             } else {
+                imagedestroy($mainImage);
                 $return->url = $setURL;
                 array_push($log, "Upload OK");
                 if (strlen($deleteFile) > 0) {
@@ -34,7 +41,7 @@
         }
         catch (Exception $e) {
             $return->success = false;
-            $return->msg = $e;
+            // $return->msg = $e;
             array_push($log, "Error: ".$e);
         }
     } else {
