@@ -11,19 +11,18 @@
         array_push($log, "Get picture from ".$getURL." and save to ".$setURL);
         $file; 
         try {
-            $file = file_get_contents($getURL); 
-            
-            $mainImage = imagecreatefrompng($file);
-            $logoImage = imagecreatefrompng("upload/watermark/watermark.png");
-            imagecopymerge($mainImage, $logoImage, 0,0,0,0,300,300,100);
+            $file = file_get_contents($getURL);    
+            // $mainImage = imagecreatefrompng($file);
+            // $logoImage = imagecreatefrompng("upload/watermark/watermark.png");
+            // imagecopymerge($mainImage, $logoImage, 0,0,0,0,300,300,100);
            
-            // if (file_put_contents($setURL, $file) === false) {
-            if (imagejpeg($mainImage, $setURL) === false) {
+            if (file_put_contents($setURL, $file) === false) {
+            // if (imagejpeg($mainImage, $setURL) === false) {
                 $return->success = false;
                 $return->msg = "Unable to upload";
                 array_push($log, "Error: Unable to upload");
             } else {
-                imagedestroy($mainImage);
+                // imagedestroy($mainImage);
                 $return->url = $setURL;
                 array_push($log, "Upload OK");
                 if (strlen($deleteFile) > 0) {

@@ -237,6 +237,38 @@ const labels = {
         bos: 'Ponovo generisi slicice',
         eng: 'Override Thumbnails',
     },
+    snapWPsToPath: {
+        bos: 'Vezi tacke puta za putanju',
+        eng: 'Snap waypoints to path',
+    },
+    elevationThreshold: {
+        bos: 'Visinska i tolerancija nagiba',
+        eng: 'Elevation and slope threshold',
+    },
+    absoluteElevationThreshold: {
+        bos: 'Apsolutna',
+        eng: 'Absolute',
+    },
+    absoluteElevationThresholdHint: {
+        bos: 'visinski metri',
+        eng: 'elevation meters',
+    },
+    relativeElevationThreshold: {
+        bos: 'Relativna',
+        eng: 'Relative',
+    },
+    relativeElevationThresholdHint: {
+        bos: 'visinski metri',
+        eng: 'elevation meters',
+    },
+    slopeTreshlod: {
+        bos: 'Nagib',
+        eng: 'Slope',
+    },
+    slopeTreshlodHint: {
+        bos: 'Max. procenat',
+        eng: 'Max Percent',
+    },
 };
 
 const messages = {

@@ -65,7 +65,9 @@ class ImagePreview extends BasePage {
                     key={key}
                     className="image-preview"
                     style={contentStyle}
-                />);
+                >
+                    <img src="http://127.0.0.1:8080/sandbox/examples/upload/watermark/watermark.png" />
+                </div>);
     }
 }
 

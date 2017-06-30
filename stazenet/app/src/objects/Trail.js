@@ -21,10 +21,11 @@ class Trail {
     }
 
     getElevationTreshold() {
+        const generalFacts = this.getGeneralFacts();
         return {
-            ta: 30, // Absolute elevation threshold
-            tr: 10, // Relative elevation threshold
-            sl: 20, // slope threshold
+            ta: generalFacts.absoluteElevationThreshold, // Absolute elevation threshold
+            tr: generalFacts.relativeElevationThreshold, // Relative elevation threshold
+            sl: generalFacts.slopeTreshlod, // slope threshold
         };
     }
 
@@ -150,6 +151,10 @@ class Trail {
         generalFacts.externalLink = (generalFacts.externalLink === undefined) ? '' : generalFacts.externalLink;
         generalFacts.imageURL = (generalFacts.imageURL === undefined) ? '' : generalFacts.imageURL;
         generalFacts.overrideThumbnails = false;
+        generalFacts.absoluteElevationThreshold = 30; // between measured and google height
+        generalFacts.relativeElevationThreshold = 10; // between two points
+        generalFacts.slopeTreshlod = 20;
+        generalFacts.snapWPsToPath = false;
         return generalFacts;
     }
 
@@ -296,6 +301,10 @@ class Trail {
             progressFixWPs: trailFacts.progressFixWPs,
             waypoints: this.waypoints,
             overrideThumbnails: trailFacts.overrideThumbnails,
+            absoluteElevationThreshold: trailFacts.absoluteElevationThreshold,
+            relativeElevationThreshold: trailFacts.relativeElevationThreshold,
+            slopeTreshlod: trailFacts.slopeTreshlod,
+            snapWPsToPath: trailFacts.snapWPsToPath,
         };
     }
 

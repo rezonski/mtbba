@@ -4,6 +4,7 @@ import GLU from '/../../glu2.js/src/index';
 import Enum from '/enums/Enum';
 import CommonHelper from '/helpers/CommonHelper';
 import TrailHelper from '/helpers/TrailHelper';
+import TrailsDataModel from '/dataSources/TrailsDataModel';
 
 class WaypointHelper extends GLU.Controller {
     constructor(props) {
@@ -207,11 +208,9 @@ class WaypointHelper extends GLU.Controller {
                         pictogram: tempPictogram,
                         pictureUrl: (wpoint.properties.pictureUrl !== undefined) ? wpoint.properties.pictureUrl : '',
                         elevationProfile: true,
-                        // lon: inputPathLine[tempIndex].lon,
-                        // lat: inputPathLine[tempIndex].lat,
-                        lon: wpoint.geometry.coordinates[0],
-                        lat: wpoint.geometry.coordinates[1],
-                        elevation: inputPathLine[tempIndex].elevation,
+                        lon: (TrailsDataModel.activeTrail.getTrailData().snapWPsToPath) ? inputPathLine[tempIndex].lon : wpoint.geometry.coordinates[0],
+                        lat: (TrailsDataModel.activeTrail.getTrailData().snapWPsToPath) ? inputPathLine[tempIndex].lat : wpoint.geometry.coordinates[1],
+                        elevation: (TrailsDataModel.activeTrail.getTrailData().snapWPsToPath) ? inputPathLine[tempIndex].elevation : wpoint.geometry.coordinates[2],
                     };
                     this.generateWPointGeoJSON(tempIndex, newWaypoint, inputPathLine);
                     newWaypoints.push(newWaypoint);
