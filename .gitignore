@@ -1,5 +1,7 @@
 node_modules
 bower_components
+stazenet/app/src/config.json
+examples/dbconnection.php
 
 # logs
 *.log
@@ -23,5 +25,3 @@ shapes/OSM/
 shapes/bosnia-herzegovina-latest.osm.bz2
 shapes/bosnia-herzegovina-latest.osm.pbf
 shapes/bosnia-herzegovina-latest.shp (1).zip
-stazenet/app/src/config.json
-examples/dbconnection.php
