@@ -20,7 +20,7 @@ class MapModel extends GLU.DataSource {
           {
             name: 'Outdoors',
             type: 'terrain',
-            value: 'mapbox://styles/mapbox/outdoors-v9',
+            value: 'mapbox://styles/mapbox/outdoors-v10',
           },
           {
             name: 'Satellite',

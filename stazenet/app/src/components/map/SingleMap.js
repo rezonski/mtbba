@@ -46,6 +46,10 @@ class SingleMap extends BasePage {
             const mapTypeControl = new MapTypeControl({});
             window.mapTypeControl = mapTypeControl;
             this.leftmap.addControl(mapTypeControl);
+            this.leftmap.addControl(new mapboxgl.ScaleControl({
+                maxWidth: 150,
+                unit: 'metric',
+            }));
             this.leftmap.fitBounds(this.state.setup.bounds);
             this.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('firstMapLoaded'));
             this.emit(Enum.MapEvents.SAVE_LEFT_MAP, this.leftmap);
