@@ -197,8 +197,8 @@ class Trail {
     }
 
     getGeneralFacts() {
-        if (this.interpolatedFeaturesCollection.features) {
-            return JSON.parse(JSON.stringify(CommonHelper.getLineStrings(this.interpolatedFeaturesCollection)[0].properties));
+        if (this.enrichedFeaturesCollection.features) {
+            return JSON.parse(JSON.stringify(CommonHelper.getLineStrings(this.enrichedFeaturesCollection)[0].properties));
         }
         return JSON.parse(JSON.stringify(CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].properties));
     }

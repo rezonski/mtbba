@@ -93,7 +93,8 @@
         }
 
         // GET NEW VERSION ID
-        $result = mysqli_query($conn,"SELECT MAX(id) as 'id' from `trail_versions`");
+        $sql = "SELECT MAX(id) as 'id' from `trail_versions`";
+        $result = mysqli_query($conn,$sql);
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $newVersionID = (int)$row['id'] + 1;
