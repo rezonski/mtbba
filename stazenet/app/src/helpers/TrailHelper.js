@@ -208,17 +208,17 @@ class TrailHelper extends GLU.Controller {
         return enrichedFeaturesCollection;
     }
 
-    getGeneralFacts(featuresCollection) {
-        let maxLon = 0;
-        let minLon = 999999;
-        let maxLat = 0;
-        let minLat = 999999;
+    getGeneralFacts(enrichedFeaturesCollection, interpolatedFeaturesCollection) {
+        // let maxLon = 0;
+        // let minLon = 999999;
+        // let maxLat = 0;
+        // let minLat = 999999;
         let maxElev = 0;
         let minElev = 999999;
         let totaldistance = 0; // in kms
         let totalelevGain = 0; // in kms
         let totalelevloss = 0; // in kms
-        let exportGeneralFacts = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].properties;
+        let exportGeneralFacts = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(interpolatedFeaturesCollection)))[0].properties;
         let generateGeneralFactsProgressPayload = {
             status: 'progress',
             id: 'progressFlattenPath',
@@ -226,13 +226,13 @@ class TrailHelper extends GLU.Controller {
             total: 100,
         };
 
-        const newPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
+        const newPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(enrichedFeaturesCollection)))[0].geometry.coordinates;
 
         newPathLine.forEach((location) => {
-            maxLon = Math.max(maxLon, location.lon);
-            minLon = Math.min(minLon, location.lon);
-            maxLat = Math.max(maxLat, location.lat);
-            minLat = Math.min(minLat, location.lat);
+            // maxLon = Math.max(maxLon, location.lon);
+            // minLon = Math.min(minLon, location.lon);
+            // maxLat = Math.max(maxLat, location.lat);
+            // minLat = Math.min(minLat, location.lat);
             maxElev = Math.max(maxElev, location.elevation);
             minElev = Math.min(minElev, location.elevation);
         });
@@ -258,14 +258,14 @@ class TrailHelper extends GLU.Controller {
         // const lonDelta = (maxLon - minLon) / 1;
         // const latDelta = (maxLat - minLat) / 1;
         // exportGeneralFacts.bounds = [[(maxLon + lonDelta), (maxLat + latDelta)], [(minLon - lonDelta), (minLat - latDelta)]];
-        const cBounds = turf.bbox(featuresCollection);
+        const cBounds = turf.bbox(interpolatedFeaturesCollection);
         exportGeneralFacts.bounds = [[cBounds[0], cBounds[1]], [cBounds[2], cBounds[3]]];
 
         // Center
         // const lonCenter = (maxLon + minLon) / 2;
         // const latCenter = (maxLat + minLat) / 2;
         // exportGeneralFacts.center = [lonCenter, latCenter];
-        const centerOfMass = turf.center(featuresCollection);
+        const centerOfMass = turf.center(interpolatedFeaturesCollection);
         exportGeneralFacts.center = centerOfMass.geometry.coordinates;
 
         // Elevation extremes

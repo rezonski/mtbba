@@ -205,6 +205,8 @@ class WaypointHelper extends GLU.Controller {
                         odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
                         nextStepDist: 0,
                         symbol: this.symbolFromDesc(tempDesc, tempPictogram, wpoint.properties.name),
+                        iconMarker: this.getMarkerSymbol(this.symbolFromDesc(tempDesc, tempPictogram, wpoint.properties.name)) + '-15',
+                        iconColor: this.getMarkerColor(this.symbolFromDesc(tempDesc, tempPictogram, wpoint.properties.name)),
                         pictogram: tempPictogram,
                         pictureUrl: (wpoint.properties.pictureUrl !== undefined) ? wpoint.properties.pictureUrl : '',
                         elevationProfile: true,
@@ -251,7 +253,9 @@ class WaypointHelper extends GLU.Controller {
 
         // Adding to map
         if (leftMap.getSource('waypoints')) {
-            leftMap.removeLayer('waypoints');
+            if (leftMap.getLayer('waypoints')) {
+                leftMap.removeLayer('waypoints');
+            }
             leftMap.removeSource('waypoints');
         }
         // if (rightMap.getSource('waypoints')) {
@@ -272,13 +276,19 @@ class WaypointHelper extends GLU.Controller {
         pointLayer.type = 'symbol';
         pointLayer.source = 'waypoints';
         pointLayer.layout = {};
-        pointLayer.layout['icon-image'] = 'monument-15';
-        pointLayer.layout['text-field'] = '{id}';
+        pointLayer.layout['text-field'] = '{name}';
         pointLayer.layout['text-anchor'] = 'top';
         pointLayer.layout['text-offset'] = [0, 1];
+        pointLayer.layout['icon-image'] = '{iconMarker}';
         pointLayer.paint = {};
-        pointLayer.paint['icon-color'] = '#FF0000';
+        // pointLayer.paint['icon-color'] = '{iconColor}';
+        pointLayer.paint['icon-color'] = '#000000';
         pointLayer.paint['icon-halo-color'] = '#FFFFFF';
+        pointLayer.paint['icon-halo-width'] = 2;
+        pointLayer.paint['icon-halo-blur'] = 2;
+        pointLayer.paint['text-halo-color'] = '#FFFFFF';
+        pointLayer.paint['text-halo-width'] = 1;
+        pointLayer.paint['text-halo-blur'] = 1;
 
         leftMap.addLayer(pointLayer);
         // rightMap.addLayer(pointLayer);

@@ -225,7 +225,7 @@ class Trail {
     }
 
     generateGeneralFacts() {
-        const generalFacts = TrailHelper.getGeneralFacts(this._parsedFeaturesCollection);
+        const generalFacts = TrailHelper.getGeneralFacts(this.enrichedFeaturesCollection, this.interpolatedFeaturesCollection);
         this.setGeneralFacts(generalFacts);
     }
 

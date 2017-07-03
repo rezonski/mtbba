@@ -54,6 +54,7 @@ class SingleMap extends BasePage {
             this.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('firstMapLoaded'));
             this.emit(Enum.MapEvents.SAVE_LEFT_MAP, this.leftmap);
             this.emit(Enum.MapEvents.SAVE_PREVIEW_MAP, this.leftmap);
+            this.emit(Enum.MapEvents.PRELOAD_IMAGES, this.leftmap);
         });
     }
 

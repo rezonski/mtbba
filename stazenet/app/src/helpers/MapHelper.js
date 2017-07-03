@@ -277,7 +277,7 @@ class MapHelper {
         layersArray.forEach((layer) => {
             // leftMap.addLayer(layer, 'animpoint');
             // rightMap.addLayer(layer, 'animpoint');
-            leftMap.addLayer(layer);
+            leftMap.addLayer(layer, 'waterway-label');
             // rightMap.addLayer(layer);
         });
 
