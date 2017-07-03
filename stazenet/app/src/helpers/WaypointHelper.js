@@ -81,6 +81,39 @@ class WaypointHelper extends GLU.Controller {
         }
     }
 
+    getIcon4Symbol(symbol) {
+        switch (symbol) {
+            case 'CROSSROAD':
+                return 'crossroad';
+            case 'DANGER':
+                return 'danger';
+            case 'END':
+                return 'roadblock';
+            case 'FOOD':
+                return 'restaurant';
+            case 'MINES':
+                return 'danger';
+            case 'PASS':
+                return 'pass';
+            case 'PHOTO':
+                return 'photo';
+            case 'PLACE':
+                return 'place';
+            case 'WATER':
+                return 'drinking-water';
+            case 'RIVER':
+                return 'swimming';
+            case 'SLEEP':
+                return 'lodging';
+            case 'START':
+                return 'bicycle2';
+            case 'SUMMIT':
+                return 'summit';
+            default:
+                return 'circle';
+        }
+    }
+
     generateWPointGeoJSON(currentIndex, newWaypoint, inputPathLine) {
         const pointIndex = parseInt(currentIndex, 10);
         const offset = 20;
@@ -128,15 +161,17 @@ class WaypointHelper extends GLU.Controller {
         let inputWaypoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(featuresCollection)));
         const startPathPoint = turf.point([inputPathLine[0].lon, inputPathLine[0].lat], { name: 'Start', pictogram: '90' });
         const endPathPoint = turf.point([inputPathLine[inputPathLine.length - 1].lon, inputPathLine[inputPathLine.length - 1].lat], { name: 'Finish', pictogram: '270' });
-        // const firstWP = inputWaypoints[0];
-        // const lasttWP = inputWaypoints[inputWaypoints.length - 1];
+        const firstWP = inputWaypoints[0];
+        const lasttWP = inputWaypoints[inputWaypoints.length - 1];
+        if (turf.distance(startPathPoint, firstWP, 'kilometers') > 0.2) {
+            inputWaypoints.unshift(startPathPoint);
+        }
+        if (turf.distance(lasttWP, endPathPoint, 'kilometers') > 0.2) {
+            inputWaypoints.push(endPathPoint);
+        }
         if (inputWaypoints.length === 0) {
             inputWaypoints = [startPathPoint, endPathPoint];
-        } /* else if (turf.distance(startPathPoint, firstWP, 'kilometers') > 0.2) {
-            inputWaypoints.unshift(startPathPoint);
-        } else if (turf.distance(lasttWP, endPathPoint, 'kilometers') > 0.2) {
-            inputWaypoints.push(endPathPoint);
-        }*/
+        }
 
         const surfaceCollection = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].properties.surfaceCollection;
         let newWaypoints = [];
@@ -191,6 +226,12 @@ class WaypointHelper extends GLU.Controller {
                     };
                     GLU.bus.emit(Enum.DataEvents.ADD_SURFACE_CHANGE, payload);
                 } else {
+                    let symbol = this.symbolFromDesc(tempDesc, tempPictogram, wpoint.properties.name);
+                    if (wpindex === 0) {
+                        symbol = 'START';
+                    } else if (wpindex === (inputWaypoints.length - 1)) {
+                        symbol = 'END';
+                    }
                     const newWaypoint = {
                         id: wpindex,
                         time: (wpoint.properties.time !== undefined) ? wpoint.properties.time : null,
@@ -204,9 +245,8 @@ class WaypointHelper extends GLU.Controller {
                         nextElevLoss: 0,
                         odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
                         nextStepDist: 0,
-                        symbol: this.symbolFromDesc(tempDesc, tempPictogram, wpoint.properties.name),
-                        iconMarker: this.getMarkerSymbol(this.symbolFromDesc(tempDesc, tempPictogram, wpoint.properties.name)) + '-15',
-                        iconColor: this.getMarkerColor(this.symbolFromDesc(tempDesc, tempPictogram, wpoint.properties.name)),
+                        symbol,
+                        iconMarker: this.getIcon4Symbol(symbol),
                         pictogram: tempPictogram,
                         pictureUrl: (wpoint.properties.pictureUrl !== undefined) ? wpoint.properties.pictureUrl : '',
                         elevationProfile: true,
@@ -281,11 +321,6 @@ class WaypointHelper extends GLU.Controller {
         pointLayer.layout['text-offset'] = [0, 1];
         pointLayer.layout['icon-image'] = '{iconMarker}';
         pointLayer.paint = {};
-        // pointLayer.paint['icon-color'] = '{iconColor}';
-        pointLayer.paint['icon-color'] = '#000000';
-        pointLayer.paint['icon-halo-color'] = '#FFFFFF';
-        pointLayer.paint['icon-halo-width'] = 2;
-        pointLayer.paint['icon-halo-blur'] = 2;
         pointLayer.paint['text-halo-color'] = '#FFFFFF';
         pointLayer.paint['text-halo-width'] = 1;
         pointLayer.paint['text-halo-blur'] = 1;

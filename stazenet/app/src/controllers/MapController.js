@@ -18,6 +18,7 @@ class MapController extends GLU.Controller {
             [Enum.MapEvents.SAVE_PREVIEW_MAP]: this.savePreviewMap,
             [Enum.MapEvents.SHOW_PREVIEW_MAP]: this.showPreviewMap,
             [Enum.MapEvents.HIDE_PREVIEW_MAP]: this.showPreviewMap,
+            [Enum.MapEvents.PRELOAD_MAP_ICONS]: this.preloadMapIcons,
         });
     }
 
@@ -66,6 +67,28 @@ class MapController extends GLU.Controller {
 
     onDeactivate() {
         this.unbindGluBusEvents();
+    }
+
+    preloadMapIcons(map) {
+        const icons = MapModel.mapIcons;
+        this.loadSingleIcon(map, icons, 0);
+    }
+
+    loadSingleIcon(map, icons, index) {
+        if (icons[index] !== undefined) {
+            map.loadImage('/icons/' + icons[index] + '.png', (error, image) => {
+                if (error) {
+                    GLU.bus.emit(MessageEvents.ERROR_MESSAGE, 'Error loading icon ' + icons[index]);
+                    throw error;
+                } else {
+                    map.addImage(icons[index], image);
+                    this.loadSingleIcon(map, icons, index + 1);
+                }
+            });
+        } else {
+            GLU.bus.emit(MessageEvents.ERROR_MESSAGE, 'All ' + icons.length + ' loaded');
+            GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('firstMapLoaded'));
+        }
     }
 }
 

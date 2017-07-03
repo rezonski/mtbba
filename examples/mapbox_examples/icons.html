@@ -36,7 +36,7 @@ var places = {
         "type": "Feature",
         "properties": {
             "iconColor": "#FF0000",
-            "icon": "theatre-15"
+            "icon": "bicycle2"
         },
         "geometry": {
             "type": "Point",
@@ -46,7 +46,7 @@ var places = {
         "type": "Feature",
         "properties": {
             "iconColor": "#FF0000",
-            "icon": "theatre-15"
+            "icon": "bicycle2"
         },
         "geometry": {
             "type": "Point",
@@ -56,7 +56,7 @@ var places = {
         "type": "Feature",
         "properties": {
             "iconColor": "#FF0000",
-            "icon": "bar-15"
+            "icon": "bicycle2"
         },
         "geometry": {
             "type": "Point",
@@ -66,7 +66,7 @@ var places = {
         "type": "Feature",
         "properties": {
             "iconColor": "#FF0000",
-            "icon": "bicycle-15"
+            "icon": "bicycle1"
         },
         "geometry": {
             "type": "Point",
@@ -76,7 +76,7 @@ var places = {
         "type": "Feature",
         "properties": {
             "iconColor": "#FF0000",
-            "icon": "music-15"
+            "icon": "bicycle1"
         },
         "geometry": {
             "type": "Point",
@@ -86,7 +86,7 @@ var places = {
         "type": "Feature",
         "properties": {
             "iconColor": "#FF0000",
-            "icon": "music-15"
+            "icon": "bicycle1"
         },
         "geometry": {
             "type": "Point",
@@ -96,7 +96,7 @@ var places = {
         "type": "Feature",
         "properties": {
             "iconColor": "#FF0000",
-            "icon": "music-15"
+            "icon": "bicycle1"
         },
         "geometry": {
             "type": "Point",
@@ -116,36 +116,41 @@ var map = new mapboxgl.Map({
 map.style.sprite = 'sprite/history_sprite';
 
 map.on('load', function() {
-    map.loadImage('bicycle2.png', (error, image) => {
+    map.loadImage('bicycle1.png', (error, image) => {
         // Add a GeoJSON source containing place coordinates and information.
         if (error) throw error;
-        map.addImage('cat', image);
-        map.addSource('places', {
-            'type': 'geojson',
-            'data': places
-        });
-        map.addLayer({
-            'id': 'places',
-            'type': 'symbol',
-            'source': 'places',
-            'layout': {
-                'icon-image': 'cat',
-                'text-field': 'symbol',
-                'text-offset': [0, 1.5]
-            },
-            'paint': {
-                // 'icon-color': {
-                //     'type': 'identity',
-                //     'property': 'iconColor'
-                // },
-                'icon-color': 'rgba(250,0,0,1)',
-                'icon-halo-color': '#F4FF00',
-                'icon-halo-width': 5,
-                'icon-halo-blur': 5,
-                'text-color': '#202',
-                'text-halo-color': '#fff',
-                'text-halo-width': 2
-            }
+        map.addImage('bicycle1', image);
+        map.loadImage('bicycle2.png', (error, image) => {
+            // Add a GeoJSON source containing place coordinates and information.
+            if (error) throw error;
+            map.addImage('bicycle2', image);
+            map.addSource('places', {
+                'type': 'geojson',
+                'data': places
+            });
+            map.addLayer({
+                'id': 'places',
+                'type': 'symbol',
+                'source': 'places',
+                'layout': {
+                    'icon-image': '{icon}',
+                    'text-field': 'symbol',
+                    'text-offset': [0, 1.5]
+                },
+                'paint': {
+                    // 'icon-color': {
+                    //     'type': 'identity',
+                    //     'property': 'iconColor'
+                    // },
+                    'icon-color': 'rgba(250,0,0,1)',
+                    'icon-halo-color': '#F4FF00',
+                    'icon-halo-width': 5,
+                    'icon-halo-blur': 5,
+                    'text-color': '#202',
+                    'text-halo-color': '#fff',
+                    'text-halo-width': 2
+                }
+            });
         });
     });
 });

@@ -2,10 +2,11 @@
 import React from 'react';
 import BasePage from '../BasePage';
 // import ReactMapboxGl, { ScaleControl, ZoomControl } from 'react-mapbox-gl';
-import MessageEvents from '../../enums/MessageEvents';
+// import MessageEvents from '../../enums/MessageEvents';
 import Enum from '../../enums/Enum';
-import Lang from '/helpers/Lang';
+// import Lang from '/helpers/Lang';
 import MapTypeControl from '/components/map/MapTypeControl';
+import wpPopup from '/components/map/wpPopup';
 
 
 class SingleMap extends BasePage {
@@ -51,10 +52,9 @@ class SingleMap extends BasePage {
                 unit: 'metric',
             }));
             this.leftmap.fitBounds(this.state.setup.bounds);
-            this.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('firstMapLoaded'));
             this.emit(Enum.MapEvents.SAVE_LEFT_MAP, this.leftmap);
             this.emit(Enum.MapEvents.SAVE_PREVIEW_MAP, this.leftmap);
-            this.emit(Enum.MapEvents.PRELOAD_IMAGES, this.leftmap);
+            this.emit(Enum.MapEvents.PRELOAD_MAP_ICONS, this.leftmap);
         });
     }
 
@@ -78,6 +78,7 @@ class SingleMap extends BasePage {
     render() {
         return (<div id="mapa">
             <div id="leftmap" className="map"></div>
+            <wpPopup map={this.leftmap} />
         </div>);
     }
 

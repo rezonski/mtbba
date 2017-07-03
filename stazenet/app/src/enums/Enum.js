@@ -15,6 +15,7 @@ const Enum = {
         SHOW_PREVIEW_MAP: '__SHOW_PREVIEW_MAP__',
         HIDE_PREVIEW_MAP: '__HIDE_PREVIEW_MAP__',
         MAP_RESET_2_NORTH: '__MAP_RESET_2_NORTH__',
+        PRELOAD_MAP_ICONS: '__PRELOAD_MAP_ICONS__',
     },
     AppEvents: {
         OPEN_FORM_NEW_TRAIL: '__OPEN_FORM_NEW_TRAIL__',

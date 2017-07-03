@@ -38,6 +38,12 @@ class MapModel extends GLU.DataSource {
             value: 'mapbox://styles/mapbox/basic-v9',
           },
         ];
+
+        this._mapIcons = ['bicycle1', 'bicycle2', 'city', 'crossroad', 'danger', 'drinking-water', 'hiking', 'hiking-black', 'lodging', 'pass', 'photo', 'photo-inverted', 'place', 'restaurant', 'restaurant-inverted', 'road', 'roadblock', 'summit', 'swimming' ];
+    }
+
+    get mapIcons() {
+        return this._mapIcons;
     }
 
     get leftMap() {
