@@ -78,7 +78,7 @@ class SingleMap extends BasePage {
     render() {
         return (<div id="mapa">
             <div id="leftmap" className="map"></div>
-            <wpPopup map={this.leftmap} />
+            {(this.leftmap) ? <wpPopup map={this.leftmap} /> : null}
         </div>);
     }
 
