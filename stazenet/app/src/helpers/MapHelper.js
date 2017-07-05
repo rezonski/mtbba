@@ -32,7 +32,7 @@ class MapHelper {
         // rightMap.getSource('focuswpafter').setData(data);
     }
 
-    previewTrailOnMap(pointsCollection, initCollection, previewMap) {
+    previewTrailOnMap(initCollection, previewMap) {
         let intialisedCollection = JSON.parse(JSON.stringify(initCollection));
         const lineStrings = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(initCollection)));
         const firstPoint = lineStrings[0].geometry.coordinates;
@@ -275,10 +275,7 @@ class MapHelper {
         // });
 
         layersArray.forEach((layer) => {
-            // leftMap.addLayer(layer, 'animpoint');
-            // rightMap.addLayer(layer, 'animpoint');
-            leftMap.addLayer(layer, 'waterway-label');
-            // rightMap.addLayer(layer);
+            leftMap.addLayer(layer, 'barrier_line-land-line');
         });
 
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('mapPathLayersRebuilt'));

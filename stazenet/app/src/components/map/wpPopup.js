@@ -5,46 +5,23 @@ import Enum from '../../enums/Enum';
 // import Lang from '/helpers/Lang';
 
 
-class wpPopup extends BasePage {
+class WPPopup extends BasePage {
     constructor(props) {
         super(props);
         this.state = {
-            map: this.props.map,
             position: null,
             feature: null,
             isVisible: false,
             isPinned: false,
         };
+        // console.log('WPPopup bindGluBusEvents()');
     }
 
     componentDidMount() {
-        this.bindGluBusEvents({});
-        this.emit(Enum.MapEvents.RETRIEVE_MAP_INIT);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.setState = ({ map: nextProps.map });
-        this.state.map.on('mousemove', e => {
-            const bbox = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
-            const features = this.state.map.queryRenderedFeatures(bbox, { layers: 'waypoints' });
-            if (features.length > 0) {
-                this.setState({
-                    feature: features[0].properties,
-                    position: e.point,
-                    isVisible: true,
-                });
-            }
-        });
-        this.state.map.on('click', e => {
-            const bbox = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
-            const features = this.state.map.queryRenderedFeatures(bbox, { layers: 'waypoints' });
-            if (features.length > 0) {
-                this.setState({
-                    feature: features[0].properties,
-                    position: e.point,
-                    isPinned: true,
-                });
-            }
+        // console.log('WPPopup componentDidMount()');
+        this.bindGluBusEvents({
+            [Enum.MapEvents.SAVE_LEFT_MAP]: this.initMap,
+            [Enum.MapEvents.CONTROL_WP_POPUP]: this.onControlWP,
         });
     }
 
@@ -54,6 +31,7 @@ class wpPopup extends BasePage {
     }
 
     componentDidUpdate(prevProps, prevState) {
+        // console.log('WPPopup componentDidUpdate()');
         if (prevState.position) {
             const annotationBubbleHeight = document.getElementById('wp-popup').clientHeight;
             const annotationBubbleWidth = document.getElementById('wp-popup').clientWidth;
@@ -82,7 +60,20 @@ class wpPopup extends BasePage {
         }
     }
 
+    onControlWP(payload) {
+        this.setState({
+            position: payload.position,
+            feature: payload.feature,
+            isVisible: (payload.isVisible) ? payload.isVisible : this.state.isVisible,
+            isPinned: (payload.isPinned) ? payload.isPinned : this.state.isPinned,
+        });
+    }
+
     render() {
+        // console.log('WPPopup render()');
+        if (!this.state.feature) {
+            return null;
+        }
         const style = {
             position: 'absolute',
             left: (this.state.correctionRight) ? 'auto' : this.state.position.x + 10,
@@ -90,6 +81,7 @@ class wpPopup extends BasePage {
             top: (this.state.correctionBottom) ? 'auto' : this.state.position.y + 10,
             bottom: (this.state.correctionBottom) ? 10 : 'auto',
         };
+        console.log(style);
         return (<div
                     id="wp-popup"
                     className={'map-popup' + ((this.state.isVisible) ? ' visible' : '')}
@@ -98,6 +90,13 @@ class wpPopup extends BasePage {
                     {this.state.feature.name}
                 </div>);
     }
+
+    initMap(map) {
+        // console.log('WPPopup initMap()');
+        this.setState({
+            map,
+        });
+    }
 }
 
-export default wpPopup;
+export default WPPopup;

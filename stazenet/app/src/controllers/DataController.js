@@ -224,17 +224,15 @@ class DataController extends GLU.Controller {
         API.Trails.getTrail({ query })
             .then((response) => {
                 TrailsDataModel.trail = new Trail();
-                TrailsDataModel.activeTrail.parsedFeaturesCollection = JSON.parse(response.text);
-                TrailsDataModel.activeTrail.parseInitialFeaturesCollection();
+                TrailsDataModel.activeTrail.saveDownloadedFeaturesCollection(JSON.parse(response.text));
                 const geoSetup = TrailsDataModel.activeTrail.getTrailGeoLocation(); // Runs parsing
                 MapModel.initialCenter = JSON.parse(JSON.stringify(geoSetup.center));
                 MapModel.initialMaxBounds = JSON.parse(JSON.stringify(geoSetup.bounds));
-                console.info('# 1');
-                this.onSimplifyRequest();
                 TrailsDataModel.activeTrail.setProgressFinished();
                 const trailData = TrailsDataModel.activeTrail.getTrailData();
                 GLU.bus.emit(Enum.DataEvents.TRAIL_DOWNLOADED, trailData);
                 GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
+                GLU.bus.emit(Enum.MapEvents.REQUEST_DISPLAY_PATH_LAYERS);
             })
             .catch((err) => {
                 const msg = (err && err.response) ? err.response.text : err.toString();

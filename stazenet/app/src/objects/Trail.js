@@ -71,8 +71,18 @@ class Trail {
         this.parsedFeaturesCollection = turf.featureCollection(features);
     }
 
+    saveDownloadedFeaturesCollection(featuresCollection) {
+        this.parsedFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
+        this.parseInitialFeaturesCollection();
+        this.simplifiedFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
+        this.elevatedFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
+        this.elevationNivelatedFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
+        this.interpolatedFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
+        this.enrichPathLine();
+    }
+
     previewParsedInitialFeaturesCollection(previewMap) {
-        MapHelper.previewTrailOnMap(this.getPoints4LinePath(this.parsedFeaturesCollection), this.parsedFeaturesCollection, previewMap);
+        MapHelper.previewTrailOnMap(this.parsedFeaturesCollection, previewMap);
     }
 
     hideParsedInitialFeaturesCollection(previewMap) {
@@ -108,20 +118,20 @@ class Trail {
         // console.log(path[0]);
     }
 
-    getPoints4LinePath(featuresCollection) {
-        const outFeaturesCollection = {
-            type: 'FeatureCollection',
-            features: [],
-        };
-        let path = CommonHelper.getLineStrings(featuresCollection)[0].geometry.coordinates;
-        path.forEach((pathPoint, pointIdx) => {
-            outFeaturesCollection.features.push(turf.point(pathPoint, {
-                highlightId: pointIdx,
-                type: 'controlPoint',
-            }));
-        });
-        return outFeaturesCollection;
-    }
+    // getPoints4LinePath(featuresCollection) {
+    //     const outFeaturesCollection = {
+    //         type: 'FeatureCollection',
+    //         features: [],
+    //     };
+    //     let path = CommonHelper.getLineStrings(featuresCollection)[0].geometry.coordinates;
+    //     path.forEach((pathPoint, pointIdx) => {
+    //         outFeaturesCollection.features.push(turf.point(pathPoint, {
+    //             highlightId: pointIdx,
+    //             type: 'controlPoint',
+    //         }));
+    //     });
+    //     return outFeaturesCollection;
+    // }
 
     getInitialGeneralFacts(inputGeneralFacts) {
         let generalFacts = JSON.parse(JSON.stringify(inputGeneralFacts));

@@ -11,6 +11,7 @@ import MapController from '../controllers/MapController';
 import DataController from '../controllers/DataController';
 import WPDrawer from '../components/wpEditor/WPDrawer';
 import WPModalEditor from '../components/wpEditor/WPModalEditor';
+import WPPopup from '../components/map/WPPopup';
 
 class Root extends BasePage {
     constructor(params) {
@@ -50,6 +51,7 @@ class Root extends BasePage {
                         <NewEditActionButton />
                     </div>
                     <WPModalEditor />
+                    <WPPopup />
                 </div>
             </div>
         );

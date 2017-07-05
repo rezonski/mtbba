@@ -17,6 +17,7 @@ class MapController extends GLU.Controller {
             [Enum.MapEvents.SAVE_RIGHT_MAP]: this.saveRightMap,
             [Enum.MapEvents.SAVE_PREVIEW_MAP]: this.savePreviewMap,
             [Enum.MapEvents.SHOW_PREVIEW_MAP]: this.showPreviewMap,
+            [Enum.MapEvents.HIDE_PREVIEW_MAP]: this.hidePreviewMap,
             [Enum.MapEvents.HIDE_PREVIEW_MAP]: this.showPreviewMap,
             [Enum.MapEvents.PRELOAD_MAP_ICONS]: this.preloadMapIcons,
         });
@@ -62,7 +63,7 @@ class MapController extends GLU.Controller {
     }
 
     hidePreviewMap() {
-        TrailsDataModel.activeTrail.previewParsedInitialFeaturesCollection(MapModel.previewMap);
+        TrailsDataModel.activeTrail.hideParsedInitialFeaturesCollection(MapModel.previewMap);
     }
 
     onDeactivate() {

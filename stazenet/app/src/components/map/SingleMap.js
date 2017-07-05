@@ -1,13 +1,10 @@
 /* global mapboxgl */
 import React from 'react';
 import BasePage from '../BasePage';
-// import ReactMapboxGl, { ScaleControl, ZoomControl } from 'react-mapbox-gl';
 // import MessageEvents from '../../enums/MessageEvents';
 import Enum from '../../enums/Enum';
 // import Lang from '/helpers/Lang';
 import MapTypeControl from '/components/map/MapTypeControl';
-import wpPopup from '/components/map/wpPopup';
-
 
 class SingleMap extends BasePage {
     constructor(props) {
@@ -19,7 +16,6 @@ class SingleMap extends BasePage {
             [Enum.MapEvents.INITIAL_MAP_SETUP_RETRIEVED]: this.initMap,
             [Enum.MapEvents.DISPLAY_PATH_LAYERS_ON_MAP]: this.onPathLayersRetrieved,
             [Enum.MapEvents.CHANGE_MAP_STYLE]: this.onMapStyleChanged,
-            [Enum.MapEvents.MAP_RESET_2_NORTH]: this.onOrientate2North,
         });
         this.emit(Enum.MapEvents.RETRIEVE_MAP_INIT);
     }
@@ -30,44 +26,32 @@ class SingleMap extends BasePage {
     }
 
     componentDidUpdate() {
-        // console.info('SingleMap DidUpdate');
-        mapboxgl.accessToken = this.state.setup.accessToken;
-        this.leftmap = new mapboxgl.Map({
-            container: 'leftmap',
-            style: this.state.setup.primaryStyle.value,
-            zoom: this.state.setup.zoom.base,
-            minZoom: this.state.setup.zoom.min,
-            maxZoom: this.state.setup.zoom.max,
-            center: this.state.setup.center,
-            maxBounds: this.state.setup.maxBounds,
-        });
-        this.leftmap.on('load', () => {
-            window.leftmap = this.leftmap;
-            this.leftmap.addControl(new mapboxgl.NavigationControl());
-            const mapTypeControl = new MapTypeControl({});
-            window.mapTypeControl = mapTypeControl;
-            this.leftmap.addControl(mapTypeControl);
-            this.leftmap.addControl(new mapboxgl.ScaleControl({
-                maxWidth: 150,
-                unit: 'metric',
-            }));
-            this.leftmap.fitBounds(this.state.setup.bounds);
-            this.emit(Enum.MapEvents.SAVE_LEFT_MAP, this.leftmap);
-            this.emit(Enum.MapEvents.SAVE_PREVIEW_MAP, this.leftmap);
-            this.emit(Enum.MapEvents.PRELOAD_MAP_ICONS, this.leftmap);
-        });
+        console.log('SingleMap componentDidUpdate()');
+        if (this.state.map) {
+            this.state.map.on('load', () => {
+                window.leftmap = this.state.map;
+                this.state.map.addControl(new mapboxgl.NavigationControl());
+                const mapTypeControl = new MapTypeControl({});
+                window.mapTypeControl = mapTypeControl;
+                this.state.map.addControl(mapTypeControl);
+                this.state.map.addControl(new mapboxgl.ScaleControl({
+                    maxWidth: 150,
+                    unit: 'metric',
+                }));
+                this.state.map.fitBounds(this.state.setup.bounds);
+                this.emit(Enum.MapEvents.SAVE_LEFT_MAP, this.state.map);
+                this.emit(Enum.MapEvents.SAVE_PREVIEW_MAP, this.state.map);
+                this.emit(Enum.MapEvents.PRELOAD_MAP_ICONS, this.state.map);
+            });
+            this.wpListener('mousemove');
+            this.wpListener('click');
+        }
     }
 
-    onOrientate2North() {
-        this.leftmap.setBearing(0);
-        // this.rightmap.setBearing(0);
-    }
 
     onPathLayersRetrieved(layers) {
         layers.forEach((layer) => {
-            // console.info('setLayoutProperty(' + layer.id + ', visibility, visible)');
-            this.leftmap.setLayoutProperty(layer.id, 'visibility', 'visible');
-            // this.rightmap.setLayoutProperty(layer.id, 'visibility', 'visible');
+            this.state.map.setLayoutProperty(layer.id, 'visibility', 'visible');
         });
     }
 
@@ -76,20 +60,48 @@ class SingleMap extends BasePage {
     }
 
     render() {
-        return (<div id="mapa">
-            <div id="leftmap" className="map"></div>
-            {(this.leftmap) ? <wpPopup map={this.leftmap} /> : null}
-        </div>);
+        return (<div id="mapa"><div id="leftmap" className="map"></div></div>);
     }
 
     initMap(initSetup) {
-        // console.log(initSetup);
         if (initSetup) {
+            mapboxgl.accessToken = initSetup.accessToken;
+            const newMap = new mapboxgl.Map({
+                container: 'leftmap',
+                style: initSetup.primaryStyle.value,
+                zoom: initSetup.zoom.base,
+                minZoom: initSetup.zoom.min,
+                maxZoom: initSetup.zoom.max,
+                center: initSetup.center,
+                maxBounds: initSetup.maxBounds,
+            });
             this.setState({
+                map: newMap,
                 initialized: true,
                 setup: initSetup,
             });
         }
+    }
+
+    wpListener(eventName) {
+        this.state.map.on(eventName, e => {
+            if (this.state.map.getLayer('waypoints')) {
+                const bbox = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
+                const features = this.state.map.queryRenderedFeatures(bbox, { layers: ['waypoints'] });
+                if (features.length > 0) {
+                    const payload = {
+                        feature: features[0].properties,
+                        position: e.point,
+                    };
+                    if (eventName === 'mousemove') {
+                        payload.isVisible = true;
+                    } else {
+                        payload.isPinned = true;
+                    }
+                    this.emit(Enum.MapEvents.CONTROL_WP_POPUP, payload);
+                }
+            }
+        });
     }
 }
 
