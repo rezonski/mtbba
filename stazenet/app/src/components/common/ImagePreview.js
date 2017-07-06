@@ -52,13 +52,14 @@ class ImagePreview extends BasePage {
     }
 
     render() {
-        let contentStyle = {
-            backgroundImage: 'url("' + this.state.value + '")',
-        };
+        let contentStyle = { backgroundImage: 'url("' + this.state.value + '")' };
+        let content = <img src={AppConfig.constants.server + 'upload/watermark/watermark.png'} />;
+
         if (this.props.fieldName === 'waypoints' && this.props.fieldProp === 'pictogram') {
             contentStyle = {
                 backgroundImage: 'url("' + appConfig.constants.server + '/svg/getsvg.php?opis=' + this.state.value + '")',
             };
+            content = null;
         }
         const key = (this.props.fieldIndex !== undefined && this.props.fieldProp) ? 'picture' + this.props.fieldName + this.props.fieldIndex + this.props.fieldProp : 'picture' + this.props.fieldName;
 
@@ -67,7 +68,7 @@ class ImagePreview extends BasePage {
                     className="image-preview"
                     style={contentStyle}
                 >
-                    <img src={AppConfig.constants.server + 'upload/watermark/watermark.png'} />
+                    {content}
                 </div>);
     }
 }
