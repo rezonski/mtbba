@@ -232,6 +232,7 @@ class DataController extends GLU.Controller {
                 const trailData = TrailsDataModel.activeTrail.getTrailData();
                 GLU.bus.emit(Enum.DataEvents.TRAIL_DOWNLOADED, trailData);
                 GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
+                GLU.bus.emit(Enum.MapEvents.REBUILD_PATH_LAYERS);
                 GLU.bus.emit(Enum.MapEvents.REQUEST_DISPLAY_PATH_LAYERS);
             })
             .catch((err) => {

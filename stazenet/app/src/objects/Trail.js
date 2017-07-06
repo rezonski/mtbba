@@ -257,9 +257,7 @@ class Trail {
     }
 
     reBuildMapLayers(maps) {
-        // this.mapPathLayers = MapHelper.reBuildPathLayers(this.mapPathLayers, maps.leftMap, maps.rightMap, this.surfaceCollection, this.pathLine, this.generalFact);
         const enrichedFeaturesCollection = this.enrichedFeaturesCollection;
-        // this.mapPathLayers = MapHelper.reBuildPathLayers(this.mapPathLayers, maps.leftMap, maps.rightMap, enrichedFeaturesCollection);
         this.mapPathLayers = MapHelper.reBuildPathLayers(this.mapPathLayers, maps.leftMap, enrichedFeaturesCollection);
     }
 

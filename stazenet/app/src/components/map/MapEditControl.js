@@ -10,6 +10,9 @@ class MapEditControl {
         window.clickedPoint = {};
         window.listenKeyboard = false;
         window.pressedKeyCode = '';
+
+        console.log('MapEditControl onAdd()');
+
         this._container = document.createElement('div');
         this._container.className = 'mapboxgl-ctrl-group mapboxgl-ctrl';
 
@@ -65,6 +68,7 @@ class MapEditControl {
     }
 
     onRemove() {
+        console.log('MapEditControl onRemove()');
         this._container.parentNode.removeChild(this._container);
         this._map = undefined;
     }

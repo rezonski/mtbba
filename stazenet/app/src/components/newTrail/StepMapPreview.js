@@ -17,11 +17,12 @@ class StepMapPreview extends BasePage {
     }
 
     componentDidMount() {
+        this.emit(Enum.MapEvents.HIDE_PREVIEW_MAP);
         this.emit(Enum.MapEvents.SHOW_PREVIEW_MAP);
     }
 
     componentWillUnmount() {
-        this.emit(Enum.MapEvents.HIDE_PREVIEW_MAP);
+        // this.emit(Enum.MapEvents.HIDE_PREVIEW_MAP);
         this.unbindGluBusEvents();
     }
 

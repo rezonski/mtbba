@@ -291,49 +291,6 @@ class WaypointHelper extends GLU.Controller {
             mapWaypointsCollection.features.push(newPoint);
         });
 
-        // Adding to map
-        if (leftMap.getSource('waypoints')) {
-            if (leftMap.getLayer('waypoints')) {
-                leftMap.removeLayer('waypoints');
-            }
-            leftMap.removeSource('waypoints');
-        }
-        // if (rightMap.getSource('waypoints')) {
-        //     rightMap.removeLayer('waypoints');
-        //     rightMap.removeSource('waypoints');
-        // }
-        leftMap.addSource('waypoints', {
-            type: 'geojson',
-            data: mapWaypointsCollection,
-        });
-        // rightMap.addSource('waypoints', {
-        //     type: 'geojson',
-        //     data: mapWaypointsCollection,
-        // });
-
-        const pointLayer = {};
-        pointLayer.id = 'waypoints';
-        pointLayer.type = 'symbol';
-        pointLayer.source = 'waypoints';
-        pointLayer.layout = {};
-        pointLayer.layout['text-field'] = '{name}';
-        pointLayer.layout['text-anchor'] = 'top';
-        pointLayer.layout['text-offset'] = [0, 1];
-        pointLayer.layout['icon-image'] = '{iconMarker}';
-        pointLayer.paint = {};
-        pointLayer.paint['text-halo-color'] = '#FFFFFF';
-        pointLayer.paint['text-halo-width'] = 1;
-        pointLayer.paint['text-halo-blur'] = 1;
-
-        leftMap.addLayer(pointLayer);
-        // rightMap.addLayer(pointLayer);
-
-        // return {
-        //     waypoints: newWaypointsExport,
-        //     chartWaypoints: newWaypointsChart,
-        //     mapWaypoints: mapWaypointsCollection.features,
-        // };
-
         return mapWaypointsCollection.features;
     }
 

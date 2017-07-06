@@ -142,6 +142,9 @@ class NewTrailContainer extends BasePage {
 
     handleNext() {
         const stepIndex = this.state.stepIndex;
+        if (stepIndex === 1) {
+            this.emit(Enum.MapEvents.HIDE_PREVIEW_MAP);
+        }
         this.setState({
             stepIndex: (stepIndex < 5) ? (stepIndex + 1) : stepIndex,
             finished: stepIndex >= 4,
@@ -150,6 +153,9 @@ class NewTrailContainer extends BasePage {
 
     handlePrev() {
         const stepIndex = this.state.stepIndex;
+        if (stepIndex === 1) {
+            this.emit(Enum.MapEvents.HIDE_PREVIEW_MAP);
+        }
         if (stepIndex > 0) {
             this.setState({
                 stepIndex: stepIndex - 1,

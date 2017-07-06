@@ -26,7 +26,7 @@ class SingleMap extends BasePage {
     }
 
     componentDidUpdate() {
-        console.log('SingleMap componentDidUpdate()');
+        // console.log('SingleMap componentDidUpdate()');
         if (this.state.map) {
             this.state.map.on('load', () => {
                 window.leftmap = this.state.map;
@@ -86,10 +86,11 @@ class SingleMap extends BasePage {
     wpListener(eventName) {
         this.state.map.on(eventName, e => {
             if (this.state.map.getLayer('waypoints')) {
+                let payload;
                 const bbox = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
                 const features = this.state.map.queryRenderedFeatures(bbox, { layers: ['waypoints'] });
                 if (features.length > 0) {
-                    const payload = {
+                    payload = {
                         feature: features[0].properties,
                         position: e.point,
                     };
@@ -98,6 +99,14 @@ class SingleMap extends BasePage {
                     } else {
                         payload.isPinned = true;
                     }
+                    this.emit(Enum.MapEvents.CONTROL_WP_POPUP, payload);
+                } else {
+                    payload = {
+                        feature: null,
+                        position: null,
+                        isVisible: false,
+                        isPinned: false,
+                    };
                     this.emit(Enum.MapEvents.CONTROL_WP_POPUP, payload);
                 }
             }

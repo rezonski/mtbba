@@ -3,6 +3,7 @@ import BasePage from '../BasePage';
 import MessageEvents from '../../enums/MessageEvents';
 import Enum from '../../enums/Enum';
 import appConfig from '../../appConfig';
+import AppConfig from '/appConfig';
 
 class ImagePreview extends BasePage {
     constructor(props) {
@@ -66,7 +67,7 @@ class ImagePreview extends BasePage {
                     className="image-preview"
                     style={contentStyle}
                 >
-                    <img src="http://127.0.0.1:8080/sandbox/examples/upload/watermark/watermark.png" />
+                    <img src={AppConfig.constants.server + 'upload/watermark/watermark.png'} />
                 </div>);
     }
 }
