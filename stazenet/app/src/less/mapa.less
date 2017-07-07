@@ -48,6 +48,16 @@
     background-image: url('../svg/terrain.svg');
 }
 
+.mapbox-gl-draw-mines {
+    background-image: url('../svg/danger.svg');
+    &.on {
+        opacity: 1;
+    }
+    &.off {
+        opacity: 0.2;
+    }
+}
+
 .mapbox-gl-draw-basic {
     background-image: url('../svg/streetmap.svg');
 }

@@ -20,35 +20,32 @@ mapboxgl.accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3Zrb
 
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v9'
+    style: 'mapbox://styles/mapbox/streets-v9',
+    center: [18.40555120158092, 43.818134877351866],
+    zoom: 13
 });
 
 map.on('load', () => {
-    map.loadImage('https://upload.wikimedia.org/wikipedia/commons/a/ab/Cat_black.svg', (error, image) => {
-        if (error) throw error;
-        map.addImage('cat', image);
-        map.addLayer({
-            "id": "points",
-            "type": "symbol",
-            "source": {
-                "type": "geojson",
-                "data": {
-                    "type": "FeatureCollection",
-                    "features": [{
-                        "type": "Feature",
-                        "geometry": {
-                            "type": "Point",
-                            "coordinates": [0, 0]
-                        }
-                    }]
-                }
-            },
-            "layout": {
-                "icon-image": "cat",
-                "icon-size": 0.25
-            }
-        });
+    map.addSource('rasterTiles', {
+        type: 'raster',
+        url: 'mapbox://mapbox.satellite',
+        tileSize: 256,
     });
+    // map.addLayer({
+    //     'id': 'satelliteLayer',
+    //     'type': 'raster',
+    //     'source': 'rasterTiles',
+    //     'paint': {
+    //         // 'raster-hue-rotate': -90,
+    //         'raster-saturation': 0.6,
+    //         // 'raster-brightness-min': 0.5,
+    //         // 'raster-brightness-max': 1,
+    //         // 'raster-contrast': 0.5,
+    //         'raster-fade-duration': 1000,
+    //     },
+    //     'minzoom': 0,
+    //     'maxzoom': 22,
+    // });
 });
 
 </script>

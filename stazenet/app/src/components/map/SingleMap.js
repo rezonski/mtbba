@@ -30,14 +30,57 @@ class SingleMap extends BasePage {
         if (this.state.map) {
             this.state.map.on('load', () => {
                 window.leftmap = this.state.map;
+                // Add satellite raster
+                this.state.map.addSource('rasterTiles', {
+                    type: 'raster',
+                    url: 'mapbox://mapbox.satellite',
+                    tileSize: 256,
+                });
+                // Add satellite layer
+                this.state.map.addLayer({
+                    id: 'satelliteLayer',
+                    type: 'raster',
+                    source: 'rasterTiles',
+                    paint: {
+                        'raster-saturation': 0.6,
+                    },
+                    layout: {
+                        visibility: 'none',
+                    },
+                    minzoom: 0,
+                    maxzoom: 22,
+                }, 'contour-line-index');
+                // Add mines source
+                this.state.map.addSource('mineTiles', {
+                    type: 'vector',
+                    url: 'mapbox://mersadpasic.bdixpo9t',
+                });
+                // Add mines layer
+                this.state.map.addLayer({
+                    id: 'minesLayer',
+                    type: 'fill',
+                    source: 'mineTiles',
+                    'source-layer': 'BHMACmine_sistematskoizvidjanje',
+                    paint: {
+                        'fill-color': '#ff0000',
+                        'fill-opacity': 0.3,
+                    },
+                    minzoom: 0,
+                    maxzoom: 22,
+                }, 'contour-line-index');
+                // Add controls
+                // Navigation
                 this.state.map.addControl(new mapboxgl.NavigationControl());
+                // Map type
                 const mapTypeControl = new MapTypeControl({});
                 window.mapTypeControl = mapTypeControl;
                 this.state.map.addControl(mapTypeControl);
+                // Scale legend
                 this.state.map.addControl(new mapboxgl.ScaleControl({
                     maxWidth: 150,
                     unit: 'metric',
                 }));
+                // Setting bounds
                 this.state.map.fitBounds(this.state.setup.bounds);
                 this.emit(Enum.MapEvents.SAVE_LEFT_MAP, this.state.map);
                 this.emit(Enum.MapEvents.SAVE_PREVIEW_MAP, this.state.map);

@@ -6,22 +6,15 @@ class MapTypeControl {
 
         this._button1 = document.createElement('button');
         this._button1.className = 'mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw-satellite';
-        this._button1.title = 'Satellite map';
-        // this._button1.addEventListener('click', this.onMapStyleChange.bind(this, 'satellite'));
-        this._button1.addEventListener('click', this.onShowSatellite.bind(this));
+        this._button1.title = 'Show satellite map';
+        this._button1.addEventListener('click', this.onToggleSatellite.bind(this));
         this._container.appendChild(this._button1);
 
         this._button2 = document.createElement('button');
-        this._button2.className = 'mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw-outdoors';
-        this._button2.title = 'Topographic map';
-        this._button2.addEventListener('click', this.onShowOutdoor.bind(this));
+        this._button2.className = 'mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw-mines on';
+        this._button2.title = 'Toggle mine danger zones';
+        this._button2.addEventListener('click', this.onToggleMines.bind(this));
         this._container.appendChild(this._button2);
-
-        // this._button3 = document.createElement('button');
-        // this._button3.className = 'mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw-basic';
-        // this._button3.title = 'Simple map';
-        // this._button3.addEventListener('click', this.onMapStyleChange.bind(this, 'streets'));
-        // this._container.appendChild(this._button3);
 
         return this._container;
     }
@@ -31,30 +24,29 @@ class MapTypeControl {
         this._map = undefined;
     }
 
-    onShowSatellite() {
-        if (!window.leftmap.getSource('rasterTiles')) {
-            window.leftmap.addSource('rasterTiles', {
-                type: 'raster',
-                url: 'mapbox://mapbox.satellite',
-                tileSize: 256,
-            });
-        }
+    onToggleSatellite() {
         if (window.leftmap.getLayer('satelliteLayer')) {
-            window.leftmap.setLayoutProperty('satelliteLayer', 'visibility', 'visible');
-        } else {
-            window.leftmap.addLayer({
-                id: 'satelliteLayer',
-                type: 'raster',
-                source: 'rasterTiles',
-                minzoom: 0,
-                maxzoom: 22,
-            }, 'barrier_line-land-line');
+            if (window.leftmap.getLayoutProperty('satelliteLayer', 'visibility') === 'visible') {
+                window.leftmap.setLayoutProperty('satelliteLayer', 'visibility', 'none');
+                this._button1.className = 'mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw-satellite';
+                this._button1.title = 'Show satellite map';
+            } else {
+                this._button1.className = 'mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw-outdoors';
+                this._button1.title = 'Show outdoor map';
+                window.leftmap.setLayoutProperty('satelliteLayer', 'visibility', 'visible');
+            }
         }
     }
 
-    onShowOutdoor() {
-        if (window.leftmap.getLayer('satelliteLayer')) {
-            window.leftmap.setLayoutProperty('satelliteLayer', 'visibility', 'none');
+    onToggleMines() {
+        if (window.leftmap.getLayer('minesLayer')) {
+            if (window.leftmap.getLayoutProperty('minesLayer', 'visibility') === 'visible') {
+                window.leftmap.setLayoutProperty('minesLayer', 'visibility', 'none');
+                this._button2.className = 'mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw-mines off';
+            } else {
+                window.leftmap.setLayoutProperty('minesLayer', 'visibility', 'visible');
+                this._button2.className = 'mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw-mines on';
+            }
         }
     }
 }
