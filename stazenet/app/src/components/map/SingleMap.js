@@ -42,7 +42,7 @@ class SingleMap extends BasePage {
                     type: 'raster',
                     source: 'rasterTiles',
                     paint: {
-                        'raster-saturation': 0.6,
+                        'raster-saturation': 0.5,
                     },
                     layout: {
                         visibility: 'none',

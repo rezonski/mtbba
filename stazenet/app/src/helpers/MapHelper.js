@@ -7,6 +7,7 @@ import TrailHelper from '/helpers/TrailHelper';
 import WaypointHelper from '/helpers/WaypointHelper';
 import CommonHelper from '/helpers/CommonHelper';
 import MapEditControl from '/components/map/MapEditControl';
+import SurfaceControl from '/components/map/SurfaceControl';
 import SavePathControl from '/components/map/SavePathControl';
 import Lang from '/helpers/Lang';
 
@@ -39,6 +40,7 @@ class MapHelper {
         const firstPoint = lineStrings[0].geometry.coordinates;
         let Draw;
         let editTrail;
+        let editSurface;
         let savePathControl;
 
         // Add previewCollection source if not exists
@@ -122,6 +124,15 @@ class MapHelper {
         }
         previewMap.addControl(editTrail);
 
+        // Add edit surface control if not exists
+        if (!window.editSurface) {
+            editSurface = new SurfaceControl({});
+            window.editSurface = editSurface;
+        } else {
+            editSurface = window.editSurface;
+        }
+        previewMap.addControl(editSurface);
+
         // Add save trail control if not exists
         if (!window.savePathControl) {
             savePathControl = new SavePathControl({});
@@ -199,6 +210,10 @@ class MapHelper {
         if (window.editTrail) {
             previewMap.removeControl(window.editTrail);
             delete window.editTrail;
+        }
+        if (window.editSurface) {
+            previewMap.removeControl(window.editSurface);
+            delete window.editSurface;
         }
         if (window.savePathControl) {
             previewMap.removeControl(window.savePathControl);

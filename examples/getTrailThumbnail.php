@@ -5,7 +5,7 @@
     $return = (object)[];
     $return->success = true;
     if (isset($_GET['polyline']) && isset($_GET['fileName']) && isset($_GET['mapParams']) && isset($_GET['deleteFile']) && isset($_GET['accessToken'])) {  
-        $getURL = 'https://api.mapbox.com/v4/mapbox.streets/path-5+f44-0.5+f44-0('.urlencode($_GET['polyline']).')/'.$_GET['mapParams'].'/500x300.png?access_token='.$_GET['accessToken'];
+        $getURL = 'https://api.mapbox.com/v4/mapbox.streets/path-10+F00-0.6('.urlencode($_GET['polyline']).')/'.$_GET['mapParams'].'/1280x650.png?access_token='.$_GET['accessToken'];
         $setURL = 'upload/'.$_GET['fileName'];
         $deleteFile = $_GET['deleteFile'];
         array_push($log, "Get picture from ".$getURL." and save to ".$setURL);

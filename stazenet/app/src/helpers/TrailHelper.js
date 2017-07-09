@@ -25,20 +25,22 @@ class TrailHelper extends GLU.Controller {
         const squared = turf.bboxPolygon(turf.square(bbox));
         const area = turf.area(squared) / 1000000; // in square kilometers
         const radius = Math.sqrt(area);
-        if (radius > 100) {
+        if (radius > 110) {
             return 7;
-        } else if (radius > 60) {
+        } else if (radius > 75) {
             return 8;
-        } else if (radius > 30) {
+        } else if (radius > 50) {
             return 9;
-        } else if (radius > 15) {
+        } else if (radius > 30) {
             return 10;
-        } else if (radius > 10) {
+        } else if (radius > 15) {
             return 11;
-        } else if (radius > 5) {
+        } else if (radius > 10) {
             return 12;
+        } else if (radius > 5) {
+            return 13;
         }
-        return 13;
+        return 14;
         // const pt0 = turf.point(bounds[0]);
         // const pt1 = turf.point(bounds[1]);
         // const distance = turf.distance(pt0, pt1);
@@ -272,21 +274,106 @@ class TrailHelper extends GLU.Controller {
         exportGeneralFacts.elevMin = minElev;
         exportGeneralFacts.elevMax = maxElev;
 
+        // Technique level
+        exportGeneralFacts.requiredTechnique = this.calculateTechniqueLevelID(exportGeneralFacts.surfaceCollection, totalelevGain);
+
+        // Fitness level
+        exportGeneralFacts.requiredFitness = this.calculateFitnessLevelID(totaldistance, totalelevGain);
+
+        // trailTypeID
+        exportGeneralFacts.trailTypeID = this.calculateTrailTypeID(exportGeneralFacts.requiredTechnique, exportGeneralFacts.requiredFitness);
+
         generateGeneralFactsProgressPayload.loaded = 100;
         GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, generateGeneralFactsProgressPayload);
 
         return exportGeneralFacts;
     }
 
-    // getDistanceFromLatLonInMeters(lon1, lat1, lon2, lat2) {
-    //     const R = 6371;
-    //     const dLat = this.deg2rad(lat2 - lat1);
-    //     const dLon = this.deg2rad(lon2 - lon1);
-    //     const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    //     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    //     const d = R * c * 1000;
-    //     return d;
-    // }
+    calculateTrailTypeID(t, f) {
+        if (t === 1 && f === 4) {
+            return 4;
+        }
+        if (t >= 3 && f >= 2) {
+            return 3;
+        }
+        if (t >= 2 && f >= 1) {
+            return 2;
+        }
+        if (t >= 1 && f >= 0) {
+            return 1;
+        }
+        return 0;
+    }
+
+    calculateFitnessLevelID(distance, elevation) {
+        const idx = parseInt(elevation + distance * 10, 10);
+        if (idx < 750) {
+            return 1;
+        } else if (idx < 1700) {
+            return 2;
+        } else if (idx < 3000) {
+            return 3;
+        }
+        return 4;
+    }
+
+    calculateTechniqueLevelID(surfaceCollection, totaldistance) {
+        const temp = surfaceCollection.map((s, idx) => {
+            if (idx < (surfaceCollection.length - 1)) {
+                return {
+                    type: s[1],
+                    start: s[0],
+                    end: surfaceCollection[idx + 1][0],
+                    distance: surfaceCollection[idx + 1][0] - s[0],
+                    percent: ((surfaceCollection[idx + 1][0] - s[0]) / totaldistance) * 100,
+                };
+            }
+            return {
+                type: s[1],
+                start: s[0],
+                end: totaldistance,
+                distance: totaldistance - s[0],
+                percent: ((totaldistance - s[0]) / totaldistance) * 100,
+            };
+        });
+        let surface = {};
+        ['A', 'M', 'S', 'N'].forEach(t => {
+            surface[t] = {
+                distance: 0,
+                percent: 0,
+            };
+            const segment = temp.filter(s => {
+                return s.type === t;
+            });
+            segment.forEach(s => {
+                surface[t].distance += s.total;
+                surface[t].percent += s.percent;
+            });
+        });
+        // 4
+        if (surface.N.percent > 10 ||
+            surface.S.percent > 40 ||
+            surface.M.percent > 80 ||
+            surface.N.distance > 5 ||
+            surface.S.distance > 15) {
+            return 4;
+        }
+        // 3
+        if (surface.N.percent > 5 ||
+            surface.S.percent > 20 ||
+            surface.M.percent > 50 ||
+            surface.S.distance > 10 ||
+            surface.M.distance > 40) {
+            return 3;
+        }
+        // 2
+        if (surface.S.percent > 5 ||
+            surface.M.percent > 20 ||
+            surface.S.distance > 1) {
+            return 2;
+        }
+        return 1;
+    }
 
     deg2rad(deg) {
         return deg * (Math.PI / 180);

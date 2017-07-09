@@ -32,7 +32,7 @@ class WPPopup extends BasePage {
 
     componentDidUpdate(prevProps, prevState) {
         // console.log('WPPopup componentDidUpdate()');
-        if (prevState.position) {
+        if (prevState.position && this.state.position) {
             const annotationBubbleHeight = document.getElementById('wp-popup').clientHeight;
             const annotationBubbleWidth = document.getElementById('wp-popup').clientWidth;
             if (((prevState.position.y + 10 + annotationBubbleHeight) > window.innerHeight) && ((prevState.position.x + 10 + annotationBubbleWidth) > window.innerWidth)) {
