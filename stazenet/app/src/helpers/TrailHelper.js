@@ -351,23 +351,23 @@ class TrailHelper extends GLU.Controller {
             });
         });
         // 4
-        if (surface.N.percent > 10 ||
-            surface.S.percent > 40 ||
+        if (surface.N.percent > 5 ||
+            surface.S.percent > 20 ||
             surface.M.percent > 80 ||
-            surface.N.distance > 5 ||
-            surface.S.distance > 15) {
+            surface.N.distance > 2 ||
+            surface.S.distance > 10) {
             return 4;
         }
         // 3
-        if (surface.N.percent > 5 ||
-            surface.S.percent > 20 ||
+        if (surface.N.percent > 1 ||
+            surface.S.percent > 5 ||
             surface.M.percent > 50 ||
-            surface.S.distance > 10 ||
-            surface.M.distance > 40) {
+            surface.S.distance > 2 ||
+            surface.M.distance > 20) {
             return 3;
         }
         // 2
-        if (surface.S.percent > 5 ||
+        if (surface.S.percent > 1 ||
             surface.M.percent > 20 ||
             surface.S.distance > 1) {
             return 2;
