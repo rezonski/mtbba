@@ -219,7 +219,7 @@ class WaypointHelper extends GLU.Controller {
                 }
 
                 if (wpoint.properties.type && wpoint.properties.type === 'terrainSwitch') {
-                    console.log(wpoint.properties.surfaceType + ' - ' + JSON.stringify(wpoint.geometry.coordinates) + ' - ' + (Math.round(inputPathLine[tempIndex].odometer * 100) / 100));
+                    console.log('Surface: ' + wpoint.properties.surfaceType + ' - ' + JSON.stringify(wpoint.geometry.coordinates) + ' - ' + (Math.round(inputPathLine[tempIndex].odometer * 100) / 100));
                     const payload = {
                         odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
                         surfaceType: wpoint.properties.surfaceType,

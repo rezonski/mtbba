@@ -298,6 +298,7 @@ class DataController extends GLU.Controller {
 
     checkAddElevation(elevatedPathLine, badPoints, startIndex) {
         // console.log('checkAddElevation(' + badPoints.length + ', ' + startIndex + ')');
+        // debugger;
         let currentProgressPayload = {
                                         status: 'progress',
                                         id: 'progressElevationPath',
@@ -320,7 +321,7 @@ class DataController extends GLU.Controller {
                 passLoopCounter = parseInt(loopCounter + 1, 10);
             }
         }
-
+        // debugger;
         if (tempBadPoints.length > 0) {
             const xmlhttpElevation = new XMLHttpRequest();
             xmlhttpElevation.onreadystatechange = () => {

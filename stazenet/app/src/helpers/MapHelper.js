@@ -235,7 +235,7 @@ class MapHelper {
         const surfaceCollection = generalFact.surfaceCollection;
         const pathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
         const wpoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(featuresCollection)));
-
+        // debugger;
         let sastavPathsCollection = {
             type: 'FeatureCollection',
             features: [],
@@ -244,7 +244,7 @@ class MapHelper {
         let basePath = {
             type: 'Feature',
                 properties: {
-                name: 'basePath',
+                basePathName: 'basePath',
             },
             geometry: {
                 type: 'LineString',
@@ -298,7 +298,7 @@ class MapHelper {
             let currentSection = {
               type: 'Feature',
               properties: {
-                name: surfaceElement[1] + '-' + surfaceIndex,
+                surfaceSection: surfaceElement[1] + '-' + surfaceIndex,
               },
               geometry: {
                 type: 'LineString',
@@ -330,7 +330,7 @@ class MapHelper {
             layersArray.push(layerStyle);
             sastavPathsArray.push(JSON.parse(JSON.stringify(currentSection)));
         });
-
+        // debugger;
         // Add waypoints layer
         const pointLayer = {};
         pointLayer.id = 'waypoints';
@@ -345,6 +345,7 @@ class MapHelper {
         pointLayer.paint['text-halo-color'] = '#FFFFFF';
         pointLayer.paint['text-halo-width'] = 1;
         pointLayer.paint['text-halo-blur'] = 1;
+        pointLayer.filter = ['!has', 'surfaceSection'];
         layersArray.push(pointLayer);
 
         // Add waypoints to feature collection
