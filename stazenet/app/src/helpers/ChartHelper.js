@@ -102,8 +102,8 @@ class ChartHelper extends GLU.Controller {
         const surfaceCollection = generalFacts.surfaceCollection;
         const trailWayPoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(featuresCollection))).map((point) => {
             return {
-                odometer: point.odometer,
-                name: point.name,
+                odometer: point.properties.odometer,
+                name: point.properties.name,
             };
         });
 

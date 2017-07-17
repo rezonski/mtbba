@@ -152,6 +152,7 @@ class MapHelper {
                 const toPoint = turf.point([p.position.lng, p.position.lat]);
                 // console.log('lineStrings length : ' + linesOnly[0].geometry.coordinates.length);
                 const sliced = turf.lineSlice(fromPoint, toPoint, linesOnly[0]);
+                sliced.properties = JSON.parse(JSON.stringify(linesOnly[0].properties));
                 // console.log('sliced length : ' + sliced.geometry.coordinates.length);
                 // console.log(sliced);
                 // console.log('setting new preview data 4 path line');
