@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.css' rel='stylesheet' />
+    <link href='css/style.css' rel='stylesheet' />
+    <script src='js/jquery.min.js'></script>
+    <script src='js/togeojson.js'></script>
+    <script src='js/turf.min.js'></script>
+    <script src='js/helper.js'></script>
+</head>
+<body>
+<div id='map'></div>
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
+    $.ajax('upload/Bradina-Neretvica_profil.gpx').done(function(gpx) {
+        var dataJSON = toGeoJSON.gpx(gpx);
+        window.dataJSON = dataJSON;
+        console.log(dataJSON);
+        // get center and bounds from json
+        var box = turf.bbox(dataJSON);
+        var bbox = [[box[0], box[1]], [box[2], box[3]]];
+        var mapCenter = turf.center(dataJSON);
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v9',
+            zoom: 5,
+            center: mapCenter.geometry.coordinates
+        });
+        window.map = map;
+        var popup = new mapboxgl.Popup({
+            // closeButton: false,
+            closeOnClick: false
+        });
+        map.on('load', function() {
+            map.fitBounds(bbox);
+            addTrailLayers(map);
+            addPopups(map, popup);
+        });
+    });
+</script>
+</body>
+</html>
