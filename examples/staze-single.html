@@ -6,8 +6,8 @@
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src='https://code.highcharts.com/highcharts.js'></script>
+    <script src='https://code.highcharts.com/modules/exporting.js'></script>
     <link href='css/style.css' rel='stylesheet' />
     <script src='js/jquery.min.js'></script>
     <script src='js/togeojson.js'></script>
@@ -15,34 +15,82 @@
     <script src='js/helper.js'></script>
 </head>
 <body>
-<div class="visualisation">
+<div class='visualisation'>
     <div id='map' class='map'></div>
     <div class='details'>
-        <div class='info'>
-            <div class='info-distance'>
-                <div class='label'>Duzina</div>
-                <div class='value'>36 km</div>
-            </div>
-            <div class='info-elevation'>
-                <div class='inline uphill'>
-                    <div class='label'>Uspon</div>
-                    <div class='value'>1350 m</div>
-                </div>
-                <div class='inline downhill'>
-                    <div class='label'>Spust</div>
-                    <div class='value'>1500 m</div>
-                </div>
-            </div>
-            <div id='surface-pie' class='chart-pie'></div>
+        <div class='menu'>
+            <div class='menu-item style-params' onclick='menuClicked(0)'></div>
+            <div class='menu-item style-elevchart' onclick='menuClicked(1)'></div>
+            <div class='menu-item style-waypoints' onclick='menuClicked(2)'></div>
+            <div class='menu-item style-description' onclick='menuClicked(3)'></div>
         </div>
-        <div id='elevation-profile' class='chart-elevation'></div>
+        <div class='content'>
+            <div class='content-item style-params active'>
+                <div class='parameters-container'>
+                    <div class='parameters-row'>
+                        <div class='parameters-column trailname'>
+                            <div class='parameters-value leftalign'>Bradina - Martinov grob (Bitovnja)</div>
+                        </div>
+                    </div>
+                    <div class='parameters-row'>
+                        <div class='parameters-column odometer'>
+                            <div class='parameters-value'>36 km</div>
+                            <div class='parameters-label'>duzina staze</div>
+                        </div>
+                        <div class='parameters-column elevgain'>
+                            <div class='parameters-value'>1550 m</div>
+                            <div class='parameters-label'>visinskog uspona</div>
+                        </div>
+                        <div class='parameters-column elevloss'>
+                            <div class='parameters-value'>1550 m</div>
+                            <div class='parameters-label'>visinskog spusta</div>
+                        </div>
+                    </div>
+                    <div class='parameters-row'>
+                        <div class='parameters-column category'>
+                            <div class='parameters-value'>XC</div>
+                            <div class='parameters-label'>namjena</div>
+                        </div>
+                        <div class='parameters-column difficulty'>
+                            <div class='parameters-value'>3/10</div>
+                            <div class='parameters-label'>tehnicka zahtjevnost</div>
+                        </div>
+                        <div class='parameters-column maxelev'>
+                            <div class='parameters-value'>1550 mnv</div>
+                            <div class='parameters-label'>najvisa tacka</div>
+                        </div>
+                        <div class='parameters-column minelev'>
+                            <div class='parameters-value'>50 m</div>
+                            <div class='parameters-label'>najniza tacka</div>
+                        </div>
+                    </div>
+                </div>
+                <div id='surface-pie' class='chart-pie'></div>
+            </div>
+            <div class='content-item style-elevchart'>
+                <div id='elevation-profile' class='chart-elevation'></div>
+            </div>
+            <div class='content-item style-waypoints'>waypoints</div>
+            <div class='content-item style-description'>description</div>
+        </div>
     </div>
 </div>
 <script>
     // GLOBALS
-    window.importovano = {
-        'trailName': 'Bradina - Martinov grob',
-        'sastav': '28-35-11-1-0'
+    window.globalno = {
+        trailName: 'Bradina - Martinov grob',
+        trailCategory: 'XC',
+        trailMountains: 'XC',
+        surface: '28-35-11-1-0',
+        techDiff: 3,
+        odometer: 0,
+        elevGain: 0,
+        elevLoss: 0,
+        gxp: 'http://www.mtb.ba/wp-content/uploads/2013/07/Bradina-Neretvica_profil.gpx',
+        gxpExport: 'http://www.mtb.ba/wp-content/uploads/2013/07/Bradina-Neretvica.gpx',
+        trailDesc: 'Opis staze...',
+        trailDescEn: 'Trail description...',
+        trailPhoto: 'http://www.mtb.ba/wp-content/uploads/2013/07/29721.jpg',
     };
     // MAP
     mapboxgl.accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
@@ -56,7 +104,7 @@
         var mapCenter = turf.center(dataJSON);
         var map = new mapboxgl.Map({
             container: 'map',
-            style: 'mapbox://styles/mapbox/light-v9',
+            style: 'mapbox://styles/mapbox/outdoors-v10',
             zoom: 5,
             center: mapCenter.geometry.coordinates
         });

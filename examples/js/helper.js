@@ -187,6 +187,16 @@ function showCurrentPositionOnMap(map, featuresCollection, index) {
   map.getSource('temp').setData(newCollection);
 }
 
+function zoomCurrentPositionOnMap(map, featuresCollection, index) {
+  var trail = getTrailLine(featuresCollection);
+  var newCoordinates = [trail.geometry.coordinates[index][0], trail.geometry.coordinates[index][1]];
+  map.flyTo({
+    center: newCoordinates,
+    zoom: 15,
+    speed: 0.5
+  });
+}
+
 // POPUP
 
 function addPopups(map, popup) {
@@ -238,14 +248,18 @@ function addChart(map, featuresCollection) {
     plotlines.push({
         value: waypoints[i].properties.odometer,
         width: 1,
-        color: '#333',
+        color: '#C00',
         dashStyle: 'dot',
         label: { 
             text: waypoints[i].properties.name,
+            style: {
+              color: '#C00',
+              fontSize: '10px',
+            },
             rotation: -45,
             align: 'right',
-            y: -15,
-            x: 2
+            y: 7,
+            x: -3
         }
     });
   }
@@ -253,38 +267,67 @@ function addChart(map, featuresCollection) {
   Highcharts.chart('elevation-profile', {
     chart: {
         type: 'areaspline',
+        backgroundColor: null,
         pinchType: 'x',
-        zoomType: 'x'
+        zoomType: 'x',
+        spacing: [15, 10, 5, 10],
+        style: {
+            fontFamily: 'Roboto,sans-serif'
+        }
     },
     title: {
-        text: window.importovano.trailName
+        // text: window.globalno.trailName,
+        text: '',
+        style: {
+          color: '#60899a',
+          fontSize: '14px',
+          fontWeight: 'bold'
+        }
+    },
+    exporting: {
+      enabled: false,
     },
     legend: {
-        enabled: false
+      enabled: false
     },
     xAxis: {
         type: 'integer',
         title: {
-            text: 'Predjeni put [km]'
+            // text: 'Predjeni put [km]',
+            text: '',
+            style: {
+              color: '#60899a',
+            }
+        },
+        labels: {
+            style: {
+              color: '#60899a',
+            }
         },
         plotLines: plotlines,
-        // plotBands: [{ // visualize the weekend
-        //     from: 4.5,
-        //     to: 6.5,
-        //     color: 'rgba(68, 170, 213, .2)'
-        // }]
     },
     yAxis: {
         title: {
-            text: 'Nadmorska visina [m]'
+            text: 'Nadmorska visina [m]',
+            style: {
+              color: '#60899a',
+            }
         },
-        plotLines: [{
-            value: 0,
-            width: 1,
-            color: '#808080'
-        }],
-        min: 0,
-        max: 2000
+        labels: {
+            style: {
+              color: '#60899a',
+            }
+        },
+        gridLineColor: '#60899a',
+        // gridLineColor: '#60899a',
+        // minorGridLineColor: '#60899a',
+        // minorTickColor: '#60899a',
+        // minColor: '#60899a',
+        // maxColor: '#60899a',
+        // lineColor: '#60899a',
+        // tickColor: '#60899a',
+        sofMin: 0,
+        softMax: 2000
     },
     tooltip: {
         formatter: function () {
@@ -293,11 +336,11 @@ function addChart(map, featuresCollection) {
         shared: true
     },
     credits: {
-        enabled: false
+      enabled: false
     },
     plotOptions: {
         areaspline: {
-            fillOpacity: 0.1,
+            fillOpacity: 0.2,
             connectNulls : true,
             marker: {
                 enabled: false,
@@ -316,6 +359,9 @@ function addChart(map, featuresCollection) {
                 events: {
                     mouseOver: function () {
                         showCurrentPositionOnMap(map, featuresCollection, this.index);
+                    },
+                    click: function () {
+                        zoomCurrentPositionOnMap(map, featuresCollection, this.index);
                     }
                 }
             }
@@ -324,11 +370,12 @@ function addChart(map, featuresCollection) {
     series: [{
         name: 'Nadmorska visina',
         turboThreshold: 4000,
+        color: '#CC0000',
         data: dataset
     }]
   });
 
-  var surface = window.importovano.sastav.split('-');
+  var surface = window.globalno.surface.split('-');
   var surfaceTypes = ['Asfalt', 'Utaban put', 'Makadam', 'Staza', 'Pl.sekcija'];
   var surfaceData = [];
   for (var i = 0; i < 5; i++) {
@@ -347,12 +394,11 @@ function addChart(map, featuresCollection) {
 
   Highcharts.chart('surface-pie', {
         chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
+            backgroundColor: null,
             plotShadow: false,
             type: 'pie',
             width: 300,
-            height: 200
+            height: 200,
         },
         title: {
             text: ''
@@ -365,11 +411,15 @@ function addChart(map, featuresCollection) {
           verticalAlign: 'middle',
           layout: 'vertical',
           itemStyle: {
-              fontSize: '10px'
+              fontSize: '10px',
+              color: '#FFF'
           }
         },
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f} %</b>'
+            pointFormat: '<b>{point.percentage:.1f} %</b>'
+        },
+        credits: {
+          enabled: false
         },
         plotOptions: {
             pie: {
@@ -378,7 +428,8 @@ function addChart(map, featuresCollection) {
                 dataLabels: {
                     enabled: false
                 },
-                showInLegend: true
+                showInLegend: true,
+                colors: ['#A7A7A7','#CDCB2E','#CDAD2E','#CD492E','#881717']
             }
         },
         series: [{
@@ -387,4 +438,14 @@ function addChart(map, featuresCollection) {
             data: surfaceData
         }]
     });
+}
+
+// LAYOUT
+
+function menuClicked(index) {
+  console.log('menuClicked(' + index + ')');
+  for (var i = 0; i < document.querySelectorAll('.content-item').length; i++) {
+    document.querySelectorAll('.content-item')[i].classList.remove('active');
+  }
+  document.querySelectorAll('.content-item')[index].classList.add('active');  
 }

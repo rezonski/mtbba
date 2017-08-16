@@ -1,8 +1,8 @@
 body {
     margin:0;
     padding:0;
-    font-size: 12px;
-    font-family: Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    font-family: "Roboto",serif,Helvetica,Arial,sans-serif;
 }
 
 .visualisation {
@@ -12,47 +12,150 @@ body {
     position: absolute;
     z-index: 1;
     flex-direction: column;
+    overflow: hidden;
 }
+
+/* STYLE */
+
+.style-params {
+   background-color: #89bdd3;
+   color: #fff;
+   flex-direction: row;
+}
+
+.style-elevchart {
+   background-color: #9ad3de;
+   color: #fff;
+}
+
+.style-waypoints {
+   background-color: #e3e3e3;
+   color: #c9c9c9;
+}
+
+.style-description {
+   background-color: #c9c9c9;
+   color: #fff;
+}
+
+/* LAYOUT */
 
 .map {
     display: block;
     width:100%;
     flex: 1 1 auto;
-    // position:absolute;
-    // top:0;
-    // bottom:0;
 }
 
 .details {
     display: flex;
-    flex: 0 0 300px;
+    flex: 0 0 200px;
     flex-direction: row;
     background-color: #ddd;
 }
 
-.info { 
+/* DETAIL - MENU */
+
+.menu {
     display: flex;
-    flex: 0 0 300px;
-    background-color: #aaa;
+    flex: 0 0 70px;
     flex-direction: column;
 }
 
-.info-distance, .info-elevation {
+.menu-item {
     display: flex;
-    flex-direction: row;
+    flex: 1 1 auto;
     background-repeat: no-repeat;
-    background-position: left;
-    margin: 10px;
-    padding-left: 35px;
+    background-position: center;
+    cursor: pointer;
 }
 
-.info-distance {
+/* DETAIL - MENU */
+
+.content {
+    display: block;
+    flex: 1 1 100%;
+    height: 200px;
+    flex-direction: column;
+    // overflow: hidden;
+}
+
+.content-item {
+    display: flex;
+    height: 200px;
+    width: calc(100% - 70px);
+    bottom: 0px;
+    position: absolute;
+    transition: 300ms;
+    opacity: 0;
+    z-index: 1;
+}
+
+.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+/* INFO */
+
+.parameters-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+.parameters-row {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 auto;
+    justify-content: center;
+}
+
+.parameters-column {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    justify-content: center;
+}
+
+.parameters-value, .parameters-label {
+    text-align: center;
+    align-content: center;
+}
+
+.trailname {
     font-size: 200%;
-    background-image: url('../svg/ic_directions_bike_black_24px.svg');
+    padding-left: 50px;
+}
+
+.leftalign {
+    text-align: left;
+}
+
+.odometer {
+    font-size: 220%;
+}
+
+.parameters-value {
+    font-size: 180%;
+}
+
+.maxelev, .minelev {
+    font-size: 150%;
+}
+
+.parameters-label {
+    font-size: 70%;
+    opacity: 0.5;
+}
+
+.chart-pie {
+    flex: 0 0 300px;
 }
 
 .info-elevation {
     font-size: 120%;
+    background-repeat: no-repeat;
+    background-position: left;
     background-image: url('../svg/ic_landscape_black_24px.svg');
 }
 
@@ -79,6 +182,8 @@ body {
 .chart-elevation { 
     flex: 1 1 auto;
 }
+
+/* POPUP */
 
 .popup {
     display: flex;
