@@ -4,10 +4,11 @@
     <meta charset='utf-8' />
     <title>Demo</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
-    <script src='https://code.highcharts.com/highcharts.js'></script>
-    <script src='https://code.highcharts.com/modules/exporting.js'></script>
+    <script src='//api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
+    <link href='//fonts.googleapis.com/css?family=Roboto:200,300,400,500,700' rel='stylesheet' type='text/css'>
+    <link href='//api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
+    <script src='//code.highcharts.com/highcharts.js'></script>
+    <script src='//code.highcharts.com/modules/exporting.js'></script>
     <link href='css/style.css' rel='stylesheet' />
     <script src='js/jquery.min.js'></script>
     <script src='js/togeojson.js'></script>
@@ -17,25 +18,28 @@
 <body>
 <div class='visualisation'>
     <div id='map' class='map'></div>
+    <div class='trail-name'>
+        <div class='trail-name-icon'></div>
+        <div class='trail-name-text'>Lorem ipsum (Lorem ipsum)</div>
+    </div>
     <div class='details'>
         <div class='menu'>
-            <div class='menu-item style-params' onclick='menuClicked(0)'></div>
-            <div class='menu-item style-elevchart' onclick='menuClicked(1)'></div>
-            <div class='menu-item style-waypoints' onclick='menuClicked(2)'></div>
-            <div class='menu-item style-description' onclick='menuClicked(3)'></div>
+            <div class='menu-item style-params menu-item-active' onclick='menuClicked(0)' style="background-image: url('svg/params1_active.svg')"></div>
+            <div class='menu-item style-elevchart' onclick='menuClicked(1)' style="background-image: url('svg/profile_active.svg')"></div>
+            <div class='menu-item style-waypoints' onclick='menuClicked(2)' style="background-image: url('svg/waypoints_active.svg')"></div>
+            <div class='menu-item style-description' onclick='menuClicked(3)' style="background-image: url('svg/description_active.svg')"></div>
         </div>
         <div class='content'>
-            <div class='content-item style-params active'>
+            <div class='content-item style-params content-active'>
                 <div class='parameters-container'>
-                    <div class='parameters-row'>
-                        <div class='parameters-column trailname'>
-                            <div class='parameters-value leftalign'>Bradina - Martinov grob (Bitovnja)</div>
-                        </div>
-                    </div>
                     <div class='parameters-row'>
                         <div class='parameters-column odometer'>
                             <div class='parameters-value'>36 km</div>
                             <div class='parameters-label'>duzina staze</div>
+                        </div>
+                        <div class='parameters-column category'>
+                            <div class='parameters-value'>XC</div>
+                            <div class='parameters-label'>namjena</div>
                         </div>
                         <div class='parameters-column elevgain'>
                             <div class='parameters-value'>1550 m</div>
@@ -47,20 +51,20 @@
                         </div>
                     </div>
                     <div class='parameters-row'>
-                        <div class='parameters-column category'>
-                            <div class='parameters-value'>XC</div>
-                            <div class='parameters-label'>namjena</div>
-                        </div>
                         <div class='parameters-column difficulty'>
                             <div class='parameters-value'>3/10</div>
                             <div class='parameters-label'>tehnicka zahtjevnost</div>
+                        </div>
+                        <div class='parameters-column slope'>
+                            <div class='parameters-value'>23 %</div>
+                            <div class='parameters-label'>maksimalni nagib</div>
                         </div>
                         <div class='parameters-column maxelev'>
                             <div class='parameters-value'>1550 mnv</div>
                             <div class='parameters-label'>najvisa tacka</div>
                         </div>
                         <div class='parameters-column minelev'>
-                            <div class='parameters-value'>50 m</div>
+                            <div class='parameters-value'>50 mnv</div>
                             <div class='parameters-label'>najniza tacka</div>
                         </div>
                     </div>
@@ -70,8 +74,19 @@
             <div class='content-item style-elevchart'>
                 <div id='elevation-profile' class='chart-elevation'></div>
             </div>
-            <div class='content-item style-waypoints'>waypoints</div>
-            <div class='content-item style-description'>description</div>
+            <div class='content-item style-waypoints'>
+                <div class='waypoints-container'></div>
+            </div>
+            <div class='content-item style-description'>
+                <div class='description-container'>
+                    <div class='description-text-container'>
+                        <div class='description-text-content content-active' id='description-bos'>Opis staze...</div>
+                        <div class='description-text-content' id='description-eng'>Trail description...</div>
+                    </div>
+                    <div class='description-image' style="background-image: url('http://www.mtb.ba/wp-content/uploads/2013/07/29721.jpg')"></div>
+                    <div class='description-switcher' id='language-switcher' onclick='toogleDescriptionLanguage()'>English version</div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -86,10 +101,14 @@
         odometer: 0,
         elevGain: 0,
         elevLoss: 0,
+        minElev: 0,
+        maxElev: 0,
+        maxSlope: 0,
         gxp: 'http://www.mtb.ba/wp-content/uploads/2013/07/Bradina-Neretvica_profil.gpx',
         gxpExport: 'http://www.mtb.ba/wp-content/uploads/2013/07/Bradina-Neretvica.gpx',
         trailDesc: 'Opis staze...',
         trailDescEn: 'Trail description...',
+        activeLanguage: 'bos',
         trailPhoto: 'http://www.mtb.ba/wp-content/uploads/2013/07/29721.jpg',
     };
     // MAP
@@ -97,7 +116,7 @@
     $.ajax('upload/Bradina-Neretvica_profil.gpx').done(function(gpx) {
         var dataJSON = parseRaw(toGeoJSON.gpx(gpx));
         window.dataJSON = dataJSON;
-        // console.log(dataJSON);
+        console.log(dataJSON);
         // get center and bounds from json
         var box = turf.bbox(dataJSON);
         var bbox = [[box[0], box[1]], [box[2], box[3]]];
@@ -117,6 +136,7 @@
             map.fitBounds(bbox);
             addTrailLayers(map);
             addPopups(map, popup);
+            renderlayout(dataJSON);
             addChart(map, dataJSON);
         });
     });

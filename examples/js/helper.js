@@ -65,10 +65,23 @@ function parseRaw(featuresCollection) {
       }
       cur[6] = (elevDelta / (distDelta * 1000)) * 100;
     }
+    // Min elevation
+    if (cur[2] < window.globalno.minElev) {
+      window.globalno.minElev = cur[2];
+    }
+    // Max elevation
+    if (cur[2] > window.globalno.maxElev) {
+      window.globalno.maxElev = cur[2];
+    }
+    // Max slope
+    if (cur[6] > window.globalno.maxSlope) {
+      window.globalno.maxSlope = cur[6];
+    }
     prevPoint = JSON.parse(JSON.stringify(curPoint));    
   }
 
   var waypoints = getLinePoints(featuresCollection);
+
   for (var i = 0; i < waypoints.length; i++) {
     var parsed = waypoints[i].properties.desc.replace(/(\r\n|\n|\r)/gm,'').split('#');
     waypoints[i].properties.odometer = parseFloat(parsed[0].replace(',','.'));
@@ -76,7 +89,25 @@ function parseRaw(featuresCollection) {
     waypoints[i].properties.desc = parsed[2];
   }
 
-  return featuresCollection;
+  var newWaypoints = JSON.parse(JSON.stringify(waypoints)).sort(function (a, b) {
+      var x = a.properties.odometer;
+      var y = b.properties.odometer;
+      if (x > y) {
+        return 1;
+      } else if (x < y) {
+        return -1;
+      }
+      return 0;
+  });
+
+  var newCollection = turf.featureCollection([trail].concat(newWaypoints));
+
+  // console.log('unsorted');
+  // console.log(waypoints);
+  // console.log('sorted');
+  // console.log(newWaypoints);
+
+  return newCollection;
 }
 
 // MAP
@@ -190,8 +221,12 @@ function showCurrentPositionOnMap(map, featuresCollection, index) {
 function zoomCurrentPositionOnMap(map, featuresCollection, index) {
   var trail = getTrailLine(featuresCollection);
   var newCoordinates = [trail.geometry.coordinates[index][0], trail.geometry.coordinates[index][1]];
+  zoomToCoordinate(newCoordinates);
+}
+
+function zoomToCoordinate(coordinate) {
   map.flyTo({
-    center: newCoordinates,
+    center: coordinate,
     zoom: 15,
     speed: 0.5
   });
@@ -309,6 +344,7 @@ function addChart(map, featuresCollection) {
     yAxis: {
         title: {
             text: 'Nadmorska visina [m]',
+            offset: 50,
             style: {
               color: '#60899a',
             }
@@ -443,9 +479,53 @@ function addChart(map, featuresCollection) {
 // LAYOUT
 
 function menuClicked(index) {
-  console.log('menuClicked(' + index + ')');
   for (var i = 0; i < document.querySelectorAll('.content-item').length; i++) {
-    document.querySelectorAll('.content-item')[i].classList.remove('active');
+    document.querySelectorAll('.content-item')[i].classList.remove('content-active');
+    document.querySelectorAll('.menu-item')[i].classList.remove('menu-item-active');
   }
-  document.querySelectorAll('.content-item')[index].classList.add('active');  
+  document.querySelectorAll('.content-item')[index].classList.add('content-active');  
+  document.querySelectorAll('.menu-item')[index].classList.add('menu-item-active');  
+}
+
+function toogleDescriptionLanguage() {
+  if (window.globalno.activeLanguage == 'bos') {
+    document.getElementById('description-bos').classList.remove('content-active'); 
+    document.getElementById('description-eng').classList.add('content-active'); 
+    document.getElementById('language-switcher').text = 'B/H/S verzija'; 
+    window.globalno.activeLanguage = 'eng';
+  } else {
+    document.getElementById('description-eng').classList.remove('content-active'); 
+    document.getElementById('description-bos').classList.add('content-active'); 
+    document.getElementById('language-switcher').text = 'English version'; 
+    window.globalno.activeLanguage = 'bos';
+  } 
+}
+
+function renderlayout(featureCollection) {
+  renderWaypoints(featureCollection);
+}
+
+function renderWaypoints(featuresCollection) {
+  var waypoints = getLinePoints(featuresCollection);
+  var container = document.querySelectorAll('.waypoints-container')[0];
+  var content = '';
+  var waypoints = getLinePoints(featuresCollection);
+  for (var i = 0; i < waypoints.length; i++) {
+    var w = waypoints[i];
+    var newCoordinates = JSON.stringify([w.geometry.coordinates[0], w.geometry.coordinates[1]]);
+    var addition = '<div class="waypoint-container" onclick="zoomToCoordinate(' + newCoordinates + ')">' +
+    '<div class="waypoint-header">' +
+    '<div class="waypoint-header-info">' +
+    '<div class="waypoint-header-iterator">' + (i + 1) + '</div>' +
+    '<div class="waypoint-header-odometer">' + w.properties.odometer + ' km</div>' +
+    '<div class="waypoint-header-elevation">' + w.geometry.coordinates[2] + ' mnv</div>' +
+    '</div>' +
+    '<div class="waypoint-header-pictogram" style="background-image: url(\'http://www.mtb.ba/wp-content/themes/mtbba-v2/functions/user/raskrsnice/a-ras.php?opis=' + w.properties.pictogram + '\')"></div>' +
+    '</div>' +
+    '<div class="waypoint-trailname">' + w.properties.name + '</div>' +
+    '<div class="waypoint-description">' + w.properties.desc + '</div>' +
+    '</div>';
+    content = content + addition;
+  }
+  container.innerHTML = content;
 }

@@ -19,13 +19,13 @@ body {
 
 .style-params {
    background-color: #89bdd3;
-   color: #fff;
+   color: #eee;
    flex-direction: row;
 }
 
 .style-elevchart {
    background-color: #9ad3de;
-   color: #fff;
+   color: #eee;
 }
 
 .style-waypoints {
@@ -35,7 +35,7 @@ body {
 
 .style-description {
    background-color: #c9c9c9;
-   color: #fff;
+   color: #eee;
 }
 
 /* LAYOUT */
@@ -44,6 +44,31 @@ body {
     display: block;
     width:100%;
     flex: 1 1 auto;
+    z-index: 20;
+}
+
+.trail-name {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: row;
+    background-color: #60899a;
+    z-index: 10;
+}
+
+.trail-name-icon {
+    display: flex;
+    flex: 0 0 70px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../svg/bike_active.svg');
+}
+
+.trail-name-text {
+    display: block;
+    flex: 1 1 100%;
+    padding: 10px 20px;
+    font-size: 180%;
+    color: #eee;
 }
 
 .details {
@@ -67,6 +92,15 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
+    // border-right: 1px solid #fff;
+    // border-top: none;
+    // border-bottom: none;
+}
+
+.menu-item-active {
+    // border-right: none;
+    // border-top: 1px solid #fff;
+    // border-bottom: 1px solid #fff;
 }
 
 /* DETAIL - MENU */
@@ -74,9 +108,7 @@ body {
 .content {
     display: block;
     flex: 1 1 100%;
-    height: 200px;
     flex-direction: column;
-    // overflow: hidden;
 }
 
 .content-item {
@@ -88,11 +120,6 @@ body {
     transition: 300ms;
     opacity: 0;
     z-index: 1;
-}
-
-.active {
-    opacity: 1;
-    z-index: 2;
 }
 
 /* INFO */
@@ -113,7 +140,7 @@ body {
 .parameters-column {
     display: flex;
     flex-direction: column;
-    flex: 1 1 auto;
+    flex: 1 1 25%;
     justify-content: center;
 }
 
@@ -123,7 +150,7 @@ body {
 }
 
 .trailname {
-    font-size: 200%;
+    font-size: 180%;
     padding-left: 50px;
 }
 
@@ -132,7 +159,7 @@ body {
 }
 
 .odometer {
-    font-size: 220%;
+    // font-size: 220%;
 }
 
 .parameters-value {
@@ -140,7 +167,7 @@ body {
 }
 
 .maxelev, .minelev {
-    font-size: 150%;
+    // font-size: 150%;
 }
 
 .parameters-label {
@@ -183,6 +210,137 @@ body {
     flex: 1 1 auto;
 }
 
+/* WAYPOINTS */
+.waypoints-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 200px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    color: #999;
+}
+
+.waypoint-container {
+    display: flex;
+    padding: 10px;
+    flex: 0 0 180px;
+    flex-direction: column;
+    cursor: pointer;
+    border-right: 1px dashed #fff;
+}
+
+.waypoint-container:hover {
+    background-color: #eee;
+}
+
+.waypoint-header {
+    display: flex;
+    flex: 1 1 50%;
+    flex-direction: row;
+}
+
+.waypoint-header-info {
+    display: flex;
+    flex: 0 0 50%;
+    flex-direction: column;
+}
+
+.waypoint-header-iterator {
+    flex: 0 0 17px;
+    width: 20px;
+    background-color: #333;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 70%;
+    font-weight: 600;
+    color: #ccc;
+    justify-content: center;
+    padding-top: 3px;
+    margin-bottom: 10px;
+}
+
+.waypoint-header-odometer {
+    flex: 1 1 40%;
+    font-size: 130%;
+}
+
+.waypoint-header-elevation {
+    flex: 1 1 35%;
+    font-size: 100%;
+}
+
+.waypoint-header-pictogram {
+    flex: 0 0 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    // background-size: 100% 100%;
+    background-size: contain;
+}
+
+.waypoint-trailname {
+    flex: 1 1 10%;
+    font-size: 100%;
+    padding: 10px 0;
+}
+
+.waypoint-description {
+    flex: 1 1 40%;
+    font-size: 80%;
+}
+
+/* DESCRIPTION */
+
+.description-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 200px;
+}
+
+.description-image {
+    flex: 1 1 35%;
+    min-width: 100px;
+    max-width: 600px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.description-text-container {
+    display: flex;
+    flex: 1 1 65%;
+    flex-direction: column;
+}
+
+.description-text-content {
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: auto;
+    bottom: 0px;
+    transition: 300ms;
+    opacity: 0;
+    z-index: 1;
+}
+
+.description-switcher {
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    right: calc(35% + 10px);
+    background-color: #e3e3e3;
+    color: #999;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 70%;
+    border-radius: 3px;
+}
+
+.description-switcher:hover {
+    background-color: #999;
+    color: #e3e3e3;
+}
+
 /* POPUP */
 
 .popup {
@@ -211,4 +369,11 @@ body {
 .popup-location-description {
     display: flex;
     padding: 5px 0;
+}
+
+/* COMMON */
+
+.content-active {
+    opacity: 1;
+    z-index: 2;
 }
