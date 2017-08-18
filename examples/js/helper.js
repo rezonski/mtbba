@@ -67,11 +67,11 @@ function parseRaw(featuresCollection) {
       cur[6] = (elevDelta / (distDelta * 1000)) * 100;
     }
     // Min elevation
-    if (cur[2] < window.trail.minElev) {
+    if (cur[2] < window.trail.minElev && cur[2] > 0) {
       window.trail.minElev = cur[2];
     }
     // Max elevation
-    if (cur[2] > window.trail.maxElev) {
+    if (cur[2] > window.trail.maxElev && cur[2] < 4000) {
       window.trail.maxElev = cur[2];
     }
     // Max slope
@@ -311,14 +311,14 @@ UserMapControl.prototype.onAdd = function(map) {
     });
     this._container.appendChild(this._button1);
     
-    this._button2 = document.createElement('button');
-    this._button2.className = 'mapboxgl-ctrl-icon danger';
-    this._button2.title = 'Minska situacija';
-    this._button2.addEventListener('click', function() {
-      toggleLayer('minesLayer');
-      reorderLayers();
-    });
-    this._container.appendChild(this._button2);
+    // this._button2 = document.createElement('button');
+    // this._button2.className = 'mapboxgl-ctrl-icon danger';
+    // this._button2.title = 'Minska situacija';
+    // this._button2.addEventListener('click', function() {
+    //   toggleLayer('minesLayer');
+    //   reorderLayers();
+    // });
+    // this._container.appendChild(this._button2);
 
     this._button3 = document.createElement('button');
     this._button3.className = 'mapboxgl-ctrl-icon home';

@@ -7,7 +7,6 @@ body {
 
 a, a:hover, a:active, a:visited {
     text-decoration: none;
-    color: #fff;
 }
 
 .visualisation {
@@ -71,15 +70,15 @@ a, a:hover, a:active, a:visited {
 }
 
 .satellite {
-    background-image: url('../svg/satellite_active.svg');
+    background-image: url('//www.mtb.ba/stazenew/svg/satellite_active.svg');
 }
 
 .home {
-    background-image: url('../svg/home_active.svg');
+    background-image: url('//www.mtb.ba/stazenew/svg/home_active.svg');
 }
 
 .danger {
-    background-image: url('../svg/danger_active.svg');
+    background-image: url('//www.mtb.ba/stazenew/svg/danger_active.svg');
 }
 
 .trail-name {
@@ -95,7 +94,7 @@ a, a:hover, a:active, a:visited {
     flex: 0 0 70px;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url('../svg/bike_active.svg');
+    background-image: url('//www.mtb.ba/stazenew/svg/bike_active.svg');
 }
 
 .trail-name-text {
@@ -117,7 +116,7 @@ a, a:hover, a:active, a:visited {
     border-radius: 3px;
     background-repeat: no-repeat;
     background-position: left;
-    background-image: url('../svg/download_active.svg'); 
+    background-image: url('//www.mtb.ba/stazenew/svg/download_active.svg'); 
 }
 
 .trail-download:hover {
@@ -236,7 +235,7 @@ a, a:hover, a:active, a:visited {
     font-size: 120%;
     background-repeat: no-repeat;
     background-position: left;
-    background-image: url('../svg/ic_landscape_black_24px.svg');
+    background-image: url('//www.mtb.ba/stazenew/svg/ic_landscape_black_24px.svg');
 }
 
 .label {
@@ -362,7 +361,6 @@ a, a:hover, a:active, a:visited {
     max-width: 600px;
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover;
 }
 
 .description-text-container {
