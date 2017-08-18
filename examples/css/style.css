@@ -5,6 +5,10 @@ body {
     font-family: "Roboto",serif,Helvetica,Arial,sans-serif;
 }
 
+a, a:hover, a:active, a:visited {
+    text-decoration: none;
+}
+
 .visualisation {
     display: flex;
     width: 100%;
@@ -13,6 +17,19 @@ body {
     z-index: 1;
     flex-direction: column;
     overflow: hidden;
+}
+
+.site-logo {
+    display: block;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    z-index: 30;
+    opacity: 0.6;
+}
+
+.site-logo a img {
+    width: 60px;
 }
 
 /* STYLE */
@@ -47,9 +64,26 @@ body {
     z-index: 20;
 }
 
+.mapboxgl-ctrl-icon {
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.satellite {
+    background-image: url('../svg/satellite_active.svg');
+}
+
+.home {
+    background-image: url('../svg/home_active.svg');
+}
+
+.danger {
+    background-image: url('../svg/danger_active.svg');
+}
+
 .trail-name {
     display: flex;
-    flex: 0 0 auto;
+    flex: 0 0 50px;
     flex-direction: row;
     background-color: #60899a;
     z-index: 10;
@@ -69,6 +103,24 @@ body {
     padding: 10px 20px;
     font-size: 180%;
     color: #eee;
+}
+
+.trail-download {
+    display: flex;
+    flex: 0 0 auto;
+    background-color: #89bdd3;
+    color: #fff;
+    cursor: pointer;
+    padding: 8px 8px 8px 25px;
+    margin: 8px;
+    border-radius: 3px;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-image: url('../svg/download_active.svg'); 
+}
+
+.trail-download:hover {
+    background-color: #9ad3de;
 }
 
 .details {
@@ -218,16 +270,19 @@ body {
     height: 200px;
     overflow-x: auto;
     overflow-y: hidden;
-    color: #999;
 }
 
 .waypoint-container {
     display: flex;
     padding: 10px;
     flex: 0 0 180px;
+    max-width: 180px;
     flex-direction: column;
     cursor: pointer;
     border-right: 1px dashed #fff;
+    font-size: 14px;
+    font-family: "Roboto",serif,Helvetica,Arial,sans-serif;
+    color: #999;
 }
 
 .waypoint-container:hover {
@@ -237,6 +292,7 @@ body {
 .waypoint-header {
     display: flex;
     flex: 1 1 50%;
+    min-height: 70px;
     flex-direction: row;
 }
 
@@ -282,6 +338,7 @@ body {
     flex: 1 1 10%;
     font-size: 100%;
     padding: 10px 0;
+    color: #333;
 }
 
 .waypoint-description {
@@ -309,66 +366,30 @@ body {
 .description-text-container {
     display: flex;
     flex: 1 1 65%;
-    flex-direction: column;
-}
-
-.description-text-content {
-    display: block;
-    position: absolute;
-    height: 100%;
-    width: auto;
-    bottom: 0px;
-    transition: 300ms;
-    opacity: 0;
-    z-index: 1;
+    padding: 10px;
+    font-size: 90%;
+    line-height: 150%;
+    color: #666;
+    overflow-y: auto;
 }
 
 .description-switcher {
     display: block;
     position: absolute;
     bottom: 10px;
-    right: calc(35% + 10px);
+    right: calc(35% + 15px);
     background-color: #e3e3e3;
     color: #999;
     cursor: pointer;
     padding: 5px;
     font-size: 70%;
     border-radius: 3px;
+    z-index: 10;
 }
 
 .description-switcher:hover {
     background-color: #999;
     color: #e3e3e3;
-}
-
-/* POPUP */
-
-.popup {
-    display: flex;
-    max-width: 200px;
-    flex-direction: column;
-}
-
-.popup-location-name {
-    display: flex;
-    padding: 5px 0;
-    font-size: 140%;
-}
-
-.popup-location-pictogram {
-    display: flex;
-    padding: 5px 0;
-}
-
-.popup-location-pictogram img {
-    border: 1px solid #ccc;
-    width: 100%;
-    height: 100%;
-}
-
-.popup-location-description {
-    display: flex;
-    padding: 5px 0;
 }
 
 /* COMMON */

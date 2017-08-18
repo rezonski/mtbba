@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset='utf-8' />
-    <title>Demo</title>
+    <title></title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='//api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
     <link href='//fonts.googleapis.com/css?family=Roboto:200,300,400,500,700' rel='stylesheet' type='text/css'>
@@ -20,7 +20,8 @@
     <div id='map' class='map'></div>
     <div class='trail-name'>
         <div class='trail-name-icon'></div>
-        <div class='trail-name-text'>Lorem ipsum (Lorem ipsum)</div>
+        <div class='trail-name-text'></div>
+        <div class='trail-download' onclick='downloadGPX()'>GPX</div>
     </div>
     <div class='details'>
         <div class='menu'>
@@ -34,37 +35,37 @@
                 <div class='parameters-container'>
                     <div class='parameters-row'>
                         <div class='parameters-column odometer'>
-                            <div class='parameters-value'>36 km</div>
+                            <div class='parameters-value' id='value-odometer'></div>
                             <div class='parameters-label'>duzina staze</div>
                         </div>
                         <div class='parameters-column category'>
-                            <div class='parameters-value'>XC</div>
+                            <div class='parameters-value' id='value-category'></div>
                             <div class='parameters-label'>namjena</div>
                         </div>
                         <div class='parameters-column elevgain'>
-                            <div class='parameters-value'>1550 m</div>
+                            <div class='parameters-value' id='value-elevgain'></div>
                             <div class='parameters-label'>visinskog uspona</div>
                         </div>
                         <div class='parameters-column elevloss'>
-                            <div class='parameters-value'>1550 m</div>
+                            <div class='parameters-value' id='value-elevloss'></div>
                             <div class='parameters-label'>visinskog spusta</div>
                         </div>
                     </div>
                     <div class='parameters-row'>
                         <div class='parameters-column difficulty'>
-                            <div class='parameters-value'>3/10</div>
+                            <div class='parameters-value' id='value-difficulty'></div>
                             <div class='parameters-label'>tehnicka zahtjevnost</div>
                         </div>
                         <div class='parameters-column slope'>
-                            <div class='parameters-value'>23 %</div>
+                            <div class='parameters-value' id='value-slope'></div>
                             <div class='parameters-label'>maksimalni nagib</div>
                         </div>
                         <div class='parameters-column maxelev'>
-                            <div class='parameters-value'>1550 mnv</div>
+                            <div class='parameters-value' id='value-maxelev'></div>
                             <div class='parameters-label'>najvisa tacka</div>
                         </div>
                         <div class='parameters-column minelev'>
-                            <div class='parameters-value'>50 mnv</div>
+                            <div class='parameters-value' id='value-minelev'></div>
                             <div class='parameters-label'>najniza tacka</div>
                         </div>
                     </div>
@@ -79,53 +80,53 @@
             </div>
             <div class='content-item style-description'>
                 <div class='description-container'>
-                    <div class='description-text-container'>
-                        <div class='description-text-content content-active' id='description-bos'>Opis staze...</div>
-                        <div class='description-text-content' id='description-eng'>Trail description...</div>
-                    </div>
+                    <div class='description-text-container'></div>
                     <div class='description-image' style="background-image: url('http://www.mtb.ba/wp-content/uploads/2013/07/29721.jpg')"></div>
                     <div class='description-switcher' id='language-switcher' onclick='toogleDescriptionLanguage()'>English version</div>
                 </div>
             </div>
         </div>
     </div>
+    <div class='site-logo'><a href="http://www.mtb.ba/"><img src="http://www.mtb.ba/slike/index/logo.gif"></a></div>
 </div>
 <script>
     // GLOBALS
-    window.globalno = {
+    window.trail = {
         trailName: 'Bradina - Martinov grob',
         trailCategory: 'XC',
-        trailMountains: 'XC',
+        trailMountains: 'Bitovnja, Vitreusa',
         surface: '28-35-11-1-0',
         techDiff: 3,
-        odometer: 0,
-        elevGain: 0,
-        elevLoss: 0,
-        minElev: 0,
-        maxElev: 0,
-        maxSlope: 0,
-        gxp: 'http://www.mtb.ba/wp-content/uploads/2013/07/Bradina-Neretvica_profil.gpx',
-        gxpExport: 'http://www.mtb.ba/wp-content/uploads/2013/07/Bradina-Neretvica.gpx',
-        trailDesc: 'Opis staze...',
-        trailDescEn: 'Trail description...',
+        odometer: 99,
+        elevGain: 1000,
+        elevLoss: 1000,
+        minElev: 1000,
+        maxElev: 1000,
+        maxSlope: 10,
+        gpx: 'upload/Bradina-Neretvica_profil.gpx',
+        gpxExport: 'http://www.mtb.ba/wp-content/uploads/2013/07/Bradina-Neretvica.gpx',
+        descBos: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris auctor congue est. Integer sit amet magna id sem dapibus ullamcorper ut eu sapien. Sed nec orci et metus gravida fermentum at quis dolor. Duis nisl diam, mollis id lorem at, semper lacinia lectus. Quisque in maximus nisl. Suspendisse non tempus ligula, et laoreet enim. Morbi eget orci ut sem sagittis placerat at quis enim. Quisque quis dolor eu libero fermentum hendrerit.Phasellus at pretium est, nec convallis metus. Donec sodales, felis ut tincidunt vehicula, eros neque interdum lacus, at commodo elit turpis at velit. Duis iaculis dolor eu placerat feugiat. Cras consectetur lobortis ex, ac venenatis mauris iaculis tristique. Curabitur vitae nunc mi. Quisque iaculis sapien nisi, eu gravida felis rhoncus non. Nam nec fringilla nulla, nec cursus quam Quisque in maximus nisl. Suspendisse non tempus ligula, et laoreet enim. Morbi eget orci ut sem sagittis placerat at quis enim. Quisque quis dolor eu libero fermentum hendrerit.Phasellus at pretium est, nec convallis metus. Donec sodales, felis ut tincidunt vehicula, eros neque interdum lacus, at commodo elit turpis at velit. Duis iaculis dolor eu placerat feugiat. Cras consectetur lobortis ex, ac venenatis mauris iaculis tristique. Curabitur vitae nunc mi. Quisque iaculis sapien nisi, eu gravida felis rhoncus non. Nam nec fringilla nulla, nec cursus quam',
+        descEng: 'English English ipsum dolor sit amet, consectetur adipiscing elit. Mauris auctor congue est. Integer sit amet magna id sem dapibus ullamcorper ut eu sapien.  Quisque in maximus nisl. Suspendisse non tempus ligula, et laoreet enim. Morbi eget orci ut sem sagittis placerat at quis enim. Quisque quis dolor eu libero fermentum hendrerit.Phasellus at pretium est, nec convallis metus. Donec sodales, felis ut tincidunt vehicula, eros neque interdum lacus, at commodo elit turpis at velit. Duis iaculis dolor eu placerat feugiat. Cras consectetur lobortis ex, ac venenlacus, at commodo elit turpis at velit. Duis iaculis dolor eu placerat feugiat. Cras consectetur lobortis ex, ac venenatis mauris iaculis tristique. Curabitur vitae nunc mi. Quisque iaculis sapien nisi, eu gravida felis rhoncus non. Nam nec fringilla nulla, nec cursus quam',
         activeLanguage: 'bos',
-        trailPhoto: 'http://www.mtb.ba/wp-content/uploads/2013/07/29721.jpg',
+        satelliteLayer: false,
+        minesLayer: false,
     };
     // MAP
     mapboxgl.accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
-    $.ajax(window.globalno.gpx).done(function(gpx) {
+    $.ajax(window.trail.gpx).done(function(gpx) {
         var dataJSON = parseRaw(toGeoJSON.gpx(gpx));
         window.dataJSON = dataJSON;
         console.log(dataJSON);
         // get center and bounds from json
         var box = turf.bbox(dataJSON);
-        var bbox = [[box[0], box[1]], [box[2], box[3]]];
-        var mapCenter = turf.center(dataJSON);
+        window.trail.bbox = [[box[0], box[1]], [box[2], box[3]]];
+        window.trail.mapCenter = turf.center(dataJSON);
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/outdoors-v10',
-            zoom: 5,
-            center: mapCenter.geometry.coordinates
+            zoom: 6,
+            center: window.trail.mapCenter.geometry.coordinates,
+            maxBounds: [[15, 42.3], [20.5, 45.5]]
         });
         window.map = map;
         var popup = new mapboxgl.Popup({
@@ -133,8 +134,10 @@
             closeOnClick: false
         });
         map.on('load', function() {
-            map.fitBounds(bbox);
-            addTrailLayers(map);
+            map.fitBounds(window.trail.bbox);
+            addSources(map);
+            addLayers(map);
+            addControls(map);
             addPopups(map, popup);
             renderlayout(dataJSON);
             addChart(map, dataJSON);

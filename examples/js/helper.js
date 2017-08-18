@@ -28,6 +28,7 @@ function getFeature(featuresCollection, featureType) {
 function parseRaw(featuresCollection) {
   var trail = getTrailLine(featuresCollection);
   var trailOdometer = parseFloat(turf.lineDistance(trail, 'kilometers')).toFixed(1);
+  window.trail.odometer = parseInt(trailOdometer, 10);
   
   var lastCoordinate = trail.geometry.coordinates[getTrailLine(featuresCollection).geometry.coordinates.length - 1];
   var endPoint = turf.point(lastCoordinate, {
@@ -66,18 +67,23 @@ function parseRaw(featuresCollection) {
       cur[6] = (elevDelta / (distDelta * 1000)) * 100;
     }
     // Min elevation
-    if (cur[2] < window.globalno.minElev) {
-      window.globalno.minElev = cur[2];
+    if (cur[2] < window.trail.minElev) {
+      window.trail.minElev = cur[2];
     }
     // Max elevation
-    if (cur[2] > window.globalno.maxElev) {
-      window.globalno.maxElev = cur[2];
+    if (cur[2] > window.trail.maxElev) {
+      window.trail.maxElev = cur[2];
     }
     // Max slope
-    if (cur[6] > window.globalno.maxSlope) {
-      window.globalno.maxSlope = cur[6];
+    if (cur[6] > window.trail.maxSlope && cur[6] < 100) {
+      window.trail.maxSlope = cur[6];
     }
-    prevPoint = JSON.parse(JSON.stringify(curPoint));    
+    prevPoint = JSON.parse(JSON.stringify(curPoint));
+    // Elev gain and loss
+    if (i == trail.geometry.coordinates.length - 1) {
+      window.trail.elevGain = parseInt(cur[4], 10);
+      window.trail.elevLoss = parseInt(cur[5], 10);
+    }   
   }
 
   var waypoints = getLinePoints(featuresCollection);
@@ -87,6 +93,7 @@ function parseRaw(featuresCollection) {
     waypoints[i].properties.odometer = parseFloat(parsed[0].replace(',','.'));
     waypoints[i].properties.pictogram = parsed[1];
     waypoints[i].properties.desc = parsed[2];
+    waypoints[i].properties.elevation = waypoints[i].geometry.coordinates[2];
   }
 
   var newWaypoints = JSON.parse(JSON.stringify(waypoints)).sort(function (a, b) {
@@ -100,19 +107,29 @@ function parseRaw(featuresCollection) {
       return 0;
   });
 
-  var newCollection = turf.featureCollection([trail].concat(newWaypoints));
+  for (var i = 0; i < newWaypoints.length; i++) {
+    newWaypoints[i].id = i;
+  }
 
-  // console.log('unsorted');
-  // console.log(waypoints);
-  // console.log('sorted');
-  // console.log(newWaypoints);
+  var newCollection = turf.featureCollection([trail].concat(newWaypoints));
 
   return newCollection;
 }
 
 // MAP
 
-function addTrailLayers(map) {
+function addSources(map) {
+  map.addSource('rasterTiles', {
+      type: 'raster',
+      url: 'mapbox://mapbox.satellite',
+      tileSize: 256,
+  });
+
+  map.addSource('mineTiles', {
+      type: 'vector',
+      url: 'mapbox://mersadpasic.bdixpo9t',
+  });
+
   map.addSource('datasource', {
     'type': 'geojson',
     'data': dataJSON
@@ -125,6 +142,38 @@ function addTrailLayers(map) {
         'features': []
       }
   });
+}
+
+function addLayers(map) {
+  map.addLayer({
+      id: 'satelliteLayer',
+      type: 'raster',
+      source: 'rasterTiles',
+      paint: {
+          'raster-saturation': 0.5,
+      },
+      layout: {
+          visibility: 'none',
+      },
+      minzoom: 0,
+      maxzoom: 22,
+  }, 'contour-line-index');
+
+  map.addLayer({
+      id: 'minesLayer',
+      type: 'fill',
+      source: 'mineTiles',
+      'source-layer': 'BHMACmine_sistematskoizvidjanje',
+      paint: {
+          'fill-color': '#ff0000',
+          'fill-opacity': 0.3,
+      },
+      layout: {
+          visibility: 'none',
+      },
+      minzoom: 7,
+      maxzoom: 22,
+  }, 'contour-line-index');
   
   map.addLayer({
     'id': 'trail-line-outline',
@@ -161,19 +210,6 @@ function addTrailLayers(map) {
   }, 'housenum-label');
 
   map.addLayer({
-    'id': 'current-position',
-    'type': 'circle',
-    'source': 'temp',
-    'paint': {
-        'circle-radius': {
-            'base': 1,
-            'stops': [[4,0],[6,1],[12,7]]
-        },
-        'circle-color': '#000'
-    }
-  }, 'housenum-label');
-  
-  map.addLayer({
     'id': 'waypoints-outline-white',
     'type': 'circle',
     'source': 'datasource',
@@ -185,7 +221,20 @@ function addTrailLayers(map) {
         'circle-color': '#FFF'
     },
     'filter': ['has', 'desc']
-  }, 'housenum-label');
+  });
+
+  map.addLayer({
+    'id': 'current-position',
+    'type': 'circle',
+    'source': 'temp',
+    'paint': {
+        'circle-radius': {
+            'base': 1,
+            'stops': [[4,0],[6,1],[12,7]]
+        },
+        'circle-color': '#000'
+    }
+  });
   
   map.addLayer({
       'id': 'waypoints',
@@ -212,6 +261,16 @@ function addTrailLayers(map) {
   });
 }
 
+function addControls(map) {
+  map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+  map.addControl(new mapboxgl.FullscreenControl());
+  map.addControl(new UserMapControl());
+  map.addControl(new mapboxgl.ScaleControl({
+      maxWidth: 150,
+      unit: 'metric',
+  }));
+}
+
 function showCurrentPositionOnMap(map, featuresCollection, index) {
   var trail = getTrailLine(featuresCollection);
   var newCollection = turf.featureCollection([turf.point([trail.geometry.coordinates[index][0], trail.geometry.coordinates[index][1]])]);
@@ -232,6 +291,83 @@ function zoomToCoordinate(coordinate) {
   });
 }
 
+function goHome(map) {
+  console.log(mapCenter);
+}
+
+function UserMapControl() {}
+
+UserMapControl.prototype.onAdd = function(map) {
+    this._map = map;
+    this._container = document.createElement('div');
+    this._container.className = 'mapboxgl-ctrl-group mapboxgl-ctrl';
+    
+    this._button1 = document.createElement('button');
+    this._button1.className = 'mapboxgl-ctrl-icon satellite';
+    this._button1.title = 'Satelitski snimak';
+    this._button1.addEventListener('click', function() {
+      toggleLayer('satelliteLayer');
+      reorderLayers();
+    });
+    this._container.appendChild(this._button1);
+    
+    this._button2 = document.createElement('button');
+    this._button2.className = 'mapboxgl-ctrl-icon danger';
+    this._button2.title = 'Minska situacija';
+    this._button2.addEventListener('click', function() {
+      toggleLayer('minesLayer');
+      reorderLayers();
+    });
+    this._container.appendChild(this._button2);
+
+    this._button3 = document.createElement('button');
+    this._button3.className = 'mapboxgl-ctrl-icon home';
+    this._button3.title = 'Pocetna pozicija';
+    this._button3.addEventListener('click', function() {
+      window.map.fitBounds(window.trail.bbox);
+    });
+    this._container.appendChild(this._button3);
+
+    return this._container;
+};
+
+UserMapControl.prototype.onRemove = function () {
+     this._container.parentNode.removeChild(this._container);
+     this._map = undefined;
+};
+
+function toggleLayer(layer) {
+  window.trail[layer] = !window.trail[layer];
+  if (window.trail[layer]) {
+    if (layer === 'minesLayer') {
+      alert('Aktivirate mapu sumnjivih povrsina po evidenciji Centra za uklanjanje mina u Bih (BH MAC) sa stanjem iz mjeseca 06/2016. Ova karta je sa samo informativnog karaktera i ne garantuje nepostojanje i drugih sumnjivih povrsina! MTB.ba se u potpunosti ogradjuje od odgovornosti za istinitost prikazanih podataka!');
+    }
+    window.map.setLayoutProperty(layer, 'visibility', 'visible');
+  } else {
+    window.map.setLayoutProperty(layer, 'visibility', 'none');
+  }
+}
+
+function reorderLayers() {
+  if (window.trail.satelliteLayer) {
+    window.map.moveLayer('satelliteLayer');
+    window.map.moveLayer('minesLayer');
+    window.map.moveLayer('trail-line-outline');
+    window.map.moveLayer('trail-line');
+    window.map.moveLayer('waypoints-outline-red');
+    window.map.moveLayer('waypoints-outline-white');
+  } else {
+    window.map.moveLayer('satelliteLayer', 'contour-line-index');
+    window.map.moveLayer('minesLayer', 'contour-line-index');
+    window.map.moveLayer('trail-line-outline', 'housenum-label');
+    window.map.moveLayer('trail-line', 'housenum-label');
+    window.map.moveLayer('waypoints-outline-red', 'housenum-label');
+    window.map.moveLayer('waypoints-outline-white', 'housenum-label');
+  }
+  window.map.moveLayer('current-position');
+  window.map.moveLayer('waypoints');
+}
+
 // POPUP
 
 function addPopups(map, popup) {
@@ -239,14 +375,14 @@ function addPopups(map, popup) {
       map.getCanvas().style.cursor = 'pointer';
       new mapboxgl.Popup()
           .setLngLat(e.features[0].geometry.coordinates)
-          .setHTML(generateHTML4popup(e.features[0].properties))
+          .setHTML(renderWaypoint4Popup(e.features[0]))
           .addTo(map);
   });
 
   map.on('mouseenter', 'waypoints', function(e) {
       map.getCanvas().style.cursor = 'pointer';
       popup.setLngLat(e.features[0].geometry.coordinates)
-          .setHTML(generateHTML4popup(e.features[0].properties))
+          .setHTML(renderWaypoint4Popup(e.features[0]))
           .addTo(map);
   });
 
@@ -254,15 +390,6 @@ function addPopups(map, popup) {
       map.getCanvas().style.cursor = '';
       popup.remove();
   });
-}
-
-function generateHTML4popup(o) {
-  return '<div class="popup">'
-            + '<div class="popup-location-name">' + o.name + '</div>'
-            + '<div class="popup-location-odometer">' + o.odometer + ' km od starta</div>'
-            + '<div class="popup-location-pictogram"><img src="http://www.mtb.ba/wp-content/themes/mtbba-v2/functions/user/raskrsnice/a-ras.php?opis=' + o.pictogram + '"></div>'
-            + '<div class="popup-location-description">Opis: ' + o.desc + '</div>'
-        + '</div>';
 }
 
 // CHART
@@ -311,7 +438,7 @@ function addChart(map, featuresCollection) {
         }
     },
     title: {
-        // text: window.globalno.trailName,
+        // text: window.trail.trailName,
         text: '',
         style: {
           color: '#60899a',
@@ -411,7 +538,7 @@ function addChart(map, featuresCollection) {
     }]
   });
 
-  var surface = window.globalno.surface.split('-');
+  var surface = window.trail.surface.split('-');
   var surfaceTypes = ['Asfalt', 'Utaban put', 'Makadam', 'Staza', 'Pl.sekcija'];
   var surfaceData = [];
   for (var i = 0; i < 5; i++) {
@@ -488,20 +615,41 @@ function menuClicked(index) {
 }
 
 function toogleDescriptionLanguage() {
-  if (window.globalno.activeLanguage == 'bos') {
-    document.getElementById('description-bos').classList.remove('content-active'); 
-    document.getElementById('description-eng').classList.add('content-active'); 
+  if (window.trail.activeLanguage == 'bos') {
+    document.querySelectorAll('.description-text-container')[0].innerHTML = window.trail.descEng;
     document.getElementById('language-switcher').text = 'B/H/S verzija'; 
-    window.globalno.activeLanguage = 'eng';
+    window.trail.activeLanguage = 'eng';
   } else {
-    document.getElementById('description-eng').classList.remove('content-active'); 
-    document.getElementById('description-bos').classList.add('content-active'); 
+    document.querySelectorAll('.description-text-container')[0].innerHTML = window.trail.descBos;
     document.getElementById('language-switcher').text = 'English version'; 
-    window.globalno.activeLanguage = 'bos';
+    window.trail.activeLanguage = 'bos';
   } 
 }
 
+function downloadGPX() {
+  var dlink = document.createElement('a');
+  dlink.href = window.trail.gpxExport;
+  dlink.click();
+  dlink.remove();
+}
+
 function renderlayout(featureCollection) {
+  // site title
+  document.getElementsByTagName('title')[0].innerHTML = window.trail.trailName + ' - MTB.ba staze';
+  // title
+  document.querySelectorAll('.trail-name-text')[0].innerHTML = window.trail.trailName + ' (' + window.trail.trailMountains + ')';
+  // info panel
+  document.getElementById('value-odometer').innerHTML = parseInt(window.trail.odometer, 10) + ' km';
+  document.getElementById('value-category').innerHTML = window.trail.trailCategory;
+  document.getElementById('value-elevgain').innerHTML = parseInt(window.trail.elevGain, 10) + ' m';
+  document.getElementById('value-elevloss').innerHTML = parseInt(window.trail.elevLoss, 10) + ' m';
+  document.getElementById('value-difficulty').innerHTML = window.trail.techDiff + '/10';
+  document.getElementById('value-slope').innerHTML = parseInt(window.trail.maxSlope, 10) + '%';
+  document.getElementById('value-maxelev').innerHTML = parseInt(window.trail.maxElev, 10) + ' mnv';
+  document.getElementById('value-minelev').innerHTML = parseInt(window.trail.minElev, 10) + ' mnv';
+  // description
+  document.querySelectorAll('.description-text-container')[0].innerHTML = window.trail.descBos;
+
   renderWaypoints(featureCollection);
 }
 
@@ -511,21 +659,38 @@ function renderWaypoints(featuresCollection) {
   var content = '';
   var waypoints = getLinePoints(featuresCollection);
   for (var i = 0; i < waypoints.length; i++) {
-    var w = waypoints[i];
-    var newCoordinates = JSON.stringify([w.geometry.coordinates[0], w.geometry.coordinates[1]]);
-    var addition = '<div class="waypoint-container" onclick="zoomToCoordinate(' + newCoordinates + ')">' +
-    '<div class="waypoint-header">' +
-    '<div class="waypoint-header-info">' +
-    '<div class="waypoint-header-iterator">' + (i + 1) + '</div>' +
-    '<div class="waypoint-header-odometer">' + w.properties.odometer + ' km</div>' +
-    '<div class="waypoint-header-elevation">' + w.geometry.coordinates[2] + ' mnv</div>' +
-    '</div>' +
-    '<div class="waypoint-header-pictogram" style="background-image: url(\'http://www.mtb.ba/wp-content/themes/mtbba-v2/functions/user/raskrsnice/a-ras.php?opis=' + w.properties.pictogram + '\')"></div>' +
-    '</div>' +
-    '<div class="waypoint-trailname">' + w.properties.name + '</div>' +
-    '<div class="waypoint-description">' + w.properties.desc + '</div>' +
-    '</div>';
-    content = content + addition;
+    content = content + renderWaypoint(waypoints[i]);
   }
   container.innerHTML = content;
+}
+
+function renderWaypoint(w) {
+  var newCoordinates = JSON.stringify([w.geometry.coordinates[0], w.geometry.coordinates[1]]);
+  return '<div class="waypoint-container" onclick="zoomToCoordinate(' + newCoordinates + ')">' +
+  '<div class="waypoint-header">' +
+  '<div class="waypoint-header-info">' +
+  '<div class="waypoint-header-iterator">' + (w.id + 1) + '</div>' +
+  '<div class="waypoint-header-odometer">' + w.properties.odometer + ' km</div>' +
+  '<div class="waypoint-header-elevation">' + w.properties.elevation + ' mnv</div>' +
+  '</div>' +
+  '<div class="waypoint-header-pictogram" style="background-image: url(\'http://www.mtb.ba/wp-content/themes/mtbba-v2/functions/user/raskrsnice/a-ras.php?opis=' + w.properties.pictogram + '\')"></div>' +
+  '</div>' +
+  '<div class="waypoint-trailname">' + w.properties.name + '</div>' +
+  '<div class="waypoint-description">' + w.properties.desc + '</div>' +
+  '</div>';
+}
+
+function renderWaypoint4Popup(w) {
+  var newCoordinates = JSON.stringify([w.geometry.coordinates[0], w.geometry.coordinates[1]]);
+  return '<div class="waypoint-container" onclick="zoomToCoordinate(' + newCoordinates + ')">' +
+  '<div class="waypoint-trailname">' + w.properties.name + '</div>' +
+  '<div class="waypoint-header">' +
+  '<div class="waypoint-header-info">' +
+  '<div class="waypoint-header-odometer">' + w.properties.odometer + ' km</div>' +
+  '<div class="waypoint-header-elevation">' + w.properties.elevation + ' mnv</div>' +
+  '</div>' +
+  '<div class="waypoint-header-pictogram" style="background-image: url(\'http://www.mtb.ba/wp-content/themes/mtbba-v2/functions/user/raskrsnice/a-ras.php?opis=' + w.properties.pictogram + '\')"></div>' +
+  '</div>' +
+  '<div class="waypoint-description">' + w.properties.desc + '</div>' +
+  '</div>';
 }
