@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='//api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
+    <link href='//fonts.googleapis.com/css?family=Roboto:200,300,400,500,700' rel='stylesheet' type='text/css'>
+    <link href='//api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
+    <script src='//code.highcharts.com/highcharts.js'></script>
+    <script src='//code.highcharts.com/modules/exporting.js'></script>
+    <link href='css/style.css' rel='stylesheet' />
+    <script src='js/jquery.min.js'></script>
+    <script src='js/togeojson.js'></script>
+    <script src='js/turf.min.js'></script>
+    <script src='js/helper.js'></script>
+    <script src='js/gapi.js'></script>
+</head>
+<body>
+<div class='visualisation'>
+    <div id='map' class='map'></div>
+</div>
+<script>
+    window.trail = {
+        trailName: 'Bradina - Martinov grob',
+        trailCategory: 'XC',
+        trailMountains: 'Bitovnja, Vitreusa',
+        surface: '28-35-11-1-0',
+        techDiff: 3,
+        odometer: 99,
+        elevGain: 1000,
+        elevLoss: 1000,
+        minElev: 1000,
+        maxElev: 1000,
+        maxSlope: 10,
+        gpx: 'upload/Bradina-Neretvica_profil.gpx',
+        gpxExport: 'http://www.mtb.ba/wp-content/uploads/2013/07/Bradina-Neretvica.gpx',
+        descBos: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris auctor congue est. Integer sit amet magna id sem dapibus ullamcorper ut eu sapien. Sed nec orci et metus gravida fermentum at quis dolor. Duis nisl diam, mollis id lorem at, semper lacinia lectus. Quisque in maximus nisl. Suspendisse non tempus ligula, et laoreet enim. Morbi eget orci ut sem sagittis placerat at quis enim. Quisque quis dolor eu libero fermentum hendrerit.Phasellus at pretium est, nec convallis metus. Donec sodales, felis ut tincidunt vehicula, eros neque interdum lacus, at commodo elit turpis at velit. Duis iaculis dolor eu placerat feugiat. Cras consectetur lobortis ex, ac venenatis mauris iaculis tristique. Curabitur vitae nunc mi. Quisque iaculis sapien nisi, eu gravida felis rhoncus non. Nam nec fringilla nulla, nec cursus quam Quisque in maximus nisl. Suspendisse non tempus ligula, et laoreet enim. Morbi eget orci ut sem sagittis placerat at quis enim. Quisque quis dolor eu libero fermentum hendrerit.Phasellus at pretium est, nec convallis metus. Donec sodales, felis ut tincidunt vehicula, eros neque interdum lacus, at commodo elit turpis at velit. Duis iaculis dolor eu placerat feugiat. Cras consectetur lobortis ex, ac venenatis mauris iaculis tristique. Curabitur vitae nunc mi. Quisque iaculis sapien nisi, eu gravida felis rhoncus non. Nam nec fringilla nulla, nec cursus quam',
+        descEng: 'English English ipsum dolor sit amet, consectetur adipiscing elit. Mauris auctor congue est. Integer sit amet magna id sem dapibus ullamcorper ut eu sapien.  Quisque in maximus nisl. Suspendisse non tempus ligula, et laoreet enim. Morbi eget orci ut sem sagittis placerat at quis enim. Quisque quis dolor eu libero fermentum hendrerit.Phasellus at pretium est, nec convallis metus. Donec sodales, felis ut tincidunt vehicula, eros neque interdum lacus, at commodo elit turpis at velit. Duis iaculis dolor eu placerat feugiat. Cras consectetur lobortis ex, ac venenlacus, at commodo elit turpis at velit. Duis iaculis dolor eu placerat feugiat. Cras consectetur lobortis ex, ac venenatis mauris iaculis tristique. Curabitur vitae nunc mi. Quisque iaculis sapien nisi, eu gravida felis rhoncus non. Nam nec fringilla nulla, nec cursus quam',
+        activeLanguage: 'bos',
+        satelliteLayer: false,
+        minesLayer: false,
+    };
+    mapboxgl.accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
+    $.ajax('upload/gradovi.json').done(function(json) {
+        var dataJSON = json;
+        window.dataJSON = dataJSON;
+        // get center and bounds from json
+        var box = turf.bbox(dataJSON);
+        window.trail.mapCenter = turf.center(dataJSON);
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v9',
+            zoom: 6,
+            center: turf.center(dataJSON).geometry.coordinates,
+            maxBounds: [[15, 42.3], [20.5, 45.5]]
+        });
+        window.map = map;
+        var popup = new mapboxgl.Popup({
+            // closeButton: false,
+            closeOnClick: false
+        });
+        map.on('load', function() {
+            map.fitBounds(box);
+            // addSources(map);
+            // addLayers(map);
+            // addControls(map);
+            // addPopups(map, popup);
+            var wps = getLinePoints(dataJSON);
+            wps.forEach(w => {
+                // enrichWP(w);
+                findStore(w);
+            })
+            // console.log(wps);
+        });
+    });
+</script>
+</body>
+</html>
