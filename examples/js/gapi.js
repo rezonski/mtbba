@@ -49,8 +49,8 @@ function getLevel(setup, index) {
   });
 }
 
-function findStore(w) {
-  console.log(w.properties.name);
+function findStore(w, total, index) {
+  // console.log(w.properties.name);
   const setup = {
     w: w,
     coordinates: w.geometry.coordinates[1] + ',' +  w.geometry.coordinates[0],
@@ -68,9 +68,43 @@ function findStore(w) {
   $.ajax(setup.endpoint + setup.coordinates + '&radius=' + setup.lvl[0].radius + '&type=' + setup.lvl[0].type + '&key=' + setup.key).done(response => {
     if (response.status == 'OK') {
       response.results.forEach(r => {
-        // debugger;
-        setup.replacement.push(r.name);
+        if (window.allIDs.indexOf(r['place_id']) == -1) {
+          window.allIDs.push(r['place_id']);
+          const newStore = turf.point([r.geometry.location.lng, r.geometry.location.lat], {
+            name: r.name,
+            address: r.vicinity 
+          });
+          window.stores.features.push(newStore);
+        }
       });
+      if (total == (index + 1)) {
+        window.map.addLayer({
+          'id': 'stores',
+          'type': 'symbol',
+          'source': {
+            'type': 'geojson',
+            'data': window.stores
+          },
+          'paint': {
+              'text-halo-color': '#fff',
+              'text-halo-width': 2,
+              'text-halo-blur': 2,
+              'text-color': '#F00'
+          },
+          'layout': {
+              'icon-image': 'circle-11',
+              // 'icon-allow-overlap': true,
+              'text-field': '{name}',
+              // 'text-anchor': 'left',
+              'text-max-width': 5,
+              'text-offset': [0, 1],
+              'text-size': {
+                  'base': 1,
+                  'stops': [[4,0],[6,1],[12,12]]
+              }
+          }
+        });
+      }
     }
     console.log(setup.w.properties.name + ' - nearby: ' + JSON.stringify(setup.replacement));
   });

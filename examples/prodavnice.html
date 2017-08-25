@@ -21,6 +21,11 @@
     <div id='map' class='map'></div>
 </div>
 <script>
+    window.allIDs = [];
+    window.stores = {
+      "type": "FeatureCollection",
+      "features": []
+    };
     window.trail = {
         trailName: 'Bradina - Martinov grob',
         trailCategory: 'XC',
@@ -50,7 +55,7 @@
         window.trail.mapCenter = turf.center(dataJSON);
         var map = new mapboxgl.Map({
             container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v9',
+            style: 'mapbox://styles/mapbox/basic-v9',
             zoom: 6,
             center: turf.center(dataJSON).geometry.coordinates,
             maxBounds: [[15, 42.3], [20.5, 45.5]]
@@ -67,9 +72,9 @@
             // addControls(map);
             // addPopups(map, popup);
             var wps = getLinePoints(dataJSON);
-            wps.forEach(w => {
+            wps.forEach((w, wpindex) => {
                 // enrichWP(w);
-                findStore(w);
+                findStore(w, wps.length, wpindex);
             })
             // console.log(wps);
         });
