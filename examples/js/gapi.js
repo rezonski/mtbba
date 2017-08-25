@@ -48,3 +48,30 @@ function getLevel(setup, index) {
     }
   });
 }
+
+function findStore(w) {
+  console.log(w.properties.name);
+  const setup = {
+    w: w,
+    coordinates: w.geometry.coordinates[1] + ',' +  w.geometry.coordinates[0],
+    endpoint: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=',
+    key: 'AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis',
+    lvl: [
+      {
+        type: 'bicycle_store',
+        radius: 15000,
+      }
+    ],
+    replacement: []
+  };
+  // console.log(setup.endpoint + setup.coordinates + '&radius=' + setup.lvl[0].radius + '&type=' + setup.lvl[0].type + '&key=' + setup.key);
+  $.ajax(setup.endpoint + setup.coordinates + '&radius=' + setup.lvl[0].radius + '&type=' + setup.lvl[0].type + '&key=' + setup.key).done(response => {
+    if (response.status == 'OK') {
+      response.results.forEach(r => {
+        // debugger;
+        setup.replacement.push(r.name);
+      });
+    }
+    console.log(setup.w.properties.name + ' - nearby: ' + JSON.stringify(setup.replacement));
+  });
+}
