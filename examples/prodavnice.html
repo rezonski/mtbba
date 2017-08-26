@@ -19,13 +19,9 @@
 <body>
 <div class='visualisation'>
     <div id='map' class='map'></div>
+    <div class="dugmad"><input type="button" label="Spasi" onclick="generateStores()"></div>
 </div>
 <script>
-    window.allIDs = [];
-    window.stores = {
-      "type": "FeatureCollection",
-      "features": []
-    };
     window.trail = {
         trailName: 'Bradina - Martinov grob',
         trailCategory: 'XC',
@@ -38,10 +34,10 @@
         minElev: 1000,
         maxElev: 1000,
         maxSlope: 10,
-        gpx: 'upload/Bradina-Neretvica_profil.gpx',
-        gpxExport: 'http://www.mtb.ba/wp-content/uploads/2013/07/Bradina-Neretvica.gpx',
-        descBos: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris auctor congue est. Integer sit amet magna id sem dapibus ullamcorper ut eu sapien. Sed nec orci et metus gravida fermentum at quis dolor. Duis nisl diam, mollis id lorem at, semper lacinia lectus. Quisque in maximus nisl. Suspendisse non tempus ligula, et laoreet enim. Morbi eget orci ut sem sagittis placerat at quis enim. Quisque quis dolor eu libero fermentum hendrerit.Phasellus at pretium est, nec convallis metus. Donec sodales, felis ut tincidunt vehicula, eros neque interdum lacus, at commodo elit turpis at velit. Duis iaculis dolor eu placerat feugiat. Cras consectetur lobortis ex, ac venenatis mauris iaculis tristique. Curabitur vitae nunc mi. Quisque iaculis sapien nisi, eu gravida felis rhoncus non. Nam nec fringilla nulla, nec cursus quam Quisque in maximus nisl. Suspendisse non tempus ligula, et laoreet enim. Morbi eget orci ut sem sagittis placerat at quis enim. Quisque quis dolor eu libero fermentum hendrerit.Phasellus at pretium est, nec convallis metus. Donec sodales, felis ut tincidunt vehicula, eros neque interdum lacus, at commodo elit turpis at velit. Duis iaculis dolor eu placerat feugiat. Cras consectetur lobortis ex, ac venenatis mauris iaculis tristique. Curabitur vitae nunc mi. Quisque iaculis sapien nisi, eu gravida felis rhoncus non. Nam nec fringilla nulla, nec cursus quam',
-        descEng: 'English English ipsum dolor sit amet, consectetur adipiscing elit. Mauris auctor congue est. Integer sit amet magna id sem dapibus ullamcorper ut eu sapien.  Quisque in maximus nisl. Suspendisse non tempus ligula, et laoreet enim. Morbi eget orci ut sem sagittis placerat at quis enim. Quisque quis dolor eu libero fermentum hendrerit.Phasellus at pretium est, nec convallis metus. Donec sodales, felis ut tincidunt vehicula, eros neque interdum lacus, at commodo elit turpis at velit. Duis iaculis dolor eu placerat feugiat. Cras consectetur lobortis ex, ac venenlacus, at commodo elit turpis at velit. Duis iaculis dolor eu placerat feugiat. Cras consectetur lobortis ex, ac venenatis mauris iaculis tristique. Curabitur vitae nunc mi. Quisque iaculis sapien nisi, eu gravida felis rhoncus non. Nam nec fringilla nulla, nec cursus quam',
+        gpx: '',
+        gpxExport: '',
+        descBos: '',
+        descEng: '',
         activeLanguage: 'bos',
         satelliteLayer: false,
         minesLayer: false,
@@ -71,12 +67,8 @@
             // addLayers(map);
             // addControls(map);
             // addPopups(map, popup);
-            var wps = getLinePoints(dataJSON);
-            wps.forEach((w, wpindex) => {
-                // enrichWP(w);
-                findStore(w, wps.length, wpindex);
-            })
             // console.log(wps);
+            initLocalStorage();
         });
     });
 </script>
