@@ -55,6 +55,7 @@ function findStore(w, total, index) {
     w: w,
     coordinates: w.geometry.coordinates[1] + ',' +  w.geometry.coordinates[0],
     endpoint: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=',
+    localUpload: 'http://127.0.0.1:8080/sandbox/examples/getGooglePlacePhoto.php?photoReference=',
     key: 'AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis',
     lvl: [
       {
@@ -74,17 +75,22 @@ function findStore(w, total, index) {
           $.ajax('https://maps.googleapis.com/maps/api/place/details/json?placeid=' + r['place_id'] + '&key=' + setup.key).done(detailResponse => {
             if (detailResponse.status == 'OK') {
               const det = detailResponse.result;
+              const photoRefs = (det.photos) ? det.photos.map(p => {
+                return p['photo_reference'];
+              }) : [];
               const newStore = turf.point([r.geometry.location.lng, r.geometry.location.lat], {
+                id: r['place_id'],
                 name: det.name,
                 phoneNum: det['international_phone_number'],
                 address: det['formatted_address'],
                 city: det['address_components'][0]['long_name'],
-                openingHours: det['opening_hours'].periods,
-                rating: det.rating,
-                reviews: det.reviews,
-                website: det.website,
+                openingHours: (det['opening_hours']) ? det['opening_hours'].periods : [],
+                rating: (det.rating) ? det.rating : 0,
+                reviews: (det.reviews) ? det.reviews : [],
+                website: (det.website) ? det.website : '',
+                photos: []
               });
-              window.stores.features.push(newStore);
+              getPlacePhotos(setup, newStore, photoRefs, 0);
             }
           });
         }
@@ -99,6 +105,19 @@ function findStore(w, total, index) {
   });
 }
 
+function getPlacePhotos(setup, newStore, refs, index) {
+  if (refs.length == index) {
+    window.stores.features.push(newStore);
+  } else {
+    $.ajax(setup.localUpload + refs[index] + '&fileName=' + newStore.properties.id + index + '&key=' + setup.key).done(photoResponse => {
+      const resp =JSON.parse(photoResponse);
+      if (resp.success) {
+        newStore.properties.photos.push(resp.url);
+      }
+      getPlacePhotos(setup, newStore, refs, index + 1);
+    });
+  }
+}
 
 function generateStores() {
   var wps = getLinePoints(dataJSON);
@@ -107,37 +126,47 @@ function generateStores() {
   })
 }
 
+function reGenerateStores() {
+  window.stores = {
+    type: "FeatureCollection",
+    allIDs: [],
+    features: []
+  };
+  generateStores();
+}
+
 function displayStores() {
   if (window.map.getSource('stores')) {
-    window.map.getSource('stores').setData()
-  }  
-
-  window.map.addLayer({
-    'id': 'stores',
-    'type': 'symbol',
-    'source': {
+    window.map.getSource('stores').setData(window.stores);
+  } else {
+    window.map.addSource('stores', {
       'type': 'geojson',
       'data': window.stores
-    },
-    'paint': {
-        'text-halo-color': '#fff',
-        'text-halo-width': 2,
-        'text-halo-blur': 2,
-        'text-color': '#F00'
-    },
-    'layout': {
-        'icon-image': 'circle-11',
-        // 'icon-allow-overlap': true,
-        'text-field': '{name}',
-        // 'text-anchor': 'left',
-        'text-max-width': 5,
-        'text-offset': [0, 1],
-        'text-size': {
-            'base': 1,
-            'stops': [[4,0],[6,1],[12,12]]
-        }
-    }
-  });
+    });
+    window.map.addLayer({
+      'id': 'stores',
+      'type': 'symbol',
+      'source': 'stores',
+      'paint': {
+          'text-halo-color': '#fff',
+          'text-halo-width': 2,
+          'text-halo-blur': 2,
+          'text-color': '#F00'
+      },
+      'layout': {
+          'icon-image': 'circle-11',
+          // 'icon-allow-overlap': true,
+          'text-field': '{name}',
+          // 'text-anchor': 'left',
+          'text-max-width': 5,
+          'text-offset': [0, 1],
+          'text-size': {
+              'base': 1,
+              'stops': [[4,0],[6,1],[12,12]]
+          }
+      }
+    });
+  }
 }
 
 function initLocalStorage() {
@@ -145,11 +174,6 @@ function initLocalStorage() {
       window.stores = JSON.parse(localStorage.getItem('stores'));
       displayStores();
   } else {
-      window.stores = {
-        type: "FeatureCollection",
-        allIDs: [],
-        features: []
-      };
-      generateStores();
+      reGenerateStores();
   }
 }

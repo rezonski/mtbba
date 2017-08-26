@@ -7,7 +7,7 @@ https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJHUqeH2e1WEcR
 
 
 // PHOTO
-https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=CmRaAAAApjiOivll_ciQZicBSZzsD9VPVDjSewax_YTz3uIePKKziJ-UEVK0jdqInGD6Se8wLjSxMiP3yoc6MvnDNM8H_egzyi93BgUZ2tkS7_k4VqjiurtXdwX_yyD-qySGRry6EhAPQAwJxRshL2tBxHPLCx-FGhTXPtVEDVGJL3pmxAm8P83vAKJyyg&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis
+https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=CmRaAAAAWs84wLT2Aht3oOPw743A7yPkBTC62rDV0VfecVvQnIJ_IQvUHENbHHmzaziel24AV6GiyYnLlBXrIkKIXuRr17HVeDqqvYT6BJgSbFoHiICxS5ABJE8l1BwP9spmtd41EhB1wlQ4mQxy9U5uq6EaLIvOGhSkN_CTKgV1TCQ7L6CNV8HUaFTb_Q&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis
 
 
 
