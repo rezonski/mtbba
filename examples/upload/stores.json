@@ -1,182 +1,77 @@
 {
   "brands": {
-    "Author": {
-      "website": ""
-    },
-    "Carraro": {
-      "website": ""
-    },
-    "Centurion": {
-      "website": ""
-    },
-    "Felt": {
-      "website": ""
-    },
-    "Trek": {
-      "website": ""
-    },
-    "Atala": {
-      "website": ""
-    },
-    "Bianchi": {
-      "website": ""
-    },
-    "SixTeam": {
-      "website": ""
-    },
-    "Capriolo": {
-      "website": ""
-    },
-    "Cube": {
-      "website": ""
-    },
-    "Shimano": {
-      "website": ""
-    },
-    "Mitas": {
-      "website": ""
-    },
-    "Krypton": {
-      "website": ""
-    },
-    "CST": {
-      "website": ""
-    },
-    "Twinn": {
-      "website": ""
-    },
-    "Tacx": {
-      "website": ""
-    },
-    "Bellelli": {
-      "website": ""
-    },
-    "SRAM": {
-      "website": ""
-    },
-    "Rock Shox": {
-      "website": ""
-    },
-    "Avid": {
-      "website": ""
-    },
-    "Truvativ": {
-      "website": ""
-    },
-    "Merida": {
-      "website": ""
-    },
-    "SKS": {
-      "website": ""
-    },
-    "Sigma": {
-      "website": ""
-    },
-    "Michelin": {
-      "website": ""
-    },
-    "Monte Grappa": {
-      "website": ""
-    },
-    "Monte Grappa": {
-      "website": ""
-    },
-    "GT bicycles": {
-      "website": ""
-    },
-    "Specialized": {
-      "website": ""
-    },
-    "Topeak": {
-      "website": ""
-    },
-    "Sigma": {
-      "website": ""
-    },
-    "Hydrapak": {
-      "website": ""
-    },
-    "Kenda": {
-      "website": ""
-    },
-    "Osprey": {
-      "website": ""
-    },
-    "Shimano": {
-      "website": ""
-    },
-    "Peruzzo": {
-      "website": ""
-    },
-    "Mighty": {
-      "website": ""
-    },
-    "Endura": {
-      "website": ""
-    },
-    "Cube": {
-      "website": ""
-    },
-    "Scott": {
-      "website": ""
-    },
-    "Cross": {
-      "website": ""
-    },
-    "Polar": {
-      "website": ""
-    },
-    "Alpina": {
-      "website": ""
-    },
-    "Cinzia": {
-      "website": ""
-    },
-    "Electra": {
-      "website": ""
-    },
-    "Explorer": {
-      "website": ""
-    },
-    "Focus": {
-      "website": ""
-    },
-    "Scout": {
-      "website": ""
-    },
-    "Visitor": {
-      "website": ""
-    },
-    "CatEye": {
-        "website": ""
-    },
-    "Rubena": {
-        "website": ""
-    },
-    "Schwalbe": {
-        "website": ""
-    },
-    "Continental": {
-        "website": ""
-    },
-    "Promax": {
-        "website": ""
-    },
-    "Ashima": {
-        "website": ""
-    },
-    "Kelly\'s bike": {
-        "website": ""
-    },
-    "KMC": {
-        "website": ""
-    },
-    "Polysport": {
-        "website": ""
-    },
-    "Promax": {
-        "website": ""
-    }
+    "Author": {},
+    "Carraro": {},
+    "Centurion": {},
+    "Felt": {},
+    "Trek": {},
+    "Atala": {},
+    "Bianchi": {},
+    "SixTeam": {},
+    "Capriolo": {},
+    "Cube": {},
+    "Shimano": {},
+    "Mitas": {},
+    "Krypton": {},
+    "CST": {},
+    "Twinn": {},
+    "Tacx": {},
+    "Bellelli": {},
+    "SRAM": {},
+    "Rock Shox": {},
+    "Avid": {},
+    "Truvativ": {},
+    "Merida": {},
+    "SKS": {},
+    "Sigma": {},
+    "Michelin": {},
+    "Monte Grappa": {},
+    "Monte Grappa": {},
+    "GT bicycles": {},
+    "Specialized": {},
+    "Topeak": {},
+    "Sigma": {},
+    "Hydrapak": {},
+    "Kenda": {},
+    "Osprey": {},
+    "Shimano": {},
+    "Peruzzo": {},
+    "Mighty": {},
+    "Endura": {},
+    "Cube": {},
+    "Scott": {},
+    "Cross": {},
+    "Polar": {},
+    "Alpina": {},
+    "Cinzia": {},
+    "Electra": {},
+    "Explorer": {},
+    "Focus": {},
+    "Scout": {},
+    "Visitor": {},
+    "CatEye": {},
+    "Rubena": {},
+    "Schwalbe": {},
+    "Continental": {},
+    "Promax": {},
+    "Ashima": {},
+    "Kelly\'s bike": {},
+    "KMC": {},
+    "Polysport": {},
+    "Promax": {},
+    "Cannondale": {},
+    "Ritchey": {},
+    "Fizik": {},
+    "Continental": {},
+    "DT Swiss": {},
+    "Uvex": {},
+    "Zefal": {},
+    "Northwave": {},
+    "Elite": {},
+    "Volkl": {},
+    "Elan": {},
+    "Volkl": {},
+    "UNIS": {},
   },
   "stores": [
     "capriolosc": {
@@ -221,12 +116,12 @@
     },
     "planetbike": {
       "name": "Planet Bike",
-      "bike-brands": [],
-      "equipment-brands": []
+      "bike-brands": ["Scott", "Polar", "Electra", "Cannondale"],
+      "equipment-brands": ["Scott", "Polar", "Electra", "Cannondale", "Ritchey", "Fizik", "Continental", "DT Swiss", "CatEye", "Uvex", "Zefal", "Northwave", "Polysport", "Elite"]
     },
     "unis": {
       "name": "UNIS",
-      "bike-brands": [],
+      "bike-brands": ["UNIS", "SixTeam"],
       "equipment-brands": []
     },
     "probikezenica": {
