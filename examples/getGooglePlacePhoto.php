@@ -6,8 +6,7 @@
     $return->success = true;
     if (isset($_GET['photoReference']) && isset($_GET['fileName']) && isset($_GET['key'])) {  
         $getURL = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference='.urlencode($_GET['photoReference']).'&key='.$_GET['key'];
-        $setURL = 'upload/'.$_GET['fileName'];
-        $deleteFile = $_GET['deleteFile'];
+        $setURL = 'upload/'.$_GET['fileName'].'.jpg';
         array_push($log, "Get picture from ".$getURL." and save to ".$setURL);
         $file; 
         try {
@@ -19,17 +18,6 @@
             } else {
                 $return->url = $setURL;
                 array_push($log, "Upload OK");
-                if (strlen($deleteFile) > 0) {
-                    array_push($log, "Try deleting ");
-                    if (!unlink($deleteFile)) {
-                        $return->success = false;
-                        $return->msg = "Error deleting file ".$deleteFile;
-                        array_push($log, "Error deleting file ".$deleteFile);
-                    }
-                    else {
-                        array_push($log, "Deleted file ".$deleteFile);
-                    }
-                }
             }
         }
         catch (Exception $e) {

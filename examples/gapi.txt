@@ -3,7 +3,7 @@ https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=43.650673,
 https://maps.googleapis.com/maps/api/place/textsearch/json?query=ponorici&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis
 
 // DETAIL
-https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJHUqeH2e1WEcR6wXMCeebzhM&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis
+https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJ-UwlvHRDSxMREgCl3k5TFv0&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis
 
 
 // PHOTO

@@ -55,7 +55,7 @@ function findStore(w, total, index) {
     w: w,
     coordinates: w.geometry.coordinates[1] + ',' +  w.geometry.coordinates[0],
     endpoint: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=',
-    localUpload: 'http://127.0.0.1:8080/sandbox/examples/getGooglePlacePhoto.php?photoReference=',
+    localUpload: 'http://localhost/sandbox/examples/getGooglePlacePhoto.php?photoReference=',
     key: 'AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis',
     lvl: [
       {
