@@ -6,7 +6,7 @@
     $return->success = true;
     if (isset($_GET['photoReference']) && isset($_GET['fileName']) && isset($_GET['key'])) {  
         $getURL = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference='.urlencode($_GET['photoReference']).'&key='.$_GET['key'];
-        $setURL = 'upload/'.$_GET['fileName'].'.jpg';
+        $setURL = 'upload/photos/'.$_GET['fileName'].'.jpg';
         array_push($log, "Get picture from ".$getURL." and save to ".$setURL);
         $file; 
         try {

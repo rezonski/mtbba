@@ -1,0 +1,974 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "DOMOD",
+        "suplierID": "unis",
+        "address": "Zmaja od Bosne 14 - Pofalići",
+        "city": "Sarajevo",
+        "website": "",
+        "email": "",
+        "phone": "+387 33 717 386"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.3931097,
+          43.8546727
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "DOMOD",
+        "suplierID": "unis",
+        "address": "Nurije Pozderca 10 - Dobrinja",
+        "city": "Sarajevo",
+        "website": "",
+        "email": "",
+        "phone": "+387 33 789 495"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.3508595,
+          43.8274183
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "DOMOD",
+        "suplierID": "unis",
+        "address": "Rustempašina 1 - Ilidža",
+        "city": "Sarajevo",
+        "website": "",
+        "email": "",
+        "phone": "+387 33 762 285"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.3081050,
+          43.8315320
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "DOMOD",
+        "suplierID": "unis",
+        "address": "Jošanička 55 - TC WOG Vogošća",
+        "city": "Sarajevo",
+        "website": "",
+        "email": "",
+        "phone": "+387 33 425 130"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.3436068,
+          43.8993269
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "SVENAKREDIT",
+        "suplierID": "unis",
+        "address": "Barska 39 - Ilidža",
+        "city": "Sarajevo",
+        "website": "",
+        "email": "",
+        "phone": "+387 33 761 645"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.2976445,
+          43.8397083
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "INTER MERKUR",
+        "suplierID": "unis",
+        "address": "Stupskabb",
+        "city": "Sarajevo",
+        "website": "",
+        "email": "",
+        "phone": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.3273419,
+          43.8380523
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "AT KERAMETAL",
+        "suplierID": "unis",
+        "address": "Rakovička cesta 88 - Ilidža",
+        "city": "Sarajevo",
+        "website": "",
+        "email": "",
+        "phone": "+387 33 774 120"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.2351919,
+          43.8520809
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "AT KERAMETAL",
+        "suplierID": "unis",
+        "address": "Vitinska 70",
+        "city": "Ljubuški",
+        "website": "",
+        "email": "",
+        "phone": "+387 39 833 799"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.540292,
+          43.192338
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "DOMOD",
+        "suplierID": "unis",
+        "address": "Trg Alije Izetbegovića 73 - Robna kuća VF",
+        "city": "Zenica",
+        "website": "",
+        "email": "",
+        "phone": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.912261,
+          44.198625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "SJEMENARNA",
+        "suplierID": "unis",
+        "address": "Obilazna cesta 27",
+        "city": "Široki Brijeg",
+        "website": "",
+        "email": "",
+        "phone": "+387 39 700 000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.587137,
+          43.378507
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "SJEMENARNA",
+        "suplierID": "unis",
+        "address": "Konjusi bb",
+        "city": "Mostar",
+        "website": "",
+        "email": "",
+        "phone": "+387 36 352 700"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.806005,
+          43.343516
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "MEGA-MARKT",
+        "suplierID": "unis",
+        "address": "Muje Pašića bb",
+        "city": "Mostar",
+        "website": "",
+        "email": "",
+        "phone": "+387 36 513 913"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.811326,
+          43.338054
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bau-Welt (OBI)",
+        "suplierID": "unis",
+        "address": "",
+        "city": "Mostar",
+        "website": "",
+        "email": "",
+        "phone": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.808623,
+          43.345888
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bau-Welt (OBI)",
+        "suplierID": "unis",
+        "address": "",
+        "city": "Banja Luka",
+        "website": "",
+        "email": "",
+        "phone": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.216370,
+          44.818017
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "VeloVelo",
+        "suplierID": "unis",
+        "address": "Bulevar 7. korpusa bb",
+        "city": "Sanski Most",
+        "website": "",
+        "email": "",
+        "phone": "+387 61 396 668"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.656360,
+          44.771102
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TELEAKUSTIK",
+        "suplierID": "unis",
+        "address": "Meše Selimovića 15",
+        "city": "Bihać",
+        "website": "",
+        "email": "",
+        "phone": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.872692,
+          44.821067
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "SZTR MONTI KOTAČ",
+        "suplierID": "unis",
+        "address": "Milana Vrhovca 1",
+        "city": "Prijedor",
+        "website": "",
+        "email": "",
+        "phone": "+387 65 543 196"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.727543,
+          44.982932
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "KOVO-COMERCE",
+        "suplierID": "unis",
+        "address": "Ozrakovići bb",
+        "city": "Visoko",
+        "website": "",
+        "email": "",
+        "phone": "+387 61 196 935"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.176612,
+          43.999736
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TEHNOGOR",
+        "suplierID": "unis",
+        "address": "Ferida Dizdarevića 25A",
+        "city": "Goražde",
+        "website": "",
+        "email": "",
+        "phone": "+387 38 222 030"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.980419,
+          43.666032
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 19 - OUTLET",
+        "suplierID": "capriolosc",
+        "address": "Svale bb (TC Bingo)",
+        "city": "Prijedor",
+        "website": "https://www.sportvision.ba/prodavnice/25-sport-vision-19-outlet",
+        "email": " sportvision19@sportvision.ba",
+        "phone": "+387 52 237 101"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.705211,
+          44.974631
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 22",
+        "suplierID": "capriolosc",
+        "address": "Vuka Karadžića bb (Pješačka zona)",
+        "city": "Pale",
+        "website": "https://www.sportvision.ba/prodavnice/14-sport-vision-22--multibrand",
+        "email": "sportvision22@sportvision.ba",
+        "phone": "+387 57 223 832"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.570125,
+          43.814783
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 24",
+        "suplierID": "capriolosc",
+        "address": "Rasadnik bb (TC Bingo) ",
+        "city": "Goražde",
+        "website": "https://www.sportvision.ba/prodavnice/7-sport-vision-24--multibrand",
+        "email": "sportvision24@sportvision.ba",
+        "phone": "+387 38 220 279"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.975175,
+          43.659509
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 30 - MULTIBRAND",
+        "suplierID": "capriolosc",
+        "address": "Svetog Save 3 (RK Zvorničanka)",
+        "city": "Zvornik",
+        "website": "https://www.sportvision.ba/prodavnice/17-sport-vision-30-multibrand",
+        "email": " sportvision30@sportvision.ba",
+        "phone": "+387 56 213 630"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.102636,
+          44.381951
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 31 - MULTIBRAND",
+        "suplierID": "capriolosc",
+        "address": "Zasad polje bb, TC Bingo",
+        "city": "Trebinje",
+        "website": "https://www.sportvision.ba/prodavnice/19-sport-vision-31-multibrand",
+        "email": " sportvision31@sportvision.ba",
+        "phone": "+387 59 240 331 "
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.339154,
+          42.70606
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 35 - MULTIBRAND",
+        "suplierID": "capriolosc",
+        "address": "Svetog Save 11",
+        "city": "Doboj",
+        "website": "https://www.sportvision.ba/prodavnice/33-sport-vision-35-multibrand",
+        "email": " sportvision35@sportvision.ba",
+        "phone": "+387 53 236 005"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.087107,
+          44.730609
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 5 - MULTIBRAND",
+        "suplierID": "capriolosc",
+        "address": "Kralja Petra I Karadjordjevica 1 (TC Emporium)",
+        "city": "Bijeljina",
+        "website": "https://www.sportvision.ba/prodavnice/8-sport-vision-5-multibrand",
+        "email": "sportvision5@sportvision.ba",
+        "phone": "+387 55 210 899"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.216111,
+          44.757504
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 1 - OUTLET",
+        "suplierID": "capriolosc",
+        "address": "Malezijski put bb (TC FIS)",
+        "city": "Brčko",
+        "website": "https://www.sportvision.ba/prodavnice/27-sport-vision-1-outlet",
+        "email": " sportvision1@sportvision.ba",
+        "phone": "+387 49 321 588"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.752513,
+          44.861897
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 10",
+        "suplierID": "capriolosc",
+        "address": "Trg Krajine bb (RK Boska)",
+        "city": "Banja Luka",
+        "website": "https://www.sportvision.ba/prodavnice/1-sportvision10",
+        "email": "sportvision10@sportvision.ba",
+        "phone": "+387 51 212 760, 211 932"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.189733,
+          44.769967
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 16",
+        "suplierID": "capriolosc",
+        "address": "Aleja Svetog Save 69 (TC Konzum Family Centar)",
+        "city": "Banja Luka",
+        "website": "https://www.sportvision.ba/prodavnice/2-sportvision16",
+        "email": " sportvision16@sportvision.ba",
+        "phone": "+387 51 314 280"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.205476,
+          44.775326
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 17 - OUTLET",
+        "suplierID": "capriolosc",
+        "address": "Branka Popovića bb, TC FIS",
+        "city": "Banja Luka",
+        "website": "https://www.sportvision.ba/prodavnice/23-sport-vision-17-outlet",
+        "email": "sportvision17@sportvision.ba",
+        "phone": "+387 51 371 751"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.210912,
+          44.817121
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 2",
+        "suplierID": "capriolosc",
+        "address": "Kralja Petra I Oslobodioca",
+        "city": "Brod",
+        "website": "https://www.sportvision.ba/prodavnice/41-sport-vision-2--multibrand",
+        "email": "sportvision2@sportvision.ba",
+        "phone": "+387 53 610 223"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.008547,
+          45.145943
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 21",
+        "suplierID": "capriolosc",
+        "address": "TC Bingo, Žrtava srebreničkog genocida bb",
+        "city": "Bihać",
+        "website": "https://www.sportvision.ba/prodavnice/5-sport-vision-21--multibrand",
+        "email": "sportvision21@sportvision.ba",
+        "phone": "+387 37 373 093"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.85229,
+          44.819981
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 25",
+        "suplierID": "capriolosc",
+        "address": "Trg zlatnih ljiljana bb (TC Ljiljan) ",
+        "city": "Cazin",
+        "website": "https://www.sportvision.ba/prodavnice/11-sport-vision-25--multibrand",
+        "email": "sportvison25@sportvision.ba",
+        "phone": "+387 37 512 237"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.937752,
+          44.965034
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 26 - OUTLET",
+        "suplierID": "capriolosc",
+        "address": "Žrtava srebreničkog genocida bb (TC FIS)",
+        "city": "Bihać",
+        "website": "https://www.sportvision.ba/prodavnice/13-sport-vision-26-outlet",
+        "email": "sportvision26@sportvision.ba",
+        "phone": "+387 37 373 104"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.851297,
+          44.818681
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 27",
+        "suplierID": "capriolosc",
+        "address": "Veselina Masleše 10",
+        "city": "Banja Luka",
+        "website": "https://www.sportvision.ba/prodavnice/12-sport-vision-27--multibrand",
+        "email": " sportvision27@sportvision.ba",
+        "phone": "+387 51 217 011"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.191328,
+          44.771563
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 33 - MULTIBRAND",
+        "suplierID": "capriolosc",
+        "address": "Bulevar mira 5  (TC Sloboprom)",
+        "city": "Brčko",
+        "website": "https://www.sportvision.ba/prodavnice/31-sport-vision-33-multibrand",
+        "email": " sportvision33@sportvision.ba",
+        "phone": "+387 49 214 963"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.812241,
+          44.876561
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 40",
+        "suplierID": "capriolosc",
+        "address": "Mepas Mall, Kardinala Stepinca bb",
+        "city": "Mostar",
+        "website": "https://www.sportvision.ba/prodavnice/35-sport-vision-40--multibrand",
+        "email": "sportvision40@sportvision.ba",
+        "phone": "+387 36 324 383"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.805112,
+          43.348754
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 8 - MULTIBRAND",
+        "suplierID": "capriolosc",
+        "address": "Akademika Jovana Raškovića 2",
+        "city": "Prijedor",
+        "website": "https://www.sportvision.ba/prodavnice/9-sport-vision-8-multibrand",
+        "email": "sportvision8@sportvision.ba",
+        "phone": "+387 52 242 951"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.710637,
+          44.978972
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 38",
+        "suplierID": "capriolosc",
+        "address": "Branilaca grada bb (TC Etna)",
+        "city": "Gračanica",
+        "website": "https://www.sportvision.ba/prodavnice/34-sport-vision-38--multibrand",
+        "email": "sportvision38@sportvision.ba",
+        "phone": "+387 35 705 212"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.308415,
+          44.687222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 9 - MULTIBRAND",
+        "suplierID": "capriolosc",
+        "address": "Ulica XIV 97 (City Center In)",
+        "city": "Orašje",
+        "website": "https://www.sportvision.ba/prodavnice/10-sport-vision-9-multibrand",
+        "email": "sportvision9@sportvision.ba",
+        "phone": "+387 31 717 190"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.699699,
+          45.026773
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 20 - OUTLET",
+        "suplierID": "capriolosc",
+        "address": "Šićki Brod bb, TC Bingo",
+        "city": "Tuzla",
+        "website": "https://www.sportvision.ba/prodavnice/26-sport-vision-20-outlet",
+        "email": " sportvision20@sportvision.ba",
+        "phone": "+387 35 215 120"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.585866,
+          44.522724
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 29 - OUTLET",
+        "suplierID": "capriolosc",
+        "address": "Franšizni centar PC96-2",
+        "city": "Vitez",
+        "website": "https://www.sportvision.ba/prodavnice/29-sport-vision-29-outlet",
+        "email": " sportvision29@sportvision.ba",
+        "phone": "+387 30 711 612"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.779575,
+          44.169527
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 36 - MULTIBRAND",
+        "suplierID": "capriolosc",
+        "address": "Kamberovića čikma TC Džananović",
+        "city": "Zenica",
+        "website": "https://www.sportvision.ba/prodavnice/18-sport-vision-36-multibrand",
+        "email": " sportvision36@sportvision.ba",
+        "phone": "+387 32 201 560"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.91206,
+          44.203255
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 41 - OUTLET",
+        "suplierID": "capriolosc",
+        "address": "Dubrovačka bb, TC Piramida",
+        "city": "Mostar",
+        "website": "https://www.sportvision.ba/prodavnice/37-sport-vision-41-outlet",
+        "email": "sportvision41@sportvision.ba",
+        "phone": "+387 36 333 485"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.797929,
+          43.349438
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 13",
+        "suplierID": "capriolosc",
+        "address": "Poslovni centar 96 (TC FIS)",
+        "city": "Vitez",
+        "website": "https://www.sportvision.ba/prodavnice/3-buzz-mostar",
+        "email": "sportvision13@sportvision.ba",
+        "phone": "+387 30 713 220"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.78117,
+          44.168468
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 23",
+        "suplierID": "capriolosc",
+        "address": "Ciglane bb (TC Bingo) ",
+        "city": "Bugojno",
+        "website": "https://www.sportvision.ba/prodavnice/6-sport-vision-23--multibrand",
+        "email": "sportvision23@sportvision.ba",
+        "phone": "+387 30 260 261"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.448138,
+          44.053916
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 3 - OUTLET",
+        "suplierID": "capriolosc",
+        "address": "Trive Amelice 1, Malta",
+        "city": "Banja Luka",
+        "website": "https://www.sportvision.ba/prodavnice/24-sport-vision-3-outlet",
+        "email": " sportvision3@sportvision.ba",
+        "phone": "+387 51 300 354"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.201213,
+          44.785602
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 45 - MULTIBRAND",
+        "suplierID": "capriolosc",
+        "address": "Tromeđa bb, TC Mališić",
+        "city": "Međugorje",
+        "website": "https://www.sportvision.ba/prodavnice/40-sport-vision-45-multibrand",
+        "email": "sportvision45@sportvision.ba",
+        "phone": "+387 36/655-534"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.668267,
+          43.207209
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 7 - OUTLET",
+        "suplierID": "capriolosc",
+        "address": "Pavlovića put bb (TC FIS)",
+        "city": "Bijeljina",
+        "website": "https://www.sportvision.ba/prodavnice/28-sport-vision-7-outlet",
+        "email": " sportvision7@sportvision.ba",
+        "phone": "+387 55 350 421"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.238961,
+          44.783293
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision 6 - MULTIBRAND",
+        "suplierID": "capriolosc",
+        "address": "Mitra Trifunovića, Bingo City Centar 2",
+        "city": "Tuzla",
+        "website": "https://www.sportvision.ba/prodavnice/4-sportvision-tuzla",
+        "email": "sportvision6@sportvision.ba",
+        "phone": "+387 35 287 180"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.642694,
+          44.529679
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sport Vision EXTRA",
+        "suplierID": "capriolosc",
+        "address": "Stupska bb",
+        "city": "Sarajevo",
+        "website": "https://www.sportvision.ba/prodavnice/43-sport-vision-extra",
+        "email": "extrasa@sportvision.ba",
+        "phone": "+387 33 764 140"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.326039,
+          43.839708
+        ]
+      }
+    }
+  ]
+}

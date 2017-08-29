@@ -30,6 +30,19 @@
     {
       "type": "Feature",
       "properties": {
+        "name": "Visoko"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.179540634155273,
+          43.988553672950474
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "name": "Zenica"
       },
       "geometry": {

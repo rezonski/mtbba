@@ -12,7 +12,7 @@ https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=CmR
 
 
 
-https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Golo+brdo&location=43.815551,18.2482736&radius=500&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis
+https://maps.googleapis.com/maps/api/place/autocomplete/json?input=intersport&location=44.974631,16.705211&radius=15000&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis
 
 
 

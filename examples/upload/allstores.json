@@ -1,0 +1,4756 @@
+{
+  "type": "FeatureCollection",
+  "allIDs": [
+    "ChIJK_ghhmzKWEcRiyldJxehwSE",
+    "ChIJF2cMBCvKWEcRpE5QHmzIJqM",
+    "ChIJ7TBkg23JWEcRD19s0_53KBM",
+    "ChIJW_heg23JWEcRwQYbmiP1mIg",
+    "ChIJPYkcg23JWEcRlf92JQqlY4U",
+    "ChIJBSkqlG3JWEcRYAbtx_X5Pgs",
+    "ChIJDWj5siDJWEcRolqo1j3MN4A",
+    "ChIJa_eLpd_IWEcRamQ7brHzgzg",
+    "ChIJj8lXd9zIWEcR24mTA2Yc3E0",
+    "ChIJtTX69xTJWEcRFEPQfJdvMcI",
+    "ChIJc5yMDhTJWEcRO8CjqDs9sHY",
+    "ChIJieDAXD7JWEcRh2i9vODasoc",
+    "ChIJY_Hlwo3JWEcRhxQw4jnCiCk",
+    "ChIJO4fnlxXKWEcRJBb0jwVnWtY",
+    "ChIJ_cnFJLtDSxMRbLaU7M7mEPw",
+    "ChIJXyZmdVpRXkcRDgE1iQ95aCE",
+    "ChIJtSFBHaRDSxMR6yATw8pjOjE",
+    "ChIJ-UwlvHRDSxMREgCl3k5TFv0",
+    "ChIJ6QFLp-AKSxMRLpfkwN6EBvM",
+    "ChIJTdp2vozhXkcRIysmmmQhUak",
+    "ChIJN-OOgdMcX0cRs8byvAdCUxU",
+    "ChIJaxFFvw0DXkcRBZR0Z8TWrnM",
+    "ChIJMQ0zAxqtXkcRWiwnkjn5n3k",
+    "ChIJz6KAeqFMWUcRh0tStYJ4t3M",
+    "ChIJwQjhkDqtXkcRknGSJSpXp6E",
+    "ChIJQ4p2YRqtXkcR41T-5GSCBo0",
+    "ChIJR63q0ks3XEcRelfe_qUXfws",
+    "ChIJZTchyDCCXkcRrdwlXRUxAQI",
+    "ChIJwRaaVQ4DXkcRRTa-oZfEaYs",
+    "ChIJ-8UzzgcDXkcRlLjUfQcjbFQ",
+    "ChIJM29t4AcDXkcRAvIsQloB7NI",
+    "ChIJr5zLihADXkcR5aXEV_0993c",
+    "ChIJp2VAkoT6YUcRCbgq9YkfH9M",
+    "ChIJB2DHe1CWfEcRGxYaEJucR9c",
+    "ChIJ24JZfMjSfEcRn1whUTq42aA",
+    "ChIJGWezpaupTRMRLPRRXJJ88II",
+    "ChIJOxI-D_86TBMRvD0Kw-R3LeI",
+    "ChIJyS2_KCgTSxMR-KWy0lNbHow",
+    "ChIJ4zHs_27uShMRv_ITtOKdamY",
+    "ChIJ26OdxFMzZ0cRwQFINbqgMUA"
+  ],
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJK_ghhmzKWEcRiyldJxehwSE",
+        "name": "Ciklo Centar",
+        "phoneNum": "+387 33 625-243",
+        "address": "Hamze Čelenke 58, Ilidža 71210, Bosnia and Herzegovina",
+        "city": "Ilidža",
+        "openingHours": [
+          {
+            "close": {
+              "day": 1,
+              "time": "1800"
+            },
+            "open": {
+              "day": 1,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "1800"
+            },
+            "open": {
+              "day": 2,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "1800"
+            },
+            "open": {
+              "day": 3,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "1800"
+            },
+            "open": {
+              "day": 4,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "1800"
+            },
+            "open": {
+              "day": 5,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "1600"
+            },
+            "open": {
+              "day": 6,
+              "time": "0900"
+            }
+          }
+        ],
+        "rating": 4.1,
+        "reviews": [
+          {
+            "author_name": "Ajdin Lokvancic",
+            "author_url": "https://www.google.com/maps/contrib/106705374561538409831/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-iQmcl-c1sXA/AAAAAAAAAAI/AAAAAAAAAAA/APJypA2aUZdFlQ0zJvki_mQkCvSBuwgH-Q/s128-c0x00000000-cc-rp-mo-ba2/photo.jpg",
+            "rating": 2,
+            "relative_time_description": "a year ago",
+            "text": "The seat of the bike we rented was a rock. I don't know How they expect me to drive a entire day with a rock under my bottom. On top of that, he didn't really listen to what I had to say about the bike's malfunctions. Rent your bike elsewhere. ",
+            "time": 1468849696
+          },
+          {
+            "author_name": "Armin Kafedžić",
+            "author_url": "https://www.google.com/maps/contrib/108659825840994244520/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-1dDhYyUwmUs/AAAAAAAAAAI/AAAAAAAAAIY/0XumcWgvZwM/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "9 months ago",
+            "text": "Great store, stuff and service",
+            "time": 1478905281
+          },
+          {
+            "author_name": "Nedim Salkovic",
+            "author_url": "https://www.google.com/maps/contrib/114409971005454471460/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-H0PE-PXjt78/AAAAAAAAAAI/AAAAAAAAAAA/APJypA3Vxl6B2nksRn4ezfzHGcrqfBs0tQ/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "6 months ago",
+            "text": "Brzo i dobro",
+            "time": 1485889157
+          },
+          {
+            "author_name": "Ozrenko Mahmutović",
+            "author_url": "https://www.google.com/maps/contrib/108796963794865696408/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-uPbBFarj-E4/AAAAAAAAAAI/AAAAAAAAj-w/-Cc8oX9BCCg/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 4,
+            "relative_time_description": "6 months ago",
+            "text": "",
+            "time": 1486983113
+          },
+          {
+            "author_name": "Zlatan Brandić",
+            "author_url": "https://www.google.com/maps/contrib/116510611099762886243/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-K18tr-Je7cI/AAAAAAAAAAI/AAAAAAAABJ4/1_9h0DEAoBI/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 4,
+            "relative_time_description": "a year ago",
+            "text": "",
+            "time": 1471916487
+          }
+        ],
+        "website": "http://ciklocentar.ba/",
+        "photos": [
+          "upload/photos/ChIJK_ghhmzKWEcRiyldJxehwSE0.jpg",
+          "upload/photos/ChIJK_ghhmzKWEcRiyldJxehwSE1.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.3022249,
+          43.8260905
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJF2cMBCvKWEcRpE5QHmzIJqM",
+        "name": "M-Bike Shop Sarajevo",
+        "phoneNum": "+387 33 766-040",
+        "address": "Aleja Bosne Srebrene 14, Sarajevo 71210, Bosnia and Herzegovina",
+        "city": "Sarajevo",
+        "openingHours": [
+          {
+            "close": {
+              "day": 1,
+              "time": "1900"
+            },
+            "open": {
+              "day": 1,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "1900"
+            },
+            "open": {
+              "day": 2,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "1900"
+            },
+            "open": {
+              "day": 3,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "1900"
+            },
+            "open": {
+              "day": 4,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "1900"
+            },
+            "open": {
+              "day": 5,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "1800"
+            },
+            "open": {
+              "day": 6,
+              "time": "0900"
+            }
+          }
+        ],
+        "rating": 5,
+        "reviews": [
+          {
+            "author_name": "Aaron Zimmer",
+            "author_url": "https://www.google.com/maps/contrib/103832514988670708001/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-vhypiBXlfpA/AAAAAAAAAAI/AAAAAAAAAAA/APJypA2gVG33LFICsybSqxdzx3CEG12gdw/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "in the last week",
+            "text": "I came here because I needed a bike box for taking my bike on the airplane. The staff was extremely generous. They gave me and my friends help packing our boxes, let us store our packed bike boxes in their shop over night, and even hooked us up with a ride to the airport. The place is very busy and has lots of good inventory. I cannot recommend their services enough!",
+            "time": 1503623201
+          },
+          {
+            "author_name": "Ed Yu",
+            "author_url": "https://www.google.com/maps/contrib/115441261978027969544/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh6.googleusercontent.com/--dnJSxHuVY0/AAAAAAAAAAI/AAAAAAAAAGY/NBPAig6i3HQ/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a week ago",
+            "text": "fair prices, knowledgeable mechanics, and most of all, excellent service. owner did not hesitate to help us out with our touring bikes as we rode from Albania to Bosnia",
+            "time": 1503279256
+          },
+          {
+            "author_name": "davidwwjd D",
+            "author_url": "https://www.google.com/maps/contrib/118404570685653913806/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-2qi8DbTytyY/AAAAAAAAAAI/AAAAAAAAAAA/APJypA0heO6cF11XFThU8wd0dpikAZ8dNQ/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "3 months ago",
+            "text": "Good prices! The staff is very friendly! I recommend!",
+            "time": 1495552738
+          },
+          {
+            "author_name": "Ci Pa",
+            "author_url": "https://www.google.com/maps/contrib/102975620961839148257/reviews",
+            "language": "bs",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-fLtJdmXT-YE/AAAAAAAAAAI/AAAAAAAAABs/dFFDIScllJI/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "Ekipa za 10!\nMomci su uljudni ,željni pomoć i veoma korektni sa cijenama,radna ekipa završavaju bicikla u najkraćem mogućem roku uz stručno osoblje,tople preporuke",
+            "time": 1471298793
+          },
+          {
+            "author_name": "Nedzmin Omerhodzic",
+            "author_url": "https://www.google.com/maps/contrib/116759571634310102831/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-hFMP0SSlqBA/AAAAAAAAAAI/AAAAAAAAAAA/APJypA31KgdTYOzqkrJ-ENQjUD1JtoYUyQ/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "4 months ago",
+            "text": "Ljubazno i profesionalno osoblje.  Sve pohvale.",
+            "time": 1491687175
+          }
+        ],
+        "website": "http://www.m-bikeshop.com/",
+        "photos": [
+          "upload/photos/ChIJF2cMBCvKWEcRpE5QHmzIJqM0.jpg",
+          "upload/photos/ChIJF2cMBCvKWEcRpE5QHmzIJqM1.jpg",
+          "upload/photos/ChIJF2cMBCvKWEcRpE5QHmzIJqM2.jpg",
+          "upload/photos/ChIJF2cMBCvKWEcRpE5QHmzIJqM3.jpg",
+          "upload/photos/ChIJF2cMBCvKWEcRpE5QHmzIJqM4.jpg",
+          "upload/photos/ChIJF2cMBCvKWEcRpE5QHmzIJqM5.jpg",
+          "upload/photos/ChIJF2cMBCvKWEcRpE5QHmzIJqM6.jpg",
+          "upload/photos/ChIJF2cMBCvKWEcRpE5QHmzIJqM7.jpg",
+          "upload/photos/ChIJF2cMBCvKWEcRpE5QHmzIJqM8.jpg",
+          "upload/photos/ChIJF2cMBCvKWEcRpE5QHmzIJqM9.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.3386413,
+          43.8421049
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJ7TBkg23JWEcRD19s0_53KBM",
+        "name": "TREK BIKE CENTAR (BE-HA PROMO doo)",
+        "phoneNum": "+387 33 979-411",
+        "address": "Gradačačka 29/5, Sarajevo 71000, Bosnia and Herzegovina",
+        "city": "Sarajevo",
+        "openingHours": [
+          {
+            "close": {
+              "day": 1,
+              "time": "1800"
+            },
+            "open": {
+              "day": 1,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "1800"
+            },
+            "open": {
+              "day": 2,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "1800"
+            },
+            "open": {
+              "day": 3,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "1800"
+            },
+            "open": {
+              "day": 4,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "1800"
+            },
+            "open": {
+              "day": 5,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "1800"
+            },
+            "open": {
+              "day": 6,
+              "time": "1000"
+            }
+          }
+        ],
+        "rating": 5,
+        "reviews": [
+          {
+            "author_name": "Bakir Zolj",
+            "author_url": "https://www.google.com/maps/contrib/101013252647422460960/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-y_MGefoWON8/AAAAAAAAAAI/AAAAAAAAANE/28r1UNp3L_I/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "",
+            "time": 1465911963
+          },
+          {
+            "author_name": "lily beba",
+            "author_url": "https://www.google.com/maps/contrib/101487022796597096028/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-oW7vb8P-wn8/AAAAAAAAAAI/AAAAAAAAAAA/APJypA0mCS5vYPjf1C0glZ71d98L2tmGeQ/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "",
+            "time": 1461948710
+          },
+          {
+            "author_name": "faruk pita",
+            "author_url": "https://www.google.com/maps/contrib/117472951121547725374/reviews",
+            "language": "de",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-xVSqFNi8XcU/AAAAAAAAAAI/AAAAAAAAAC0/LJg3I7b9KC8/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "",
+            "time": 1461856472
+          },
+          {
+            "author_name": "Samir Habota",
+            "author_url": "https://www.google.com/maps/contrib/106427692289059374526/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-0njKaYOpUNc/AAAAAAAAAAI/AAAAAAAAI4k/j__Klee8jSM/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "",
+            "time": 1461851134
+          }
+        ],
+        "website": "http://bicikla.ba/",
+        "photos": [
+          "upload/photos/ChIJ7TBkg23JWEcRD19s0_53KBM0.jpg",
+          "upload/photos/ChIJ7TBkg23JWEcRD19s0_53KBM1.jpg",
+          "upload/photos/ChIJ7TBkg23JWEcRD19s0_53KBM2.jpg",
+          "upload/photos/ChIJ7TBkg23JWEcRD19s0_53KBM3.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.3701853,
+          43.84892569999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJW_heg23JWEcRwQYbmiP1mIg",
+        "name": "BE-HA PROMO doo",
+        "phoneNum": "+387 33 979-411",
+        "address": "Gradačačaka 5, Gradačačka 29, Sarajevo 71000, Bosnia and Herzegovina",
+        "city": "Sarajevo",
+        "openingHours": [
+          {
+            "close": {
+              "day": 1,
+              "time": "1800"
+            },
+            "open": {
+              "day": 1,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "1800"
+            },
+            "open": {
+              "day": 2,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "1800"
+            },
+            "open": {
+              "day": 3,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "1800"
+            },
+            "open": {
+              "day": 4,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "1800"
+            },
+            "open": {
+              "day": 5,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "1800"
+            },
+            "open": {
+              "day": 6,
+              "time": "1000"
+            }
+          }
+        ],
+        "rating": 5,
+        "reviews": [
+          {
+            "author_name": "Samir Habota",
+            "author_url": "https://www.google.com/maps/contrib/106427692289059374526/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-0njKaYOpUNc/AAAAAAAAAAI/AAAAAAAAI4k/j__Klee8jSM/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "",
+            "time": 1466075664
+          },
+          {
+            "author_name": "lily beba",
+            "author_url": "https://www.google.com/maps/contrib/101487022796597096028/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-oW7vb8P-wn8/AAAAAAAAAAI/AAAAAAAAAAA/APJypA0mCS5vYPjf1C0glZ71d98L2tmGeQ/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "",
+            "time": 1461948687
+          },
+          {
+            "author_name": "faruk pita",
+            "author_url": "https://www.google.com/maps/contrib/117472951121547725374/reviews",
+            "language": "de",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-xVSqFNi8XcU/AAAAAAAAAAI/AAAAAAAAAC0/LJg3I7b9KC8/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "",
+            "time": 1461856505
+          }
+        ],
+        "website": "http://behapromo.ba/",
+        "photos": [
+          "upload/photos/ChIJW_heg23JWEcRwQYbmiP1mIg0.jpg",
+          "upload/photos/ChIJW_heg23JWEcRwQYbmiP1mIg1.jpg",
+          "upload/photos/ChIJW_heg23JWEcRwQYbmiP1mIg2.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.3702088,
+          43.8489317
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJPYkcg23JWEcRlf92JQqlY4U",
+        "name": "Trek Bike Center",
+        "phoneNum": "+387 33 979-411",
+        "address": "Gradačačka 29/5, Sarajevo 71000, Bosnia and Herzegovina",
+        "city": "Sarajevo",
+        "openingHours": [
+          {
+            "close": {
+              "day": 1,
+              "time": "1800"
+            },
+            "open": {
+              "day": 1,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "1800"
+            },
+            "open": {
+              "day": 2,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "1800"
+            },
+            "open": {
+              "day": 3,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "1800"
+            },
+            "open": {
+              "day": 4,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "1800"
+            },
+            "open": {
+              "day": 5,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "1800"
+            },
+            "open": {
+              "day": 6,
+              "time": "1000"
+            }
+          }
+        ],
+        "rating": 4.8,
+        "reviews": [
+          {
+            "author_name": "Ema Johnson",
+            "author_url": "https://www.google.com/maps/contrib/107772999552466629426/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-DZKMGBQ57bI/AAAAAAAAAAI/AAAAAAAAAAA/APJypA3Ib_xw3Bkj-rfTIe0olJMLNaNoIg/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "3 weeks ago",
+            "text": "Nice store, nice people ;) ",
+            "time": 1502003009
+          },
+          {
+            "author_name": "Mirza Plavcic",
+            "author_url": "https://www.google.com/maps/contrib/118282927454053595938/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-vAN_gFDrelc/AAAAAAAAAAI/AAAAAAAARIU/k7HOFDE1lpQ/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 4,
+            "relative_time_description": "a month ago",
+            "text": "",
+            "time": 1500656011
+          },
+          {
+            "author_name": "Haris Muharemović",
+            "author_url": "https://www.google.com/maps/contrib/103192703500554082986/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-63JHF9021c8/AAAAAAAAAAI/AAAAAAAAAAA/APJypA2fNqzafY_LSSi5dyMI7PieQDpeBw/s128-c0x00000000-cc-rp-mo-ba2/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "5 months ago",
+            "text": "",
+            "time": 1489997636
+          },
+          {
+            "author_name": "Edin Causevic",
+            "author_url": "https://www.google.com/maps/contrib/114193839102411887340/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-olUZiGhaXG0/AAAAAAAAAAI/AAAAAAAAAAA/APJypA0flLn1_kicITL6YC6sSl9BP0ubbg/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "10 months ago",
+            "text": "",
+            "time": 1475666835
+          },
+          {
+            "author_name": "Muhamed Budimlic",
+            "author_url": "https://www.google.com/maps/contrib/106442174833681791592/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-juUySRY3tL4/AAAAAAAAAAI/AAAAAAAAAOI/P6hghexvw4Q/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "2 months ago",
+            "text": "",
+            "time": 1497342586
+          }
+        ],
+        "website": "http://www.bicikla.ba/",
+        "photos": [
+          "upload/photos/ChIJPYkcg23JWEcRlf92JQqlY4U0.jpg",
+          "upload/photos/ChIJPYkcg23JWEcRlf92JQqlY4U1.jpg",
+          "upload/photos/ChIJPYkcg23JWEcRlf92JQqlY4U2.jpg",
+          "upload/photos/ChIJPYkcg23JWEcRlf92JQqlY4U3.jpg",
+          "upload/photos/ChIJPYkcg23JWEcRlf92JQqlY4U4.jpg",
+          "upload/photos/ChIJPYkcg23JWEcRlf92JQqlY4U5.jpg",
+          "upload/photos/ChIJPYkcg23JWEcRlf92JQqlY4U6.jpg",
+          "upload/photos/ChIJPYkcg23JWEcRlf92JQqlY4U7.jpg",
+          "upload/photos/ChIJPYkcg23JWEcRlf92JQqlY4U8.jpg",
+          "upload/photos/ChIJPYkcg23JWEcRlf92JQqlY4U9.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.370242,
+          43.8489344
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJBSkqlG3JWEcRYAbtx_X5Pgs",
+        "name": "Capriolo Sport Centar SA2",
+        "phoneNum": "+387 33 663-402",
+        "address": "Bulevar Meše Selimovića 25, Sarajevo 71000, Bosnia and Herzegovina",
+        "city": "Sarajevo",
+        "openingHours": [
+          {
+            "close": {
+              "day": 0,
+              "time": "2000"
+            },
+            "open": {
+              "day": 0,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 1,
+              "time": "2000"
+            },
+            "open": {
+              "day": 1,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "2000"
+            },
+            "open": {
+              "day": 2,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "2000"
+            },
+            "open": {
+              "day": 3,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "2000"
+            },
+            "open": {
+              "day": 4,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "2000"
+            },
+            "open": {
+              "day": 5,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "2000"
+            },
+            "open": {
+              "day": 6,
+              "time": "1000"
+            }
+          }
+        ],
+        "rating": 4.5,
+        "reviews": [
+          {
+            "author_name": "Mirza Plavcic",
+            "author_url": "https://www.google.com/maps/contrib/118282927454053595938/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-vAN_gFDrelc/AAAAAAAAAAI/AAAAAAAARIU/k7HOFDE1lpQ/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 3,
+            "relative_time_description": "8 months ago",
+            "text": "",
+            "time": 1481558009
+          },
+          {
+            "author_name": "Boris Ljujic",
+            "author_url": "https://www.google.com/maps/contrib/104409680630541940876/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-c3Cvv41MHZg/AAAAAAAAAAI/AAAAAAAAADw/0ddf84V-_LY/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "",
+            "time": 1460757741
+          },
+          {
+            "author_name": "Dragisa Grbovic",
+            "author_url": "https://www.google.com/maps/contrib/116273920344750335967/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-OYUYIYJKXnM/AAAAAAAAAAI/AAAAAAAAAAA/APJypA2kHigNuOrarxGJ-hW2rRIzh8zIZQ/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "4 months ago",
+            "text": "",
+            "time": 1492686330
+          },
+          {
+            "author_name": "awesome 0909",
+            "author_url": "https://www.google.com/maps/contrib/116210102889473143037/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-36IQKBHVYNc/AAAAAAAAAAI/AAAAAAAABI0/y-a_S6SrFFs/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "",
+            "time": 1468139143
+          }
+        ],
+        "website": "http://jabihcapriolo.com/",
+        "photos": [
+          "upload/photos/ChIJBSkqlG3JWEcRYAbtx_X5Pgs0.jpg",
+          "upload/photos/ChIJBSkqlG3JWEcRYAbtx_X5Pgs1.jpg",
+          "upload/photos/ChIJBSkqlG3JWEcRYAbtx_X5Pgs2.jpg",
+          "upload/photos/ChIJBSkqlG3JWEcRYAbtx_X5Pgs3.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.374199,
+          43.850132
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJDWj5siDJWEcRolqo1j3MN4A",
+        "name": "Ciklo Centar",
+        "phoneNum": "+387 33 209-648",
+        "address": "Zmaja od Bosne 4, Sarajevo 71000, Bosnia and Herzegovina",
+        "city": "Sarajevo",
+        "openingHours": [
+          {
+            "close": {
+              "day": 1,
+              "time": "1900"
+            },
+            "open": {
+              "day": 1,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "1900"
+            },
+            "open": {
+              "day": 2,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "1900"
+            },
+            "open": {
+              "day": 3,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "1900"
+            },
+            "open": {
+              "day": 4,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "1900"
+            },
+            "open": {
+              "day": 5,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "1600"
+            },
+            "open": {
+              "day": 6,
+              "time": "1000"
+            }
+          }
+        ],
+        "rating": 5,
+        "reviews": [
+          {
+            "author_name": "faruk prses",
+            "author_url": "https://www.google.com/maps/contrib/101124142109065564419/reviews",
+            "language": "tr",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-WUfmtiY2Rtk/AAAAAAAAAAI/AAAAAAAAAC4/7IOXMi0I1A8/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "5 months ago",
+            "text": "Za rekreativce bikere super mjesto. ",
+            "time": 1488751396
+          },
+          {
+            "author_name": "Elmir Tozo",
+            "author_url": "https://www.google.com/maps/contrib/115785584407905109980/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-Entq0ixXRGk/AAAAAAAAAAI/AAAAAAAAACk/8j6VKdqIYS4/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "5 months ago",
+            "text": "odlični u svakom pogledu",
+            "time": 1488801221
+          },
+          {
+            "author_name": "Tahir Alispahic",
+            "author_url": "https://www.google.com/maps/contrib/108740108118306835941/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-EWrAJ5Jr2nw/AAAAAAAAAAI/AAAAAAAAEvQ/pWS4hsAM5ZY/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "10 months ago",
+            "text": "Super mjesto, raj za bicikliste.",
+            "time": 1477775998
+          },
+          {
+            "author_name": "Mirza Plavcic",
+            "author_url": "https://www.google.com/maps/contrib/118282927454053595938/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-vAN_gFDrelc/AAAAAAAAAAI/AAAAAAAARIU/k7HOFDE1lpQ/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "11 months ago",
+            "text": "",
+            "time": 1474125747
+          },
+          {
+            "author_name": "Edin Causevic",
+            "author_url": "https://www.google.com/maps/contrib/114193839102411887340/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-olUZiGhaXG0/AAAAAAAAAAI/AAAAAAAAAAA/APJypA0flLn1_kicITL6YC6sSl9BP0ubbg/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "",
+            "time": 1458072096
+          }
+        ],
+        "website": "http://www.ciklocentar.com/",
+        "photos": [
+          "upload/photos/ChIJDWj5siDJWEcRolqo1j3MN4A0.jpg",
+          "upload/photos/ChIJDWj5siDJWEcRolqo1j3MN4A1.jpg",
+          "upload/photos/ChIJDWj5siDJWEcRolqo1j3MN4A2.jpg",
+          "upload/photos/ChIJDWj5siDJWEcRolqo1j3MN4A3.jpg",
+          "upload/photos/ChIJDWj5siDJWEcRolqo1j3MN4A4.jpg",
+          "upload/photos/ChIJDWj5siDJWEcRolqo1j3MN4A5.jpg",
+          "upload/photos/ChIJDWj5siDJWEcRolqo1j3MN4A6.jpg",
+          "upload/photos/ChIJDWj5siDJWEcRolqo1j3MN4A7.jpg",
+          "upload/photos/ChIJDWj5siDJWEcRolqo1j3MN4A8.jpg",
+          "upload/photos/ChIJDWj5siDJWEcRolqo1j3MN4A9.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.404203,
+          43.85655999999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJa_eLpd_IWEcRamQ7brHzgzg",
+        "name": "Capriolo Sport Centar SA1",
+        "phoneNum": "+387 33 216-159",
+        "address": "Vilsonovo šetalište 4, Sarajevo 71000, Bosnia and Herzegovina",
+        "city": "Sarajevo",
+        "openingHours": [],
+        "rating": 0,
+        "reviews": [],
+        "website": "http://www.jabihcapriolo.com/",
+        "photos": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.405774,
+          43.853699
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJj8lXd9zIWEcR24mTA2Yc3E0",
+        "name": "Bogolivestrong",
+        "phoneNum": "+387 61 356 293",
+        "address": "Terezija, Sarajevo 71000, Bosnia and Herzegovina",
+        "city": "Sarajevo",
+        "openingHours": [
+          {
+            "close": {
+              "day": 1,
+              "time": "1800"
+            },
+            "open": {
+              "day": 1,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "1800"
+            },
+            "open": {
+              "day": 2,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "1800"
+            },
+            "open": {
+              "day": 3,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "1800"
+            },
+            "open": {
+              "day": 4,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "1800"
+            },
+            "open": {
+              "day": 5,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "1800"
+            },
+            "open": {
+              "day": 6,
+              "time": "1000"
+            }
+          }
+        ],
+        "rating": 5,
+        "reviews": [
+          {
+            "author_name": "Marko Vistica",
+            "author_url": "https://www.google.com/maps/contrib/116330359988850660880/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-n6VLfmyA-M0/AAAAAAAAAAI/AAAAAAAABJg/9NYdsKwPXQU/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "Best bicycle maintenance and repair store.",
+            "time": 1447759355
+          },
+          {
+            "author_name": "Dario Hadzic",
+            "author_url": "https://www.google.com/maps/contrib/107643410293631851671/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-nMxyTcXTujE/AAAAAAAAAAI/AAAAAAAAAAA/APJypA0iIbYrXQHKvozVityyiSMXQeTqVg/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "10 months ago",
+            "text": "best service",
+            "time": 1475750658
+          },
+          {
+            "author_name": "Tahir Alispahic",
+            "author_url": "https://www.google.com/maps/contrib/108740108118306835941/reviews",
+            "language": "bs",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-EWrAJ5Jr2nw/AAAAAAAAAAI/AAAAAAAAEvQ/pWS4hsAM5ZY/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "9 months ago",
+            "text": "Odličan!",
+            "time": 1478801973
+          },
+          {
+            "author_name": "Arman Hasanbegovic",
+            "author_url": "https://www.google.com/maps/contrib/106927327740626011244/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-q8mqq970agM/AAAAAAAAAAI/AAAAAAAAADY/TOURfsLbGAo/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "",
+            "time": 1467805837
+          }
+        ],
+        "website": "http://www.bogolivestrong.com/",
+        "photos": [
+          "upload/photos/ChIJj8lXd9zIWEcR24mTA2Yc3E00.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.4132603,
+          43.8549199
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJtTX69xTJWEcRFEPQfJdvMcI",
+        "name": "UNIS",
+        "phoneNum": "+387 33 725-360",
+        "address": "Envera Šehovića 54, Sarajevo 71000, Bosnia and Herzegovina",
+        "city": "Sarajevo",
+        "openingHours": [
+          {
+            "close": {
+              "day": 1,
+              "time": "1600"
+            },
+            "open": {
+              "day": 1,
+              "time": "0730"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "1600"
+            },
+            "open": {
+              "day": 2,
+              "time": "0730"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "1600"
+            },
+            "open": {
+              "day": 3,
+              "time": "0730"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "1600"
+            },
+            "open": {
+              "day": 4,
+              "time": "0730"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "1600"
+            },
+            "open": {
+              "day": 5,
+              "time": "0730"
+            }
+          }
+        ],
+        "rating": 4,
+        "reviews": [
+          {
+            "author_name": "Ivan Markoviç",
+            "author_url": "https://www.google.com/maps/contrib/117768495595215304782/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-wTYRfrxxjuM/AAAAAAAAAAI/AAAAAAAAAAA/APJypA3loGfLspEz6sla6I1w61aioPA91w/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 4,
+            "relative_time_description": "a year ago",
+            "text": "",
+            "time": 1467139952
+          }
+        ],
+        "website": "http://www.bicycles.unis.ba/",
+        "photos": [
+          "upload/photos/ChIJtTX69xTJWEcRFEPQfJdvMcI0.jpg",
+          "upload/photos/ChIJtTX69xTJWEcRFEPQfJdvMcI1.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.3796012,
+          43.853125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJc5yMDhTJWEcRO8CjqDs9sHY",
+        "name": "Planet Bike",
+        "phoneNum": "+387 33 647-972",
+        "address": "Zmaja od Bosne 85, Sarajevo 71000, Bosnia and Herzegovina",
+        "city": "Sarajevo",
+        "openingHours": [
+          {
+            "close": {
+              "day": 1,
+              "time": "2100"
+            },
+            "open": {
+              "day": 1,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "2100"
+            },
+            "open": {
+              "day": 2,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "2100"
+            },
+            "open": {
+              "day": 3,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "2100"
+            },
+            "open": {
+              "day": 4,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "2100"
+            },
+            "open": {
+              "day": 5,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "1700"
+            },
+            "open": {
+              "day": 6,
+              "time": "0900"
+            }
+          }
+        ],
+        "rating": 3.2,
+        "reviews": [
+          {
+            "author_name": "Mahdi Brcaninovic",
+            "author_url": "https://www.google.com/maps/contrib/102007903643696408261/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh3.googleusercontent.com/--HiPTH49OR8/AAAAAAAAAAI/AAAAAAAAAAA/APJypA2AHHKJTi6tpp5IE86kqnnGtgqTJw/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 1,
+            "relative_time_description": "a month ago",
+            "text": "Obmanjen, prevaren, izigran, nepoštivan kao kupac. Razočaran sam i ljut na ono što su mi učinili ovdje. Toplo savjetujem izbjegavanje!",
+            "time": 1500536889
+          },
+          {
+            "author_name": "Haris Muharemović",
+            "author_url": "https://www.google.com/maps/contrib/103192703500554082986/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-63JHF9021c8/AAAAAAAAAAI/AAAAAAAAAAA/APJypA2fNqzafY_LSSi5dyMI7PieQDpeBw/s128-c0x00000000-cc-rp-mo-ba2/photo.jpg",
+            "rating": 3,
+            "relative_time_description": "5 months ago",
+            "text": "",
+            "time": 1489997306
+          },
+          {
+            "author_name": "Dejan Marić",
+            "author_url": "https://www.google.com/maps/contrib/102376099432836966809/reviews",
+            "language": "bs",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-h0NCW7-4Szw/AAAAAAAAAAI/AAAAAAAAAMk/WMTwiqQrHjU/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "",
+            "time": 1463932897
+          },
+          {
+            "author_name": "Alen Mujic",
+            "author_url": "https://www.google.com/maps/contrib/105177800348683129336/reviews",
+            "language": "ru",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-dN-xOh2QbOw/AAAAAAAAAAI/AAAAAAAAABU/0sFgFSEwp_A/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 4,
+            "relative_time_description": "a year ago",
+            "text": "",
+            "time": 1459337496
+          }
+        ],
+        "website": "http://www.planetbike.ba/",
+        "photos": [
+          "upload/photos/ChIJc5yMDhTJWEcRO8CjqDs9sHY0.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.3806594,
+          43.8515699
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJieDAXD7JWEcRh2i9vODasoc",
+        "name": "INTERSPORT",
+        "phoneNum": "+387 33 286-211",
+        "address": "Ložionička 16, Sarajevo 71000, Bosnia and Herzegovina",
+        "city": "Sarajevo",
+        "openingHours": [
+          {
+            "close": {
+              "day": 0,
+              "time": "1600"
+            },
+            "open": {
+              "day": 0,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 1,
+              "time": "2100"
+            },
+            "open": {
+              "day": 1,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "2100"
+            },
+            "open": {
+              "day": 2,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "2100"
+            },
+            "open": {
+              "day": 3,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "2100"
+            },
+            "open": {
+              "day": 4,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "2100"
+            },
+            "open": {
+              "day": 5,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "2100"
+            },
+            "open": {
+              "day": 6,
+              "time": "0900"
+            }
+          }
+        ],
+        "rating": 4.1,
+        "reviews": [
+          {
+            "author_name": "Nikola Đorđevski",
+            "author_url": "https://www.google.com/maps/contrib/107427221368299893188/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh4.googleusercontent.com/--aSnLURDBys/AAAAAAAAAAI/AAAAAAAAAFI/LOuFv-r0plc/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 1,
+            "relative_time_description": "2 months ago",
+            "text": "Zovnem na telefon za upit, receno mi je da zovnem opet za 2 minute da mi se onda nebi javljali i napokon da bi iskljucili telefon. Kao da ih pljackam a ne kupujem od njih!!",
+            "time": 1497946015
+          },
+          {
+            "author_name": "Enis Cosic",
+            "author_url": "https://www.google.com/maps/contrib/113035538329523088382/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-O4gBA-ZMbSY/AAAAAAAAAAI/AAAAAAAAGwQ/xzDXFKtxwU4/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 4,
+            "relative_time_description": "a month ago",
+            "text": "Dobaz izbor sportske opreme",
+            "time": 1499164756
+          },
+          {
+            "author_name": "Fedja Begovic",
+            "author_url": "https://www.google.com/maps/contrib/104773066612976062388/reviews",
+            "language": "sl",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-G7Vd_dsqGPg/AAAAAAAAAAI/AAAAAAAAAzk/r2uaaWagRqo/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 2,
+            "relative_time_description": "5 months ago",
+            "text": "Pojedine prodavacice su jako neljubazne ",
+            "time": 1489919228
+          },
+          {
+            "author_name": "Crni Orao",
+            "author_url": "https://www.google.com/maps/contrib/112906653119552899508/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-7ShZGS9O8BQ/AAAAAAAAAAI/AAAAAAAAABY/SPuvt_Iok5o/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "Najbolji izbor sportske opreme u BiH....",
+            "time": 1470063591
+          },
+          {
+            "author_name": "loomerka aaa",
+            "author_url": "https://www.google.com/maps/contrib/112589599893816081921/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-yWEHJD2VmzM/AAAAAAAAAAI/AAAAAAAAACE/ytoibgE-Ndg/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 4,
+            "relative_time_description": "8 months ago",
+            "text": "To vise nije na ovom mjestu",
+            "time": 1482656382
+          }
+        ],
+        "website": "http://www.intersport.ba/",
+        "photos": [
+          "upload/photos/ChIJieDAXD7JWEcRh2i9vODasoc0.jpg",
+          "upload/photos/ChIJieDAXD7JWEcRh2i9vODasoc1.jpg",
+          "upload/photos/ChIJieDAXD7JWEcRh2i9vODasoc2.jpg",
+          "upload/photos/ChIJieDAXD7JWEcRh2i9vODasoc3.jpg",
+          "upload/photos/ChIJieDAXD7JWEcRh2i9vODasoc4.jpg",
+          "upload/photos/ChIJieDAXD7JWEcRh2i9vODasoc5.jpg",
+          "upload/photos/ChIJieDAXD7JWEcRh2i9vODasoc6.jpg",
+          "upload/photos/ChIJieDAXD7JWEcRh2i9vODasoc7.jpg",
+          "upload/photos/ChIJieDAXD7JWEcRh2i9vODasoc8.jpg",
+          "upload/photos/ChIJieDAXD7JWEcRh2i9vODasoc9.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.3837265,
+          43.8572176
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJY_Hlwo3JWEcRhxQw4jnCiCk",
+        "name": "INTERSPORT",
+        "phoneNum": "+387 33 294-505",
+        "address": "Bulevar Mimara Sinana 1, Sarajevo 71000, Bosnia and Herzegovina",
+        "city": "Sarajevo",
+        "openingHours": [
+          {
+            "close": {
+              "day": 0,
+              "time": "1800"
+            },
+            "open": {
+              "day": 0,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 1,
+              "time": "2100"
+            },
+            "open": {
+              "day": 1,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "2100"
+            },
+            "open": {
+              "day": 2,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "2100"
+            },
+            "open": {
+              "day": 3,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "2100"
+            },
+            "open": {
+              "day": 4,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "2100"
+            },
+            "open": {
+              "day": 5,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "2100"
+            },
+            "open": {
+              "day": 6,
+              "time": "0900"
+            }
+          }
+        ],
+        "rating": 3,
+        "reviews": [
+          {
+            "author_name": "Kathryn Whalley",
+            "author_url": "https://www.google.com/maps/contrib/106141762323390273103/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-D8d651atfWY/AAAAAAAAAAI/AAAAAAAAAAA/APJypA2ZIFvmeB0_WXnK25RT_uQ1FzQOhQ/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 3,
+            "relative_time_description": "8 months ago",
+            "text": "Smaller intersport store with a reasonable selection. Very focused on winter sports when I was there (in winter, so understandable). Staff were friendly.",
+            "time": 1482960997
+          },
+          {
+            "author_name": "Kiril Georgiev",
+            "author_url": "https://www.google.com/maps/contrib/101263618063914635009/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-cz1Der7Rcos/AAAAAAAAAAI/AAAAAAAAioc/fFtWFd1cblI/s128-c0x00000000-cc-rp-mo-ba5/photo.jpg",
+            "rating": 3,
+            "relative_time_description": "a year ago",
+            "text": "One of the smallest Intersports in the city.  Almost nothing interesting to find over here. ",
+            "time": 1460961799
+          }
+        ],
+        "website": "http://www.intersport.ba/",
+        "photos": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.3447325,
+          43.8283274
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJO4fnlxXKWEcRJBb0jwVnWtY",
+        "name": "INTERSPORT",
+        "phoneNum": "+387 33 286-323",
+        "address": "Butmirska cesta 14, Ilidža 71210, Bosnia and Herzegovina",
+        "city": "Ilidža",
+        "openingHours": [
+          {
+            "close": {
+              "day": 0,
+              "time": "1800"
+            },
+            "open": {
+              "day": 0,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 1,
+              "time": "2100"
+            },
+            "open": {
+              "day": 1,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "2100"
+            },
+            "open": {
+              "day": 2,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "2100"
+            },
+            "open": {
+              "day": 3,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "2100"
+            },
+            "open": {
+              "day": 4,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "2100"
+            },
+            "open": {
+              "day": 5,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "2100"
+            },
+            "open": {
+              "day": 6,
+              "time": "0900"
+            }
+          }
+        ],
+        "rating": 4.2,
+        "reviews": [
+          {
+            "author_name": "Sadi Matar",
+            "author_url": "https://www.google.com/maps/contrib/111059382053459310000/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-GCuD0-cmTAQ/AAAAAAAAAAI/AAAAAAAAE8w/p-ducCuotik/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 3,
+            "relative_time_description": "10 months ago",
+            "text": "Sport stuff, a bit expensive shop.",
+            "time": 1477781029
+          },
+          {
+            "author_name": "ASplus BiH",
+            "author_url": "https://www.google.com/maps/contrib/110938114143476263973/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-DQRBzhjBijA/AAAAAAAAAAI/AAAAAAAAACE/qfylZvPOqsg/s128-c0x00000000-cc-rp-mo-ba5/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "Super",
+            "time": 1467318150
+          },
+          {
+            "author_name": "Nermin Čolić",
+            "author_url": "https://www.google.com/maps/contrib/100748443535902839461/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-ke8f8UPE_8Q/AAAAAAAAAAI/AAAAAAAAJU0/MdqKb2CS5ck/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "sve sto trebate za sport ",
+            "time": 1462445437
+          },
+          {
+            "author_name": "منصور الخيارين",
+            "author_url": "https://www.google.com/maps/contrib/107951808545013003797/reviews",
+            "language": "ar",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-WdkN_bzq5QM/AAAAAAAAAAI/AAAAAAAAABk/Jc8fwQE-sck/s128-c0x00000000-cc-rp-mo-ba5/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "11 months ago",
+            "text": "محل اجهزة رياضية جوده عالية",
+            "time": 1474093161
+          },
+          {
+            "author_name": "Bosnian Drifftor",
+            "author_url": "https://www.google.com/maps/contrib/117938015969299630330/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-Pzw45qzpM-U/AAAAAAAAAAI/AAAAAAAAAFQ/C8MepCPAPDQ/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 3,
+            "relative_time_description": "5 months ago",
+            "text": "",
+            "time": 1491052271
+          }
+        ],
+        "website": "http://www.intersport.ba/",
+        "photos": [
+          "upload/photos/ChIJO4fnlxXKWEcRJBb0jwVnWtY0.jpg",
+          "upload/photos/ChIJO4fnlxXKWEcRJBb0jwVnWtY1.jpg",
+          "upload/photos/ChIJO4fnlxXKWEcRJBb0jwVnWtY2.jpg",
+          "upload/photos/ChIJO4fnlxXKWEcRJBb0jwVnWtY3.jpg",
+          "upload/photos/ChIJO4fnlxXKWEcRJBb0jwVnWtY4.jpg",
+          "upload/photos/ChIJO4fnlxXKWEcRJBb0jwVnWtY5.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.3112264,
+          43.8287183
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJ_cnFJLtDSxMRbLaU7M7mEPw",
+        "name": "INTERSPORT",
+        "phoneNum": "+387 33 294-537",
+        "address": "Stjepana Radića 39, Mostar 88000, Bosnia and Herzegovina",
+        "city": "Mostar",
+        "openingHours": [
+          {
+            "close": {
+              "day": 0,
+              "time": "1600"
+            },
+            "open": {
+              "day": 0,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 1,
+              "time": "2100"
+            },
+            "open": {
+              "day": 1,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "2100"
+            },
+            "open": {
+              "day": 2,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "2100"
+            },
+            "open": {
+              "day": 3,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "2100"
+            },
+            "open": {
+              "day": 4,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "2100"
+            },
+            "open": {
+              "day": 5,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "2100"
+            },
+            "open": {
+              "day": 6,
+              "time": "0900"
+            }
+          }
+        ],
+        "rating": 4.2,
+        "reviews": [
+          {
+            "author_name": "Aldin Nezirić",
+            "author_url": "https://www.google.com/maps/contrib/116349759922929523870/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-kClJLR-G8nE/AAAAAAAAAAI/AAAAAAAAcz8/FJwKvyAGx_A/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "9 months ago",
+            "text": "I had a pleasant shopping experience there. Place got nice offer of mountaineering gear, especially McKinley. I would recommend this one. ",
+            "time": 1480689952
+          },
+          {
+            "author_name": "Admir Avdić",
+            "author_url": "https://www.google.com/maps/contrib/108457106121509093278/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-tr_rxRSN_AI/AAAAAAAAAAI/AAAAAAAAAJs/XgY4owFpLVw/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 4,
+            "relative_time_description": "a year ago",
+            "text": "Nice sportswear store!",
+            "time": 1464454562
+          },
+          {
+            "author_name": "Leonardo Miljko",
+            "author_url": "https://www.google.com/maps/contrib/111513619703508804826/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-dw1eJoz2-Bw/AAAAAAAAAAI/AAAAAAAAANY/JDP-3OKNbx0/s128-c0x00000000-cc-rp-mo-ba5/photo.jpg",
+            "rating": 3,
+            "relative_time_description": "11 months ago",
+            "text": "Ok",
+            "time": 1474206598
+          },
+          {
+            "author_name": "nodi niksic",
+            "author_url": "https://www.google.com/maps/contrib/116603959915213609402/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-iKuGV3f_NIA/AAAAAAAAAAI/AAAAAAAAAAA/APJypA1iAys0QgRYzwTAtdWZlAkUJWkT0A/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 1,
+            "relative_time_description": "4 months ago",
+            "text": "Evropske cijene standardi bosanski. Nakon sto sam salom tene platio 309 KM iste su pukle za samo 3 mjeseca. Objasnjenje je da sam ih eksplatisao .\r\n\r\nTako da bi zelio da upozorim sve one koji masno plate neki od proizvida da nemaju potrebe cuvati garanciju i racun . \r\n ",
+            "time": 1493040395
+          },
+          {
+            "author_name": "Antonio Udundzic",
+            "author_url": "https://www.google.com/maps/contrib/109290530556756046512/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-MMpMqPMkEm4/AAAAAAAAAAI/AAAAAAAAAAA/APJypA3NT4YadbmnfqPCGxbdeE5fMHf-fA/s128-c0x00000000-cc-rp-mo-ba2/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "4 months ago",
+            "text": "Velik asortiman sportske odjeće, obuće te raznih artikala koji su potrebni za bavljenje sportom.",
+            "time": 1491597023
+          }
+        ],
+        "website": "http://www.intersport.ba/sve-prodavnice/mostar-intersport-mostar-s27424",
+        "photos": [
+          "upload/photos/ChIJ_cnFJLtDSxMRbLaU7M7mEPw0.jpg",
+          "upload/photos/ChIJ_cnFJLtDSxMRbLaU7M7mEPw1.jpg",
+          "upload/photos/ChIJ_cnFJLtDSxMRbLaU7M7mEPw2.jpg",
+          "upload/photos/ChIJ_cnFJLtDSxMRbLaU7M7mEPw3.jpg",
+          "upload/photos/ChIJ_cnFJLtDSxMRbLaU7M7mEPw4.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.7983746,
+          43.3464833
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJXyZmdVpRXkcRDgE1iQ95aCE",
+        "name": "INTERSPORT",
+        "address": "Dolina panjeva, Šišava 72286, Bosnia and Herzegovina",
+        "city": "Šišava",
+        "openingHours": [],
+        "rating": 0,
+        "reviews": [],
+        "website": "http://www.intersport.ba/",
+        "photos": [
+          "upload/photos/ChIJXyZmdVpRXkcRDgE1iQ95aCE0.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.5728786,
+          44.31338359999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJtSFBHaRDSxMR6yATw8pjOjE",
+        "name": "Ciklo centar",
+        "phoneNum": "+387 36 316-620",
+        "address": "Kneza Domagoja, Mostar 88000, Bosnia and Herzegovina",
+        "city": "Mostar",
+        "openingHours": [
+          {
+            "close": {
+              "day": 1,
+              "time": "1900"
+            },
+            "open": {
+              "day": 1,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "1900"
+            },
+            "open": {
+              "day": 2,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "1900"
+            },
+            "open": {
+              "day": 3,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "1900"
+            },
+            "open": {
+              "day": 4,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "1900"
+            },
+            "open": {
+              "day": 5,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "1700"
+            },
+            "open": {
+              "day": 6,
+              "time": "1000"
+            }
+          }
+        ],
+        "rating": 3.9,
+        "reviews": [
+          {
+            "author_name": "Bert Verbiest",
+            "author_url": "https://www.google.com/maps/contrib/101590475291902907630/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-jSFl85AKHy8/AAAAAAAAAAI/AAAAAAAABJM/kiz-fekz7cc/s128-c0x00000000-cc-rp-mo-ba2/photo.jpg",
+            "rating": 4,
+            "relative_time_description": "4 months ago",
+            "text": "Friendly owner, decent supply of up to date parts",
+            "time": 1491061741
+          },
+          {
+            "author_name": "Julian Appleby",
+            "author_url": "https://www.google.com/maps/contrib/110680819523902378442/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-VYU8Nuc1GcQ/AAAAAAAAAAI/AAAAAAAAFfM/su_OdQRSMNs/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 1,
+            "relative_time_description": "11 months ago",
+            "text": "I suggest you make sure you have any bike stuff you might need purchased before arriving in Mostar. The chap who runs this place is very unhelpful.",
+            "time": 1475501229
+          },
+          {
+            "author_name": "Gordan Radic",
+            "author_url": "https://www.google.com/maps/contrib/104408466628976219246/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-113nGWRbGLM/AAAAAAAAAAI/AAAAAAAAABQ/6NJCwmb7k_Q/s128-c0x00000000-cc-rp-mo-ba5/photo.jpg",
+            "rating": 4,
+            "relative_time_description": "4 months ago",
+            "text": "You can buy bicycles here.",
+            "time": 1493054947
+          },
+          {
+            "author_name": "Maria Colella",
+            "author_url": "https://www.google.com/maps/contrib/117942638708900888628/reviews",
+            "language": "it",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-8BVgpfqAofk/AAAAAAAAAAI/AAAAAAAAACk/6ZJ8aMdXsHE/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 1,
+            "relative_time_description": "2 weeks ago",
+            "text": "Fitta biciclette ma è  una persona incapace",
+            "time": 1502724145
+          },
+          {
+            "author_name": "Slobodan Ajvaz",
+            "author_url": "https://www.google.com/maps/contrib/118248642384049408650/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-_KKy7mHHiZI/AAAAAAAAAAI/AAAAAAAATig/MXEtpJPdFz0/s128-c0x00000000-cc-rp-mo-ba5/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "5 months ago",
+            "text": "Vrlo uspjesna trgovina biciklima i biciklistickom opremom...",
+            "time": 1488821148
+          }
+        ],
+        "website": "http://ciklocentar.ba/",
+        "photos": [
+          "upload/photos/ChIJtSFBHaRDSxMR6yATw8pjOjE0.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.804997,
+          43.3463741
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJ-UwlvHRDSxMREgCl3k5TFv0",
+        "name": "M-Bike Shop Mostar",
+        "phoneNum": "+387 36 570-123",
+        "address": "Mehe Tase br 55, Mostar 88000, Bosnia and Herzegovina",
+        "city": "Mostar",
+        "openingHours": [
+          {
+            "close": {
+              "day": 1,
+              "time": "1900"
+            },
+            "open": {
+              "day": 1,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "1900"
+            },
+            "open": {
+              "day": 2,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "1900"
+            },
+            "open": {
+              "day": 3,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "1900"
+            },
+            "open": {
+              "day": 4,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "1900"
+            },
+            "open": {
+              "day": 5,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "1800"
+            },
+            "open": {
+              "day": 6,
+              "time": "0900"
+            }
+          }
+        ],
+        "rating": 5,
+        "reviews": [
+          {
+            "author_name": "Ajdin Torlo",
+            "author_url": "https://www.google.com/maps/contrib/101495539291249582110/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-7deTnLoYTFU/AAAAAAAAAAI/AAAAAAAAAAA/APJypA0FHZ8AeCtxyWU4lRQODaErTZpKlg/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "3 months ago",
+            "text": "Odlična ponuda, pristupačne cijene i ljubazno osoblje",
+            "time": 1493832264
+          },
+          {
+            "author_name": "Damir Defterdarevic",
+            "author_url": "https://www.google.com/maps/contrib/107823038135648929955/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-ab6Qolz5OgU/AAAAAAAAAAI/AAAAAAAAAAA/APJypA1ypgL6aiDhWiJXTrEqHYj_7qpTXQ/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "4 months ago",
+            "text": "",
+            "time": 1493584842
+          },
+          {
+            "author_name": "Leslie Eldridge",
+            "author_url": "https://www.google.com/maps/contrib/108928887528720442373/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-HJ28WuQDDpI/AAAAAAAAAAI/AAAAAAAAHGk/JS2ImLVTlr8/s128-c0x00000000-cc-rp-mo-ba6/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "4 months ago",
+            "text": "",
+            "time": 1492582711
+          },
+          {
+            "author_name": "Marin Brkic",
+            "author_url": "https://www.google.com/maps/contrib/117420509199619996363/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-nD1swkMk_ds/AAAAAAAAAAI/AAAAAAAAAAA/APJypA3jez3VEdd_z4HczYbevhZ2AtIF3g/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "4 months ago",
+            "text": "",
+            "time": 1493584895
+          }
+        ],
+        "website": "http://m-bikeshop.com/",
+        "photos": [
+          "upload/photos/ChIJ-UwlvHRDSxMREgCl3k5TFv00.jpg",
+          "upload/photos/ChIJ-UwlvHRDSxMREgCl3k5TFv01.jpg",
+          "upload/photos/ChIJ-UwlvHRDSxMREgCl3k5TFv02.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.8158579,
+          43.350929
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJ6QFLp-AKSxMRLpfkwN6EBvM",
+        "name": "Intersport Metković 1",
+        "phoneNum": "+385 20 690 473",
+        "address": "Splitska ul. 1, 20350, Metković, Croatia",
+        "city": "Metković",
+        "openingHours": [
+          {
+            "close": {
+              "day": 1,
+              "time": "2000"
+            },
+            "open": {
+              "day": 1,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "2000"
+            },
+            "open": {
+              "day": 2,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "2000"
+            },
+            "open": {
+              "day": 3,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "2000"
+            },
+            "open": {
+              "day": 4,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "2000"
+            },
+            "open": {
+              "day": 5,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "2000"
+            },
+            "open": {
+              "day": 6,
+              "time": "0800"
+            }
+          }
+        ],
+        "rating": 5,
+        "reviews": [
+          {
+            "author_name": "Marijana Martinovic",
+            "author_url": "https://www.google.com/maps/contrib/104865064052245244699/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-YTGxLs0MmrY/AAAAAAAAAAI/AAAAAAAAAAA/APJypA3YIttddMfiN_VH679iadAVT7-fxA/s128-c0x00000000-cc-rp-mo-ba2/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a month ago",
+            "text": "Ok",
+            "time": 1500654265
+          }
+        ],
+        "website": "http://www.intersport.hr/",
+        "photos": [
+          "upload/photos/ChIJ6QFLp-AKSxMRLpfkwN6EBvM0.jpg",
+          "upload/photos/ChIJ6QFLp-AKSxMRLpfkwN6EBvM1.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.6451278,
+          43.0541219
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJTdp2vozhXkcRIysmmmQhUak",
+        "name": "PRO-BIKE Zenica",
+        "phoneNum": "+387 32 422-042",
+        "address": "Bistua Nuova 71 a 72000 Zenica, Zenica 72000, Bosnia and Herzegovina",
+        "city": "Zenica",
+        "openingHours": [
+          {
+            "close": {
+              "day": 1,
+              "time": "1800"
+            },
+            "open": {
+              "day": 1,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "1800"
+            },
+            "open": {
+              "day": 2,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "1800"
+            },
+            "open": {
+              "day": 3,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "1800"
+            },
+            "open": {
+              "day": 4,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "1800"
+            },
+            "open": {
+              "day": 5,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "1600"
+            },
+            "open": {
+              "day": 6,
+              "time": "0900"
+            }
+          }
+        ],
+        "rating": 5,
+        "reviews": [
+          {
+            "author_name": "Dr. Money",
+            "author_url": "https://www.google.com/maps/contrib/104756085648141562223/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-ukJP4t6fFYM/AAAAAAAAAAI/AAAAAAAAB_o/iAEuCUvUfwQ/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a month ago",
+            "text": "They have low prices and great bikes. You can buy bike parts and even take your bike here and service it. ",
+            "time": 1499838793
+          },
+          {
+            "author_name": "Amko AMKO",
+            "author_url": "https://www.google.com/maps/contrib/107446874885442851016/reviews",
+            "language": "de",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-KhSigElriUM/AAAAAAAAAAI/AAAAAAAAAoU/f4Jdlute3AI/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a month ago",
+            "text": "Sehr gute leistung👍",
+            "time": 1500724216
+          },
+          {
+            "author_name": "haris hatibovic",
+            "author_url": "https://www.google.com/maps/contrib/118184499590449835799/reviews",
+            "language": "bs",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-8kP9-CfMY00/AAAAAAAAAAI/AAAAAAAAAGw/-hm0m4UJ-GY/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "3 months ago",
+            "text": "",
+            "time": 1494681841
+          },
+          {
+            "author_name": "Arnela Hercegovac",
+            "author_url": "https://www.google.com/maps/contrib/115976809826571922091/reviews",
+            "language": "bs",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-hTta6aL9Vtk/AAAAAAAAAAI/AAAAAAAAAAA/APJypA2PqFlO5qpVDQ0qN8RqJkeRyxEoKQ/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "6 months ago",
+            "text": "",
+            "time": 1486249158
+          }
+        ],
+        "website": "",
+        "photos": [
+          "upload/photos/ChIJTdp2vozhXkcRIysmmmQhUak0.jpg",
+          "upload/photos/ChIJTdp2vozhXkcRIysmmmQhUak1.jpg",
+          "upload/photos/ChIJTdp2vozhXkcRIysmmmQhUak2.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.941839,
+          44.19264700000001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJN-OOgdMcX0cRs8byvAdCUxU",
+        "name": "Boca",
+        "phoneNum": "+387 30 710-820",
+        "address": "Novaci, Vitez 72250, Bosnia and Herzegovina",
+        "city": "Vitez",
+        "openingHours": [
+          {
+            "close": {
+              "day": 0,
+              "time": "1800"
+            },
+            "open": {
+              "day": 0,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 1,
+              "time": "1800"
+            },
+            "open": {
+              "day": 1,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "1800"
+            },
+            "open": {
+              "day": 2,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "1800"
+            },
+            "open": {
+              "day": 3,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "1800"
+            },
+            "open": {
+              "day": 4,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "1800"
+            },
+            "open": {
+              "day": 5,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "1800"
+            },
+            "open": {
+              "day": 6,
+              "time": "0900"
+            }
+          }
+        ],
+        "rating": 4.9,
+        "reviews": [
+          {
+            "author_name": "Borislav Markovic",
+            "author_url": "https://www.google.com/maps/contrib/106893272997900980325/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-2BA8RVD_92A/AAAAAAAAAAI/AAAAAAAAHTg/G-v9F2OYULo/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "3 months ago",
+            "text": "Izuzetno dobro opremljena trgovina biciklima, dodatnom opremom i stručnim servisom bicikla. Ekipa za svaku pohvalu!",
+            "time": 1494700457
+          },
+          {
+            "author_name": "Enes Haseljic",
+            "author_url": "https://www.google.com/maps/contrib/115103953684284971838/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-0MXsYrVlCS0/AAAAAAAAAAI/AAAAAAAAAME/ZL8a_-pRSpM/s128-c0x00000000-cc-rp-mo-ba2/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "in the last week",
+            "text": "Prvi u prodaji bicikala.",
+            "time": 1503473962
+          },
+          {
+            "author_name": "Z. M.",
+            "author_url": "https://www.google.com/maps/contrib/117482200209037497266/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-kwM1yeTVT4c/AAAAAAAAAAI/AAAAAAAAAAA/APJypA2GcqULaS0ATNgYfhRISzPLnQNMEw/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "3 months ago",
+            "text": "Dobrih bicikla",
+            "time": 1495919827
+          },
+          {
+            "author_name": "Salih Bašić",
+            "author_url": "https://www.google.com/maps/contrib/103753679473501889301/reviews",
+            "language": "bs",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-pqeIrc65aw8/AAAAAAAAAAI/AAAAAAABCio/Mnm0CKytpYI/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "Najbolje mjesto za kupovinu bicikla (od 0-100 godina)\n\nMogućnost plaćanja na rate.\n\nPreporuke ;)",
+            "time": 1471981389
+          },
+          {
+            "author_name": "Infernus Turbe",
+            "author_url": "https://www.google.com/maps/contrib/111653141424899291520/reviews",
+            "language": "bs",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-Hw50T1ZZM4Y/AAAAAAAAAAI/AAAAAAAAHfE/8H-pIY9QZeY/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "Odlican izbor bicikla i dijelova za bicikle.\nImaju svoj servis gdje odmah mozete zamijeniti kupljeni dio.\nOdlicno osoblje koje ce uvijek gledati da Vam da koristan savjet u izboru odgovarajucih komponenti za vaseg ljubimca.",
+            "time": 1467568393
+          }
+        ],
+        "website": "http://www.bocavitez.com/",
+        "photos": [
+          "upload/photos/ChIJN-OOgdMcX0cRs8byvAdCUxU0.jpg",
+          "upload/photos/ChIJN-OOgdMcX0cRs8byvAdCUxU1.jpg",
+          "upload/photos/ChIJN-OOgdMcX0cRs8byvAdCUxU2.jpg",
+          "upload/photos/ChIJN-OOgdMcX0cRs8byvAdCUxU3.jpg",
+          "upload/photos/ChIJN-OOgdMcX0cRs8byvAdCUxU4.jpg",
+          "upload/photos/ChIJN-OOgdMcX0cRs8byvAdCUxU5.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.8049299,
+          44.1520148
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJaxFFvw0DXkcRBZR0Z8TWrnM",
+        "name": "INTERSPORT",
+        "address": "Aleja Svetog Save 69, Banja Luka 78000, Bosnia and Herzegovina",
+        "city": "Banja Luka",
+        "openingHours": [
+          {
+            "close": {
+              "day": 0,
+              "time": "1600"
+            },
+            "open": {
+              "day": 0,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 1,
+              "time": "2100"
+            },
+            "open": {
+              "day": 1,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "2100"
+            },
+            "open": {
+              "day": 2,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "2100"
+            },
+            "open": {
+              "day": 3,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "2100"
+            },
+            "open": {
+              "day": 4,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "2100"
+            },
+            "open": {
+              "day": 5,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "2100"
+            },
+            "open": {
+              "day": 6,
+              "time": "0900"
+            }
+          }
+        ],
+        "rating": 4.8,
+        "reviews": [
+          {
+            "author_name": "Banjaluka Men",
+            "author_url": "https://www.google.com/maps/contrib/103003119955284706833/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-qVxcEaFbhWo/AAAAAAAAAAI/AAAAAAAAAS8/YMYnbUwsHis/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "4 months ago",
+            "text": "Sve za sport i rekreaciju ",
+            "time": 1493140089
+          },
+          {
+            "author_name": "Miodrag Davidovic",
+            "author_url": "https://www.google.com/maps/contrib/105625718516119167891/reviews",
+            "language": "sr",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-JyHyxJ6MUDk/AAAAAAAAAAI/AAAAAAAAAZc/Rf_bUbsYnsQ/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "2 weeks ago",
+            "text": "Одлична понуда, високе и нереалне цијене већине артикала.",
+            "time": 1502742625
+          },
+          {
+            "author_name": "Bosco Marinkovich",
+            "author_url": "https://www.google.com/maps/contrib/101329084669045400409/reviews",
+            "language": "bs",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-3QDnN8e16mo/AAAAAAAAAAI/AAAAAAAAAAA/APJypA1PvKIBYOVhyXtwWQLjn6aXRQ3wJg/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "Sjajno",
+            "time": 1464614796
+          },
+          {
+            "author_name": "Slobodan Kovacevic",
+            "author_url": "https://www.google.com/maps/contrib/102393744732436215975/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-QvN7ndv4RSc/AAAAAAAAAAI/AAAAAAAAAMQ/mAXKecsS6u4/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 4,
+            "relative_time_description": "2 months ago",
+            "text": "",
+            "time": 1497180432
+          },
+          {
+            "author_name": "Vladan Garic",
+            "author_url": "https://www.google.com/maps/contrib/102382704450781447522/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-4kARAHu7e-0/AAAAAAAAAAI/AAAAAAAAAGc/bz0_jYtsFpA/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "10 months ago",
+            "text": "",
+            "time": 1477185461
+          }
+        ],
+        "website": "http://www.intersport.ba/",
+        "photos": [
+          "upload/photos/ChIJaxFFvw0DXkcRBZR0Z8TWrnM0.jpg",
+          "upload/photos/ChIJaxFFvw0DXkcRBZR0Z8TWrnM1.jpg",
+          "upload/photos/ChIJaxFFvw0DXkcRBZR0Z8TWrnM2.jpg",
+          "upload/photos/ChIJaxFFvw0DXkcRBZR0Z8TWrnM3.jpg",
+          "upload/photos/ChIJaxFFvw0DXkcRBZR0Z8TWrnM4.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.2057325,
+          44.7750513
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJMQ0zAxqtXkcRWiwnkjn5n3k",
+        "name": "M-Bike Shop Tuzla",
+        "phoneNum": "+387 35 278-300",
+        "address": "Tuzla, ul Bosne Srebrene bb, pored Sportskog centra Mejdan, Tuzla 75000, Bosnia and Herzegovina",
+        "city": "Tuzla",
+        "openingHours": [
+          {
+            "close": {
+              "day": 1,
+              "time": "1900"
+            },
+            "open": {
+              "day": 1,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "1900"
+            },
+            "open": {
+              "day": 2,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "1900"
+            },
+            "open": {
+              "day": 3,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "1900"
+            },
+            "open": {
+              "day": 4,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "1900"
+            },
+            "open": {
+              "day": 5,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "1800"
+            },
+            "open": {
+              "day": 6,
+              "time": "0900"
+            }
+          }
+        ],
+        "rating": 4.9,
+        "reviews": [
+          {
+            "author_name": "hexyw0w",
+            "author_url": "https://www.google.com/maps/contrib/110042372350189491981/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-dA7BxZxaKGE/AAAAAAAAAAI/AAAAAAAAACQ/941ug58LA2g/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "Best bike shop/servis in BiH ",
+            "time": 1455228870
+          },
+          {
+            "author_name": "Leslie Eldridge",
+            "author_url": "https://www.google.com/maps/contrib/108928887528720442373/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-HJ28WuQDDpI/AAAAAAAAAAI/AAAAAAAAHGk/JS2ImLVTlr8/s128-c0x00000000-cc-rp-mo-ba6/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "3 years ago",
+            "text": "Bike Shop, Servis bicakala, SKI servis, SKI oprema...:)",
+            "time": 1395218819
+          },
+          {
+            "author_name": "Adnan Numanovic",
+            "author_url": "https://www.google.com/maps/contrib/108959397568441738627/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-IE0HuIYaOyc/AAAAAAAAAAI/AAAAAAAAB00/Z6lcM14fnjc/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "2 years ago",
+            "text": "Best shop and servis inTuzla 😁",
+            "time": 1435300436
+          },
+          {
+            "author_name": "Asmir Softić",
+            "author_url": "https://www.google.com/maps/contrib/116558352594186135564/reviews",
+            "language": "bs",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-wHMistpgMzM/AAAAAAAAAAI/AAAAAAAAAAA/APJypA37Jz9lOXX63wtHDKbo-HCJhsVIjA/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "Strucan o kvalifikovan servis i prodaja bicikala, biciklisticke opreme i alata, kao i ski opreme.\nOsoblje koje izuzetno strucno pristupa svakom problemu sa kojim se susretne, a tu su i vise nego korisni savjeti i uputstva koji dobro dodju, kako rekreativcima tako i profesionalcima.\nZa M-bike shop cista desetka 😀",
+            "time": 1455228853
+          },
+          {
+            "author_name": "Emir Smajic",
+            "author_url": "https://www.google.com/maps/contrib/104435500312884552477/reviews",
+            "language": "bs",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-ONfpofbkfS4/AAAAAAAAAAI/AAAAAAAAAAA/APJypA0mhoHRfB2ZI6GzzWf-aj30UvAPBQ/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "Najbolji shop u BiH.\nVrhunska ponuda opreme, dijelova i usluga.\nEkipa je za 10, profesionalci u svom poslu :)",
+            "time": 1455222203
+          }
+        ],
+        "website": "http://www.m-bikeshop.com/",
+        "photos": [
+          "upload/photos/ChIJMQ0zAxqtXkcRWiwnkjn5n3k0.jpg",
+          "upload/photos/ChIJMQ0zAxqtXkcRWiwnkjn5n3k1.jpg",
+          "upload/photos/ChIJMQ0zAxqtXkcRWiwnkjn5n3k2.jpg",
+          "upload/photos/ChIJMQ0zAxqtXkcRWiwnkjn5n3k3.jpg",
+          "upload/photos/ChIJMQ0zAxqtXkcRWiwnkjn5n3k4.jpg",
+          "upload/photos/ChIJMQ0zAxqtXkcRWiwnkjn5n3k5.jpg",
+          "upload/photos/ChIJMQ0zAxqtXkcRWiwnkjn5n3k6.jpg",
+          "upload/photos/ChIJMQ0zAxqtXkcRWiwnkjn5n3k7.jpg",
+          "upload/photos/ChIJMQ0zAxqtXkcRWiwnkjn5n3k8.jpg",
+          "upload/photos/ChIJMQ0zAxqtXkcRWiwnkjn5n3k9.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.6667167,
+          44.5378219
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJz6KAeqFMWUcRh0tStYJ4t3M",
+        "name": "Capriolo Sport Centar",
+        "phoneNum": "+387 35 775-943",
+        "address": "Armije BiH 35, Živinice Grad 75270, Bosnia and Herzegovina",
+        "city": "Živinice Grad",
+        "openingHours": [
+          {
+            "close": {
+              "day": 1,
+              "time": "1700"
+            },
+            "open": {
+              "day": 1,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "1700"
+            },
+            "open": {
+              "day": 2,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "1700"
+            },
+            "open": {
+              "day": 3,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "1700"
+            },
+            "open": {
+              "day": 4,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "1700"
+            },
+            "open": {
+              "day": 5,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "1500"
+            },
+            "open": {
+              "day": 6,
+              "time": "0900"
+            }
+          }
+        ],
+        "rating": 5,
+        "reviews": [
+          {
+            "author_name": "ASplus BiH",
+            "author_url": "https://www.google.com/maps/contrib/110938114143476263973/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-DQRBzhjBijA/AAAAAAAAAAI/AAAAAAAAACE/qfylZvPOqsg/s128-c0x00000000-cc-rp-mo-ba5/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "9 months ago",
+            "text": "Sport",
+            "time": 1480239414
+          },
+          {
+            "author_name": "Jasmin Terzic",
+            "author_url": "https://www.google.com/maps/contrib/116665523253143500473/reviews",
+            "language": "bs",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-j4yCwAepfE4/AAAAAAAAAAI/AAAAAAAAAco/ImnzHzeYaAk/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "Najbolja prodavnica bicikala i sportske opreme pored toga i mjesto za sportska druzenja.",
+            "time": 1458679460
+          },
+          {
+            "author_name": "Maid Brcaninovic",
+            "author_url": "https://www.google.com/maps/contrib/107084681220907404474/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-aXmSRgtItQQ/AAAAAAAAAAI/AAAAAAAADsk/3RQ-9FOL6Sw/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "5 months ago",
+            "text": "",
+            "time": 1490869164
+          },
+          {
+            "author_name": "Senad Salihbegovic",
+            "author_url": "https://www.google.com/maps/contrib/109227930974498122255/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-e799dXSB58w/AAAAAAAAAAI/AAAAAAAAYAw/w7m1quaGt2U/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "",
+            "time": 1463560201
+          },
+          {
+            "author_name": "Hamza Becirovic",
+            "author_url": "https://www.google.com/maps/contrib/112681570620839290927/reviews",
+            "language": "bs",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-ZGdPXLGq5JI/AAAAAAAAAAI/AAAAAAAAAAk/IO1dvg0Uh8k/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "",
+            "time": 1469471906
+          }
+        ],
+        "website": "http://www.jabihcapriolo.com/",
+        "photos": [
+          "upload/photos/ChIJz6KAeqFMWUcRh0tStYJ4t3M0.jpg",
+          "upload/photos/ChIJz6KAeqFMWUcRh0tStYJ4t3M1.jpg",
+          "upload/photos/ChIJz6KAeqFMWUcRh0tStYJ4t3M2.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.656111,
+          44.44037700000001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJwQjhkDqtXkcRknGSJSpXp6E",
+        "name": "Intersport",
+        "phoneNum": "+387 35 294-529",
+        "address": "1. sprat, Bulevar II korpusa Armije BiH, Tuzla 75000, Bosnia and Herzegovina",
+        "city": "Tuzla",
+        "openingHours": [
+          {
+            "close": {
+              "day": 0,
+              "time": "1600"
+            },
+            "open": {
+              "day": 0,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 1,
+              "time": "2100"
+            },
+            "open": {
+              "day": 1,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "2100"
+            },
+            "open": {
+              "day": 2,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "2100"
+            },
+            "open": {
+              "day": 3,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "2100"
+            },
+            "open": {
+              "day": 4,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "2100"
+            },
+            "open": {
+              "day": 5,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "2100"
+            },
+            "open": {
+              "day": 6,
+              "time": "0900"
+            }
+          }
+        ],
+        "rating": 3,
+        "reviews": [
+          {
+            "author_name": "Jasmin Tankić",
+            "author_url": "https://www.google.com/maps/contrib/104025514767197113473/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-5c3ZGF4cz8w/AAAAAAAAAAI/AAAAAAAAATI/pQ-pW87NXGI/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 3,
+            "relative_time_description": "11 months ago",
+            "text": "Very good choice of sport shoes and clothes here, i give 3 stars because almost all stuff here is expensive and usually in other stores you can find same products but cheaper. Also i think they are one of rare stores to have good choice of McKINLEY products in Tuzla. ",
+            "time": 1473334634
+          },
+          {
+            "author_name": "Elvedin Talic",
+            "author_url": "https://www.google.com/maps/contrib/111944450867010884533/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-imEQ1bZIorg/AAAAAAAAAAI/AAAAAAAAd6A/ouKnv4whxnc/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 4,
+            "relative_time_description": "a year ago",
+            "text": "   ",
+            "time": 1449581733
+          },
+          {
+            "author_name": "Nedim Fazlic",
+            "author_url": "https://www.google.com/maps/contrib/115162144172601399279/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-kQ6paV9EuSo/AAAAAAAAAAI/AAAAAAAAJbw/dGuFU_qVaKo/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 3,
+            "relative_time_description": "a year ago",
+            "text": "",
+            "time": 1451421004
+          },
+          {
+            "author_name": "Dino Hodzic",
+            "author_url": "https://www.google.com/maps/contrib/113977137916524295718/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-4YZmIDD6yZs/AAAAAAAAAAI/AAAAAAAAAB8/F-cBBk09Am4/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 2,
+            "relative_time_description": "3 years ago",
+            "text": "",
+            "time": 1408780507
+          }
+        ],
+        "website": "",
+        "photos": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.6830556,
+          44.5328142
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJQ4p2YRqtXkcR41T-5GSCBo0",
+        "name": "Intersport",
+        "address": "75000, Univerzitetska 16, Tuzla 75000, Bosnia and Herzegovina",
+        "city": "Tuzla",
+        "openingHours": [],
+        "rating": 0,
+        "reviews": [],
+        "website": "",
+        "photos": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.6643482,
+          44.5385008
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJR63q0ks3XEcRelfe_qUXfws",
+        "name": "Capriolo Sport Centar Modriča",
+        "phoneNum": "+387 53 813-823",
+        "address": "Berlinska bb, Modriča 74480, Bosnia and Herzegovina",
+        "city": "Modriča",
+        "openingHours": [
+          {
+            "close": {
+              "day": 1,
+              "time": "1630"
+            },
+            "open": {
+              "day": 0,
+              "time": "2030"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "1630"
+            },
+            "open": {
+              "day": 1,
+              "time": "2030"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "1630"
+            },
+            "open": {
+              "day": 2,
+              "time": "2030"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "1630"
+            },
+            "open": {
+              "day": 3,
+              "time": "2030"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "1630"
+            },
+            "open": {
+              "day": 4,
+              "time": "2030"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "1630"
+            },
+            "open": {
+              "day": 5,
+              "time": "2030"
+            }
+          },
+          {
+            "close": {
+              "day": 0,
+              "time": "1630"
+            },
+            "open": {
+              "day": 6,
+              "time": "2030"
+            }
+          }
+        ],
+        "rating": 5,
+        "reviews": [
+          {
+            "author_name": "cugcvang",
+            "author_url": "https://www.google.com/maps/contrib/105696806219949324945/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-9w5aKbhzRZA/AAAAAAAAAAI/AAAAAAAAAGg/xj_buwN6Iws/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "11 months ago",
+            "text": "Veliki izbor bicikala. ",
+            "time": 1474115767
+          }
+        ],
+        "website": "http://www.jabihcapriolo.com/",
+        "photos": [
+          "upload/photos/ChIJR63q0ks3XEcRelfe_qUXfws0.jpg",
+          "upload/photos/ChIJR63q0ks3XEcRelfe_qUXfws1.jpg",
+          "upload/photos/ChIJR63q0ks3XEcRelfe_qUXfws2.jpg",
+          "upload/photos/ChIJR63q0ks3XEcRelfe_qUXfws3.jpg",
+          "upload/photos/ChIJR63q0ks3XEcRelfe_qUXfws4.jpg",
+          "upload/photos/ChIJR63q0ks3XEcRelfe_qUXfws5.jpg",
+          "upload/photos/ChIJR63q0ks3XEcRelfe_qUXfws6.jpg",
+          "upload/photos/ChIJR63q0ks3XEcRelfe_qUXfws7.jpg",
+          "upload/photos/ChIJR63q0ks3XEcRelfe_qUXfws8.jpg",
+          "upload/photos/ChIJR63q0ks3XEcRelfe_qUXfws9.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.302936,
+          44.956913
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJZTchyDCCXkcRrdwlXRUxAQI",
+        "name": "Capriolo Sport Centar",
+        "address": "Celjska, Doboj 74000, Bosnia and Herzegovina",
+        "city": "Doboj",
+        "openingHours": [],
+        "rating": 5,
+        "reviews": [
+          {
+            "author_name": "mladen djuricic",
+            "author_url": "https://www.google.com/maps/contrib/103040790932372249042/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-BUyXPPvwe1s/AAAAAAAAAAI/AAAAAAAAACY/aQuGOsXL2rU/s128-c0x00000000-cc-rp-mo-ba5/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "11 months ago",
+            "text": "Prodavnica bicikala.",
+            "time": 1474569787
+          }
+        ],
+        "website": "",
+        "photos": [
+          "upload/photos/ChIJZTchyDCCXkcRrdwlXRUxAQI0.jpg",
+          "upload/photos/ChIJZTchyDCCXkcRrdwlXRUxAQI1.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.086879,
+          44.727798
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJwRaaVQ4DXkcRRTa-oZfEaYs",
+        "name": "Soković Sport",
+        "phoneNum": "+387 51 312-999",
+        "address": "Gundulićeva 80, Banja Luka 78000, Bosnia and Herzegovina",
+        "city": "Banja Luka",
+        "openingHours": [
+          {
+            "close": {
+              "day": 1,
+              "time": "2000"
+            },
+            "open": {
+              "day": 1,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "2000"
+            },
+            "open": {
+              "day": 2,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "2000"
+            },
+            "open": {
+              "day": 3,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "2000"
+            },
+            "open": {
+              "day": 4,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "2000"
+            },
+            "open": {
+              "day": 5,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "1500"
+            },
+            "open": {
+              "day": 6,
+              "time": "0900"
+            }
+          }
+        ],
+        "rating": 5,
+        "reviews": [
+          {
+            "author_name": "Daniel Kostadinovic",
+            "author_url": "https://www.google.com/maps/contrib/112816200387849769794/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-ghXUI1fDKeI/AAAAAAAAAAI/AAAAAAAABTA/SXeavaD9jQw/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "11 months ago",
+            "text": "Nice store",
+            "time": 1474143289
+          },
+          {
+            "author_name": "Nova Powell",
+            "author_url": "https://www.google.com/maps/contrib/109344794878869982855/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-OhirJQNs2CE/AAAAAAAAAAI/AAAAAAAAAAA/APJypA2nZmpM9dmhIPUhMJD-bsyX4lsd7w/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "2 months ago",
+            "text": "Vrhunska radnja i odnos ka musterijama!",
+            "time": 1498756933
+          },
+          {
+            "author_name": "Goran Mrkonja",
+            "author_url": "https://www.google.com/maps/contrib/114179223384624556075/reviews",
+            "language": "bs",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-6GdwJF0ErOs/AAAAAAAAAAI/AAAAAAAAHTE/MEZMJaUtliQ/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "Povoljna, odlicno opremljena prodavnica sportske biciklisticke opreme",
+            "time": 1452790367
+          },
+          {
+            "author_name": "Predrag Nedic",
+            "author_url": "https://www.google.com/maps/contrib/106875501738907973173/reviews",
+            "language": "bs",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-myTT58r84cU/AAAAAAAAAAI/AAAAAAAAAAA/APJypA17SfeVkSzhkog08Kc_IIIBtCKY4w/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "Profesionalnost",
+            "time": 1471682591
+          },
+          {
+            "author_name": "Milomir Topić",
+            "author_url": "https://www.google.com/maps/contrib/103191230604099706078/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-0x9So6RvEtE/AAAAAAAAAAI/AAAAAAAAJpo/EOiAn_GMkoY/s128-c0x00000000-cc-rp-mo-ba2/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "3 years ago",
+            "text": "",
+            "time": 1404581966
+          }
+        ],
+        "website": "https://www.sokovicsport.ba/",
+        "photos": [
+          "upload/photos/ChIJwRaaVQ4DXkcRRTa-oZfEaYs0.jpg",
+          "upload/photos/ChIJwRaaVQ4DXkcRRTa-oZfEaYs1.jpg",
+          "upload/photos/ChIJwRaaVQ4DXkcRRTa-oZfEaYs2.jpg",
+          "upload/photos/ChIJwRaaVQ4DXkcRRTa-oZfEaYs3.jpg",
+          "upload/photos/ChIJwRaaVQ4DXkcRRTa-oZfEaYs4.jpg",
+          "upload/photos/ChIJwRaaVQ4DXkcRRTa-oZfEaYs5.jpg",
+          "upload/photos/ChIJwRaaVQ4DXkcRRTa-oZfEaYs6.jpg",
+          "upload/photos/ChIJwRaaVQ4DXkcRRTa-oZfEaYs7.jpg",
+          "upload/photos/ChIJwRaaVQ4DXkcRRTa-oZfEaYs8.jpg",
+          "upload/photos/ChIJwRaaVQ4DXkcRRTa-oZfEaYs9.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.201162,
+          44.775822
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJ-8UzzgcDXkcRlLjUfQcjbFQ",
+        "name": "Jošo Bicikli",
+        "phoneNum": "+387 51 313-313",
+        "address": "Dr. Mladena Stojanovića 53, Banja Luka 78000, Bosnia and Herzegovina",
+        "city": "Banja Luka",
+        "openingHours": [
+          {
+            "close": {
+              "day": 1,
+              "time": "2000"
+            },
+            "open": {
+              "day": 1,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "2000"
+            },
+            "open": {
+              "day": 2,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "2000"
+            },
+            "open": {
+              "day": 3,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "2000"
+            },
+            "open": {
+              "day": 4,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "2000"
+            },
+            "open": {
+              "day": 5,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "1600"
+            },
+            "open": {
+              "day": 6,
+              "time": "0800"
+            }
+          }
+        ],
+        "rating": 3.8,
+        "reviews": [
+          {
+            "author_name": "Nova Powell",
+            "author_url": "https://www.google.com/maps/contrib/109344794878869982855/reviews",
+            "language": "bs",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-OhirJQNs2CE/AAAAAAAAAAI/AAAAAAAAAAA/APJypA2nZmpM9dmhIPUhMJD-bsyX4lsd7w/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 1,
+            "relative_time_description": "2 months ago",
+            "text": "Uzasan odnos ka musterijama! Prije mjesec dana sam htio da kupim bicikl i budget mi je bio oko 1,100km. Otisao sam u ovu radnju posto je blizu kuce i bio sam iznenadjen odnosom ka klijentima. Totalna neposvecenost i ignorisanje. Kupio sam onda bicikl kod Sokovica jer je odnos bio zaista vrhunski. Pomislio sam da je razlog takvog odnosa kod Joso Bicikli bila guzva u radnji pa odlucujem ponovo da odem i kupim neku dodatnu opremu. Shock! Stariji gospodin je bio toliko neljubazan da je u jednom momentu krenuo da se dere da mene. Momentalno odlucujem da izadjem. Ovi nisu shvatili osnove odnosa ka musterijama koji bi cesto mogli da pazare jako puno.",
+            "time": 1498756888
+          },
+          {
+            "author_name": "Lazić Nebojša",
+            "author_url": "https://www.google.com/maps/contrib/109304449689996446776/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-hqM3yA7z79A/AAAAAAAAAAI/AAAAAAAAASI/0x13zU2PVW4/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "2 months ago",
+            "text": "",
+            "time": 1497938834
+          },
+          {
+            "author_name": "Dalibor Dzombic",
+            "author_url": "https://www.google.com/maps/contrib/114778192322632808309/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-6xpHlQd0PrU/AAAAAAAAAAI/AAAAAAAAAAA/APJypA0nKYL5SngCE574uWuSQuIWB-QVUw/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "3 months ago",
+            "text": "",
+            "time": 1493898385
+          },
+          {
+            "author_name": "djordje micin",
+            "author_url": "https://www.google.com/maps/contrib/115363281554864203170/reviews",
+            "language": "sr",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-a8X5lo1_F_Q/AAAAAAAAAAI/AAAAAAAAAAA/APJypA3zlhEYYya-FcBGtCfFu8bz4fOgpw/s128-c0x00000000-cc-rp-mo-ba2/photo.jpg",
+            "rating": 4,
+            "relative_time_description": "5 months ago",
+            "text": "",
+            "time": 1490183873
+          }
+        ],
+        "website": "",
+        "photos": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.2007235,
+          44.7819729
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJM29t4AcDXkcRAvIsQloB7NI",
+        "name": "Capriolo Sport Centar BL3",
+        "phoneNum": "+387 51 924-465",
+        "address": "Dr. Mladena Stojanovića 12, Banja Luka 78000, Bosnia and Herzegovina",
+        "city": "Banja Luka",
+        "openingHours": [
+          {
+            "close": {
+              "day": 1,
+              "time": "2000"
+            },
+            "open": {
+              "day": 1,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "2000"
+            },
+            "open": {
+              "day": 2,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "2000"
+            },
+            "open": {
+              "day": 3,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "2000"
+            },
+            "open": {
+              "day": 4,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "2000"
+            },
+            "open": {
+              "day": 5,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "2000"
+            },
+            "open": {
+              "day": 6,
+              "time": "0900"
+            }
+          }
+        ],
+        "rating": 5,
+        "reviews": [
+          {
+            "author_name": "Catfood",
+            "author_url": "https://www.google.com/maps/contrib/114737702511980752377/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-qcg5bN7rQXQ/AAAAAAAAAAI/AAAAAAAAALE/6lK7Qwl3EP0/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a month ago",
+            "text": "A very nice place with a really helpful staff, alongside a wide arrange of products and gear for cycling and other physical activities",
+            "time": 1499249805
+          },
+          {
+            "author_name": "Daniel Kostadinovic",
+            "author_url": "https://www.google.com/maps/contrib/112816200387849769794/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-ghXUI1fDKeI/AAAAAAAAAAI/AAAAAAAABTA/SXeavaD9jQw/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "10 months ago",
+            "text": "Nice store",
+            "time": 1476342166
+          },
+          {
+            "author_name": "Bojan Malinović",
+            "author_url": "https://www.google.com/maps/contrib/105939376378395299112/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-pUqnH2At1ks/AAAAAAAAAAI/AAAAAAAABGQ/eBPbtzNvFYs/s128-c0x00000000-cc-rp-mo-ba2/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "Good store.",
+            "time": 1467750073
+          },
+          {
+            "author_name": "Edin Causevic",
+            "author_url": "https://www.google.com/maps/contrib/114193839102411887340/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-olUZiGhaXG0/AAAAAAAAAAI/AAAAAAAAAAA/APJypA0flLn1_kicITL6YC6sSl9BP0ubbg/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "Very good store!",
+            "time": 1452706670
+          },
+          {
+            "author_name": "Goran Mrkonja",
+            "author_url": "https://www.google.com/maps/contrib/114179223384624556075/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-6GdwJF0ErOs/AAAAAAAAAAI/AAAAAAAAHTE/MEZMJaUtliQ/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "",
+            "time": 1449952463
+          }
+        ],
+        "website": "http://jabihcapriolo.com/",
+        "photos": [
+          "upload/photos/ChIJM29t4AcDXkcRAvIsQloB7NI0.jpg",
+          "upload/photos/ChIJM29t4AcDXkcRAvIsQloB7NI1.jpg",
+          "upload/photos/ChIJM29t4AcDXkcRAvIsQloB7NI2.jpg",
+          "upload/photos/ChIJM29t4AcDXkcRAvIsQloB7NI3.jpg",
+          "upload/photos/ChIJM29t4AcDXkcRAvIsQloB7NI4.jpg",
+          "upload/photos/ChIJM29t4AcDXkcRAvIsQloB7NI5.jpg",
+          "upload/photos/ChIJM29t4AcDXkcRAvIsQloB7NI6.jpg",
+          "upload/photos/ChIJM29t4AcDXkcRAvIsQloB7NI7.jpg",
+          "upload/photos/ChIJM29t4AcDXkcRAvIsQloB7NI8.jpg",
+          "upload/photos/ChIJM29t4AcDXkcRAvIsQloB7NI9.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.201864,
+          44.782595
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJr5zLihADXkcR5aXEV_0993c",
+        "name": "Capriolo Sport Centar BL2",
+        "phoneNum": "+387 51 492-117",
+        "address": "Karađorđeva 262, Banja Luka 78000, Bosnia and Herzegovina",
+        "city": "Banja Luka",
+        "openingHours": [
+          {
+            "close": {
+              "day": 1,
+              "time": "1900"
+            },
+            "open": {
+              "day": 1,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "1900"
+            },
+            "open": {
+              "day": 2,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "1900"
+            },
+            "open": {
+              "day": 3,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "1900"
+            },
+            "open": {
+              "day": 4,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "1900"
+            },
+            "open": {
+              "day": 5,
+              "time": "1000"
+            }
+          },
+          {
+            "close": {
+              "day": 0,
+              "time": "1800"
+            },
+            "open": {
+              "day": 6,
+              "time": "2200"
+            }
+          }
+        ],
+        "rating": 5,
+        "reviews": [
+          {
+            "author_name": "Autodetailing Vlajic Banjaluka",
+            "author_url": "https://www.google.com/maps/contrib/107317363100034430885/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-8rSfYMrIwdo/AAAAAAAAAAI/AAAAAAAACLs/KRPX7AK411U/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "3 months ago",
+            "text": "Ljubazno i strucno osoblje. 😉",
+            "time": 1495552132
+          },
+          {
+            "author_name": "Boris Ljujic",
+            "author_url": "https://www.google.com/maps/contrib/104409680630541940876/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-c3Cvv41MHZg/AAAAAAAAAAI/AAAAAAAAADw/0ddf84V-_LY/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "9 months ago",
+            "text": "",
+            "time": 1478416839
+          },
+          {
+            "author_name": "Miroslav Ćajić",
+            "author_url": "https://www.google.com/maps/contrib/105484655897236891616/reviews",
+            "language": "sr",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-SmAkKMcP_30/AAAAAAAAAAI/AAAAAAAAEo4/9sJ4FcUw0b4/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a year ago",
+            "text": "",
+            "time": 1469028309
+          }
+        ],
+        "website": "http://jabihcapriolo.com/",
+        "photos": [
+          "upload/photos/ChIJr5zLihADXkcR5aXEV_0993c0.jpg",
+          "upload/photos/ChIJr5zLihADXkcR5aXEV_0993c1.jpg",
+          "upload/photos/ChIJr5zLihADXkcR5aXEV_0993c2.jpg",
+          "upload/photos/ChIJr5zLihADXkcR5aXEV_0993c3.jpg",
+          "upload/photos/ChIJr5zLihADXkcR5aXEV_0993c4.jpg",
+          "upload/photos/ChIJr5zLihADXkcR5aXEV_0993c5.jpg",
+          "upload/photos/ChIJr5zLihADXkcR5aXEV_0993c6.jpg",
+          "upload/photos/ChIJr5zLihADXkcR5aXEV_0993c7.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.168456,
+          44.779236
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJp2VAkoT6YUcRCbgq9YkfH9M",
+        "name": "Intersport Zadar 1",
+        "phoneNum": "+385 23 200 462",
+        "address": "Ulica Bleiburških žrtava 17, 23000, Zadar, Croatia",
+        "city": "Zadar",
+        "openingHours": [
+          {
+            "close": {
+              "day": 0,
+              "time": "2100"
+            },
+            "open": {
+              "day": 0,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 1,
+              "time": "2100"
+            },
+            "open": {
+              "day": 1,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "2100"
+            },
+            "open": {
+              "day": 2,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "2100"
+            },
+            "open": {
+              "day": 3,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "2100"
+            },
+            "open": {
+              "day": 4,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "2100"
+            },
+            "open": {
+              "day": 5,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "2100"
+            },
+            "open": {
+              "day": 6,
+              "time": "0900"
+            }
+          }
+        ],
+        "rating": 5,
+        "reviews": [
+          {
+            "author_name": "Danijel Nevistić",
+            "author_url": "https://www.google.com/maps/contrib/111987286487058016465/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-0_Og2_4QRR0/AAAAAAAAAAI/AAAAAAAAGuQ/VZvGvEL665k/s128-c0x00000000-cc-rp-mo-ba2/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "10 months ago",
+            "text": ";)\n",
+            "time": 1475521436
+          },
+          {
+            "author_name": "Zsolt Rádler",
+            "author_url": "https://www.google.com/maps/contrib/105333002540196081956/reviews",
+            "language": "hu",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-MRrA53E0EEc/AAAAAAAAAAI/AAAAAAAAAx8/yWCSUWbi9w4/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a month ago",
+            "text": "",
+            "time": 1499367479
+          },
+          {
+            "author_name": "Dijana Galjatovic",
+            "author_url": "https://www.google.com/maps/contrib/102958970819497445365/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-AiUyuni4fLc/AAAAAAAAAAI/AAAAAAAAADU/G6Mv-RUXRU8/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "10 months ago",
+            "text": "",
+            "time": 1475603522
+          },
+          {
+            "author_name": "HRVATSKI MCPE",
+            "author_url": "https://www.google.com/maps/contrib/103593725478416895537/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-UTYPhRkgX4M/AAAAAAAAAAI/AAAAAAAAAQY/Jw2n6iDfPp4/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "11 months ago",
+            "text": "",
+            "time": 1473609178
+          }
+        ],
+        "website": "http://www.intersport.hr/",
+        "photos": [
+          "upload/photos/ChIJp2VAkoT6YUcRCbgq9YkfH9M0.jpg",
+          "upload/photos/ChIJp2VAkoT6YUcRCbgq9YkfH9M1.jpg",
+          "upload/photos/ChIJp2VAkoT6YUcRCbgq9YkfH9M2.jpg",
+          "upload/photos/ChIJp2VAkoT6YUcRCbgq9YkfH9M3.jpg",
+          "upload/photos/ChIJp2VAkoT6YUcRCbgq9YkfH9M4.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2558242,
+          44.1162223
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJB2DHe1CWfEcRGxYaEJucR9c",
+        "name": "Intersport Sport Hall",
+        "address": "Plava Laguna, 52440, Poreč, Croatia",
+        "city": "Poreč",
+        "openingHours": [],
+        "rating": 4.2,
+        "reviews": [
+          {
+            "author_name": "DJ D3NDO",
+            "author_url": "https://www.google.com/maps/contrib/102572974595947618195/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-ggYI3gzoiHg/AAAAAAAAAAI/AAAAAAAAAJc/gjD5mDatSiU/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a month ago",
+            "text": "Best partys ever",
+            "time": 1500208569
+          },
+          {
+            "author_name": "Dino Plese",
+            "author_url": "https://www.google.com/maps/contrib/117633044463724248420/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-5ZvelrGwNRI/AAAAAAAAAAI/AAAAAAAAAAA/APJypA2ECXldbHt72Ua7I2nhKDVI-V9twg/s128-c0x00000000-cc-rp-mo-ba2/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "2 months ago",
+            "text": "Summer Ice Skating",
+            "time": 1498577417
+          },
+          {
+            "author_name": "Gerald Ibe",
+            "author_url": "https://www.google.com/maps/contrib/108273968555505701132/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-S6-YyhRHHLc/AAAAAAAAAAI/AAAAAAAAAAA/APJypA28dUrqLQT-rzZevU3fPzy0N5mYeA/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "2 months ago",
+            "text": "Good",
+            "time": 1496416580
+          },
+          {
+            "author_name": "joey kuipers",
+            "author_url": "https://www.google.com/maps/contrib/105915238010920561278/reviews",
+            "language": "nl",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-_L1vrdQnCrA/AAAAAAAAAAI/AAAAAAAAAAA/APJypA3KcWkDoyMjptRIjICdsMpBhK2ixA/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "3 weeks ago",
+            "text": "ik heb me gister 2 geile wijfen gevingerd, Prachtige plek om 's avonds lol te hebben. En die vriendinnen waren ook kei geil gek. Echt een aanrader!  Alle dames en heren wens ik veel plezier en sexces....Succes*\n\n😂😂😂😂😂",
+            "time": 1501872172
+          },
+          {
+            "author_name": "Stefan Rutten",
+            "author_url": "https://www.google.com/maps/contrib/104455760807313253783/reviews",
+            "language": "nl",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-wyf8vXFMhA4/AAAAAAAAAAI/AAAAAAAAAAA/APJypA1B1hS8nOdz1ekY5bPO8M-2ClLQRQ/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 3,
+            "relative_time_description": "a week ago",
+            "text": "Goed in te drinken",
+            "time": 1502917656
+          }
+        ],
+        "website": "https://www.facebook.com/pages/Intersport-Sport-Hall-Zelena-Laguna-Pore%C4%8D/477884458918173",
+        "photos": [
+          "upload/photos/ChIJB2DHe1CWfEcRGxYaEJucR9c0.jpg",
+          "upload/photos/ChIJB2DHe1CWfEcRGxYaEJucR9c1.jpg",
+          "upload/photos/ChIJB2DHe1CWfEcRGxYaEJucR9c2.jpg",
+          "upload/photos/ChIJB2DHe1CWfEcRGxYaEJucR9c3.jpg",
+          "upload/photos/ChIJB2DHe1CWfEcRGxYaEJucR9c4.jpg",
+          "upload/photos/ChIJB2DHe1CWfEcRGxYaEJucR9c5.jpg",
+          "upload/photos/ChIJB2DHe1CWfEcRGxYaEJucR9c6.jpg",
+          "upload/photos/ChIJB2DHe1CWfEcRGxYaEJucR9c7.jpg",
+          "upload/photos/ChIJB2DHe1CWfEcRGxYaEJucR9c8.jpg",
+          "upload/photos/ChIJB2DHe1CWfEcRGxYaEJucR9c9.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.5908988,
+          45.1956047
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJ24JZfMjSfEcRn1whUTq42aA",
+        "name": "Intersport Pula 1",
+        "phoneNum": "+385 52 377 493",
+        "address": "Šijanska cesta 1, 52100, Pula, Croatia",
+        "city": "Pula",
+        "openingHours": [
+          {
+            "close": {
+              "day": 0,
+              "time": "1500"
+            },
+            "open": {
+              "day": 0,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 1,
+              "time": "2100"
+            },
+            "open": {
+              "day": 1,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "2100"
+            },
+            "open": {
+              "day": 2,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "2100"
+            },
+            "open": {
+              "day": 3,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "2100"
+            },
+            "open": {
+              "day": 4,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "2100"
+            },
+            "open": {
+              "day": 5,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "2100"
+            },
+            "open": {
+              "day": 6,
+              "time": "0900"
+            }
+          }
+        ],
+        "rating": 3.4,
+        "reviews": [
+          {
+            "author_name": "Kruno Brncic",
+            "author_url": "https://www.google.com/maps/contrib/107908492004298221726/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-lHSB8uov894/AAAAAAAAAAI/AAAAAAAAADc/2w_0qBW9PQY/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 4,
+            "relative_time_description": "a month ago",
+            "text": "Ponuda je ogranicena bolji izbor je Alpina par trgovina dalje",
+            "time": 1500740461
+          },
+          {
+            "author_name": "Uwe",
+            "author_url": "https://www.google.com/maps/contrib/116359479236591220159/reviews",
+            "language": "de",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-2wmta6OYj18/AAAAAAAAAAI/AAAAAAAAHvo/kNCZvHMOSs0/s128-c0x00000000-cc-rp-mo-ba8/photo.jpg",
+            "rating": 4,
+            "relative_time_description": "a month ago",
+            "text": "Freundliche Verkäufer, sehr gut sortiert. Relativ teuer.",
+            "time": 1500654788
+          },
+          {
+            "author_name": "Spoky Scary",
+            "author_url": "https://www.google.com/maps/contrib/116197567582604552525/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-uaI5sahN_9A/AAAAAAAAAAI/AAAAAAAANAQ/BhVz_Pckib0/s128-c0x00000000-cc-rp-mo-ba5/photo.jpg",
+            "rating": 4,
+            "relative_time_description": "in the last week",
+            "text": "Ljubazno osoblje.Dobro opskrbljen dućan",
+            "time": 1503520477
+          },
+          {
+            "author_name": "Zlatko Mašović",
+            "author_url": "https://www.google.com/maps/contrib/111587846947655418037/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-IG8T40Cq5vo/AAAAAAAAAAI/AAAAAAAAAAA/APJypA1FQo4BmCDVwHH6of3-5peVMy41NQ/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 3,
+            "relative_time_description": "5 months ago",
+            "text": "Solidan izbor. Cijene previsoke u odnosu na ponudu.",
+            "time": 1489337997
+          },
+          {
+            "author_name": "dinko bilic",
+            "author_url": "https://www.google.com/maps/contrib/112930596210305715523/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-tlGR7OTk5Kw/AAAAAAAAAAI/AAAAAAAAAAA/APJypA2HA3i1r-s2BzQaJibvrrUp4PTwXQ/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 2,
+            "relative_time_description": "3 months ago",
+            "text": "",
+            "time": 1496158288
+          }
+        ],
+        "website": "http://www.intersport.hr/",
+        "photos": [
+          "upload/photos/ChIJ24JZfMjSfEcRn1whUTq42aA0.jpg",
+          "upload/photos/ChIJ24JZfMjSfEcRn1whUTq42aA1.jpg",
+          "upload/photos/ChIJ24JZfMjSfEcRn1whUTq42aA2.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.8690795,
+          44.8834362
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJGWezpaupTRMRLPRRXJJ88II",
+        "name": "Intersport Crna Gora",
+        "phoneNum": "+382 20 449 610",
+        "address": "Gojka Garčevića 2, Nikšić 81400, Montenegro",
+        "city": "Nikšić",
+        "openingHours": [
+          {
+            "close": {
+              "day": 1,
+              "time": "1600"
+            },
+            "open": {
+              "day": 1,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "1600"
+            },
+            "open": {
+              "day": 2,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "1600"
+            },
+            "open": {
+              "day": 3,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "1600"
+            },
+            "open": {
+              "day": 4,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "1600"
+            },
+            "open": {
+              "day": 5,
+              "time": "0800"
+            }
+          }
+        ],
+        "rating": 5,
+        "reviews": [
+          {
+            "author_name": "Andrija Bulajić",
+            "author_url": "https://www.google.com/maps/contrib/116610532621217682424/reviews",
+            "language": "bs",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-M0HpJG4248U/AAAAAAAAAAI/AAAAAAAACqs/pqeyk6XRLh8/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "10 months ago",
+            "text": "Prvi koji je Niksicu donio sport u pravom smislu te rijeci",
+            "time": 1477464284
+          },
+          {
+            "author_name": "Kimi Miki",
+            "author_url": "https://www.google.com/maps/contrib/106439126579688696788/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-EEhb64rt5OY/AAAAAAAAAAI/AAAAAAAAAB4/xBEzTGTswTg/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "a month ago",
+            "text": "",
+            "time": 1499328324
+          },
+          {
+            "author_name": "V K",
+            "author_url": "https://www.google.com/maps/contrib/100400731893097917672/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-jLfiv-3Svsw/AAAAAAAAAAI/AAAAAAAAAYc/80ZAy8StAxQ/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "2 months ago",
+            "text": "",
+            "time": 1497458477
+          },
+          {
+            "author_name": "Danilo Roganovic",
+            "author_url": "https://www.google.com/maps/contrib/101364640431750740433/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-ETOx2RwhDyo/AAAAAAAAAAI/AAAAAAAAAAA/APJypA3gtjAlRsxbrfaIj7G284wZVk946g/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "3 years ago",
+            "text": "",
+            "time": 1407068702
+          }
+        ],
+        "website": "https://www.intersport.me/",
+        "photos": [
+          "upload/photos/ChIJGWezpaupTRMRLPRRXJJ88II0.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.9467851,
+          42.77104199999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJOxI-D_86TBMRvD0Kw-R3LeI",
+        "name": "INTERSPORT Zelenika",
+        "phoneNum": "+382 67 602 886",
+        "address": "Zelenika bb, Herceg - Novi 85340, Montenegro",
+        "city": "Herceg - Novi",
+        "openingHours": [
+          {
+            "close": {
+              "day": 0,
+              "time": "2100"
+            },
+            "open": {
+              "day": 0,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 1,
+              "time": "2100"
+            },
+            "open": {
+              "day": 1,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "2100"
+            },
+            "open": {
+              "day": 2,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "2100"
+            },
+            "open": {
+              "day": 3,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "2100"
+            },
+            "open": {
+              "day": 4,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "2100"
+            },
+            "open": {
+              "day": 5,
+              "time": "0900"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "2100"
+            },
+            "open": {
+              "day": 6,
+              "time": "0900"
+            }
+          }
+        ],
+        "rating": 5,
+        "reviews": [
+          {
+            "author_name": "Evgeniy Ivanov",
+            "author_url": "https://www.google.com/maps/contrib/103470939632599450263/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-12heD_aDj3w/AAAAAAAAAAI/AAAAAAAAAAw/5Su5Imi-t5I/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "4 months ago",
+            "text": " The biggest sport store in Herceg Novi, always clean. Good and nice staff work there",
+            "time": 1492928092
+          },
+          {
+            "author_name": "Luka Krsmanovic",
+            "author_url": "https://www.google.com/maps/contrib/110565655549772512219/reviews",
+            "language": "en",
+            "profile_photo_url": "https://lh5.googleusercontent.com/-3AqQcZX47sk/AAAAAAAAAAI/AAAAAAAAAAA/APJypA29wfzWSOlfi4N1-qFIltHYM7Xyhg/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "10 months ago",
+            "text": "Super",
+            "time": 1476274374
+          },
+          {
+            "author_name": "Andja Vukovic",
+            "author_url": "https://www.google.com/maps/contrib/118215078088783517639/reviews",
+            "language": "sr",
+            "profile_photo_url": "https://lh4.googleusercontent.com/--5VsDe3HS3k/AAAAAAAAAAI/AAAAAAAAALc/biZIBx-1JLE/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "5 months ago",
+            "text": "",
+            "time": 1490871526
+          },
+          {
+            "author_name": "Svetlana Vico",
+            "author_url": "https://www.google.com/maps/contrib/106566086904519823184/reviews",
+            "language": "sr",
+            "profile_photo_url": "https://lh4.googleusercontent.com/-0HekOLjzBwg/AAAAAAAAAAI/AAAAAAAAAAA/APJypA1cNovhWm1dzC_yd0Q_zrv8eJsIjw/s128-c0x00000000-cc-rp-mo-ba2/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "9 months ago",
+            "text": "",
+            "time": 1479480482
+          }
+        ],
+        "website": "http://www.intersport.me/",
+        "photos": [
+          "upload/photos/ChIJOxI-D_86TBMRvD0Kw-R3LeI0.jpg",
+          "upload/photos/ChIJOxI-D_86TBMRvD0Kw-R3LeI1.jpg",
+          "upload/photos/ChIJOxI-D_86TBMRvD0Kw-R3LeI2.jpg",
+          "upload/photos/ChIJOxI-D_86TBMRvD0Kw-R3LeI3.jpg",
+          "upload/photos/ChIJOxI-D_86TBMRvD0Kw-R3LeI4.jpg",
+          "upload/photos/ChIJOxI-D_86TBMRvD0Kw-R3LeI5.jpg",
+          "upload/photos/ChIJOxI-D_86TBMRvD0Kw-R3LeI6.jpg",
+          "upload/photos/ChIJOxI-D_86TBMRvD0Kw-R3LeI7.jpg",
+          "upload/photos/ChIJOxI-D_86TBMRvD0Kw-R3LeI8.jpg",
+          "upload/photos/ChIJOxI-D_86TBMRvD0Kw-R3LeI9.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.573487,
+          42.450938
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJyS2_KCgTSxMR-KWy0lNbHow",
+        "name": "DOST d.o.o",
+        "phoneNum": "+387 36 650-253",
+        "address": "Međugorje, Bosnia and Herzegovina",
+        "city": "Međugorje",
+        "openingHours": [],
+        "rating": 0,
+        "reviews": [],
+        "website": "http://www.dost.ba/",
+        "photos": []
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.6593506,
+          43.206421
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJ4zHs_27uShMRv_ITtOKdamY",
+        "name": "Intersport Capitol Park Makarska 1",
+        "phoneNum": "+385 21 444 336",
+        "address": "Vrgorački put 1, 21300, Makarska, Croatia",
+        "city": "Makarska",
+        "openingHours": [
+          {
+            "close": {
+              "day": 0,
+              "time": "1300"
+            },
+            "open": {
+              "day": 0,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 1,
+              "time": "2000"
+            },
+            "open": {
+              "day": 1,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "2000"
+            },
+            "open": {
+              "day": 2,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "2000"
+            },
+            "open": {
+              "day": 3,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "2000"
+            },
+            "open": {
+              "day": 4,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "2000"
+            },
+            "open": {
+              "day": 5,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "2000"
+            },
+            "open": {
+              "day": 6,
+              "time": "0800"
+            }
+          }
+        ],
+        "rating": 0,
+        "reviews": [],
+        "website": "http://www.intersport.hr/",
+        "photos": [
+          "upload/photos/ChIJ4zHs_27uShMRv_ITtOKdamY0.jpg",
+          "upload/photos/ChIJ4zHs_27uShMRv_ITtOKdamY1.jpg",
+          "upload/photos/ChIJ4zHs_27uShMRv_ITtOKdamY2.jpg",
+          "upload/photos/ChIJ4zHs_27uShMRv_ITtOKdamY3.jpg",
+          "upload/photos/ChIJ4zHs_27uShMRv_ITtOKdamY4.jpg",
+          "upload/photos/ChIJ4zHs_27uShMRv_ITtOKdamY5.jpg",
+          "upload/photos/ChIJ4zHs_27uShMRv_ITtOKdamY6.jpg",
+          "upload/photos/ChIJ4zHs_27uShMRv_ITtOKdamY7.jpg",
+          "upload/photos/ChIJ4zHs_27uShMRv_ITtOKdamY8.jpg",
+          "upload/photos/ChIJ4zHs_27uShMRv_ITtOKdamY9.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.021524,
+          43.293777
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ChIJ26OdxFMzZ0cRwQFINbqgMUA",
+        "name": "LD Bike",
+        "phoneNum": "+387 52 231-521",
+        "address": "29,, Kralja Aleksandra, Prijedor, Bosnia and Herzegovina",
+        "city": "Prijedor",
+        "openingHours": [
+          {
+            "close": {
+              "day": 1,
+              "time": "1600"
+            },
+            "open": {
+              "day": 1,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 2,
+              "time": "1600"
+            },
+            "open": {
+              "day": 2,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 3,
+              "time": "1600"
+            },
+            "open": {
+              "day": 3,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 4,
+              "time": "1600"
+            },
+            "open": {
+              "day": 4,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 5,
+              "time": "1600"
+            },
+            "open": {
+              "day": 5,
+              "time": "0800"
+            }
+          },
+          {
+            "close": {
+              "day": 6,
+              "time": "1600"
+            },
+            "open": {
+              "day": 6,
+              "time": "0800"
+            }
+          }
+        ],
+        "rating": 5,
+        "reviews": [
+          {
+            "author_name": "Goran Prastalo",
+            "author_url": "https://www.google.com/maps/contrib/109389282431954448144/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh6.googleusercontent.com/-Q2DSAZ1lLNo/AAAAAAAAAAI/AAAAAAAAAAA/APJypA2LczlGRa30UoAJjxMLEKlsQzSW0A/s128-c0x00000000-cc-rp-mo-ba3/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "in the last week",
+            "text": "Solidno snabdjeveni osoblje na usluzi sve u svemu odlično. ",
+            "time": 1503602279
+          },
+          {
+            "author_name": "A Be",
+            "author_url": "https://www.google.com/maps/contrib/116367271697474367513/reviews",
+            "language": "hr",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-o538oNsUGL8/AAAAAAAAAAI/AAAAAAAAASc/p_CshxG5c2A/s128-c0x00000000-cc-rp-mo-ba4/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "2 months ago",
+            "text": "Jedina specijalizirana trgovina za bicikl i ski opremu u Prijedoru",
+            "time": 1498590709
+          },
+          {
+            "author_name": "Bojan Lukic",
+            "author_url": "https://www.google.com/maps/contrib/110920666762594228926/reviews",
+            "language": "sr",
+            "profile_photo_url": "https://lh3.googleusercontent.com/-G3W2_8gKwk8/AAAAAAAAAAI/AAAAAAAAAAA/APJypA0_S5WoYnWxkdrExLKzT8p4JYjc2w/s128-c0x00000000-cc-rp-mo/photo.jpg",
+            "rating": 5,
+            "relative_time_description": "8 months ago",
+            "text": "",
+            "time": 1481393085
+          }
+        ],
+        "website": "",
+        "photos": [
+          "upload/photos/ChIJ26OdxFMzZ0cRwQFINbqgMUA0.jpg",
+          "upload/photos/ChIJ26OdxFMzZ0cRwQFINbqgMUA1.jpg",
+          "upload/photos/ChIJ26OdxFMzZ0cRwQFINbqgMUA2.jpg",
+          "upload/photos/ChIJ26OdxFMzZ0cRwQFINbqgMUA3.jpg",
+          "upload/photos/ChIJ26OdxFMzZ0cRwQFINbqgMUA4.jpg",
+          "upload/photos/ChIJ26OdxFMzZ0cRwQFINbqgMUA5.jpg",
+          "upload/photos/ChIJ26OdxFMzZ0cRwQFINbqgMUA6.jpg",
+          "upload/photos/ChIJ26OdxFMzZ0cRwQFINbqgMUA7.jpg",
+          "upload/photos/ChIJ26OdxFMzZ0cRwQFINbqgMUA8.jpg",
+          "upload/photos/ChIJ26OdxFMzZ0cRwQFINbqgMUA9.jpg"
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.713085,
+          44.97712019999999
+        ]
+      }
+    }
+  ]
+}

@@ -1,29 +1,27 @@
+
 function enrichWP(w) {
   const setup = {
     w: w,
+    type: 'wp',
     coordinates: w.geometry.coordinates[1] + ',' +  w.geometry.coordinates[0],
-    endpoint: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=',
+    endpoint: 'https://maps.googleapis.com/maps/api/place/',
     key: 'AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis',
     lvl: [
       {
-        type: 'locality',
+        service: 'nearbysearch/json?type=locality&radius=1000&location=',
         prefix: 'Selo ',
-        radius: 1000,
       },
       {
-        type: 'geocode',
+        service: 'nearbysearch/json?type=geocode&radius=200&location=',
         prefix: 'Lokacija ',
-        radius: 200,
       },
       {
-        type: 'natural_feature',
+        service: 'nearbysearch/json?type=natural_feature&radius=200&location=',
         prefix: '',
-        radius: 200,
       },
       {
-        type: 'route',
+        service: 'nearbysearch/json?type=route&radius=200&location=',
         prefix: 'Put ',
-        radius: 200,
       }
     ],
     replacement: []
@@ -31,108 +29,14 @@ function enrichWP(w) {
   getLevel(setup, 0);
 }
 
-function getLevel(setup, index) {
-  $.ajax(setup.endpoint + setup.coordinates + '&radius=' + setup.lvl[index].radius + '&type=' + setup.lvl[index].type + '&key=' + setup.key).done(response => {
-    if (response.status == 'OK') {
-      response.results.forEach(r => {
-        const fromPoint = setup.w;
-        const toPoint = turf.point([r.geometry.location.lng, r.geometry.location.lat]);
-        const distance = turf.distance(fromPoint, toPoint);
-        setup.replacement.push(setup.lvl[index].prefix + r.name + ' - ' + distance + 'km');
-      });
-    }
-    if (index == (setup.lvl.length - 1)) {
-      console.log(setup.w.properties.name + ' - replace with: ' + JSON.stringify(setup.replacement));
-    } else {
-      getLevel(setup, index + 1);
-    }
-  });
-}
 
-function findStore(w, total, index) {
-  // console.log(w.properties.name);
-  const setup = {
-    w: w,
-    coordinates: w.geometry.coordinates[1] + ',' +  w.geometry.coordinates[0],
-    endpoint: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=',
-    localUpload: 'http://localhost/sandbox/examples/getGooglePlacePhoto.php?photoReference=',
-    key: 'AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis',
-    lvl: [
-      {
-        type: 'bicycle_store',
-        radius: 15000,
-      }
-    ],
-    replacement: []
-  };
-  // console.log(setup.endpoint + setup.coordinates + '&radius=' + setup.lvl[0].radius + '&type=' + setup.lvl[0].type + '&key=' + setup.key);
-  $.ajax(setup.endpoint + setup.coordinates + '&radius=' + setup.lvl[0].radius + '&type=' + setup.lvl[0].type + '&key=' + setup.key).done(placeResponse => {
-    if (placeResponse.status == 'OK') {
-      placeResponse.results.forEach(r => {
-        if (window.stores.allIDs.indexOf(r['place_id']) == -1) {
-          window.stores.allIDs.push(r['place_id']);
-          // Get place details
-          $.ajax('https://maps.googleapis.com/maps/api/place/details/json?placeid=' + r['place_id'] + '&key=' + setup.key).done(detailResponse => {
-            if (detailResponse.status == 'OK') {
-              const det = detailResponse.result;
-              const photoRefs = (det.photos) ? det.photos.map(p => {
-                return p['photo_reference'];
-              }) : [];
-              const newStore = turf.point([r.geometry.location.lng, r.geometry.location.lat], {
-                id: r['place_id'],
-                name: det.name,
-                phoneNum: det['international_phone_number'],
-                address: det['formatted_address'],
-                city: det['address_components'][0]['long_name'],
-                openingHours: (det['opening_hours']) ? det['opening_hours'].periods : [],
-                rating: (det.rating) ? det.rating : 0,
-                reviews: (det.reviews) ? det.reviews : [],
-                website: (det.website) ? det.website : '',
-                photos: []
-              });
-              getPlacePhotos(setup, newStore, photoRefs, 0);
-            }
-          });
-        }
-      });
-      if (total == (index + 1)) {
-        displayStores();
-        localStorage.setItem('stores', JSON.stringify(window.stores));
-        console.info('Saved to local storage');
-      }
-    }
-    console.log(setup.w.properties.name + ' - nearby: ' + JSON.stringify(setup.replacement));
-  });
-}
-
-function getPlacePhotos(setup, newStore, refs, index) {
-  if (refs.length == index) {
-    window.stores.features.push(newStore);
+function initLocalStorage() {
+  if (localStorage.getItem('stores')) {
+      window.stores = JSON.parse(localStorage.getItem('stores'));
+      displayStores();
   } else {
-    $.ajax(setup.localUpload + refs[index] + '&fileName=' + newStore.properties.id + index + '&key=' + setup.key).done(photoResponse => {
-      const resp =JSON.parse(photoResponse);
-      if (resp.success) {
-        newStore.properties.photos.push(resp.url);
-      }
-      getPlacePhotos(setup, newStore, refs, index + 1);
-    });
+      reGenerateStores();
   }
-}
-
-function generateStores() {
-  var wps = getLinePoints(dataJSON);
-  wps.forEach((w, wpindex) => {
-      findStore(w, wps.length, wpindex);
-  })
-}
-
-function reGenerateStores() {
-  window.stores = {
-    type: "FeatureCollection",
-    allIDs: [],
-    features: []
-  };
-  generateStores();
 }
 
 function displayStores() {
@@ -169,11 +73,121 @@ function displayStores() {
   }
 }
 
-function initLocalStorage() {
-  if (localStorage.getItem('stores')) {
-      window.stores = JSON.parse(localStorage.getItem('stores'));
-      displayStores();
+function reGenerateStores() {
+  console.log('Reset global variable');
+  window.stores = {
+    type: "FeatureCollection",
+    allIDs: [],
+    features: []
+  };
+  generateStores();
+}
+
+function generateStores() {
+  var wps = getLinePoints(dataJSON);
+  findStores(wps, 0);
+}
+
+function findStores(wps, index) {
+  console.info('findStores(wps[' + wps.length + '], ' + index + ')');
+  const w = wps[index];
+  const setup = {
+    w: w,
+    wps: wps,
+    total: wps.length, 
+    index: index,
+    type: 'stores',
+    localUpload: 'http://localhost/sandbox/examples/getGooglePlacePhoto.php?photoReference=',
+    coordinates: w.geometry.coordinates[1] + ',' +  w.geometry.coordinates[0],
+    endpoint: 'https://maps.googleapis.com/maps/api/place/',
+    key: 'AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis',
+    lvl: [
+      {
+        service: 'nearbysearch/json?type=bicycle_store&radius=15000&location=',
+        prefix: ''
+      },
+      // {
+      //   service: 'autocomplete/json?input=intersport&radius=15000&location=',
+      //   prefix: ''
+      // },
+    ],
+    replacement: []
+  };
+  getLevel(setup, 0);
+
+}
+
+function getLevel(setup, indexLvl) {
+  console.info('getLevel(setup, ' + indexLvl + ')');
+  $.ajax(setup.endpoint + setup.lvl[indexLvl].service + setup.coordinates  + '&key=' + setup.key).done(response => {
+    if (response.status == 'OK') {
+      const res = (response.results) ? response.results : response.predictions;
+      res.forEach(r => {
+        if (window[setup.type].allIDs.indexOf(r['place_id']) == -1) {
+          window[setup.type].allIDs.push(r['place_id']); 
+        }
+      });
+    }
+    if (indexLvl == (setup.lvl.length - 1)) {
+      if (setup.type == 'stores') {
+          if (setup.total == (setup.index + 1)) {
+            generateDetailedPoints(setup, 0);
+            displayStores();
+            console.log(window.stores);
+            localStorage.setItem('stores', JSON.stringify(window.stores));
+            console.info('Saved to local storage');
+          } else {
+            findStores(setup.wps, setup.index + 1);
+          }
+      }
+    } else {
+      getLevel(setup, indexLvl + 1);
+    }
+  });
+}
+
+function generateDetailedPoints(setup, placeIndex) {
+  console.info('generateDetailedPoints(setup, ' + placeIndex + ')');
+  const id = window[setup.type].allIDs[placeIndex];
+  $.ajax('https://maps.googleapis.com/maps/api/place/details/json?placeid=' + id + '&key=' + setup.key).done(detailResponse => {
+    if (detailResponse.status == 'OK') {
+      const det = detailResponse.result;
+      const photoRefs = (det.photos) ? det.photos.map(p => {
+        return p['photo_reference'];
+      }) : [];
+      if (!det.geometry.location) {
+        console.log('Invalid det.geometry.location');
+      } else {
+        const newStore = turf.point([det.geometry.location.lng, det.geometry.location.lat], {
+          id: id,
+          name: det.name,
+          phoneNum: det['international_phone_number'],
+          address: det['formatted_address'],
+          city: det['vicinity'].split(',').pop().replace(' ',''),
+          openingHours: (det['opening_hours']) ? det['opening_hours'].periods : [],
+          rating: (det.rating) ? det.rating : 0,
+          reviews: (det.reviews) ? det.reviews : [],
+          website: (det.website) ? det.website : '',
+          photos: []
+        });
+        getPlacePhotos(setup, newStore, photoRefs, 0, placeIndex);
+      }
+    }
+  });
+}
+
+function getPlacePhotos(setup, newStore, refs, index, placeIndex) {
+  console.info('getPlacePhotos(setup, newStore, refs, ' + index + ', ' + placeIndex + ')');
+  if (refs.length == index) {
+    window.stores.features.push(newStore);
+    generateDetailedPoints(setup, placeIndex + 1);
   } else {
-      reGenerateStores();
+    $.ajax(setup.localUpload + refs[index] + '&fileName=' + newStore.properties.id + index + '&key=' + setup.key).done(photoResponse => {
+      const resp =JSON.parse(photoResponse);
+      if (resp.success) {
+        newStore.properties.photos.push(resp.url);
+      }
+      getPlacePhotos(setup, newStore, refs, index + 1, placeIndex);
+    });
   }
 }
