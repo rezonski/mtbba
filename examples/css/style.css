@@ -23,8 +23,8 @@ a, a:hover, a:active, a:visited {
 .dugmad {
     display: block;
     position: absolute;
-    left: 50px;
-    top: 50px;
+    left: 10px;
+    top: 10px;
     z-index: 30;
 }
 

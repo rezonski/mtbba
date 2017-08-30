@@ -1,4 +1,3 @@
-
 function enrichWP(w) {
   const setup = {
     w: w,
@@ -29,57 +28,84 @@ function enrichWP(w) {
   getLevel(setup, 0);
 }
 
+function save2json() {
+  console.log(window.stores);
+  const xmlhttpUpload = new XMLHttpRequest();
+  xmlhttpUpload.onreadystatechange = () => {
+      if (xmlhttpUpload.readyState === 4 && xmlhttpUpload.status === 200) {
+          console.log(xmlhttpUpload.responseText);
+      }
+  };
+  xmlhttpUpload.open('POST', 'setStores.php', true);
+  xmlhttpUpload.send(JSON.stringify(window.stores));
+}
+
+function loadJson() {
+  $.getJSON('data/stores.geojson', storesData => {
+      window.stores = storesData;
+      $.getJSON('data/resellers.geojson', resellersData => {
+          window.resellers = resellersData;
+          displayStores();
+      });
+  });
+}
 
 function initLocalStorage() {
   if (localStorage.getItem('stores')) {
-      window.stores = JSON.parse(localStorage.getItem('stores'));
-      displayStores();
+      loadJson();
   } else {
       reGenerateStores();
   }
 }
 
 function displayStores() {
-  if (window.map.getSource('stores')) {
-    window.map.getSource('stores').setData(window.stores);
-  } else {
-    window.map.addSource('stores', {
-      'type': 'geojson',
-      'data': window.stores
-    });
-    window.map.addLayer({
-      'id': 'stores',
-      'type': 'symbol',
-      'source': 'stores',
-      'paint': {
-          'text-halo-color': '#fff',
-          'text-halo-width': 2,
-          'text-halo-blur': 2,
-          'text-color': '#F00'
-      },
-      'layout': {
-          'icon-image': 'circle-11',
-          // 'icon-allow-overlap': true,
-          'text-field': '{name}',
-          // 'text-anchor': 'left',
-          'text-max-width': 5,
-          'text-offset': [0, 1],
-          'text-size': {
-              'base': 1,
-              'stops': [[4,0],[6,1],[12,12]]
-          }
-      }
-    });
-  }
+  ['resellers','stores'].forEach(t => {
+    if (window.map.getSource(t)) {
+      window.map.getSource(t).setData(window[t]);
+    } else {
+      window.map.addSource(t, {
+        'type': 'geojson',
+        'data': window[t]
+      });
+      window.map.addLayer({
+        'id': t,
+        'type': 'symbol',
+        'source': t,
+        'paint': {
+            'text-halo-color': '#fff',
+            'text-halo-width': 2,
+            'text-halo-blur': 2,
+            'text-color': '#F00'
+        },
+        'layout': {
+            'icon-image': 'circle-15',
+            // 'icon-allow-overlap': true,
+            'text-field': '{name}',
+            // 'text-anchor': 'left',
+            'text-max-width': 8,
+            'text-offset': [0, 1.5],
+            'text-size': {
+                'base': 1,
+                'stops': [[4,0],[5,1],[7,13]]
+            }
+        }
+      });
+    }
+  });
 }
 
 function reGenerateStores() {
-  console.log('Reset global variable');
-  window.stores = {
-    type: "FeatureCollection",
-    allIDs: [],
-    features: []
-  };
+  // console.log('Reset global variable');
+  // window.stores = {
+  //   type: "FeatureCollection",
+  //   allIDs: [],
+  //   features: []
+  // };
+  // window.resellers = {
+  //   type: "FeatureCollection",
+  //   allIDs: [],
+  //   features: []
+  // };
   generateStores();
 }
 
@@ -103,22 +129,66 @@ function findStores(wps, index) {
     key: 'AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis',
     lvl: [
       {
-        service: 'nearbysearch/json?type=bicycle_store&radius=15000&location=',
+        service: 'nearbysearch/json?type=bicycle_store&radius=25000&location=',
         prefix: ''
       },
-      // {
-      //   service: 'autocomplete/json?input=intersport&radius=15000&location=',
-      //   prefix: ''
-      // },
+      {
+        service: 'autocomplete/json?input=intersport&radius=25000&location=',
+        prefix: ''
+      },
+      {
+        service: 'autocomplete/json?input=juventa+sport&radius=25000&location=',
+        prefix: ''
+      },
+      {
+        service: 'autocomplete/json?input=decathlon&radius=25000&location=',
+        prefix: ''
+      },
+      {
+        service: 'autocomplete/json?input=bajk+garaza&radius=25000&location=',
+        prefix: ''
+      },
+      {
+        service: 'autocomplete/json?input=beosport&radius=25000&location=',
+        prefix: ''
+      },
+      {
+        service: 'autocomplete/json?input=cyclomania&radius=25000&location=',
+        prefix: ''
+      },
+      {
+        service: 'autocomplete/json?input=freestyle+pancevo&radius=25000&location=',
+        prefix: ''
+      },
+      {
+        service: 'autocomplete/json?input=jankovic+comp&radius=25000&location=',
+        prefix: ''
+      },
+      {
+        service: 'autocomplete/json?input=neptun+bike&radius=25000&location=',
+        prefix: ''
+      },
+      {
+        service: 'autocomplete/json?input=nomad&radius=25000&location=',
+        prefix: ''
+      },
+      {
+        service: 'autocomplete/json?input=sportofis&radius=25000&location=',
+        prefix: ''
+      },
+      {
+        service: 'autocomplete/json?input=totalbike&radius=25000&location=',
+        prefix: ''
+      },
     ],
     replacement: []
   };
   getLevel(setup, 0);
-
 }
 
+
 function getLevel(setup, indexLvl) {
-  console.info('getLevel(setup, ' + indexLvl + ')');
+  // console.info('getLevel(setup, ' + indexLvl + ')');
   $.ajax(setup.endpoint + setup.lvl[indexLvl].service + setup.coordinates  + '&key=' + setup.key).done(response => {
     if (response.status == 'OK') {
       const res = (response.results) ? response.results : response.predictions;
@@ -147,44 +217,51 @@ function getLevel(setup, indexLvl) {
 }
 
 function generateDetailedPoints(setup, placeIndex) {
-  console.info('generateDetailedPoints(setup, ' + placeIndex + ')');
+  // console.info('generateDetailedPoints(setup, ' + placeIndex + ')');
   const id = window[setup.type].allIDs[placeIndex];
-  $.ajax('https://maps.googleapis.com/maps/api/place/details/json?placeid=' + id + '&key=' + setup.key).done(detailResponse => {
-    if (detailResponse.status == 'OK') {
-      const det = detailResponse.result;
-      const photoRefs = (det.photos) ? det.photos.map(p => {
-        return p['photo_reference'];
-      }) : [];
-      if (!det.geometry.location) {
-        console.log('Invalid det.geometry.location');
-      } else {
-        const newStore = turf.point([det.geometry.location.lng, det.geometry.location.lat], {
-          id: id,
-          name: det.name,
-          phoneNum: det['international_phone_number'],
-          address: det['formatted_address'],
-          city: det['vicinity'].split(',').pop().replace(' ',''),
-          openingHours: (det['opening_hours']) ? det['opening_hours'].periods : [],
-          rating: (det.rating) ? det.rating : 0,
-          reviews: (det.reviews) ? det.reviews : [],
-          website: (det.website) ? det.website : '',
-          photos: []
-        });
-        getPlacePhotos(setup, newStore, photoRefs, 0, placeIndex);
+  if (window[setup.type].processedIDs.indexOf(id) == -1) {
+    $.ajax('https://maps.googleapis.com/maps/api/place/details/json?placeid=' + id + '&key=' + setup.key).done(detailResponse => {
+      if (detailResponse.status == 'OK') {
+        const det = detailResponse.result;
+        const photoRefs = (det.photos) ? det.photos.map(p => {
+          return p['photo_reference'];
+        }) : [];
+        if (!det.geometry.location) {
+          console.log('Invalid det.geometry.location');
+        } else {
+          const newStore = turf.point([det.geometry.location.lng, det.geometry.location.lat], {
+            id: id,
+            name: det.name,
+            phoneNum: det['international_phone_number'],
+            address: det['formatted_address'],
+            city: det['vicinity'].split(',').pop().replace(' ',''),
+            openingHours: (det['opening_hours']) ? det['opening_hours'].periods : [],
+            rating: (det.rating) ? det.rating : 0,
+            reviews: (det.reviews) ? det.reviews : [],
+            website: (det.website) ? det.website : '',
+            photos: []
+          });
+          getPlacePhotos(setup, newStore, photoRefs, 0, placeIndex);
+        }
       }
-    }
-  });
+    });
+  } else {
+    console.info('generateDetailedPoints - SKIP processed ' + id + ')');
+    generateDetailedPoints(setup, placeIndex + 1);
+  }
 }
 
 function getPlacePhotos(setup, newStore, refs, index, placeIndex) {
-  console.info('getPlacePhotos(setup, newStore, refs, ' + index + ', ' + placeIndex + ')');
+  // console.info('getPlacePhotos(setup, newStore, refs, ' + index + ', ' + placeIndex + ')');
   if (refs.length == index) {
-    window.stores.features.push(newStore);
+    window[setup.type].features.push(newStore);
+    window[setup.type].processedIDs.push(newStore.properties.id);
     generateDetailedPoints(setup, placeIndex + 1);
   } else {
     $.ajax(setup.localUpload + refs[index] + '&fileName=' + newStore.properties.id + index + '&key=' + setup.key).done(photoResponse => {
       const resp =JSON.parse(photoResponse);
       if (resp.success) {
+        console.log('getPlacePhotos - ' + resp.msg);
         newStore.properties.photos.push(resp.url);
       }
       getPlacePhotos(setup, newStore, refs, index + 1, placeIndex);

@@ -264,7 +264,7 @@ function addLayers(map) {
 function addControls(map) {
   map.addControl(new mapboxgl.NavigationControl(), 'top-right');
   map.addControl(new mapboxgl.FullscreenControl());
-  map.addControl(new UserMapControl());
+  // map.addControl(new UserMapControl());
   map.addControl(new mapboxgl.ScaleControl({
       maxWidth: 150,
       unit: 'metric',

@@ -19,7 +19,11 @@
 <body>
 <div class='visualisation'>
     <div id='map' class='map'></div>
-    <div class="dugmad"><input type="button" label="Spasi" onclick="reGenerateStores();"></div>
+    <div class="dugmad">
+        <input type="button" value="(re)generate stores" onclick="reGenerateStores();">
+        <input type="button" value="Load stores" onclick="loadJson();">
+        <input type="button" value="Save stores" onclick="save2json();">
+    </div>
 </div>
 <script>
     window.trail = {
@@ -54,7 +58,7 @@
             style: 'mapbox://styles/mapbox/basic-v9',
             zoom: 6,
             center: turf.center(dataJSON).geometry.coordinates,
-            maxBounds: [[15, 42.3], [20.5, 45.5]]
+            maxBounds: [[14, 41], [22, 46]]
         });
         window.map = map;
         var popup = new mapboxgl.Popup({
@@ -65,7 +69,7 @@
             map.fitBounds(box);
             // addSources(map);
             // addLayers(map);
-            // addControls(map);
+            addControls(map);
             // addPopups(map, popup);
             // console.log(wps);
             initLocalStorage();

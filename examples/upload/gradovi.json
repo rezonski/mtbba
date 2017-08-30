@@ -351,6 +351,435 @@
           43.84690817091638
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mrkonjic Grad"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.085113525390625,
+          44.41318336041361
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Drvar"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.381988525390625,
+          44.376999354480205
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bosanska Krup"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.171875,
+          44.883120442385646
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bugojno"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.446975708007812,
+          44.05206384489493
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Zavidovici"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.13018798828125,
+          44.429857265397246
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Brcko"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.805160522460938,
+          44.873389196779264
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sokolac"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.8031005859375,
+          43.9349893800415
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kalinovik"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.435745239257812,
+          43.49925821066224
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Gacko"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.516769409179688,
+          43.167125915000284
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Jablanica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.760772705078125,
+          43.65197548731187
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Prozor"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.623443603515625,
+          43.823629034783124
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Konjic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.96539306640625,
+          43.64949133795468
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Zagreb"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.967254638671873,
+          45.80439255579955
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Karlovac"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.548400878906248,
+          45.48613195107752
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rijeka"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.436035156250002,
+          45.32801318215748
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pula"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.843460083007812,
+          44.864629668602866
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Zadar"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.23529052734375,
+          44.10533762552548
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Split"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.46026611328125,
+          43.5107129908437
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bijelo Polje"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.741058349609375,
+          43.02974913459804
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Niksic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.9349365234375,
+          42.771211138625894
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Podgorica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.259033203125,
+          42.415346114253616
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Uzice"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.83135223388672,
+          43.85656387037451
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sjenica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.004730224609375,
+          43.27183106086199
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Varazdin"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.343536376953125,
+          46.31041861577579
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Osijek"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.6822509765625,
+          45.533288879467456
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Novi Sad"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.830322265625,
+          45.25120485988152
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Beograd"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.470275878906246,
+          44.80863455149579
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pancevo"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.647430419921875,
+          44.87192936799084
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kraljevo"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.687942504882812,
+          43.72148995228582
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kragujevac"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.913848876953125,
+          44.010472060283895
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Valjevo"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.883193969726562,
+          44.26536287018088
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sabac"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          19.69024658203125,
+          44.74478251469654
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pozega"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          17.67974853515625,
+          45.334771196762766
+        ]
+      }
     }
   ]
 }
