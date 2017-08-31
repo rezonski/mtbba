@@ -18,12 +18,18 @@
 </head>
 <body>
 <div class='visualisation'>
-    <div id='map' class='map'></div>
-    <div class="dugmad">
-        <input type="button" value="(re)generate stores" onclick="reGenerateStores();">
-        <input type="button" value="Load stores" onclick="loadJson();">
-        <input type="button" value="Save stores" onclick="save2json();">
+    <div class='up'>
+        <div id='pointdetails' class='pointdetails'></div>
+        <div id='map' class='map'></div>
     </div>
+    <div class='down' id='iframepreview'>
+        <iframe width="100%" src="http://www.klix.ba/vijesti/bih/dan-pred-bajram-gradjani-sarajeva-ogorceni-zbog-cjelodnevnog-manjka-vode/170831083"></iframe>
+    </div>
+</div>
+<div class="dugmad">
+    <input type="button" value="(re)generate stores" onclick="reGenerateStores();">
+    <input type="button" value="Load stores" onclick="loadJson();">
+    <input type="button" value="Save stores" onclick="save2json();">
 </div>
 <script>
     window.trail = {

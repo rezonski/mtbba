@@ -20,6 +20,31 @@ a, a:hover, a:active, a:visited {
     overflow: hidden;
 }
 
+.up {
+    display: flex;
+    flex: 1 1 50%;
+    flex-direction: row;
+    background-color: #7CDB93;
+}
+
+.pointdetails {
+    display: flex;
+    flex: 1 1 40%;
+}
+
+.map {
+    display: block;
+    flex: 1 1 60%;
+    // z-index: 20;
+}
+
+.down {
+    display: flex;
+    flex: 1 1 50%;
+    flex-direction: row;
+    background-color: #D69452;
+}
+
 .dugmad {
     display: block;
     position: absolute;
@@ -66,12 +91,7 @@ a, a:hover, a:active, a:visited {
 
 /* LAYOUT */
 
-.map {
-    display: block;
-    width:100%;
-    flex: 1 1 auto;
-    z-index: 20;
-}
+
 
 .mapboxgl-ctrl-icon {
     background-repeat: no-repeat;
