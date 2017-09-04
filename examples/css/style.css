@@ -24,12 +24,47 @@ a, a:hover, a:active, a:visited {
     display: flex;
     flex: 1 1 50%;
     flex-direction: row;
-    background-color: #7CDB93;
+    background-color: #E0F2A6;
 }
 
 .pointdetails {
     display: flex;
-    flex: 1 1 40%;
+    flex: 0 0 40%;
+    flex-direction: column;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.pointrow {
+    flex: 1 1 30px;
+    margin-bottom: 20px;
+}
+
+.piccontainer {
+    display: flex;
+    flex: 5 1 auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.deleted {
+    background-color: #AB3636;
+    text-decoration: line-through;
+}
+
+.confirmed {
+    background-color: #63E46A;
+}
+
+.pointimg {
+    display: block;
+    width: 50%;
+    height: 200px;
+    // max-height: 300px;
+    // max-width: 300px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
 }
 
 .map {

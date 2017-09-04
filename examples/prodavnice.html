@@ -22,9 +22,6 @@
         <div id='pointdetails' class='pointdetails'></div>
         <div id='map' class='map'></div>
     </div>
-    <div class='down' id='iframepreview'>
-        <iframe width="100%" src="http://www.klix.ba/vijesti/bih/dan-pred-bajram-gradjani-sarajeva-ogorceni-zbog-cjelodnevnog-manjka-vode/170831083"></iframe>
-    </div>
 </div>
 <div class="dugmad">
     <input type="button" value="(re)generate stores" onclick="reGenerateStores();">
@@ -64,9 +61,10 @@
             style: 'mapbox://styles/mapbox/basic-v9',
             zoom: 6,
             center: turf.center(dataJSON).geometry.coordinates,
-            maxBounds: [[14, 41], [22, 46]]
+            // maxBounds: [[14, 41], [22, 46]]
         });
         window.map = map;
+        window.currentWPindex = -1;
         var popup = new mapboxgl.Popup({
             // closeButton: false,
             closeOnClick: false
@@ -79,6 +77,7 @@
             // addPopups(map, popup);
             // console.log(wps);
             initLocalStorage();
+            window.addEventListener('keydown', check, false);
         });
     });
 </script>

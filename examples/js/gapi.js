@@ -43,6 +43,12 @@ function save2json() {
 function loadJson() {
   $.getJSON('data/stores.geojson', storesData => {
       window.stores = storesData;
+      if (!window.stores.deletedIDs) {
+        window.stores.deletedIDs = [];
+      }
+      if (!window.stores.confirmedIDs) {
+        window.stores.confirmedIDs = [];
+      }
       $.getJSON('data/resellers.geojson', resellersData => {
           window.resellers = resellersData;
           displayStores();
@@ -51,14 +57,39 @@ function loadJson() {
 }
 
 function initLocalStorage() {
-  if (localStorage.getItem('stores')) {
-      loadJson();
-  } else {
-      reGenerateStores();
-  }
+  loadJson();
+  // if (localStorage.getItem('stores')) {
+  //     loadJson();
+  // } else {
+  //     reGenerateStores();
+  // }
 }
 
 function displayStores() {
+  if (window.map.getSource('highlighted')) {
+    window.map.getSource('highlighted').setData({
+      type: 'FeatureCollection',
+      features: []
+    });
+  } else {
+    window.map.addSource('highlighted',{
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: []
+      }
+    });
+    window.map.addLayer({
+      'id': 'highlighted',
+      'type': 'circle',
+      'source': 'highlighted',
+      'paint': {
+          'circle-radius': 20,
+          'circle-color': '#E6FF08'
+      }
+    });
+  }
+  
   ['resellers','stores'].forEach(t => {
     if (window.map.getSource(t)) {
       window.map.getSource(t).setData(window[t]);
@@ -267,4 +298,105 @@ function getPlacePhotos(setup, newStore, refs, index, placeIndex) {
       getPlacePhotos(setup, newStore, refs, index + 1, placeIndex);
     });
   }
+}
+
+// WP CONTROLS
+
+function check(e) {
+    switch (e.keyCode) {
+      case 37:
+        console.log('Go previous');
+        if (window.currentWPindex > 0) {
+          window.currentWPindex -= 1;
+        } else {
+          window.currentWPindex = parseInt(window.stores.allIDs.length - 1,10);
+        }
+        go2wp();
+        break;
+      case 39:
+        console.log('Go next');
+        if (window.currentWPindex < window.stores.allIDs.length - 1) {
+          window.currentWPindex += 1;
+        } else {
+          window.currentWPindex = 0;
+        }
+        go2wp();
+        break;
+      case 46:
+        console.log('Delete');
+        deleteCurrentWP();
+        window.currentWPindex += 1;
+        go2wp();
+        break;
+      case 67:
+        console.log('Confirm');
+        confirmCurrentWP();
+        window.currentWPindex += 1;
+        go2wp();
+        break;
+      case 87:
+        console.log('Open URL');
+        openUrl();
+        break;
+      default:
+        console.log('Unknown command');
+    }
+}
+
+function go2wp() {
+  const wp = window.stores.features[window.currentWPindex];
+  const currentID = window.stores.allIDs[window.currentWPindex];
+  
+  var additionalStyle = '';
+  if (window.stores.deletedIDs.indexOf(currentID) > -1) {
+    additionalStyle = ' deleted';
+  } else if (window.stores.confirmedIDs.indexOf(currentID) > -1) {
+    additionalStyle = ' confirmed';
+  }
+
+  renderWPdetails(wp, additionalStyle);
+  window.map.getSource('highlighted').setData({
+    "type": "FeatureCollection",
+    "features": [wp]
+  });
+  window.map.flyTo({
+      center: wp.geometry.coordinates,
+      zoom: 15
+  });
+}
+
+function openUrl() {
+  const website = window.stores.features[window.currentWPindex].properties.website;
+  if (website.length > 3) {
+    window.open(website, '_blank');
+  } else {
+    alert('NO website');
+  }
+}
+
+function deleteCurrentWP() {
+  console.log('Delete ' + window.stores.allIDs[window.currentWPindex]);
+  window.stores.deletedIDs.push(window.stores.allIDs[window.currentWPindex]);
+}
+
+function confirmCurrentWP() {
+  console.log('Confirm ' + window.stores.allIDs[window.currentWPindex]);
+  window.stores.confirmedIDs.push(window.stores.allIDs[window.currentWPindex]);
+}
+
+function renderWPdetails(w, additionalStyle) {
+  var content = '';
+  Object.keys(w.properties).forEach(p => {
+    const prop = w.properties[p];
+    if (p == 'photos') {
+      content += `<div class='piccontainer'>`;
+      prop.forEach(pic => {
+        content += `<div class='pointimg' style='background-image: url("${pic}")'></div>`;
+      });
+      content += `</div>`;
+    } else if (p != 'openingHours' && p != 'reviews' && p != 'openingHours') {
+      content += `<div class='pointrow${additionalStyle}'><strong>${p}</strong>: ${prop}</div>`;
+    }
+  });
+  document.getElementById('pointdetails').innerHTML = content;
 }
