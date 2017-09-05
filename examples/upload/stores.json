@@ -23,7 +23,7 @@
     },
     "boca": {
       "name": "Boca",
-      "bike-brands": ["Kellys bike", "Capriolo", "Polar", "Scott"],
+      "bike-brands": ["Kellys bike", "Capriolo", "Polar", "Scott", "Alpina"],
       "equipment-brands": ["CatEye", "Rubena", "Schwalbe", "Continental", "Promax", "Shimano", "Ashima", "Kellys bike", "Capriolo", "Polar", "Scott"],
     },
     "dost": {
