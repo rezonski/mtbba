@@ -47,7 +47,7 @@
       "equipment-brands": ["Scott", "Polar", "Electra", "Cannondale", "Ritchey", "Fizik", "Continental", "DT Swiss", "CatEye", "Uvex", "Zefal", "Northwave", "Polysport", "Elite"]
     },
     "unis": {
-      "name": "UNIS",
+      "name": "UNIS bicikli",
       "bike-brands": ["UNIS", "SixTeam"],
       "equipment-brands": []
     },
@@ -79,6 +79,46 @@
     "intersport": {
       "name": "Intersport",
       "bike-brands": ["Nakamura", "Genesis"],
+      "equipment-brands": []
+    },
+    "beosport": {
+      "name": "Beosport",
+      "bike-brands": [],
+      "equipment-brands": []
+    },
+    "decathlon": {
+      "name": "Decathlon",
+      "bike-brands": [],
+      "equipment-brands": []
+    },
+    "dsg": {
+      "name": "DSG bicikli",
+      "bike-brands": [],
+      "equipment-brands": []
+    },
+    "fanatic": {
+      "name": "Fanatic Bike Shop",
+      "bike-brands": [],
+      "equipment-brands": []
+    },
+    "jankovic": {
+      "name": "Jankovic Comp",
+      "bike-brands": [],
+      "equipment-brands": []
+    },
+    "protea": {
+      "name": "Protea Sport",
+      "bike-brands": [],
+      "equipment-brands": []
+    },
+    "rogjoma": {
+      "name": "Rog Joma",
+      "bike-brands": [],
+      "equipment-brands": []
+    },
+    "totalbike": {
+      "name": "Total Bike",
+      "bike-brands": [],
       "equipment-brands": []
     }
   ]

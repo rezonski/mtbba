@@ -65,6 +65,16 @@ function initLocalStorage() {
   // }
 }
 
+function exportStores() {
+  var exportData = [['id', 'name', 'city', 'website']];
+  window.stores.features.forEach(f => {
+    if (window.stores.confirmedIDs.indexOf(f.properties.id) > -1) {
+      exportData.push([f.properties.id, f.properties.name, f.properties.city, f.properties.website]);
+    }
+  });
+  window.open(encodeURI(`data:text/csv,${exportData.map((row, index) =>  row.join(',')).join(`\n`)}`));
+}
+
 function displayStores() {
   if (window.map.getSource('highlighted')) {
     window.map.getSource('highlighted').setData({
