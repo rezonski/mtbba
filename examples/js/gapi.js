@@ -137,7 +137,7 @@ function displayStores() {
                 'stops': [[4,0],[5,1],[7,13]]
             }
         },
-        'filter': (window.params.show == 'A') ? ['has', 'type'] : ['==', 'type', window.params.show]
+        'filter': (window.params.show == 'A') ? ['has', 'status'] : ['==', 'status', window.params.show]
       });
     }
   });
@@ -157,63 +157,91 @@ function findStores(wps, index) {
     total: wps.length, 
     index: index,
     type: 'stores',
-    localUpload: 'http://localhost/sandbox/examples/getGooglePlacePhoto.php?photoReference=',
+    localUpload: 'http://127.0.0.1:8080/sandbox/examples/getGooglePlacePhoto.php?photoReference=',
     coordinates: w.geometry.coordinates[1] + ',' +  w.geometry.coordinates[0],
     endpoint: 'https://maps.googleapis.com/maps/api/place/',
     key: 'AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis',
     lvl: [
+      // {
+      //   service: 'nearbysearch/json?type=bicycle_store&radius=25000&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=intersport&radius=25000&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=juventa+sport&radius=25000&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=decathlon&radius=25000&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=bajk+garaza&radius=25000&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=beosport&radius=25000&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=cyclomania&radius=25000&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=freestyle+pancevo&radius=25000&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=jankovic+comp&radius=25000&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=neptun+bike&radius=25000&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=nomad&radius=25000&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=sportofis&radius=25000&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=totalbike&radius=25000&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=rent+a+bike&radius=25000&location=',
+      //   StoreServiceRent: [0,0,1]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=rent+bicikl&radius=25000&location=',
+      //   StoreServiceRent: [0,0,1]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=iznajmljivanje+bicikla+bicikala&radius=25000&location=',
+      //   StoreServiceRent: [0,0,1]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=nextbike&radius=25000&location=',
+      //   StoreServiceRent: [0,0,1]
+      // },
       {
-        service: 'nearbysearch/json?type=bicycle_store&radius=25000&location=',
-        prefix: ''
+        service: 'autocomplete/json?input=bike+servis&radius=25000&location=',
+        StoreServiceRent: [0,1,0]
       },
       {
-        service: 'autocomplete/json?input=intersport&radius=25000&location=',
-        prefix: ''
+        service: 'autocomplete/json?input=servis+bicikala&radius=25000&location=',
+        StoreServiceRent: [0,1,0]
       },
       {
-        service: 'autocomplete/json?input=juventa+sport&radius=25000&location=',
-        prefix: ''
-      },
-      {
-        service: 'autocomplete/json?input=decathlon&radius=25000&location=',
-        prefix: ''
-      },
-      {
-        service: 'autocomplete/json?input=bajk+garaza&radius=25000&location=',
-        prefix: ''
-      },
-      {
-        service: 'autocomplete/json?input=beosport&radius=25000&location=',
-        prefix: ''
-      },
-      {
-        service: 'autocomplete/json?input=cyclomania&radius=25000&location=',
-        prefix: ''
-      },
-      {
-        service: 'autocomplete/json?input=freestyle+pancevo&radius=25000&location=',
-        prefix: ''
-      },
-      {
-        service: 'autocomplete/json?input=jankovic+comp&radius=25000&location=',
-        prefix: ''
-      },
-      {
-        service: 'autocomplete/json?input=neptun+bike&radius=25000&location=',
-        prefix: ''
-      },
-      {
-        service: 'autocomplete/json?input=nomad&radius=25000&location=',
-        prefix: ''
-      },
-      {
-        service: 'autocomplete/json?input=sportofis&radius=25000&location=',
-        prefix: ''
-      },
-      {
-        service: 'autocomplete/json?input=totalbike&radius=25000&location=',
-        prefix: ''
-      },
+        service: 'autocomplete/json?input=servis+bicikla&radius=25000&location=',
+        StoreServiceRent: [0,1,0]
+      }
     ],
     replacement: []
   };
@@ -223,11 +251,14 @@ function findStores(wps, index) {
 function getLevel(setup, indexLvl) {
   // console.info('getLevel(setup, ' + indexLvl + ')');
   $.ajax(setup.endpoint + setup.lvl[indexLvl].service + setup.coordinates  + '&key=' + setup.key).done(response => {
+    window.setup[setup.type].isStore = parseInt(setup.lvl[indexLvl].StoreServiceRent[0],10);
+    window.setup[setup.type].isService = parseInt(setup.lvl[indexLvl].StoreServiceRent[1],10);
+    window.setup[setup.type].isRent = parseInt(setup.lvl[indexLvl].StoreServiceRent[2],10);
     if (response.status == 'OK') {
       const res = (response.results) ? response.results : response.predictions;
       res.forEach(r => {
-        if (window.setup[setup.type].allIDs.indexOf(r['place_id']) == -1) {
-          window.setup[setup.type].allIDs.push(r['place_id']); 
+        if (window.setup[setup.type].allIDs.indexOf(r['place_id']) == -1 && window.setup[setup.type].newIDs.indexOf(r['place_id']) == -1) {
+          window.setup[setup.type].newIDs.push(r['place_id']); 
         }
       });
     }
@@ -251,7 +282,7 @@ function getLevel(setup, indexLvl) {
 
 function generateDetailedPoints(setup, placeIndex) {
   // console.info('generateDetailedPoints(setup, ' + placeIndex + ')');
-  const id = window.setup[setup.type].allIDs[placeIndex];
+  const id = window.setup[setup.type].newIDs[placeIndex];
   if (window.setup[setup.type].allIDs.indexOf(id) == -1) {
     $.ajax('https://maps.googleapis.com/maps/api/place/details/json?placeid=' + id + '&key=' + setup.key).done(detailResponse => {
       if (detailResponse.status == 'OK') {
@@ -259,6 +290,7 @@ function generateDetailedPoints(setup, placeIndex) {
         const photoRefs = (det.photos) ? det.photos.map(p => {
           return p['photo_reference'];
         }) : [];
+        // debugger;
         if (!det.geometry.location) {
           console.log('Invalid det.geometry.location');
         } else {
@@ -272,10 +304,18 @@ function generateDetailedPoints(setup, placeIndex) {
             rating: (det.rating) ? det.rating : 0,
             reviews: (det.reviews) ? det.reviews : [],
             website: (det.website) ? det.website : '',
-            type: 'N',
+            status: 'N',
+            isStore: window.setup[setup.type].isStore,
+            isService: window.setup[setup.type].isService,
+            isRent: window.setup[setup.type].isRent,
             photos: []
           });
-          getPlacePhotos(setup, newStore, photoRefs, 0, placeIndex);
+          if (turf.inside(newStore, bboxPoly)) {
+            getPlacePhotos(setup, newStore, photoRefs, 0, placeIndex);
+          } else {
+            console.info('generateDetailedPoints - place ' + det.name + ' outside boundaries');
+            generateDetailedPoints(setup, placeIndex + 1);
+          }
         }
       }
     });
@@ -310,7 +350,7 @@ function shouldDisplayWPidx(code) {
   if (window.params.show == 'A' || window.params.show == wp.properties.status) {
     go2wp();
   } else {
-    console.log('Can not display ' + wp.properties.status + ' store ' + wp.properties.name + ' (' + wp.properties.id + ')');
+    // console.log('Can not display ' + wp.properties.status + ' store ' + wp.properties.name + ' (' + wp.properties.id + ')');
     checkCode(code);
   }
 }
@@ -322,7 +362,7 @@ function checkEvent(e) {
 function checkCode(code) {
     switch (code) {
       case 37:
-        console.log('Go previous');
+        // console.log('Go previous');
         if (window.currentWPindex > 0) {
           window.currentWPindex -= 1;
         } else {
@@ -331,7 +371,7 @@ function checkCode(code) {
         shouldDisplayWPidx(code);
         break;
       case 39:
-        console.log('Go next');
+        // console.log('Go next');
         if (window.currentWPindex < window.setup.stores.allIDs.length - 1) {
           window.currentWPindex += 1;
         } else {
@@ -340,21 +380,21 @@ function checkCode(code) {
         shouldDisplayWPidx(code);
         break;
       case 46:
-        console.log('Delete');
+        // console.log('Delete');
         deleteCurrentWP();
         checkCode(39);
         break;
       case 67:
-        console.log('Confirm');
+        // console.log('Confirm');
         confirmCurrentWP();
         checkCode(39);
         break;
       case 87:
-        console.log('Open URL');
+        // console.log('Open URL');
         openUrl();
         break;
       default:
-        console.log('Unknown command');
+        // console.log('Unknown command');
     }
 }
 
@@ -438,18 +478,41 @@ function exportStores() {
 function updateAllPoints() {
   // debugger;
   window.stores.features.forEach(f => {
-    if (window.setup.stores.confirmedIDs.indexOf(f.properties.id) > -1) {
-      f.properties.status = 'C';
-      f.properties.type = [];
-    } else if (window.setup.stores.deletedIDs.indexOf(f.properties.id) > -1) {
-      f.properties.status = 'D';
-      f.properties.type = [];
-    } else {
-      f.properties.status = 'N';
-      f.properties.type = [];
+    // adjustStatus(f);
+    if (f.properties.type) {
+      delete f.properties.type;
     }
+    deleteOutsider(f);
+    setRental(f);
   });
 }
 
-function existingID(id) {
+function adjustStatus(f) {
+  if (window.setup.stores.confirmedIDs.indexOf(f.properties.id) > -1) {
+    f.properties.status = 'C';
+  } else if (window.setup.stores.deletedIDs.indexOf(f.properties.id) > -1) {
+    f.properties.status = 'D';
+  } else {
+    f.properties.status = 'N';
+  }
+  // f.properties.isStore = 1;
+  // f.properties.isRent = 0;
+  // f.properties.isService = 0;
+}
+
+function deleteOutsider(f) {
+  if (f.properties.status == 'N') {
+    if (!turf.inside(f, bboxPoly)) {
+      f.properties.status = 'D';
+      window.setup.stores.deletedIDs.push(f.properties.id)
+    }
+  }
+}
+
+function setRental(f) {
+  if (f.properties.status == 'N') {
+    f.properties.isRent = 1;
+    f.properties.isStore = 0;
+    f.properties.isService = 0;
+  }
 }

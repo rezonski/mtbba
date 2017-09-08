@@ -24,7 +24,7 @@
     </div>
 </div>
 <div class="dugmad">
-    <input type="button" value="(re)generate stores" onclick="reGenerateStores();">
+    <input type="button" value="(re)generate stores" onclick="generateStores();">
     <input type="button" value="Load stores" onclick="loadJson();">
     <input type="button" value="Save stores" onclick="save2json();">
 </div>
@@ -89,6 +89,73 @@
             window.addEventListener('keydown', checkEvent, false);
         });
     });
+    var bboxPoly = {
+      "type": "Feature",
+      "properties": {},
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              13.29345703125,
+              45.506346901083425
+            ],
+            [
+              13.645019531249998,
+              44.574817404670306
+            ],
+            [
+              17.2265625,
+              42.13082130188811
+            ],
+            [
+              18.544921875,
+              41.49212083968776
+            ],
+            [
+              21.02783203125,
+              40.74725696280421
+            ],
+            [
+              23.115234374999996,
+              41.27780646738183
+            ],
+            [
+              22.8955078125,
+              44.809121700077355
+            ],
+            [
+              20.126953125,
+              46.28622391806706
+            ],
+            [
+              18.10546875,
+              45.99696161820381
+            ],
+            [
+              16.41357421875,
+              46.63435070293566
+            ],
+            [
+              16.01806640625,
+              46.9502622421856
+            ],
+            [
+              13.68896484375,
+              46.7248003746672
+            ],
+            [
+              13.07373046875,
+              46.10370875598026
+            ],
+            [
+              13.29345703125,
+              45.506346901083425
+            ]
+          ]
+        ]
+      }
+    };
 </script>
 </body>
 </html>
