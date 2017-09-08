@@ -49,6 +49,7 @@ function loadJson() {
           confirmedIDs: [],
           newIDs: [],
           allIDs: [],
+          photoDelete: [],
         },
         resellers: {
           deletedIDs: [],
@@ -484,6 +485,7 @@ function updateAllPoints() {
     }
     deleteOutsider(f);
     setRental(f);
+    prepare4delete(f);
   });
 }
 
@@ -514,5 +516,25 @@ function setRental(f) {
     f.properties.isRent = 1;
     f.properties.isStore = 0;
     f.properties.isService = 0;
+  }
+}
+
+function prepare4delete(f) {
+  if (f.properties.status == 'D') {
+    // debugger;
+    window.setup.stores.photoDelete = window.setup.stores.photoDelete.concat(f.properties.photos);
+  }
+}
+
+function photoCleaner(index) {
+  const photos = window.setup.stores.photoDelete;
+  if (photos[index]) {
+    $.ajax('http://127.0.0.1:8080/sandbox/examples/deleteGooglePlacePhoto.php?fileName=' + photos[index]).done(photoDelete => {
+      const resp =JSON.parse(photoDelete);
+      if (resp.success) {
+        console.log('photoCleaner - ' + resp.msg);
+      }
+      photoCleaner(index + 1)
+    });
   }
 }
