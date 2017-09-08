@@ -29,7 +29,8 @@ function enrichWP(w) {
 }
 
 function save2json() {
-  console.log(window.stores);
+  const content2save = turf.featureCollection(window.stores.features);
+  console.log(content2save);
   const xmlhttpUpload = new XMLHttpRequest();
   xmlhttpUpload.onreadystatechange = () => {
       if (xmlhttpUpload.readyState === 4 && xmlhttpUpload.status === 200) {
@@ -37,18 +38,39 @@ function save2json() {
       }
   };
   xmlhttpUpload.open('POST', 'setStores.php', true);
-  xmlhttpUpload.send(JSON.stringify(window.stores));
+  xmlhttpUpload.send(JSON.stringify(content2save));
 }
 
 function loadJson() {
   $.getJSON('data/stores.geojson', storesData => {
+      window.setup = {
+        stores: {
+          deletedIDs: [],
+          confirmedIDs: [],
+          newIDs: [],
+          allIDs: [],
+        },
+        resellers: {
+          deletedIDs: [],
+          confirmedIDs: [],
+          newIDs: [],
+          allIDs: [],
+        }
+      };
       window.stores = storesData;
-      if (!window.stores.deletedIDs) {
-        window.stores.deletedIDs = [];
-      }
-      if (!window.stores.confirmedIDs) {
-        window.stores.confirmedIDs = [];
-      }
+      window.stores.features.forEach(f => {
+        if (f.properties.status == 'D') {
+          window.setup.stores.deletedIDs.push(f.properties.id);
+        } else if (f.properties.status == 'C') {
+          window.setup.stores.confirmedIDs.push(f.properties.id);
+        } else {
+          if (!f.properties.status) {
+            f.properties.status = 'N';
+          }
+          window.setup.stores.newIDs.push(f.properties.id);
+        }
+        window.setup.stores.allIDs.push(f.properties.id);
+      })
       $.getJSON('data/resellers.geojson', resellersData => {
           window.resellers = resellersData;
           displayStores();
@@ -58,21 +80,6 @@ function loadJson() {
 
 function initLocalStorage() {
   loadJson();
-  // if (localStorage.getItem('stores')) {
-  //     loadJson();
-  // } else {
-  //     reGenerateStores();
-  // }
-}
-
-function exportStores() {
-  var exportData = [['id', 'name', 'city', 'website']];
-  window.stores.features.forEach(f => {
-    if (window.stores.confirmedIDs.indexOf(f.properties.id) > -1) {
-      exportData.push([f.properties.id, f.properties.name, f.properties.city, f.properties.website]);
-    }
-  });
-  window.open(encodeURI(`data:text/csv,${exportData.map((row, index) =>  row.join(',')).join(`\n`)}`));
 }
 
 function displayStores() {
@@ -129,25 +136,11 @@ function displayStores() {
                 'base': 1,
                 'stops': [[4,0],[5,1],[7,13]]
             }
-        }
+        },
+        'filter': (window.params.show == 'A') ? ['has', 'type'] : ['==', 'type', window.params.show]
       });
     }
   });
-}
-
-function reGenerateStores() {
-  // console.log('Reset global variable');
-  // window.stores = {
-  //   type: "FeatureCollection",
-  //   allIDs: [],
-  //   features: []
-  // };
-  // window.resellers = {
-  //   type: "FeatureCollection",
-  //   allIDs: [],
-  //   features: []
-  // };
-  generateStores();
 }
 
 function generateStores() {
@@ -227,15 +220,14 @@ function findStores(wps, index) {
   getLevel(setup, 0);
 }
 
-
 function getLevel(setup, indexLvl) {
   // console.info('getLevel(setup, ' + indexLvl + ')');
   $.ajax(setup.endpoint + setup.lvl[indexLvl].service + setup.coordinates  + '&key=' + setup.key).done(response => {
     if (response.status == 'OK') {
       const res = (response.results) ? response.results : response.predictions;
       res.forEach(r => {
-        if (window[setup.type].allIDs.indexOf(r['place_id']) == -1) {
-          window[setup.type].allIDs.push(r['place_id']); 
+        if (window.setup[setup.type].allIDs.indexOf(r['place_id']) == -1) {
+          window.setup[setup.type].allIDs.push(r['place_id']); 
         }
       });
     }
@@ -259,8 +251,8 @@ function getLevel(setup, indexLvl) {
 
 function generateDetailedPoints(setup, placeIndex) {
   // console.info('generateDetailedPoints(setup, ' + placeIndex + ')');
-  const id = window[setup.type].allIDs[placeIndex];
-  if (window[setup.type].processedIDs.indexOf(id) == -1) {
+  const id = window.setup[setup.type].allIDs[placeIndex];
+  if (window.setup[setup.type].allIDs.indexOf(id) == -1) {
     $.ajax('https://maps.googleapis.com/maps/api/place/details/json?placeid=' + id + '&key=' + setup.key).done(detailResponse => {
       if (detailResponse.status == 'OK') {
         const det = detailResponse.result;
@@ -280,6 +272,7 @@ function generateDetailedPoints(setup, placeIndex) {
             rating: (det.rating) ? det.rating : 0,
             reviews: (det.reviews) ? det.reviews : [],
             website: (det.website) ? det.website : '',
+            type: 'N',
             photos: []
           });
           getPlacePhotos(setup, newStore, photoRefs, 0, placeIndex);
@@ -296,7 +289,8 @@ function getPlacePhotos(setup, newStore, refs, index, placeIndex) {
   // console.info('getPlacePhotos(setup, newStore, refs, ' + index + ', ' + placeIndex + ')');
   if (refs.length == index) {
     window[setup.type].features.push(newStore);
-    window[setup.type].processedIDs.push(newStore.properties.id);
+    window.setup[setup.type].allIDs.push(newStore.properties.id);
+    window.setup[setup.type].newIDs.push(newStore.properties.id);
     generateDetailedPoints(setup, placeIndex + 1);
   } else {
     $.ajax(setup.localUpload + refs[index] + '&fileName=' + newStore.properties.id + index + '&key=' + setup.key).done(photoResponse => {
@@ -311,38 +305,49 @@ function getPlacePhotos(setup, newStore, refs, index, placeIndex) {
 }
 
 // WP CONTROLS
+function shouldDisplayWPidx(code) {
+  const wp = window.stores.features[window.currentWPindex];
+  if (window.params.show == 'A' || window.params.show == wp.properties.status) {
+    go2wp();
+  } else {
+    console.log('Can not display ' + wp.properties.status + ' store ' + wp.properties.name + ' (' + wp.properties.id + ')');
+    checkCode(code);
+  }
+}
 
-function check(e) {
-    switch (e.keyCode) {
+function checkEvent(e) {
+  checkCode(e.keyCode);
+}
+
+function checkCode(code) {
+    switch (code) {
       case 37:
         console.log('Go previous');
         if (window.currentWPindex > 0) {
           window.currentWPindex -= 1;
         } else {
-          window.currentWPindex = parseInt(window.stores.allIDs.length - 1,10);
+          window.currentWPindex = parseInt(window.setup.stores.allIDs.length - 1,10);
         }
-        go2wp();
+        shouldDisplayWPidx(code);
         break;
       case 39:
         console.log('Go next');
-        if (window.currentWPindex < window.stores.allIDs.length - 1) {
+        if (window.currentWPindex < window.setup.stores.allIDs.length - 1) {
           window.currentWPindex += 1;
         } else {
           window.currentWPindex = 0;
         }
-        go2wp();
+        shouldDisplayWPidx(code);
         break;
       case 46:
         console.log('Delete');
         deleteCurrentWP();
-        window.currentWPindex += 1;
-        go2wp();
+        checkCode(39);
         break;
       case 67:
         console.log('Confirm');
         confirmCurrentWP();
-        window.currentWPindex += 1;
-        go2wp();
+        checkCode(39);
         break;
       case 87:
         console.log('Open URL');
@@ -355,13 +360,15 @@ function check(e) {
 
 function go2wp() {
   const wp = window.stores.features[window.currentWPindex];
-  const currentID = window.stores.allIDs[window.currentWPindex];
+  const currentID = window.setup.stores.allIDs[window.currentWPindex];
   
   var additionalStyle = '';
-  if (window.stores.deletedIDs.indexOf(currentID) > -1) {
+  if (wp.properties.status == 'D') {
     additionalStyle = ' deleted';
-  } else if (window.stores.confirmedIDs.indexOf(currentID) > -1) {
+  } else if (wp.properties.status == 'C') {
     additionalStyle = ' confirmed';
+  } else if (wp.properties.status == 'N') {
+    additionalStyle = ' new';
   }
 
   renderWPdetails(wp, additionalStyle);
@@ -385,13 +392,19 @@ function openUrl() {
 }
 
 function deleteCurrentWP() {
-  console.log('Delete ' + window.stores.allIDs[window.currentWPindex]);
-  window.stores.deletedIDs.push(window.stores.allIDs[window.currentWPindex]);
+  if(window.setup.stores.deletedIDs.indexOf(window.setup.stores.allIDs[window.currentWPindex]) == -1) {
+    // console.log('Delete ' + window.setup.stores.allIDs[window.currentWPindex]);
+    window.setup.stores.deletedIDs.push(window.setup.stores.allIDs[window.currentWPindex]);
+    window.stores.features[window.currentWPindex].properties.status = 'D';
+  }
 }
 
 function confirmCurrentWP() {
-  console.log('Confirm ' + window.stores.allIDs[window.currentWPindex]);
-  window.stores.confirmedIDs.push(window.stores.allIDs[window.currentWPindex]);
+  if(window.setup.stores.confirmedIDs.indexOf(window.setup.stores.allIDs[window.currentWPindex]) == -1) {
+    // console.log('Confirm ' + window.setup.stores.allIDs[window.currentWPindex]);
+    window.setup.stores.confirmedIDs.push(window.setup.stores.allIDs[window.currentWPindex]);
+    window.stores.features[window.currentWPindex].properties.status = 'C';
+  }
 }
 
 function renderWPdetails(w, additionalStyle) {
@@ -409,4 +422,34 @@ function renderWPdetails(w, additionalStyle) {
     }
   });
   document.getElementById('pointdetails').innerHTML = content;
+}
+
+
+function exportStores() {
+  var exportData = [['id', 'name', 'city', 'website']];
+  window.stores.features.forEach(f => {
+    if (window.setup.stores.confirmedIDs.indexOf(f.properties.id) > -1) {
+      exportData.push([f.properties.id, f.properties.name, f.properties.city, f.properties.website]);
+    }
+  });
+  window.open(encodeURI(`data:text/csv,${exportData.map((row, index) =>  row.join(',')).join(`\n`)}`));
+}
+
+function updateAllPoints() {
+  // debugger;
+  window.stores.features.forEach(f => {
+    if (window.setup.stores.confirmedIDs.indexOf(f.properties.id) > -1) {
+      f.properties.status = 'C';
+      f.properties.type = [];
+    } else if (window.setup.stores.deletedIDs.indexOf(f.properties.id) > -1) {
+      f.properties.status = 'D';
+      f.properties.type = [];
+    } else {
+      f.properties.status = 'N';
+      f.properties.type = [];
+    }
+  });
+}
+
+function existingID(id) {
 }

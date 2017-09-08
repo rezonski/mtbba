@@ -29,6 +29,15 @@
     <input type="button" value="Save stores" onclick="save2json();">
 </div>
 <script>
+    window.params= {
+        show: 'A', // D, A, N, C
+    };
+    var urlParameters = window.location.search.substring(1).split('&');
+    urlParameters.forEach(p => {
+        const splited = p.split('=');
+        window.params[splited[0]] = splited[1];
+    });
+    // debugger;
     window.trail = {
         trailName: 'Bradina - Martinov grob',
         trailCategory: 'XC',
@@ -77,7 +86,7 @@
             // addPopups(map, popup);
             // console.log(wps);
             initLocalStorage();
-            window.addEventListener('keydown', check, false);
+            window.addEventListener('keydown', checkEvent, false);
         });
     });
 </script>

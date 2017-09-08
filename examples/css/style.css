@@ -56,6 +56,10 @@ a, a:hover, a:active, a:visited {
     background-color: #63E46A;
 }
 
+.new {
+    background-color: #fff;
+}
+
 .pointimg {
     display: block;
     width: 50%;
