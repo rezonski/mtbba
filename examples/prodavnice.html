@@ -59,7 +59,8 @@
         minesLayer: false,
     };
     mapboxgl.accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
-    $.ajax('upload/gradovi.json').done(function(json) {
+    // $.ajax('upload/gradovi.json').done(function(json) {
+    $.ajax('upload/sarajevo.json').done(function(json) {
         var dataJSON = json;
         window.dataJSON = dataJSON;
         // get center and bounds from json

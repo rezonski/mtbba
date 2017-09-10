@@ -231,18 +231,134 @@ function findStores(wps, index) {
       //   service: 'autocomplete/json?input=nextbike&radius=25000&location=',
       //   StoreServiceRent: [0,0,1]
       // },
-      {
-        service: 'autocomplete/json?input=bike+servis&radius=25000&location=',
-        StoreServiceRent: [0,1,0]
-      },
-      {
-        service: 'autocomplete/json?input=servis+bicikala&radius=25000&location=',
-        StoreServiceRent: [0,1,0]
-      },
-      {
-        service: 'autocomplete/json?input=servis+bicikla&radius=25000&location=',
-        StoreServiceRent: [0,1,0]
-      }
+      // {
+      //   service: 'autocomplete/json?input=bike+servis&radius=25000&location=',
+      //   StoreServiceRent: [0,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=servis+bicikala&radius=25000&location=',
+      //   StoreServiceRent: [0,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=servis+bicikla&radius=25000&location=',
+      //   StoreServiceRent: [0,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=dsg+bjelovar&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=planet+bike+beograd&location=',
+      //   StoreServiceRent: [1,1,1]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=planet+bike+nis&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=planet+bike+novi+sad&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=planet+bike+cacak&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=planet+bike+kopaonik&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=planet+bike+stara+planina&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=tempo+podgorica&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=simicvike+arandjelovac&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=bike+mv+sport+kragujevac&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=masterbike+kraljevo&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=power+bike+leskovac&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=bike+igic+pirot&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=cadenze+novi+pazar&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Aleksandrovac+Tip-Top&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Arilje+Luković&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Bačka+Palanka+Proma+2002&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Kruševac+Bicikl&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Negotin+T-Bike&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Novi+Pazar+Cadence&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Priboj+Profibike&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Sombor+Meksiko&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Sremska+Mitrovica+Bicikl+centar+Radulović&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Trstenik+Profy+Bike&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Užice+Milivoja-Bike&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Valjevo+Kolnago&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Vranje+Makado&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Vršac+Zlatni+točak&location=',
+      //   StoreServiceRent: [1,1,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Zrenjanin+Polar+Bike&location=',
+      //   StoreServiceRent: [1,1,0]
+      // }
     ],
     replacement: []
   };
@@ -330,8 +446,8 @@ function getPlacePhotos(setup, newStore, refs, index, placeIndex) {
   // console.info('getPlacePhotos(setup, newStore, refs, ' + index + ', ' + placeIndex + ')');
   if (refs.length == index) {
     window[setup.type].features.push(newStore);
-    window.setup[setup.type].allIDs.push(newStore.properties.id);
-    window.setup[setup.type].newIDs.push(newStore.properties.id);
+    // window.setup[setup.type].allIDs.push(newStore.properties.id);
+    // window.setup[setup.type].newIDs.push(newStore.properties.id);
     generateDetailedPoints(setup, placeIndex + 1);
   } else {
     $.ajax(setup.localUpload + refs[index] + '&fileName=' + newStore.properties.id + index + '&key=' + setup.key).done(photoResponse => {
@@ -347,12 +463,19 @@ function getPlacePhotos(setup, newStore, refs, index, placeIndex) {
 
 // WP CONTROLS
 function shouldDisplayWPidx(code) {
-  const wp = window.stores.features[window.currentWPindex];
-  if (window.params.show == 'A' || window.params.show == wp.properties.status) {
-    go2wp();
-  } else {
-    // console.log('Can not display ' + wp.properties.status + ' store ' + wp.properties.name + ' (' + wp.properties.id + ')');
-    checkCode(code);
+  if (
+      (window.params.show == 'A' && window.setup.stores.allIDs && window.setup.stores.allIDs.length > 0) ||
+      (window.params.show == 'N' && window.setup.stores.newIDs && window.setup.stores.newIDs.length > 0) ||
+      (window.params.show == 'C' && window.setup.stores.confirmedIDs && window.setup.stores.confirmedIDs.length > 0) ||
+      (window.params.show == 'D' && window.setup.stores.deletedIDs && window.setup.stores.deletedIDs.length > 0)
+    ) {
+    const wp = window.stores.features[window.currentWPindex];
+    if (window.params.show == 'A' || window.params.show == wp.properties.status) {
+      go2wp();
+    } else {
+      // console.log('Can not display ' + wp.properties.status + ' store ' + wp.properties.name + ' (' + wp.properties.id + ')');
+      checkCode(code);
+    }
   }
 }
 
@@ -484,7 +607,7 @@ function updateAllPoints() {
       delete f.properties.type;
     }
     deleteOutsider(f);
-    setRental(f);
+    // setRental(f);
     prepare4delete(f);
   });
 }
