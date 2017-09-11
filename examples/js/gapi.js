@@ -158,7 +158,8 @@ function findStores(wps, index) {
     total: wps.length, 
     index: index,
     type: 'stores',
-    localUpload: 'http://127.0.0.1:8080/sandbox/examples/getGooglePlacePhoto.php?photoReference=',
+    // localUpload: 'http://127.0.0.1:8080/sandbox/examples/getGooglePlacePhoto.php?photoReference=',
+    localUpload: 'http://localhost/sandbox/examples/getGooglePlacePhoto.php?photoReference=',
     coordinates: w.geometry.coordinates[1] + ',' +  w.geometry.coordinates[0],
     endpoint: 'https://maps.googleapis.com/maps/api/place/',
     key: 'AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis',
@@ -358,7 +359,155 @@ function findStores(wps, index) {
       // {
       //   service: 'autocomplete/json?input=Zrenjanin+Polar+Bike&location=',
       //   StoreServiceRent: [1,1,0]
-      // }
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Arilje+Profi+Bike&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Bečej+Gama+ML&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Beograd-Vračar+Pro+Bike&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Beograd-Čukarica+Sportofis&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Kikinda+Sebastian&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Kikinda+Apollo+Bike&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Kragujevac+Bike+MV+Sport&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Kragujevac+Metal&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Kragujevac+Kole&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Kraljevo+Johana+S+Gagi&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Kraljevo+Masterbike&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Kraljevo+Metalac&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Loznica+Vladimir+Tursunović&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Mokrin+Tušta&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Niš+Digor+Sport-Bajk+Garaža&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Novi+Sad+Ris+Cycling&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Novi+Sad+Vector&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Novi+Sad+Invicta&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Pančevo+Freestyle&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Požarevac+Staco&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Požega+Gojković&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Palić+Mega+Favorit&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Senta+Tehnoguma&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Sombor+Meksiko&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Šabac+Tandem+Kid&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Veternik+Bicikl+Centar+Bleša&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Vršac+Zlatni+Točak&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Zemun+Bozaro&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Sombor+Meksiko&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Šabac+Tandem+Kid&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Temerin+Panter-Sport&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Veternik+Bicikl+Centar+Bleša&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Vršac+Zlatni+Točak&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Zemun+Bozaro&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Zemun+Migo&location=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      // {
+      //   service: 'autocomplete/json?input=Kikinda+Appolo=',
+      //   StoreServiceRent: [1,0,0]
+      // },
+      {
+        service: 'autocomplete/json?input=keindl=',
+        StoreServiceRent: [1,0,0]
+      }
     ],
     replacement: []
   };
@@ -652,7 +801,8 @@ function prepare4delete(f) {
 function photoCleaner(index) {
   const photos = window.setup.stores.photoDelete;
   if (photos[index]) {
-    $.ajax('http://127.0.0.1:8080/sandbox/examples/deleteGooglePlacePhoto.php?fileName=' + photos[index]).done(photoDelete => {
+    // $.ajax('http://127.0.0.1:8080/sandbox/examples/deleteGooglePlacePhoto.php?fileName=' + photos[index]).done(photoDelete => {
+    $.ajax('http://localhost/sandbox/examples/deleteGooglePlacePhoto.php?fileName=' + photos[index]).done(photoDelete => {
       const resp =JSON.parse(photoDelete);
       if (resp.success) {
         console.log('photoCleaner - ' + resp.msg);
