@@ -14,6 +14,8 @@ https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=CmR
 
 https://maps.googleapis.com/maps/api/place/autocomplete/json?input=intersport&location=44.974631,16.705211&radius=15000&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis
 
+https://maps.googleapis.com/maps/api/place/autocomplete/json?input=panex+dinamic+koprivnica&location=43.85730655173586,18.27369689941406&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis
+
 
 # GENERALNO
 https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=43.932696,18.515643&radius=1000&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis
