@@ -381,7 +381,7 @@ function renderWPdetails(w, additionalStyle) {
 function exportStores() {
   var exportData = [['id', 'name', 'city', 'website']];
   window.stores.features.forEach(f => {
-    if (window.setup.stores.confirmedIDs.indexOf(f.properties.id) > -1) {
+    if (window.setup.stores.confirmedIDs.indexOf(f.properties.id) > -1 && processedIDs.indexOf(f.properties.id) < 0) {
       exportData.push([f.properties.id, f.properties.name, f.properties.city, f.properties.website]);
     }
   });
