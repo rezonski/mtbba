@@ -1,7 +1,7 @@
 {
   "brands": ["Author", "Carraro", "Centurion", "Felt", "Trek", "Atala", "Bianchi", "SixTeam", "Capriolo", "Cube", "Shimano", "Mitas", "Krypton", "CST", "Twinn", "Tacx", "Bellelli", "SRAM", "Rock Shox", "Avid", "Truvativ", "Merida", "SKS", "Sigma", "Michelin", "Monte Grappa", "Monte Grappa", "GT bicycles", "Specialized", "Topeak", "Sigma", "Hydrapak", "Kenda", "Osprey", "Shimano", "Peruzzo", "Mighty", "Endura", "Cube", "Scott", "Cross", "Polar", "Alpina", "Cinzia", "Electra", "Explorer", "Focus", "Scout", "Visitor", "CatEye", "Rubena", "Schwalbe", "Continental", "Promax", "Ashima", "Kellys bike", "KMC", "Polysport", "Promax", "Cannondale", "Ritchey", "Fizik", "Continental", "DT Swiss", "Uvex", "Zefal", "Northwave", "Elite", "Volkl", "Elan", "Volkl", "UNIS" ],
   "stores": [
-    "capriolosc": {
+    "capriolo": {
       "name": "Capriolo Sport Centar",
       "bike-brands": ["Capriolo", "Cube"],
       "equipment-brands": ["Capriolo", "Cube", "Shimano", "Mitas", "Krypton", "CST", "Twinn", "Tacx", "Bellelli", "SRAM", "Rock Shox", "Avid", "Truvativ", "Merida", "SKS", "Sigma", "Michelin", "Monte Grappa", "KMC"]
