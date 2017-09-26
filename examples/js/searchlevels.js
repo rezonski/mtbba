@@ -19,9 +19,13 @@ const searchWaypointsLevels = [
 
 const searchStoresLevels = [
   {
-    service: 'autocomplete/json?input=varazdin+marko+&location=',
-    StoreServiceRent: [1,0,0]
+    service: 'autocomplete/json?input=zagreb+alan+prim&location=',
+    StoreServiceRent: [1,1,0]
   },
+  // {
+  //   service: 'autocomplete/json?input=varazdin+marko+&location=',
+  //   StoreServiceRent: [1,0,0]
+  // },
   // {
   //   service: 'autocomplete/json?input=zagreb+panex+dinamic&location=',
   //   StoreServiceRent: [1,0,0]

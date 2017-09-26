@@ -141,8 +141,8 @@ function findStores(wps, index) {
     total: wps.length, 
     index: index,
     type: 'stores',
-    // localUpload: 'http://127.0.0.1:8080/sandbox/examples/getGooglePlacePhoto.php?photoReference=',
-    localUpload: 'http://localhost/sandbox/examples/getGooglePlacePhoto.php?photoReference=',
+    // localUpload: 'http://127.0.0.1/sandbox/examples/getGooglePlacePhoto.php?photoReference=',
+    localUpload: 'http://127.0.0.1/sandbox/examples/getGooglePlacePhoto.php?photoReference=',
     coordinates: w.geometry.coordinates[1] + ',' +  w.geometry.coordinates[0],
     endpoint: 'https://maps.googleapis.com/maps/api/place/',
     key: 'AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis',
@@ -442,7 +442,7 @@ function photoCleaner(index) {
   const photos = window.setup.stores.photoDelete;
   if (photos[index]) {
     // $.ajax('http://127.0.0.1:8080/sandbox/examples/deleteGooglePlacePhoto.php?fileName=' + photos[index]).done(photoDelete => {
-    $.ajax('http://localhost/sandbox/examples/deleteGooglePlacePhoto.php?fileName=' + photos[index]).done(photoDelete => {
+    $.ajax('http://127.0.0.1/sandbox/examples/deleteGooglePlacePhoto.php?fileName=' + photos[index]).done(photoDelete => {
       const resp =JSON.parse(photoDelete);
       if (resp.success) {
         console.log('photoCleaner - ' + resp.msg);
