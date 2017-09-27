@@ -390,16 +390,16 @@ const searchStoresLevels = [
 
 const processedIDs = ["ChIJ_cnFJLtDSxMRbLaU7M7mEPw", "ChIJ-71I5U3WZUcRrY7M5LBRfgQ", "ChIJ-8UzzgcDXkcRlLjUfQcjbFQ", "ChIJ-U3oQx0oNRMRljYuGMwMM7I", "ChIJ-UwlvHRDSxMREgCl3k5TFv0", "ChIJ07lejohlWkcR3VXTFW6YwqA", "ChIJ0WxeMBUQW0cRD9Bsi4a_1Zs", "ChIJ0yk7nI9VXEcReGJrWZhzMUw", "ChIJ11DJvtmqaEcR6Hstk_P_BLo", "ChIJ1Uyq8iihZEcRQz5cCBoUo-k", "ChIJ24JZfMjSfEcRliam6UM7bUQ", "ChIJ24JZfMjSfEcRn1whUTq42aA", "ChIJ26OdxFMzZ0cRwQFINbqgMUA", "ChIJ2cuGNyJeNRMRjJn0nOS5apg", "ChIJ2Q_g3tsgV0cR3Ad0g2HsWs8", "ChIJ38mlsyNeNRMRReW9gtFkX18", "ChIJ3VcjvBYhV0cRuQj8AN6Igfs", "ChIJ4cipJZajZEcR5a1LBDPp8rQ", "ChIJ4Y6LB0peNRMRtXbWW3GKHKE", "ChIJ4YHXnipVb0cRaCn9WLVQrdo", "ChIJ4zHs_27uShMRv_ITtOKdamY", "ChIJ5-g5BYahZEcRiR3cXnb7KQw", "ChIJ50m17-_WZUcRVshhQ_qpHWI", "ChIJ5b015KDAfEcRch9zj2EvEB4", "ChIJ5ecP_Y1vWkcRb_iNOh0bis4", "ChIJ6ctov04QW0cRkyWzMVpUHao", "ChIJ6QFLp-AKSxMRLpfkwN6EBvM", "ChIJ6wKo_LmtaEcR9DqaBQwGmZo", "ChIJ6yPoeYpvWkcRkW8LhnUlT9E", "ChIJ6zXfc03BhkcR5lGapVeICJo", "ChIJ6zy-DN3qTRMRYXLLHTy10hI", "ChIJ783Jd8VvWkcRf8LzO9VD-Ns", "ChIJ7fjCZ9VUb0cRLWkpEtuJ_K4", "ChIJ84jBhMsRW0cRZ9lR-KEhu_k", "ChIJ8fN01LLXZUcRVplPMYftPlg", "ChIJ8WDuN_gAV0cRoY2QSIOGTXg", "ChIJ8y78IrbYVkcR8bZgnemcTFM", "ChIJ8ZNJpN4gV0cREuEPwmfWtdE", "ChIJ993Pp2kyZUcRFp27vU2hA6U", "ChIJ9arYj_ysaEcRRt4zW2CZNPc", "ChIJ9xkbHeAgV0cRpCsywob438M", "ChIJa_eLpd_IWEcRamQ7brHzgzg", "ChIJa2SW0h_GREcRSWqgg87Jz-o", "ChIJA3Nb8tXKNBMRLwmDZW4i3-w", "ChIJA8IzMQIRW0cRBqeNJwoaG5Q", "ChIJAf59RbmPXEcRybMTzo6Args", "ChIJaf7M3PgRW0cRNKf4OT9bKgo", "ChIJAQcRpZTWZUcR8STT9La3qMc", "ChIJaw1HBmkQW0cRMSiyswCu0Yo", "ChIJaxFFvw0DXkcRBZR0Z8TWrnM", "ChIJayn39VsQW0cReIs0tjjxcWo", "ChIJAyVl5UjWZUcRUKHDEbfvVXw", "ChIJB2DHe1CWfEcRGxYaEJucR9c", "ChIJBSkqlG3JWEcRYAbtx_X5Pgs", "ChIJbyvPVPxdNRMR6D0FruK1plg", "ChIJc5yMDhTJWEcRO8CjqDs9sHY", "ChIJCfI_lU3mXEcReQaO7orUd68", "ChIJDdEJo_BhLxMRwbQ7f6mV88A", "ChIJDWj5siDJWEcRolqo1j3MN4A", "ChIJDwkjYqOtaEcRx7CgPYqAyKM", "ChIJE2clQux-WkcRgHabeu1229U", "ChIJE3NAUFbWZUcRrwfS5FaINbU", "ChIJe3YXcOF-WkcR7vJ4ZoHpiFk", "ChIJebCWfe1xWkcRZ4k5WBz_ZW8", "ChIJEUSWQbZ5ZkcRWZYYF0RF-mg", "ChIJEwS69mZ6WkcRxK2BoEp2AbA", "ChIJF2cMBCvKWEcRpE5QHmzIJqM", "ChIJfa5wBxrnXEcRW_ozFZsqUGE", "ChIJFxzxpx6mZEcRHCShTSl-rDA", "ChIJG2NwUHXtWUcRcDZzysMFRMQ", "ChIJG3v_mxytaEcRbyo8VThCnsQ", "ChIJg4Z-voT6YUcRJX0gj0X_dBc", "ChIJgeba3qrXZUcRiofpy_vsjvY", "ChIJGT6KwmLOfEcRjWgPGYG4SQE", "ChIJGWezpaupTRMRLPRRXJJ88II", "ChIJh9FMxp8-ZEcR9iMNKjYnyCY", "ChIJhbHXsK7nXEcRHj1VojxPdJM", "ChIJhbMQrpjPZUcRchyM-y0_dtA", "ChIJhR9Zr_RvWkcRCFAp8o9WmFw", "ChIJicXaIsdfNRMR2xAjxRJupWM", "ChIJidYSYmkQW0cRrlfu3FqJa_0", "ChIJieDAXD7JWEcRh2i9vODasoc", "ChIJiZ7FivxdNRMRnntKtOcoIwQ", "ChIJj-fAQNRUb0cR8SPR7VQ8DpQ", "ChIJj0IAuXxlWkcR64O3HXzBRQE", "ChIJj8lXd9zIWEcR24mTA2Yc3E0", "ChIJjajAa4RvWkcRnkxjLcREq2A", "ChIJjb6AbkDuShMRBZumxFaoZEA", "ChIJjSxcE2T6YUcRv-IKUmRKErY", "ChIJJXrRJL2taEcRw1Cr3u0h0ck", "ChIJJzO-UxEQW0cRKmuB91fKZy0", "ChIJK_ghhmzKWEcRiyldJxehwSE", "ChIJk0qH_3PWZUcRqVbK2IivpLE", "ChIJL_QbEtzWZUcRPu2qm4kjx-c", "ChIJl3jITajAfEcRKOil8bN56zM", "ChIJl9Mlg8OqaEcRJywrXsaZOKc", "ChIJLcWVn6nnXEcRFRuei-mxpNA", "ChIJM29t4AcDXkcRAvIsQloB7NI", "ChIJm9MYm-xwWkcRCUufTRVdCYA", "ChIJMQ0zAxqtXkcRWiwnkjn5n3k", "ChIJMUJcvoT6YUcRi2Q2G3rOZuw", "ChIJMyxg7gB0ThMRRWRvOTMZAKQ", "ChIJN-OOgdMcX0cRs8byvAdCUxU", "ChIJN4gergqtaEcRUaKChLaLzZQ", "ChIJN4OZkE_RZUcRGvska0PT9Rg", "ChIJN81HE2T6YUcRcM_oWhQxQgY", "ChIJO4fnlxXKWEcRJBb0jwVnWtY", "ChIJo6wcOmd2WkcREBnFED7OTTo", "ChIJodzIaC48ZEcRxXP_w0r8Ous", "ChIJof29NQIRW0cR6Bhy6zca5DI", "ChIJoRUg7bWmZEcRMWpb1i1UQAs", "ChIJOxI-D_86TBMRvD0Kw-R3LeI", "ChIJp1C7QCs8ZEcRfJitAI7Pw-g", "ChIJp2VAkoT6YUcRCbgq9YkfH9M", "ChIJp4gyPLl6WkcRGbsPLBCBVas", "ChIJP4pGMDbWZUcRHNPzW91YkpM", "ChIJPXhP5deqaEcRJxjtWWF1iew", "ChIJPYkcg23JWEcRlf92JQqlY4U", "ChIJq-3R5MhnRUcRD1S96R1_wZk", "ChIJQ4p2YRqtXkcR41T-5GSCBo0", "ChIJqcA4efXWZUcRPsZiHT0Py6I", "ChIJqRyVat_qTRMR2og7IWI9kcM", "ChIJQxOYTzSBqkARMFOhME4-we4", "ChIJR_8VTR3LW0cRSfKpJhuHmxc", "ChIJr47kMgl4ZkcRRSabhGerYKc", "ChIJr5zLihADXkcR5aXEV_0993c", "ChIJR63q0ks3XEcRelfe_qUXfws", "ChIJr6WwFGX6YUcRlZx46qzq4lk", "ChIJRWTSmu9wWkcRcNNWW6j0b9Q", "ChIJRwzsYI9wWkcRjXAtZO4S9Jw", "ChIJS__KKk6gZEcRX7vEpU88O78", "ChIJs4D1VmQTThMR2Edvi-TqDkI", "ChIJsdqbPbHXZUcRbWyf2FU8-TE", "ChIJsfxDuSFOqEcRjlq3N7lqggs", "ChIJsRBOVSMQW0cRoJzBhq0lpx4", "ChIJSV5Xq0HrTRMR88gBk28NWZU", "ChIJSZCbEuRvWkcRw8xL_w90uBk", "ChIJt-bITN_IWEcR4CkrzUt8hIo", "ChIJT1aS16F6WkcRrSQOpjY6RnE", "ChIJt1kTXxQQW0cR9zotYcgjQ2c", "ChIJTd_DbNggV0cRbSs4V6XH-hk", "ChIJTdp2vozhXkcRIysmmmQhUak", "ChIJtSFBHaRDSxMR6yATw8pjOjE", "ChIJtTX69xTJWEcRFEPQfJdvMcI", "ChIJU_BKtF_WZUcRYDAhCWlYRP8", "ChIJU-verXr6YUcRr_WF-A3E6bM", "ChIJU1qP6DzUZUcRjUZMV-PCilo", "ChIJu2jjGYbRZUcRN2qUtCimeOU", "ChIJu62wQs9mQ0cRZKl7heejlOQ", "ChIJUe6pdUzRZUcRYYklWgrGxwA", "ChIJufvusltlWkcRWg0o9v__g_o", "ChIJUwf2ShgMXEcRUsI_pC3JkB0", "ChIJUY6TNrYRW0cRiCIFGn14x8Q", "ChIJUz6c5mnRZUcRCrmaTqN49Uo", "ChIJv-hsRRfRUEcR_SdN6TjpkJ4", "ChIJv383XTYsY0cRifl-axXkSPY", "ChIJV4jeKuKKXEcRqkGx3ZrxZlI", "ChIJvbrvNBDnXEcRtqh13Pl0ifs", "ChIJVcREcKHIREcRvmaQu_o6kMg", "ChIJVx5QWiXTfEcRi8e67HXABrA", "ChIJW_ykvLWgaEcRGYwh5JmeM0k", "ChIJW2PZ7caEXUcRTb4EDNggNQc", "ChIJW95viSihZEcRCLHv5a6lHG4", "ChIJWa1cee5-WkcRsaHhMDAYsaU", "ChIJWdWB9cTXZUcR41Ra0Ve4E1Q", "ChIJWfzq3OZdNRMRipn61_SOxhY", "ChIJwQjhkDqtXkcRknGSJSpXp6E", "ChIJwRaaVQ4DXkcRRTa-oZfEaYs", "ChIJx293yCXnXEcRil_GZpCkdno", "ChIJxTvV6nEQW0cR126DQ_h7DkI", "ChIJXyZmdVpRXkcRDgE1iQ95aCE", "ChIJY_Hlwo3JWEcRhxQw4jnCiCk", "ChIJY1x6KsumZEcRZT5THPsf8eg", "ChIJy2mg_0RyV0cR_a9-2o5JU6k", "ChIJYe3H6gOtaEcR0qrkg-fBJVM", "ChIJyS2_KCgTSxMR-KWy0lNbHow", "ChIJyUj11d3WZUcRXY04C5dJJQI", "ChIJyUSgg5fXZUcR2GOEKZBdRcI", "ChIJYxomQS0uX0cRvnmvhSiT3kM", "ChIJyYoW5yQQW0cRD57qCAT_w2o", "ChIJZ0p3BLznXEcRbfS-5M1D8zg", "ChIJZ3CQRIh4ZkcRjq5FDYYRiGM", "ChIJz6KAeqFMWUcRh0tStYJ4t3M", "ChIJZTchyDCCXkcRrdwlXRUxAQI", "ChIJZW_mcg3cQUcReEMdoJl9Ryo", "ChIJzW0tDTzTfEcRQVKwmDAC-Cg", "ChIJzw4vZJt8Y0cRRss8qoTUlHU"];
 
-const allBrands = ["Author", "Carraro", "Centurion", "Felt", "Trek", "Atala", "Bianchi", "SixTeam", "Capriolo", "Cube", "Shimano", "Mitas", "Krypton", "CST", "Twinn", "Tacx", "Bellelli", "SRAM", "Rock Shox", "Avid", "Truvativ", "Merida", "SKS", "Sigma", "Michelin", "Monte Grappa", "Monte Grappa", "GT bicycles", "Specialized", "Topeak", "Sigma", "Hydrapak", "Kenda", "Osprey", "Shimano", "Peruzzo", "Mighty", "Endura", "Cube", "Scott", "Cross", "Polar", "Alpina", "Cinzia", "Electra", "Explorer", "Focus", "Scout", "Visitor", "CatEye", "Rubena", "Schwalbe", "Continental", "Promax", "Ashima", "Kellys bike", "KMC", "Polysport", "Promax", "Cannondale", "Ritchey", "Fizik", "Continental", "DT Swiss", "Uvex", "Zefal", "Northwave", "Elite", "Volkl", "Elan", "Volkl", "UNIS" ];
-const allStores = {
+const allBrands = ["Author", "Carraro", "Centurion", "Felt", "Trek", "Atala", "Bianchi", "SixTeam", "Capriolo", "Cube", "Shimano", "Mitas", "Krypton", "CST", "Twinn", "Tacx", "Bellelli", "SRAM", "Rock Shox", "Avid", "Truvativ", "Merida", "SKS", "Sigma", "Michelin", "montegrappa", "montegrappa", "GT", "Specialized", "Topeak", "Sigma", "Hydrapak", "Kenda", "Osprey", "Shimano", "Peruzzo", "Mighty", "Endura", "Cube", "Scott", "Cross", "Polar", "Alpina", "Cinzia", "Electra", "Explorer", "Focus", "Scout", "Visitor", "CatEye", "Rubena", "Schwalbe", "Continental", "Promax", "Ashima", "Kellys", "KMC", "Polysport", "Promax", "Cannondale", "Ritchey", "Fizik", "Continental", "DT Swiss", "Uvex", "Zefal", "Northwave", "Elite", "Volkl", "Elan", "Volkl", "UNIS" ];
+const allVendorsBrands = {
     "capriolo": {
       "name": "Capriolo Sport Centar",
       "bikeBrands": ["Capriolo", "Cube"],
-      "eqBrands": ["Capriolo", "Cube", "Shimano", "Mitas", "Krypton", "CST", "Twinn", "Tacx", "Bellelli", "SRAM", "Rock Shox", "Avid", "Truvativ", "Merida", "SKS", "Sigma", "Michelin", "Monte Grappa", "KMC"]
+      "eqBrands": ["Capriolo", "Cube", "Shimano", "Mitas", "Krypton", "CST", "Twinn", "Tacx", "Bellelli", "SRAM", "Rock Shox", "Avid", "Truvativ", "Merida", "SKS", "Sigma", "Michelin", "montegrappa", "KMC"]
     },
     "ciklocentar": {
       "name": "Ciklo centar",
-      "bikeBrands": ["GT bicycles", "Specialized"],
+      "bikeBrands": ["GT", "Specialized"],
       "eqBrands": ["Specialized", "Topeak", "Sigma", "Hydrapak", "Kenda", "Osprey", "Shimano", "Peruzzo", "Mighty", "Endura", "Michelin", "KMC", "Promax"]
     },
     "mbikeshop": {
@@ -414,8 +414,8 @@ const allStores = {
     },
     "boca": {
       "name": "Boca",
-      "bikeBrands": ["Kellys bike", "Capriolo", "Polar", "Scott", "Alpina"],
-      "eqBrands": ["CatEye", "Rubena", "Schwalbe", "Continental", "Promax", "Shimano", "Ashima", "Kellys bike", "Capriolo", "Polar", "Scott"],
+      "bikeBrands": ["Kellys", "Capriolo", "Polar", "Scott", "Alpina"],
+      "eqBrands": ["CatEye", "Rubena", "Schwalbe", "Continental", "Promax", "Shimano", "Ashima", "Kellys", "Capriolo", "Polar", "Scott"],
     },
     "dost": {
       "name": "DOST d.o.o",
@@ -513,10 +513,13 @@ const allStores = {
       "eqBrands": []
     }
 };
+
+const allBrandsStores = {
+};
 ``
 const allPoints = [
   {
-    "id": "",
+    "id": "ChIJm3NvJVXWZUcR1HEb4X1FLNo",
     "vendors": "alanprim",
     "name": "Alan Prim Zagreb",
     "city": "Zagreb",
@@ -919,7 +922,7 @@ const allPoints = [
     "servis": 1,
     "rent": 1,
     "note": "",
-    "eq_brands": "CAT EYE, RUBENA, SCHWALBE, CONTINENTAL, PROMAX, SHIMANO, ASHIMA, KELLY`S, \nCAPRIOLO, POLAR, SCOTT, peruzzo, thule"
+    "eq_brands": "CAT EYE, RUBENA, SCHWALBE, CONTINENTAL, PROMAX, SHIMANO, ASHIMA, KELLY`S, CAPRIOLO, POLAR, SCOTT, peruzzo, thule"
   },
   {
     "id": "ChIJj8lXd9zIWEcR24mTA2Yc3E0",
@@ -942,7 +945,7 @@ const allPoints = [
     "city": "Pula",
     "website": "http://www.brbsport.hr/",
     "fb_link": "https://www.facebook.com/BRB-SPORT-doo-90422445735/?ref=hl",
-    "bike_brands": "BRB, Cube Torpado",
+    "bike_brands": "BRB, Cube, Torpado",
     "prodaja": 1,
     "servis": 1,
     "rent": 0,
@@ -989,7 +992,7 @@ const allPoints = [
     "servis": 1,
     "rent": 1,
     "note": "",
-    "eq_brands": "Krypton, Mitas, Shimano, Tacx, Bellelli, Sram, Rock Shox, Avid, Truvatin, Merida, SKS, Sigma, Michelin, Monte Grappa"
+    "eq_brands": "Krypton, Mitas, Shimano, Tacx, Bellelli, Sram, Rock Shox, Avid, Truvativ, Merida, SKS, Sigma, Michelin, montegrappa"
   },
   {
     "id": "ChIJZTchyDCCXkcRrdwlXRUxAQI",
@@ -1003,7 +1006,7 @@ const allPoints = [
     "servis": 0,
     "rent": 0,
     "note": "",
-    "eq_brands": "Krypton, Mitas, Shimano, Tacx, Bellelli, Sram, Rock Shox, Avid, Truvatin, Merida, SKS, Sigma, Michelin, Monte Grappa"
+    "eq_brands": "Krypton, Mitas, Shimano, Tacx, Bellelli, Sram, Rock Shox, Avid, Truvativ, Merida, SKS, Sigma, Michelin, montegrappa"
   },
   {
     "id": "ChIJr5zLihADXkcR5aXEV_0993c",
@@ -1017,7 +1020,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "Krypton, Mitas, Shimano, Tacx, Bellelli, Sram, Rock Shox, Avid, Truvatin, Merida, SKS, Sigma, Michelin, Monte Grappa"
+    "eq_brands": "Krypton, Mitas, Shimano, Tacx, Bellelli, Sram, Rock Shox, Avid, Truvativ, Merida, SKS, Sigma, Michelin, montegrappa"
   },
   {
     "id": "ChIJM29t4AcDXkcRAvIsQloB7NI",
@@ -1031,7 +1034,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "Krypton, Mitas, Shimano, Tacx, Bellelli, Sram, Rock Shox, Avid, Truvatin, Merida, SKS, Sigma, Michelin, Monte Grappa"
+    "eq_brands": "Krypton, Mitas, Shimano, Tacx, Bellelli, Sram, Rock Shox, Avid, Truvativ, Merida, SKS, Sigma, Michelin, montegrappa"
   },
   {
     "id": "",
@@ -1045,7 +1048,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "Aleja Svetog Save 19,U nastavku Addiko banke",
-    "eq_brands": "Krypton, Mitas, Shimano, Tacx, Bellelli, Sram, Rock Shox, Avid, Truvatin, Merida, SKS, Sigma, Michelin, Monte Grappa"
+    "eq_brands": "Krypton, Mitas, Shimano, Tacx, Bellelli, Sram, Rock Shox, Avid, Truvativ, Merida, SKS, Sigma, Michelin, montegrappa"
   },
   {
     "id": "ChIJR63q0ks3XEcRelfe_qUXfws",
@@ -1059,7 +1062,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "Krypton, Mitas, Shimano, Tacx, Bellelli, Sram, Rock Shox, Avid, Truvatin, Merida, SKS, Sigma, Michelin, Monte Grappa"
+    "eq_brands": "Krypton, Mitas, Shimano, Tacx, Bellelli, Sram, Rock Shox, Avid, Truvativ, Merida, SKS, Sigma, Michelin, montegrappa"
   },
   {
     "id": "ChIJa_eLpd_IWEcRamQ7brHzgzg",
@@ -1073,7 +1076,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "Krypton, Mitas, Shimano, Tacx, Bellelli, Sram, Rock Shox, Avid, Truvatin, Merida, SKS, Sigma, Michelin, Monte Grappa"
+    "eq_brands": "Krypton, Mitas, Shimano, Tacx, Bellelli, Sram, Rock Shox, Avid, Truvativ, Merida, SKS, Sigma, Michelin, montegrappa"
   },
   {
     "id": "ChIJBSkqlG3JWEcRYAbtx_X5Pgs",
@@ -1087,7 +1090,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "Krypton, Mitas, Shimano, Tacx, Bellelli, Sram, Rock Shox, Avid, Truvatin, Merida, SKS, Sigma, Michelin, Monte Grappa"
+    "eq_brands": "Krypton, Mitas, Shimano, Tacx, Bellelli, Sram, Rock Shox, Avid, Truvativ, Merida, SKS, Sigma, Michelin, montegrappa"
   },
   {
     "id": "ChIJHWDk2Qu_REcRnjvrM46mURQ",
@@ -1152,12 +1155,12 @@ const allPoints = [
     "city": "Zagreb",
     "website": "http://www.ciklo-centar.hr/",
     "fb_link": "https://www.facebook.com/pg/Ciklo.Centar/about/?ref=page_internal",
-    "bike_brands": "Kona, Superior, Shockblaze, KELLYS,Dahon",
+    "bike_brands": "Kona, Superior, Shockblaze, KELLYS, Dahon",
     "prodaja": 1,
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "NORTHWAVE, CRATONI, SHIMANO, ATOMLAB, AVID, Kona, Michelin, Schwalbe, Maxxis, Sigma, Kryptonite, Acor, BROOKS, VELO, MONTE GRAPPA, DA BOMB, SRAM"
+    "eq_brands": "NORTHWAVE, CRATONI, SHIMANO, ATOMLAB, AVID, Kona, Michelin, Schwalbe, Maxxis, Sigma, Kryptonite, Acor, BROOKS, VELO, montegrappa, DA BOMB, SRAM"
   },
   {
     "id": "ChIJU_BKtF_WZUcRYDAhCWlYRP8",
@@ -1171,7 +1174,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "Acor, Velo, Da Bomb, Schimano,SunRace, Kenda, Schwalbe, Continental, Michelin, Zefal, QT,  Kryptonite"
+    "eq_brands": "Acor, Velo, Da Bomb, Shimano,SunRace, Kenda, Schwalbe, Continental, Michelin, Zefal, QT,  Kryptonite"
   },
   {
     "id": "ChIJidYSYmkQW0cRrlfu3FqJa_0",
@@ -1241,7 +1244,7 @@ const allPoints = [
     "servis": 0,
     "rent": 0,
     "note": "imaju 3 radnje Zajecar, i dvije u beogradu",
-    "eq_brands": "TEKTRO, SELLE SAN MARCO, PROWHEEL, SIGMA, SIMPLA, VELO, VEE RUBBER, GIYO, ZOOM, VP COMPONENTS, ACTIVE DDK, KALLOY, KMC,KRYPTONITE, MACTRONIC, PROMAX, JAGWIRE, GRX, CROSS,"
+    "eq_brands": "TEKTRO, SELLE SAN MARCO, PROWHEEL, SIGMA, SIMPLA, VELO, VEE RUBBER, GIYO, ZOOM, VP COMPONENTS, ACTIVE DDK, KALLOY, KMC,KRYPTONITE, MACTRONIC, PROMAX, JAGWIRE, GRX, CROSS"
   },
   {
     "id": "ChIJUY6TNrYRW0cRiCIFGn14x8Q",
@@ -1255,7 +1258,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "Schimano,Sigma, Novatec, CST, Schwalbe, Luma, VDO, DMT, Michelin"
+    "eq_brands": "Shimano,Sigma, Novatec, CST, Schwalbe, Luma, VDO, DMT, Michelin"
   },
   {
     "id": "ChIJayn39VsQW0cReIs0tjjxcWo",
@@ -1269,7 +1272,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "Schimano,Sigma, Novatec, CST, Schwalbe, Luma, VDO, DMT, Michelin"
+    "eq_brands": "Shimano,Sigma, Novatec, CST, Schwalbe, Luma, VDO, DMT, Michelin"
   },
   {
     "id": "ChIJu2jjGYbRZUcRN2qUtCimeOU",
@@ -1395,7 +1398,7 @@ const allPoints = [
     "servis": 0,
     "rent": 0,
     "note": "",
-    "eq_brands": "CST, Schimano"
+    "eq_brands": "CST, Shimano"
   },
   {
     "id": "ChIJsdqbPbHXZUcRbWyf2FU8-TE",
@@ -1423,7 +1426,7 @@ const allPoints = [
     "servis": 0,
     "rent": 0,
     "note": "imaju 3 radnje dvije u ZG i jedna u Bjelovaru, plus servis u ZG naveden dole",
-    "eq_brands": "Diamondback, Ghost, Haro, Race Face, UNO, Focus, Devron, DT Swiss, JoyTech, Novatec, Shimano, Sun Ringle, Fizik, Odi, Premium Products, RMS, Velo, WTB, Tektro, Amoeba, Truvativ, SRAM, TAYA, Neco, Continental, Kenda, Slime, Vee Rubber, DT Swiss, Rock Shox, RST, Syncros, \nWellgo, Alhonga, Baradine, Clarks, Elvedes ,Kool Stop, Magura, FSA, Avid, \nOdyssey, SST Oryg, Schwalbe, Rubena, Mozo Usa, Sigma, Magnum, OnGuard, Trelock"
+    "eq_brands": "Diamondback, Ghost, Haro, Race Face, UNO, Focus, Devron, DT Swiss, JoyTech, Novatec, Shimano, Sun Ringle, Fizik, Odi, Premium Products, RMS, Velo, WTB, Tektro, Amoeba, Truvativ, SRAM, TAYA, Neco, Continental, Kenda, Slime, Vee Rubber, DT Swiss, Rock Shox, RST, Syncros, Wellgo, Alhonga, Baradine, Clarks, Elvedes, Kool Stop, Magura, FSA, Avid, Odyssey, SST Oryg, Schwalbe, Rubena, Mozo Usa, Sigma, Magnum, OnGuard, Trelock"
   },
   {
     "id": "ChIJk0qH_3PWZUcRqVbK2IivpLE",
@@ -1437,7 +1440,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "Diamondback, Ghost, Haro, Race Face, UNO, Focus, Devron, DT Swiss, JoyTech, Novatec, Shimano, Sun Ringle, Fizik, Odi, Premium Products, RMS, Velo, WTB, Tektro, Amoeba, Truvativ, SRAM, TAYA, Neco, Continental, Kenda, Slime, Vee Rubber, DT Swiss, Rock Shox, RST, Syncros, \nWellgo, Alhonga, Baradine, Clarks, Elvedes ,Kool Stop, Magura, FSA, Avid, \nOdyssey, SST Oryg, Schwalbe, Rubena, Mozo Usa, Sigma, Magnum, OnGuard, Trelock"
+    "eq_brands": "Diamondback, Ghost, Haro, Race Face, UNO, Focus, Devron, DT Swiss, JoyTech, Novatec, Shimano, Sun Ringle, Fizik, Odi, Premium Products, RMS, Velo, WTB, Tektro, Amoeba, Truvativ, SRAM, TAYA, Neco, Continental, Kenda, Slime, Vee Rubber, DT Swiss, Rock Shox, RST, Syncros, Wellgo, Alhonga, Baradine, Clarks, Elvedes, Kool Stop, Magura, FSA, Avid, Odyssey, SST Oryg, Schwalbe, Rubena, Mozo Usa, Sigma, Magnum, OnGuard, Trelock"
   },
   {
     "id": "ChIJgQFvoXQ2ZkcRPqrndoDs9LU",
@@ -1474,12 +1477,12 @@ const allPoints = [
     "city": "Split",
     "website": "https://www.bicikla.com/",
     "fb_link": "https://www.facebook.com/shop.bicikla",
-    "bike_brands": "Cinzia, Cube, Dahon, Giant, GT, Haibike/ Winora, Jamis, Kettler, Norco, Orbea, Scott, Specialized",
+    "bike_brands": "Cinzia, Cube, Dahon, Giant, GT, Haibike, Winora, Jamis, Kettler, Norco, Orbea, Scott, Specialized",
     "prodaja": 1,
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "Continental, Cube, Vittoria, Giant, Kenda, Topeak, Specialized, Michelin, Schwallbe, Maxxis, Byte, Shimano, Endura, Sigma, Fox, Chimpanzee, Crank Brothers, Look, SRAM"
+    "eq_brands": "Continental, Cube, Vittoria, Giant, Kenda, Topeak, Specialized, Michelin, Schwalbe, Maxxis, Byte, Shimano, Endura, Sigma, Fox, Chimpanzee, CrankBRothers, Look, SRAM"
   },
   {
     "id": "ChIJiZ7FivxdNRMRnntKtOcoIwQ",
@@ -1488,12 +1491,12 @@ const allPoints = [
     "city": "Split",
     "website": "http://www.bicikla.com/",
     "fb_link": "https://www.facebook.com/shop.bicikla",
-    "bike_brands": "Cinzia, Cube, Dahon, Giant, GT, Haibike/ Winora, Jamis, Kettler, Norco, Orbea, Scott, Specialized",
+    "bike_brands": "Cinzia, Cube, Dahon, Giant, GT, Haibike, Winora, Jamis, Kettler, Norco, Orbea, Scott, Specialized",
     "prodaja": 1,
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "Continental, Cube, Vittoria, Giant, Kenda, Topeak, Specialized, Michelin, Schwallbe, Maxxis, Byte, Shimano, Endura, Sigma, Fox, Chimpanzee, Crank Brothers, Look, SRAM"
+    "eq_brands": "Continental, Cube, Vittoria, Giant, Kenda, Topeak, Specialized, Michelin, Schwalbe, Maxxis, Byte, Shimano, Endura, Sigma, Fox, Chimpanzee, CrankBRothers, Look, SRAM"
   },
   {
     "id": "ChIJZ0p3BLznXEcRbfS-5M1D8zg",
@@ -1572,7 +1575,7 @@ const allPoints = [
     "city": "Zagreb",
     "website": "http://www.hafer.hr/",
     "fb_link": "",
-    "bike_brands": "Dema, Scott, Rockmachine, Visitor",
+    "bike_brands": "Dema, Scott, Rock Machine, Visitor",
     "prodaja": 1,
     "servis": 1,
     "rent": 0,
@@ -1586,12 +1589,12 @@ const allPoints = [
     "city": "Prelog",
     "website": "http://www.huni-bike-shop.hr/",
     "fb_link": "https://www.facebook.com/HuniBikeShopBicikli",
-    "bike_brands": "Hai bike, Cube",
+    "bike_brands": "Haibike, Cube",
     "prodaja": 1,
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "XLC, Shimano, SRAM, Crank Brothers, Schwalbe"
+    "eq_brands": "XLC, Shimano, SRAM, CrankBRothers, Schwalbe"
   },
   {
     "id": "ChIJieDAXD7JWEcRh2i9vODasoc",
@@ -2426,7 +2429,7 @@ const allPoints = [
     "city": "Osijek",
     "website": "http://www.jakovcevic.hr/",
     "fb_link": "",
-    "bike_brands": "Capriolo, Mayo, Liberty, Kellys bike",
+    "bike_brands": "Capriolo, Mayo, Liberty, Kellys",
     "prodaja": 1,
     "servis": 1,
     "rent": 0,
@@ -2445,7 +2448,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "Schwalbe, Abus, Busch & Müller, Topeak, SQ-lab, Ciclosport, BBB,"
+    "eq_brands": "Schwalbe, Abus, Busch & Müller, Topeak, SQ-lab, Ciclosport, BBB"
   },
   {
     "id": "ChIJa2SW0h_GREcRSWqgg87Jz-o",
@@ -2459,7 +2462,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "Schwalbe, Abus, Busch & Müller, Topeak, SQ-lab, Ciclosport, BBB,"
+    "eq_brands": "Schwalbe, Abus, Busch & Müller, Topeak, SQ-lab, Ciclosport, BBB"
   },
   {
     "id": "ChIJ6bgVi6LnREcR18Ei4hdXeUc",
@@ -2482,7 +2485,7 @@ const allPoints = [
     "city": "Banja Luka",
     "website": "",
     "fb_link": "https://www.facebook.com/sportshopjoso/",
-    "bike_brands": "SCOTT,CANONDALE,ELEKTRA,POLAR",
+    "bike_brands": "SCOTT,CANONDALE,ELECTRA,POLAR",
     "prodaja": 1,
     "servis": 1,
     "rent": 0,
@@ -2496,12 +2499,12 @@ const allPoints = [
     "city": "Zagreb",
     "website": "http://www.keindl-sport.hr/",
     "fb_link": "https://www.facebook.com/keindlsport/",
-    "bike_brands": "Cube, Jumpertrek, Orbea, Look, Ridley, Atala,\nCinzia,  Brompton, Tern",
+    "bike_brands": "Cube, Jumpertrek, Orbea, Look, Ridley, Atala, Cinzia, Brompton, Tern",
     "prodaja": 1,
     "servis": 1,
     "rent": 0,
     "note": "dvije prodavnice u ZG, Vitezićeva 1a i Reljkovićeva 2, a centrala i web prodaja Web prodaja Rudeška cesta 14, u opremi mozda ima marki i opreme za skijanje",
-    "eq_brands": "4ZA, Abus, Ahead, Alligator, Answer, Arnette,  Avid, Battaglin, Bellelli, Beto, Bicycle line, Big Wipes, Birzman, Bollé, Bosch, Briko, Buff, BYTE, Cairn, Camelbak, Campagnolo, Castelli, Chain, Chiba, Cinelli,  Citadel, cnSPOKE, Connex, Crono, Crud, CST,  Cyclo, Defeet, Demon, Deuter, Dieffe, DT Swiss, Dynamic,Effetto Mariposa, ELITE, EthicSport, Extend, Fabric, Falke,Fibrax, Fischer, FSA, Fulcrum, Gaerne, Garmin, Geax, Ghost, Gipiemme, Giyo, GoPro, Gore, GSG, Hayes, Hutchinson, Ideal, IXS, Jagwire, JOE`S,  KASK, Kawasaki, Keindl Sport, Kenda, KMC, Knog, Lake, Lizard Skins, Longus, M-wave, Manitou, Mavic, MB Wear, MBM, Miche, Michelin, Mighty, Mizuno, Moto One, MS, Neco, No Flats,No Tubes, Novatec, NRC, NRG, Oakley,  ORCA, Peruzzo, Point, Polar, Polisport, Prologo, Promax, Proviz, Puky, Quarq, Rema TIP TOP, RFR,  RIE:SEL Design, ROCK SHOX, Rodi,  Roeckl, ROTO, Rudy Project, San Marco, Schwalbe, Selle Bassano, Selle Italia, SH+, Shimano, Sidi, Simpla, SIS, Sixs, SKF, sks, Solestar, Sonax,  Spanninga, Squeezy, Sram, Stand, Strider, Sugoi, Sunrims, Suomy, SWISSSTOP, Tacx, Tektro,  Thule, Topeak, Trail Gator, Tranz X, Truvativ, TSG, Tufo, Tune, Var, Velo, Velomann, Ventura, Vision, Vittoria, Vredestein, WD-40, Weldtite, WTB, Zefal,Zefiro, ZIPP, ZOOM, ZZYZX"
+    "eq_brands": "4ZA, Abus, Ahead, Alligator, Answer, Arnette,  Avid, Battaglin, Bellelli, Beto, Bicycle line, Big Wipes, Birzman, Bollé, Bosch, Briko, Buff, BYTE, Cairn, Camelbak, Campagnolo, Castelli, Chain, Chiba, Cinelli,  Citadel, cnSPOKE, Connex, Crono, Crud, CST,  Cyclo, Defeet, Demon, Deuter, Dieffe, DT Swiss, Dynamic, Effetto, Mariposa, ELITE, EthicSport, Extend, Fabric, Falke, Fibrax, Fischer, FSA, Fulcrum, Gaerne, Garmin, Geax, Ghost, Gipiemme, Giyo, GoPro, Gore, GSG, Hayes, Hutchinson, Ideal, IXS, Jagwire, JOE`S,  KASK, Kawasaki, Keindl Sport, Kenda, KMC, Knog, Lake, Lizard Skins, Longus, M-wave, Manitou, Mavic, MB Wear, MBM, Miche, Michelin, Mighty, Mizuno, Moto One, MS, Neco, No Flats,No Tubes, Novatec, NRC, NRG, Oakley,  ORCA, Peruzzo, Point, Polar, Polisport, Prologo, Promax, Proviz, Puky, Quarq, Rema TIP-TOP, RFR,  RIE:SEL, ROCK SHOX, Rodi,  Roeckl, ROTO, Rudy Project, San Marco, Schwalbe, Selle Bassano, Selle Italia, SH+, Shimano, Sidi, Simpla, SIS, Sixs, SKF, sks, Solestar, Sonax,  Spanninga, Squeezy, Sram, Stand, Strider, Sugoi, Sunrims, Suomy, SWISSSTOP, Tacx, Tektro, Thule, Topeak, Trail Gator, Tranz X, Truvativ, TSG, Tufo, Tune, Var, Velo, Velomann, Ventura, Vision, Vittoria, Vredestein, WD-40, Weldtite, WTB, Zefal, Zefiro, ZIPP, ZOOM, ZZYZX"
   },
   {
     "id": "ChIJ9arYj_ysaEcRRt4zW2CZNPc",
@@ -2557,7 +2560,7 @@ const allPoints = [
     "servis": 1,
     "rent": 1,
     "note": "",
-    "eq_brands": "SUPER B, M-WAVE, SELLE SMP, Briko, htp design, Simpla, Master Lock, Marwi, Wowow, Blizzard"
+    "eq_brands": "SUPER-B, M-WAVE, SELLE SMP, Briko, htp design, Simpla, Master Lock, Marwi, Wowow, Blizzard"
   },
   {
     "id": "ChIJgeba3qrXZUcRiofpy_vsjvY",
@@ -2566,12 +2569,12 @@ const allPoints = [
     "city": "Zagreb",
     "website": "https://markoprojekt.com/",
     "fb_link": "https://www.facebook.com/MarkoProjekt/",
-    "bike_brands": "Wheeler, Norco, Jamis, Adriatica, Rocky Mountain,",
+    "bike_brands": "Wheeler, Norco, Jamis, Adriatica, Rocky Mountain",
     "prodaja": 1,
     "servis": 1,
     "rent": 0,
     "note": "a usluzi zaljubljenicima labilne ravnoteže nudimo uslugu maloprodaje, veleprodaje i servisa na lokaciji Vlaška 81a, Zagreb i Stanka Vraza 8, Varaždin.",
-    "eq_brands": "Acor, Adriatica,, Alligator, Azonic, Bottecchia, Da Bomb, DT-Swiss, E-thirteen, Eastpower, Endura, Esperia, Giyo, Hope, Jagwire, Jamis, Joytech, Kenda, KMC, Legnano, Mach1, Master Lock, Michelin, Muc-Off, Neuzer, Norco, Novatec, O`Neal, Oyama, Promax, Race Face, Rocky Mountain, Royal, Schwalbe, Shimano, Sigma, Six Six One, SRAM, Super-B, Velo, Wheeler, Yaban"
+    "eq_brands": "Acor, Adriatica,, Alligator, Azonic, Bottecchia, Da Bomb, DT Swiss, E-thirteen, Eastpower, Endura, Esperia, Giyo, Hope, Jagwire, Jamis, Joytech, Kenda, KMC, Legnano, Mach1, Master Lock, Michelin, Muc-Off, Neuzer, Norco, Novatec, O`Neal, Oyama, Promax, Race Face, Rocky Mountain, Royal, Schwalbe, Shimano, Sigma, SixSixOne, SRAM, Super-B, Velo, Wheeler, Yaban"
   },
   {
     "id": "ChIJ11DJvtmqaEcR6Hstk_P_BLo",
@@ -2585,7 +2588,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "Aqua Design, BBB, Cateye, Cross, Dag, Dagger, Dartmoor, Dhs, Dieffe, Dino, Dynamic, Felt, Gepida, Gumotex, Hiko Sport, Indiana Sup, Kenda, Kreativ, Masciaghi, Master Lock, OZEN, Palm Equipment, Pasarela, Point, PRIJON, Rog, Rowery Embassy, RTM, RTM Fishing, TNF, TNP, Typhoon, ULTRa"
+    "eq_brands": "Aqua Design, BBB, Cateye, Cross, Dag, Dagger, Dartmoor, Dhs, Dieffe, Dino, Dynamic, Felt, Gepida, Gumotex, Hiko Sport, Indiana Sup, Kenda, Kreativ, Masciaghi, Master Lock, OZEN, Palm Equipment, Pasarela, Point, PRIJON, Rog, Rowery Embassy, RTM, RTM, TNF, TNP, Typhoon, ULTRa"
   },
   {
     "id": "ChIJ-UwlvHRDSxMREgCl3k5TFv0",
@@ -2599,7 +2602,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "Continental, Schwalbe, Look, Polisport, Schimano, Camelbak, Uvex, Rox-shox, Fulcrum, Sidi, IXS, Vittoria, Fox, Kenda, Zefal"
+    "eq_brands": "Continental, Schwalbe, Look, Polisport, Shimano, Camelbak, Uvex, Rox-shox, Fulcrum, Sidi, IXS, Vittoria, Fox, Kenda, Zefal"
   },
   {
     "id": "ChIJF2cMBCvKWEcRpE5QHmzIJqM",
@@ -2613,7 +2616,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "Continental, Schwalbe, Look, Polisport, Schimano, Camelbak, Uvex, Rox-shox, Fulcrum, Sidi, IXS, Vittoria, Fox, Kenda, Zefal"
+    "eq_brands": "Continental, Schwalbe, Look, Polisport, Shimano, Camelbak, Uvex, Rox-shox, Fulcrum, Sidi, IXS, Vittoria, Fox, Kenda, Zefal"
   },
   {
     "id": "ChIJMQ0zAxqtXkcRWiwnkjn5n3k",
@@ -2627,7 +2630,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "Continental, Schwalbe, Look, Polisport, Schimano, Camelbak, Uvex, Rox-shox, Fulcrum, Sidi, IXS, Vittoria, Fox, Kenda, Zefal"
+    "eq_brands": "Continental, Schwalbe, Look, Polisport, Shimano, Camelbak, Uvex, Rox-shox, Fulcrum, Sidi, IXS, Vittoria, Fox, Kenda, Zefal"
   },
   {
     "id": "ChIJIVUZePNhQ0cRd3zyE9iHSbQ",
@@ -2641,7 +2644,7 @@ const allPoints = [
     "servis": 0,
     "rent": 0,
     "note": "",
-    "eq_brands": "Shimano, Wellgo, Velosteel, Kaiwei, Power, Campbell, Radius, Rabe, Rush, KMC, Suntour, Dotek, Prowheel, Kenli, Feimin, Kalloy, Kalin, Duro, Galaxy, AHT, Rubena, Mitas, Trayal, Sigma, Ventura, Jing Yi, Assess, Quando, Shunfeng, Tri Diamond, Olona, Thun, Rema Tip-Top, Selle Monte Grappa"
+    "eq_brands": "Shimano, Wellgo, Velosteel, Kaiwei, Power, Campbell, Radius, Rabe, Rush, KMC, SR Suntour, Dotek, Prowheel, Kenli, Feimin, Kalloy, Kalin, Duro, Galaxy, AHT, Rubena, Mitas, Trayal, Sigma, Ventura, Jing Yi, Assess, Quando, Shunfeng, Tri Diamond, Olona, Thun, Rema Tip-Top, Selle montegrappa"
   },
   {
     "id": "ChIJ2Q_g3tsgV0cR3Ad0g2HsWs8",
@@ -2650,7 +2653,7 @@ const allPoints = [
     "city": "Kragujevac",
     "website": "http://metal-kg.rs/",
     "fb_link": "",
-    "bike_brands": "stranica u pripremi",
+    "bike_brands": "",
     "prodaja": "",
     "servis": "",
     "rent": "",
@@ -2669,7 +2672,7 @@ const allPoints = [
     "servis": 0,
     "rent": 0,
     "note": "",
-    "eq_brands": "Adjoin, Baradine, Cateye, Continental, CST, Feimin, Kenda, Polisport, Promax, Quando, Selle Royal, Shimano, Sunrace, Union, Uvex, VP, Zefal, Camelbak, EBike, Elite, Giyo, Scott, Tonyon"
+    "eq_brands": "Adjoin, Baradine, Cateye, Continental, CST, Feimin, Kenda, Polisport, Promax, Quando, Selle Royal, Shimano, Sunrace, Union, Uvex, VP components, Zefal, Camelbak, EBike, Elite, Giyo, Scott, Tonyon"
   },
   {
     "id": "ChIJ4cipJZajZEcR5a1LBDPp8rQ",
@@ -2688,7 +2691,7 @@ const allPoints = [
   {
     "id": "ChIJUz6c5mnRZUcRCrmaTqN49Uo",
     "vendors": "msbhr",
-    "name": "MSB service bicycles",
+    "name": "MSB service",
     "city": "Zagreb",
     "website": "http://www.msb.hr/",
     "fb_link": "https://www.facebook.com/MSBbicikliiskije/?fref=ts",
@@ -2697,7 +2700,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "samo servis i dijelovi na stranici",
-    "eq_brands": "Kenda, Shimano, Michelin, Rubena, Schwalbe, Promax, Marwi, RFR, SRAM,"
+    "eq_brands": "Kenda, Shimano, Michelin, Rubena, Schwalbe, Promax, Marwi, RFR, SRAM"
   },
   {
     "id": "ChIJhbMQrpjPZUcRchyM-y0_dtA",
@@ -2706,12 +2709,12 @@ const allPoints = [
     "city": "Zapreši?",
     "website": "http://mtb-shop.hr/",
     "fb_link": "https://www.facebook.com/mtbshop.hr/?ref=hl",
-    "bike_brands": "CAPRIOLO, FUJI, HAI E-BIKE, HAIBIKE, LEGONI, ROG-JOMA, TREK, WINORA, WINORA E-BIKE",
+    "bike_brands": "CAPRIOLO, FUJI, HAIbIkE, HAIBIKE, LEGONI, ROG JOMA, TREK, WINORA, WINORA E-BIKE",
     "prodaja": 1,
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "Fuji, Schwalbe, Continental, Shimano, XLC, Kenda, ROCKSHOX, Carrera, Selle Royal, Sellesmp, Novatec.."
+    "eq_brands": "Fuji, Schwalbe, Continental, Shimano, XLC, Kenda, ROCK SHOX, Carrera, Selle Royal, Sellesmp, Novatec"
   },
   {
     "id": "ChIJL0Im9NrIWEcRUeOgMo6kGPc",
@@ -2934,8 +2937,8 @@ const allPoints = [
     "prodaja": 1,
     "servis": 1,
     "rent": 0,
-    "note": "ima jos trgovina i servisa: http://dinamic.hr/trgovine-servisi/   Zagreb\nČakovec\nKoprivnica\nNedelišće\nVaraždin 1\nVaraždin 2\nVirovitica",
-    "eq_brands": "Shimano, VELO, Zoom, Remerx, Schwalbe, Mitas(Rubena), Promax, KMC, M-WAVE, CHAKY,  Scott, MONTE GRAPPA, Trelock, Sigma, Syncros, Ventura, SAXONIA"
+    "note": "ima jos trgovina i servisa: http://dinamic.hr/trgovine-servisi/   ZagrebČakovecKoprivnicaNedelišćeVaraždin 1Varaždin 2Virovitica",
+    "eq_brands": "Shimano, VELO, Zoom, Remerx, Schwalbe, Mitas, Rubena, Promax, KMC, M-WAVE, CHAKY,  Scott, montegrappa, Trelock, Sigma, Syncros, Ventura, SAXONIA"
   },
   {
     "id": "ChIJJXrRJL2taEcRw1Cr3u0h0ck",
@@ -2986,11 +2989,11 @@ const allPoints = [
     "city": "Leštane",
     "website": "http://paralex.rs/",
     "fb_link": "",
-    "bike_brands": "CAPRIOLO, PLANET BIKE, VENERA BIKE",
+    "bike_brands": "CAPRIOLO, PLANETBIKE, VENERA",
     "prodaja": 1,
     "servis": 1,
     "rent": 0,
-    "note": "Ima jos jedna radnja: Bicikl Servis Centar\nBulevar Revolucije 20, preko puta tri tiganja\n11130 Kaluđerica",
+    "note": "Ima jos jedna radnja: Bicikl Servis CentarBulevar Revolucije 20, preko puta tri tiganja11130 Kaluđerica",
     "eq_brands": ""
   },
   {
@@ -3005,7 +3008,7 @@ const allPoints = [
     "servis": 0,
     "rent": 0,
     "note": "Pise da imaju radnju i u ZG: http://www.peloton.hr/hr/content/4-o-nama",
-    "eq_brands": "MICHELIN, SCHWALBE, IMPAC,KENDA, GIANT, SELLE SAN MARCO, ORTLIEB, TUBUS, RACKTIME,MAVIC, GLORYFY, BRIKO, LONGUS, BASIL, HAMAX,VELO, RUBENA, ENDURA, FORCE, NOVATEC, REMERX, MAVIC, LIMAR"
+    "eq_brands": "MICHELIN, SCHWALBE, IMPAC,KENDA, GIANT, SELLE SAN MARCO, ORTLIEB, TUBUS, RACKTIME,MAVIC, GLORYFY, BRIKO, LONGUS, BASIL, HAMAX, VELO, RUBENA, ENDURA, FORCE, NOVATEC, REMERX, MAVIC, LIMAR"
   },
   {
     "id": "ChIJGT6KwmLOfEcRjWgPGYG4SQE",
@@ -3089,7 +3092,7 @@ const allPoints = [
     "servis": 1,
     "rent": 1,
     "note": "imaju jos radnji u NSadu, Nisu...  http://planetbike.rs/gde-kupiti/",
-    "eq_brands": "Shimano, Ritchey, Fizik, Continental, DT Swiss, Zefal, Cat Eye, Uvex, Scott, Northwave, Polisport, Elite, Brooks, Herrmans, PRO, Syncros, Velo, Zoom, Promax, Baradine, Jagwire, KMC, Suntour, Wheel Top, Fox, Selle Bassano, Selle Montegrappa, Selle Royal, Deestone, DSI, Kenda, Ponely, Trelock,"
+    "eq_brands": "Shimano, Ritchey, Fizik, Continental, DT Swiss, Zefal, Cat Eye, Uvex, Scott, Northwave, Polisport, Elite, Brooks, Herrmans, PRO, Syncros, Velo, Zoom, Promax, Baradine, Jagwire, KMC, SR Suntour, Wheel Top, Fox, Selle Bassano, Selle Montegrappa, Selle Royal, Deestone, DSI, Kenda, Ponely, Trelock"
   },
   {
     "id": "ChIJbdO0YHJlWkcRSM9zQMrkqrk",
@@ -3453,7 +3456,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "ABUS, Avid, AXA, Bassano, BBB, Bellelli, Bike Hand, Cateye, Continental, Cross, CST, Cyclo Tools, Cyclone,  DT Swiss, Elite, Endura, Ergon, Garmin,  Giyo,  Jagwire, KENDA, KMC, Limar, Mavic, Merida, Michelin, NORTHWAVE, Polisport, PRO, PROMAX, Ritchey, Rock Shox, Schwalbe, Selle royal, Shimano, Sigma, SKS, Specialized, SRAM, Suntour,  Topeak, Uvex, Velo, VP Components, Zefal, Zoom"
+    "eq_brands": "ABUS, Avid, AXA, Bassano, BBB, Bellelli, Bike Hand, Cateye, Continental, Cross, CST, Cyclo Tools, Cyclone,  DT Swiss, Elite, Endura, Ergon, Garmin,  Giyo,  Jagwire, KENDA, KMC, Limar, Mavic, Merida, Michelin, NORTHWAVE, Polisport, PRO, PROMAX, Ritchey, Rock Shox, Schwalbe, Selle royal, Shimano, Sigma, SKS, Specialized, SRAM, SR Suntour,  Topeak, Uvex, Velo, VP Components, Zefal, Zoom"
   },
   {
     "id": "ChIJTdp2vozhXkcRIysmmmQhUak",
@@ -3789,7 +3792,7 @@ const allPoints = [
     "servis": 1,
     "rent": 1,
     "note": "imaju puno opreme i katastrofa web shop",
-    "eq_brands": "Thule, Campagnolo, Velo, RFR, Shimano, SRAM, Look,  Zipp, Fulcrum, Selle Italia, Cube, RockShox,  Cinelli,  San Marco, Prologo, Regale, Neos, Kenda, Michelin, Schwalbe, Topeak....."
+    "eq_brands": "Thule, Campagnolo, Velo, RFR, Shimano, SRAM, Look,  Zipp, Fulcrum, Selle Italia, Cube, Rock shox,  Cinelli,  San Marco, Prologo, Regale, Neos, Kenda, Michelin, Schwalbe, Topeak"
   },
   {
     "id": "ChIJt1kTXxQQW0cR9zotYcgjQ2c",
@@ -3803,7 +3806,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "imaju dvije radnje u NSadu http://www.ris-cycling.com/kontakt/",
-    "eq_brands": "ABUS, BELLELLI, BROOKS, CAMELBAK CAPRIOLO, CAT EYE, COBRA, CONTINENTAL, CYCLEOPS, FAVORIT, FOX, GARMIN, GIYO, HERRMANS, HW, JOE`S NO FLATS, KNOG, KRYPTON, LE TOUR DE FRANCE, LIZARD SKINS, LUMA, MARIKO, MASTER LOCK, MENABO, MERIDA, PEPE, PRO, PROMAX, PSP, RITCHEY, RSP, SALEWA, SARIS, SCOTT, SELLE BASSANO, SELLE ROYAL, SHAMAN, SIGMA SPORT, SKS, SMART, SRAM, SYNCROS, TACX, THULE, TOPEAK, TRELOCK, VELO, VP, WEDTITE, X-PLORER, XC LIGHTS, XLC, YUEN I, ZEFAL, ZIPP, ZOOM, SR SUNTOUR, ROCK SHOX, AVID, DT SWIS,S FORMULA, JAGWIRE, SHIMANO, XLC, KMC, YBN, CANNONDALE, TRUVATIV, UNO, PROWHEEL, EXUS, FEIMIN, LOOK, WELLGO, DSI, GEAX, KENDA, MICHELIN, MITAS, RUBENA, SCHWALBE, VITTORIA"
+    "eq_brands": "ABUS, BELLELLI, BROOKS, CAMELBAK, CAPRIOLO, CAT EYE, COBRA, CONTINENTAL, CYCLEOPS, FAVORIT, FOX, GARMIN, GIYO, HERRMANS, HW, JOE`S, KNOG, KRYPTON, TOUR DE FRANCE, LIZARD SKINS, LUMA, MARIKO, MASTER LOCK, MENABO, MERIDA, PEPE, PRO, PROMAX, PSP, RITCHEY, RSP, SALEWA, SARIS, SCOTT, SELLE BASSANO, SELLE ROYAL, SHAMAN, SIGMA, SKS, SMART, SRAM, SYNCROS, TACX, THULE, TOPEAK, TRELOCK, VELO,  components, , WELDTITE, X-PLORER, XC LIGHTS, XLC, YUENI, ZEFAL, ZIPP, ZOOM, SR SUNTOUR, ROCK SHOX, AVID, DT SWISS, FORMULA, JAGWIRE, SHIMANO, XLC, KMC, YBN, CANNONDALE, TRUVATIV, UNO, PROWHEEL, EXUS, FEIMIN, LOOK, WELLGO, DSI, GEAX, KENDA, MICHELIN, MITAS, RUBENA, SCHWALBE, VITTORIA"
   },
   {
     "id": "ChIJ50m17-_WZUcRVshhQ_qpHWI",
@@ -3817,7 +3820,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "u ZG imaju dvije radnje koje prodaju bicikle i opremu i jedna posebna samo za servis: https://www.rog-joma.hr/prodavaonice.php",
-    "eq_brands": "KENDA, BONTRAGER, CONTINENTAL, TRAYAL, VEE RUBBER, SCHWALBE, CST, VEECO, MITAS, MARZOCCHI, BASIC, VENTURA, MIGHTY, ZOOM, M-WAVE, BNTD, BONTRAGER, TREK, BLACK LABEL, NECO, VP COMPONENTS, RST, CANE CREEK, WOODMAN, SPINNER,  UNIS, SHIMANO, SKS GERMANY, BNTD, BONTRAGER, BLACK LABEL, SR SUNTOUR, FLINGER, NECO, ICON, FIZIK, BROOKS ENGLAND, SELLE ROYAL, VELO, HUGGY, THULE, ALLIGATOR, JAGWIRE, SACCON, TOUR DE FRANCE, KIDZAMO, SMART, TORCH, VELOMANN, ANLUN, KNOG, BONIN, MOON, CAMELION, TOPEAK, SAXONIA, LOOK, WELLGO, HTI, EXUSTAR, MKS, GIPIEMME, NRC, SRAM, MAGNUM, ONGUARD, KALI PROTECTIVES, BELLELLI, VDO CYCLING, PANASONIC, GARMIN, PROMAX, DT SWISS, KMC, AVID, ZOOM"
+    "eq_brands": "KENDA, BONTRAGER, CONTINENTAL, TRAYAL, VEE RUBBER, SCHWALBE, CST, VEECO, MITAS, MARZOCCHI, BASIC, VENTURA, MIGHTY, ZOOM, M-WAVE, BNTD, BONTRAGER, TREK, BLACK LABEL, NECO, VP COMPONENTS, RST, CANE CREEK, WOODMAN, SPINNER,  UNIS, SHIMANO, SKS, BNTD, BONTRAGER, BLACK LABEL, SR SUNTOUR, FLINGER, NECO, ICON, FIZIK, BROOKS ENGLAND, SELLE ROYAL, VELO, HUGGY, THULE, ALLIGATOR, JAGWIRE, SACCON, TOUR DE FRANCE, KIDZAMO, SMART, TORCH, VELOMANN, ANLUN, KNOG, BONIN, MOON, CAMELION, TOPEAK, SAXONIA, LOOK, WELLGO, HTI, EXUSTAR, MKS, GIPIEMME, NRC, SRAM, MAGNUM, ONGUARD, KALI PROTECTIVES, BELLELLI, VDO CYCLING, PANASONIC, GARMIN, PROMAX, DT SWISS, KMC, AVID, ZOOM"
   },
   {
     "id": "ChIJr6WwFGX6YUcRlZx46qzq4lk",
@@ -3831,7 +3834,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "KENDA, BONTRAGER, CONTINENTAL, TRAYAL, VEE RUBBER, SCHWALBE, CST, VEECO, MITAS, MARZOCCHI, BASIC, VENTURA, MIGHTY, ZOOM, M-WAVE, BNTD, BONTRAGER, TREK, BLACK LABEL, NECO, VP COMPONENTS, RST, CANE CREEK, WOODMAN, SPINNER,  UNIS, SHIMANO, SKS GERMANY, BNTD, BONTRAGER, BLACK LABEL, SR SUNTOUR, FLINGER, NECO, ICON, FIZIK, BROOKS ENGLAND, SELLE ROYAL, VELO, HUGGY, THULE, ALLIGATOR, JAGWIRE, SACCON, TOUR DE FRANCE, KIDZAMO, SMART, TORCH, VELOMANN, ANLUN, KNOG, BONIN, MOON, CAMELION, TOPEAK, SAXONIA, LOOK, WELLGO, HTI, EXUSTAR, MKS, GIPIEMME, NRC, SRAM, MAGNUM, ONGUARD, KALI PROTECTIVES, BELLELLI, VDO CYCLING, PANASONIC, GARMIN, PROMAX, DT SWISS, KMC, AVID, ZOOM"
+    "eq_brands": "KENDA, BONTRAGER, CONTINENTAL, TRAYAL, VEE RUBBER, SCHWALBE, CST, VEECO, MITAS, MARZOCCHI, BASIC, VENTURA, MIGHTY, ZOOM, M-WAVE, BNTD, BONTRAGER, TREK, BLACK LABEL, NECO, VP COMPONENTS, RST, CANE CREEK, WOODMAN, SPINNER,  UNIS, SHIMANO, SKS, BNTD, BONTRAGER, BLACK LABEL, SR SUNTOUR, FLINGER, NECO, ICON, FIZIK, BROOKS ENGLAND, SELLE ROYAL, VELO, HUGGY, THULE, ALLIGATOR, JAGWIRE, SACCON, TOUR DE FRANCE, KIDZAMO, SMART, TORCH, VELOMANN, ANLUN, KNOG, BONIN, MOON, CAMELION, TOPEAK, SAXONIA, LOOK, WELLGO, HTI, EXUSTAR, MKS, GIPIEMME, NRC, SRAM, MAGNUM, ONGUARD, KALI PROTECTIVES, BELLELLI, VDO CYCLING, PANASONIC, GARMIN, PROMAX, DT SWISS, KMC, AVID, ZOOM"
   },
   {
     "id": "ChIJbyvPVPxdNRMR6D0FruK1plg",
@@ -3845,7 +3848,7 @@ const allPoints = [
     "servis": 0,
     "rent": 0,
     "note": "",
-    "eq_brands": "KENDA, BONTRAGER, CONTINENTAL, TRAYAL, VEE RUBBER, SCHWALBE, CST, VEECO, MITAS, MARZOCCHI, BASIC, VENTURA, MIGHTY, ZOOM, M-WAVE, BNTD, BONTRAGER, TREK, BLACK LABEL, NECO, VP COMPONENTS, RST, CANE CREEK, WOODMAN, SPINNER,  UNIS, SHIMANO, SKS GERMANY, BNTD, BONTRAGER, BLACK LABEL, SR SUNTOUR, FLINGER, NECO, ICON, FIZIK, BROOKS ENGLAND, SELLE ROYAL, VELO, HUGGY, THULE, ALLIGATOR, JAGWIRE, SACCON, TOUR DE FRANCE, KIDZAMO, SMART, TORCH, VELOMANN, ANLUN, KNOG, BONIN, MOON, CAMELION, TOPEAK, SAXONIA, LOOK, WELLGO, HTI, EXUSTAR, MKS, GIPIEMME, NRC, SRAM, MAGNUM, ONGUARD, KALI PROTECTIVES, BELLELLI, VDO CYCLING, PANASONIC, GARMIN, PROMAX, DT SWISS, KMC, AVID, ZOOM"
+    "eq_brands": "KENDA, BONTRAGER, CONTINENTAL, TRAYAL, VEE RUBBER, SCHWALBE, CST, VEECO, MITAS, MARZOCCHI, BASIC, VENTURA, MIGHTY, ZOOM, M-WAVE, BNTD, BONTRAGER, TREK, BLACK LABEL, NECO, VP COMPONENTS, RST, CANE CREEK, WOODMAN, SPINNER,  UNIS, SHIMANO, SKS, BNTD, BONTRAGER, BLACK LABEL, SR SUNTOUR, FLINGER, NECO, ICON, FIZIK, BROOKS ENGLAND, SELLE ROYAL, VELO, HUGGY, THULE, ALLIGATOR, JAGWIRE, SACCON, TOUR DE FRANCE, KIDZAMO, SMART, TORCH, VELOMANN, ANLUN, KNOG, BONIN, MOON, CAMELION, TOPEAK, SAXONIA, LOOK, WELLGO, HTI, EXUSTAR, MKS, GIPIEMME, NRC, SRAM, MAGNUM, ONGUARD, KALI PROTECTIVES, BELLELLI, VDO CYCLING, PANASONIC, GARMIN, PROMAX, DT SWISS, KMC, AVID, ZOOM"
   },
   {
     "id": "ChIJl9Mlg8OqaEcRJywrXsaZOKc",
@@ -3859,7 +3862,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "KENDA, BONTRAGER, CONTINENTAL, TRAYAL, VEE RUBBER, SCHWALBE, CST, VEECO, MITAS, MARZOCCHI, BASIC, VENTURA, MIGHTY, ZOOM, M-WAVE, BNTD, BONTRAGER, TREK, BLACK LABEL, NECO, VP COMPONENTS, RST, CANE CREEK, WOODMAN, SPINNER,  UNIS, SHIMANO, SKS GERMANY, BNTD, BONTRAGER, BLACK LABEL, SR SUNTOUR, FLINGER, NECO, ICON, FIZIK, BROOKS ENGLAND, SELLE ROYAL, VELO, HUGGY, THULE, ALLIGATOR, JAGWIRE, SACCON, TOUR DE FRANCE, KIDZAMO, SMART, TORCH, VELOMANN, ANLUN, KNOG, BONIN, MOON, CAMELION, TOPEAK, SAXONIA, LOOK, WELLGO, HTI, EXUSTAR, MKS, GIPIEMME, NRC, SRAM, MAGNUM, ONGUARD, KALI PROTECTIVES, BELLELLI, VDO CYCLING, PANASONIC, GARMIN, PROMAX, DT SWISS, KMC, AVID, ZOOM"
+    "eq_brands": "KENDA, BONTRAGER, CONTINENTAL, TRAYAL, VEE RUBBER, SCHWALBE, CST, VEECO, MITAS, MARZOCCHI, BASIC, VENTURA, MIGHTY, ZOOM, M-WAVE, BNTD, BONTRAGER, TREK, BLACK LABEL, NECO, VP COMPONENTS, RST, CANE CREEK, WOODMAN, SPINNER,  UNIS, SHIMANO, SKS, BNTD, BONTRAGER, BLACK LABEL, SR SUNTOUR, FLINGER, NECO, ICON, FIZIK, BROOKS ENGLAND, SELLE ROYAL, VELO, HUGGY, THULE, ALLIGATOR, JAGWIRE, SACCON, TOUR DE FRANCE, KIDZAMO, SMART, TORCH, VELOMANN, ANLUN, KNOG, BONIN, MOON, CAMELION, TOPEAK, SAXONIA, LOOK, WELLGO, HTI, EXUSTAR, MKS, GIPIEMME, NRC, SRAM, MAGNUM, ONGUARD, KALI PROTECTIVES, BELLELLI, VDO CYCLING, PANASONIC, GARMIN, PROMAX, DT SWISS, KMC, AVID, ZOOM"
   },
   {
     "id": "ChIJPXhP5deqaEcRJxjtWWF1iew",
@@ -3873,7 +3876,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "KENDA, BONTRAGER, CONTINENTAL, TRAYAL, VEE RUBBER, SCHWALBE, CST, VEECO, MITAS, MARZOCCHI, BASIC, VENTURA, MIGHTY, ZOOM, M-WAVE, BNTD, BONTRAGER, TREK, BLACK LABEL, NECO, VP COMPONENTS, RST, CANE CREEK, WOODMAN, SPINNER,  UNIS, SHIMANO, SKS GERMANY, BNTD, BONTRAGER, BLACK LABEL, SR SUNTOUR, FLINGER, NECO, ICON, FIZIK, BROOKS ENGLAND, SELLE ROYAL, VELO, HUGGY, THULE, ALLIGATOR, JAGWIRE, SACCON, TOUR DE FRANCE, KIDZAMO, SMART, TORCH, VELOMANN, ANLUN, KNOG, BONIN, MOON, CAMELION, TOPEAK, SAXONIA, LOOK, WELLGO, HTI, EXUSTAR, MKS, GIPIEMME, NRC, SRAM, MAGNUM, ONGUARD, KALI PROTECTIVES, BELLELLI, VDO CYCLING, PANASONIC, GARMIN, PROMAX, DT SWISS, KMC, AVID, ZOOM"
+    "eq_brands": "KENDA, BONTRAGER, CONTINENTAL, TRAYAL, VEE RUBBER, SCHWALBE, CST, VEECO, MITAS, MARZOCCHI, BASIC, VENTURA, MIGHTY, ZOOM, M-WAVE, BNTD, BONTRAGER, TREK, BLACK LABEL, NECO, VP COMPONENTS, RST, CANE CREEK, WOODMAN, SPINNER,  UNIS, SHIMANO, SKS, BNTD, BONTRAGER, BLACK LABEL, SR SUNTOUR, FLINGER, NECO, ICON, FIZIK, BROOKS ENGLAND, SELLE ROYAL, VELO, HUGGY, THULE, ALLIGATOR, JAGWIRE, SACCON, TOUR DE FRANCE, KIDZAMO, SMART, TORCH, VELOMANN, ANLUN, KNOG, BONIN, MOON, CAMELION, TOPEAK, SAXONIA, LOOK, WELLGO, HTI, EXUSTAR, MKS, GIPIEMME, NRC, SRAM, MAGNUM, ONGUARD, KALI PROTECTIVES, BELLELLI, VDO CYCLING, PANASONIC, GARMIN, PROMAX, DT SWISS, KMC, AVID, ZOOM"
   },
   {
     "id": "",
@@ -3887,7 +3890,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "KENDA, BONTRAGER, CONTINENTAL, TRAYAL, VEE RUBBER, SCHWALBE, CST, VEECO, MITAS, MARZOCCHI, BASIC, VENTURA, MIGHTY, ZOOM, M-WAVE, BNTD, BONTRAGER, TREK, BLACK LABEL, NECO, VP COMPONENTS, RST, CANE CREEK, WOODMAN, SPINNER,  UNIS, SHIMANO, SKS GERMANY, BNTD, BONTRAGER, BLACK LABEL, SR SUNTOUR, FLINGER, NECO, ICON, FIZIK, BROOKS ENGLAND, SELLE ROYAL, VELO, HUGGY, THULE, ALLIGATOR, JAGWIRE, SACCON, TOUR DE FRANCE, KIDZAMO, SMART, TORCH, VELOMANN, ANLUN, KNOG, BONIN, MOON, CAMELION, TOPEAK, SAXONIA, LOOK, WELLGO, HTI, EXUSTAR, MKS, GIPIEMME, NRC, SRAM, MAGNUM, ONGUARD, KALI PROTECTIVES, BELLELLI, VDO CYCLING, PANASONIC, GARMIN, PROMAX, DT SWISS, KMC, AVID, ZOOM"
+    "eq_brands": "KENDA, BONTRAGER, CONTINENTAL, TRAYAL, VEE RUBBER, SCHWALBE, CST, VEECO, MITAS, MARZOCCHI, BASIC, VENTURA, MIGHTY, ZOOM, M-WAVE, BNTD, BONTRAGER, TREK, BLACK LABEL, NECO, VP COMPONENTS, RST, CANE CREEK, WOODMAN, SPINNER,  UNIS, SHIMANO, SKS, BNTD, BONTRAGER, BLACK LABEL, SR SUNTOUR, FLINGER, NECO, ICON, FIZIK, BROOKS ENGLAND, SELLE ROYAL, VELO, HUGGY, THULE, ALLIGATOR, JAGWIRE, SACCON, TOUR DE FRANCE, KIDZAMO, SMART, TORCH, VELOMANN, ANLUN, KNOG, BONIN, MOON, CAMELION, TOPEAK, SAXONIA, LOOK, WELLGO, HTI, EXUSTAR, MKS, GIPIEMME, NRC, SRAM, MAGNUM, ONGUARD, KALI PROTECTIVES, BELLELLI, VDO CYCLING, PANASONIC, GARMIN, PROMAX, DT SWISS, KMC, AVID, ZOOM"
   },
   {
     "id": "",
@@ -3901,7 +3904,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "KENDA, BONTRAGER, CONTINENTAL, TRAYAL, VEE RUBBER, SCHWALBE, CST, VEECO, MITAS, MARZOCCHI, BASIC, VENTURA, MIGHTY, ZOOM, M-WAVE, BNTD, BONTRAGER, TREK, BLACK LABEL, NECO, VP COMPONENTS, RST, CANE CREEK, WOODMAN, SPINNER,  UNIS, SHIMANO, SKS GERMANY, BNTD, BONTRAGER, BLACK LABEL, SR SUNTOUR, FLINGER, NECO, ICON, FIZIK, BROOKS ENGLAND, SELLE ROYAL, VELO, HUGGY, THULE, ALLIGATOR, JAGWIRE, SACCON, TOUR DE FRANCE, KIDZAMO, SMART, TORCH, VELOMANN, ANLUN, KNOG, BONIN, MOON, CAMELION, TOPEAK, SAXONIA, LOOK, WELLGO, HTI, EXUSTAR, MKS, GIPIEMME, NRC, SRAM, MAGNUM, ONGUARD, KALI PROTECTIVES, BELLELLI, VDO CYCLING, PANASONIC, GARMIN, PROMAX, DT SWISS, KMC, AVID, ZOOM"
+    "eq_brands": "KENDA, BONTRAGER, CONTINENTAL, TRAYAL, VEE RUBBER, SCHWALBE, CST, VEECO, MITAS, MARZOCCHI, BASIC, VENTURA, MIGHTY, ZOOM, M-WAVE, BNTD, BONTRAGER, TREK, BLACK LABEL, NECO, VP COMPONENTS, RST, CANE CREEK, WOODMAN, SPINNER,  UNIS, SHIMANO, SKS, BNTD, BONTRAGER, BLACK LABEL, SR SUNTOUR, FLINGER, NECO, ICON, FIZIK, BROOKS ENGLAND, SELLE ROYAL, VELO, HUGGY, THULE, ALLIGATOR, JAGWIRE, SACCON, TOUR DE FRANCE, KIDZAMO, SMART, TORCH, VELOMANN, ANLUN, KNOG, BONIN, MOON, CAMELION, TOPEAK, SAXONIA, LOOK, WELLGO, HTI, EXUSTAR, MKS, GIPIEMME, NRC, SRAM, MAGNUM, ONGUARD, KALI PROTECTIVES, BELLELLI, VDO CYCLING, PANASONIC, GARMIN, PROMAX, DT SWISS, KMC, AVID, ZOOM"
   },
   {
     "id": "",
@@ -3915,7 +3918,7 @@ const allPoints = [
     "servis": 0,
     "rent": 0,
     "note": "",
-    "eq_brands": "KENDA, BONTRAGER, CONTINENTAL, TRAYAL, VEE RUBBER, SCHWALBE, CST, VEECO, MITAS, MARZOCCHI, BASIC, VENTURA, MIGHTY, ZOOM, M-WAVE, BNTD, BONTRAGER, TREK, BLACK LABEL, NECO, VP COMPONENTS, RST, CANE CREEK, WOODMAN, SPINNER,  UNIS, SHIMANO, SKS GERMANY, BNTD, BONTRAGER, BLACK LABEL, SR SUNTOUR, FLINGER, NECO, ICON, FIZIK, BROOKS ENGLAND, SELLE ROYAL, VELO, HUGGY, THULE, ALLIGATOR, JAGWIRE, SACCON, TOUR DE FRANCE, KIDZAMO, SMART, TORCH, VELOMANN, ANLUN, KNOG, BONIN, MOON, CAMELION, TOPEAK, SAXONIA, LOOK, WELLGO, HTI, EXUSTAR, MKS, GIPIEMME, NRC, SRAM, MAGNUM, ONGUARD, KALI PROTECTIVES, BELLELLI, VDO CYCLING, PANASONIC, GARMIN, PROMAX, DT SWISS, KMC, AVID, ZOOM"
+    "eq_brands": "KENDA, BONTRAGER, CONTINENTAL, TRAYAL, VEE RUBBER, SCHWALBE, CST, VEECO, MITAS, MARZOCCHI, BASIC, VENTURA, MIGHTY, ZOOM, M-WAVE, BNTD, BONTRAGER, TREK, BLACK LABEL, NECO, VP COMPONENTS, RST, CANE CREEK, WOODMAN, SPINNER,  UNIS, SHIMANO, SKS, BNTD, BONTRAGER, BLACK LABEL, SR SUNTOUR, FLINGER, NECO, ICON, FIZIK, BROOKS ENGLAND, SELLE ROYAL, VELO, HUGGY, THULE, ALLIGATOR, JAGWIRE, SACCON, TOUR DE FRANCE, KIDZAMO, SMART, TORCH, VELOMANN, ANLUN, KNOG, BONIN, MOON, CAMELION, TOPEAK, SAXONIA, LOOK, WELLGO, HTI, EXUSTAR, MKS, GIPIEMME, NRC, SRAM, MAGNUM, ONGUARD, KALI PROTECTIVES, BELLELLI, VDO CYCLING, PANASONIC, GARMIN, PROMAX, DT SWISS, KMC, AVID, ZOOM"
   },
   {
     "id": "ChIJ6zy-DN3qTRMRYXLLHTy10hI",
@@ -3929,7 +3932,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "Rubber, CST, Kenda, Selle Monte Grappa, Velo, Selle Royal, Topeak, AVID, Jagwire, Lizard Skins"
+    "eq_brands": "Rubber, CST, Kenda, Selle montegrappa, Velo, Selle Royal, Topeak, AVID, Jagwire, Lizard Skins"
   },
   {
     "id": "ChIJwRaaVQ4DXkcRRTa-oZfEaYs",
@@ -3943,7 +3946,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "ALPINA, ASHIMA, CAMELBAK, CATEYE, CINZIA, CONTINENTAL, CROSS, Crosser,  CST, CUBE, DALBELLO, DARE 2b, E-BIKE, ELITE, FORCE, GBT, JAGWIRE, KENDA,KMC, MARWI,  POLISPORT, PROWHEEL, RFR, Rie:Sel, ROCES, ROSSIGNOL, SAN MARCO, SCOTT, SELLE MONTE GRAPPA, SHIMANO, SIXTEAM,  SRAM,  SUNTOUR, SYNCROS,  UNION, UVEX, VELO, VITTORIA, WTB, XLC, ZEFAL, ULTRA"
+    "eq_brands": "ALPINA, ASHIMA, CAMELBAK, CATEYE, CINZIA, CONTINENTAL, CROSS, Crosser,  CST, CUBE, DALBELLO, DARE 2b, ELITE, FORCE, GBT, JAGWIRE, KENDA,KMC, MARWI,  POLISPORT, PROWHEEL, RFR, Rie:Sel, ROCES, ROSSIGNOL, SAN MARCO, SCOTT, SELLE montegrappa, SHIMANO, SIXTEAM,  SRAM,  SUNTOUR, SYNCROS,  UNION, UVEX, VELO, VITTORIA, WTB, XLC, ZEFAL, ULTRA"
   },
   {
     "id": "ChIJWdWB9cTXZUcR41Ra0Ve4E1Q",
@@ -3952,7 +3955,7 @@ const allPoints = [
     "city": "Zagreb",
     "website": "http://www.spinsport.hr/",
     "fb_link": "https://www.facebook.com/SpinSport.Zagreb/",
-    "bike_brands": "Santa Cruz bicycles, Juliana bicycles",
+    "bike_brands": "Santa Cruz, Juliana",
     "prodaja": 1,
     "servis": 1,
     "rent": 0,
@@ -3971,7 +3974,7 @@ const allPoints = [
     "servis": 1,
     "rent": 1,
     "note": "",
-    "eq_brands": "Byte, Continental, CST, Duro, Geax, kenda, Maxxis, Michelin, Schwalbe, Vittoria, SRAM, Shimano, Hayes, Promax, Jagwire, Zoom, KMC, YBN, Acor, Mighty, XLC, VP Components, Ergotec, Giant, Cube, Monte Grappa, Selle Italia ,Selle Royal, Velo, FSA, Da Bomb, Cannondale, Sigma, Giyo, Zefal, Thule"
+    "eq_brands": "Byte, Continental, CST, Duro, Geax, kenda, Maxxis, Michelin, Schwalbe, Vittoria, SRAM, Shimano, Hayes, Promax, Jagwire, Zoom, KMC, YBN, Acor, Mighty, XLC, VP Components, Ergotec, Giant, Cube, montegrappa, Selle Italia, Selle Royal, Velo, FSA, Da Bomb, Cannondale, Sigma, Giyo, Zefal, Thule"
   },
   {
     "id": "ChIJ783Jd8VvWkcRf8LzO9VD-Ns",
@@ -4041,7 +4044,7 @@ const allPoints = [
     "servis": 1,
     "rent": 1,
     "note": "",
-    "eq_brands": "Alpina, Bellelli, CatEye, Cinzia, Continental, DT Swiss, Electra, Elite , Hao Tu, Jagwire,  Kenda, Menabo, Polar, Polisport, Prowheel, Schwalbe, Scott, Selle Montegrappa, Selle Royal, Syncros, Zefal"
+    "eq_brands": "Alpina, Bellelli, CatEye, Cinzia, Continental, DT Swiss, Electra, Elite,  Hao Tu, Jagwire,  Kenda, Menabo, Polar, Polisport, Prowheel, Schwalbe, Scott, Selle Montegrappa, Selle Royal, Syncros, Zefal"
   },
   {
     "id": "ChIJhbHXsK7nXEcRHj1VojxPdJM",
@@ -4069,7 +4072,7 @@ const allPoints = [
     "servis": 1,
     "rent": 0,
     "note": "",
-    "eq_brands": "Shimano, CN, Truvativ, KryptonX, Sram, Wellgo, Feimin, VP Components, KMC, Velosteel, Mavic, Novatec, Mitas-Rubena, Michelin, Wanda Tyre, \nZipp, Slime, Power, Tour de France, Avid, Promax, Logan, Tektro, Capriolo, DDK, Selle Monte Grappa, Selle Royal, SR Suntour, Rock Shox, Logan, Prowell, Bonin, Bellelli,  Sigma, Garmin, ABAC"
+    "eq_brands": "Shimano, CN, Truvativ, KryptonX, Sram, Wellgo, Feimin, VP Components, KMC, Velosteel, Mavic, Novatec, Mitas, Rubena, Michelin, Wanda Tyre, Zipp, Slime, Power, Tour de France, Avid, Promax, Logan, Tektro, Capriolo, DDK, Selle montegrappa, Selle Royal, SR Suntour, Rock Shox, Logan, Prowell, Bonin, Bellelli,  Sigma, Garmin, ABAC"
   },
   {
     "id": "ChIJPYkcg23JWEcRlf92JQqlY4U",
@@ -4139,7 +4142,7 @@ const allPoints = [
     "servis": 1,
     "rent": 1,
     "note": "",
-    "eq_brands": "Adjoin, Adria, Alpina, ARC, Avid, Baradine, Bellelli , Bergamont, Body Sculpture, Booster, Camelbak , Campagnolo , Cannondale, Capriolo, Cateye, Cober, Continental , Corratec, Cross, CST, Deuter, DSI, Dynamix, e-bIKE, Elite, EyeLevel, fizik, Garmin, Giant, Giyo, GoPro, Grand Star, Gym Fit, Jagwire, Kenda, Kettler, LaPlaya, Le Tour de France , Luma, Menabo, Merida, Michelin, Mitas Rubena, Nortwave, O-GNS, Polar, Polisport, Power, Profex, PROMAX, Prowell, Relax, Ring Sport , Ritchey, Rock Shox, RST, Schwalbe, Scott, Scout, Selle Bassano, Selle Montegrappa, Selle Royal, Shimano , Sigma, SKS, Sport 2000, Sram, Suntour, Syncros, TDF, Thema sport, Tour de France, Tranz X, Trelock, Truvativ, Uvex, VB-1, Velo, VeneraBike, Weldtite, Yueni, Zefal, ZOO,Mavic, Rithey, Schwalbe, Continental, Cateye, Sigma, Body Sculpture"
+    "eq_brands": "Adjoin, Adria, Alpina, ARC, Avid, Baradine, Bellelli,  Bergamont, Body Sculpture, Booster, Camelbak,  Campagnolo,  Cannondale, Capriolo, Cateye, Cober, Continental,  Corratec, Cross, CST, Deuter, DSI, Dynamix, Elite, EyeLevel, fizik, Garmin, Giant, Giyo, GoPro, Grand Star, Gym Fit, Jagwire, Kenda, Kettler, LaPlaya, Tour de France,  Luma, Menabo, Merida, Michelin, Mitas, Rubena, Northwave, O-GNS, Polar, Polisport, Power, Profex, PROMAX, Prowell, Relax, Ring Sport,  Ritchey, Rock Shox, RST, Schwalbe, Scott, Scout, Selle Bassano, Selle Montegrappa, Selle Royal, Shimano,  Sigma, SKS, Sport 2000, Sram, SR Suntour, Syncros, TDF, Thema sport, Tour de France, Tranz X, Trelock, Truvativ, Uvex, VB-1, Velo, Venera, Weldtite, Yueni, Zefal, ZOOM, Mavic, Rithey, Schwalbe, Continental, Cateye, Sigma, Body Sculpture"
   },
   {
     "id": "ChIJEwS69mZ6WkcRxK2BoEp2AbA",
@@ -4213,33 +4216,55 @@ const allPoints = [
   }
 ];
 
-console.log(allStores);
+console.log(allVendorsBrands);
 populateBrandsVendors();
-console.log(allStores);
+console.log(allVendorsBrands);
 
 
 function populateBrandsVendors() {
   allPoints.forEach((point) => {
-    const bikeBrands = point['bike_brands'].split(', ');
-    const eqBrands = point['eq_brands'].split(', ');
-    const vendors = point.vendors.split(', ');
+    const bikeBrands = point['bike_brands'].split(',');
+    const eqBrands = point['eq_brands'].split(',');
+    const vendors = point.vendors.split(',');
     vendors.forEach((vendor) => {
-      if (!allStores[vendor]) {
-        allStores[vendor] = {};
-        allStores[vendor].name = point.name;
-        allStores[vendor].bikeBrands = [];
-        allStores[vendor].eqBrands = [];
+      if (!allVendorsBrands[slugger(vendor)]) {
+        allVendorsBrands[slugger(vendor)] = {};
+        allVendorsBrands[slugger(vendor)].name = point.name;
+        allVendorsBrands[slugger(vendor)].bikeBrands = [];
+        allVendorsBrands[slugger(vendor)].eqBrands = [];
       }
-      bikeBrands.forEach((brand) => {
-        if (allStores[vendor].bikeBrands.indexOf(brand) < 0 && brand.length > 0) {
-          allStores[vendor].bikeBrands.push(brand);
+      bikeBrands.forEach((bikeBrand) => {
+        if (bikeBrand.length > 0) {
+          if (allVendorsBrands[slugger(vendor)].bikeBrands.indexOf(bikeBrand.trim()) < 0) {
+            allVendorsBrands[slugger(vendor)].bikeBrands.push(bikeBrand.trim());
+          }
+          if (!allBrandsStores[slugger(bikeBrand)] && point.id.length > 0) {
+            allBrandsStores[slugger(bikeBrand)] = [point.id];
+          } else {
+            if (allBrandsStores[slugger(bikeBrand)].indexOf(point.id) < 0 && point.id.length > 0) {
+              allBrandsStores[slugger(bikeBrand)].push(point.id);
+            }
+          }
         }
       });
-      eqBrands.forEach((brand) => {
-        if (allStores[vendor].eqBrands.indexOf(brand) < 0 && brand.length > 0) {
-          allStores[vendor].eqBrands.push(brand);
+      eqBrands.forEach((eqBrand) => {
+        if (eqBrand.length > 0) {
+          if (allVendorsBrands[slugger(vendor)].eqBrands.indexOf(eqBrand.trim()) < 0) {
+            allVendorsBrands[slugger(vendor)].eqBrands.push(eqBrand.trim());
+          }
+          if (!allBrandsStores[slugger(eqBrand)] && point.id.length > 0) {
+            allBrandsStores[slugger(eqBrand)] = [point.id];
+          } else {
+            if (allBrandsStores[slugger(eqBrand)].indexOf(point.id) < 0 && point.id.length > 0) {
+              allBrandsStores[slugger(eqBrand)].push(point.id);
+            }
+          }
         }
       });
-    })
+    });
   });
+}
+
+function slugger(input) {
+  return input.trim().replace(/(?:||)/g, '').toLowerCase().replace('/', '_').replace('`', '').replace(' ', '_').replace('`', '').replace(' ', '_');
 }
