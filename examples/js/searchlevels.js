@@ -4216,10 +4216,33 @@ const allPoints = [
   }
 ];
 
-console.log(allVendorsBrands);
+// console.log(allVendorsBrands);
 populateBrandsVendors();
-console.log(allVendorsBrands);
+// console.log(allVendorsBrands);
 
+
+
+function encrichPoints() {
+  window.stores.features.forEach(store => {
+    const point = allPoints.filter(p => {
+      return p.id == store.properties.id;
+    })[0];
+    if (point) {
+      store.properties.fbPage = point['fb_link'];
+      store.properties.website = point.website;
+      store.properties.bikeBrands = [];
+      store.properties.eqBrands = [];
+      const pointVendors = point.vendors.replace(' ','').split(',');
+      pointVendors.forEach(vendor => {
+        if (allVendorsBrands[vendor]) {
+          store.properties.bikeBrands = store.properties.bikeBrands.concat(allVendorsBrands[vendor].bikeBrands);
+          store.properties.eqBrands = store.properties.eqBrands.concat(allVendorsBrands[vendor].eqBrands);
+        }
+      });
+    }
+  });
+  console.log(window.stores);
+}
 
 function populateBrandsVendors() {
   allPoints.forEach((point) => {
