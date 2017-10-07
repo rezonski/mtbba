@@ -2,162 +2,57 @@
 <html>
 <head>
     <meta charset='utf-8' />
-    <title></title>
+    <title>Bike stores</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='//api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
     <link href='//fonts.googleapis.com/css?family=Roboto:200,300,400,500,700' rel='stylesheet' type='text/css'>
+    <script src='//api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
     <link href='//api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
     <script src='//code.highcharts.com/highcharts.js'></script>
     <script src='//code.highcharts.com/modules/exporting.js'></script>
-    <link href='css/style.css' rel='stylesheet' />
-    <script src='js/jquery.min.js'></script>
+    <link href='css/prodavnice_style.css' rel='stylesheet' />
+    <!-- <script src='js/jquery.min.js'></script> -->
+    <link rel='stylesheet' href='//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css'>
+    <script src='https://code.jquery.com/jquery-1.12.4.js'></script>
+    <script src='https://code.jquery.com/ui/1.12.1/jquery-ui.js'></script>
     <script src='js/togeojson.js'></script>
     <script src='js/turf.min.js'></script>
-    <script src='js/searchlevels.js'></script>
-    <script src='js/helper.js'></script>
-    <script src='js/gapi.js'></script>
+    <script src='js/prodavnice.js'></script>
 </head>
 <body>
-<div class='visualisation'>
-    <div class='up'>
-        <div id='pointdetails' class='pointdetails'></div>
-        <div id='map' class='map'></div>
+<div id="map" class="map"></div>
+<div class="header">
+  <div class="row">
+    <div class="column" id="search-menu">
+      <label for="brands">Marke: </label>
+      <input id="brands">
+      <label for="cities">Gradovi: </label>
+      <input id="cities">
+      <label for="vendors">Lanci: </label>
+      <input id="vendors">
     </div>
-</div>
-<div class="dugmad">
-    <input type="button" value="(re)generate stores" onclick="generateStores();">
-    <input type="button" value="Load stores" onclick="loadJson();">
-    <input type="button" value="Save stores" onclick="save2json();">
+  </div>
 </div>
 <script>
-    window.params= {
-        show: 'A', // D, A, N, C
-    };
-    var urlParameters = window.location.search.substring(1).split('&');
-    urlParameters.forEach(p => {
-        const splited = p.split('=');
-        window.params[splited[0]] = splited[1];
+    loadJson();
+    mapboxgl.accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';  
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        zoom: 6,
+        center: [18.19, 44.13],
+        maxBounds: [[12, 40], [25, 47]]
     });
-    // debugger;
-    window.trail = {
-        trailName: 'Bradina - Martinov grob',
-        trailCategory: 'XC',
-        trailMountains: 'Bitovnja, Vitreusa',
-        surface: '28-35-11-1-0',
-        techDiff: 3,
-        odometer: 99,
-        elevGain: 1000,
-        elevLoss: 1000,
-        minElev: 1000,
-        maxElev: 1000,
-        maxSlope: 10,
-        gpx: '',
-        gpxExport: '',
-        descBos: '',
-        descEng: '',
-        activeLanguage: 'bos',
-        satelliteLayer: false,
-        minesLayer: false,
-    };
-    mapboxgl.accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
-    // $.ajax('upload/gradovi.json').done(function(json) {
-    $.ajax('upload/sarajevo.json').done(function(json) {
-        var dataJSON = json;
-        window.dataJSON = dataJSON;
-        // get center and bounds from json
-        var box = turf.bbox(dataJSON);
-        window.trail.mapCenter = turf.center(dataJSON);
-        var map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/basic-v9',
-            zoom: 6,
-            center: turf.center(dataJSON).geometry.coordinates,
-            // maxBounds: [[14, 41], [22, 46]]
-        });
-        window.map = map;
-        window.currentWPindex = -1;
-        var popup = new mapboxgl.Popup({
-            // closeButton: false,
-            closeOnClick: false
-        });
-        map.on('load', function() {
-            map.fitBounds(box);
-            // addSources(map);
-            // addLayers(map);
-            addControls(map);
-            // addPopups(map, popup);
-            // console.log(wps);
-            initLocalStorage();
-            window.addEventListener('keydown', checkEvent, false);
-        });
+    window.map = map;
+    var popup = new mapboxgl.Popup({
+        // closeButton: false,
+        closeOnClick: false
     });
-    var bboxPoly = {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              13.29345703125,
-              45.506346901083425
-            ],
-            [
-              13.645019531249998,
-              44.574817404670306
-            ],
-            [
-              17.2265625,
-              42.13082130188811
-            ],
-            [
-              18.544921875,
-              41.49212083968776
-            ],
-            [
-              21.02783203125,
-              40.74725696280421
-            ],
-            [
-              23.115234374999996,
-              41.27780646738183
-            ],
-            [
-              22.8955078125,
-              44.809121700077355
-            ],
-            [
-              20.126953125,
-              46.28622391806706
-            ],
-            [
-              18.10546875,
-              45.99696161820381
-            ],
-            [
-              16.41357421875,
-              46.63435070293566
-            ],
-            [
-              16.01806640625,
-              46.9502622421856
-            ],
-            [
-              13.68896484375,
-              46.7248003746672
-            ],
-            [
-              13.07373046875,
-              46.10370875598026
-            ],
-            [
-              13.29345703125,
-              45.506346901083425
-            ]
-          ]
-        ]
-      }
-    };
+    
+    map.on('load', function() {
+        map.fitBounds([[14, 42], [22, 46]]);
+        addControls(map);
+        startLoadingProcess();
+    });
 </script>
 </body>
 </html>

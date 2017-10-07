@@ -11,13 +11,18 @@ function enrichWP(w) {
   getLevel(setup, 0);
 }
 
+
+
 function save2json() {
-  const content2save = turf.featureCollection(window.stores.features);
+  const content2save = turf.featureCollection(window.stores.features.filter(s => {
+    return s.properties.status === 'C';
+  }));
   console.log(content2save);
   const xmlhttpUpload = new XMLHttpRequest();
   xmlhttpUpload.onreadystatechange = () => {
       if (xmlhttpUpload.readyState === 4 && xmlhttpUpload.status === 200) {
           console.log(xmlhttpUpload.responseText);
+          window.stores = JSON.parse(JSON.stringify(content2save));
       }
   };
   xmlhttpUpload.open('POST', 'setStores.php', true);
@@ -42,6 +47,7 @@ function loadJson() {
         }
       };
       window.stores = storesData;
+      // debugger;
       window.stores.features.forEach(f => {
         if (f.properties.status == 'D') {
           window.setup.stores.deletedIDs.push(f.properties.id);

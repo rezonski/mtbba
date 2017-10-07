@@ -33,10 +33,10 @@
 			}
 		},
 		{
-			"contents": "Remote:   origin @ https://github.com/rezonski/sandbox.git\nLocal:    v0.1 /var/www/html/sandbox\nHead:     c6826f6 progress\n\n\nChanges:\n\tModified   examples/js/searchlevels.js\n\n\n# Movement:\n#    r = refresh status\n#    1-5 = jump to section\n#    n = next item, N = next section\n#    p = previous item, P = previous section\n#\n# Staging:\n#    s = stage file/section, S = stage all unstaged files\n#    ctrl+shift+s = stage all unstaged and untracked files\n#    u = unstage file/section, U = unstage all files\n#    backspace = discard file/section, shift+backspace = discard everything\n#\n# Commit:\n#    c = commit, C = commit -a (add unstaged)\n#    ctrl+shift+c = commit --amend (amend previous commit)\n#\n# Other:\n#    i = ignore file, I = ignore pattern\n#    enter = open file\n#    d = view diff\n#\n# Stashes:\n#    a = apply stash, A = pop stash\n#    z = create stash, Z = create stash including untracked files\n#    backspace = discard stash",
+			"contents": "Remote:   origin @ https://github.com/rezonski/sandbox.git\nLocal:    v0.1 /var/www/html/sandbox\nHead:     3c8d000 progress\n\n\nNothing to commit (working directory clean)\n\n# Movement:\n#    r = refresh status\n#    1-5 = jump to section\n#    n = next item, N = next section\n#    p = previous item, P = previous section\n#\n# Staging:\n#    s = stage file/section, S = stage all unstaged files\n#    ctrl+shift+s = stage all unstaged and untracked files\n#    u = unstage file/section, U = unstage all files\n#    backspace = discard file/section, shift+backspace = discard everything\n#\n# Commit:\n#    c = commit, C = commit -a (add unstaged)\n#    ctrl+shift+c = commit --amend (amend previous commit)\n#\n# Other:\n#    i = ignore file, I = ignore pattern\n#    enter = open file\n#    d = view diff\n#\n# Stashes:\n#    a = apply stash, A = pop stash\n#    z = create stash, Z = create stash including untracked files\n#    backspace = discard stash",
 			"settings":
 			{
-				"buffer_size": 936,
+				"buffer_size": 930,
 				"line_ending": "Unix",
 				"name": "*git-status*: sandbox",
 				"read_only": true,
@@ -56,7 +56,7 @@
 			"file": "examples/js/gapi.js",
 			"settings":
 			{
-				"buffer_size": 14868,
+				"buffer_size": 14863,
 				"line_ending": "Unix"
 			}
 		}
@@ -127,13 +127,6 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
-	"expanded_folders":
-	[
-		"/var/www/html/sandbox",
-		"/var/www/html/sandbox/examples",
-		"/var/www/html/sandbox/examples/data",
-		"/var/www/html/sandbox/examples/upload"
-	],
 	"file_history":
 	[
 		"/var/www/html/sandbox/examples/data/stores.geojson",
@@ -220,6 +213,10 @@
 								{
 									"characters": ".#",
 									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
 								}
 							],
 							"syntax": "Packages/HTML/HTML.sublime-syntax",
@@ -261,6 +258,10 @@
 								{
 									"characters": ".#",
 									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
 								}
 							],
 							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
@@ -279,20 +280,31 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 936,
+						"buffer_size": 930,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								134,
-								134
+								930,
+								930
 							]
 						],
 						"settings":
 						{
 							"__vi_external_disable": true,
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
 							"default_dir": "/var/www/html/sandbox",
 							"draw_white_space": "none",
 							"git_repo": "/var/www/html/sandbox",
@@ -337,6 +349,10 @@
 								{
 									"characters": ".#",
 									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
 								}
 							],
 							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
@@ -356,15 +372,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 14868,
+						"buffer_size": 14863,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4468,
-								4478
+								0,
+								0
 							]
 						],
 						"settings":
@@ -373,6 +389,10 @@
 							[
 								{
 									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
 									"selector": "text.html"
 								},
 								{
