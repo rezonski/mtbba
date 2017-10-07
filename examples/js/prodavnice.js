@@ -1,3 +1,7 @@
+String.prototype.capitalize = function() {
+    return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+};
+
 function loadJson() {
   $.getJSON('data/stores.geojson', storesData => {
       window.stores = storesData;
@@ -9,42 +13,39 @@ function loadJson() {
 }
 
 function generateGlobalVariables() {
-  window.brandsStores = {};
-  window.citiesStores = {};
-  window.vendorStores = {};
+  window.search = {};
+  window.search.brands = {};
+  window.search.cities = {};
+  window.search.vendors = {};
   //
   window.stores.features.forEach(store => {
     if (store.properties.bikeBrands) {
       store.properties.bikeBrands.forEach(bikeBrand => {
-        if(!window.brandsStores[bikeBrand]) {
-          window.brandsStores[bikeBrand] = [store.properties.id];
+        if(!window.search.brands[slugger(bikeBrand)]) {
+          window.search.brands[slugger(bikeBrand)] = [store.properties.id];
         } else {
-          window.brandsStores[bikeBrand].push(store.properties.id);
+          window.search.brands[slugger(bikeBrand)].push(store.properties.id);
         }
       });
     }
     if (store.properties.eqBrands) {
       store.properties.eqBrands.forEach(eqBrand => {
-        if(!window.brandsStores[eqBrand]) {
-          window.brandsStores[eqBrand] = [store.properties.id];
+        if(!window.search.brands[slugger(eqBrand)]) {
+          window.search.brands[slugger(eqBrand)] = [store.properties.id];
         } else {
-          window.brandsStores[eqBrand].push(store.properties.id);
+          window.search.brands[slugger(eqBrand)].push(store.properties.id);
         }
       });
     }
-    if (store.properties.eqBrands) {
-      store.properties.vendors.forEach(vendor => {
-        if(!window.vendorStores[vendor]) {
-          window.vendorStores[vendor] = [store.properties.id];
-        } else {
-          window.vendorStores[vendor].push(store.properties.id);
-        }
-      });
-    }
-    if(!window.citiesStores[store.properties.city]) {
-      window.citiesStores[store.properties.city] = [store.properties.id];
+    if(!window.search.vendors[store.properties.name]) {
+      window.search.vendors[slugger(store.properties.name)] = [store.properties.id];
     } else {
-      window.citiesStores[store.properties.city].push(store.properties.id);
+      window.search.vendors[slugger(store.properties.name)].push(store.properties.id);
+    }
+    if(!window.search.cities[store.properties.city]) {
+      window.search.cities[slugger(store.properties.city)] = [store.properties.id];
+    } else {
+      window.search.cities[slugger(store.properties.city)].push(store.properties.id);
     }
   });
 }
@@ -141,7 +142,7 @@ function displayMapLayers() {
             'text-offset': [0, 2],
             'text-size': {
                 'base': 1,
-                'stops': [[4,0],[5,1],[7,13]]
+                'stops': [[4,0],[7,1],[9,13]]
             }
         },
         'filter': ['all', ['==', 'isRent', 1]]
@@ -165,7 +166,7 @@ function displayMapLayers() {
             'text-offset': [0, 2],
             'text-size': {
                 'base': 1,
-                'stops': [[4,0],[5,1],[7,13]]
+                'stops': [[4,0],[7,1],[9,13]]
             }
         },
         'filter': ['all', ['==', 'isService', 1]]
@@ -187,7 +188,7 @@ function displayMapLayers() {
             'text-offset': [0, 2],
             'text-size': {
                 'base': 1,
-                'stops': [[4,0],[5,1],[7,13]]
+                'stops': [[4,0],[7,1],[9,13]]
             }
         },
         'filter': ['all', ['==', 'isStore', 1]]
@@ -226,17 +227,36 @@ function addControls(map) {
   }));
 }
 
+function onValuePicked(section, event, ui) {
+  console.log(section);
+  console.log(JSON.stringify(window.search[section][ui.item.value], null, 4));
+}
+
 function setSearchBox() {
-  const listOfBrands = Object.keys(window.brandsStores);
-  const listOfCities = Object.keys(window.citiesStores);
-  const listOfVendors = Object.keys(window.vendorStores);
+  const listOfBrands = Object.keys(window.search.brands);
+  const listOfCities = Object.keys(window.search.cities);
+  const listOfVendors = Object.keys(window.search.vendors);
   $( "#brands" ).autocomplete({
-    source: listOfBrands
+    source: listOfBrands,
+    minLength: 3,
+    autoFocus: true,
+    select: onValuePicked.bind(this, 'brands')
   });
   $( "#cities" ).autocomplete({
-    source: listOfCities
+    source: listOfCities,
+    minLength: 3,
+    autoFocus: true,
+    select: onValuePicked.bind(this, 'cities')
   });
   $( "#vendors" ).autocomplete({
-    source: listOfVendors
+    source: listOfVendors,
+    minLength: 3,
+    autoFocus: true,
+    select: onValuePicked.bind(this, 'vendors')
   });
+}
+
+
+function slugger(input) {
+  return input.trim().toLowerCase().replace(/(?:||)/g, '').replace('`', '').replace(' d.o.o.', '').replace(' d.o.o', '').replace(' - ', ' ').capitalize();
 }

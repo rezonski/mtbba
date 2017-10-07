@@ -14,23 +14,34 @@
     <link rel='stylesheet' href='//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css'>
     <script src='https://code.jquery.com/jquery-1.12.4.js'></script>
     <script src='https://code.jquery.com/ui/1.12.1/jquery-ui.js'></script>
+    <link href="//cdn.muicss.com/mui-0.9.27/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <script src="//cdn.muicss.com/mui-0.9.27/js/mui.min.js"></script>
     <script src='js/togeojson.js'></script>
     <script src='js/turf.min.js'></script>
     <script src='js/prodavnice.js'></script>
 </head>
 <body>
-<div id="map" class="map"></div>
-<div class="header">
-  <div class="row">
-    <div class="column" id="search-menu">
-      <label for="brands">Marke: </label>
-      <input id="brands">
-      <label for="cities">Gradovi: </label>
-      <input id="cities">
-      <label for="vendors">Lanci: </label>
-      <input id="vendors">
+<div class="app">
+  <div class="mui-appbar appbar">
+    <div class="mui-textfield mui-textfield--float-label appbar-element">
+      <input id="brands" type="text">
+      <label>Robna marka / brend</label>
     </div>
+    <div class="mui-textfield mui-textfield--float-label appbar-element">
+      <input id="cities" type="text">
+      <label>Grad / mjesto</label>
+    </div>
+    <div class="mui-textfield mui-textfield--float-label appbar-element">
+      <input id="vendors" type="text">
+      <label>Kompanija</label>
+    </div>
+    <div class="appbar-element"></div>
+    <button class="mui-btn mui-btn--small dugme">Shop</button>
+    <button class="mui-btn mui-btn--small mui-btn--primary dugme">Servis</button>
+    <button class="mui-btn mui-btn--small dugme">Rent</button>
+    <div class="appbar-element"></div>
   </div>
+  <div id="map" class="map"></div>
 </div>
 <script>
     loadJson();
