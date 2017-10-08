@@ -14,6 +14,12 @@ function loadJson() {
 
 function generateGlobalVariables() {
   window.search = {};
+  window.search.filter = {
+    brands: ['has', 'id'],
+    cities: ['has', 'id'],
+    vendors: ['has', 'id'],
+    filter: ['all', ['has', 'id']]
+  }
   window.search.brands = {};
   window.search.cities = {};
   window.search.vendors = {};
@@ -82,10 +88,10 @@ function displayMapLayers() {
         'clusterRadius': 40 // Radius of each cluster when clustering points (defaults to 50)
       });
       window.map.addLayer({
-          id: 'clusters',
+          id: t + '-clusters',
           type: 'circle',
           source: t,
-          filter: ['has', 'point_count'],
+          filter: ['all', ['has', 'point_count'], ['has', 'point_count']],
           paint: {
               'circle-color': {
                   property: 'point_count',
@@ -116,10 +122,10 @@ function displayMapLayers() {
           }
       });
       window.map.addLayer({
-          id: 'cluster-count',
+          id: t + '-cluster-count',
           type: 'symbol',
           source: t,
-          filter: ['has', 'point_count'],
+          filter: ['all', ['has', 'point_count'], ['has', 'point_count']],
           layout: {
               'text-field': '{point_count_abbreviated}',
               'text-size': 12
@@ -145,7 +151,7 @@ function displayMapLayers() {
                 'stops': [[4,0],[7,1],[9,13]]
             }
         },
-        'filter': ['all', ['==', 'isRent', 1]]
+        'filter': ['all', ['==', 'isRent', 1], ['has', 'id']]
       });
       window.map.addLayer({
         'id': t + '-service',
@@ -169,7 +175,7 @@ function displayMapLayers() {
                 'stops': [[4,0],[7,1],[9,13]]
             }
         },
-        'filter': ['all', ['==', 'isService', 1]]
+        'filter': ['all', ['==', 'isService', 1], ['has', 'id']]
       });
       window.map.addLayer({
         'id': t + '-bikestore',
@@ -191,7 +197,7 @@ function displayMapLayers() {
                 'stops': [[4,0],[7,1],[9,13]]
             }
         },
-        'filter': ['all', ['==', 'isStore', 1]]
+        'filter': ['all', ['==', 'isStore', 1], ['has', 'id']]
       });
       initMapListeners();
     }
@@ -203,7 +209,7 @@ function initMapListeners() {
       var bbox = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
       const features = window.map.queryRenderedFeatures(bbox, { layers: ['stores-rent','stores-service','stores-bikestore'] });
       if (features.length > 0) {
-        console.log(features.length);
+        console.log(features[0].properties.name);
       }
   });
   window.map.on('click', function (e) {
@@ -228,8 +234,31 @@ function addControls(map) {
 }
 
 function onValuePicked(section, event, ui) {
-  console.log(section);
-  console.log(JSON.stringify(window.search[section][ui.item.value], null, 4));
+  // console.log(section);
+  // console.log(JSON.stringify(window.search[section][ui.item.value], null, 4));
+  if (ui.item) {
+    var ids = window.search[section][ui.item.value];
+    if (ids.length > 0) {
+      window.search.filter[section] = ['in', 'id'].concat(ids);
+    }
+  } else {
+    window.search.filter[section] = ['has', 'id'];
+  }
+  window.search.filter.filter = ['all', window.search.filter.brands, window.search.filter.cities, window.search.filter.vendors]
+  // console.log(window.search.filter);
+  setFilters();
+}
+
+function setFilters() {
+  ['stores'].forEach(t => {
+    ['clusters', 'cluster-count', 'rent', 'service', 'bikestore'].forEach(s => {
+      var currentFilter = window.map.getFilter(t + '-' + s);
+      currentFilter.pop();
+      currentFilter.push(window.search.filter.filter);
+      console.log(currentFilter);
+      window.map.setFilter(t + '-' + s, currentFilter);
+    });
+  });
 }
 
 function setSearchBox() {
@@ -238,20 +267,23 @@ function setSearchBox() {
   const listOfVendors = Object.keys(window.search.vendors);
   $( "#brands" ).autocomplete({
     source: listOfBrands,
-    minLength: 3,
+    minLength: 2,
     autoFocus: true,
+    change: onValuePicked.bind(this, 'brands'),
     select: onValuePicked.bind(this, 'brands')
   });
   $( "#cities" ).autocomplete({
     source: listOfCities,
-    minLength: 3,
+    minLength: 2,
     autoFocus: true,
+    change: onValuePicked.bind(this, 'cities'),
     select: onValuePicked.bind(this, 'cities')
   });
   $( "#vendors" ).autocomplete({
     source: listOfVendors,
-    minLength: 3,
+    minLength: 2,
     autoFocus: true,
+    change: onValuePicked.bind(this, 'vendors'),
     select: onValuePicked.bind(this, 'vendors')
   });
 }
