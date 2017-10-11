@@ -17,7 +17,7 @@
     <link href="//cdn.muicss.com/mui-0.9.27/css/mui.min.css" rel="stylesheet" type="text/css" />
     <script src="//cdn.muicss.com/mui-0.9.27/js/mui.min.js"></script>
     <script src='js/togeojson.js'></script>
-    <!-- <script src='js/turf.min.js'></script> -->
+    <script src='js/turf.min.js'></script>
     <script src='js/prodavnice.js'></script>
 </head>
 <body>
@@ -50,6 +50,7 @@
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v9',
         zoom: 6,
+        maxZoom: 19,
         center: [18.19, 44.13],
         maxBounds: [[12, 40], [25, 47]]
     });

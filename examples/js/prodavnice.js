@@ -15,10 +15,10 @@ function loadJson() {
 function generateGlobalVariables() {
   window.search = {};
   window.search.filter = {
-    brands: ['has', 'id'],
-    cities: ['has', 'id'],
-    vendors: ['has', 'id'],
-    filter: ['all', ['has', 'id']]
+    brands: [],
+    cities: [],
+    vendors: [],
+    filter: []
   }
   window.search.brands = {};
   window.search.cities = {};
@@ -239,24 +239,43 @@ function onValuePicked(section, event, ui) {
   if (ui.item) {
     var ids = window.search[section][ui.item.value];
     if (ids.length > 0) {
-      window.search.filter[section] = ['in', 'id'].concat(ids);
+      window.search.filter[section] = ids;
     }
   } else {
-    window.search.filter[section] = ['has', 'id'];
+    window.search.filter[section] = [];
   }
-  window.search.filter.filter = ['all', window.search.filter.brands, window.search.filter.cities, window.search.filter.vendors]
-  // console.log(window.search.filter);
-  setFilters();
+  const allIDs = window.search.filter.brands.concat(window.search.filter.cities).concat(window.search.filter.vendors);
+  
+  if (window.search.filter.brands.length === 0) {
+    window.search.filter.brands = allIDs;
+  }
+  if (window.search.filter.cities.length === 0) {
+    window.search.filter.cities = allIDs;
+  }
+  if (window.search.filter.vendors.length === 0) {
+    window.search.filter.vendors = allIDs;
+  }
+  window.search.filter.filter = [];
+  allIDs.forEach(id => {
+    if (window.search.filter.brands.indexOf(id) > -1 && window.search.filter.cities.indexOf(id) > -1 &&  window.search.filter.vendors.indexOf(id) > -1) {
+      window.search.filter.filter.push(id);
+    }
+  });
+  console.log(window.search.filter);
+  filterSource();
 }
 
-function setFilters() {
+function filterSource() {
   ['stores'].forEach(t => {
-    ['clusters', 'cluster-count', 'rent', 'service', 'bikestore'].forEach(s => {
-      var currentFilter = window.map.getFilter(t + '-' + s);
-      currentFilter.pop();
-      currentFilter.push(window.search.filter.filter);
-      console.log(currentFilter);
-      window.map.setFilter(t + '-' + s, currentFilter);
+    const currFeatures = window[t].features;
+    const newSource = turf.featureCollection(currFeatures.filter(f => {
+      return window.search.filter.filter.indexOf(f.properties.id) > -1;
+    }));
+    window.map.getSource(t).setData(newSource);
+    const nb = turf.bbox(newSource);
+    window.map.fitBounds([[nb[0], nb[1]],[nb[2], nb[3]]], {
+      padding: 100,
+      maxZoom: 16
     });
   });
 }
@@ -267,24 +286,27 @@ function setSearchBox() {
   const listOfVendors = Object.keys(window.search.vendors);
   $( "#brands" ).autocomplete({
     source: listOfBrands,
-    minLength: 2,
+    minLength: 0,
     autoFocus: true,
     change: onValuePicked.bind(this, 'brands'),
-    select: onValuePicked.bind(this, 'brands')
+    select: onValuePicked.bind(this, 'brands'),
+    focus: onValuePicked.bind(this, 'brands')
   });
   $( "#cities" ).autocomplete({
     source: listOfCities,
-    minLength: 2,
+    minLength: 0,
     autoFocus: true,
     change: onValuePicked.bind(this, 'cities'),
-    select: onValuePicked.bind(this, 'cities')
+    select: onValuePicked.bind(this, 'cities'),
+    focus: onValuePicked.bind(this, 'cities')
   });
   $( "#vendors" ).autocomplete({
     source: listOfVendors,
-    minLength: 2,
+    minLength: 0,
     autoFocus: true,
     change: onValuePicked.bind(this, 'vendors'),
-    select: onValuePicked.bind(this, 'vendors')
+    select: onValuePicked.bind(this, 'vendors'),
+    focus: onValuePicked.bind(this, 'vendors')
   });
 }
 
