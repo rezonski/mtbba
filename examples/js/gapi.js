@@ -457,3 +457,13 @@ function photoCleaner(index) {
     });
   }
 }
+
+function sortFeaturesAscending(collection) {
+  const feats = collection.features.map(f => {
+    const r = f;
+    const rews = (r.properties.reviews) ? r.properties.reviews.length : 1;
+    r.properties.score = r.properties.rating * rews;
+    return r;
+  });
+  return turf.featureCollection(feats.sort((a, b) => b.properties.score - a.properties.score));
+}

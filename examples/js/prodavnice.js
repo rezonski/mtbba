@@ -91,7 +91,7 @@ function displayMapLayers() {
           id: t + '-clusters',
           type: 'circle',
           source: t,
-          filter: ['all', ['has', 'point_count'], ['has', 'point_count']],
+          filter: ['has', 'point_count'],
           paint: {
               'circle-color': {
                   property: 'point_count',
@@ -125,11 +125,33 @@ function displayMapLayers() {
           id: t + '-cluster-count',
           type: 'symbol',
           source: t,
-          filter: ['all', ['has', 'point_count'], ['has', 'point_count']],
+          filter: ['has', 'point_count'],
           layout: {
               'text-field': '{point_count_abbreviated}',
               'text-size': 12
           }
+      });
+      window.map.addLayer({
+          id: t + '-highlight1',
+          type: 'circle',
+          source: t,
+          paint: {
+              'circle-color': 'rgba(255,255,255,0.7)',
+              'circle-radius': 30,
+              'circle-stroke-width': 0
+          },
+          filter: ['==', 'id', ''],
+      });
+      window.map.addLayer({
+          id: t + '-highlight2',
+          type: 'circle',
+          source: t,
+          paint: {
+              'circle-color': 'rgba(255,255,255,0.9)',
+              'circle-radius': 20,
+              'circle-stroke-width': 0
+          },
+          filter: ['==', 'id', ''],
       });
       window.map.addLayer({
         'id': t + '-rent',
@@ -210,15 +232,39 @@ function initMapListeners() {
       const features = window.map.queryRenderedFeatures(bbox, { layers: ['stores-rent','stores-service','stores-bikestore'] });
       if (features.length > 0) {
         console.log(features[0].properties.name);
+        highlightId(features[0].properties.id);
+      } else {
+        highlightId('');
       }
   });
   window.map.on('click', function (e) {
       var bbox = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
       const features = window.map.queryRenderedFeatures(bbox, { layers: ['stores-rent','stores-service','stores-bikestore'] });
       if (features.length > 0) {
-        console.log(features[0].properties);
+        console.log(getStore(features[0].properties.id));
       }
   });
+  window.map.on('render', onMapChanged.bind(this));
+}
+
+function onMapChanged() {
+  const features = window.map.queryRenderedFeatures({ layers: ['stores-rent','stores-service','stores-bikestore']});
+  const names = features.map(f => {
+    return f.properties.name;
+  });
+  console.log(names);
+}
+
+function highlightId(id) {
+  if (window.map.highlightedId != id) {
+    window.map.highlightedId = id;
+    map.setFilter('stores-highlight1', ['==', 'id', id]);
+    map.setFilter('stores-highlight2', ['==', 'id', id]);
+  }
+}
+
+function getStore(id) {
+  return window.stores.features.filter(s => s.properties.id == id)[0];
 }
 
 // UI
