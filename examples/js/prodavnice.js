@@ -245,6 +245,7 @@ function initMapListeners() {
       }
   });
   window.map.on('render', onMapChanged.bind(this));
+  addPopups();
 }
 
 function onMapChanged() {
@@ -359,4 +360,37 @@ function setSearchBox() {
 
 function slugger(input) {
   return input.trim().toLowerCase().replace(/(?:||)/g, '').replace('`', '').replace(' d.o.o.', '').replace(' d.o.o', '').replace(' - ', ' ').capitalize();
+}
+
+function addPopups() {
+  window.popup = new mapboxgl.Popup({
+      // closeButton: false,
+      closeOnClick: false
+  });
+  window.map.on('click', 'stores-highlight1', function(e) {
+      window.map.getCanvas().style.cursor = 'pointer';
+      new mapboxgl.Popup()
+          .setLngLat(e.features[0].geometry.coordinates)
+          .setHTML(renderWaypoint4Popup(getStore(e.features[0].properties.id).properties))
+          .addTo(map);
+  });
+
+  window.map.on('mouseenter', 'stores-highlight1', function(e) {
+      window.map.getCanvas().style.cursor = 'pointer';
+      window.popup.setLngLat(e.features[0].geometry.coordinates)
+          .setHTML(renderWaypoint4Popup(getStore(e.features[0].properties.id).properties))
+          .addTo(map);
+  });
+
+  window.map.on('mouseleave', 'stores-highlight1', function() {
+      window.map.getCanvas().style.cursor = '';
+      window.popup.remove();
+  });
+}
+
+function renderWaypoint4Popup(s) {
+  const backPic = (s.photos[0]) ? s.photos[0] : 'upload/photos/bikestore.jpg';
+  return `<div class="popup-store" style="background-image: url('${backPic}');">
+    <div class="popup-store-name">${s.name}</div>
+  </div>`;
 }

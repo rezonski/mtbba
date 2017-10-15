@@ -41,7 +41,10 @@
     <button class="mui-btn mui-btn--small dugme">Rent</button>
     <div class="appbar-element"></div>
   </div>
-  <div id="map" class="map"></div>
+  <div class="appcontent">
+    <div id="map" class="map"></div>
+    <div id="sidebar" class="sidebar"></div>
+  </div>
 </div>
 <script>
     loadJson();
@@ -54,12 +57,7 @@
         center: [18.19, 44.13],
         maxBounds: [[12, 40], [25, 47]]
     });
-    window.map = map;
-    var popup = new mapboxgl.Popup({
-        // closeButton: false,
-        closeOnClick: false
-    });
-    
+    window.map = map;  
     map.on('load', function() {
         map.fitBounds([[14, 42], [22, 46]]);
         addControls(map);
