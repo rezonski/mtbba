@@ -19,7 +19,7 @@
 			"file": "examples/prodavnice.html",
 			"settings":
 			{
-				"buffer_size": 4861,
+				"buffer_size": 2790,
 				"line_ending": "Unix"
 			}
 		},
@@ -27,16 +27,16 @@
 			"file": "examples/js/searchlevels.js",
 			"settings":
 			{
-				"buffer_size": 128579,
+				"buffer_size": 130383,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "Remote:   origin @ https://github.com/rezonski/sandbox.git\nLocal:    v0.1 /var/www/html/sandbox\nHead:     3c8d000 progress\n\n\nNothing to commit (working directory clean)\n\n# Movement:\n#    r = refresh status\n#    1-5 = jump to section\n#    n = next item, N = next section\n#    p = previous item, P = previous section\n#\n# Staging:\n#    s = stage file/section, S = stage all unstaged files\n#    ctrl+shift+s = stage all unstaged and untracked files\n#    u = unstage file/section, U = unstage all files\n#    backspace = discard file/section, shift+backspace = discard everything\n#\n# Commit:\n#    c = commit, C = commit -a (add unstaged)\n#    ctrl+shift+c = commit --amend (amend previous commit)\n#\n# Other:\n#    i = ignore file, I = ignore pattern\n#    enter = open file\n#    d = view diff\n#\n# Stashes:\n#    a = apply stash, A = pop stash\n#    z = create stash, Z = create stash including untracked files\n#    backspace = discard stash",
+			"contents": "Remote:   origin @ https://github.com/rezonski/sandbox.git\nLocal:    v0.1 /var/www/html/sandbox\nHead:     fba8823 progress\n\n\nUntracked files:\n\tdrawer/\n\tgea/\n\tgeojson.io/\n\ttiles/\n\tyears/\n\n\n# Movement:\n#    r = refresh status\n#    1-5 = jump to section\n#    n = next item, N = next section\n#    p = previous item, P = previous section\n#\n# Staging:\n#    s = stage file/section, S = stage all unstaged files\n#    ctrl+shift+s = stage all unstaged and untracked files\n#    u = unstage file/section, U = unstage all files\n#    backspace = discard file/section, shift+backspace = discard everything\n#\n# Commit:\n#    c = commit, C = commit -a (add unstaged)\n#    ctrl+shift+c = commit --amend (amend previous commit)\n#\n# Other:\n#    i = ignore file, I = ignore pattern\n#    enter = open file\n#    d = view diff\n#\n# Stashes:\n#    a = apply stash, A = pop stash\n#    z = create stash, Z = create stash including untracked files\n#    backspace = discard stash",
 			"settings":
 			{
-				"buffer_size": 930,
+				"buffer_size": 948,
 				"line_ending": "Unix",
 				"name": "*git-status*: sandbox",
 				"read_only": true,
@@ -56,7 +56,7 @@
 			"file": "examples/js/gapi.js",
 			"settings":
 			{
-				"buffer_size": 14863,
+				"buffer_size": 15367,
 				"line_ending": "Unix"
 			}
 		}
@@ -146,7 +146,7 @@
 	],
 	"find":
 	{
-		"height": 24.0
+		"height": 23.0
 	},
 	"find_in_files":
 	{
@@ -191,15 +191,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4861,
+						"buffer_size": 2790,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1256,
-								1256
+								0,
+								0
 							]
 						],
 						"settings":
@@ -217,10 +217,14 @@
 								{
 									"characters": ".#",
 									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
 								}
 							],
 							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
@@ -236,15 +240,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 128579,
+						"buffer_size": 130383,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								203,
-								203
+								0,
+								0
 							]
 						],
 						"settings":
@@ -253,6 +257,10 @@
 							[
 								{
 									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
 									"selector": "text.html"
 								},
 								{
@@ -280,15 +288,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 930,
+						"buffer_size": 948,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								930,
-								930
+								169,
+								169
 							]
 						],
 						"settings":
@@ -298,6 +306,10 @@
 							[
 								{
 									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
 									"selector": "text.html"
 								},
 								{
@@ -353,6 +365,10 @@
 								{
 									"characters": ".#",
 									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
 								}
 							],
 							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
@@ -372,7 +388,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 14863,
+						"buffer_size": 15367,
 						"regions":
 						{
 						},
@@ -389,6 +405,10 @@
 							[
 								{
 									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
 									"selector": "text.html"
 								},
 								{
@@ -416,7 +436,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 24.0
+		"height": 23.0
 	},
 	"input":
 	{
@@ -469,7 +489,7 @@
 	"project": "sandbox.sublime-project",
 	"replace":
 	{
-		"height": 44.0
+		"height": 42.0
 	},
 	"save_all_on_build": true,
 	"select_file":

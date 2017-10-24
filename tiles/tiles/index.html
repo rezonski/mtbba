@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Interactive map of effects of Iran Nuclear Deal</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src="js/turf.min.js"></script>
+    <script src="js/dragonfly-dev.js"></script>
+    <link href="css/app.css" rel="stylesheet"/>
+    <link href="css/dragonfly.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="app-container">
+        <div class="map-container">
+            <div id="map" class="dragonfly-map"></div>
+        </div>
+        <div id="display-year"></div>
+    </div>
+    <script>
+        var currentYear = '2000';
+        var newYear = '';
+        var mapStyle = {
+            'version': 8,
+            'glyphs': 'font/Arial%20Regular/0-255.pbf',
+            'sprite': 'sprite/sprite',
+            'sources': {
+                'rasterSource': {
+                    'type': 'raster',
+                    'tiles': ['http://wpc.4693.edgecastcdn.net/004693/tiles/area/' + currentYear + '/Z{z}/{y}/{x}.png?v=20'],
+                    'tileSize': 256
+                }
+            },
+            'layers': [
+                {
+                    'id': 'background',
+                    'type': 'background',
+                    'paint': {
+                        'background-color': '#fff'
+                    }
+                },
+                {
+                    'id': 'history-tiles',
+                    'type': 'raster',
+                    'source': 'rasterSource',
+                    'minzoom': 0,
+                    'maxzoom': 7
+                },
+                {
+                    'id': 'dummy',
+                    'type': 'background',
+                    'paint': {
+                        'background-color': 'rgba(0,0,0,0)'
+                    }
+                }
+            ]
+        };
+        var map = new dragonfly.Map({
+            container: 'map',
+            style: mapStyle,
+            // maxBounds: [[-250,-90],[250,90]]
+            center: [0, 0],
+            zoom: 1,
+            maxZoom: 6
+            // pitch: 50,
+            // bearing: -10,
+        });
+        map.on('load', function () {
+            map.fitBounds([[-180,-63],[180,80]]);
+        });
+        map.on('zoom', function () {
+            // console.info(map.getZoom());
+        });
+        window.onkeydown = function (e) {
+            console.info(e.keyCode);
+            console.info(String.fromCharCode(e.keyCode));
+            if (e.keyCode == 27 || e.keyCode == 89) {
+                console.info('Reset newYear');
+                newYear = '';
+            } else if (newYear != currentYear && newYear.length == 4 && e.keyCode == 13) {
+                console.info('Set tiles to ' + newYear);
+                if (map.getSource('rasterSource')) {
+                    map.removeLayer('history-tiles');
+                    map.removeSource('rasterSource');
+                    map.addSource('rasterSource', {
+                        'type': 'raster',
+                        'tiles': ['http://wpc.4693.edgecastcdn.net/004693/tiles/area/' + newYear + '/Z{z}/{y}/{x}.png?v=20'],
+                        'tileSize': 256
+                    });
+                    map.addLayer({
+                        'id': 'history-tiles',
+                        'type': 'raster',
+                        'source': 'rasterSource',
+                        'minzoom': 0,
+                        'maxzoom': 7
+                    }, 'dummy');
+                    currentYear = parseInt(newYear, 10);
+                }
+            } else if (Number.isInteger(parseInt(String.fromCharCode(e.keyCode), 10)) && newYear.length < 4) {
+                console.info(newYear + ' + '+ String.fromCharCode(e.keyCode));
+                newYear += String.fromCharCode(e.keyCode);
+            } else {
+                console.info('Invalid input');
+            }
+            document.getElementById('display-year').innerHTML = newYear;
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
+    <meta charset=utf-8/>
+    <title>Dragonfly Draw | Social Explorer</title>
+    <link href='dragonfly.css' rel='stylesheet'/>
+    <link href='dragonfly-draw.css' rel='stylesheet'/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+    <style>
+        html {
+          width: 100%;
+          height: 100%;
+        }
+
+        body {
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          font-size: 0.8em;
+          font-family: 'Roboto', sans-serif;
+          font-weight: 500;
+        }
+
+
+        .app-container {
+          display: flex;
+          width: 100%;
+          height: 100%;
+          flex-direction: row;
+          align-items: stretch;
+          justify-items: flex-start;
+        }
+
+        #map {
+          width: 100%;
+          height: 100%;
+          background-color: #DEF5FD;
+        }
+
+        .map-container {
+          flex: 1 1 70%;
+        }
+
+        #display-year {
+          display: block;
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          font-size: 2em;
+          color: #FFF;
+          text-shadow: 1px 1px #000;
+        }
+        .start-draw {
+            width: 237px;
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            background: #efefef;
+        }
+        .start-draw div {
+            float: right;
+            border: 1px solid #ccc;
+            background: #ddd;
+            padding: 5px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .toggle {
+            position: absolute;
+            bottom: 20px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="map" class="dragonfly-map"></div>
+    <div id="display-year"></div>
+    <div class='start-draw'>
+        <div id='start-point'>POINT</div>
+        <div id='start-line'>LINE</div>
+        <div id='start-polygon'>POLYGON</div>
+    </div>
+    <div class='toggle'>
+        <button id='addBtn'>add draw</button>
+        <button id='removeBtn'>remove draw</button>
+        <button id='importBtn'>import from geojson.io</button>
+    </div>
+    <script src='dragonfly-dev.js'></script>
+    <script src='dragonfly-draw-dev.js'></script>
+    <script type='text/javascript'>
+        var args = location.search.replace(/^\?/, '').split('&').reduce(function(o, param) {
+            var keyvalue = param.split('=');
+            o[keyvalue[0]] = keyvalue[1];
+            return o;
+        }, {});
+        dragonfly.accessToken = args.access_token || localStorage.accessToken || 'pk.eyJ1IjoiYmNhbXBlciIsImEiOiJWUmh3anY0In0.1fgSTNWpQV8-5sBjGbBzGg';
+        // could work this further but going off the above example
+        location.hash.replace(/^#/, '').split('/').reduce(function(args, val, i, hash) {
+            switch (i) {
+            case 0:
+                args.zoom = val;
+                break;
+            case 1:
+                args.latitude = val;
+                break;
+            case 2:
+                args.longitude = val;
+                if (args.latitude) args.latlng = [val, args.latitude];
+                break;
+            }
+            return args;
+        }, args);
+        var currentYear = '2000';
+        var newYear = '';
+        var mapStyle = {
+            'version': 8,
+            'glyphs': 'font/Arial%20Regular/0-255.pbf',
+            'sources': {
+                'socialexplorer': {
+                    'type': 'vector',
+                    'tiles': ['https://tiles3.socialexplorer.com/gettile/?source=source-1&x={x}&y={y}&z={z}&layers={layers}&projection=EPSG-3857&columns={columns}'],
+                    'layers': []
+                },
+                'rasterSource': {
+                    'type': 'raster',
+                    'tiles': ['http://wpc.4693.edgecastcdn.net/004693/tiles/area/' + currentYear + '/Z{z}/{y}/{x}.png?v=20'],
+                    'tileSize': 256
+                }
+            },
+            'layers': [
+                {
+                    'id': 'background',
+                    'type': 'background',
+                    'paint': {
+                        'background-color': '#fff'
+                    }
+                },
+                {
+                    'id': 'worldlandmass-simplified',
+                    'source': 'socialexplorer',
+                    'source-layer': '10864',
+                    'type': 'fill',
+                    'paint': {
+                        'fill-color': '#dddddd'
+                    }
+                },
+                {
+                    'id': 'history-tiles',
+                    'type': 'raster',
+                    'source': 'rasterSource',
+                    'minzoom': 0,
+                    'maxzoom': 7
+                },
+                {
+                    'id': 'dummy',
+                    'type': 'background',
+                    'paint': {
+                        'background-color': 'rgba(0,0,0,0)'
+                    }
+                }
+            ]
+        };
+        var map = new dragonfly.Map({
+            container: 'map',
+            zoom: args.zoom || 1,
+            center: args.latlng || [0, 0],
+            style: mapStyle,
+            glyphs: '0-65535.pfb'
+        });
+        window.map = map;
+        map.addControl(new dragonfly.NavigationControl({
+            position: 'top-left'
+        }));
+        var Draw = window.Draw = new DragonflyDraw({ styles: [
+            {
+                "id": "gl-draw-line",
+                "type": "line",
+                "filter": ["all", ["==", "$type", "Polygon"], ["!=", "mode", "static"]],
+                "layout": {
+                    "line-cap": "round",
+                    "line-join": "round"
+                },
+                "paint": {
+                    "line-color": "#D20C0C",
+                    "line-dasharray": [0.2, 2],
+                    'line-query-as-fill': false,
+                    "line-width": 2
+                },
+                "interactive": true
+            },
+        ] });
+        map.addControl(Draw);
+        window.draw = Draw;
+        Draw.enableExtendedApi();
+        map.on('load', function() {
+            const onAnnotationCreated = function(e) {
+                switch (e.features[0].geometry.type) {
+                case 'Polygon':
+                    if (e.features[0].properties.source_for === undefined) {
+                        const polygon = {};
+                        polygon.type = 'Polygon';
+                        polygon.id = e.features[0].id;
+                        const coordinates = e.features[0].geometry.coordinates[0].slice(0);
+                        coordinates.splice(0, 1);
+                        polygon.coordinates = coordinates.reverse();
+                        polygon.title = 'Untitled';
+                        polygon.description = '';
+                        polygon.strokeColor = '#333333';
+                        polygon.strokeWeight = 'normal';
+                        polygon.createdAtZoomLevel = map.getZoom();
+                        polygon.fillColor = '#F2F2F2';
+                        polygon.minZoom = NaN;
+                        polygon.maxZoom = NaN;
+                        polygon.opacity = 1;
+                        polygon.useFill = true;
+                        Draw.extendedApi.setInitialFeatureStyle(polygon);
+                    } else if (e.features[0].properties.source_for === 'hotspot') {
+                        const hotspot = {};
+                        hotspot.type = 'hotspot';
+                        hotspot.id = e.features[0].id;
+                        hotspot.title = 'Untitled';
+                        hotspot.description = '';
+                        hotspot.createdAtZoomLevel = map.getZoom();
+                        hotspot.opacity = 1;
+                        hotspot.strokeColor = '#333333';
+                        hotspot.strokeWeight = 'normal';
+                        hotspot.topLeftPoint = e.features[0].geometry.coordinates[0].find(c => e.features[0].geometry.coordinates[0].every(o => c[0] <= o[0] && c[1] >= o[1]));
+                        hotspot.bottomRightPoint = e.features[0].geometry.coordinates[0].find(c => e.features[0].geometry.coordinates[0].every(o => c[0] >= o[0] && c[1] <= o[1]));
+                        Draw.delete(hotspot.id);
+                        Draw.extendedApi.drawHotspot(hotspot);
+                    }
+                    break;
+                case 'LineString':
+                    if (e.features[0].properties.source_for === undefined) {
+                        const polyline = {};
+                        polyline.id = e.features[0].id;
+                        polyline.type = 'Polyline';
+                        const coordinates = e.features[0].geometry.coordinates.slice(0);
+                        coordinates.splice(0, 1);
+                        polyline.coordinates = coordinates;
+                        polyline.title = 'Untitled';
+                        polyline.description = '';
+                        polyline.strokeColor = '#333333';
+                        polyline.strokeWeight = 'normal';
+                        polyline.createdAtZoomLevel = map.getZoom();
+                        polyline.minZoom = NaN;
+                        polyline.maxZoom = NaN;
+                        polyline.opacity = 1;
+                        Draw.extendedApi.setInitialFeatureStyle(polyline);
+                    } else if (e.features[0].properties.source_for === 'flowarrow') {
+                        const coordinates = e.features[0].geometry.coordinates.slice(0);
+                        //
+                        const flowArrow1 = {};
+                        flowArrow1.type = 'FlowArrow';
+                        flowArrow1.id = e.features[0].id + '1';
+                        flowArrow1.curves = Draw.extendedApi.generateCurves(coordinates);
+                        flowArrow1.coordinates = coordinates;
+                        flowArrow1.title = 'FatArrow';
+                        flowArrow1.description = '';
+                        flowArrow1.strokeColor = '#000000';
+                        flowArrow1.strokeWeight = 'normal';
+                        flowArrow1.createdAtZoomLevel = Math.max(map.getZoom() - 1.5, 2);
+                        flowArrow1.fillColor = '#FF0000';
+                        flowArrow1.minZoom = NaN;
+                        flowArrow1.maxZoom = NaN;
+                        flowArrow1.toWidth = 6;
+                        flowArrow1.fromWidth = 6;
+                        flowArrow1.tipWidth = 12;
+                        flowArrow1.opacity = 0.5;
+                        flowArrow1.useFill = true;
+                        Draw.delete(e.features[0].id + '1');
+                        Draw.extendedApi.drawFlowArrow(flowArrow1);
+                        // 
+                        // const flowArrow2 = {};
+                        // flowArrow2.type = 'FlowArrow';
+                        // flowArrow2.id = e.features[0].id + '2';
+                        // flowArrow2.curves = Draw.extendedApi.generateCurves(coordinates);
+                        // flowArrow2.coordinates = coordinates;
+                        // flowArrow2.title = 'ThinArrow';
+                        // flowArrow2.description = '';
+                        // flowArrow2.strokeColor = '#000000';
+                        // flowArrow2.strokeWeight = 'normal';
+                        // flowArrow2.createdAtZoomLevel = map.getZoom();
+                        // flowArrow2.fillColor = '#000000';
+                        // flowArrow2.minZoom = NaN;
+                        // flowArrow2.maxZoom = NaN;
+                        // flowArrow2.toWidth = 6;
+                        // flowArrow2.fromWidth = 6;
+                        // flowArrow2.tipWidth = 12;
+                        // flowArrow2.opacity = 0.5;
+                        // flowArrow2.useFill = true;
+                        // Draw.delete(e.features[0].id + '2');
+                        // Draw.extendedApi.drawFlowArrow(flowArrow2);
+                        //
+                    } else if (e.features[0].properties.source_for === 'freehand') {
+                        const freehand = {};
+                        freehand.type = 'freehand';
+                        freehand.id = e.features[0].id;
+                        const coordinates = e.features[0].geometry.coordinates.slice(0);
+                        coordinates.splice(0, 1);
+                        freehand.coordinates = coordinates;
+                        freehand.title = 'Untitled';
+                        freehand.description = '';
+                        freehand.strokeColor = '#333333';
+                        freehand.createdAtZoomLevel = map.getZoom();
+                        freehand.strokeWeight = 'normal';
+                        freehand.minZoom = NaN;
+                        freehand.maxZoom = NaN;
+                        freehand.opacity = 1;
+                        Draw.extendedApi.setInitialFeatureStyle(freehand);
+                        Draw.delete(e.features[0].id);
+                        Draw.extendedApi.drawFreehand(freehand);
+                    } else if (e.features[0].properties.source_for === 'shape') {
+                        const shape = {};
+                        shape.type = 'shape';
+                        shape.id = e.features[0].id;
+                        shape.coordinates = e.features[0].geometry.coordinates.slice(0);
+                        shape.title = 'Untitled';
+                        shape.description = '';
+                        shape.strokeColor = '#333333';
+                        shape.strokeWeight = 'normal';
+                        shape.createdAtZoomLevel = map.getZoom();
+                        shape.fillColor = '#F2F2F2';
+                        shape.minZoom = NaN;
+                        shape.maxZoom = NaN;
+                        shape.opacity = 1;
+                        shape.useFill = true;
+                        Draw.extendedApi.setInitialFeatureStyle(shape);
+                        Draw.delete(e.features[0].id);
+                        Draw.extendedApi.drawShape(shape);
+                    }
+                    break;
+                case 'Point':
+                    if (e.features[0].properties.source_for === 'marker') {
+                        const marker = {};
+                        marker.type = 'Marker';
+                        marker.id = e.features[0].id;
+                        marker.coordinates = [e.features[0].geometry.coordinates];
+                        marker.title = 'Untitled';
+                        marker.markerPathId = 'annotation';
+                        marker.description = '';
+                        marker.fillColor = '#ff0000';
+                        marker.labelVisible = false;
+                        marker.createdAtZoomLevel = map.getZoom();
+                        marker.textColor = '#000000';
+                        marker.textSize = 'medium';
+                        marker.labelPosition = 'bottom';
+                        marker.minZoom = NaN;
+                        marker.maxZoom = NaN;
+                        marker.opacity = 1;
+                        marker.size = 'medium';
+                        Draw.extendedApi.setInitialFeatureStyle(marker);
+                    } else if (e.features[0].properties.source_for === 'label') {
+                        const label = {};
+                        label.type = 'Label';
+                        label.id = e.features[0].id;
+                        label.coordinates = [e.features[0].geometry.coordinates];
+                        label.title = 'Untitled';
+                        label.useFill = false;
+                        label.description = '';
+                        label.haloWidth = 1;
+                        label.haloBlur = 1;
+                        label.createdAtZoomLevel = map.getZoom();
+                        label.textColor = '#000000';
+                        label.fillColor = '#ffffff';
+                        label.textSize = 'medium';
+                        label.minZoom = NaN;
+                        label.maxZoom = NaN;
+                        label.opacity = 1;
+                        label.size = 'medium';
+                        Draw.extendedApi.setInitialFeatureStyle(label);
+                    } else if (e.features[0].properties.source_for === 'image') {
+                        const image = {};
+                        image.type = 'Image';
+                        image.id = e.features[0].id;
+                        image.title = 'Untitled';
+                        image.rotationAngle = 0;
+                        image.description = '';
+                        image.createdAtZoomLevel = map.getZoom();
+                        image.opacity = 1;
+                        const projectedCenter = map.project(e.features[0].geometry.coordinates);
+                        image.topLeftPoint = map.unproject({
+                            x: projectedCenter.x - 80,
+                            y: projectedCenter.y - 50,
+                        }).toArray();
+                        image.bottomRightPoint = map.unproject({
+                            x: projectedCenter.x + 80,
+                            y: projectedCenter.y + 50,
+                        }).toArray();
+                        Draw.delete(image.id);
+                        Draw.extendedApi.drawImage(image);
+                    }
+                }
+            };
+            map.on('draw.create', onAnnotationCreated.bind(this));
+
+            map.showTileBoundaries = true;
+            // toggle
+            
+            var importButton = document.getElementById('importBtn');
+            
+            importButton.onclick = function() {
+                var featureCollection = JSON.parse(localStorage.getItem('importedGeoJSON'));
+                if (map.getLayer('imported-points')) {
+                    map.getSource('importedpoints').setData(featureCollection);
+                } else {
+                    map.addSource('importedpoints',{
+                        'type': 'geojson',
+                        'data': featureCollection
+                    });
+                    map.addLayer({
+                        'id': 'imported-points',
+                        'type': 'circle',
+                        'source': 'importedpoints',
+                        'paint': {
+                            'circle-radius': 4,
+                            'circle-color': '#B42222'
+                        }
+                    });
+                    map.addLayer({
+                        'id': 'imported-lines',
+                        'type': 'line',
+                        'source': 'importedpoints',
+                        'paint': {
+                            'line-color': '#888',
+                            'line-width': 8
+                        }
+                    });
+                    map.addLayer({
+                        'id': 'imported-polys',
+                        'type': 'fill',
+                        'source': 'importedpoints',
+                        'paint': {
+                            'fill-color': '#088',
+                            'fill-opacity': 0.8
+                        }
+                    });
+                }
+            };
+
+            var addButton = document.getElementById('addBtn');
+            var removeButton = document.getElementById('removeBtn');
+            addButton.onclick = function() {
+                if (Draw) return;
+                Draw = dragonfly.Draw();
+                map.addControl(Draw);
+            };
+            removeButton.onclick = function() {
+                if (!Draw) return;
+                Draw.remove();
+                Draw = null;
+            };
+            Draw.setupCommonStyles();
+    //        Draw.drawPolyline(polyline);
+            const generateRandomCoordinates = function(params) {
+                const northBoundry = params ? params.north || 90 : 90;
+                const southBoundry = params ? params.south || -90 : -90;
+                const eastBoundry = params ? params.east || 90 : 90;
+                const westBoundry = params ? params.west || -90 : -90;
+                return [parseFloat((Math.random() * (eastBoundry - westBoundry) - eastBoundry).toFixed(6)), parseFloat((Math.random() * (northBoundry - southBoundry) - northBoundry).toFixed(6))];
+            };
+
+            var startPoint = document.getElementById('start-point');
+            var startLine = document.getElementById('start-line');
+            var startPolygon = document.getElementById('start-polygon');
+            startPoint.onclick = function() {
+                Draw.changeMode('draw_point');
+            };
+            startLine.onclick = function() {
+                Draw.changeMode('draw_line_string');
+            };
+            startPolygon.onclick = function() {
+                Draw.changeMode('draw_polygon');
+            };
+        });
+        var loadData = function(uri) {
+            var req = new XMLHttpRequest();
+            req.onerror = function() {
+                throw new Error('Network Error');
+            };
+            req.onload = function() {
+                var fc = JSON.parse(req.response);
+                fc.features.forEach(function(feature) {
+                    if (feature.geometry.type.startsWith('Multi') === false
+                    ) {
+                        Draw.add(feature);
+                    }
+                });
+            };
+            req.open('GET', uri);
+            req.send();
+        };
+        (function() {
+            var script = document.createElement('script');
+            script.onload = function() {
+                var stats = new Stats();
+                stats.domElement.style.cssText = 'position:fixed;right:0;top:0;z-index:10000';
+                document.body.appendChild(stats.domElement);
+                requestAnimationFrame(function loop() {
+                    stats.update();
+                    requestAnimationFrame(loop)
+                });
+            };
+            script.src = '//rawgit.com/mrdoob/stats.js/master/build/stats.min.js';
+            document.head.appendChild(script);
+        })();
+        window.onkeydown = function (e) {
+                console.info(e.keyCode);
+                console.info(String.fromCharCode(e.keyCode));
+                if (e.keyCode == 27 || e.keyCode == 89) {
+                    console.info('Reset newYear');
+                    newYear = '';
+                } else if (newYear != currentYear && newYear.length == 4 && e.keyCode == 13) {
+                    console.info('Set tiles to ' + newYear);
+                    if (map.getSource('rasterSource')) {
+                        map.removeLayer('history-tiles');
+                        map.removeSource('rasterSource');
+                        map.addSource('rasterSource', {
+                            'type': 'raster',
+                            'tiles': ['http://wpc.4693.edgecastcdn.net/004693/tiles/area/' + newYear + '/Z{z}/{y}/{x}.png?v=20'],
+                            'tileSize': 256
+                        });
+                        map.addLayer({
+                            'id': 'history-tiles',
+                            'type': 'raster',
+                            'source': 'rasterSource',
+                            'minzoom': 0,
+                            'maxzoom': 7
+                        }, 'dummy');
+                        currentYear = parseInt(newYear, 10);
+                    }
+                } else if (Number.isInteger(parseInt(String.fromCharCode(e.keyCode), 10)) && newYear.length < 4) {
+                    console.info(newYear + ' + '+ String.fromCharCode(e.keyCode));
+                    newYear += String.fromCharCode(e.keyCode);
+                } else {
+                    console.info('Invalid input');
+                }
+                document.getElementById('display-year').innerHTML = newYear;
+            };
+    </script>
+</body>
+</html>
