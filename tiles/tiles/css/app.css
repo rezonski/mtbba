@@ -42,3 +42,13 @@ body {
   color: #FFF;
   text-shadow: 1px 1px #000;
 }
+
+.boxdraw {
+    background: rgba(56,135,190,0.1);
+    border: 2px solid #3887be;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+}
