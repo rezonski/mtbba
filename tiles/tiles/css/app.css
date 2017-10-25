@@ -13,6 +13,13 @@ body {
   font-weight: 500;
 }
 
+h1 { font-size: 15px; }
+a { color: #548dc4; text-decoration: none; }
+a:hover { text-decoration: underline; }
+table.testgrid { border-collapse: collapse; border: 1px solid #CCB; width: auto; }
+table.testgrid td, table.testgrid th { padding: 5px; border: 1px solid #E0E0E0; }
+table.testgrid th { background: #E5E5E5; text-align: left; }
+input.invalid { background: red; color: #FDFDFD; }
 
 .app-container {
   display: flex;
@@ -51,4 +58,13 @@ body {
     left: 0;
     width: 0;
     height: 0;
+}
+
+.table-container {
+  flex: 1 1 30%;
+}
+
+#tablecontent {
+  overflow-y: scroll;
+  height: 100%;
 }
