@@ -17,6 +17,7 @@ var mapStyle = {
                         {
                             'datasetId': 0,
                             'columns': [
+                                '__ID__',
                                 'ISO',
                                 'UID',
                             ]
@@ -29,6 +30,7 @@ var mapStyle = {
                         {
                             'datasetId': 0,
                             'columns': [
+                                '__ID__',
                                 'ISO',
                                 'UID',
                             ]
@@ -75,12 +77,24 @@ var mapStyle = {
             }
         },
         {
-            'id': 'selected',
+            'id': 'hovered',
             'type': 'fill',
             'source': 'geobuffer',
             'source-layer': '16891',
             'paint': {
-                'fill-color': '#C369C3'
+                'fill-color': '#F4FF00',
+                'fill-opacity': 0.5
+            },
+            'filter': ['in', 'UID', 0]
+        },
+        {
+            'id': 'changed',
+            'type': 'fill',
+            'source': 'geobuffer',
+            'source-layer': '16891',
+            'paint': {
+                'fill-color': '#FF00B4',
+                'fill-opacity': 0.5
             },
             'filter': ['in', 'UID', 0]
         },

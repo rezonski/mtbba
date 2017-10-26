@@ -40,14 +40,21 @@ input.invalid { background: red; color: #FDFDFD; }
   flex: 1 1 70%;
 }
 
-#display-year {
+.controls {
   display: block;
   position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 2em;
+  left: 10px;
   color: #FFF;
-  text-shadow: 1px 1px #000;
+  background-color: #666;
+  padding: 5px;
+}
+
+.data-maniputlation {
+  top: 10px;
+}
+
+.year-switch {
+  bottom: 10px;
 }
 
 .boxdraw {
@@ -61,10 +68,11 @@ input.invalid { background: red; color: #FDFDFD; }
 }
 
 .table-container {
-  flex: 1 1 30%;
+  flex: 1 1 auto;
+  overflow-y: scroll;
+  height: 100%;
 }
 
 #tablecontent {
-  overflow-y: scroll;
-  height: 100%;
+  position: relative;
 }

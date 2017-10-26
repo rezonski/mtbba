@@ -1819,6 +1819,32 @@ EditableGrid.prototype._renderHeaders = function()
  */
 EditableGrid.prototype.mouseClicked = function(e) 
 {
+	// Mersad
+
+	if (e.target.className === 'number editablegrid-UID') {
+		console.log(parseInt(e.target.innerText, 10));
+		var qFeats = window.map.querySourceFeatures('geobuffer', {
+		    sourceLayer: '16891',
+		    filter: ['in', 'UID', e.target.innerText, parseInt(e.target.innerText, 10)]
+		});
+
+		if (qFeats.length > 0) {
+			function reqListener () {
+	            //console.log(this.response);
+	            var extent = JSON.parse(this.response);
+	            //map.fitBounds([[extent.xmin-5, extent.ymax-1.5], [extent.xmax-5, extent.ymin+1.5]], { animate: true });
+	            window.map.fitBounds([[extent.xmin, extent.ymax], [extent.xmax, extent.ymin]], { animate: true });
+	            window.map.setFilter('selected', ['in', 'UID', e.target.innerText, parseInt(e.target.innerText, 10)]);
+	        }
+	        var oReq = new XMLHttpRequest();
+	        oReq.addEventListener('load', reqListener);
+	        oReq.open('GET', 'https://tiles3.socialexplorer.com/feature?id='+qFeats[0].properties.__ID__+'&layer=16891&projection=EPSG-3857');
+	        oReq.send();
+		} else {
+			console.warn('Feature UID ' + e.target.innerText + ' is not rendered');
+		}
+	}
+
 	e = e || window.event;
 	with (this) {
 
@@ -1947,7 +1973,7 @@ EditableGrid.prototype.sort = function(columnIndexOrName, descending, backOnFirs
 		if (parseInt(columnIndex, 10) !== -1) {
 			columnIndex = this.getColumnIndex(columnIndexOrName);
 			if (columnIndex < 0) {
-				console.error("[sort] Invalid column: " + columnIndexOrName);
+				// console.error("[sort] Invalid column: " + columnIndexOrName);
 				return false;
 			}
 		}
