@@ -29,20 +29,81 @@
             <div id="tablecontent"></div>
         </div>
         <div class="data-maniputlation controls">
-            <button onclick="resetMapTable()">Deselect selected features</button>
-            <label for="isos"> Set ISOs: </label>
-            <input id="isos">
-            <label for="colonies"> Set Colony: </label>
-            <input id="colonies">
+            <div class="row">
+                <div class="column">
+                    <label for="fromIdx">from idx</label>
+                    <input id="fromIdx" size="2">
+                    <label for="toIdx">to idx</label>
+                    <input id="toIdx" size="2">
+                </div>
+                <div class="column">
+                    <button onclick="replicateDataColumns()">Replicate values</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="isos"> Set ISOs: </label>
+                    <input id="isos" size="4">
+                </div>
+                <div class="column">
+                    <label for="colonies"> Set Colony: </label>
+                    <input id="colonies" size="4">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <input id="loadDataVersion" name="loadDataVersion" size="15">
+                    <button onclick="loadLocal()">Load</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <button onclick="resetData()">Reset</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <input id="saveDataVersion" name="saveDataVersion" size="15">
+                </div>
+                <div class="column">
+                    <button onclick="save2local()">Save</button>
+                    <button onclick="save2file()">Save CSV</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <button onclick="resetMapTable()">Deselect</button>
+                </div>
+                <div class="column">
+                    <label for="selectIso"> Select ISO</label>
+                    <input id="selectIso" size="4">
+                </div>
+                <div class="column">
+                    <label for="selectNewIso"> Select new ISO</label>
+                    <input id="selectNewIso" size="4">
+                </div>
+                <div class="column">
+                    <label for="selectColony"> Select new Colony</label>
+                    <input id="selectColony" size="4">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="currentYear"> Curent year: </label>
+                    <input type="number" id="currentYear" name="currentYear" value="2010" size="4">
+                </div>
+                <div class="column">
+                    <button onclick="setYear()">Set year</button>
+                </div>
+            </div>
         </div>
         <div class="year-switch controls">
-            <input type="number" id="currentYear" name="currentYear" value="2010">
-            <button onclick="setYear()">Set year</button>
         </div>
     </div>
     <script>
         var currentYear = 2010;
         var selectedUIDs = [];
+        var importJSONurl = 'data/data1962.json';
         
         var map = new dragonfly.Map({
             container: 'map',
@@ -223,17 +284,150 @@
 
         function initAutocompleteValuePicker(data) {
             var availableTags = [];
+            var availableDataVersions = Object.keys(localStorage);
             data.forEach(e => {
                 if (availableTags.indexOf(e.columns[1]) < 0) {
                     availableTags.push(e.columns[1]);
                 }
             });
             $( "#isos" ).autocomplete({
-              source: availableTags
+              source: availableTags,
+              select: function(event, ui) {
+                // console.log('ISOs')
+                // console.log(event);
+                // console.log(ui);
+                setColumnValue(3, selectedUIDs, ui.item.value);
+              }
             });
             $( "#colonies" ).autocomplete({
-              source: availableTags
+              source: availableTags,
+              select: function(event, ui) {
+                // console.log('colonies')
+                // console.log(event);
+                // console.log(ui);
+                setColumnValue(4, selectedUIDs, ui.item.value);
+              }
             });
+            $( "#selectIso" ).autocomplete({
+              source: availableTags,
+              select: function(event, ui) {
+                console.log('select all features with ISO code ' + ui.item.value);
+                selectAllFeaturesByVariable('ISO', ui.item.value);
+              }
+            });
+            $( "#selectNewIso" ).autocomplete({
+              source: availableTags,
+              select: function(event, ui) {
+                console.log('select all features with new ISO code ' + ui.item.value);
+                selectAllFeaturesByVariable('ISONEW', ui.item.value);
+              }
+            });
+            $( "#selectColony" ).autocomplete({
+              source: availableTags,
+              select: function(event, ui) {
+                console.log('select all features with colony code ' + ui.item.value);
+                selectAllFeaturesByVariable('Colony', ui.item.value);
+              }
+            });
+            $( "#loadDataVersion" ).autocomplete({
+              source: availableDataVersions,
+            });
+        }
+
+        function getRow(id) {
+            return window.editableGrid.data.filter(r => {return r.columns[0] === id;})[0];
+        }
+
+        function getRows(ids) {
+            return window.editableGrid.data.filter(r => {return ids.indexOf(r.columns[0]) >= 0;});
+        }
+
+        function setColumnValue(colIdx, ids, value) {
+            var rows = getRows(ids);
+            rows.forEach(row => {
+                 row.columns[colIdx] = value;
+            });
+            editableGrid.renderGrid();
+            save2local();
+        }
+
+        function replicateDataColumns() {
+            var fromColumnIdx = parseInt(document.getElementById('fromIdx').value, 10);
+            var toColumnIdx = parseInt(document.getElementById('toIdx').value, 10);
+            window.editableGrid.data.forEach(row => {
+                row.columns[toColumnIdx] = row.columns[fromColumnIdx].toString();
+            });
+            editableGrid.renderGrid();
+        }
+
+        function save2local() {
+            var saveDataVersion = document.getElementById('saveDataVersion').value;
+            localStorage.setItem(saveDataVersion, JSON.stringify(window.editableGrid.data));
+            alert('Saved version ' + saveDataVersion);
+        }
+
+        function save2file() {
+            var header = window.editableGrid.columns.map(c => {
+                return c.name;
+            });
+            var data = [header];
+            window.editableGrid.data.forEach(row => {
+                var newRow = Object.keys(row.columns).map(column => {
+                    return row.columns[column];
+                });
+                data.push(newRow);
+            });
+            var csvContent = 'data:text/csv;charset=utf-8,';
+            data.forEach((infoArray, index) => {
+               var dataString = infoArray.join(',');
+               csvContent += (index < data.length )? dataString + '\n' : dataString;
+            });
+            var encodedUri = encodeURI(csvContent);
+            var link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', 'year_' + currentYear + '_version_' + document.getElementById('saveDataVersion').value + '.csv');
+            document.body.appendChild(link); // Required for FF
+            link.click(); // This will download the data file named "my_data.csv".
+        }
+
+        function loadLocal() {
+            var loadDataVersion = document.getElementById('loadDataVersion').value;
+            if (localStorage.getItem(loadDataVersion)) {
+                window.editableGrid.data = JSON.parse(localStorage.getItem(loadDataVersion));
+                window.editableGrid.renderGrid();
+                alert('Loaded version ' + loadDataVersion);
+            } else {
+                alert('Unexisting version ' + loadDataVersion);
+            }
+        }
+
+        function resetData() {
+            window.editableGrid.loadJSON(importJSONurl);
+        }
+
+        function selectAllFeaturesByVariable(variable, iso) {
+            var variableIndex = 0;
+
+            window.editableGrid.columns.forEach((element, index) => {
+               if (element.name === variable) {
+                    variableIndex = parseInt(index, 10);
+               } 
+            });
+
+            var features = window.editableGrid.data.filter(r => {return r.columns[variableIndex] === iso;});
+            document.getElementById('tablecontent').style.top = '0px';
+            features.forEach(feature => {
+                if (selectedUIDs.indexOf(feature.columns[0]) < 0) {
+                    selectedUIDs.push(parseInt(feature.columns[0], 10));
+                    document.getElementById('DemoGridJSON_' + feature.columns[0]).style['background-color'] = '#F4FF00';
+                } else {
+                    selectedUIDs.splice(selectedUIDs.indexOf(feature.columns[0]), 1);
+                    document.getElementById('DemoGridJSON_' + feature.columns[0]).style['background-color'] = null;
+                }
+            });
+            map.setFilter('hovered', ['in', 'UID', ...selectedUIDs]);
+            var topOffset = document.getElementById('DemoGridJSON_' + selectedUIDs[selectedUIDs.length - 1]).getBoundingClientRect().top;
+            document.getElementById('tablecontent').style.top = (-1 * (topOffset - 200)) + 'px';
         }
 
         window.onload = function() {
@@ -245,7 +439,7 @@
                 console.log('tableRendered');
                 initAutocompleteValuePicker(editableGrid.data);
             };
-            editableGrid.loadJSON("data/data1962.json");
+            editableGrid.loadJSON(importJSONurl);
         }
     </script>
 </body>

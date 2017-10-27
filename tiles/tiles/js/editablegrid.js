@@ -1834,7 +1834,7 @@ EditableGrid.prototype.mouseClicked = function(e)
 	            var extent = JSON.parse(this.response);
 	            //map.fitBounds([[extent.xmin-5, extent.ymax-1.5], [extent.xmax-5, extent.ymin+1.5]], { animate: true });
 	            window.map.fitBounds([[extent.xmin, extent.ymax], [extent.xmax, extent.ymin]], { animate: true });
-	            window.map.setFilter('selected', ['in', 'UID', e.target.innerText, parseInt(e.target.innerText, 10)]);
+	            window.map.setFilter('hovered', ['in', 'UID', e.target.innerText, parseInt(e.target.innerText, 10)]);
 	        }
 	        var oReq = new XMLHttpRequest();
 	        oReq.addEventListener('load', reqListener);

@@ -19,6 +19,7 @@ var mapStyle = {
                             'columns': [
                                 '__ID__',
                                 'ISO',
+                                'HASC_1',
                                 'UID',
                             ]
                         }
@@ -32,6 +33,7 @@ var mapStyle = {
                             'columns': [
                                 '__ID__',
                                 'ISO',
+                                'HASC_1',
                                 'UID',
                             ]
                         }
@@ -121,7 +123,7 @@ var mapStyle = {
                 'text-halo-blur': 1
             },
             'layout': {
-                'text-field': '{ISO}',
+                'text-field': '{HASC_1}',
                 'text-offset': [0, 1.1],
                 'text-size': {
                     'stops': [[4,9],[22,15]]

@@ -21,6 +21,10 @@ table.testgrid td, table.testgrid th { padding: 5px; border: 1px solid #E0E0E0; 
 table.testgrid th { background: #E5E5E5; text-align: left; }
 input.invalid { background: red; color: #FDFDFD; }
 
+label, input, button {
+  margin: 0 3px;
+}
+
 .app-container {
   display: flex;
   width: 100%;
@@ -37,16 +41,29 @@ input.invalid { background: red; color: #FDFDFD; }
 }
 
 .map-container {
-  flex: 1 1 70%;
+  flex: 1 1 90%;
 }
 
 .controls {
-  display: block;
+  display: flex;
   position: absolute;
   left: 10px;
-  color: #FFF;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
   background-color: #666;
   padding: 5px;
+  color: #FFF;
+  margin-bottom: 5px;
+}
+
+.column {
+  display: flex;
+  flex-direction: row;
+  margin-right: 5px;
 }
 
 .data-maniputlation {
@@ -55,6 +72,7 @@ input.invalid { background: red; color: #FDFDFD; }
 
 .year-switch {
   bottom: 10px;
+  flex-direction: row;
 }
 
 .boxdraw {
@@ -75,4 +93,8 @@ input.invalid { background: red; color: #FDFDFD; }
 
 #tablecontent {
   position: relative;
+}
+
+#currentYear {
+  width: 50px;
 }
