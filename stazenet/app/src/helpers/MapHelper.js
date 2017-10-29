@@ -282,6 +282,7 @@ class MapHelper {
         sastavPathsArray.push(JSON.parse(JSON.stringify(basePath)));
 
         // Create segments
+        // debugger;
         surfaceCollection.forEach((surfaceElement, surfaceIndex) => {
             if (surfaceIndex === 0 && surfaceIndex !== (surfaceCollection.length - 1)) {
                 startOdometer = 0;
@@ -327,7 +328,7 @@ class MapHelper {
             layerStyle.paint['line-color'] = TrailHelper.getSurfaceTypeByName(surfaceElement[1]).colorRGBA;
             layerStyle.paint['line-width'] = 4;
             // layerStyle.paint['line-dasharray'] = [4, 10];
-            layerStyle.filter = ['==', 'name', surfaceElement[1] + '-' + surfaceIndex];
+            layerStyle.filter = ['==', 'surfaceSection', surfaceElement[1] + '-' + surfaceIndex];
             layersArray.push(layerStyle);
             sastavPathsArray.push(JSON.parse(JSON.stringify(currentSection)));
         });
