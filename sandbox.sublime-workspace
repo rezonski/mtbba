@@ -4,6 +4,58 @@
 		"selected_items":
 		[
 			[
+				"mar",
+				"margin-left"
+			],
+			[
+				"margi",
+				"margin-right"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"flex",
+				"flex-direction"
+			],
+			[
+				"fle",
+				"flex-direction"
+			],
+			[
+				"cosno",
+				"console.log"
+			],
+			[
+				"consol",
+				"console.log"
+			],
+			[
+				"back",
+				"background"
+			],
+			[
+				"for",
+				"forEach"
+			],
+			[
+				"pase",
+				"parseInt"
+			],
+			[
+				"con",
+				"console.warn"
+			],
+			[
+				"parse",
+				"parseInt"
+			],
+			[
+				"cons",
+				"console.log"
+			],
+			[
 				"wi",
 				"width"
 			],
@@ -16,47 +68,10 @@
 	"buffers":
 	[
 		{
-			"file": "examples/prodavnice.html",
+			"file": "examples/dbconnection.php",
 			"settings":
 			{
-				"buffer_size": 2790,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "examples/js/searchlevels.js",
-			"settings":
-			{
-				"buffer_size": 130383,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "Remote:   origin @ https://github.com/rezonski/sandbox.git\nLocal:    v0.1 /var/www/html/sandbox\nHead:     fba8823 progress\n\n\nUntracked files:\n\tdrawer/\n\tgea/\n\tgeojson.io/\n\ttiles/\n\tyears/\n\n\n# Movement:\n#    r = refresh status\n#    1-5 = jump to section\n#    n = next item, N = next section\n#    p = previous item, P = previous section\n#\n# Staging:\n#    s = stage file/section, S = stage all unstaged files\n#    ctrl+shift+s = stage all unstaged and untracked files\n#    u = unstage file/section, U = unstage all files\n#    backspace = discard file/section, shift+backspace = discard everything\n#\n# Commit:\n#    c = commit, C = commit -a (add unstaged)\n#    ctrl+shift+c = commit --amend (amend previous commit)\n#\n# Other:\n#    i = ignore file, I = ignore pattern\n#    enter = open file\n#    d = view diff\n#\n# Stashes:\n#    a = apply stash, A = pop stash\n#    z = create stash, Z = create stash including untracked files\n#    backspace = discard stash",
-			"settings":
-			{
-				"buffer_size": 948,
-				"line_ending": "Unix",
-				"name": "*git-status*: sandbox",
-				"read_only": true,
-				"scratch": true
-			}
-		},
-		{
-			"file": "examples/upload/stores.json",
-			"settings":
-			{
-				"buffer_size": 117768,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "examples/js/gapi.js",
-			"settings":
-			{
-				"buffer_size": 15367,
+				"buffer_size": 687,
 				"line_ending": "Unix"
 			}
 		}
@@ -68,10 +83,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 366.0,
-		"last_filter": "",
+		"height": 392.0,
+		"last_filter": "git sta",
 		"selected_items":
 		[
+			[
+				"git sta",
+				"Git: Status"
+			],
 			[
 				"git stat",
 				"Git: Status"
@@ -103,13 +122,9 @@
 			[
 				"git push ",
 				"Git: Push Current Branch"
-			],
-			[
-				"git sta",
-				"Git: Status"
 			]
 		],
-		"width": 497.0
+		"width": 479.0
 	},
 	"console":
 	{
@@ -127,8 +142,28 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/var/www/html/sandbox",
+		"/var/www/html/sandbox/examples",
+		"/var/www/html/sandbox/stazenet",
+		"/var/www/html/sandbox/stazenet/app",
+		"/var/www/html/sandbox/stazenet/app/src"
+	],
 	"file_history":
 	[
+		"/var/www/html/sandbox/tiles/tiles/index.html",
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition.js",
+		"/var/www/html/sandbox/tiles/tiles/css/app.css",
+		"/var/www/html/sandbox/tiles/tiles/js/editablegrid.js",
+		"/var/www/html/sandbox/tiles/tiles/data/data1962.json",
+		"/var/www/html/sandbox/tiles/tiles/data/grid.json",
+		"/var/www/html/sandbox/tiles/tiles/js/editablegrid_utils.js",
+		"/var/www/html/sandbox/tiles/tiles/js/editablegrid_renderers.js",
+		"/var/www/html/sandbox/examples/js/gapi.js",
+		"/var/www/html/sandbox/examples/prodavnice.html",
+		"/var/www/html/sandbox/examples/upload/stores.json",
+		"/var/www/html/sandbox/examples/js/searchlevels.js",
 		"/var/www/html/sandbox/examples/data/stores.geojson",
 		"/home/datasoft/Projects/mapspice-production/01/54/f0b2c9b3-a058-4060-a2d7-5b3c81568517/config/mapDefinitionMiddle.js",
 		"/home/datasoft/Projects/mapspice-production/01/54/f0b2c9b3-a058-4060-a2d7-5b3c81568517/config/mapDefinitionSwiped.js",
@@ -146,21 +181,123 @@
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 24.0
 	},
 	"find_in_files":
 	{
-		"height": 98.0,
+		"height": 356.0,
 		"where_history":
 		[
+			"/var/www/html/sandbox/tiles/tiles",
 			""
 		]
 	},
 	"find_state":
 	{
-		"case_sensitive": false,
+		"case_sensitive": true,
 		"find_history":
 		[
+			"localhost",
+			"'selected'",
+			"mersad",
+			"<br>",
+			"</br>",
+			"[1]",
+			"selectAllFeaturesByVariable",
+			"Col1962",
+			"ISO1962",
+			"selectAllFeaturesByISO",
+			"selectIso",
+			"loadDataVersion",
+			"\"",
+			"r",
+			"'editableGrid' + ",
+			"dataversion",
+			"dataversions",
+			"dataversion",
+			"feature.columns[1]",
+			"selectAllFeaturesByISO",
+			"feature.properties.UID",
+			"isos",
+			"dataversion",
+			"parseInt(",
+			"dataversion",
+			"from",
+			"fromIdx",
+			"colonies",
+			"\"data/data1962.json\"",
+			"currentYear",
+			"( event, ui ) {}",
+			"ISO2",
+			"16891p",
+			"'ISO',",
+			"uid",
+			"setUnsetUID",
+			"isos",
+			"for selected features to",
+			"values.ISO",
+			"font",
+			"tags",
+			"20px",
+			"currentYear",
+			"COLONY1962",
+			"Colony",
+			"unsetNewUID",
+			"resetMapTable",
+			"selectedUIDs",
+			"selectedUID",
+			"cellEditor",
+			" 5",
+			"5",
+			"map.on('",
+			"ISO",
+			"grid.json",
+			"firstname",
+			"mouseClicked",
+			"CellRenderer",
+			"cellRenderer",
+			"setCellRenderer",
+			"cellRenderer",
+			"CellRenderer",
+			"cellRenderer",
+			"CellRenderer",
+			"cellRenderer",
+			"CellRenderer",
+			"innerHTML",
+			"rowData",
+			"createElement",
+			"\"tr\"",
+			"'tr'",
+			"tr",
+			"insertCell",
+			"insertRow(",
+			" insertRow(",
+			"insertRow",
+			"this.tBody",
+			"insertBefore",
+			"table",
+			"name",
+			"Name",
+			"name",
+			"init",
+			"this.name",
+			"_getRowDOMId",
+			"this.data.",
+			"_createCellRenderer",
+			"cellRenderer",
+			"CellRenderer",
+			"cellRenderer",
+			"rowId",
+			"this.data.",
+			"processJSON",
+			"_addUrlParameters",
+			"JSON",
+			"TR",
+			"TD",
+			"tbody",
+			"<tr>",
+			"Demo",
+			"DemoGridJSON",
 			"searchStoresLevels",
 			"alanprim",
 			"GT bicycles"
@@ -182,24 +319,24 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "examples/prodavnice.html",
-					"semi_transient": false,
+					"file": "examples/dbconnection.php",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 2790,
+						"buffer_size": 687,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								76,
+								76
 							]
 						],
 						"settings":
@@ -213,17 +350,9 @@
 								{
 									"characters": ".#",
 									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
 								}
 							],
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
@@ -231,204 +360,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "examples/js/searchlevels.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 130383,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								}
-							],
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 948,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								169,
-								169
-							]
-						],
-						"settings":
-						{
-							"__vi_external_disable": true,
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								}
-							],
-							"default_dir": "/var/www/html/sandbox",
-							"draw_white_space": "none",
-							"git_repo": "/var/www/html/sandbox",
-							"git_status": true,
-							"git_view": "status",
-							"syntax": "Packages/SublimeGit/syntax/SublimeGit Status.tmLanguage",
-							"translate_tabs_to_spaces": false,
-							"word_wrap": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "examples/upload/stores.json",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 117768,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								}
-							],
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1268.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "examples/js/gapi.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 15367,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								}
-							],
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1748.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -436,7 +368,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 23.0
+		"height": 24.0
 	},
 	"input":
 	{
@@ -489,7 +421,7 @@
 	"project": "sandbox.sublime-project",
 	"replace":
 	{
-		"height": 42.0
+		"height": 44.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -517,7 +449,7 @@
 		[
 			[
 				"",
-				"/var/www/html/sandbox/sandbox.sublime-project"
+				"/var/www/html/sandbox/sandbox.sublime-workspace"
 			]
 		],
 		"width": 380.0
@@ -539,7 +471,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 333.0,
+	"side_bar_width": 239.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

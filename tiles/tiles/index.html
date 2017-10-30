@@ -104,6 +104,10 @@
         var currentYear = 2010;
         var selectedUIDs = [];
         var importJSONurl = 'data/data1962.json';
+
+        var cursorAction = ''; // [generate, select]
+        var hexGridSources = [];
+        var hexGridIndex = 0;
         
         var map = new dragonfly.Map({
             container: 'map',
@@ -116,6 +120,11 @@
             // bearing: -10,
         });
         map.boxZoom.disable();
+
+
+        // var bbox = [-180,-60,180, 70];
+        
+
 
         function setYear() {
             var newYear = parseInt(document.getElementById('currentYear').value, 10);
@@ -156,6 +165,9 @@
             var start;
             var current;
             var box;
+
+            map.dragRotate.disable();
+
             canvas.addEventListener('mousedown', mouseDown, true);
             // Return the xy coordinates of the mouse position
             function mousePos(e) {
@@ -226,23 +238,48 @@
 
                 // If bbox exists. use this value as the argument for `queryRenderedFeatures`
                 if (bbox) {
-                    var features = map.queryRenderedFeatures(bbox, { layers: ['features'] });
-                    if (features.length >= 1000) {
-                        return window.alert('Select a smaller number of features');
-                    } else if (features.length > 0) {
-                        document.getElementById('tablecontent').style.top = '0px';
-                        features.forEach(feature => {
-                            if (selectedUIDs.indexOf(feature.properties.UID) < 0) {
-                                selectedUIDs.push(parseInt(feature.properties.UID, 10));
-                                document.getElementById('DemoGridJSON_' + feature.properties.UID).style['background-color'] = '#F4FF00';
-                            } else {
-                                selectedUIDs.splice(selectedUIDs.indexOf(feature.properties.UID), 1);
-                                document.getElementById('DemoGridJSON_' + feature.properties.UID).style['background-color'] = null;
-                            }
-                        });
-                        map.setFilter('hovered', ['in', 'UID', ...selectedUIDs]);
-                        var topOffset = document.getElementById('DemoGridJSON_' + selectedUIDs[selectedUIDs.length - 1]).getBoundingClientRect().top;
-                        document.getElementById('tablecontent').style.top = (-1 * (topOffset - 200)) + 'px';
+                    if (cursorAction === 'generate') {
+                        var cellSize = 20;
+                        var units = 'miles';
+                        // var newCollection = turf.hexGrid([map.unproject(bbox[0]).lng, map.unproject(bbox[0]).lat,map.unproject(bbox[1]).lng, map.unproject(bbox[1]).lat], cellSize, units);
+                        var newCollection = turf.triangleGrid([map.unproject(bbox[0]).lng, map.unproject(bbox[0]).lat,map.unproject(bbox[1]).lng, map.unproject(bbox[1]).lat], cellSize, units);
+                        if (newCollection.features.length > 0) {
+                            hexGridSources.push(newCollection);
+                            map.addSource('hexGrid' + hexGridIndex, {
+                                'type': 'geojson',
+                                'data': JSON.parse(JSON.stringify(newCollection)),
+                            });
+                            map.addLayer({
+                                'id': 'hexGrid' + hexGridIndex,
+                                'type': 'line',
+                                'source': 'hexGrid' + hexGridIndex,
+                                'paint': {
+                                    'line-color': 'rgba(255, 0, 0, 0.5)',
+                                    'line-width': 1,
+                                    'line-blur': 1
+                                }
+                            });
+                            hexGridIndex += 1;
+                        }
+                    } else {
+                        var features = map.queryRenderedFeatures(bbox, { layers: ['features'] });
+                        if (features.length >= 1000) {
+                            return window.alert('Select a smaller number of features');
+                        } else if (features.length > 0) {
+                            document.getElementById('tablecontent').style.top = '0px';
+                            features.forEach(feature => {
+                                if (selectedUIDs.indexOf(feature.properties.UID) < 0) {
+                                    selectedUIDs.push(parseInt(feature.properties.UID, 10));
+                                    document.getElementById('DemoGridJSON_' + feature.properties.UID).style['background-color'] = '#F4FF00';
+                                } else {
+                                    selectedUIDs.splice(selectedUIDs.indexOf(feature.properties.UID), 1);
+                                    document.getElementById('DemoGridJSON_' + feature.properties.UID).style['background-color'] = null;
+                                }
+                            });
+                            map.setFilter('hovered', ['in', 'UID', ...selectedUIDs]);
+                            var topOffset = document.getElementById('DemoGridJSON_' + selectedUIDs[selectedUIDs.length - 1]).getBoundingClientRect().top;
+                            document.getElementById('tablecontent').style.top = (-1 * (topOffset - 200)) + 'px';
+                        }
                     }
                 }
                 map.dragPan.enable();
@@ -388,6 +425,18 @@
             link.setAttribute('download', 'year_' + currentYear + '_version_' + document.getElementById('saveDataVersion').value + '.csv');
             document.body.appendChild(link); // Required for FF
             link.click(); // This will download the data file named "my_data.csv".
+        }
+
+        function saveGrids2file() {
+            hexGridSources.forEach((grid, gi) => {
+                var content = JSON.stringify(grid);
+                var encodedUri = encodeURI(content);
+                var link = document.createElement('a');
+                link.setAttribute('href', encodedUri);
+                link.setAttribute('download', 'grid_' + gi + '.json');
+                document.body.appendChild(link); // Required for FF
+                link.click(); // This will download the data file named "my_data.csv".
+            });
         }
 
         function loadLocal() {

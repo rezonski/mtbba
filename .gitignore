@@ -1,7 +1,7 @@
 node_modules
 bower_components
-stazenet/app/src/config.json
-examples/dbconnection.php
+config.json
+dbconnection.php
 
 # logs
 *.log
