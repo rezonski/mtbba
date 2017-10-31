@@ -37,3 +37,16 @@ https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=43.815551,
 
 # PUT
 https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=43.860372,18.456584&radius=200&type=route&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis
+
+
+
+
+https://maps.googleapis.com/maps/api/place/nearbysearch/json
+
+location=43.929635,18.445038
+
+radius=1000
+
+type=locality
+
+key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis

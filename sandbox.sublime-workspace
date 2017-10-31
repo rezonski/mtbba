@@ -68,10 +68,131 @@
 	"buffers":
 	[
 		{
-			"file": "examples/dbconnection.php",
+			"file": "stazenet/app/src/components/newTrail/StepWaypointsPreprocessing.js",
 			"settings":
 			{
-				"buffer_size": 687,
+				"buffer_size": 2154,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "stazenet/app/src/components/newTrail/NewTrailContainer.js",
+			"settings":
+			{
+				"buffer_size": 6092,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "examples/gapi.txt",
+			"settings":
+			{
+				"buffer_size": 2306,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "examples/js/gapi.js",
+			"settings":
+			{
+				"buffer_size": 15367,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "stazenet/app/src/controllers/DataController.js",
+			"settings":
+			{
+				"buffer_size": 31600,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "stazenet/app/src/components/openTrail/OpenTrailContainer.js",
+			"settings":
+			{
+				"buffer_size": 5100,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "stazenet/app/src/components/wpEditor/WPDrawer.js",
+			"settings":
+			{
+				"buffer_size": 2569,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "stazenet/app/src/components/wpEditor/WPEditorTray.js",
+			"settings":
+			{
+				"buffer_size": 3760,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "stazenet/app/src/enums/Enum.js",
+			"settings":
+			{
+				"buffer_size": 2969,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "stazenet/app/src/apis/GoogleApi.js",
+			"settings":
+			{
+				"buffer_size": 356,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "stazenet/app/src/apis/Api.js",
+			"settings":
+			{
+				"buffer_size": 266,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "stazenet/app/src/config.json",
+			"settings":
+			{
+				"buffer_size": 265,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "stazenet/app/src/helpers/Lang.js",
+			"settings":
+			{
+				"buffer_size": 11296,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "stazenet/app/src/objects/Trail.js",
+			"settings":
+			{
+				"buffer_size": 21057,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "stazenet/app/src/helpers/WaypointHelper.js",
+			"settings":
+			{
+				"buffer_size": 25345,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		}
@@ -145,15 +266,25 @@
 	"expanded_folders":
 	[
 		"/var/www/html/sandbox",
-		"/var/www/html/sandbox/examples",
 		"/var/www/html/sandbox/stazenet",
 		"/var/www/html/sandbox/stazenet/app",
-		"/var/www/html/sandbox/stazenet/app/src"
+		"/var/www/html/sandbox/tiles",
+		"/var/www/html/sandbox/tiles/tiles"
 	],
 	"file_history":
 	[
+		"/var/www/html/sandbox/stazenet/app/src/apis/TrailsApi.js",
+		"/var/www/html/sandbox/stazenet/app/src/apis/Api.js",
+		"/var/www/html/sandbox/geojson.io/src/core/api.js",
 		"/var/www/html/sandbox/tiles/tiles/index.html",
+		"/var/www/html/sandbox/TriangleGrid_NorthAfrica.geojson",
+		"/var/www/html/sandbox/stazenet/app/src/components/newTrail/StepUpload.js",
+		"/var/www/html/sandbox/.gitignore",
+		"/var/www/html/sandbox/grid_Africa_North.geojson",
+		"/var/www/html/sandbox/grid1.geojson",
 		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition.js",
+		"/home/datasoft/Documents/Current/grid.geojson",
+		"/var/www/html/sandbox/examples/dbconnection.php",
 		"/var/www/html/sandbox/tiles/tiles/css/app.css",
 		"/var/www/html/sandbox/tiles/tiles/js/editablegrid.js",
 		"/var/www/html/sandbox/tiles/tiles/data/data1962.json",
@@ -181,13 +312,14 @@
 	],
 	"find":
 	{
-		"height": 24.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
 		"height": 356.0,
 		"where_history":
 		[
+			"/var/www/html/sandbox/stazenet/app/src/",
 			"/var/www/html/sandbox/tiles/tiles",
 			""
 		]
@@ -197,6 +329,56 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"TransitionGroup",
+			"search4PointsFailed",
+			"search4GooglePoint",
+			"TrailsApi",
+			"Trails",
+			"StepWaypointsSuggestion",
+			"4",
+			"5",
+			"StepMapPreview",
+			"StepChartPreview",
+			"searchOneToponymLevel",
+			"wp.",
+			"getLevel",
+			"w.",
+			"search4GooglePhotosFailed",
+			"Photos",
+			"trailThumbnailGetFailed",
+			"&location='",
+			"&radius",
+			"service",
+			"generateWaypointSuggestions",
+			"replacement",
+			"searchForToponyms",
+			"wps",
+			"generateWaypointSuggestions",
+			"TrailsDataModel.activeTrail.way",
+			"TrailsDataModel.activeTrail.waypoints",
+			"waypoints",
+			"searchStoresLevels",
+			"getLevel",
+			"hexGridSources",
+			"GLU",
+			"elevatedFeaturesCollection",
+			"get ",
+			"parsedFeaturesCollectionFeatures",
+			"parsedFeaturesCollection",
+			"elevatedFeaturesCollection",
+			"uploadTrail",
+			"=\"waypoints\"",
+			" style={styles.columnNarower}",
+			"trail",
+			"name",
+			"save2file",
+			"newFeatures",
+			"hexGridSources",
+			"hexGridSource",
+			"gridLayersIdx",
+			"hexGridSource",
+			"hexGridSources",
+			"mouseDown",
 			"localhost",
 			"'selected'",
 			"mersad",
@@ -274,33 +456,7 @@
 			" insertRow(",
 			"insertRow",
 			"this.tBody",
-			"insertBefore",
-			"table",
-			"name",
-			"Name",
-			"name",
-			"init",
-			"this.name",
-			"_getRowDOMId",
-			"this.data.",
-			"_createCellRenderer",
-			"cellRenderer",
-			"CellRenderer",
-			"cellRenderer",
-			"rowId",
-			"this.data.",
-			"processJSON",
-			"_addUrlParameters",
-			"JSON",
-			"TR",
-			"TD",
-			"tbody",
-			"<tr>",
-			"Demo",
-			"DemoGridJSON",
-			"searchStoresLevels",
-			"alanprim",
-			"GT bicycles"
+			"insertBefore"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -308,6 +464,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"StepWaypointsPreprocessing",
 			"GT"
 		],
 		"reverse": false,
@@ -324,19 +481,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "examples/dbconnection.php",
-					"semi_transient": true,
+					"file": "stazenet/app/src/components/newTrail/StepWaypointsPreprocessing.js",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 687,
+						"buffer_size": 2154,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								76,
-								76
+								2077,
+								2077
 							]
 						],
 						"settings":
@@ -352,7 +509,7 @@
 									"selector": "text.html"
 								}
 							],
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
@@ -360,7 +517,590 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "stazenet/app/src/components/newTrail/NewTrailContainer.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6092,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2087,
+								2110
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 672.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "examples/gapi.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2306,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2203,
+								2143
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "examples/js/gapi.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15367,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4524,
+								4551
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1876.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 4,
+					"file": "stazenet/app/src/controllers/DataController.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 31600,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								14593,
+								14593
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4006.0,
+						"zoom_level": 1.0
+					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "stazenet/app/src/components/openTrail/OpenTrailContainer.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5100,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2167,
+								2167
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 900.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "stazenet/app/src/components/wpEditor/WPDrawer.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2569,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "stazenet/app/src/components/wpEditor/WPEditorTray.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3760,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								605,
+								605
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 8,
+					"file": "stazenet/app/src/enums/Enum.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2969,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								403,
+								403
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "stazenet/app/src/apis/GoogleApi.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 356,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								274,
+								274
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"open_with_edit": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "stazenet/app/src/apis/Api.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 266,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								238,
+								238
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "stazenet/app/src/config.json",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 265,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "stazenet/app/src/helpers/Lang.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11296,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10691,
+								10710
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5513.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "stazenet/app/src/objects/Trail.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 21057,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								16500,
+								16509
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4805.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "stazenet/app/src/helpers/WaypointHelper.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 25345,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6741,
+								6741
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
 					"type": "text"
 				}
 			]
@@ -368,7 +1108,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 24.0
+		"height": 23.0
 	},
 	"input":
 	{
@@ -383,11 +1123,25 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			],
+			[
+				2,
+				0,
+				3,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.270947989926,
+			0.607594330704,
 			1.0
 		],
 		"rows":
@@ -421,7 +1175,7 @@
 	"project": "sandbox.sublime-project",
 	"replace":
 	{
-		"height": 44.0
+		"height": 42.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -430,6 +1184,42 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"trailsapi",
+				"stazenet/app/src/apis/TrailsApi.js"
+			],
+			[
+				"apis",
+				"stazenet/app/src/apis/Api.js"
+			],
+			[
+				"api",
+				"geojson.io/src/core/api.js"
+			],
+			[
+				"wphel",
+				"stazenet/app/src/helpers/WaypointHelper.js"
+			],
+			[
+				"trail",
+				"stazenet/app/src/objects/Trail.js"
+			],
+			[
+				"lang",
+				"stazenet/app/src/helpers/Lang.js"
+			],
+			[
+				"open",
+				"stazenet/app/src/components/openTrail/OpenTrailContainer.js"
+			],
+			[
+				"enum",
+				"stazenet/app/src/enums/Enum.js"
+			],
+			[
+				"dataco",
+				"stazenet/app/src/controllers/DataController.js"
+			],
 			[
 				"searc",
 				"examples/js/searchlevels.js"
@@ -449,7 +1239,7 @@
 		[
 			[
 				"",
-				"/var/www/html/sandbox/sandbox.sublime-workspace"
+				"~/Projects/maspice-ui-react.sublime-project"
 			]
 		],
 		"width": 380.0
@@ -471,7 +1261,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 239.0,
+	"side_bar_width": 320.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

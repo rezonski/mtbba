@@ -39,6 +39,7 @@ class DataController extends GLU.Controller {
             [Enum.DataEvents.RETRIEVE_TRAILS_LIST]: this.getTrailsList,
             [Enum.DataEvents.DOWNLOAD_TRAIL]: this.downloadTrail,
             [Enum.DataEvents.UPLOAD_TRAIL]: this.uploadTrail,
+            [Enum.DataEvents.GENERATE_WP_SUGGESTIONS]: this.generateWaypointSuggestions,
             [Enum.DataEvents.START_IMAGE_UPLOAD]: this.uploadImage,
             [Enum.DataEvents.SAVE_INITIAL_GEO_FILE]: this.saveInitalGeoFile,
             [Enum.DataEvents.SAVE_MANUAL_EDITED_FILE]: this.saveManualyEditedGeoFile,
@@ -271,6 +272,92 @@ class DataController extends GLU.Controller {
         };
         xmlhttpUpload.open('POST', destination, true);
         xmlhttpUpload.send(uploadPayload);
+    }
+
+    generateWaypointSuggestions() {
+        const parsedFeaturesCollection = TrailsDataModel.activeTrail.parsedFeaturesCollection;
+        const waypoints = CommonHelper.getPoints(parsedFeaturesCollection);
+        this.searchOneWaypointToponyms(waypoints, 0);
+    }
+
+    searchOneWaypointToponyms(waypoints, widx) {
+        if (waypoints[widx]) {
+            const setup = {
+                coordinates: waypoints[widx].geometry.coordinates[1] + ',' +  waypoints[widx].geometry.coordinates[0],
+                key: 'AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis',
+                lvl: [
+                  {
+                    type: 'locality',
+                    radius: 1000,
+                    prefix: 'Selo ',
+                  },
+                  {
+                    type: 'geocode',
+                    radius: 300,
+                    prefix: 'Lokacija ',
+                  },
+                  {
+                    type: 'natural_feature',
+                    radius: 500,
+                    prefix: '',
+                  },
+                  {
+                    type: 'route',
+                    radius: 200,
+                    prefix: 'Put ',
+                  },
+                ],
+              };
+            this.searchOneToponymLevel(waypoints, widx, setup, 0);
+        } else {
+            TrailsDataModel.activeTrail.waypoints = waypoints;
+            GLU.bus.emit(Enum.DataEvents.WP_SUGGESTIONS_GENERATED, {
+                waypoints,
+            });
+        }
+    }
+
+    searchOneToponymLevel(waypoints, widx, setup, indexLvl) {
+        if (setup.lvl[indexLvl]) {
+            const wp = waypoints[widx];
+            const query = {
+                location: setup.coordinates,
+                radius: setup.lvl[indexLvl].radius,
+                type: setup.lvl[indexLvl].type,
+                key: setup.key,
+            };
+            API.Google.search4Point({ query })
+            .then((responseRaw) => {
+                const response = JSON.parse(responseRaw.text);
+                if (response.status === 'OK' && response.results) {
+                    const suggestions = response.results.map((r, i) => {
+                        return {
+                            id: i,
+                            name: setup.lvl[indexLvl].prefix + r.name,
+                            desc: setup.lvl[indexLvl].prefix,
+                        };
+                    });
+                    wp.properties.altName = '';
+                    if (wp.properties.suggestionNames) {
+                        wp.properties.suggestionNames = wp.properties.suggestionNames.concat(suggestions);
+                    } else {
+                        wp.properties.suggestionNames = suggestions;
+                    }
+                } else {
+                    wp.properties.suggestionNames = [];
+                }
+                this.searchOneToponymLevel(waypoints, widx, setup, indexLvl + 1);
+            });
+            // .catch((err) => {
+            //     const msg = (err && err.response) ? err.response.text : err.toString();
+            //     console.error('API.Trails.search4Point()');
+            //     console.error(err);
+            //     GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('search4PointsFailed') + msg);
+            //     throw msg;
+            // });
+        } else {
+            this.searchOneWaypointToponyms(waypoints, widx + 1);
+        }
     }
 
     onSimplifyRequest() {

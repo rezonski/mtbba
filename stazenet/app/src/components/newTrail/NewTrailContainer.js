@@ -10,6 +10,7 @@ import FlatButton from 'material-ui/FlatButton';
 // import TextField from 'material-ui/TextField';
 import StepUpload from '../newTrail/StepUpload';
 import StepMapPreview from '../newTrail/StepMapPreview';
+import StepWaypointsPreprocessing from '../newTrail/StepWaypointsPreprocessing';
 import StepDescription from '../newTrail/StepDescription';
 import StepParameters from '../newTrail/StepParameters';
 import StepProcessing from '../newTrail/StepProcessing';
@@ -60,12 +61,14 @@ class NewTrailContainer extends BasePage {
             case 1:
                 return (<StepMapPreview/>);
             case 2:
-                return (<StepProcessing/>);
+                return (<StepWaypointsPreprocessing/>);
             case 3:
-                return (<StepParameters/>);
+                return (<StepProcessing/>);
             case 4:
-                return (<StepDescription/>);
+                return (<StepParameters/>);
             case 5:
+                return (<StepDescription/>);
+            case 6:
                 return (<StepChartPreview/>);
         }
     }
@@ -95,16 +98,19 @@ class NewTrailContainer extends BasePage {
                         <StepButton onClick={() => this.setState({ stepIndex: 1 })}>{Lang.label('stepperMapPreview')}</StepButton>
                     </Step>
                     <Step>
-                        <StepButton onClick={() => this.setState({ stepIndex: 2 })}>{Lang.label('stepperStepProcessing')}</StepButton>
+                        <StepButton onClick={() => this.setState({ stepIndex: 2 })}>{Lang.label('stepperWpPreprocess')}</StepButton>
                     </Step>
                     <Step>
-                        <StepButton onClick={() => this.setState({ stepIndex: 3 })}>{Lang.label('stepperStepParameters')}</StepButton>
+                        <StepButton onClick={() => this.setState({ stepIndex: 3 })}>{Lang.label('stepperStepProcessing')}</StepButton>
                     </Step>
                     <Step>
-                        <StepButton onClick={() => this.setState({ stepIndex: 4 })}>{Lang.label('stepperStepDescription')}</StepButton>
+                        <StepButton onClick={() => this.setState({ stepIndex: 4 })}>{Lang.label('stepperStepParameters')}</StepButton>
                     </Step>
                     <Step>
-                        <StepButton onClick={() => this.setState({ stepIndex: 5 })}>{Lang.label('stepperStepPreview')}</StepButton>
+                        <StepButton onClick={() => this.setState({ stepIndex: 5 })}>{Lang.label('stepperStepDescription')}</StepButton>
+                    </Step>
+                    <Step>
+                        <StepButton onClick={() => this.setState({ stepIndex: 6 })}>{Lang.label('stepperStepPreview')}</StepButton>
                     </Step>
                 </Stepper>
                 <div className="stepper-container">
@@ -117,7 +123,7 @@ class NewTrailContainer extends BasePage {
                             style={{ marginRight: 12 }}
                         />
                         <RaisedButton
-                            label={stepIndex === 4 ? Lang.label('save') : Lang.label('next')}
+                            label={stepIndex === 5 ? Lang.label('save') : Lang.label('next')}
                             primary={true}
                             onTouchTap={this.state.finished ? this.onSaveAddedTrail : this.onHandleNext}
                         />
@@ -146,8 +152,8 @@ class NewTrailContainer extends BasePage {
             this.emit(Enum.MapEvents.HIDE_PREVIEW_MAP);
         }
         this.setState({
-            stepIndex: (stepIndex < 5) ? (stepIndex + 1) : stepIndex,
-            finished: stepIndex >= 4,
+            stepIndex: (stepIndex < 6) ? (stepIndex + 1) : stepIndex,
+            finished: stepIndex >= 5,
         });
     }
 
@@ -159,7 +165,7 @@ class NewTrailContainer extends BasePage {
         if (stepIndex > 0) {
             this.setState({
                 stepIndex: stepIndex - 1,
-                finished: stepIndex >= 4,
+                finished: stepIndex >= 5,
             });
         }
     }

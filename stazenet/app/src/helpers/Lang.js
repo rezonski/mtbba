@@ -93,6 +93,10 @@ const labels = {
         bos: 'Pregled staze',
         eng: 'Trail Preview',
     },
+    stepperWpPreprocess: {
+        bos: 'Putne tacke',
+        eng: 'Waypoints',
+    },
     stepperStepDescription: {
         bos: 'Opis i slika',
         eng: 'Description',
@@ -269,6 +273,14 @@ const labels = {
         bos: 'Max. procenat',
         eng: 'Max Percent',
     },
+    wpName: {
+        bos: 'Naziv lokacije',
+        eng: 'Waypoint name',
+    },
+    suggestion: {
+        bos: 'Prijedlog',
+        eng: 'Suggestion',
+    },
 };
 
 const messages = {
@@ -407,6 +419,10 @@ const messages = {
     tooManyPointsSelected: {
         bos: 'Odaberite manji broj tačaka',
         eng: 'Select a smaller number of features',
+    },
+    search4PointsFailed: {
+        bos: 'Greska prilikom pretrage Google tacaka',
+        eng: 'Search for Google Points failed',
     },
 };
 

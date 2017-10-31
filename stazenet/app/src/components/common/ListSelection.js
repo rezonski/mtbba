@@ -10,7 +10,7 @@ class ListSelection extends BasePage {
         this.state = {
             fieldName: this.props.fieldName,
             value: null,
-            initialSetup: {},
+            initialSetup: (this.props.optionList) ? { optionList: this.props.optionList } : {},
         };
         this.onListValueChangedEvent = this.onListValueChanged.bind(this);
     }
@@ -57,11 +57,13 @@ class ListSelection extends BasePage {
     }
 
     onInitialSetupRetrieved(payload) {
-        this.setState({
-            initialSetup: payload,
-            value: payload[this.props.sourceName][this.props.defaultValueIndex].id,
-        });
-        this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA);
+        if (payload[this.props.sourceName]) {
+            this.setState({
+                initialSetup: payload,
+                value: payload[this.props.sourceName][this.props.defaultValueIndex].id,
+            });
+            this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA);
+        }
     }
 
     render() {

@@ -379,9 +379,14 @@ class Trail {
         return this._parsedFeaturesCollection;
     }
 
-    set parsedFeaturesCollection(newFile) {
-        if (newFile) {
-            this._parsedFeaturesCollection = newFile;
+    set parsedFeaturesCollection(newFeaturesCollection) {
+        if (newFeaturesCollection) {
+            this._parsedFeaturesCollection = newFeaturesCollection;
+            this._simplifiedFeaturesCollection = newFeaturesCollection; // Simplified
+            this._elevatedFeaturesCollection = newFeaturesCollection; // Elevated
+            this._elevationNivelatedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineString
+            this._interpolatedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineString
+            this._enrichedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineString
         }
     }
 
@@ -392,6 +397,10 @@ class Trail {
     set simplifiedFeaturesCollection(newFeaturesCollection) {
         if (newFeaturesCollection) {
             this._simplifiedFeaturesCollection = newFeaturesCollection;
+            this._elevatedFeaturesCollection = newFeaturesCollection; // Elevated
+            this._elevationNivelatedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineString
+            this._interpolatedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineString
+            this._enrichedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineString
         }
     }
 
@@ -402,6 +411,9 @@ class Trail {
     set elevatedFeaturesCollection(newFeaturesCollection) {
         if (newFeaturesCollection) {
             this._elevatedFeaturesCollection = newFeaturesCollection;
+            this._elevationNivelatedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineString
+            this._interpolatedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineString
+            this._enrichedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineString
         }
     }
 
@@ -412,6 +424,8 @@ class Trail {
     set elevationNivelatedFeaturesCollection(newFeaturesCollection) {
         if (newFeaturesCollection) {
             this._elevationNivelatedFeaturesCollection = newFeaturesCollection;
+            this._interpolatedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineString
+            this._enrichedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineString
         }
     }
 
@@ -422,6 +436,7 @@ class Trail {
     set interpolatedFeaturesCollection(newFeaturesCollection) {
         if (newFeaturesCollection) {
             this._interpolatedFeaturesCollection = newFeaturesCollection;
+            this._enrichedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineStri
         }
     }
 

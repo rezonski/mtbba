@@ -105,7 +105,7 @@
         var selectedUIDs = [];
         var importJSONurl = 'data/data1962.json';
 
-        var cursorAction = ''; // [generate, select]
+        var cursorAction = 'generate'; // [generate, select]
         var hexGridSources = [];
         var hexGridIndex = 0;
         
@@ -244,6 +244,9 @@
                         // var newCollection = turf.hexGrid([map.unproject(bbox[0]).lng, map.unproject(bbox[0]).lat,map.unproject(bbox[1]).lng, map.unproject(bbox[1]).lat], cellSize, units);
                         var newCollection = turf.triangleGrid([map.unproject(bbox[0]).lng, map.unproject(bbox[0]).lat,map.unproject(bbox[1]).lng, map.unproject(bbox[1]).lat], cellSize, units);
                         if (newCollection.features.length > 0) {
+                            newCollection.features.forEach((feat, findex) => {
+                                feat.properties.id = findex;
+                            });
                             hexGridSources.push(newCollection);
                             map.addSource('hexGrid' + hexGridIndex, {
                                 'type': 'geojson',
