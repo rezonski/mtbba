@@ -68,130 +68,22 @@
 	"buffers":
 	[
 		{
-			"file": "stazenet/app/src/components/newTrail/StepWaypointsPreprocessing.js",
+			"contents": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset='utf-8' />\n    <title>Interactive map of effects of Iran Nuclear Deal</title>\n    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />\n    <script src=\"js/turf.min.js\"></script>\n    <script src=\"js/dragonfly-dev.js\"></script>\n    <script src=\"js/mapDefinition.js\"></script>\n    <script src=\"js/editablegrid.js\"></script>\n    <script src=\"js/editablegrid_renderers.js\" ></script>\n    <script src=\"js/editablegrid_editors.js\" ></script>\n    <script src=\"js/editablegrid_validators.js\" ></script>\n    <script src=\"js/editablegrid_utils.js\" ></script>\n    <script src=\"js/editablegrid_charts.js\" ></script>\n    <script src=\"https://code.jquery.com/jquery-1.12.4.js\"></script>\n    <script src=\"https://code.jquery.com/ui/1.12.1/jquery-ui.js\"></script>\n    <script src=\"https://rawgit.com/mholt/PapaParse/master/papaparse.min.js\"></script>\n    <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css\">\n    <link rel=\"stylesheet\" href=\"css/editablegrid.css\" type=\"text/css\" media=\"screen\">\n    <link href=\"css/app.css\" rel=\"stylesheet\"/>\n    <link href=\"css/dragonfly.css\" rel=\"stylesheet\"/>\n</head>\n<body>\n    <div class=\"app-container\">\n        <div class=\"map-container\">\n            <div id=\"map\" class=\"dragonfly-map\"></div>\n        </div>\n        <div id=\"table-container\" class=\"table-container\">\n            <div id=\"tablecontent\"></div>\n        </div>\n        <div class=\"data-maniputlation controls\">\n            <div class=\"row\">\n                <div class=\"column\">\n                    <label for=\"fromIdx\">from idx</label>\n                    <input id=\"fromIdx\" size=\"2\">\n                    <label for=\"toIdx\">to idx</label>\n                    <input id=\"toIdx\" size=\"2\">\n                </div>\n                <div class=\"column\">\n                    <button onclick=\"replicateDataColumns()\">Replicate values</button>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"column\">\n                    <label for=\"isos\"> Set ISOs: </label>\n                    <input id=\"isos\" size=\"4\">\n                </div>\n                <div class=\"column\">\n                    <label for=\"colonies\"> Set Colony: </label>\n                    <input id=\"colonies\" size=\"4\">\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"column\">\n                    <input id=\"loadDataVersion\" name=\"loadDataVersion\" size=\"15\">\n                    <button onclick=\"loadLocal()\">Load</button>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"column\">\n                    <button onclick=\"resetData()\">Reset</button>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"column\">\n                    <input id=\"saveDataVersion\" name=\"saveDataVersion\" size=\"15\">\n                </div>\n                <div class=\"column\">\n                    <button onclick=\"save2local()\">Save</button>\n                    <button onclick=\"save2file()\">Save CSV</button>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"column\">\n                    <button onclick=\"resetMapTable()\">Deselect</button>\n                </div>\n                <div class=\"column\">\n                    <label for=\"selectIso\"> Select ISO</label>\n                    <input id=\"selectIso\" size=\"4\">\n                </div>\n                <div class=\"column\">\n                    <label for=\"selectNewIso\"> Select new ISO</label>\n                    <input id=\"selectNewIso\" size=\"4\">\n                </div>\n                <div class=\"column\">\n                    <label for=\"selectColony\"> Select new Colony</label>\n                    <input id=\"selectColony\" size=\"4\">\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"column\">\n                    <label for=\"currentYear\"> Curent year: </label>\n                    <input type=\"number\" id=\"currentYear\" name=\"currentYear\" value=\"2010\" size=\"4\">\n                </div>\n                <div class=\"column\">\n                    <button onclick=\"setYear()\">Set year</button>\n                </div>\n            </div>\n        </div>\n        <div class=\"year-switch controls\">\n        </div>\n    </div>\n    <script>\n        var currentYear = 2010;\n        var selectedUIDs = [];\n        var importJSONurl = 'data/data1962.json';\n\n        var cursorAction = 'generate'; // [generate, select]\n        var hexGridSources = [];\n        var hexGridIndex = 0;\n        \n        var map = new dragonfly.Map({\n            container: 'map',\n            style: mapStyle,\n            // maxBounds: [[-250,-90],[250,90]]\n            center: [0, 0],\n            zoom: 1,\n            maxZoom: 8\n            // pitch: 50,\n            // bearing: -10,\n        });\n        map.boxZoom.disable();\n\n\n        // var bbox = [-180,-60,180, 70];\n        \n\n\n        function setYear() {\n            var newYear = parseInt(document.getElementById('currentYear').value, 10);\n            if (currentYear !== newYear) {\n                console.info('Set tiles to ' + newYear);\n                if (map.getSource('rasterSource')) {\n                    map.removeLayer('history-tiles');\n                    map.removeSource('rasterSource');\n                    map.addSource('rasterSource', {\n                        'type': 'raster',\n                        'tiles': ['http://wpc.4693.edgecastcdn.net/004693/tiles/area/' + newYear + '/Z{z}/{y}/{x}.png?v=20'],\n                        'tileSize': 256\n                    });\n                    map.addLayer({\n                        'id': 'history-tiles',\n                        'type': 'raster',\n                        'source': 'rasterSource',\n                        'minzoom': 0,\n                        'maxzoom': 7\n                    }, 'dummy');\n                    currentYear = parseInt(newYear, 10);\n                }\n            }\n        }\n\n        function resetMapTable() {\n            selectedUIDs.forEach(id => {\n                document.getElementById('DemoGridJSON_' + id).style['background-color'] = null;\n            });\n            document.getElementById('tablecontent').style.top = '0px';\n            selectedUIDs = [];\n            map.setFilter('hovered', ['in', 'UID', 0]);\n        }\n        \n        map.on('load', function () {\n            map.fitBounds([[-180,-63],[180,80]]);\n            var canvas = map.getCanvasContainer();\n            var start;\n            var current;\n            var box;\n\n            map.dragRotate.disable();\n\n            canvas.addEventListener('mousedown', mouseDown, true);\n            // Return the xy coordinates of the mouse position\n            function mousePos(e) {\n                var rect = canvas.getBoundingClientRect();\n                return new dragonfly.Point(\n                    e.clientX - rect.left - canvas.clientLeft,\n                    e.clientY - rect.top - canvas.clientTop\n                );\n            }\n\n            function mouseDown(e) {\n                // Continue the rest of the function if the shiftkey is pressed.\n                if (!(e.shiftKey && e.button === 0)) return;\n                // Disable default drag zooming when the shift key is held down.\n                map.dragPan.disable();\n                // Call functions for the following events\n                document.addEventListener('mousemove', onMouseMove);\n                document.addEventListener('mouseup', onMouseUp);\n                document.addEventListener('keydown', onKeyDown);\n                // Capture the first xy coordinates\n                start = mousePos(e);\n            }\n\n            function onMouseMove(e) {\n                // Capture the ongoing xy coordinates\n                current = mousePos(e);\n\n                // Append the box element if it doesnt exist\n                if (!box) {\n                    box = document.createElement('div');\n                    box.classList.add('boxdraw');\n                    canvas.appendChild(box);\n                }\n\n                var minX = Math.min(start.x, current.x),\n                    maxX = Math.max(start.x, current.x),\n                    minY = Math.min(start.y, current.y),\n                    maxY = Math.max(start.y, current.y);\n\n                // Adjust width and xy position of the box element ongoing\n                var pos = 'translate(' + minX + 'px,' + minY + 'px)';\n                box.style.transform = pos;\n                box.style.WebkitTransform = pos;\n                box.style.width = maxX - minX + 'px';\n                box.style.height = maxY - minY + 'px';\n            }\n            \n            function onMouseUp(e) {\n                // Capture xy coordinates\n                finish([start, mousePos(e)]);\n            }\n\n            function onKeyDown(e) {\n                // If the ESC key is pressed\n                if (e.keyCode === 27) finish();\n            }\n\n            function finish(bbox) {\n                // Remove these events now that finish has been called.\n                document.removeEventListener('mousemove', onMouseMove);\n                document.removeEventListener('keydown', onKeyDown);\n                document.removeEventListener('mouseup', onMouseUp);\n\n                if (box) {\n                    box.parentNode.removeChild(box);\n                    box = null;\n                }\n\n                // If bbox exists. use this value as the argument for `queryRenderedFeatures`\n                if (bbox) {\n                    if (cursorAction === 'generate') {\n                        var cellSize = 20;\n                        var units = 'miles';\n                        // var newCollection = turf.hexGrid([map.unproject(bbox[0]).lng, map.unproject(bbox[0]).lat,map.unproject(bbox[1]).lng, map.unproject(bbox[1]).lat], cellSize, units);\n                        var newCollection = turf.triangleGrid([map.unproject(bbox[0]).lng, map.unproject(bbox[0]).lat,map.unproject(bbox[1]).lng, map.unproject(bbox[1]).lat], cellSize, units);\n                        if (newCollection.features.length > 0) {\n                            newCollection.features.forEach((feat, findex) => {\n                                feat.properties.id = findex;\n                            });\n                            hexGridSources.push(newCollection);\n                            map.addSource('hexGrid' + hexGridIndex, {\n                                'type': 'geojson',\n                                'data': JSON.parse(JSON.stringify(newCollection)),\n                            });\n                            map.addLayer({\n                                'id': 'hexGrid' + hexGridIndex,\n                                'type': 'line',\n                                'source': 'hexGrid' + hexGridIndex,\n                                'paint': {\n                                    'line-color': 'rgba(255, 0, 0, 0.5)',\n                                    'line-width': 1,\n                                    'line-blur': 1\n                                }\n                            });\n                            hexGridIndex += 1;\n                        }\n                    } else {\n                        var features = map.queryRenderedFeatures(bbox, { layers: ['features'] });\n                        if (features.length >= 1000) {\n                            return window.alert('Select a smaller number of features');\n                        } else if (features.length > 0) {\n                            document.getElementById('tablecontent').style.top = '0px';\n                            features.forEach(feature => {\n                                if (selectedUIDs.indexOf(feature.properties.UID) < 0) {\n                                    selectedUIDs.push(parseInt(feature.properties.UID, 10));\n                                    document.getElementById('DemoGridJSON_' + feature.properties.UID).style['background-color'] = '#F4FF00';\n                                } else {\n                                    selectedUIDs.splice(selectedUIDs.indexOf(feature.properties.UID), 1);\n                                    document.getElementById('DemoGridJSON_' + feature.properties.UID).style['background-color'] = null;\n                                }\n                            });\n                            map.setFilter('hovered', ['in', 'UID', ...selectedUIDs]);\n                            var topOffset = document.getElementById('DemoGridJSON_' + selectedUIDs[selectedUIDs.length - 1]).getBoundingClientRect().top;\n                            document.getElementById('tablecontent').style.top = (-1 * (topOffset - 200)) + 'px';\n                        }\n                    }\n                }\n                map.dragPan.enable();\n            }\n\n            function setUnsetUID(uid) {\n                console.log('setUnsetUID(' + uid + ')');\n                if (selectedUIDs.indexOf(uid) < 0) {\n                    selectedUIDs.push(parseInt(uid, 10));\n                    map.setFilter('hovered', ['in', 'UID', ...selectedUIDs]);\n                    document.getElementById('DemoGridJSON_' + uid).style['background-color'] = '#F4FF00';\n                    scrollTable(uid);\n                    \n                } else {\n                    selectedUIDs.splice(selectedUIDs.indexOf(uid), 1);\n                    map.setFilter('hovered', ['in', 'UID', ...selectedUIDs]);\n                    document.getElementById('DemoGridJSON_' + uid).style['background-color'] = null;\n                    scrollTable(selectedUIDs[selectedUIDs.length - 1]);\n                }\n            }\n\n            function scrollTable(uid) {\n                if (uid) {\n                    var topDiff = $('#DemoGridJSON_' + uid).offset().top - $('#tablecontent').position().top;\n                    $('#table-container').animate({\n                        scrollTop: topDiff - 50\n                    }, 500);\n                }\n            }\n\n            map.on('click', function(e) {\n                var features = map.queryRenderedFeatures(e.point, { layers: ['features'] });\n                if (features.length > 0) {\n                    var feature = features[0];\n                    setUnsetUID(feature.properties.UID);\n                }\n            });\n        });\n\n        function initAutocompleteValuePicker(data) {\n            var availableTags = [];\n            var availableDataVersions = Object.keys(localStorage);\n            data.forEach(e => {\n                if (availableTags.indexOf(e.columns[1]) < 0) {\n                    availableTags.push(e.columns[1]);\n                }\n            });\n            $( \"#isos\" ).autocomplete({\n              source: availableTags,\n              select: function(event, ui) {\n                // console.log('ISOs')\n                // console.log(event);\n                // console.log(ui);\n                setColumnValue(3, selectedUIDs, ui.item.value);\n              }\n            });\n            $( \"#colonies\" ).autocomplete({\n              source: availableTags,\n              select: function(event, ui) {\n                // console.log('colonies')\n                // console.log(event);\n                // console.log(ui);\n                setColumnValue(4, selectedUIDs, ui.item.value);\n              }\n            });\n            $( \"#selectIso\" ).autocomplete({\n              source: availableTags,\n              select: function(event, ui) {\n                console.log('select all features with ISO code ' + ui.item.value);\n                selectAllFeaturesByVariable('ISO', ui.item.value);\n              }\n            });\n            $( \"#selectNewIso\" ).autocomplete({\n              source: availableTags,\n              select: function(event, ui) {\n                console.log('select all features with new ISO code ' + ui.item.value);\n                selectAllFeaturesByVariable('ISONEW', ui.item.value);\n              }\n            });\n            $( \"#selectColony\" ).autocomplete({\n              source: availableTags,\n              select: function(event, ui) {\n                console.log('select all features with colony code ' + ui.item.value);\n                selectAllFeaturesByVariable('Colony', ui.item.value);\n              }\n            });\n            $( \"#loadDataVersion\" ).autocomplete({\n              source: availableDataVersions,\n            });\n        }\n\n        function getRow(id) {\n            return window.editableGrid.data.filter(r => {return r.columns[0] === id;})[0];\n        }\n\n        function getRows(ids) {\n            return window.editableGrid.data.filter(r => {return ids.indexOf(r.columns[0]) >= 0;});\n        }\n\n        function setColumnValue(colIdx, ids, value) {\n            var rows = getRows(ids);\n            rows.forEach(row => {\n                 row.columns[colIdx] = value;\n            });\n            editableGrid.renderGrid();\n            save2local();\n        }\n\n        function replicateDataColumns() {\n            var fromColumnIdx = parseInt(document.getElementById('fromIdx').value, 10);\n            var toColumnIdx = parseInt(document.getElementById('toIdx').value, 10);\n            window.editableGrid.data.forEach(row => {\n                row.columns[toColumnIdx] = row.columns[fromColumnIdx].toString();\n            });\n            editableGrid.renderGrid();\n        }\n\n        function save2local() {\n            var saveDataVersion = document.getElementById('saveDataVersion').value;\n            localStorage.setItem(saveDataVersion, JSON.stringify(window.editableGrid.data));\n            alert('Saved version ' + saveDataVersion);\n        }\n\n        function save2file() {\n            var header = window.editableGrid.columns.map(c => {\n                return c.name;\n            });\n            var data = [header];\n            window.editableGrid.data.forEach(row => {\n                var newRow = Object.keys(row.columns).map(column => {\n                    return row.columns[column];\n                });\n                data.push(newRow);\n            });\n            var csvContent = 'data:text/csv;charset=utf-8,';\n            data.forEach((infoArray, index) => {\n               var dataString = infoArray.join(',');\n               csvContent += (index < data.length )? dataString + '\\n' : dataString;\n            });\n            var encodedUri = encodeURI(csvContent);\n            var link = document.createElement('a');\n            link.setAttribute('href', encodedUri);\n            link.setAttribute('download', 'year_' + currentYear + '_version_' + document.getElementById('saveDataVersion').value + '.csv');\n            document.body.appendChild(link); // Required for FF\n            link.click(); // This will download the data file named \"my_data.csv\".\n        }\n\n        function saveGrids2file() {\n            hexGridSources.forEach((grid, gi) => {\n                var content = JSON.stringify(grid);\n                var encodedUri = encodeURI(content);\n                var link = document.createElement('a');\n                link.setAttribute('href', encodedUri);\n                link.setAttribute('download', 'grid_' + gi + '.json');\n                document.body.appendChild(link); // Required for FF\n                link.click(); // This will download the data file named \"my_data.csv\".\n            });\n        }\n\n        function loadLocal() {\n            var loadDataVersion = document.getElementById('loadDataVersion').value;\n            if (localStorage.getItem(loadDataVersion)) {\n                window.editableGrid.data = JSON.parse(localStorage.getItem(loadDataVersion));\n                window.editableGrid.renderGrid();\n                alert('Loaded version ' + loadDataVersion);\n            } else {\n                alert('Unexisting version ' + loadDataVersion);\n            }\n        }\n\n        function resetData() {\n            window.editableGrid.loadJSON(importJSONurl);\n        }\n\n        function selectAllFeaturesByVariable(variable, iso) {\n            var variableIndex = 0;\n\n            window.editableGrid.columns.forEach((element, index) => {\n               if (element.name === variable) {\n                    variableIndex = parseInt(index, 10);\n               } \n            });\n\n            var features = window.editableGrid.data.filter(r => {return r.columns[variableIndex] === iso;});\n            document.getElementById('tablecontent').style.top = '0px';\n            features.forEach(feature => {\n                if (selectedUIDs.indexOf(feature.columns[0]) < 0) {\n                    selectedUIDs.push(parseInt(feature.columns[0], 10));\n                    document.getElementById('DemoGridJSON_' + feature.columns[0]).style['background-color'] = '#F4FF00';\n                } else {\n                    selectedUIDs.splice(selectedUIDs.indexOf(feature.columns[0]), 1);\n                    document.getElementById('DemoGridJSON_' + feature.columns[0]).style['background-color'] = null;\n                }\n            });\n            map.setFilter('hovered', ['in', 'UID', ...selectedUIDs]);\n            var topOffset = document.getElementById('DemoGridJSON_' + selectedUIDs[selectedUIDs.length - 1]).getBoundingClientRect().top;\n            document.getElementById('tablecontent').style.top = (-1 * (topOffset - 200)) + 'px';\n        }\n\n        function loadParseCSV() {\n            \n        }\n\n        function csvJSON(csv){\n          var lines=csv.split(\"\\n\");\n          var result = [];\n          var headers=lines[0].split(\",\");\n          for(var i=1;i<lines.length;i++){\n              var obj = {};\n              var currentline=lines[i].split(\",\");\n              for(var j=0;j<headers.length;j++){\n                  obj[headers[j]] = currentline[j];\n              }\n              result.push(obj);\n          }\n          return JSON.stringify(result); //JSON\n        }\n\n        window.onload = function() {\n            editableGrid = new EditableGrid(\"DemoGridJSON\"); \n            editableGrid.tableLoaded = function() {\n                this.renderGrid(\"tablecontent\", \"testgrid\");\n            };\n            editableGrid.tableRendered = function() {\n                console.log('tableRendered');\n                initAutocompleteValuePicker(editableGrid.data);\n            };\n            editableGrid.loadJSON(importJSONurl);\n        }\n    </script>\n</body>\n</html>",
+			"file": "tiles/tiles/index.html",
+			"file_size": 22858,
+			"file_write_time": 131539974947241671,
 			"settings":
 			{
-				"buffer_size": 2154,
+				"buffer_size": 22353,
 				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "stazenet/app/src/components/newTrail/NewTrailContainer.js",
+			"file": "tiles/tiles/js/mapDefinition.js",
 			"settings":
 			{
-				"buffer_size": 6092,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "examples/gapi.txt",
-			"settings":
-			{
-				"buffer_size": 2306,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "examples/js/gapi.js",
-			"settings":
-			{
-				"buffer_size": 15367,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "stazenet/app/src/controllers/DataController.js",
-			"settings":
-			{
-				"buffer_size": 31600,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "stazenet/app/src/components/openTrail/OpenTrailContainer.js",
-			"settings":
-			{
-				"buffer_size": 5100,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "stazenet/app/src/components/wpEditor/WPDrawer.js",
-			"settings":
-			{
-				"buffer_size": 2569,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "stazenet/app/src/components/wpEditor/WPEditorTray.js",
-			"settings":
-			{
-				"buffer_size": 3760,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "stazenet/app/src/enums/Enum.js",
-			"settings":
-			{
-				"buffer_size": 2969,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "stazenet/app/src/apis/GoogleApi.js",
-			"settings":
-			{
-				"buffer_size": 356,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "stazenet/app/src/apis/Api.js",
-			"settings":
-			{
-				"buffer_size": 266,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "stazenet/app/src/config.json",
-			"settings":
-			{
-				"buffer_size": 265,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "stazenet/app/src/helpers/Lang.js",
-			"settings":
-			{
-				"buffer_size": 11296,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "stazenet/app/src/objects/Trail.js",
-			"settings":
-			{
-				"buffer_size": 21057,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "stazenet/app/src/helpers/WaypointHelper.js",
-			"settings":
-			{
-				"buffer_size": 25345,
+				"buffer_size": 4126,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -266,15 +158,29 @@
 	"expanded_folders":
 	[
 		"/var/www/html/sandbox",
-		"/var/www/html/sandbox/stazenet",
-		"/var/www/html/sandbox/stazenet/app",
 		"/var/www/html/sandbox/tiles",
-		"/var/www/html/sandbox/tiles/tiles"
+		"/var/www/html/sandbox/tiles/tiles",
+		"/var/www/html/sandbox/tiles/tiles/data",
+		"/var/www/html/sandbox/tiles/tiles/js"
 	],
 	"file_history":
 	[
-		"/var/www/html/sandbox/stazenet/app/src/apis/TrailsApi.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/openTrail/OpenTrailContainer.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/newTrail/StepWaypointsPreprocessing.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/newTrail/NewTrailContainer.js",
+		"/var/www/html/sandbox/examples/gapi.txt",
+		"/var/www/html/sandbox/examples/js/gapi.js",
+		"/var/www/html/sandbox/stazenet/app/src/controllers/DataController.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/wpEditor/WPDrawer.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/wpEditor/WPEditorTray.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/common/ListSelection.js",
+		"/var/www/html/sandbox/stazenet/app/src/enums/Enum.js",
+		"/var/www/html/sandbox/stazenet/app/src/apis/GoogleApi.js",
 		"/var/www/html/sandbox/stazenet/app/src/apis/Api.js",
+		"/var/www/html/sandbox/stazenet/app/src/helpers/Lang.js",
+		"/var/www/html/sandbox/stazenet/app/src/objects/Trail.js",
+		"/var/www/html/sandbox/stazenet/app/src/helpers/WaypointHelper.js",
+		"/var/www/html/sandbox/stazenet/app/src/apis/TrailsApi.js",
 		"/var/www/html/sandbox/geojson.io/src/core/api.js",
 		"/var/www/html/sandbox/tiles/tiles/index.html",
 		"/var/www/html/sandbox/TriangleGrid_NorthAfrica.geojson",
@@ -291,7 +197,6 @@
 		"/var/www/html/sandbox/tiles/tiles/data/grid.json",
 		"/var/www/html/sandbox/tiles/tiles/js/editablegrid_utils.js",
 		"/var/www/html/sandbox/tiles/tiles/js/editablegrid_renderers.js",
-		"/var/www/html/sandbox/examples/js/gapi.js",
 		"/var/www/html/sandbox/examples/prodavnice.html",
 		"/var/www/html/sandbox/examples/upload/stores.json",
 		"/var/www/html/sandbox/examples/js/searchlevels.js",
@@ -329,6 +234,25 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"loadLocal",
+			"baseUrl",
+			"_addUrlParameters",
+			"dataOnly",
+			"importJSONurl",
+			"HASC_1",
+			"UID",
+			"ISO",
+			"__ID__",
+			"16891",
+			"columnNarower",
+			"wp.",
+			"description",
+			"newFile",
+			"{}",
+			"_parsedFeaturesCollection",
+			"searchOneToponymLevel",
+			"MuiThemeProvider",
+			"DialogInline",
 			"TransitionGroup",
 			"search4PointsFailed",
 			"search4GooglePoint",
@@ -437,26 +361,7 @@
 			"firstname",
 			"mouseClicked",
 			"CellRenderer",
-			"cellRenderer",
-			"setCellRenderer",
-			"cellRenderer",
-			"CellRenderer",
-			"cellRenderer",
-			"CellRenderer",
-			"cellRenderer",
-			"CellRenderer",
-			"innerHTML",
-			"rowData",
-			"createElement",
-			"\"tr\"",
-			"'tr'",
-			"tr",
-			"insertCell",
-			"insertRow(",
-			" insertRow(",
-			"insertRow",
-			"this.tBody",
-			"insertBefore"
+			"cellRenderer"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -481,19 +386,60 @@
 			[
 				{
 					"buffer": 0,
-					"file": "stazenet/app/src/components/newTrail/StepWaypointsPreprocessing.js",
+					"file": "tiles/tiles/index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2154,
+						"buffer_size": 22353,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2077,
-								2077
+								16539,
+								16539
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 235.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "tiles/tiles/js/mapDefinition.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4126,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2713,
+								2713
 							]
 						],
 						"settings":
@@ -519,589 +465,6 @@
 					},
 					"stack_index": 1,
 					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "stazenet/app/src/components/newTrail/NewTrailContainer.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6092,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2087,
-								2110
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								}
-							],
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 672.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "examples/gapi.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2306,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2203,
-								2143
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								}
-							],
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "examples/js/gapi.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 15367,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4524,
-								4551
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								}
-							],
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1876.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 10,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 4,
-					"file": "stazenet/app/src/controllers/DataController.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 31600,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								14593,
-								14593
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								}
-							],
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 4006.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "stazenet/app/src/components/openTrail/OpenTrailContainer.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5100,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2167,
-								2167
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								}
-							],
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 900.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 14,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "stazenet/app/src/components/wpEditor/WPDrawer.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2569,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								}
-							],
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 13,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "stazenet/app/src/components/wpEditor/WPEditorTray.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3760,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								605,
-								605
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								}
-							],
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 12,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 4,
-			"sheets":
-			[
-				{
-					"buffer": 8,
-					"file": "stazenet/app/src/enums/Enum.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2969,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								403,
-								403
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								}
-							],
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "stazenet/app/src/apis/GoogleApi.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 356,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								274,
-								274
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								}
-							],
-							"open_with_edit": true,
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "stazenet/app/src/apis/Api.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 266,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								238,
-								238
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								}
-							],
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "stazenet/app/src/config.json",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 265,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								}
-							],
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 12,
-					"file": "stazenet/app/src/helpers/Lang.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 11296,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								10691,
-								10710
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								}
-							],
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 5513.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 13,
-					"file": "stazenet/app/src/objects/Trail.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 21057,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								16500,
-								16509
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								}
-							],
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 4805.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 14,
-					"file": "stazenet/app/src/helpers/WaypointHelper.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 25345,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								6741,
-								6741
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								}
-							],
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 11,
-					"type": "text"
 				}
 			]
 		}
@@ -1123,25 +486,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
-			],
-			[
-				2,
-				0,
-				3,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.270947989926,
-			0.607594330704,
 			1.0
 		],
 		"rows":
@@ -1184,6 +533,14 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"listsel",
+				"stazenet/app/src/components/common/ListSelection.js"
+			],
+			[
+				"wpedi",
+				"stazenet/app/src/components/wpEditor/WPEditorTray.js"
+			],
 			[
 				"trailsapi",
 				"stazenet/app/src/apis/TrailsApi.js"

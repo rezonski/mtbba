@@ -1,7 +1,7 @@
 <?php
     header('Access-Control-Allow-Origin: *');
     
-    $servername = "localhost:3307";
+    $servername = "localhost";
     $username = "root";
     $password = "letmein";
     $dbname = "staze";

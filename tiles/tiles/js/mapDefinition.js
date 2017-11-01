@@ -12,29 +12,35 @@ var mapStyle = {
             'layers': [
                 // STATES
                 {
-                    'layerId': '16891',
+                    'layerId': '20807',
                     'datasets': [
                         {
                             'datasetId': 0,
                             'columns': [
-                                '__ID__',
+                                'ID',
+                                'ID2',
                                 'ISO',
-                                'HASC_1',
-                                'UID',
+                                'ISO2',
+                                'NAME_0',
+                                'NAME_1',
+                                'UID->{ID}',
                             ]
                         }
                     ]
                 },
                 {
-                    'layerId': '16891p',
+                    'layerId': '20807p',
                     'datasets': [
                         {
                             'datasetId': 0,
                             'columns': [
-                                '__ID__',
+                                'ID',
+                                'ID2',
                                 'ISO',
-                                'HASC_1',
-                                'UID',
+                                'ISO2',
+                                'NAME_0',
+                                'NAME_1',
+                                'UID->{ID}',
                             ]
                         }
                     ]
@@ -73,7 +79,7 @@ var mapStyle = {
             'id': 'features',
             'type': 'fill',
             'source': 'geobuffer',
-            'source-layer': '16891',
+            'source-layer': '20807',
             'paint': {
                 'fill-color': 'rgba(0,0,0,0.1)'
             }
@@ -82,7 +88,7 @@ var mapStyle = {
             'id': 'hovered',
             'type': 'fill',
             'source': 'geobuffer',
-            'source-layer': '16891',
+            'source-layer': '20807',
             'paint': {
                 'fill-color': '#F4FF00',
                 'fill-opacity': 0.5
@@ -93,7 +99,7 @@ var mapStyle = {
             'id': 'changed',
             'type': 'fill',
             'source': 'geobuffer',
-            'source-layer': '16891',
+            'source-layer': '20807',
             'paint': {
                 'fill-color': '#FF00B4',
                 'fill-opacity': 0.5
@@ -104,7 +110,7 @@ var mapStyle = {
             'id': 'boundaries',
             'type': 'line',
             'source': 'geobuffer',
-            'source-layer': '16891',
+            'source-layer': '20807',
             'paint': {
                 'line-color': 'rgba(0, 0, 0, 0.2)',
                 'line-width': 1,
@@ -115,7 +121,7 @@ var mapStyle = {
             'id': 'labels',
             'type': 'symbol',
             'source': 'geobuffer',
-            'source-layer': '16891p',
+            'source-layer': '20807p',
             'paint': {
                 'text-color': 'rgba(0, 0, 0, 0.7)',
                 'text-halo-color': 'rgba(255, 255, 255, 0.8)',
@@ -123,7 +129,7 @@ var mapStyle = {
                 'text-halo-blur': 1
             },
             'layout': {
-                'text-field': '{HASC_1}',
+                'text-field': '{ISO}',
                 'text-offset': [0, 1.1],
                 'text-size': {
                     'stops': [[4,9],[22,15]]
