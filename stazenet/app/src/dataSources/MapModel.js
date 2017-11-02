@@ -18,6 +18,11 @@ class MapModel extends GLU.DataSource {
         };
         this._mapStyles = [
           {
+            name: 'Basic',
+            type: 'terrain',
+            value: 'mapbox://styles/mapbox/basic-v9',
+          },
+          {
             name: 'Outdoors',
             type: 'terrain',
             value: 'mapbox://styles/mapbox/outdoors-v10',
@@ -31,11 +36,6 @@ class MapModel extends GLU.DataSource {
             name: 'Dark',
             type: 'terrain',
             value: 'mapbox://styles/mapbox/dark-v9',
-          },
-          {
-            name: 'Basic',
-            type: 'terrain',
-            value: 'mapbox://styles/mapbox/basic-v9',
           },
         ];
 

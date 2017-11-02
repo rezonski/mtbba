@@ -264,6 +264,8 @@ class WaypointHelper extends GLU.Controller {
 
         newWaypointsExport = CommonHelper.sortArrayByKey(newWaypoints, 'odometer');
 
+        debugger;
+
         newWaypointsExport.forEach((element, index) => {
             let tempWp = {};
             if (index < (newWaypointsExport.length - 1)) {
@@ -290,7 +292,7 @@ class WaypointHelper extends GLU.Controller {
             newPoint.properties.id = wpIdx;
             mapWaypointsCollection.features.push(newPoint);
         });
-
+        debugger;
         return mapWaypointsCollection.features;
     }
 

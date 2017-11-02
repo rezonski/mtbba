@@ -57,12 +57,12 @@ class InputTextBox extends BasePage {
         const inputBoxStyle = (this.props.inputBoxStyle !== undefined) ? this.props.inputBoxStyle : {};
         return (<TextField
                     key={key}
+                    value={this.state.value}
                     inputStyle={(this.props.isMultiline) ? {} : inputBoxStyle}
                     textareaStyle={(this.props.isMultiline) ? inputBoxStyle : { }}
                     onChange={this.onTextFieldChangedEvent}
                     multiLine={this.props.isMultiline}
                     rows={this.props.noRows}
-                    value={this.state.value}
                     fullWidth={true}
                     hintText={this.props.filedHintText}
                     floatingLabelText={this.props.filedLabel}/>

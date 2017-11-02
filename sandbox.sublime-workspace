@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"all",
+				"allData"
+			],
+			[
+				"lo",
+				"log"
+			],
+			[
 				"mar",
 				"margin-left"
 			],
@@ -68,13 +76,10 @@
 	"buffers":
 	[
 		{
-			"contents": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset='utf-8' />\n    <title>Interactive map of effects of Iran Nuclear Deal</title>\n    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />\n    <script src=\"js/turf.min.js\"></script>\n    <script src=\"js/dragonfly-dev.js\"></script>\n    <script src=\"js/mapDefinition.js\"></script>\n    <script src=\"js/editablegrid.js\"></script>\n    <script src=\"js/editablegrid_renderers.js\" ></script>\n    <script src=\"js/editablegrid_editors.js\" ></script>\n    <script src=\"js/editablegrid_validators.js\" ></script>\n    <script src=\"js/editablegrid_utils.js\" ></script>\n    <script src=\"js/editablegrid_charts.js\" ></script>\n    <script src=\"https://code.jquery.com/jquery-1.12.4.js\"></script>\n    <script src=\"https://code.jquery.com/ui/1.12.1/jquery-ui.js\"></script>\n    <script src=\"https://rawgit.com/mholt/PapaParse/master/papaparse.min.js\"></script>\n    <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css\">\n    <link rel=\"stylesheet\" href=\"css/editablegrid.css\" type=\"text/css\" media=\"screen\">\n    <link href=\"css/app.css\" rel=\"stylesheet\"/>\n    <link href=\"css/dragonfly.css\" rel=\"stylesheet\"/>\n</head>\n<body>\n    <div class=\"app-container\">\n        <div class=\"map-container\">\n            <div id=\"map\" class=\"dragonfly-map\"></div>\n        </div>\n        <div id=\"table-container\" class=\"table-container\">\n            <div id=\"tablecontent\"></div>\n        </div>\n        <div class=\"data-maniputlation controls\">\n            <div class=\"row\">\n                <div class=\"column\">\n                    <label for=\"fromIdx\">from idx</label>\n                    <input id=\"fromIdx\" size=\"2\">\n                    <label for=\"toIdx\">to idx</label>\n                    <input id=\"toIdx\" size=\"2\">\n                </div>\n                <div class=\"column\">\n                    <button onclick=\"replicateDataColumns()\">Replicate values</button>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"column\">\n                    <label for=\"isos\"> Set ISOs: </label>\n                    <input id=\"isos\" size=\"4\">\n                </div>\n                <div class=\"column\">\n                    <label for=\"colonies\"> Set Colony: </label>\n                    <input id=\"colonies\" size=\"4\">\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"column\">\n                    <input id=\"loadDataVersion\" name=\"loadDataVersion\" size=\"15\">\n                    <button onclick=\"loadLocal()\">Load</button>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"column\">\n                    <button onclick=\"resetData()\">Reset</button>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"column\">\n                    <input id=\"saveDataVersion\" name=\"saveDataVersion\" size=\"15\">\n                </div>\n                <div class=\"column\">\n                    <button onclick=\"save2local()\">Save</button>\n                    <button onclick=\"save2file()\">Save CSV</button>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"column\">\n                    <button onclick=\"resetMapTable()\">Deselect</button>\n                </div>\n                <div class=\"column\">\n                    <label for=\"selectIso\"> Select ISO</label>\n                    <input id=\"selectIso\" size=\"4\">\n                </div>\n                <div class=\"column\">\n                    <label for=\"selectNewIso\"> Select new ISO</label>\n                    <input id=\"selectNewIso\" size=\"4\">\n                </div>\n                <div class=\"column\">\n                    <label for=\"selectColony\"> Select new Colony</label>\n                    <input id=\"selectColony\" size=\"4\">\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"column\">\n                    <label for=\"currentYear\"> Curent year: </label>\n                    <input type=\"number\" id=\"currentYear\" name=\"currentYear\" value=\"2010\" size=\"4\">\n                </div>\n                <div class=\"column\">\n                    <button onclick=\"setYear()\">Set year</button>\n                </div>\n            </div>\n        </div>\n        <div class=\"year-switch controls\">\n        </div>\n    </div>\n    <script>\n        var currentYear = 2010;\n        var selectedUIDs = [];\n        var importJSONurl = 'data/data1962.json';\n\n        var cursorAction = 'generate'; // [generate, select]\n        var hexGridSources = [];\n        var hexGridIndex = 0;\n        \n        var map = new dragonfly.Map({\n            container: 'map',\n            style: mapStyle,\n            // maxBounds: [[-250,-90],[250,90]]\n            center: [0, 0],\n            zoom: 1,\n            maxZoom: 8\n            // pitch: 50,\n            // bearing: -10,\n        });\n        map.boxZoom.disable();\n\n\n        // var bbox = [-180,-60,180, 70];\n        \n\n\n        function setYear() {\n            var newYear = parseInt(document.getElementById('currentYear').value, 10);\n            if (currentYear !== newYear) {\n                console.info('Set tiles to ' + newYear);\n                if (map.getSource('rasterSource')) {\n                    map.removeLayer('history-tiles');\n                    map.removeSource('rasterSource');\n                    map.addSource('rasterSource', {\n                        'type': 'raster',\n                        'tiles': ['http://wpc.4693.edgecastcdn.net/004693/tiles/area/' + newYear + '/Z{z}/{y}/{x}.png?v=20'],\n                        'tileSize': 256\n                    });\n                    map.addLayer({\n                        'id': 'history-tiles',\n                        'type': 'raster',\n                        'source': 'rasterSource',\n                        'minzoom': 0,\n                        'maxzoom': 7\n                    }, 'dummy');\n                    currentYear = parseInt(newYear, 10);\n                }\n            }\n        }\n\n        function resetMapTable() {\n            selectedUIDs.forEach(id => {\n                document.getElementById('DemoGridJSON_' + id).style['background-color'] = null;\n            });\n            document.getElementById('tablecontent').style.top = '0px';\n            selectedUIDs = [];\n            map.setFilter('hovered', ['in', 'UID', 0]);\n        }\n        \n        map.on('load', function () {\n            map.fitBounds([[-180,-63],[180,80]]);\n            var canvas = map.getCanvasContainer();\n            var start;\n            var current;\n            var box;\n\n            map.dragRotate.disable();\n\n            canvas.addEventListener('mousedown', mouseDown, true);\n            // Return the xy coordinates of the mouse position\n            function mousePos(e) {\n                var rect = canvas.getBoundingClientRect();\n                return new dragonfly.Point(\n                    e.clientX - rect.left - canvas.clientLeft,\n                    e.clientY - rect.top - canvas.clientTop\n                );\n            }\n\n            function mouseDown(e) {\n                // Continue the rest of the function if the shiftkey is pressed.\n                if (!(e.shiftKey && e.button === 0)) return;\n                // Disable default drag zooming when the shift key is held down.\n                map.dragPan.disable();\n                // Call functions for the following events\n                document.addEventListener('mousemove', onMouseMove);\n                document.addEventListener('mouseup', onMouseUp);\n                document.addEventListener('keydown', onKeyDown);\n                // Capture the first xy coordinates\n                start = mousePos(e);\n            }\n\n            function onMouseMove(e) {\n                // Capture the ongoing xy coordinates\n                current = mousePos(e);\n\n                // Append the box element if it doesnt exist\n                if (!box) {\n                    box = document.createElement('div');\n                    box.classList.add('boxdraw');\n                    canvas.appendChild(box);\n                }\n\n                var minX = Math.min(start.x, current.x),\n                    maxX = Math.max(start.x, current.x),\n                    minY = Math.min(start.y, current.y),\n                    maxY = Math.max(start.y, current.y);\n\n                // Adjust width and xy position of the box element ongoing\n                var pos = 'translate(' + minX + 'px,' + minY + 'px)';\n                box.style.transform = pos;\n                box.style.WebkitTransform = pos;\n                box.style.width = maxX - minX + 'px';\n                box.style.height = maxY - minY + 'px';\n            }\n            \n            function onMouseUp(e) {\n                // Capture xy coordinates\n                finish([start, mousePos(e)]);\n            }\n\n            function onKeyDown(e) {\n                // If the ESC key is pressed\n                if (e.keyCode === 27) finish();\n            }\n\n            function finish(bbox) {\n                // Remove these events now that finish has been called.\n                document.removeEventListener('mousemove', onMouseMove);\n                document.removeEventListener('keydown', onKeyDown);\n                document.removeEventListener('mouseup', onMouseUp);\n\n                if (box) {\n                    box.parentNode.removeChild(box);\n                    box = null;\n                }\n\n                // If bbox exists. use this value as the argument for `queryRenderedFeatures`\n                if (bbox) {\n                    if (cursorAction === 'generate') {\n                        var cellSize = 20;\n                        var units = 'miles';\n                        // var newCollection = turf.hexGrid([map.unproject(bbox[0]).lng, map.unproject(bbox[0]).lat,map.unproject(bbox[1]).lng, map.unproject(bbox[1]).lat], cellSize, units);\n                        var newCollection = turf.triangleGrid([map.unproject(bbox[0]).lng, map.unproject(bbox[0]).lat,map.unproject(bbox[1]).lng, map.unproject(bbox[1]).lat], cellSize, units);\n                        if (newCollection.features.length > 0) {\n                            newCollection.features.forEach((feat, findex) => {\n                                feat.properties.id = findex;\n                            });\n                            hexGridSources.push(newCollection);\n                            map.addSource('hexGrid' + hexGridIndex, {\n                                'type': 'geojson',\n                                'data': JSON.parse(JSON.stringify(newCollection)),\n                            });\n                            map.addLayer({\n                                'id': 'hexGrid' + hexGridIndex,\n                                'type': 'line',\n                                'source': 'hexGrid' + hexGridIndex,\n                                'paint': {\n                                    'line-color': 'rgba(255, 0, 0, 0.5)',\n                                    'line-width': 1,\n                                    'line-blur': 1\n                                }\n                            });\n                            hexGridIndex += 1;\n                        }\n                    } else {\n                        var features = map.queryRenderedFeatures(bbox, { layers: ['features'] });\n                        if (features.length >= 1000) {\n                            return window.alert('Select a smaller number of features');\n                        } else if (features.length > 0) {\n                            document.getElementById('tablecontent').style.top = '0px';\n                            features.forEach(feature => {\n                                if (selectedUIDs.indexOf(feature.properties.UID) < 0) {\n                                    selectedUIDs.push(parseInt(feature.properties.UID, 10));\n                                    document.getElementById('DemoGridJSON_' + feature.properties.UID).style['background-color'] = '#F4FF00';\n                                } else {\n                                    selectedUIDs.splice(selectedUIDs.indexOf(feature.properties.UID), 1);\n                                    document.getElementById('DemoGridJSON_' + feature.properties.UID).style['background-color'] = null;\n                                }\n                            });\n                            map.setFilter('hovered', ['in', 'UID', ...selectedUIDs]);\n                            var topOffset = document.getElementById('DemoGridJSON_' + selectedUIDs[selectedUIDs.length - 1]).getBoundingClientRect().top;\n                            document.getElementById('tablecontent').style.top = (-1 * (topOffset - 200)) + 'px';\n                        }\n                    }\n                }\n                map.dragPan.enable();\n            }\n\n            function setUnsetUID(uid) {\n                console.log('setUnsetUID(' + uid + ')');\n                if (selectedUIDs.indexOf(uid) < 0) {\n                    selectedUIDs.push(parseInt(uid, 10));\n                    map.setFilter('hovered', ['in', 'UID', ...selectedUIDs]);\n                    document.getElementById('DemoGridJSON_' + uid).style['background-color'] = '#F4FF00';\n                    scrollTable(uid);\n                    \n                } else {\n                    selectedUIDs.splice(selectedUIDs.indexOf(uid), 1);\n                    map.setFilter('hovered', ['in', 'UID', ...selectedUIDs]);\n                    document.getElementById('DemoGridJSON_' + uid).style['background-color'] = null;\n                    scrollTable(selectedUIDs[selectedUIDs.length - 1]);\n                }\n            }\n\n            function scrollTable(uid) {\n                if (uid) {\n                    var topDiff = $('#DemoGridJSON_' + uid).offset().top - $('#tablecontent').position().top;\n                    $('#table-container').animate({\n                        scrollTop: topDiff - 50\n                    }, 500);\n                }\n            }\n\n            map.on('click', function(e) {\n                var features = map.queryRenderedFeatures(e.point, { layers: ['features'] });\n                if (features.length > 0) {\n                    var feature = features[0];\n                    setUnsetUID(feature.properties.UID);\n                }\n            });\n        });\n\n        function initAutocompleteValuePicker(data) {\n            var availableTags = [];\n            var availableDataVersions = Object.keys(localStorage);\n            data.forEach(e => {\n                if (availableTags.indexOf(e.columns[1]) < 0) {\n                    availableTags.push(e.columns[1]);\n                }\n            });\n            $( \"#isos\" ).autocomplete({\n              source: availableTags,\n              select: function(event, ui) {\n                // console.log('ISOs')\n                // console.log(event);\n                // console.log(ui);\n                setColumnValue(3, selectedUIDs, ui.item.value);\n              }\n            });\n            $( \"#colonies\" ).autocomplete({\n              source: availableTags,\n              select: function(event, ui) {\n                // console.log('colonies')\n                // console.log(event);\n                // console.log(ui);\n                setColumnValue(4, selectedUIDs, ui.item.value);\n              }\n            });\n            $( \"#selectIso\" ).autocomplete({\n              source: availableTags,\n              select: function(event, ui) {\n                console.log('select all features with ISO code ' + ui.item.value);\n                selectAllFeaturesByVariable('ISO', ui.item.value);\n              }\n            });\n            $( \"#selectNewIso\" ).autocomplete({\n              source: availableTags,\n              select: function(event, ui) {\n                console.log('select all features with new ISO code ' + ui.item.value);\n                selectAllFeaturesByVariable('ISONEW', ui.item.value);\n              }\n            });\n            $( \"#selectColony\" ).autocomplete({\n              source: availableTags,\n              select: function(event, ui) {\n                console.log('select all features with colony code ' + ui.item.value);\n                selectAllFeaturesByVariable('Colony', ui.item.value);\n              }\n            });\n            $( \"#loadDataVersion\" ).autocomplete({\n              source: availableDataVersions,\n            });\n        }\n\n        function getRow(id) {\n            return window.editableGrid.data.filter(r => {return r.columns[0] === id;})[0];\n        }\n\n        function getRows(ids) {\n            return window.editableGrid.data.filter(r => {return ids.indexOf(r.columns[0]) >= 0;});\n        }\n\n        function setColumnValue(colIdx, ids, value) {\n            var rows = getRows(ids);\n            rows.forEach(row => {\n                 row.columns[colIdx] = value;\n            });\n            editableGrid.renderGrid();\n            save2local();\n        }\n\n        function replicateDataColumns() {\n            var fromColumnIdx = parseInt(document.getElementById('fromIdx').value, 10);\n            var toColumnIdx = parseInt(document.getElementById('toIdx').value, 10);\n            window.editableGrid.data.forEach(row => {\n                row.columns[toColumnIdx] = row.columns[fromColumnIdx].toString();\n            });\n            editableGrid.renderGrid();\n        }\n\n        function save2local() {\n            var saveDataVersion = document.getElementById('saveDataVersion').value;\n            localStorage.setItem(saveDataVersion, JSON.stringify(window.editableGrid.data));\n            alert('Saved version ' + saveDataVersion);\n        }\n\n        function save2file() {\n            var header = window.editableGrid.columns.map(c => {\n                return c.name;\n            });\n            var data = [header];\n            window.editableGrid.data.forEach(row => {\n                var newRow = Object.keys(row.columns).map(column => {\n                    return row.columns[column];\n                });\n                data.push(newRow);\n            });\n            var csvContent = 'data:text/csv;charset=utf-8,';\n            data.forEach((infoArray, index) => {\n               var dataString = infoArray.join(',');\n               csvContent += (index < data.length )? dataString + '\\n' : dataString;\n            });\n            var encodedUri = encodeURI(csvContent);\n            var link = document.createElement('a');\n            link.setAttribute('href', encodedUri);\n            link.setAttribute('download', 'year_' + currentYear + '_version_' + document.getElementById('saveDataVersion').value + '.csv');\n            document.body.appendChild(link); // Required for FF\n            link.click(); // This will download the data file named \"my_data.csv\".\n        }\n\n        function saveGrids2file() {\n            hexGridSources.forEach((grid, gi) => {\n                var content = JSON.stringify(grid);\n                var encodedUri = encodeURI(content);\n                var link = document.createElement('a');\n                link.setAttribute('href', encodedUri);\n                link.setAttribute('download', 'grid_' + gi + '.json');\n                document.body.appendChild(link); // Required for FF\n                link.click(); // This will download the data file named \"my_data.csv\".\n            });\n        }\n\n        function loadLocal() {\n            var loadDataVersion = document.getElementById('loadDataVersion').value;\n            if (localStorage.getItem(loadDataVersion)) {\n                window.editableGrid.data = JSON.parse(localStorage.getItem(loadDataVersion));\n                window.editableGrid.renderGrid();\n                alert('Loaded version ' + loadDataVersion);\n            } else {\n                alert('Unexisting version ' + loadDataVersion);\n            }\n        }\n\n        function resetData() {\n            window.editableGrid.loadJSON(importJSONurl);\n        }\n\n        function selectAllFeaturesByVariable(variable, iso) {\n            var variableIndex = 0;\n\n            window.editableGrid.columns.forEach((element, index) => {\n               if (element.name === variable) {\n                    variableIndex = parseInt(index, 10);\n               } \n            });\n\n            var features = window.editableGrid.data.filter(r => {return r.columns[variableIndex] === iso;});\n            document.getElementById('tablecontent').style.top = '0px';\n            features.forEach(feature => {\n                if (selectedUIDs.indexOf(feature.columns[0]) < 0) {\n                    selectedUIDs.push(parseInt(feature.columns[0], 10));\n                    document.getElementById('DemoGridJSON_' + feature.columns[0]).style['background-color'] = '#F4FF00';\n                } else {\n                    selectedUIDs.splice(selectedUIDs.indexOf(feature.columns[0]), 1);\n                    document.getElementById('DemoGridJSON_' + feature.columns[0]).style['background-color'] = null;\n                }\n            });\n            map.setFilter('hovered', ['in', 'UID', ...selectedUIDs]);\n            var topOffset = document.getElementById('DemoGridJSON_' + selectedUIDs[selectedUIDs.length - 1]).getBoundingClientRect().top;\n            document.getElementById('tablecontent').style.top = (-1 * (topOffset - 200)) + 'px';\n        }\n\n        function loadParseCSV() {\n            \n        }\n\n        function csvJSON(csv){\n          var lines=csv.split(\"\\n\");\n          var result = [];\n          var headers=lines[0].split(\",\");\n          for(var i=1;i<lines.length;i++){\n              var obj = {};\n              var currentline=lines[i].split(\",\");\n              for(var j=0;j<headers.length;j++){\n                  obj[headers[j]] = currentline[j];\n              }\n              result.push(obj);\n          }\n          return JSON.stringify(result); //JSON\n        }\n\n        window.onload = function() {\n            editableGrid = new EditableGrid(\"DemoGridJSON\"); \n            editableGrid.tableLoaded = function() {\n                this.renderGrid(\"tablecontent\", \"testgrid\");\n            };\n            editableGrid.tableRendered = function() {\n                console.log('tableRendered');\n                initAutocompleteValuePicker(editableGrid.data);\n            };\n            editableGrid.loadJSON(importJSONurl);\n        }\n    </script>\n</body>\n</html>",
 			"file": "tiles/tiles/index.html",
-			"file_size": 22858,
-			"file_write_time": 131539974947241671,
 			"settings":
 			{
-				"buffer_size": 22353,
+				"buffer_size": 22454,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -84,8 +89,29 @@
 			"settings":
 			{
 				"buffer_size": 4126,
-				"encoding": "UTF-8",
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Remote:   origin @ https://github.com/rezonski/sandbox.git\nLocal:    v0.1 /var/www/html/sandbox\nHead:     9146179 progress on tiles\n\n\nNothing to commit (working directory clean)\n\n# Movement:\n#    r = refresh status\n#    1-5 = jump to section\n#    n = next item, N = next section\n#    p = previous item, P = previous section\n#\n# Staging:\n#    s = stage file/section, S = stage all unstaged files\n#    ctrl+shift+s = stage all unstaged and untracked files\n#    u = unstage file/section, U = unstage all files\n#    backspace = discard file/section, shift+backspace = discard everything\n#\n# Commit:\n#    c = commit, C = commit -a (add unstaged)\n#    ctrl+shift+c = commit --amend (amend previous commit)\n#\n# Other:\n#    i = ignore file, I = ignore pattern\n#    enter = open file\n#    d = view diff\n#\n# Stashes:\n#    a = apply stash, A = pop stash\n#    z = create stash, Z = create stash including untracked files\n#    backspace = discard stash",
+			"settings":
+			{
+				"buffer_size": 939,
+				"line_ending": "Unix",
+				"name": "*git-status*: sandbox",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"contents": "diff --git a/tiles/tiles/index.html b/tiles/tiles/index.html\nindex 79cb9ce..6cbfd3a 100644\n--- a/tiles/tiles/index.html\n+++ b/tiles/tiles/index.html\n@@ -15,6 +15,7 @@\n     <script src=\"js/editablegrid_charts.js\" ></script>\r\n     <script src=\"https://code.jquery.com/jquery-1.12.4.js\"></script>\r\n     <script src=\"https://code.jquery.com/ui/1.12.1/jquery-ui.js\"></script>\r\n+    <script src=\"https://rawgit.com/mholt/PapaParse/master/papaparse.min.js\"></script>\r\n     <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css\">\r\n     <link rel=\"stylesheet\" href=\"css/editablegrid.css\" type=\"text/css\" media=\"screen\">\r\n     <link href=\"css/app.css\" rel=\"stylesheet\"/>\r\n@@ -104,6 +105,7 @@\n         var currentYear = 2010;\r\n         var selectedUIDs = [];\r\n         var importJSONurl = 'data/data1962.json';\r\n+        var dataJSON;\r\n \r\n         var cursorAction = 'generate'; // [generate, select]\r\n         var hexGridSources = [];\r\n@@ -115,7 +117,7 @@\n             // maxBounds: [[-250,-90],[250,90]]\r\n             center: [0, 0],\r\n             zoom: 1,\r\n-            maxZoom: 6\r\n+            maxZoom: 8\r\n             // pitch: 50,\r\n             // bearing: -10,\r\n         });\r\n@@ -482,6 +484,50 @@\n             document.getElementById('tablecontent').style.top = (-1 * (topOffset - 200)) + 'px';\r\n         }\r\n \r\n+        function loadParseCSV() {\r\n+            $.get('data/allData.csv', (response, status, xhr) => {\r\n+                if ( status === 'error' ) {\r\n+                    console.log('Sorry but there was an error');\r\n+                } else {\r\n+                    const newJSON = csvJSON(response);\r\n+                    dataJSON = {\r\n+                        \"metadata\": [],\r\n+                        \"data\": [],\r\n+                    };\r\n+                    dataJSON.metadata = Object.keys(newJSON[0]).map(k => {\r\n+                        return {\r\n+                            'name': k,\r\n+                            'label': k,\r\n+                            'datatype': (k === 'ID' || k === 'UID') ? 'integer' : 'string',\r\n+                            'editable': (k === 'ISONEW' || k === 'Colony') ? true : false,\r\n+                        }\r\n+                    });\r\n+                    dataJSON.data = newJSON.map((e, i) => {\r\n+                        return {\r\n+                            'id': i,\r\n+                            'values': e\r\n+                        };\r\n+                    });\r\n+                    window.editableGrid.loadJSONFromString(dataJSON);\r\n+                }\r\n+            });\r\n+        }\r\n+\r\n+        function csvJSON(csv){\r\n+            var lines=csv.split(\"\\n\");\r\n+            var result = [];\r\n+            var headers=lines[0].split(\",\");\r\n+            for(var i=1;i<lines.length;i++){\r\n+                var obj = {};\r\n+                var currentline=lines[i].split(\",\");\r\n+                for(var j=0;j<headers.length;j++){\r\n+                    obj[headers[j]] = currentline[j];\r\n+                }\r\n+                result.push(obj);\r\n+            }   \r\n+            return result; //JSON\r\n+        }\r\n+\r\n         window.onload = function() {\r\n             editableGrid = new EditableGrid(\"DemoGridJSON\"); \r\n             editableGrid.tableLoaded = function() {\r\n@@ -491,7 +537,6 @@\n                 console.log('tableRendered');\r\n                 initAutocompleteValuePicker(editableGrid.data);\r\n             };\r\n-            editableGrid.loadJSON(importJSONurl);\r\n         }\r\n     </script>\r\n </body>\r\n",
+			"settings":
+			{
+				"buffer_size": 3491,
+				"line_ending": "Unix",
+				"name": "*git-diff*: tiles/tiles/index.html",
+				"read_only": true,
+				"scratch": true
 			}
 		}
 	],
@@ -96,16 +122,16 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 392.0,
-		"last_filter": "git sta",
+		"height": 336.0,
+		"last_filter": "git stat",
 		"selected_items":
 		[
 			[
-				"git sta",
+				"git stat",
 				"Git: Status"
 			],
 			[
-				"git stat",
+				"git sta",
 				"Git: Status"
 			],
 			[
@@ -165,6 +191,11 @@
 	],
 	"file_history":
 	[
+		"/var/www/html/sandbox/tiles/tiles/index.html",
+		"/var/www/html/sandbox/tiles/tiles/js/editablegrid.js",
+		"/var/www/html/sandbox/tiles/tiles/index_old.html",
+		"/var/www/html/sandbox/tiles/tiles/data/data.json",
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition.js",
 		"/var/www/html/sandbox/stazenet/app/src/components/openTrail/OpenTrailContainer.js",
 		"/var/www/html/sandbox/stazenet/app/src/components/newTrail/StepWaypointsPreprocessing.js",
 		"/var/www/html/sandbox/stazenet/app/src/components/newTrail/NewTrailContainer.js",
@@ -182,17 +213,14 @@
 		"/var/www/html/sandbox/stazenet/app/src/helpers/WaypointHelper.js",
 		"/var/www/html/sandbox/stazenet/app/src/apis/TrailsApi.js",
 		"/var/www/html/sandbox/geojson.io/src/core/api.js",
-		"/var/www/html/sandbox/tiles/tiles/index.html",
 		"/var/www/html/sandbox/TriangleGrid_NorthAfrica.geojson",
 		"/var/www/html/sandbox/stazenet/app/src/components/newTrail/StepUpload.js",
 		"/var/www/html/sandbox/.gitignore",
 		"/var/www/html/sandbox/grid_Africa_North.geojson",
 		"/var/www/html/sandbox/grid1.geojson",
-		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition.js",
 		"/home/datasoft/Documents/Current/grid.geojson",
 		"/var/www/html/sandbox/examples/dbconnection.php",
 		"/var/www/html/sandbox/tiles/tiles/css/app.css",
-		"/var/www/html/sandbox/tiles/tiles/js/editablegrid.js",
 		"/var/www/html/sandbox/tiles/tiles/data/data1962.json",
 		"/var/www/html/sandbox/tiles/tiles/data/grid.json",
 		"/var/www/html/sandbox/tiles/tiles/js/editablegrid_utils.js",
@@ -217,7 +245,7 @@
 	],
 	"find":
 	{
-		"height": 38.0
+		"height": 41.0
 	},
 	"find_in_files":
 	{
@@ -234,6 +262,28 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"loadParseCSV",
+			"finish",
+			"queryRenderedFeatures",
+			"map",
+			"editablegrid",
+			"loadParseCSV",
+			"window.editableGrid",
+			"dataJSON",
+			"loadJSONFromString",
+			"processJSON",
+			"jsonData",
+			"processJSON",
+			"json",
+			"editableGrid",
+			"window.",
+			"testgrid",
+			"tablecontent",
+			"editableGrid",
+			"processJSON",
+			"callback",
+			"url",
+			"data",
 			"loadLocal",
 			"baseUrl",
 			"_addUrlParameters",
@@ -339,29 +389,7 @@
 			"'ISO',",
 			"uid",
 			"setUnsetUID",
-			"isos",
-			"for selected features to",
-			"values.ISO",
-			"font",
-			"tags",
-			"20px",
-			"currentYear",
-			"COLONY1962",
-			"Colony",
-			"unsetNewUID",
-			"resetMapTable",
-			"selectedUIDs",
-			"selectedUID",
-			"cellEditor",
-			" 5",
-			"5",
-			"map.on('",
-			"ISO",
-			"grid.json",
-			"firstname",
-			"mouseClicked",
-			"CellRenderer",
-			"cellRenderer"
+			"isos"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -381,7 +409,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -390,15 +418,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 22353,
+						"buffer_size": 22454,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								16539,
-								16539
+								20961,
+								20961
 							]
 						],
 						"settings":
@@ -414,15 +442,16 @@
 									"selector": "text.html"
 								}
 							],
+							"open_with_edit": true,
 							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 235.0,
+						"translation.y": 6443.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -438,8 +467,8 @@
 						"selection":
 						[
 							[
-								2713,
-								2713
+								487,
+								487
 							]
 						],
 						"settings":
@@ -460,10 +489,79 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
+						"translation.y": 2160.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 939,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								134,
+								134
+							]
+						],
+						"settings":
+						{
+							"__vi_external_disable": true,
+							"default_dir": "/var/www/html/sandbox",
+							"draw_white_space": "none",
+							"git_repo": "/var/www/html/sandbox",
+							"git_status": true,
+							"git_view": "status",
+							"syntax": "Packages/SublimeGit/syntax/SublimeGit Status.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3491,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3414,
+								3451
+							]
+						],
+						"settings":
+						{
+							"default_dir": "/var/www/html/sandbox",
+							"git_diff_cached": false,
+							"git_diff_clean": false,
+							"git_diff_path": "tiles/tiles/index.html",
+							"git_diff_unified": 3,
+							"git_repo": "/var/www/html/sandbox",
+							"git_view": "diff",
+							"syntax": "Packages/SublimeGit/syntax/SublimeGit Diff.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -471,11 +569,11 @@
 	],
 	"incremental_find":
 	{
-		"height": 23.0
+		"height": 28.0
 	},
 	"input":
 	{
-		"height": 37.0
+		"height": 40.0
 	},
 	"layout":
 	{
@@ -524,7 +622,7 @@
 	"project": "sandbox.sublime-project",
 	"replace":
 	{
-		"height": 42.0
+		"height": 52.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -618,7 +716,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 320.0,
+	"side_bar_width": 257.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

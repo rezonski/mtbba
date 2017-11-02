@@ -110,6 +110,7 @@ class MapHelper {
             });
             window.Draw = Draw;
             previewMap.addControl(Draw);
+            previewMap.drawControlAdded = true;
         } else {
             Draw = window.Draw;
         }
@@ -221,8 +222,10 @@ class MapHelper {
             delete window.savePathControl;
         }
         if (window.Draw) {
-            previewMap.removeControl(window.Draw);
-            delete window.Draw;
+            setTimeout(() => {
+                previewMap.removeControl(window.Draw);
+                delete window.Draw;
+            }, 3000);
         }
     }
 

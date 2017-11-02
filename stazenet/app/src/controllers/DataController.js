@@ -1,5 +1,6 @@
 /* global toGeoJSON */
 /* global polyline */
+/* global turf */
 import GLU from '/../../glu2.js/src/index';
 import CommonDataModel from '/dataSources/CommonDataModel';
 import TrailsDataModel from '/dataSources/TrailsDataModel';
@@ -104,6 +105,7 @@ class DataController extends GLU.Controller {
             leftMap: MapModel.leftMap,
             // rightMap: MapModel.rightMap,
         };
+        TrailsDataModel.activeTrail.enrichPathLine();
         TrailsDataModel.activeTrail.generateWaypoints(maps);
         const pathLayers = TrailsDataModel.activeTrail.mapPathLayers;
         GLU.bus.emit(Enum.MapEvents.DISPLAY_PATH_LAYERS_ON_MAP, pathLayers);
@@ -157,6 +159,7 @@ class DataController extends GLU.Controller {
     }
 
     getChartData(containerId) {
+        TrailsDataModel.activeTrail.enrichPathLine();
         const chartData = TrailsDataModel.activeTrail.getChartData(containerId);
         GLU.bus.emit(Enum.DataEvents.CHART_DATA_RETRIEVED, chartData);
     }
@@ -248,9 +251,11 @@ class DataController extends GLU.Controller {
     }
 
     uploadTrail() {
+        TrailsDataModel.activeTrail.enrichPathLine();
         const trail = JSON.parse(JSON.stringify(TrailsDataModel.activeTrail.enrichedFeaturesCollection));
         const lines = CommonHelper.getLineStrings(trail);
         const waypoints = CommonHelper.getPoints(trail);
+        debugger;
         const generalFacts = JSON.parse(JSON.stringify(TrailsDataModel.activeTrail.getGeneralFacts()));
         const uploadPayload = JSON.stringify({
             lines,
@@ -267,6 +272,7 @@ class DataController extends GLU.Controller {
         const xmlhttpUpload = new XMLHttpRequest();
         xmlhttpUpload.onreadystatechange = () => {
             if (xmlhttpUpload.readyState === 4 && xmlhttpUpload.status === 200) {
+                debugger;
                 console.log(xmlhttpUpload.responseText);
             }
         };
@@ -318,7 +324,7 @@ class DataController extends GLU.Controller {
     }
 
     searchOneToponymLevel(waypoints, widx, setup, indexLvl) {
-        if (setup.lvl[indexLvl]) {
+        if (!setup.lvl[indexLvl]) { // Correct this
             const wp = waypoints[widx];
             const query = {
                 location: setup.coordinates,
@@ -330,21 +336,21 @@ class DataController extends GLU.Controller {
             .then((responseRaw) => {
                 const response = JSON.parse(responseRaw.text);
                 if (response.status === 'OK' && response.results) {
-                    const suggestions = response.results.map((r, i) => {
-                        return {
-                            id: i,
-                            name: setup.lvl[indexLvl].prefix + r.name,
-                            desc: setup.lvl[indexLvl].prefix,
-                        };
-                    });
-                    wp.properties.altName = '';
-                    if (wp.properties.suggestionNames) {
-                        wp.properties.suggestionNames = wp.properties.suggestionNames.concat(suggestions);
+                    const suggestions = response.results.reduce((total, currentValue) => {
+                        // console.log('add ' + currentValue.name);
+                        const toPoint = turf.point([currentValue.geometry.location.lng, currentValue.geometry.location.lat]);
+                        const distance = turf.distance(wp, toPoint).toFixed(2);
+                        const angle = turf.bearing(wp, toPoint);
+                        const angleDesc = CommonHelper.angle2string(angle);
+                        // return total + ', ' + setup.lvl[indexLvl].prefix + currentValue.name;
+                        return `${total}, ${setup.lvl[indexLvl].prefix} ${currentValue.name} (${distance}km ${angleDesc})`;
+                    }, '');
+                    // console.log('waypoints[' + widx + '] = ' + suggestions);
+                    if (wp.properties.suggestionNames !== undefined) {
+                        wp.properties.suggestionNames = wp.properties.suggestionNames + suggestions;
                     } else {
                         wp.properties.suggestionNames = suggestions;
                     }
-                } else {
-                    wp.properties.suggestionNames = [];
                 }
                 this.searchOneToponymLevel(waypoints, widx, setup, indexLvl + 1);
             });
@@ -356,6 +362,8 @@ class DataController extends GLU.Controller {
             //     throw msg;
             // });
         } else {
+            const currentSuggestionNames = (waypoints[widx].properties.suggestionNames) ? waypoints[widx].properties.suggestionNames : '';
+            waypoints[widx].properties.suggestionNames = (currentSuggestionNames.length > 0) ? currentSuggestionNames.substr(2) : '';
             this.searchOneWaypointToponyms(waypoints, widx + 1);
         }
     }

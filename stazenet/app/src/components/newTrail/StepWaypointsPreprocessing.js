@@ -3,7 +3,7 @@ import BasePage from '../BasePage';
 import Enum from '/enums/Enum';
 import Lang from '/helpers/Lang';
 import CircularProgress from 'material-ui/CircularProgress';
-import ListSelection from '../common/ListSelection';
+import InputTextBox from '../common/InputTextBox';
 import {
     Table,
     TableBody,
@@ -21,6 +21,7 @@ class StepWaypointsPreprocessing extends BasePage {
         });
         this.state = {
             loading: true,
+            height: '300px',
         };
     }
 
@@ -58,42 +59,41 @@ class StepWaypointsPreprocessing extends BasePage {
 
         const wpstable = this.state.waypoints.map((wp, wpIdx) => {
             return (<TableRow
-                key={'waypoint-suggestion-row-' + wpIdx}
-            >
-                <TableRowColumn style={styles.columnNarower}>{wp.properties.name}</TableRowColumn>
-                <TableRowColumn style={styles.columnNarower}>
-                    <ListSelection
-                        key="wpSuggestions"
-                        fieldName={'waypoints'}
-                        sourceName="optionList"
-                        optionList={wp.properties.suggestionNames}
-                        defaultValueIndex={0}
-                        fieldIndex={this.props.wpIndex}
-                        fieldProp={'altName'}
-                        floatingLabelText={Lang.label('suggestion')}
-                    />
-                </TableRowColumn>
-                <TableRowColumn>{wp.properties.desc}</TableRowColumn>
-            </TableRow>);
+                        key={'waypoint-suggestion-row-' + wpIdx}
+                        selectable={false}
+                    >
+                        <TableRowColumn style={styles.columnNarower}>
+                            <InputTextBox
+                                fieldName={'waypoints'}
+                                fieldIndex={wpIdx}
+                                fieldProp={'name'}
+                                inputBoxStyle={{ fontSize: '80%' }}
+                                isMultiline={false}
+                                noRows={1}
+                                filedLabel={Lang.label('wpName')}
+                                filedHintText={Lang.label('wpName')}
+                            />
+                        </TableRowColumn>
+                        <TableRowColumn>{wp.properties.suggestionNames}</TableRowColumn>
+                    </TableRow>);
         });
 
         return (<div className="flex-container row">
-                <Table
-                    height={this.state.height}
-                    onRowSelection={this.onRowSelectedEvent}
-                >
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderColumn style={styles.columnNarower}>{Lang.label('wpName')}</TableHeaderColumn>
-                            <TableHeaderColumn style={styles.columnNarower}>{Lang.label('suggestion')}</TableHeaderColumn>
-                            <TableHeaderColumn>{Lang.label('wpDesc')}</TableHeaderColumn>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        {wpstable}
-                    </TableBody>
-                </Table>
-        </div>);
+                    <Table
+                        height={this.state.height}
+                        selectable={false}
+                    >
+                        <TableHeader>
+                            <TableRow>
+                                <TableHeaderColumn style={styles.columnNarower}>{Lang.label('wpName')}</TableHeaderColumn>
+                                <TableHeaderColumn style={styles.columnNarower}>{Lang.label('suggestion')}</TableHeaderColumn>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {wpstable}
+                        </TableBody>
+                    </Table>
+            </div>);
     }
 }
 

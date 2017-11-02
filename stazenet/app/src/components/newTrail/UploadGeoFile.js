@@ -17,6 +17,7 @@ class UploadGeoFile extends BusComponent {
         this.state = {
             selectedFile: '',
         };
+        this.onFileSelectedEvent = this.onFileSelected.bind(this);
     }
 
     onAttachmentUploadClicked() {
@@ -25,7 +26,9 @@ class UploadGeoFile extends BusComponent {
 
     onFileSelected(e) {
         if (e.target.files.length > 0) {
-            this.setState({ selectedFile: e.target.files[0] }, this.onStartUpload.bind(this));
+            this.setState({
+                selectedFile: e.target.files[0],
+            }, this.onStartUpload.bind(this));
         }
     }
 
@@ -43,11 +46,11 @@ class UploadGeoFile extends BusComponent {
                     label={Lang.label('addGeoFile')}
                     primary={true}
                     onTouchTap={this.onAttachmentUploadClicked.bind(this)} />
-                <input type="file"
-                       key={this.state.selectedFile}
-                       ref="fileUpload"
-                       onChange={this.onFileSelected.bind(this)}
-                       style={style.inputFile} />
+                <input
+                    type={"file"}
+                    ref={'fileUpload'}
+                    onChange={this.onFileSelectedEvent}
+                    style={style.inputFile} />
             </div>
         );
     }
