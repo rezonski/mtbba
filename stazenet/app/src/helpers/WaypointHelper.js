@@ -227,11 +227,6 @@ class WaypointHelper extends GLU.Controller {
                     GLU.bus.emit(Enum.DataEvents.ADD_SURFACE_CHANGE, payload);
                 } else {
                     let symbol = this.symbolFromDesc(tempDesc, tempPictogram, wpoint.properties.name);
-                    if (wpindex === 0) {
-                        symbol = 'START';
-                    } else if (wpindex === (inputWaypoints.length - 1)) {
-                        symbol = 'END';
-                    }
                     const newWaypoint = {
                         id: wpindex,
                         time: (wpoint.properties.time !== undefined) ? wpoint.properties.time : null,
@@ -264,7 +259,12 @@ class WaypointHelper extends GLU.Controller {
 
         newWaypointsExport = CommonHelper.sortArrayByKey(newWaypoints, 'odometer');
 
-        debugger;
+        newWaypointsExport[0].symbol = 'START';
+        newWaypointsExport[0].iconMarker = this.getIcon4Symbol('START');
+        newWaypointsExport[0].elevation = inputPathLine[0].elevation;
+        newWaypointsExport[newWaypointsExport.length - 1].symbol = 'END';
+        newWaypointsExport[newWaypointsExport.length - 1].iconMarker = this.getIcon4Symbol('END');
+        newWaypointsExport[newWaypointsExport.length - 1].elevation = inputPathLine[inputPathLine.length - 1].elevation;
 
         newWaypointsExport.forEach((element, index) => {
             let tempWp = {};
@@ -292,7 +292,6 @@ class WaypointHelper extends GLU.Controller {
             newPoint.properties.id = wpIdx;
             mapWaypointsCollection.features.push(newPoint);
         });
-        debugger;
         return mapWaypointsCollection.features;
     }
 
