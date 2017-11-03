@@ -135,6 +135,7 @@ class NewTrailContainer extends BasePage {
 
     handleClose() {
         // this.emit(Enum.MapEvents.REQUEST_DISPLAY_PATH_LAYERS);
+        this.emit(Enum.MapEvents.REBUILD_PATH_LAYERS);
         this.setState({
             open: false,
             stepIndex: 0,

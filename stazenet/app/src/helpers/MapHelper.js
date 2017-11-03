@@ -163,6 +163,7 @@ class MapHelper {
                 Draw.set(intialisedCollection);
             });
             previewMap.on('saveEditedPath', () => {
+                // debugger;
                 const editedCollection = window.Draw.getAll();
                 GLU.bus.emit(Enum.DataEvents.SAVE_MANUAL_EDITED_FILE, editedCollection);
             });
@@ -181,6 +182,7 @@ class MapHelper {
             });
 
             previewMap.on('addTerrainSwitch', p => {
+                // debugger;
                 const newPoint = turf.point([p.position.lng, p.position.lat], { type: 'terrainSwitch', surfaceType: p.surface });
                 const currentCollection = window.Draw.getAll();
                 currentCollection.features.push(newPoint);
@@ -225,7 +227,7 @@ class MapHelper {
             setTimeout(() => {
                 previewMap.removeControl(window.Draw);
                 delete window.Draw;
-            }, 3000);
+            }, 0);
         }
     }
 
@@ -284,6 +286,8 @@ class MapHelper {
         layersArray.push(baseLayerStyle);
         sastavPathsArray.push(JSON.parse(JSON.stringify(basePath)));
 
+        let lastSectionCoordinate = null;
+
         // Create segments
         // debugger;
         surfaceCollection.forEach((surfaceElement, surfaceIndex) => {
@@ -307,14 +311,15 @@ class MapHelper {
               },
               geometry: {
                 type: 'LineString',
-                coordinates: [],
+                coordinates: (lastSectionCoordinate) ? [lastSectionCoordinate] : [],
               },
             };
 
             for (let i = 0; i < (pathLine.length - 1); i++) {
                 totalOdometer += pathLine[i + 1].prevDist;
                 if (startOdometer <= totalOdometer && totalOdometer <= endOdometer) {
-                    currentSection.geometry.coordinates.push([pathLine[i].lon, pathLine[i].lat]);
+                    lastSectionCoordinate = [pathLine[i].lon, pathLine[i].lat];
+                    currentSection.geometry.coordinates.push(lastSectionCoordinate);
                 }
             }
 

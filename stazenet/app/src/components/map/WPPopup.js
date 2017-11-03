@@ -81,7 +81,7 @@ class WPPopup extends BasePage {
             top: (this.state.correctionBottom) ? 'auto' : this.state.position.y + 10,
             bottom: (this.state.correctionBottom) ? 10 : 'auto',
         };
-        console.log(style);
+        // console.log(style);
         return (<div
                     id="wp-popup"
                     className={'map-popup' + ((this.state.isVisible) ? ' visible' : '')}

@@ -152,7 +152,7 @@ class DataController extends GLU.Controller {
     }
 
     addSurfaceChange(payload) {
-        console.log('addSurfaceChange(' + payload.odometer + ', ' + payload.surfaceType + ')');
+        // console.log('addSurfaceChange(' + payload.odometer + ', ' + payload.surfaceType + ')');
         let currentSurfaceCollection = TrailsDataModel.activeTrail.getTrailData().surfaceCollection;
         currentSurfaceCollection.push([payload.odometer, payload.surfaceType]);
         TrailsDataModel.activeTrail.setDataByName('surfaceCollection', null, null, currentSurfaceCollection);
@@ -237,7 +237,6 @@ class DataController extends GLU.Controller {
                 GLU.bus.emit(Enum.DataEvents.TRAIL_DOWNLOADED, trailData);
                 GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
                 GLU.bus.emit(Enum.MapEvents.REBUILD_PATH_LAYERS);
-                GLU.bus.emit(Enum.MapEvents.REQUEST_DISPLAY_PATH_LAYERS);
             })
             .catch((err) => {
                 const msg = (err && err.response) ? err.response.text : err.toString();
@@ -255,25 +254,30 @@ class DataController extends GLU.Controller {
         const trail = JSON.parse(JSON.stringify(TrailsDataModel.activeTrail.enrichedFeaturesCollection));
         const lines = CommonHelper.getLineStrings(trail);
         const waypoints = CommonHelper.getPoints(trail);
-        debugger;
         const generalFacts = JSON.parse(JSON.stringify(TrailsDataModel.activeTrail.getGeneralFacts()));
         const uploadPayload = JSON.stringify({
             lines,
             waypoints,
             generalFacts,
         });
-        console.log({
-            lines,
-            waypoints,
-            generalFacts,
-        });
+        // console.log({
+        //     lines,
+        //     waypoints,
+        //     generalFacts,
+        // });
         // Connection
         const destination = appConfig.constants.server + 'setTrail.php';
         const xmlhttpUpload = new XMLHttpRequest();
         xmlhttpUpload.onreadystatechange = () => {
             if (xmlhttpUpload.readyState === 4 && xmlhttpUpload.status === 200) {
-                debugger;
-                console.log(xmlhttpUpload.responseText);
+                const resp = JSON.parse(xmlhttpUpload.responseText);
+                if (resp.status && resp.newTrail) {
+                    GLU.bus.emit(MessageEvents.INFO_MESSAGE, `New trail/version ${resp.trailID}/${resp.newVersionID} upladed successfully`);
+                } else {
+                    console.warn('#TrailUpladFailure');
+                    console.info(resp.log);
+                    GLU.bus.emit(MessageEvents.ERROR_MESSAGE, `Upload failed. See console log for details`);
+                }
             }
         };
         xmlhttpUpload.open('POST', destination, true);
@@ -289,7 +293,7 @@ class DataController extends GLU.Controller {
     searchOneWaypointToponyms(waypoints, widx) {
         if (waypoints[widx]) {
             const setup = {
-                coordinates: waypoints[widx].geometry.coordinates[1] + ',' +  waypoints[widx].geometry.coordinates[0],
+                coordinates: waypoints[widx].geometry.coordinates[1] + ',' + waypoints[widx].geometry.coordinates[0],
                 key: 'AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis',
                 lvl: [
                   {
@@ -324,7 +328,7 @@ class DataController extends GLU.Controller {
     }
 
     searchOneToponymLevel(waypoints, widx, setup, indexLvl) {
-        if (!setup.lvl[indexLvl]) { // Correct this
+        if (setup.lvl[indexLvl]) {
             const wp = waypoints[widx];
             const query = {
                 location: setup.coordinates,
@@ -591,8 +595,9 @@ class DataController extends GLU.Controller {
                         }
                     } else {
                         const erMsg = 'Faulted URL';
-                        console.log('responseRaw.text is not JSON, faulted URL');
-                        console.log(getURL);
+                        console.info('responseRaw.text is not JSON, faulted URL');
+                        console.info(getURL);
+                        GLU.bus.emit(MessageEvents.ERROR_MESSAGE, erMsg);
                         throw erMsg;
                     }
                 })

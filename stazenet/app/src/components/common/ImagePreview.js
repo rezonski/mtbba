@@ -9,7 +9,7 @@ class ImagePreview extends BasePage {
     constructor(props) {
         super(props);
         this.state = {
-            value: '',
+            value: undefined,
         };
         this.bindGluBusEvents({
             [MessageEvents.PICTURE_UPLOAD_STATUS]: this.onPictureUploadStatus,
@@ -36,7 +36,10 @@ class ImagePreview extends BasePage {
     }
 
     onTrailDataRetrieved(payload) {
-        if (payload[this.props.fieldName] && this.props.fieldIndex !== undefined && this.props.fieldProp) {
+        if (this.props.fieldIndex !== undefined &&
+            payload[this.props.fieldName] &&
+            payload[this.props.fieldName][this.props.fieldIndex] &&
+            payload[this.props.fieldName][this.props.fieldIndex][this.props.fieldProp]) {
             if (payload[this.props.fieldName][this.props.fieldIndex][this.props.fieldProp] !== this.state.value) {
                 this.setState({
                     value: payload[this.props.fieldName][this.props.fieldIndex].properties[this.props.fieldProp],
@@ -52,6 +55,10 @@ class ImagePreview extends BasePage {
     }
 
     render() {
+        if (!this.state.value) {
+            return null;
+        }
+
         let contentStyle = { backgroundImage: 'url("' + this.state.value + '")' };
         let content = <img src={AppConfig.constants.server + 'upload/watermark/watermark.png'} />;
 

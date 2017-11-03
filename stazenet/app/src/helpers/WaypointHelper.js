@@ -1,6 +1,6 @@
 /* global turf */
 import GLU from '/../../glu2.js/src/index';
-// import MessageEvents from '/enums/MessageEvents';
+import MessageEvents from '/enums/MessageEvents';
 import Enum from '/enums/Enum';
 import CommonHelper from '/helpers/CommonHelper';
 import TrailHelper from '/helpers/TrailHelper';
@@ -159,6 +159,8 @@ class WaypointHelper extends GLU.Controller {
         const inputPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
         // const elevatedPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(elevatedFeaturesCollection)))[0].geometry.coordinates;
         let inputWaypoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(featuresCollection)));
+        // console.log('inputWaypoints on enter');
+        // console.log(inputWaypoints.filter(f => { return f.properties.type && f.properties.type === 'terrainSwitch'; }));
         const startPathPoint = turf.point([inputPathLine[0].lon, inputPathLine[0].lat], { name: 'Start', pictogram: '90' });
         const endPathPoint = turf.point([inputPathLine[inputPathLine.length - 1].lon, inputPathLine[inputPathLine.length - 1].lat], { name: 'Finish', pictogram: '270' });
         const firstWP = inputWaypoints[0];
@@ -189,6 +191,11 @@ class WaypointHelper extends GLU.Controller {
             features: [],
         };
 
+        let usedWpNames = [];
+        let usedWpNamesIdxs = {};
+
+        // console.log('inputWaypoints before edit');
+        // console.log(inputWaypoints.filter(f => { return f.properties.type && f.properties.type === 'terrainSwitch'; }));
 
         inputWaypoints.forEach((wpoint, wpindex) => {
             let tempDistance = 9999999;
@@ -200,11 +207,13 @@ class WaypointHelper extends GLU.Controller {
             inputPathLine.forEach((ppoint, pindex) => {
                 // let currentDistance = TrailHelper.getDistanceFromLatLonInMeters(wpoint.geometry.coordinates[0], wpoint.geometry.coordinates[1], ppoint.lon, ppoint.lat);
                 let currentDistance = turf.distance(turf.point([wpoint.geometry.coordinates[0], wpoint.geometry.coordinates[1]]), turf.point([ppoint.lon, ppoint.lat]));
-                if ((currentDistance < tempDistance) && currentDistance < 0.1) { // less than 100m
+                if ((currentDistance < tempDistance) && currentDistance < 0.2) { // less than 100m
                     tempDistance = currentDistance;
                     tempIndex = pindex;
                 }
             });
+            // console.log(wpoint.properties);
+            // console.log('#tempIndex = ' + tempIndex);
             if (tempIndex > -1) {
                 if (wpoint.properties.desc !== undefined && wpoint.properties.desc.indexOf('#') > -1 ) {
                     let tempDescArray = wpoint.properties.desc.replace('#\n\n', '#\n').replace('#\n\n', '#\n').replace('#\n', '#').replace('#\n', '#').split('#');
@@ -219,14 +228,20 @@ class WaypointHelper extends GLU.Controller {
                 }
 
                 if (wpoint.properties.type && wpoint.properties.type === 'terrainSwitch') {
-                    console.log('Surface: ' + wpoint.properties.surfaceType + ' - ' + JSON.stringify(wpoint.geometry.coordinates) + ' - ' + (Math.round(inputPathLine[tempIndex].odometer * 100) / 100));
+                    // console.log('Surface: ' + wpoint.properties.surfaceType + ' - ' + JSON.stringify(wpoint.geometry.coordinates) + ' - ' + (Math.round(inputPathLine[tempIndex].odometer * 100) / 100));
                     const payload = {
                         odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
                         surfaceType: wpoint.properties.surfaceType,
                     };
+                    surfaceCollection.push([payload.odometer, payload.surfaceType]);
                     GLU.bus.emit(Enum.DataEvents.ADD_SURFACE_CHANGE, payload);
                 } else {
-                    let symbol = this.symbolFromDesc(tempDesc, tempPictogram, wpoint.properties.name);
+                    const tempName = (wpoint.properties.name) ? wpoint.properties.name : 'Raskrsnica';
+                    if (usedWpNames.indexOf(tempName) > -1) {
+                        usedWpNamesIdxs[tempName].idx = (usedWpNamesIdxs[tempName].idx) ? (usedWpNamesIdxs[tempName].idx + 1) : 1;
+                        tempName = tempName + ' #' + usedWpNamesIdxs[tempName].idx;
+                    }
+                    let symbol = this.symbolFromDesc(tempDesc, tempPictogram, tempName);
                     const newWaypoint = {
                         id: wpindex,
                         time: (wpoint.properties.time !== undefined) ? wpoint.properties.time : null,
@@ -247,11 +262,14 @@ class WaypointHelper extends GLU.Controller {
                         elevationProfile: true,
                         lon: (TrailsDataModel.activeTrail.getTrailData().snapWPsToPath) ? inputPathLine[tempIndex].lon : wpoint.geometry.coordinates[0],
                         lat: (TrailsDataModel.activeTrail.getTrailData().snapWPsToPath) ? inputPathLine[tempIndex].lat : wpoint.geometry.coordinates[1],
-                        elevation: (TrailsDataModel.activeTrail.getTrailData().snapWPsToPath) ? inputPathLine[tempIndex].elevation : wpoint.geometry.coordinates[2],
+                        elevation: (TrailsDataModel.activeTrail.getTrailData().snapWPsToPath || !wpoint.geometry.coordinates[2]) ? inputPathLine[tempIndex].elevation : wpoint.geometry.coordinates[2],
                     };
                     this.generateWPointGeoJSON(tempIndex, newWaypoint, inputPathLine);
                     newWaypoints.push(newWaypoint);
                 }
+            } else {
+                console.warn('wpoint ' + JSON.stringify(wpoint.properties) + ' too far from Path');
+                GLU.bus.emit(MessageEvents.WARNING_MESSAGE, 'wpoint ' + JSON.stringify(wpoint.properties) + ' too far from Path');
             }
             waypointsProgressPayload.loaded = parseInt((wpindex + 1), 10);
             // GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, waypointsProgressPayload);
@@ -283,7 +301,8 @@ class WaypointHelper extends GLU.Controller {
                 };
             }
             element.id = index;
-            element.descgenerated = this.generateDesc(tempWp, surfaceCollection);
+            const descgenerated = this.generateDesc(tempWp, surfaceCollection);
+            element.desc = (element.desc && element.desc.length > 0) ? element.desc + descgenerated : descgenerated;
         });
 
         newWaypointsExport.forEach((wp, wpIdx) => {
