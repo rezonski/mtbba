@@ -2,11 +2,11 @@
   "local": {
     "environment": "local",
     "projects": "projects/",
-    "server": "http://localhost/sandbox/examples/"
+    "server": "http://localhost:8080/sandbox/examples/"
   },
   "production": {
     "environment": "production",
     "projects": "projects/",
-    "server": "http://localhost/sandbox/examples/"
+    "server": "http://localhost:8080/sandbox/examples/"
   }
 }

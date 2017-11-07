@@ -56,7 +56,7 @@ class Trail {
                 pathline = pathline.concat(feature.geometry.coordinates);
                 generalFacts = feature.properties;
             } else if (feature.geometry.type === 'Point') {
-                features.push(feature);
+                features.push(WaypointHelper.initialParseOneWP(feature));
             }
         });
         const elevatedPathline = pathline.map(p => {

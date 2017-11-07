@@ -17,6 +17,7 @@ const Enum = {
         MAP_RESET_2_NORTH: '__MAP_RESET_2_NORTH__',
         PRELOAD_MAP_ICONS: '__PRELOAD_MAP_ICONS__',
         CONTROL_WP_POPUP: '__CONTROL_WP_POPUP__',
+        FOCUS_POINT_ON_MAP: '__FOCUS_POINT_ON_MAP__',
     },
     AppEvents: {
         OPEN_FORM_NEW_TRAIL: '__OPEN_FORM_NEW_TRAIL__',

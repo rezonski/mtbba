@@ -13,6 +13,9 @@ class WaypointHelper extends GLU.Controller {
         this.bindGluBusEvents({
             [Enum.MapEvents.INITIAL_DATA_SETUP_RETRIEVED]: this.onInitialSetupRetrieved,
         });
+
+        this.usedWpNames = [];
+        this.usedWpNamesIdxs = {};
     }
 
     getMarkerColor(symbol) {
@@ -154,6 +157,36 @@ class WaypointHelper extends GLU.Controller {
         newWaypoint.wpGeoJSON = wpGeoJSON;
     }
 
+    initialParseOneWP(wpoint) {
+        let tempName = (wpoint.properties.name) ? wpoint.properties.name : 'Raskrsnica';
+        if (this.usedWpNames.indexOf(tempName) > -1) {
+            this.usedWpNamesIdxs[tempName].idx = (this.usedWpNamesIdxs[tempName].idx) ? (this.usedWpNamesIdxs[tempName].idx + 1) : 1;
+            tempName = tempName + ' #' + this.usedWpNamesIdxs[tempName].idx;
+        }
+        wpoint.properties.name = tempName;
+        let tempDescArray, tempDesc, tempPictogram;
+        if (wpoint.properties.desc !== undefined && wpoint.properties.desc.indexOf('#') > -1 ) {
+            tempDescArray = wpoint.properties.desc.replace('#\n\n', '#\n').replace('#\n\n', '#\n').replace('#\n', '#').replace('#\n', '#').split('#');
+            tempDesc = tempDescArray[2];
+            tempPictogram = tempDescArray[1];
+            delete wpoint.properties.desc;
+        } else if (wpoint.properties.cmt !== undefined && wpoint.properties.cmt.indexOf('#') > -1 ) {
+            tempDescArray = wpoint.properties.cmt.replace('#\n\n', '#\n').replace('#\n\n', '#\n').replace('#\n', '#').replace('#\n', '#').split('#');
+            tempDesc = tempDescArray[2];
+            tempPictogram = tempDescArray[1];
+            delete wpoint.properties.cmt;
+        } else if (wpoint.properties.desc !== undefined) {
+            tempDesc = wpoint.properties.desc;
+            tempPictogram = (wpoint.properties.pictogram !== undefined) ? wpoint.properties.pictogram : '90';
+        } else {
+            tempDesc = '';
+            tempPictogram = (wpoint.properties.pictogram !== undefined) ? wpoint.properties.pictogram : '90';
+        }
+        wpoint.properties.desc = tempDesc;
+        wpoint.properties.pictogram = tempPictogram;
+        return wpoint;
+    }
+
     // generateWaypoints(leftMap, rightMap, featuresCollection) {
     generateWaypoints(leftMap, featuresCollection) {
         const inputPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
@@ -191,17 +224,12 @@ class WaypointHelper extends GLU.Controller {
             features: [],
         };
 
-        let usedWpNames = [];
-        let usedWpNamesIdxs = {};
-
         // console.log('inputWaypoints before edit');
         // console.log(inputWaypoints.filter(f => { return f.properties.type && f.properties.type === 'terrainSwitch'; }));
 
         inputWaypoints.forEach((wpoint, wpindex) => {
             let tempDistance = 9999999;
             let tempIndex = -1;
-            let tempDesc = '';
-            let tempPictogram = '';
 
             // Calculate closest point on line
             inputPathLine.forEach((ppoint, pindex) => {
@@ -215,18 +243,6 @@ class WaypointHelper extends GLU.Controller {
             // console.log(wpoint.properties);
             // console.log('#tempIndex = ' + tempIndex);
             if (tempIndex > -1) {
-                if (wpoint.properties.desc !== undefined && wpoint.properties.desc.indexOf('#') > -1 ) {
-                    let tempDescArray = wpoint.properties.desc.replace('#\n\n', '#\n').replace('#\n\n', '#\n').replace('#\n', '#').replace('#\n', '#').split('#');
-                    tempDesc = tempDescArray[2];
-                    tempPictogram = tempDescArray[1];
-                } else if (wpoint.properties.desc !== undefined) {
-                    tempDesc = wpoint.properties.desc;
-                    tempPictogram = (wpoint.properties.pictogram !== undefined) ? wpoint.properties.pictogram : '90';
-                } else {
-                    tempDesc = '';
-                    tempPictogram = (wpoint.properties.pictogram !== undefined) ? wpoint.properties.pictogram : '90';
-                }
-
                 if (wpoint.properties.type && wpoint.properties.type === 'terrainSwitch') {
                     // console.log('Surface: ' + wpoint.properties.surfaceType + ' - ' + JSON.stringify(wpoint.geometry.coordinates) + ' - ' + (Math.round(inputPathLine[tempIndex].odometer * 100) / 100));
                     const payload = {
@@ -236,18 +252,13 @@ class WaypointHelper extends GLU.Controller {
                     surfaceCollection.push([payload.odometer, payload.surfaceType]);
                     GLU.bus.emit(Enum.DataEvents.ADD_SURFACE_CHANGE, payload);
                 } else {
-                    const tempName = (wpoint.properties.name) ? wpoint.properties.name : 'Raskrsnica';
-                    if (usedWpNames.indexOf(tempName) > -1) {
-                        usedWpNamesIdxs[tempName].idx = (usedWpNamesIdxs[tempName].idx) ? (usedWpNamesIdxs[tempName].idx + 1) : 1;
-                        tempName = tempName + ' #' + usedWpNamesIdxs[tempName].idx;
-                    }
-                    let symbol = this.symbolFromDesc(tempDesc, tempPictogram, tempName);
+                    let symbol = this.symbolFromDesc(wpoint.properties.desc, wpoint.properties.pictogram, wpoint.properties.name);
                     const newWaypoint = {
                         id: wpindex,
                         time: (wpoint.properties.time !== undefined) ? wpoint.properties.time : null,
                         name: wpoint.properties.name,
                         nameEn: wpoint.properties.name,
-                        desc: tempDesc,
+                        desc: wpoint.properties.desc,
                         descEn: null,
                         elevGain: Math.round(inputPathLine[tempIndex].elevGain * 100) / 100,
                         elevLoss: Math.round(inputPathLine[tempIndex].elevLoss * 100) / 100,
@@ -257,7 +268,7 @@ class WaypointHelper extends GLU.Controller {
                         nextStepDist: 0,
                         symbol,
                         iconMarker: this.getIcon4Symbol(symbol),
-                        pictogram: tempPictogram,
+                        pictogram: wpoint.properties.pictogram,
                         pictureUrl: (wpoint.properties.pictureUrl !== undefined) ? wpoint.properties.pictureUrl : '',
                         elevationProfile: true,
                         lon: (TrailsDataModel.activeTrail.getTrailData().snapWPsToPath) ? inputPathLine[tempIndex].lon : wpoint.geometry.coordinates[0],

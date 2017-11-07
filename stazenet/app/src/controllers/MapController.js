@@ -19,6 +19,15 @@ class MapController extends GLU.Controller {
             [Enum.MapEvents.SHOW_PREVIEW_MAP]: this.showPreviewMap,
             [Enum.MapEvents.HIDE_PREVIEW_MAP]: this.hidePreviewMap,
             [Enum.MapEvents.PRELOAD_MAP_ICONS]: this.preloadMapIcons,
+            [Enum.MapEvents.FOCUS_POINT_ON_MAP]: this.focusPointOnMap,
+        });
+    }
+
+    focusPointOnMap(payload) {
+        const map = MapModel.previewMap;
+        map.flyTo({
+            center: [payload.coordinates[0], payload.coordinates[1]],
+            zoom: 16,
         });
     }
 

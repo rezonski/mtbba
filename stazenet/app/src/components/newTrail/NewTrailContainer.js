@@ -59,9 +59,9 @@ class NewTrailContainer extends BasePage {
             case 0:
                 return (<StepUpload/>);
             case 1:
-                return (<StepMapPreview/>);
-            case 2:
                 return (<StepWaypointsPreprocessing/>);
+            case 2:
+                return (<StepMapPreview/>);
             case 3:
                 return (<StepProcessing/>);
             case 4:
@@ -95,10 +95,10 @@ class NewTrailContainer extends BasePage {
                         <StepButton onClick={() => this.setState({ stepIndex: 0 })}>{Lang.label('stepperStepUpload')}</StepButton>
                     </Step>
                     <Step>
-                        <StepButton onClick={() => this.setState({ stepIndex: 1 })}>{Lang.label('stepperMapPreview')}</StepButton>
+                        <StepButton onClick={() => this.setState({ stepIndex: 1 })}>{Lang.label('stepperWpPreprocess')}</StepButton>
                     </Step>
                     <Step>
-                        <StepButton onClick={() => this.setState({ stepIndex: 2 })}>{Lang.label('stepperWpPreprocess')}</StepButton>
+                        <StepButton onClick={() => this.setState({ stepIndex: 2 })}>{Lang.label('stepperMapPreview')}</StepButton>
                     </Step>
                     <Step>
                         <StepButton onClick={() => this.setState({ stepIndex: 3 })}>{Lang.label('stepperStepProcessing')}</StepButton>

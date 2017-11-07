@@ -28,7 +28,7 @@ class MainToolbar extends BasePage {
             newEditButtonLabel: Lang.label('new'),
             mapStyles: [],
             openMapLayers: false,
-            disabledWaypoints: true,
+            disabledWaypoints: false,
             disabledSaveTrail: true,
         };
         this.onNewTrailEvent = this.onNewTrail.bind(this);

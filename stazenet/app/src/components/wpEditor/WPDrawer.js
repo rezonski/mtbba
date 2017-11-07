@@ -60,7 +60,7 @@ class WPDRawer extends BasePage {
                         className={'wp-step'}
                         key={'wp-step-' + wpIdx}>
                             <WPEditorTray
-                                wp={wp.properties}
+                                wp={wp}
                                 wpIndex={wpIdx}
                             />
                     </div>);
