@@ -5,18 +5,18 @@ import Lang from '/helpers/Lang';
 import InputTextBox from '../common/InputTextBox';
 // import ImagePreview from '../common/ImagePreview';
 // import ListSelection from '../common/ListSelection';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import LocationOn from 'material-ui/svg-icons/communication/location-on';
+// import FloatingActionButton from 'material-ui/FloatingActionButton';
+// import LocationOn from 'material-ui/svg-icons/communication/location-on';
 
 class WPEditorTray extends BasePage {
     constructor(props) {
         super(props);
-        this.state = {
-        };
+        this.state = props;
         this.onLocateClickEvent = this.onLocateClick.bind(this);
-        this.bindGluBusEvents({
-            // [Enum.AppEvents.OPEN_FORM_NEW_TRAIL]: this.onOpenFormRequest,
-        });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState(nextProps);
     }
 
     componentWillUnmount() {
@@ -25,41 +25,35 @@ class WPEditorTray extends BasePage {
 
     onLocateClick() {
         this.emit(Enum.MapEvents.FOCUS_POINT_ON_MAP, {
-            coordinates: this.props.wp.geometry.coordinates,
+            coordinates: this.state.wp.geometry.coordinates,
         });
     }
 
     render() {
+        console.log('render WPEditorTray');
         return (<div className="flex-container row single-wp-edit-box">
                     <InputTextBox
                         fieldName={'waypoints'}
-                        fieldIndex={this.props.wpIndex}
+                        fieldIndex={this.state.wpIndex}
                         fieldProp={'name'}
                         inputBoxStyle={{ fontSize: '80%' }}
                         isMultiline={false}
                         noRows={1}
                         filedLabel={Lang.label('name')}
                         filedHintText={Lang.label('name')}
+                        onClick={() => console.log('onClick')}
                     />
                     <InputTextBox
                         fieldName={'waypoints'}
-                        fieldIndex={this.props.wpIndex}
+                        fieldIndex={this.state.wpIndex}
                         fieldProp={'pictogram'}
                         inputBoxStyle={{ fontSize: '80%' }}
                         isMultiline={false}
                         noRows={1}
                         filedLabel={Lang.label('pictogram')}
                         filedHintText={Lang.label('pictogramHint')}
+                        onClick={() => console.log('onClick')}
                     />
-                    <FloatingActionButton
-                        mini={true}
-                        onClick={this.onLocateClickEvent}
-                        style={{
-                            marginRight: 20,
-                        }}
-                    >
-                        <LocationOn />
-                    </FloatingActionButton>
                 </div>);
     }
 

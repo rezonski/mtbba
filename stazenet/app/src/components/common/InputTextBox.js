@@ -38,7 +38,7 @@ class InputTextBox extends BasePage {
 
     onTrailDataRetrieved(payload) {
         if (payload[this.props.fieldName] && this.props.fieldIndex !== undefined && this.props.fieldProp) {
-            if (payload[this.props.fieldName][this.props.fieldIndex][this.props.fieldProp] !== this.state.value) {
+            if (payload[this.props.fieldName][this.props.fieldIndex].properties[this.props.fieldProp] !== this.state.value) {
                 this.setState({
                     value: payload[this.props.fieldName][this.props.fieldIndex].properties[this.props.fieldProp],
                 });
