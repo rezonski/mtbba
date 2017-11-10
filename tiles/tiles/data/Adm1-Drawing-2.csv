@@ -1,0 +1,3472 @@
+ID,ISO,NAME_0,NAME_1,HASC_1,ISONEW,Colony
+30690,DZA,Algeria,Tindouf,DZ.TN,DZA,DZA
+30691,ESH,Western Sahara,Boujdour,EH.BO,ESH,ESH
+30692,ESH,Western Sahara,Es Semara,EH.ES,ESH,ESH
+30693,ESH,Western Sahara,Laayoune,EH.LA,ESH,ESH
+30694,ESH,Western Sahara,Oued el Dahab,EH.OD,ESH,ESH
+30695,MAR,Morocco,Guelmim - Es-Semara,MA.GE,MAR,MAR
+30696,MRT,Mauritania,Adrar,MR.AD,MRT,MRT
+30697,MRT,Mauritania,Dakhlet Nouadhibou,MR.DN,MRT,MRT
+30698,MRT,Mauritania,Inchiri,MR.IN,MRT,MRT
+30699,MRT,Mauritania,Tiris Zemmour,MR.TZ,MRT,MRT
+30700,EGY,Egypt,Al Wadi al Jadid,EG.WJ,EGY,EGY
+30701,LBY,Libya,Ajdabiya,LY.AJ,LBY,LBY
+30702,LBY,Libya,Al Butnan,LY.BU,LBY,LBY
+30703,LBY,Libya,Al Jufrah,LY.JU,LBY,LBY
+30705,LBY,Libya,Al Wahah,LY.WA,LBY,LBY
+30706,LBY,Libya,Murzuq,LY.MQ,LBY,LBY
+30707,TCD,Chad,Bet,TD.BT,TCD,TCD
+30708,IRQ,Iraq,Al-Anbar,IQ.AN,IRQ,IRQ
+30709,IRQ,Iraq,Al-Basrah,IQ.BA,IRQ,IRQ
+30710,IRQ,Iraq,Al-Muthannia,IQ.MU,IRQ,IRQ
+30711,IRQ,Iraq,An-Najaf,IQ.NA,IRQ,IRQ
+30712,JOR,Jordan,Amman,JO.AM,JOR,JOR
+30713,JOR,Jordan,Ma`an,JO.MN,JOR,JOR
+30714,JOR,Jordan,Mafraq,JO.MA,JOR,JOR
+30715,JOR,Jordan,Zarqa,JO.AZ,JOR,JOR
+30716,KWT,Kuwait,Al Jahrah,KW.JA,KWT,KWT
+30717,SAU,Saudi Arabia,Al Hudud ash Shamaliyah,SA.HS,SAU,SAU
+30718,SAU,Saudi Arabia,Al Jawf,SA.JF,SAU,SAU
+30719,SAU,Saudi Arabia,Ash Sharqiyah,SA.SH,SAU,SAU
+30720,SAU,Saudi Arabia,Ha'il,SA.HA,SAU,SAU
+30721,SAU,Saudi Arabia,Tabuk,SA.TB,SAU,SAU
+30722,SYR,Syria,As Suwayda',SY.SU,SYR,SYR
+30723,SYR,Syria,Dar`a,SY.DR,SYR,SYR
+30724,SYR,Syria,Dayr Az Zawr,SY.DY,SYR,SYR
+30725,SYR,Syria,Homs (Hims),SY.HI,SYR,SYR
+30726,SYR,Syria,Rif Dimashq,SY.RD,SYR,SYR
+30727,ARE,United Arab Emirates,Abu Dhabi,AE.AZ,ARE,ARE
+30728,OMN,Oman,Dhofar,OM.JA,OMN,OMN
+30729,QAT,Qatar,Jariyan al Batnah,QA.JB,QAT,QAT
+30730,SAU,Saudi Arabia,`Asir,SA.AS,SAU,SAU
+30731,SAU,Saudi Arabia,Ar Riyad,SA.RI,SAU,SAU
+30732,SAU,Saudi Arabia,Ash Sharqiyah,SA.SH,SAU,SAU
+30733,SAU,Saudi Arabia,Makkah,SA.MK,SAU,SAU
+30734,SAU,Saudi Arabia,Najran,SA.NJ,SAU,SAU
+30735,YEM,Yemen,Al Bayda',YE.BA,YEM,YEM
+30736,YEM,Yemen,Al Dali',YE.DL,YEM,YEM
+30737,YEM,Yemen,Al Jawf,YE.JA,YEM,YEM
+30738,YEM,Yemen,Al Mahrah,YE.MR,YEM,YEM
+30739,YEM,Yemen,Dhamar,YE.DH,YEM,YEM
+30740,YEM,Yemen,Hadramawt,YE.HD,YEM,YEM
+30741,YEM,Yemen,Ibb,YE.IB,YEM,YEM
+30742,YEM,Yemen,Ma'rib,YE.MA,YEM,YEM
+30743,YEM,Yemen,Sa`dah,YE.SD,YEM,YEM
+30744,YEM,Yemen,San`a',YE.SN,YEM,YEM
+30746,ROU,Romania,Bistrita-Nasaud,RO.BN,ROU,ROU
+30747,ROU,Romania,Botosani,RO.BT,ROU,ROU
+30748,ROU,Romania,Harghita,RO.HR,ROU,ROU
+30749,ROU,Romania,Maramures,RO.MM,ROU,ROU
+30750,ROU,Romania,Mures,RO.MS,ROU,ROU
+30751,ROU,Romania,Neamt,RO.NT,ROU,ROU
+30752,ROU,Romania,Suceava,RO.SV,ROU,ROU
+30753,UKR,Ukraine,Chernivtsi,UA.CV,UKR,UKR
+30754,UKR,Ukraine,Ivano-Frankivs'k,UA.IF,UKR,UKR
+30755,UKR,Ukraine,Ternopil',UA.TP,UKR,UKR
+30756,GRC,Greece,Attiki,GR.AT,GRC,GRC
+30757,GRC,Greece,Dytiki Ellada,GR.GW,GRC,GRC
+30758,GRC,Greece,Dytiki Makedonia,GR.MW,GRC,GRC
+30760,GRC,Greece,Peloponnisos,GR.PP,GRC,GRC
+30761,GRC,Greece,Stereá Elláda,GR.GC,GRC,GRC
+30762,GRC,Greece,Thessalia,GR.TS,GRC,GRC
+30763,GRC,Greece,Voreio Aigaio,GR.AN,GRC,GRC
+30765,AUT,Austria,Kärnten,AT.KA,AUT,AUT
+30766,ITA,Italy,Friuli-Venezia Giulia,,ITA,ITA
+30767,ITA,Italy,Veneto,,ITA,ITA
+30769,POL,Poland,Greater Poland,PL.WP,POL,POL
+30770,POL,Poland,Kuyavian-Pomeranian,PL.KP,POL,POL
+30771,POL,Poland,Lódz,PL.LD,POL,POL
+30772,POL,Poland,Masovian,PL.MZ,POL,POL
+30773,POL,Poland,Opole,PL.OP,POL,POL
+30774,POL,Poland,Silesian,PL.SL,POL,POL
+30775,POL,Poland,Warmian-Masurian,PL.WN,POL,POL
+30776,CHN,China,Shandong,CN.SD,CHN,CHN
+30778,CHN,China,Shandong,CN.SD,CHN,CHN
+30780,CHN,China,Liaoning,CN.LN,CHN,CHN
+30781,CHN,China,Shandong,CN.SD,CHN,CHN
+30783,ECU,Ecuador,Morona Santiago,EC.MS,ECU,ECU
+30784,ECU,Ecuador,Orellana,EC.NA,ECU,ECU
+30785,ECU,Ecuador,Pastaza,EC.PA,ECU,ECU
+30786,ECU,Ecuador,Zamora Chinchipe,EC.ZC,ECU,ECU
+30787,PER,Peru,Amazonas,PE.AM,PER,PER
+30788,PER,Peru,Loreto,PE.LO,PER,PER
+30789,BRA,Brazil,Amazonas,BR.AM,BRA,BRA
+30790,COL,Colombia,Amazonas,CO.AM,COL,COL
+30791,PER,Peru,Loreto,PE.LO,PER,PER
+30792,BGR,Bulgaria,Kyustendil,BG.KY,BGR,BGR
+30793,BIH,Bosnia and Herzegovina,Repuplika Srpska,BA.SR,BIH,BIH
+30794,KO-,Kosovo,Ðakovica,,KO-,KO-
+30795,KO-,Kosovo,Gnjilane,,KO-,KO-
+30796,KO-,Kosovo,Kosovska Mitrovica,RS.KM,KO-,KO-
+30797,KO-,Kosovo,Pecki,RS.PE,KO-,KO-
+30798,KO-,Kosovo,Pristina,,KO-,KO-
+30799,KO-,Kosovo,Prizren,RS.PZ,KO-,KO-
+30800,KO-,Kosovo,Uroševac,,KO-,KO-
+30801,MKD,Macedonia,Northeastern,,MKD,MKD
+30802,MKD,Macedonia,Polog,,MKD,MKD
+30803,MKD,Macedonia,Skopje,,MKD,MKD
+30804,MNE,Montenegro,Berane,ME.BE,MNE,MNE
+30805,MNE,Montenegro,Bijelo Polje,ME.BP,MNE,MNE
+30806,MNE,Montenegro,Pljevlja,ME.PL,MNE,MNE
+30807,MNE,Montenegro,Rožaje,ME.RO,MNE,MNE
+30808,SRB,Serbia,Jablanicki,RS.JA,SRB,SRB
+30809,SRB,Serbia,Moravicki,RS.MR,SRB,SRB
+30810,SRB,Serbia,Pcinjski,RS.PC,SRB,SRB
+30811,SRB,Serbia,Raški,RS.RS,SRB,SRB
+30812,SRB,Serbia,Zlatiborski,RS.ZL,SRB,SRB
+30813,AFG,Afghanistan,Badakhshan,AF.BD,AFG,AFG
+30814,AFG,Afghanistan,Badghis,AF.BG,AFG,AFG
+30815,AFG,Afghanistan,Baghlan,AF.BL,AFG,AFG
+30816,AFG,Afghanistan,Balkh,AF.BK,AFG,AFG
+30817,AFG,Afghanistan,Bamyan,AF.BM,AFG,AFG
+30818,AFG,Afghanistan,Farah,AF.FH,AFG,AFG
+30819,AFG,Afghanistan,Faryab,AF.FB,AFG,AFG
+30820,AFG,Afghanistan,Ghazni,AF.GZ,AFG,AFG
+30821,AFG,Afghanistan,Ghor,AF.GR,AFG,AFG
+30822,AFG,Afghanistan,Hilmand,AF.HM,AFG,AFG
+30823,AFG,Afghanistan,Hirat,AF.HR,AFG,AFG
+30824,AFG,Afghanistan,Jawzjan,AF.JW,AFG,AFG
+30825,AFG,Afghanistan,Kabul,AF.KB,AFG,AFG
+30826,AFG,Afghanistan,Kandahar,AF.KD,AFG,AFG
+30827,AFG,Afghanistan,Kapisa,AF.KP,AFG,AFG
+30828,AFG,Afghanistan,Khost,AF.KT,AFG,AFG
+30829,AFG,Afghanistan,Kunar,AF.KR,AFG,AFG
+30830,AFG,Afghanistan,Kunduz,AF.KZ,AFG,AFG
+30831,AFG,Afghanistan,Laghman,AF.LA,AFG,AFG
+30832,AFG,Afghanistan,Logar,AF.LW,AFG,AFG
+30833,AFG,Afghanistan,Nangarhar,AF.NG,AFG,AFG
+30834,AFG,Afghanistan,Nimroz,AF.NM,AFG,AFG
+30835,AFG,Afghanistan,Nuristan,AF.NR,AFG,AFG
+30836,AFG,Afghanistan,Paktika,AF.PK,AFG,AFG
+30837,AFG,Afghanistan,Paktya,AF.PT,AFG,AFG
+30838,AFG,Afghanistan,Parwan,AF.PV,AFG,AFG
+30839,AFG,Afghanistan,Samangan,AF.SM,AFG,AFG
+30840,AFG,Afghanistan,Sari Pul,AF.SP,AFG,AFG
+30841,AFG,Afghanistan,Takhar,AF.TK,AFG,AFG
+30842,AFG,Afghanistan,Uruzgan,AF.OZ,AFG,AFG
+30843,AFG,Afghanistan,Wardak,AF.VR,AFG,AFG
+30844,AFG,Afghanistan,Zabul,AF.ZB,AFG,AFG
+30845,AGO,Angola,Bengo,AO.BO,AGO,AGO
+30846,AGO,Angola,Benguela,AO.BG,AGO,AGO
+30847,AGO,Angola,Bié,AO.BI,AGO,AGO
+30848,AGO,Angola,Cabinda,AO.CB,AGO,AGO
+30849,AGO,Angola,Cuando Cubango,AO.CC,AGO,AGO
+30850,AGO,Angola,Cuanza Norte,AO.CN,AGO,AGO
+30851,AGO,Angola,Cuanza Sul,AO.CS,AGO,AGO
+30852,AGO,Angola,Cunene,AO.CU,AGO,AGO
+30853,AGO,Angola,Huambo,AO.HM,AGO,AGO
+30854,AGO,Angola,Huíla,AO.HL,AGO,AGO
+30855,AGO,Angola,Luanda,AO.LU,AGO,AGO
+30856,AGO,Angola,Lunda Norte,AO.LN,AGO,AGO
+30857,AGO,Angola,Lunda Sul,AO.LS,AGO,AGO
+30858,AGO,Angola,Malanje,AO.ML,AGO,AGO
+30859,AGO,Angola,Moxico,AO.MX,AGO,AGO
+30860,AGO,Angola,Namibe,AO.NA,AGO,AGO
+30861,AGO,Angola,Uíge,AO.UI,AGO,AGO
+30862,AGO,Angola,Zaire,AO.ZA,AGO,AGO
+30863,ALA,Åland,Brändö,AX.BR,ALA,ALA
+30864,ALA,Åland,Eckerö,AX.EC,ALA,ALA
+30865,ALA,Åland,Finström,AX.FN,ALA,ALA
+30866,ALA,Åland,Föglö,AX.FG,ALA,ALA
+30867,ALA,Åland,Geta,AX.GT,ALA,ALA
+30868,ALA,Åland,Hammarland,AX.HM,ALA,ALA
+30869,ALA,Åland,Jomala,AX.JM,ALA,ALA
+30870,ALA,Åland,Kökar,AX.KK,ALA,ALA
+30871,ALA,Åland,Kumlinge,AX.KM,ALA,ALA
+30872,ALA,Åland,Lemland,AX.LE,ALA,ALA
+30873,ALA,Åland,Lumparland,AX.LU,ALA,ALA
+30874,ALA,Åland,Mariehamn,AX.MH,ALA,ALA
+30875,ALA,Åland,Saltvik,AX.SV,ALA,ALA
+30876,ALA,Åland,Sottunga,AX.ST,ALA,ALA
+30877,ALA,Åland,Sund,AX.SD,ALA,ALA
+30878,ALA,Åland,Vårdö,AX.VR,ALA,ALA
+30879,ALB,Albania,Berat,AL.BE,ALB,ALB
+30880,ALB,Albania,Dibër,AL.DB,ALB,ALB
+30881,ALB,Albania,Durrës,AL.DU,ALB,ALB
+30882,ALB,Albania,Elbasan,AL.EB,ALB,ALB
+30883,ALB,Albania,Fier,AL.FI,ALB,ALB
+30884,ALB,Albania,Gjirokastër,AL.GK,ALB,ALB
+30885,ALB,Albania,Korçë,AL.KE,ALB,ALB
+30886,ALB,Albania,Kukës,AL.KK,ALB,ALB
+30887,ALB,Albania,Lezhë,AL.LZ,ALB,ALB
+30888,ALB,Albania,Shkodër,AL.SD,ALB,ALB
+30889,ALB,Albania,Tiranë,AL.TI,ALB,ALB
+30890,ALB,Albania,Vlorë,AL.VR,ALB,ALB
+30891,AND,Andorra,Andorra la Vella,AD.AN,AND,AND
+30892,AND,Andorra,Canillo,AD.CA,AND,AND
+30893,AND,Andorra,Encamp,AD.EN,AND,AND
+30894,AND,Andorra,Escaldes-Engordany,AD.EE,AND,AND
+30895,AND,Andorra,La Massana,AD.MA,AND,AND
+30896,AND,Andorra,Ordino,AD.OR,AND,AND
+30897,AND,Andorra,Sant Julià de Lòria,AD.JL,AND,AND
+30898,ANT,Netherlands Antilles,Bonaire,AN.BO,ANT,ANT
+30899,ANT,Netherlands Antilles,Curaçao,AN.CU,ANT,ANT
+30900,ANT,Netherlands Antilles,Saba,AN.SB,ANT,ANT
+30901,ANT,Netherlands Antilles,Sint Eustatius,AN.SE,ANT,ANT
+30902,ANT,Netherlands Antilles,Sint Maarten,AN.SM,ANT,ANT
+30903,ARE,United Arab Emirates,Abu Dhabi,AE.AZ,ARE,ARE
+30904,ARE,United Arab Emirates,Ajman,AE.AJ,ARE,ARE
+30905,ARE,United Arab Emirates,Dubay,AE.DU,ARE,ARE
+30906,ARE,United Arab Emirates,Fujayrah,AE.FU,ARE,ARE
+30907,ARE,United Arab Emirates,Neutral Zone,,ARE,ARE
+30908,ARE,United Arab Emirates,Ras Al Khaymah,AE.RK,ARE,ARE
+30909,ARE,United Arab Emirates,Sharjah,AE.SH,ARE,ARE
+30910,ARE,United Arab Emirates,Umm Al Qaywayn,AE.UQ,ARE,ARE
+30911,ARG,Argentina,Buenos Aires,AR.BA,ARG,ARG
+30912,ARG,Argentina,Catamarca,AR.CT,ARG,ARG
+30913,ARG,Argentina,Chaco,AR.CC,ARG,ARG
+30914,ARG,Argentina,Chubut,AR.CH,ARG,ARG
+30915,ARG,Argentina,Ciudad de Buenos Aires,AR.DF,ARG,ARG
+30916,ARG,Argentina,Córdoba,AR.CB,ARG,ARG
+30917,ARG,Argentina,Corrientes,AR.CN,ARG,ARG
+30918,ARG,Argentina,Entre Ríos,AR.ER,ARG,ARG
+30919,ARG,Argentina,Formosa,AR.FM,ARG,ARG
+30920,ARG,Argentina,Jujuy,AR.JY,ARG,ARG
+30921,ARG,Argentina,La Pampa,AR.LP,ARG,ARG
+30922,ARG,Argentina,La Rioja,AR.LR,ARG,ARG
+30923,ARG,Argentina,Mendoza,AR.MZ,ARG,ARG
+30924,ARG,Argentina,Misiones,AR.MN,ARG,ARG
+30925,ARG,Argentina,Neuquén,AR.NQ,ARG,ARG
+30926,ARG,Argentina,Río Negro,AR.RN,ARG,ARG
+30927,ARG,Argentina,Salta,AR.SA,ARG,ARG
+30928,ARG,Argentina,San Juan,AR.SJ,ARG,ARG
+30929,ARG,Argentina,San Luis,AR.SL,ARG,ARG
+30930,ARG,Argentina,Santa Cruz,AR.SC,ARG,ARG
+30931,ARG,Argentina,Santa Fe,AR.SF,ARG,ARG
+30932,ARG,Argentina,Santiago del Estero,AR.SE,ARG,ARG
+30933,ARG,Argentina,Tierra del Fuego,AR.TF,ARG,ARG
+30934,ARG,Argentina,Tucumán,AR.TM,ARG,ARG
+30935,ARM,Armenia,Aragatsotn,AM.AG,ARM,ARM
+30936,ARM,Armenia,Ararat,AM.AR,ARM,ARM
+30937,ARM,Armenia,Armavir,AM.AV,ARM,ARM
+30938,ARM,Armenia,Erevan,AM.ER,ARM,ARM
+30939,ARM,Armenia,Gegharkunik,AM.GR,ARM,ARM
+30940,ARM,Armenia,Kotayk,AM.KT,ARM,ARM
+30941,ARM,Armenia,Lake Sevan,,ARM,ARM
+30942,ARM,Armenia,Lori,AM.LO,ARM,ARM
+30943,ARM,Armenia,Shirak,AM.SH,ARM,ARM
+30944,ARM,Armenia,Syunik,AM.SU,ARM,ARM
+30945,ARM,Armenia,Tavush,AM.TV,ARM,ARM
+30946,ARM,Armenia,Vayots Dzor,AM.VD,ARM,ARM
+30947,ASM,American Samoa,Eastern,AS.ET,ASM,ASM
+30948,ASM,American Samoa,Manu'a,AS.MA,ASM,ASM
+30949,ASM,American Samoa,Unorganized,AS.UU,ASM,ASM
+30950,ASM,American Samoa,Western,AS.WT,ASM,ASM
+30951,ATF,French Southern Territories,Amsterdam and Saint-Paul,TF.AS,ATF,ATF
+30952,ATF,French Southern Territories,Crozet Archipelago,TF.CR,ATF,ATF
+30953,ATF,French Southern Territories,Îles Éparses,,ATF,ATF
+30954,ATF,French Southern Territories,Kerguelen,TF.KG,ATF,ATF
+30955,ATG,Antigua and Barbuda,Barbuda,AG.BB,ATG,ATG
+30956,ATG,Antigua and Barbuda,Redonda,AG.RD,ATG,ATG
+30957,ATG,Antigua and Barbuda,Saint George,AG.GE,ATG,ATG
+30958,ATG,Antigua and Barbuda,Saint John,AG.JO,ATG,ATG
+30959,ATG,Antigua and Barbuda,Saint Mary,AG.MA,ATG,ATG
+30960,ATG,Antigua and Barbuda,Saint Paul,AG.PA,ATG,ATG
+30961,ATG,Antigua and Barbuda,Saint Peter,AG.PE,ATG,ATG
+30962,ATG,Antigua and Barbuda,Saint Philip,AG.PH,ATG,ATG
+30963,AUS,Australia,Ashmore and Cartier Islands,AU.AS,AUS,AUS
+30964,AUS,Australia,Australian Capital Territory,AU.CT,AUS,AUS
+30965,AUS,Australia,Coral Sea Islands,AU.CR,AUS,AUS
+30966,AUS,Australia,New South Wales,AU.NS,AUS,AUS
+30967,AUS,Australia,Northern Territory,AU.NT,AUS,AUS
+30968,AUS,Australia,Queensland,AU.QL,AUS,AUS
+30969,AUS,Australia,South Australia,AU.SA,AUS,AUS
+30970,AUS,Australia,Tasmania,AU.TS,AUS,AUS
+30971,AUS,Australia,Unknown1,AU.TS,AUS,AUS
+30972,AUS,Australia,Victoria,AU.VI,AUS,AUS
+30973,AUS,Australia,Western Australia,AU.WA,AUS,AUS
+30974,AUT,Austria,Burgenland,AT.BU,AUT,AUT
+30975,AUT,Austria,Kärnten,AT.KA,AUT,AUT
+30976,AUT,Austria,Niederösterreich,AT.NO,AUT,AUT
+30977,AUT,Austria,Oberösterreich,AT.OO,AUT,AUT
+30978,AUT,Austria,Salzburg,AT.SZ,AUT,AUT
+30979,AUT,Austria,Steiermark,AT.ST,AUT,AUT
+30980,AUT,Austria,Tirol,AT.TR,AUT,AUT
+30981,AUT,Austria,Vorarlberg,AT.VO,AUT,AUT
+30982,AUT,Austria,Wien,AT.WI,AUT,AUT
+30983,AZE,Azerbaijan,Abseron,AZ.AR,AZE,AZE
+30984,AZE,Azerbaijan,Agcab?di,AZ.AC,AZE,AZE
+30985,AZE,Azerbaijan,Agdam,AZ.AM,AZE,AZE
+30986,AZE,Azerbaijan,Agdas,AZ.AS,AZE,AZE
+30987,AZE,Azerbaijan,Agstafa,AZ.AF,AZE,AZE
+30988,AZE,Azerbaijan,Agsu,AZ.AU,AZE,AZE
+30989,AZE,Azerbaijan,Astara,AZ.AA,AZE,AZE
+30990,AZE,Azerbaijan,Bab?k,AZ.BB,AZE,AZE
+30991,AZE,Azerbaijan,Baki,AZ.BA,AZE,AZE
+30992,AZE,Azerbaijan,Balak?n,AZ.BL,AZE,AZE
+30993,AZE,Azerbaijan,B?rd?,AZ.BR,AZE,AZE
+30994,AZE,Azerbaijan,Beyl?qan,AZ.BQ,AZE,AZE
+30995,AZE,Azerbaijan,Bil?suvar,AZ.BS,AZE,AZE
+30996,AZE,Azerbaijan,C?brayil,AZ.CB,AZE,AZE
+30997,AZE,Azerbaijan,C?lilabad,AZ.CL,AZE,AZE
+30998,AZE,Azerbaijan,Culfa,AZ.CF,AZE,AZE
+30999,AZE,Azerbaijan,Dask?s?n,AZ.DS,AZE,AZE
+31000,AZE,Azerbaijan,D?v?çi,AZ.DV,AZE,AZE
+31001,AZE,Azerbaijan,?li Bayramli,AZ.AB,AZE,AZE
+31002,AZE,Azerbaijan,Füzuli,AZ.FU,AZE,AZE
+31003,AZE,Azerbaijan,G?d?b?y,AZ.GD,AZE,AZE
+31004,AZE,Azerbaijan,G?nc?,AZ.GA,AZE,AZE
+31005,AZE,Azerbaijan,Goranboy,AZ.GR,AZE,AZE
+31006,AZE,Azerbaijan,Göyçay,AZ.GY,AZE,AZE
+31007,AZE,Azerbaijan,Haciqabul,AZ.HA,AZE,AZE
+31008,AZE,Azerbaijan,Imisli,AZ.IM,AZE,AZE
+31009,AZE,Azerbaijan,Ismayilli,AZ.IS,AZE,AZE
+31010,AZE,Azerbaijan,K?lb?c?r,AZ.KA,AZE,AZE
+31011,AZE,Azerbaijan,Kürd?mir,AZ.KU,AZE,AZE
+31012,AZE,Azerbaijan,L?nk?ran,AZ.LN,AZE,AZE
+31013,AZE,Azerbaijan,Lerik,AZ.LE,AZE,AZE
+31014,AZE,Azerbaijan,Masalli,AZ.MA,AZE,AZE
+31015,AZE,Azerbaijan,Ming?çevir,AZ.MI,AZE,AZE
+31016,AZE,Azerbaijan,Naxçivan,AZ.NX,AZE,AZE
+31017,AZE,Azerbaijan,Neftçala,AZ.NE,AZE,AZE
+31018,AZE,Azerbaijan,Oguz,AZ.OG,AZE,AZE
+31019,AZE,Azerbaijan,Ordubad,AZ.OR,AZE,AZE
+31020,AZE,Azerbaijan,Qax,AZ.QX,AZE,AZE
+31021,AZE,Azerbaijan,Qazax,AZ.QZ,AZE,AZE
+31022,AZE,Azerbaijan,Q?b?l?,AZ.QA,AZE,AZE
+31023,AZE,Azerbaijan,Qobustan,AZ.QO,AZE,AZE
+31024,AZE,Azerbaijan,Quba,AZ.QB,AZE,AZE
+31025,AZE,Azerbaijan,Qubadli,AZ.QD,AZE,AZE
+31026,AZE,Azerbaijan,Qusar,AZ.QR,AZE,AZE
+31027,AZE,Azerbaijan,Saatli,AZ.ST,AZE,AZE
+31028,AZE,Azerbaijan,Sabirabad,AZ.SB,AZE,AZE
+31029,AZE,Azerbaijan,Sahbuz,AZ.SH,AZE,AZE
+31030,AZE,Azerbaijan,Salyan,AZ.SL,AZE,AZE
+31031,AZE,Azerbaijan,Samaxi,AZ.SI,AZE,AZE
+31032,AZE,Azerbaijan,Samux,AZ.SX,AZE,AZE
+31033,AZE,Azerbaijan,S?d?r?k,AZ.SD,AZE,AZE
+31034,AZE,Azerbaijan,S?ki,AZ.SK,AZE,AZE
+31035,AZE,Azerbaijan,S?mkir,AZ.SM,AZE,AZE
+31036,AZE,Azerbaijan,S?rur,AZ.SR,AZE,AZE
+31037,AZE,Azerbaijan,Siy?z?n,AZ.SY,AZE,AZE
+31038,AZE,Azerbaijan,Sumqayit,AZ.SQ,AZE,AZE
+31039,AZE,Azerbaijan,Susa,AZ.SU,AZE,AZE
+31040,AZE,Azerbaijan,T?rt?r,AZ.TA,AZE,AZE
+31041,AZE,Azerbaijan,Tovuz,AZ.TO,AZE,AZE
+31042,AZE,Azerbaijan,Ucar,AZ.UC,AZE,AZE
+31043,AZE,Azerbaijan,Xaçmaz,AZ.XZ,AZE,AZE
+31044,AZE,Azerbaijan,Xanlar,AZ.XR,AZE,AZE
+31045,AZE,Azerbaijan,Xizi,AZ.XI,AZE,AZE
+31046,AZE,Azerbaijan,Xocali,AZ.XC,AZE,AZE
+31047,AZE,Azerbaijan,Xocav?nd,AZ.XD,AZE,AZE
+31048,AZE,Azerbaijan,Yardimli,AZ.YR,AZE,AZE
+31049,AZE,Azerbaijan,Yevlax,AZ.YV,AZE,AZE
+31050,AZE,Azerbaijan,Zaqatala,AZ.ZQ,AZE,AZE
+31051,AZE,Azerbaijan,Z?ngilan,AZ.ZG,AZE,AZE
+31052,AZE,Azerbaijan,Z?rdab,AZ.ZR,AZE,AZE
+31053,BDI,Burundi,Bubanza,BI.BB,BDI,BDI
+31054,BDI,Burundi,Bujumbura Mairie,BI.BM,BDI,BDI
+31055,BDI,Burundi,Bujumbura Rural,BI.BU,BDI,BDI
+31056,BDI,Burundi,Bururi,BI.BR,BDI,BDI
+31057,BDI,Burundi,Cankuzo,BI.CA,BDI,BDI
+31058,BDI,Burundi,Cibitoke,BI.CI,BDI,BDI
+31059,BDI,Burundi,Gitega,BI.GI,BDI,BDI
+31060,BDI,Burundi,Karuzi,BI.KR,BDI,BDI
+31061,BDI,Burundi,Kayanza,BI.KY,BDI,BDI
+31062,BDI,Burundi,Kirundo,BI.KI,BDI,BDI
+31063,BDI,Burundi,Makamba,BI.MA,BDI,BDI
+31064,BDI,Burundi,Muramvya,BI.MV,BDI,BDI
+31065,BDI,Burundi,Muyinga,BI.MY,BDI,BDI
+31066,BDI,Burundi,Mwaro,BI.MW,BDI,BDI
+31067,BDI,Burundi,Ngozi,BI.NG,BDI,BDI
+31068,BDI,Burundi,Rutana,BI.RT,BDI,BDI
+31069,BDI,Burundi,Ruyigi,BI.RY,BDI,BDI
+31070,BEL,Belgium,Antwerp,BE.AN,BEL,BEL
+31071,BEL,Belgium,Brussels,BE.BU,BEL,BEL
+31072,BEL,Belgium,East Flanders,BE.OV,BEL,BEL
+31073,BEL,Belgium,Flemish Brabant,BE.VB,BEL,BEL
+31074,BEL,Belgium,Hainaut,BE.HT,BEL,BEL
+31075,BEL,Belgium,Liege,BE.LG,BEL,BEL
+31076,BEL,Belgium,Limburg,BE.LI,BEL,BEL
+31077,BEL,Belgium,Luxembourg,BE.LX,BEL,BEL
+31078,BEL,Belgium,Namur,BE.NA,BEL,BEL
+31079,BEL,Belgium,Walloon Brabant,BE.BW,BEL,BEL
+31080,BEL,Belgium,West Flanders,BE.WV,BEL,BEL
+31081,BEN,Benin,Alibori,BJ.AL,BEN,BEN
+31082,BEN,Benin,Atakora,BJ.AK,BEN,BEN
+31083,BEN,Benin,Atlantique,BJ.AQ,BEN,BEN
+31084,BEN,Benin,Borgou,BJ.BO,BEN,BEN
+31085,BEN,Benin,Collines,BJ.CL,BEN,BEN
+31086,BEN,Benin,Donga,BJ.DO,BEN,BEN
+31087,BEN,Benin,Kouffo,BJ.CF,BEN,BEN
+31088,BEN,Benin,Littoral,BJ.LI,BEN,BEN
+31089,BEN,Benin,Mono,BJ.CF,BEN,BEN
+31090,BEN,Benin,Ouémé,BJ.OU,BEN,BEN
+31091,BEN,Benin,Plateau,BJ.PL,BEN,BEN
+31092,BEN,Benin,Zou,BJ.ZO,BEN,BEN
+31093,BFA,Burkina Faso,Balé,BF.BA,BFA,BFA
+31094,BFA,Burkina Faso,Bam,BF.BM,BFA,BFA
+31095,BFA,Burkina Faso,Banwa,BF.BW,BFA,BFA
+31096,BFA,Burkina Faso,Bazéga,BF.BZ,BFA,BFA
+31097,BFA,Burkina Faso,Bougouriba,BF.BB,BFA,BFA
+31098,BFA,Burkina Faso,Boulgou,BF.BL,BFA,BFA
+31099,BFA,Burkina Faso,Boulkiemdé,BF.BK,BFA,BFA
+31100,BFA,Burkina Faso,Ganzourgou,BF.GZ,BFA,BFA
+31101,BFA,Burkina Faso,Gnagna,BF.GG,BFA,BFA
+31102,BFA,Burkina Faso,Gourma,BF.GM,BFA,BFA
+31103,BFA,Burkina Faso,Houet,BF.HO,BFA,BFA
+31104,BFA,Burkina Faso,Ioba,BF.IO,BFA,BFA
+31105,BFA,Burkina Faso,Kadiogo,BF.KA,BFA,BFA
+31106,BFA,Burkina Faso,Kénédougou,BF.KN,BFA,BFA
+31107,BFA,Burkina Faso,Komoé,BF.KM,BFA,BFA
+31108,BFA,Burkina Faso,Komondjari,BF.KJ,BFA,BFA
+31109,BFA,Burkina Faso,Kompienga,BF.KP,BFA,BFA
+31110,BFA,Burkina Faso,Kossi,BF.KS,BFA,BFA
+31111,BFA,Burkina Faso,Koulpélogo,BF.KL,BFA,BFA
+31112,BFA,Burkina Faso,Kouritenga,BF.KR,BFA,BFA
+31113,BFA,Burkina Faso,Kourwéogo,BF.KW,BFA,BFA
+31114,BFA,Burkina Faso,Léraba,BF.LE,BFA,BFA
+31115,BFA,Burkina Faso,Loroum,BF.LO,BFA,BFA
+31116,BFA,Burkina Faso,Mou Houn,BF.MO,BFA,BFA
+31117,BFA,Burkina Faso,Nahouri,BF.NR,BFA,BFA
+31118,BFA,Burkina Faso,Namentenga,BF.NM,BFA,BFA
+31119,BFA,Burkina Faso,Nayala,BF.NY,BFA,BFA
+31120,BFA,Burkina Faso,Oubritenga,BF.OB,BFA,BFA
+31121,BFA,Burkina Faso,Oudalan,BF.OD,BFA,BFA
+31122,BFA,Burkina Faso,Passoré,BF.PA,BFA,BFA
+31123,BFA,Burkina Faso,Poni,BF.PO,BFA,BFA
+31124,BFA,Burkina Faso,Sanguié,BF.SG,BFA,BFA
+31125,BFA,Burkina Faso,Sanmatenga,BF.ST,BFA,BFA
+31126,BFA,Burkina Faso,Séno,BF.SE,BFA,BFA
+31127,BFA,Burkina Faso,Sissili,BF.SS,BFA,BFA
+31128,BFA,Burkina Faso,Soum,BF.SM,BFA,BFA
+31129,BFA,Burkina Faso,Sourou,BF.SR,BFA,BFA
+31130,BFA,Burkina Faso,Tapoa,BF.TA,BFA,BFA
+31131,BFA,Burkina Faso,Tuy,BF.TU,BFA,BFA
+31132,BFA,Burkina Faso,Yagha,BF.YG,BFA,BFA
+31133,BFA,Burkina Faso,Yatenga,BF.YT,BFA,BFA
+31134,BFA,Burkina Faso,Ziro,BF.ZR,BFA,BFA
+31135,BFA,Burkina Faso,Zondoma,BF.ZM,BFA,BFA
+31136,BFA,Burkina Faso,Zoundwéogo,BF.ZW,BFA,BFA
+31137,BGD,Bangladesh,Barisal,BD.BA,BGD,BGD
+31138,BGD,Bangladesh,Chittagong,BD.CG,BGD,BGD
+31139,BGD,Bangladesh,Dhaka,BD.DA,BGD,BGD
+31140,BGD,Bangladesh,Khulna,BD.KH,BGD,BGD
+31141,BGD,Bangladesh,Rajshahi,BD.RJ,BGD,BGD
+31142,BGD,Bangladesh,Sylhet,BD.SY,BGD,BGD
+31143,BGR,Bulgaria,Blagoevgrad,BG.BL,BGR,BGR
+31144,BGR,Bulgaria,Burgas,BG.BR,BGR,BGR
+31145,BGR,Bulgaria,Dobrich,BG.DO,BGR,BGR
+31146,BGR,Bulgaria,Gabrovo,BG.GB,BGR,BGR
+31147,BGR,Bulgaria,Grad Sofiya,BG.SG,BGR,BGR
+31148,BGR,Bulgaria,Haskovo,BG.KK,BGR,BGR
+31149,BGR,Bulgaria,Kardzhali,BG.KZ,BGR,BGR
+31150,BGR,Bulgaria,Kyustendil,BG.KY,BGR,BGR
+31151,BGR,Bulgaria,Lovech,BG.LV,BGR,BGR
+31152,BGR,Bulgaria,Montana,BG.MT,BGR,BGR
+31153,BGR,Bulgaria,Pazardzhik,BG.PZ,BGR,BGR
+31154,BGR,Bulgaria,Pernik,BG.PN,BGR,BGR
+31155,BGR,Bulgaria,Pleven,BG.PV,BGR,BGR
+31156,BGR,Bulgaria,Plovdiv,BG.PD,BGR,BGR
+31157,BGR,Bulgaria,Razgrad,BG.RG,BGR,BGR
+31158,BGR,Bulgaria,Ruse,BG.RS,BGR,BGR
+31159,BGR,Bulgaria,Shumen,BG.SH,BGR,BGR
+31160,BGR,Bulgaria,Silistra,BG.SI,BGR,BGR
+31161,BGR,Bulgaria,Sliven,BG.SL,BGR,BGR
+31162,BGR,Bulgaria,Smolyan,BG.SM,BGR,BGR
+31163,BGR,Bulgaria,Sofia,BG.SF,BGR,BGR
+31164,BGR,Bulgaria,Stara Zagora,BG.SZ,BGR,BGR
+31165,BGR,Bulgaria,Targovishte,BG.TU,BGR,BGR
+31166,BGR,Bulgaria,Varna,BG.VN,BGR,BGR
+31167,BGR,Bulgaria,Veliko Tarnovo,BG.VT,BGR,BGR
+31168,BGR,Bulgaria,Vidin,BG.VD,BGR,BGR
+31169,BGR,Bulgaria,Vratsa,BG.VR,BGR,BGR
+31170,BGR,Bulgaria,Yambol,BG.YA,BGR,BGR
+31171,BHR,Bahrain,Capital,BH.CA,BHR,BHR
+31172,BHR,Bahrain,Central,BH.CE,BHR,BHR
+31173,BHR,Bahrain,Muharraq,BH.MU,BHR,BHR
+31174,BHR,Bahrain,Northern,BH.NO,BHR,BHR
+31175,BHR,Bahrain,Southern,BH.SO,BHR,BHR
+31176,BHS,Bahamas,Acklins,BS.AK,BHS,BHS
+31177,BHS,Bahamas,Berry Islands,BS.BR,BHS,BHS
+31178,BHS,Bahamas,Biminis,BS.BI,BHS,BHS
+31179,BHS,Bahamas,Black Point,BS.BP,BHS,BHS
+31180,BHS,Bahamas,Cat Island,BS.CI,BHS,BHS
+31181,BHS,Bahamas,Central Abaco,BS.CB,BHS,BHS
+31182,BHS,Bahamas,Central Andros,BS.CN,BHS,BHS
+31183,BHS,Bahamas,Central Eleuthera,BS.CE,BHS,BHS
+31184,BHS,Bahamas,City of Freeport,BS.FP,BHS,BHS
+31185,BHS,Bahamas,Crooked Island,BS.CK,BHS,BHS
+31186,BHS,Bahamas,East Grand Bahama,BS.EB,BHS,BHS
+31187,BHS,Bahamas,Exuma,BS.EM,BHS,BHS
+31188,BHS,Bahamas,Grand Cay,BS.GC,BHS,BHS
+31189,BHS,Bahamas,Harbour Island,BS.HB,BHS,BHS
+31190,BHS,Bahamas,Hope Town,BS.HT,BHS,BHS
+31191,BHS,Bahamas,Inagua,BS.IN,BHS,BHS
+31192,BHS,Bahamas,Long Island,BS.LI,BHS,BHS
+31193,BHS,Bahamas,Mangrove Cay,BS.MC,BHS,BHS
+31194,BHS,Bahamas,Mayaguana,BS.MG,BHS,BHS
+31195,BHS,Bahamas,Moore's Island,BS.MI,BHS,BHS
+31196,BHS,Bahamas,New Providence,BS.NW,BHS,BHS
+31197,BHS,Bahamas,North Abaco,BS.NB,BHS,BHS
+31198,BHS,Bahamas,North Andros,BS.NN,BHS,BHS
+31199,BHS,Bahamas,North Eleuthera,BS.NE,BHS,BHS
+31200,BHS,Bahamas,Ragged Island,BS.RI,BHS,BHS
+31201,BHS,Bahamas,Rum Cay,BS.RC,BHS,BHS
+31202,BHS,Bahamas,San Salvador,BS.SS,BHS,BHS
+31203,BHS,Bahamas,South Abaco,BS.SB,BHS,BHS
+31204,BHS,Bahamas,South Andros,BS.SN,BHS,BHS
+31205,BHS,Bahamas,South Eleuthera,BS.SE,BHS,BHS
+31206,BHS,Bahamas,Spanish Wells,BS.SW,BHS,BHS
+31207,BHS,Bahamas,West Grand Bahama,BS.WB,BHS,BHS
+31208,BIH,Bosnia and Herzegovina,Federacija Bosna i Hercegovina,BA.BF,BIH,BIH
+31209,BIH,Bosnia and Herzegovina,Repuplika Srpska,BA.SR,BIH,BIH
+31210,BLR,Belarus,Brest,BY.BR,BLR,BLR
+31211,BLR,Belarus,Homyel',BY.HO,BLR,BLR
+31212,BLR,Belarus,Hrodna,BY.HR,BLR,BLR
+31213,BLR,Belarus,Mahilyow,BY.MA,BLR,BLR
+31214,BLR,Belarus,Minsk,BY.MI,BLR,BLR
+31215,BLR,Belarus,Vitsyebsk,BY.VI,BLR,BLR
+31216,BLZ,Belize,Belize,BZ.BZ,BLZ,BLZ
+31217,BLZ,Belize,Cayo,BZ.CY,BLZ,BLZ
+31218,BLZ,Belize,Corozal,BZ.CZ,BLZ,BLZ
+31219,BLZ,Belize,Orange Walk,BZ.OW,BLZ,BLZ
+31220,BLZ,Belize,Stann Creek,BZ.SC,BLZ,BLZ
+31221,BLZ,Belize,Toledo,BZ.TO,BLZ,BLZ
+31222,BMU,Bermuda,Devonshire,BM.DE,BMU,BMU
+31223,BMU,Bermuda,Hamilton,BM.HA,BMU,BMU
+31224,BMU,Bermuda,Hamilton Municipality,BM.HC,BMU,BMU
+31225,BMU,Bermuda,Paget,BM.PA,BMU,BMU
+31226,BMU,Bermuda,Pembroke,BM.PE,BMU,BMU
+31227,BMU,Bermuda,Saint George municipality,BM.SG,BMU,BMU
+31228,BMU,Bermuda,Saint George's,BM.SC,BMU,BMU
+31229,BMU,Bermuda,Sandys,BM.SA,BMU,BMU
+31230,BMU,Bermuda,Smiths,BM.SM,BMU,BMU
+31231,BMU,Bermuda,Southampton,BM.SO,BMU,BMU
+31232,BMU,Bermuda,Warwick,BM.WA,BMU,BMU
+31233,BOL,Bolivia,Chuquisaca,BO.CQ,BOL,BOL
+31234,BOL,Bolivia,Cochabamba,BO.CB,BOL,BOL
+31235,BOL,Bolivia,El Beni,BO.EB,BOL,BOL
+31236,BOL,Bolivia,La Paz,BO.LP,BOL,BOL
+31237,BOL,Bolivia,Oruro,BO.OR,BOL,BOL
+31238,BOL,Bolivia,Pando,BO.PA,BOL,BOL
+31239,BOL,Bolivia,Potosí,BO.PO,BOL,BOL
+31240,BOL,Bolivia,Santa Cruz,BO.SC,BOL,BOL
+31241,BOL,Bolivia,Tarija,BO.TR,BOL,BOL
+31242,BRA,Brazil,Acre,BR.AC,BRA,BRA
+31243,BRA,Brazil,Alagoas,BR.AL,BRA,BRA
+31244,BRA,Brazil,Amapá,BR.AP,BRA,BRA
+31245,BRA,Brazil,Amazonas,BR.AM,BRA,BRA
+31246,BRA,Brazil,Bahia,BR.BA,BRA,BRA
+31247,BRA,Brazil,Ceará,BR.CE,BRA,BRA
+31248,BRA,Brazil,Distrito Federal,BR.DF,BRA,BRA
+31249,BRA,Brazil,Espírito Santo,BR.ES,BRA,BRA
+31250,BRA,Brazil,Goiás,BR.GO,BRA,BRA
+31251,BRA,Brazil,Maranhão,BR.MA,BRA,BRA
+31252,BRA,Brazil,Mato Grosso,BR.MT,BRA,BRA
+31253,BRA,Brazil,Mato Grosso do Sul,BR.MS,BRA,BRA
+31254,BRA,Brazil,Minas Gerais,BR.MG,BRA,BRA
+31255,BRA,Brazil,Pará,BR.PA,BRA,BRA
+31256,BRA,Brazil,Paraíba,BR.PB,BRA,BRA
+31257,BRA,Brazil,Paraná,BR.PR,BRA,BRA
+31258,BRA,Brazil,Pernambuco,BR.PE,BRA,BRA
+31259,BRA,Brazil,Piauí,BR.PI,BRA,BRA
+31260,BRA,Brazil,Rio de Janeiro,BR.RJ,BRA,BRA
+31261,BRA,Brazil,Rio Grande do Norte,BR.RN,BRA,BRA
+31262,BRA,Brazil,Rio Grande do Sul,BR.RS,BRA,BRA
+31263,BRA,Brazil,Rondônia,BR.RO,BRA,BRA
+31264,BRA,Brazil,Roraima,BR.RR,BRA,BRA
+31265,BRA,Brazil,Santa Catarina,BR.SC,BRA,BRA
+31266,BRA,Brazil,São Paulo,BR.SP,BRA,BRA
+31267,BRA,Brazil,Sergipe,BR.SE,BRA,BRA
+31268,BRA,Brazil,Tocantins,BR.TO,BRA,BRA
+31269,BRB,Barbados,Christ Church,BB.CC,BRB,BRB
+31270,BRB,Barbados,Saint Andrew,BB.AN,BRB,BRB
+31271,BRB,Barbados,Saint George,BB.GE,BRB,BRB
+31272,BRB,Barbados,Saint James,BB.JM,BRB,BRB
+31273,BRB,Barbados,Saint John,BB.JN,BRB,BRB
+31274,BRB,Barbados,Saint Joseph,BB.JS,BRB,BRB
+31275,BRB,Barbados,Saint Lucy,BB.LU,BRB,BRB
+31276,BRB,Barbados,Saint Michael,BB.MI,BRB,BRB
+31277,BRB,Barbados,Saint Peter,BB.PE,BRB,BRB
+31278,BRB,Barbados,Saint Philip,BB.PH,BRB,BRB
+31279,BRB,Barbados,Saint Thomas,BB.TH,BRB,BRB
+31280,BRN,Brunei,Belait,BN.BE,BRN,BRN
+31281,BRN,Brunei,Brunei and Muara,BN.BM,BRN,BRN
+31282,BRN,Brunei,Temburong,BN.TE,BRN,BRN
+31283,BRN,Brunei,Tutong,BN.TU,BRN,BRN
+31284,BTN,Bhutan,Bumthang,BT.BU,BTN,BTN
+31285,BTN,Bhutan,Chhukha,BT.CK,BTN,BTN
+31286,BTN,Bhutan,Chirang,BT.CR,BTN,BTN
+31287,BTN,Bhutan,Daga,BT.DA,BTN,BTN
+31288,BTN,Bhutan,Gasa,BT.GA,BTN,BTN
+31289,BTN,Bhutan,Geylegphug,BT.GE,BTN,BTN
+31290,BTN,Bhutan,Ha,BT.HA,BTN,BTN
+31291,BTN,Bhutan,Lhuntshi,BT.LH,BTN,BTN
+31292,BTN,Bhutan,Mongar,BT.MO,BTN,BTN
+31293,BTN,Bhutan,Paro,BT.PR,BTN,BTN
+31294,BTN,Bhutan,Pemagatsel,BT.PM,BTN,BTN
+31295,BTN,Bhutan,Punakha,BT.PN,BTN,BTN
+31296,BTN,Bhutan,Samchi,BT.SM,BTN,BTN
+31297,BTN,Bhutan,Samdrup Jongkhar,BT.SJ,BTN,BTN
+31298,BTN,Bhutan,Shemgang,BT.SG,BTN,BTN
+31299,BTN,Bhutan,Tashi Yangtse,BT.TY,BTN,BTN
+31300,BTN,Bhutan,Tashigang,BT.TA,BTN,BTN
+31301,BTN,Bhutan,Thimphu,BT.TM,BTN,BTN
+31302,BTN,Bhutan,Tongsa,BT.TO,BTN,BTN
+31303,BTN,Bhutan,Wangdi Phodrang,BT.WP,BTN,BTN
+31304,BWA,Botswana,Central,BW.CE,BWA,BWA
+31305,BWA,Botswana,Ghanzi,BW.GH,BWA,BWA
+31306,BWA,Botswana,Kgalagadi,BW.KG,BWA,BWA
+31307,BWA,Botswana,Kgatleng,BW.KL,BWA,BWA
+31308,BWA,Botswana,Kweneng,BW.KW,BWA,BWA
+31309,BWA,Botswana,North-East,BW.NE,BWA,BWA
+31310,BWA,Botswana,North-West,BW.NW,BWA,BWA
+31311,BWA,Botswana,South-East,BW.SE,BWA,BWA
+31312,BWA,Botswana,Southern,BW.SO,BWA,BWA
+31313,CAF,Central African Republic,Bamingui-Bangoran,CF.BB,CAF,CAF
+31314,CAF,Central African Republic,Bangui,CF.BG,CAF,CAF
+31315,CAF,Central African Republic,Basse-Kotto,CF.BK,CAF,CAF
+31316,CAF,Central African Republic,Haute-Kotto,CF.HK,CAF,CAF
+31317,CAF,Central African Republic,Haut-Mbomou,CF.HM,CAF,CAF
+31318,CAF,Central African Republic,Kémo,CF.KG,CAF,CAF
+31319,CAF,Central African Republic,Lobaye,CF.LB,CAF,CAF
+31320,CAF,Central African Republic,Mambéré-Kadéï,CF.HS,CAF,CAF
+31321,CAF,Central African Republic,Mbomou,CF.MB,CAF,CAF
+31322,CAF,Central African Republic,Nana-Grébizi,CF.KB,CAF,CAF
+31323,CAF,Central African Republic,Nana-Mambéré,CF.NM,CAF,CAF
+31324,CAF,Central African Republic,Ombella-M'Poko,CF.MP,CAF,CAF
+31325,CAF,Central African Republic,Ouaka,CF.UK,CAF,CAF
+31326,CAF,Central African Republic,Ouham,CF.AC,CAF,CAF
+31327,CAF,Central African Republic,Ouham-Pendé,CF.OP,CAF,CAF
+31328,CAF,Central African Republic,Sangha-Mbaéré,CF.SE,CAF,CAF
+31329,CAF,Central African Republic,Vakaga,CF.VK,CAF,CAF
+31330,CAN,Canada,Alberta,CA.AB,CAN,CAN
+31331,CAN,Canada,British Columbia,CA.BC,CAN,CAN
+31332,CAN,Canada,Manitoba,CA.MB,CAN,CAN
+31333,CAN,Canada,New Brunswick,CA.NB,CAN,CAN
+31334,CAN,Canada,Newfoundland and Labrador,CA.NF,CAN,CAN
+31335,CAN,Canada,Northwest Territories,CA.NT,CAN,CAN
+31336,CAN,Canada,Nova Scotia,CA.NS,CAN,CAN
+31337,CAN,Canada,Nunavut,CA.NU,CAN,CAN
+31338,CAN,Canada,Ontario,CA.ON,CAN,CAN
+31339,CAN,Canada,Prince Edward Island,CA.PE,CAN,CAN
+31340,CAN,Canada,Québec,CA.QC,CAN,CAN
+31341,CAN,Canada,Saskatchewan,CA.SK,CAN,CAN
+31342,CAN,Canada,Yukon,CA.YT,CAN,CAN
+31343,CHE,Switzerland,Aargau,CH.AG,CHE,CHE
+31344,CHE,Switzerland,Appenzell Ausserrhoden,CH.AR,CHE,CHE
+31345,CHE,Switzerland,Appenzell Innerrhoden,CH.AI,CHE,CHE
+31346,CHE,Switzerland,Basel-Landschaft,CH.BL,CHE,CHE
+31347,CHE,Switzerland,Basel-Stadt,CH.BS,CHE,CHE
+31348,CHE,Switzerland,Bern,CH.BE,CHE,CHE
+31349,CHE,Switzerland,Fribourg,CH.FR,CHE,CHE
+31350,CHE,Switzerland,Genève,CH.GE,CHE,CHE
+31351,CHE,Switzerland,Glarus,CH.GL,CHE,CHE
+31352,CHE,Switzerland,Graubünden,CH.GR,CHE,CHE
+31353,CHE,Switzerland,Jura,CH.JU,CHE,CHE
+31354,CHE,Switzerland,Lac Léman,,CHE,CHE
+31355,CHE,Switzerland,Lucerne,CH.LU,CHE,CHE
+31356,CHE,Switzerland,Neuchâtel,CH.NE,CHE,CHE
+31357,CHE,Switzerland,Nidwalden,CH.NW,CHE,CHE
+31358,CHE,Switzerland,Obwalden,CH.OW,CHE,CHE
+31359,CHE,Switzerland,Sankt Gallen,CH.SG,CHE,CHE
+31360,CHE,Switzerland,Schaffhausen,CH.SH,CHE,CHE
+31361,CHE,Switzerland,Schwyz,CH.SZ,CHE,CHE
+31362,CHE,Switzerland,Solothurn,CH.SO,CHE,CHE
+31363,CHE,Switzerland,Thurgau,CH.TG,CHE,CHE
+31364,CHE,Switzerland,Ticino,CH.TI,CHE,CHE
+31365,CHE,Switzerland,Uri,CH.UR,CHE,CHE
+31366,CHE,Switzerland,Valais,CH.VS,CHE,CHE
+31367,CHE,Switzerland,Vaud,CH.VD,CHE,CHE
+31368,CHE,Switzerland,Zug,CH.ZG,CHE,CHE
+31369,CHE,Switzerland,Zürich,CH.ZH,CHE,CHE
+31370,CHL,Chile,Aisén del General Carlos Ibáñez del Campo,CL.AI,CHL,CHL
+31371,CHL,Chile,Antofagasta,CL.AN,CHL,CHL
+31372,CHL,Chile,Araucanía,CL.AR,CHL,CHL
+31373,CHL,Chile,Atacama,CL.AT,CHL,CHL
+31374,CHL,Chile,Bío-Bío,CL.BI,CHL,CHL
+31375,CHL,Chile,Coquimbo,CL.CO,CHL,CHL
+31376,CHL,Chile,Libertador General Bernardo O'Higgins,CL.LI,CHL,CHL
+31377,CHL,Chile,Los Lagos,CL.LL,CHL,CHL
+31378,CHL,Chile,Magallanes y Antártica Chilena,CL.MA,CHL,CHL
+31379,CHL,Chile,Maule,CL.ML,CHL,CHL
+31380,CHL,Chile,Región Metropolitana de Santiago,CL.RM,CHL,CHL
+31381,CHL,Chile,Tarapacá,CL.TA,CHL,CHL
+31382,CHL,Chile,Valparaíso,CL.VS,CHL,CHL
+31383,CHN,China,Anhui,CN.AH,CHN,CHN
+31384,CHN,China,Beijing,CN.BJ,CHN,CHN
+31385,CHN,China,Chongqing,CN.CQ,CHN,CHN
+31386,CHN,China,Fujian,CN.FJ,CHN,CHN
+31387,CHN,China,Gansu,CN.GS,CHN,CHN
+31388,CHN,China,Guangdong,CN.GD,CHN,CHN
+31389,CHN,China,Guangxi,CN.GX,CHN,CHN
+31390,CHN,China,Guizhou,CN.GZ,CHN,CHN
+31391,CHN,China,Hainan,CN.HA,CHN,CHN
+31392,CHN,China,Hebei,CN.HB,CHN,CHN
+31393,CHN,China,Heilongjiang,CN.HL,CHN,CHN
+31394,CHN,China,Henan,CN.HE,CHN,CHN
+31395,CHN,China,Hubei,CN.HU,CHN,CHN
+31396,CHN,China,Hunan,CN.HN,CHN,CHN
+31397,CHN,China,Jiangsu,CN.JS,CHN,CHN
+31398,CHN,China,Jiangxi,CN.JX,CHN,CHN
+31399,CHN,China,Jilin,CN.JL,CHN,CHN
+31400,CHN,China,Liaoning,CN.LN,CHN,CHN
+31401,CHN,China,Nei Mongol,CN.NM,CHN,CHN
+31402,CHN,China,Ningxia Hui,CN.NX,CHN,CHN
+31403,CHN,China,Paracel Islands,,CHN,CHN
+31404,CHN,China,Qinghai,CN.QH,CHN,CHN
+31405,CHN,China,Shaanxi,CN.SA,CHN,CHN
+31406,CHN,China,Shandong,CN.SD,CHN,CHN
+31407,CHN,China,Shanghai,CN.SH,CHN,CHN
+31408,CHN,China,Shanxi,CN.SX,CHN,CHN
+31409,CHN,China,Sichuan,CN.SC,CHN,CHN
+31410,CHN,China,Tianjin,CN.TJ,CHN,CHN
+31411,CHN,China,Xinjiang Uygur,CN.XJ,CHN,CHN
+31412,CHN,China,Xizang,CN.XZ,CHN,CHN
+31413,CHN,China,Yunnan,CN.YN,CHN,CHN
+31414,CHN,China,Zhejiang,CN.ZJ,CHN,CHN
+31415,CIV,Côte d'Ivoire,Agnéby,CI.AG,CIV,CIV
+31416,CIV,Côte d'Ivoire,Bafing,CI.BF,CIV,CIV
+31417,CIV,Côte d'Ivoire,Bas-Sassandra,CI.BS,CIV,CIV
+31418,CIV,Côte d'Ivoire,Denguélé,CI.DE,CIV,CIV
+31419,CIV,Côte d'Ivoire,Dix-Huit Montagnes,CI.DH,CIV,CIV
+31420,CIV,Côte d'Ivoire,Fromager,CI.FR,CIV,CIV
+31421,CIV,Côte d'Ivoire,Haut-Sassandra,CI.HT,CIV,CIV
+31422,CIV,Côte d'Ivoire,Lacs,CI.LC,CIV,CIV
+31423,CIV,Côte d'Ivoire,Lagunes,CI.LG,CIV,CIV
+31424,CIV,Côte d'Ivoire,Marahoué,CI.MR,CIV,CIV
+31425,CIV,Côte d'Ivoire,Moyen-Cavally,CI.MV,CIV,CIV
+31426,CIV,Côte d'Ivoire,Moyen-Comoé,CI.MC,CIV,CIV
+31427,CIV,Côte d'Ivoire,N'zi-Comoé,CI.NC,CIV,CIV
+31428,CIV,Côte d'Ivoire,Savanes,CI.SV,CIV,CIV
+31429,CIV,Côte d'Ivoire,Sud-Bandama,CI.SB,CIV,CIV
+31430,CIV,Côte d'Ivoire,Sud-Comoé,CI.SC,CIV,CIV
+31431,CIV,Côte d'Ivoire,Vallée du Bandama,CI.VB,CIV,CIV
+31432,CIV,Côte d'Ivoire,Worodougou,CI.WR,CIV,CIV
+31433,CIV,Côte d'Ivoire,Zanzan,CI.ZA,CIV,CIV
+31434,CMR,Cameroon,Ouest,CM.OU,CMR,CMR
+31435,CMR,Cameroon,Sud,CM.SU,CMR,CMR
+31436,CMR,Cameroon,Sud-Ouest,CM.SW,CMR,CMR
+31437,CMR,Cameroon,Adamaoua,CM.AD,CMR,CMR
+31438,CMR,Cameroon,Centre,CM.CE,CMR,CMR
+31439,CMR,Cameroon,Est,CM.ES,CMR,CMR
+31440,CMR,Cameroon,Extrême-Nord,CM.EN,CMR,CMR
+31441,CMR,Cameroon,Littoral,CM.LT,CMR,CMR
+31442,CMR,Cameroon,Nord,CM.NO,CMR,CMR
+31443,CMR,Cameroon,Nord-Ouest,CM.NW,CMR,CMR
+31444,COD,Democratic Republic of the Congo,Bandundu,CD.BN,COD,COD
+31445,COD,Democratic Republic of the Congo,Bas-Congo,CD.BC,COD,COD
+31446,COD,Democratic Republic of the Congo,Équateur,CD.EQ,COD,COD
+31447,COD,Democratic Republic of the Congo,Kasaï-Occidental,CD.KC,COD,COD
+31448,COD,Democratic Republic of the Congo,Kasaï-Oriental,CD.KR,COD,COD
+31449,COD,Democratic Republic of the Congo,Katanga,CD.KT,COD,COD
+31450,COD,Democratic Republic of the Congo,Kinshasa City,CD.KN,COD,COD
+31451,COD,Democratic Republic of the Congo,Kivu,CD.KV,COD,COD
+31452,COD,Democratic Republic of the Congo,Orientale,CD.HC,COD,COD
+31453,COG,Republic of Congo,Bouenza,CG.BO,COG,COG
+31454,COG,Republic of Congo,Cuvette,CG.CU,COG,COG
+31455,COG,Republic of Congo,Cuvette-Ouest,CG.CO,COG,COG
+31456,COG,Republic of Congo,Kouilou,CG.KO,COG,COG
+31457,COG,Republic of Congo,Lékoumou,CG.LE,COG,COG
+31458,COG,Republic of Congo,Likouala,CG.LI,COG,COG
+31459,COG,Republic of Congo,Niari,CG.NI,COG,COG
+31460,COG,Republic of Congo,Plateaux,CG.PL,COG,COG
+31461,COG,Republic of Congo,Pool,CG.PO,COG,COG
+31462,COG,Republic of Congo,Sangha,CG.SA,COG,COG
+31463,COL,Colombia,Amazonas,CO.AM,COL,COL
+31464,COL,Colombia,Antioquia,CO.AN,COL,COL
+31465,COL,Colombia,Arauca,CO.AR,COL,COL
+31466,COL,Colombia,Atlántico,CO.AT,COL,COL
+31467,COL,Colombia,Bolívar,CO.BL,COL,COL
+31468,COL,Colombia,Boyacá,CO.BY,COL,COL
+31469,COL,Colombia,Caldas,CO.CL,COL,COL
+31470,COL,Colombia,Caquetá,CO.CQ,COL,COL
+31471,COL,Colombia,Casanare,CO.CS,COL,COL
+31472,COL,Colombia,Cauca,CO.CA,COL,COL
+31473,COL,Colombia,Cesar,CO.CE,COL,COL
+31474,COL,Colombia,Chocó,CO.CH,COL,COL
+31475,COL,Colombia,Córdoba,CO.CO,COL,COL
+31476,COL,Colombia,Cundinamarca,CO.CU,COL,COL
+31477,COL,Colombia,Guainía,CO.GN,COL,COL
+31478,COL,Colombia,Guaviare,CO.GV,COL,COL
+31479,COL,Colombia,Huila,CO.HU,COL,COL
+31480,COL,Colombia,La Guajira,CO.LG,COL,COL
+31481,COL,Colombia,Magdalena,CO.MA,COL,COL
+31482,COL,Colombia,Meta,CO.ME,COL,COL
+31483,COL,Colombia,Nariño,CO.NA,COL,COL
+31484,COL,Colombia,Norte de Santander,CO.NS,COL,COL
+31485,COL,Colombia,Putumayo,CO.PU,COL,COL
+31486,COL,Colombia,Quindío,CO.QD,COL,COL
+31487,COL,Colombia,Risaralda,CO.RI,COL,COL
+31488,COL,Colombia,San Andrés y Providencia,CO.SA,COL,COL
+31489,COL,Colombia,Santander,CO.ST,COL,COL
+31490,COL,Colombia,Sucre,CO.SU,COL,COL
+31491,COL,Colombia,Tolima,CO.TO,COL,COL
+31492,COL,Colombia,Valle del Cauca,CO.VC,COL,COL
+31493,COL,Colombia,Vaupés,CO.VP,COL,COL
+31494,COL,Colombia,Vichada,CO.VD,COL,COL
+31495,COM,Comoros,Mwali,KM.MO,COM,COM
+31496,COM,Comoros,Njazídja,KM.GC,COM,COM
+31497,COM,Comoros,Nzwani,KM.AN,COM,COM
+31498,CPV,Cape Verde,Boa Vista,CV.BV,CPV,CPV
+31499,CPV,Cape Verde,Brava,CV.BR,CPV,CPV
+31500,CPV,Cape Verde,Maio,CV.MA,CPV,CPV
+31501,CPV,Cape Verde,Mosteiros,CV.MO,CPV,CPV
+31502,CPV,Cape Verde,Paúl,CV.PA,CPV,CPV
+31503,CPV,Cape Verde,Porto Novo,CV.PN,CPV,CPV
+31504,CPV,Cape Verde,Praia,CV.PI,CPV,CPV
+31505,CPV,Cape Verde,Ribeira Grande,CV.RG,CPV,CPV
+31506,CPV,Cape Verde,Sal,CV.SL,CPV,CPV
+31507,CPV,Cape Verde,Santa Catarina,CV.SC,CPV,CPV
+31508,CPV,Cape Verde,Santa Cruz,CV.SZ,CPV,CPV
+31509,CPV,Cape Verde,São Domingos,CV.SD,CPV,CPV
+31510,CPV,Cape Verde,São Filipe,CV.SF,CPV,CPV
+31511,CPV,Cape Verde,São Miguel,CV.SM,CPV,CPV
+31512,CPV,Cape Verde,São Nicolau,CV.SN,CPV,CPV
+31513,CPV,Cape Verde,São Vicente,CV.SV,CPV,CPV
+31514,CPV,Cape Verde,Tarrafal,CV.TF,CPV,CPV
+31515,CRI,Costa Rica,Alajuela,CR.AL,CRI,CRI
+31516,CRI,Costa Rica,Cartago,CR.CA,CRI,CRI
+31517,CRI,Costa Rica,Guanacaste,CR.GU,CRI,CRI
+31518,CRI,Costa Rica,Heredia,CR.HE,CRI,CRI
+31519,CRI,Costa Rica,Limón,CR.LI,CRI,CRI
+31520,CRI,Costa Rica,Puntarenas,CR.PU,CRI,CRI
+31521,CRI,Costa Rica,San José,CR.SJ,CRI,CRI
+31522,CUB,Cuba,Camagüey,CU.CM,CUB,CUB
+31523,CUB,Cuba,Ciego de Ávila,CU.CA,CUB,CUB
+31524,CUB,Cuba,Cienfuegos,CU.CF,CUB,CUB
+31525,CUB,Cuba,Ciudad de la Habana,CU.CH,CUB,CUB
+31526,CUB,Cuba,Granma,CU.GR,CUB,CUB
+31527,CUB,Cuba,Guantánamo,CU.GU,CUB,CUB
+31528,CUB,Cuba,Holguín,CU.HO,CUB,CUB
+31529,CUB,Cuba,Isla de la Juventud,CU.IJ,CUB,CUB
+31530,CUB,Cuba,La Habana,CU.LH,CUB,CUB
+31531,CUB,Cuba,Las Tunas,CU.LT,CUB,CUB
+31532,CUB,Cuba,Matanzas,CU.MA,CUB,CUB
+31533,CUB,Cuba,Pinar del Río,CU.PR,CUB,CUB
+31534,CUB,Cuba,Sancti Spíritus,CU.SS,CUB,CUB
+31535,CUB,Cuba,Santiago de Cuba,CU.SC,CUB,CUB
+31536,CUB,Cuba,Villa Clara,CU.VC,CUB,CUB
+31537,CYM,Cayman Islands,Bodden Town,KY.BT,CYM,CYM
+31538,CYM,Cayman Islands,Cayman Brac,KY.CB,CYM,CYM
+31539,CYM,Cayman Islands,East End,KY.EE,CYM,CYM
+31540,CYM,Cayman Islands,George Town,KY.GT,CYM,CYM
+31541,CYM,Cayman Islands,Little Cayman,KY.SO,CYM,CYM
+31542,CYM,Cayman Islands,North Side,KY.NS,CYM,CYM
+31543,CYM,Cayman Islands,West Bay,KY.WB,CYM,CYM
+31544,CYP,Cyprus,Famagusta,CY.FA,CYP,CYP
+31545,CYP,Cyprus,Kyrenia,CY.KY,CYP,CYP
+31546,CYP,Cyprus,Larnaca,CY.LA,CYP,CYP
+31547,CYP,Cyprus,Limassol,CY.LI,CYP,CYP
+31548,CYP,Cyprus,Nicosia,CY.NI,CYP,CYP
+31549,CYP,Cyprus,Paphos,CY.PA,CYP,CYP
+31550,CZE,Czech Republic,Jihoceský,CZ.CK,CZE,CZE
+31551,CZE,Czech Republic,Jihomoravský,CZ.BK,CZE,CZE
+31552,CZE,Czech Republic,Karlovarský,CZ.KK,CZE,CZE
+31553,CZE,Czech Republic,Kraj Vysocina,CZ.JK,CZE,CZE
+31554,CZE,Czech Republic,Královéhradecký,CZ.HK,CZE,CZE
+31555,CZE,Czech Republic,Liberecký,CZ.LK,CZE,CZE
+31556,CZE,Czech Republic,Moravskoslezský,CZ.VK,CZE,CZE
+31557,CZE,Czech Republic,Olomoucký,CZ.OK,CZE,CZE
+31558,CZE,Czech Republic,Pardubický,CZ.EK,CZE,CZE
+31559,CZE,Czech Republic,Plzenský,CZ.PK,CZE,CZE
+31560,CZE,Czech Republic,Prague,CZ.SK,CZE,CZE
+31561,CZE,Czech Republic,Stredoceský,CZ.SK,CZE,CZE
+31562,CZE,Czech Republic,Ústecký,CZ.UK,CZE,CZE
+31563,CZE,Czech Republic,Zlínský,CZ.ZK,CZE,CZE
+31564,DEU,Germany,Baden-Württemberg,DE.BW,DEU,DEU
+31565,DEU,Germany,Bayern,DE.BY,DEU,DEU
+31566,DEU,Germany,Berlin,DE.BE,DEU,DEU
+31567,DEU,Germany,Brandenburg,DE.BR,DEU,DEU
+31568,DEU,Germany,Bremen,DE.HB,DEU,DEU
+31569,DEU,Germany,Hamburg,DE.HH,DEU,DEU
+31570,DEU,Germany,Hessen,DE.HE,DEU,DEU
+31571,DEU,Germany,Mecklenburg-Vorpommern,DE.MV,DEU,DEU
+31572,DEU,Germany,Niedersachsen,DE.NI,DEU,DEU
+31573,DEU,Germany,Nordrhein-Westfalen,DE.NW,DEU,DEU
+31574,DEU,Germany,Rheinland-Pfalz,DE.RP,DEU,DEU
+31575,DEU,Germany,Saarland,DE.SL,DEU,DEU
+31576,DEU,Germany,Sachsen,DE.SN,DEU,DEU
+31577,DEU,Germany,Sachsen-Anhalt,DE.ST,DEU,DEU
+31578,DEU,Germany,Schleswig-Holstein,DE.SH,DEU,DEU
+31579,DEU,Germany,Thüringen,DE.TH,DEU,DEU
+31580,DJI,Djibouti,Ali Sabieh,DJ.AS,DJI,DJI
+31581,DJI,Djibouti,Dikhil,DJ.DK,DJI,DJI
+31582,DJI,Djibouti,Djibouti,DJ.DB,DJI,DJI
+31583,DJI,Djibouti,Obock,DJ.OB,DJI,DJI
+31584,DJI,Djibouti,Tadjourah,DJ.TA,DJI,DJI
+31585,DNK,Denmark,Århus,DK.AR,DNK,DNK
+31586,DNK,Denmark,Bornholm,DK.BO,DNK,DNK
+31587,DNK,Denmark,Copenhagen,DK.KH,DNK,DNK
+31588,DNK,Denmark,Frederiksborg,DK.FR,DNK,DNK
+31589,DNK,Denmark,Fyn,DK.FY,DNK,DNK
+31590,DNK,Denmark,North Jutland,DK.NJ,DNK,DNK
+31591,DNK,Denmark,Ribe,DK.RB,DNK,DNK
+31592,DNK,Denmark,Ringkøbing,DK.RK,DNK,DNK
+31593,DNK,Denmark,Roskilde,DK.RS,DNK,DNK
+31594,DNK,Denmark,South Jutland,DK.SJ,DNK,DNK
+31595,DNK,Denmark,Storstrøm,DK.ST,DNK,DNK
+31596,DNK,Denmark,Vejle,DK.VJ,DNK,DNK
+31597,DNK,Denmark,Vestsjælland,DK.VS,DNK,DNK
+31598,DNK,Denmark,Viborg,DK.VB,DNK,DNK
+31599,DOM,Dominican Republic,Azua,DO.AZ,DOM,DOM
+31600,DOM,Dominican Republic,Bahoruco,DO.BR,DOM,DOM
+31601,DOM,Dominican Republic,Barahona,DO.BH,DOM,DOM
+31602,DOM,Dominican Republic,Dajabón,DO.DA,DOM,DOM
+31603,DOM,Dominican Republic,Distrito Nacional,DO.NC,DOM,DOM
+31604,DOM,Dominican Republic,Duarte,DO.DU,DOM,DOM
+31605,DOM,Dominican Republic,El Seybo,DO.SE,DOM,DOM
+31606,DOM,Dominican Republic,Espaillat,DO.ES,DOM,DOM
+31607,DOM,Dominican Republic,Hato Mayor,DO.HM,DOM,DOM
+31608,DOM,Dominican Republic,Independencia,DO.IN,DOM,DOM
+31609,DOM,Dominican Republic,La Altagracia,DO.AL,DOM,DOM
+31610,DOM,Dominican Republic,La Estrelleta,DO.EP,DOM,DOM
+31611,DOM,Dominican Republic,La Romana,DO.RO,DOM,DOM
+31612,DOM,Dominican Republic,La Vega,DO.VE,DOM,DOM
+31613,DOM,Dominican Republic,María Trinidad Sánchez,DO.MT,DOM,DOM
+31614,DOM,Dominican Republic,Monseñor Nouel,DO.MN,DOM,DOM
+31615,DOM,Dominican Republic,Monte Cristi,DO.MC,DOM,DOM
+31616,DOM,Dominican Republic,Monte Plata,DO.MP,DOM,DOM
+31617,DOM,Dominican Republic,Pedernales,DO.PN,DOM,DOM
+31618,DOM,Dominican Republic,Peravia,DO.PV,DOM,DOM
+31619,DOM,Dominican Republic,Puerto Plata,DO.PP,DOM,DOM
+31620,DOM,Dominican Republic,Salcedo,DO.SC,DOM,DOM
+31621,DOM,Dominican Republic,Samaná,DO.SM,DOM,DOM
+31622,DOM,Dominican Republic,San Cristóbal,DO.CR,DOM,DOM
+31623,DOM,Dominican Republic,San José de Ocoa,DO.JO,DOM,DOM
+31624,DOM,Dominican Republic,San Juan,DO.JU,DOM,DOM
+31625,DOM,Dominican Republic,San Pedro de Macorís,DO.PM,DOM,DOM
+31626,DOM,Dominican Republic,Sánchez Ramírez,DO.SZ,DOM,DOM
+31627,DOM,Dominican Republic,Santiago,DO.ST,DOM,DOM
+31628,DOM,Dominican Republic,Santiago Rodríguez,DO.SR,DOM,DOM
+31629,DOM,Dominican Republic,Santo Domingo,DO.SD,DOM,DOM
+31630,DOM,Dominican Republic,Valverde,DO.VA,DOM,DOM
+31631,DZA,Algeria,Adrar,DZ.AR,DZA,DZA
+31632,DZA,Algeria,Aïn Defla,DZ.AD,DZA,DZA
+31633,DZA,Algeria,Aïn Témouchent,DZ.AT,DZA,DZA
+31634,DZA,Algeria,Alger,DZ.AL,DZA,DZA
+31635,DZA,Algeria,Annaba,DZ.AN,DZA,DZA
+31636,DZA,Algeria,Batna,DZ.BT,DZA,DZA
+31637,DZA,Algeria,Béchar,DZ.BC,DZA,DZA
+31638,DZA,Algeria,Béjaïa,DZ.BJ,DZA,DZA
+31639,DZA,Algeria,Biskra,DZ.BS,DZA,DZA
+31640,DZA,Algeria,Blida,DZ.BL,DZA,DZA
+31641,DZA,Algeria,Bordj Bou Arréridj,DZ.BB,DZA,DZA
+31642,DZA,Algeria,Bouira,DZ.BU,DZA,DZA
+31643,DZA,Algeria,Boumerdès,DZ.BM,DZA,DZA
+31644,DZA,Algeria,Chlef,DZ.CH,DZA,DZA
+31645,DZA,Algeria,Constantine,DZ.CO,DZA,DZA
+31646,DZA,Algeria,Djelfa,DZ.DJ,DZA,DZA
+31647,DZA,Algeria,El Bayadh,DZ.EB,DZA,DZA
+31648,DZA,Algeria,El Oued,DZ.EO,DZA,DZA
+31649,DZA,Algeria,El Tarf,DZ.ET,DZA,DZA
+31650,DZA,Algeria,Ghardaïa,DZ.GR,DZA,DZA
+31651,DZA,Algeria,Guelma,DZ.GL,DZA,DZA
+31652,DZA,Algeria,Illizi,DZ.IL,DZA,DZA
+31653,DZA,Algeria,Jijel,DZ.JJ,DZA,DZA
+31654,DZA,Algeria,Khenchela,DZ.KH,DZA,DZA
+31655,DZA,Algeria,Laghouat,DZ.LG,DZA,DZA
+31656,DZA,Algeria,Mascara,DZ.MC,DZA,DZA
+31657,DZA,Algeria,Médéa,DZ.MD,DZA,DZA
+31658,DZA,Algeria,Mila,DZ.ML,DZA,DZA
+31659,DZA,Algeria,Mostaganem,DZ.MG,DZA,DZA
+31660,DZA,Algeria,M'Sila,DZ.MS,DZA,DZA
+31661,DZA,Algeria,Naâma,DZ.NA,DZA,DZA
+31662,DZA,Algeria,Oran,DZ.OR,DZA,DZA
+31663,DZA,Algeria,Ouargla,DZ.OG,DZA,DZA
+31664,DZA,Algeria,Oum el Bouaghi,DZ.OB,DZA,DZA
+31665,DZA,Algeria,Relizane,DZ.RE,DZA,DZA
+31666,DZA,Algeria,Saïda,DZ.SD,DZA,DZA
+31667,DZA,Algeria,Sétif,DZ.SF,DZA,DZA
+31668,DZA,Algeria,Sidi Bel Abbès,DZ.SB,DZA,DZA
+31669,DZA,Algeria,Skikda,DZ.SK,DZA,DZA
+31670,DZA,Algeria,Souk Ahras,DZ.SA,DZA,DZA
+31671,DZA,Algeria,Tamanghasset,DZ.TM,DZA,DZA
+31672,DZA,Algeria,Tébessa,DZ.TB,DZA,DZA
+31673,DZA,Algeria,Tiaret,DZ.TR,DZA,DZA
+31674,DZA,Algeria,Tindouf,DZ.TN,DZA,DZA
+31675,DZA,Algeria,Tipaza,DZ.TP,DZA,DZA
+31676,DZA,Algeria,Tissemsilt,DZ.TS,DZA,DZA
+31677,DZA,Algeria,Tizi Ouzou,DZ.TO,DZA,DZA
+31678,DZA,Algeria,Tlemcen,DZ.TL,DZA,DZA
+31679,ECU,Ecuador,Azuay,EC.AZ,ECU,ECU
+31680,ECU,Ecuador,Bolivar,EC.BO,ECU,ECU
+31681,ECU,Ecuador,Cañar,EC.CN,ECU,ECU
+31682,ECU,Ecuador,Carchi,EC.CR,ECU,ECU
+31683,ECU,Ecuador,Chimborazo,EC.CB,ECU,ECU
+31684,ECU,Ecuador,Cotopaxi,EC.CT,ECU,ECU
+31685,ECU,Ecuador,El Oro,EC.EO,ECU,ECU
+31686,ECU,Ecuador,Esmeraldas,EC.ES,ECU,ECU
+31687,ECU,Ecuador,Galápagos,EC.GA,ECU,ECU
+31688,ECU,Ecuador,Guayas,EC.GU,ECU,ECU
+31689,ECU,Ecuador,Imbabura,EC.IM,ECU,ECU
+31690,ECU,Ecuador,Loja,EC.LJ,ECU,ECU
+31691,ECU,Ecuador,Los Rios,EC.LR,ECU,ECU
+31692,ECU,Ecuador,Manabi,EC.MN,ECU,ECU
+31693,ECU,Ecuador,Morona Santiago,EC.MS,ECU,ECU
+31694,ECU,Ecuador,Orellana,EC.NA,ECU,ECU
+31695,ECU,Ecuador,Pastaza,EC.PA,ECU,ECU
+31696,ECU,Ecuador,Pichincha,EC.PI,ECU,ECU
+31697,ECU,Ecuador,Sucumbios,EC.SU,ECU,ECU
+31698,ECU,Ecuador,Tungurahua,EC.TU,ECU,ECU
+31699,ECU,Ecuador,Zamora Chinchipe,EC.ZC,ECU,ECU
+31700,EGY,Egypt,Ad Daqahliyah,EG.DQ,EGY,EGY
+31701,EGY,Egypt,Al Bahr al Ahmar,EG.BA,EGY,EGY
+31702,EGY,Egypt,Al Buhayrah,EG.BH,EGY,EGY
+31703,EGY,Egypt,Al Fayyum,EG.FY,EGY,EGY
+31704,EGY,Egypt,Al Gharbiyah,EG.GH,EGY,EGY
+31705,EGY,Egypt,Al Iskandariyah,EG.IK,EGY,EGY
+31706,EGY,Egypt,Al Isma`iliyah,EG.IS,EGY,EGY
+31707,EGY,Egypt,Al Jizah,EG.JZ,EGY,EGY
+31708,EGY,Egypt,Al Minufiyah,EG.MF,EGY,EGY
+31709,EGY,Egypt,Al Minya,EG.MN,EGY,EGY
+31710,EGY,Egypt,Al Qahirah,EG.QH,EGY,EGY
+31711,EGY,Egypt,Al Qalyubiyah,EG.QL,EGY,EGY
+31712,EGY,Egypt,Al Wadi al Jadid,EG.WJ,EGY,EGY
+31713,EGY,Egypt,As Suways,EG.SW,EGY,EGY
+31714,EGY,Egypt,Ash Sharqiyah,EG.SQ,EGY,EGY
+31715,EGY,Egypt,Aswan,EG.AN,EGY,EGY
+31716,EGY,Egypt,Asyut,EG.AT,EGY,EGY
+31717,EGY,Egypt,Bani Suwayf,EG.BN,EGY,EGY
+31718,EGY,Egypt,Bur Sa`id,EG.BS,EGY,EGY
+31719,EGY,Egypt,Dumyat,EG.DT,EGY,EGY
+31720,EGY,Egypt,Janub Sina',EG.JS,EGY,EGY
+31721,EGY,Egypt,Kafr ash Shaykh,EG.KS,EGY,EGY
+31722,EGY,Egypt,Matruh,EG.MT,EGY,EGY
+31723,EGY,Egypt,Qina,EG.QN,EGY,EGY
+31724,EGY,Egypt,Shamal Sina',EG.SS,EGY,EGY
+31725,EGY,Egypt,Suhaj,EG.SJ,EGY,EGY
+31726,ERI,Eritrea,Anseba,ER.AN,ERI,ERI
+31727,ERI,Eritrea,Debub,ER.DU,ERI,ERI
+31728,ERI,Eritrea,Debubawi Keyih Bahri,ER.DK,ERI,ERI
+31729,ERI,Eritrea,Gash Barka,ER.GB,ERI,ERI
+31730,ERI,Eritrea,Maekel,ER.MA,ERI,ERI
+31731,ERI,Eritrea,Semenawi Keyih Bahri,ER.SK,ERI,ERI
+31732,ESH,Western Sahara,Boujdour,EH.BO,ESH,ESH
+31733,ESH,Western Sahara,Es Semara,EH.ES,ESH,ESH
+31734,ESH,Western Sahara,Laayoune,EH.LA,ESH,ESH
+31735,ESH,Western Sahara,Oued el Dahab,EH.OD,ESH,ESH
+31736,ESP,Spain,Andalucía,ES.AN,ESP,ESP
+31737,ESP,Spain,Aragón,ES.AR,ESP,ESP
+31738,ESP,Spain,Cantabria,ES.CB,ESP,ESP
+31739,ESP,Spain,Castilla y León,ES.CL,ESP,ESP
+31740,ESP,Spain,Castilla-La Mancha,ES.CM,ESP,ESP
+31741,ESP,Spain,Cataluña,ES.CT,ESP,ESP
+31742,ESP,Spain,Ceuta y Melilla,ES.CE,ESP,ESP
+31743,ESP,Spain,Comunidad de Madrid,ES.MD,ESP,ESP
+31744,ESP,Spain,Comunidad Foral de Navarra,ES.NA,ESP,ESP
+31745,ESP,Spain,Comunidad Valenciana,ES.VC,ESP,ESP
+31746,ESP,Spain,Extremadura,ES.EX,ESP,ESP
+31747,ESP,Spain,Galicia,ES.GA,ESP,ESP
+31748,ESP,Spain,Islas Baleares,ES.PM,ESP,ESP
+31749,ESP,Spain,Islas Canarias,ES.CN,ESP,ESP
+31750,ESP,Spain,La Rioja,ES.LO,ESP,ESP
+31751,ESP,Spain,País Vasco,ES.PV,ESP,ESP
+31752,ESP,Spain,Principado de Asturias,ES.AS,ESP,ESP
+31753,ESP,Spain,Región de Murcia,ES.MU,ESP,ESP
+31754,EST,Estonia,Harju,EE.HA,EST,EST
+31755,EST,Estonia,Hiiu,EE.HI,EST,EST
+31756,EST,Estonia,Ida-Viru,EE.IV,EST,EST
+31757,EST,Estonia,Järva,EE.JR,EST,EST
+31758,EST,Estonia,Jõgeva,EE.JN,EST,EST
+31759,EST,Estonia,Lääne,EE.LN,EST,EST
+31760,EST,Estonia,Lääne-Viru,EE.LV,EST,EST
+31761,EST,Estonia,Pärnu,EE.PR,EST,EST
+31762,EST,Estonia,Põlva,EE.PL,EST,EST
+31763,EST,Estonia,Rapla,EE.RA,EST,EST
+31764,EST,Estonia,Saare,EE.SA,EST,EST
+31765,EST,Estonia,Tartu,EE.TA,EST,EST
+31766,EST,Estonia,Valga,EE.VG,EST,EST
+31767,EST,Estonia,Viljandi,EE.VD,EST,EST
+31768,EST,Estonia,Võru,EE.VR,EST,EST
+31769,ETH,Ethiopia,Addis Ababa,ET.AA,ETH,ETH
+31770,ETH,Ethiopia,Afar,ET.AF,ETH,ETH
+31771,ETH,Ethiopia,Amhara,ET.AM,ETH,ETH
+31772,ETH,Ethiopia,Benshangul-Gumaz,ET.BE,ETH,ETH
+31773,ETH,Ethiopia,Dire Dawa,ET.DD,ETH,ETH
+31774,ETH,Ethiopia,Gambela Peoples,ET.GA,ETH,ETH
+31775,ETH,Ethiopia,Harari People,ET.HA,ETH,ETH
+31776,ETH,Ethiopia,Oromia,ET.OR,ETH,ETH
+31777,ETH,Ethiopia,Somali,ET.SO,ETH,ETH
+31778,ETH,Ethiopia,"Southern Nations, Nationalities and Peoples",ET.SN,ETH,ETH
+31779,ETH,Ethiopia,Tigray,ET.TI,ETH,ETH
+31780,FIN,Finland,Eastern Finland,FI.IS,FIN,FIN
+31781,FIN,Finland,Lapland,FI.LP,FIN,FIN
+31782,FIN,Finland,Oulu,FI.OU,FIN,FIN
+31783,FIN,Finland,Southern Finland,FI.ES,FIN,FIN
+31784,FIN,Finland,Western Finland,FI.LS,FIN,FIN
+31785,FJI,Fiji,Central,FJ.CE,FJI,FJI
+31786,FJI,Fiji,Eastern,FJ.EA,FJI,FJI
+31787,FJI,Fiji,Northern,FJ.NO,FJI,FJI
+31788,FJI,Fiji,Rotuma,FJ.RO,FJI,FJI
+31789,FJI,Fiji,Western,FJ.W,FJI,FJI
+31790,FRA,France,Alsace,,FRA,FRA
+31791,FRA,France,Aquitaine,,FRA,FRA
+31792,FRA,France,Auvergne,,FRA,FRA
+31793,FRA,France,Basse-Normandie,,FRA,FRA
+31794,FRA,France,Bourgogne,,FRA,FRA
+31795,FRA,France,Bretagne,,FRA,FRA
+31796,FRA,France,Centre,,FRA,FRA
+31797,FRA,France,Champagne-Ardenne,,FRA,FRA
+31798,FRA,France,Corse,,FRA,FRA
+31799,FRA,France,Franche-Comté,,FRA,FRA
+31800,FRA,France,Haute-Normandie,,FRA,FRA
+31801,FRA,France,Île-de-France,,FRA,FRA
+31802,FRA,France,Languedoc-Roussillon,,FRA,FRA
+31803,FRA,France,Limousin,,FRA,FRA
+31804,FRA,France,Lorraine,,FRA,FRA
+31805,FRA,France,Midi-Pyrénées,,FRA,FRA
+31806,FRA,France,Nord-Pas-de-Calais,,FRA,FRA
+31807,FRA,France,Pays de la Loire,,FRA,FRA
+31808,FRA,France,Picardie,,FRA,FRA
+31809,FRA,France,Poitou-Charentes,,FRA,FRA
+31810,FRA,France,Provence-Alpes-Côte-d'Azur,,FRA,FRA
+31811,FRA,France,Rhône-Alpes,,FRA,FRA
+31812,FRO,Faroe Islands,Eysturoyar,FO.OS,FRO,FRO
+31813,FRO,Faroe Islands,Norderøerne,FO.NO,FRO,FRO
+31814,FRO,Faroe Islands,Sandoyar,FO.SA,FRO,FRO
+31815,FRO,Faroe Islands,Streymoyar,FO.ST,FRO,FRO
+31816,FRO,Faroe Islands,Suðuroyar,FO.SN|FO.SS,FRO,FRO
+31817,FRO,Faroe Islands,Vågø,FO.VG,FRO,FRO
+31818,FSM,Micronesia,Chuuk,FM.CH,FSM,FSM
+31819,FSM,Micronesia,Kosrae,FM.KO,FSM,FSM
+31820,FSM,Micronesia,Pohnpei,FM.PO,FSM,FSM
+31821,FSM,Micronesia,Yap,FM.YA,FSM,FSM
+31822,GAB,Gabon,Estuaire,GA.ES,GAB,GAB
+31823,GAB,Gabon,Haut-Ogooué,GA.HO,GAB,GAB
+31824,GAB,Gabon,Moyen-Ogooué,GA.MO,GAB,GAB
+31825,GAB,Gabon,Ngounié,GA.NG,GAB,GAB
+31826,GAB,Gabon,Nyanga,GA.NY,GAB,GAB
+31827,GAB,Gabon,Ogooué-Ivindo,GA.OI,GAB,GAB
+31828,GAB,Gabon,Ogooué-Lolo,GA.OL,GAB,GAB
+31829,GAB,Gabon,Ogooué-Maritime,GA.OM,GAB,GAB
+31830,GAB,Gabon,Wouleu-Ntem,GA.WN,GAB,GAB
+31831,GBR,United Kingdom,England,,GBR,GBR
+31832,GBR,United Kingdom,Northern Ireland,,GBR,GBR
+31833,GBR,United Kingdom,Scotland,,GBR,GBR
+31834,GBR,United Kingdom,Wales,,GBR,GBR
+31835,GEO,Georgia,Abkhazia,GE.AB,GEO,GEO
+31836,GEO,Georgia,Ajaria,GE.AJ,GEO,GEO
+31837,GEO,Georgia,Guria,GE.GU,GEO,GEO
+31838,GEO,Georgia,Imereti,GE.IM,GEO,GEO
+31839,GEO,Georgia,Kakheti,GE.KA,GEO,GEO
+31840,GEO,Georgia,Kvemo Kartli,GE.KK,GEO,GEO
+31841,GEO,Georgia,Mtskheta-Mtianeti,GE.MM,GEO,GEO
+31842,GEO,Georgia,Racha-Lechkhumi-Kvemo Svaneti,GE.RK,GEO,GEO
+31843,GEO,Georgia,Samegrelo-Zemo Svaneti,GE.SZ,GEO,GEO
+31844,GEO,Georgia,Samtskhe-Javakheti,GE.SJ,GEO,GEO
+31845,GEO,Georgia,Shida Kartli,GE.SD,GEO,GEO
+31846,GEO,Georgia,Tbilisi,GE.TB,GEO,GEO
+31847,GHA,Ghana,Ashanti,GH.AH,GHA,GHA
+31848,GHA,Ghana,Brong Ahafo,GH.BA,GHA,GHA
+31849,GHA,Ghana,Central,GH.CP,GHA,GHA
+31850,GHA,Ghana,Eastern,GH.EP,GHA,GHA
+31851,GHA,Ghana,Greater Accra,GH.AA,GHA,GHA
+31852,GHA,Ghana,Northern,GH.NP,GHA,GHA
+31853,GHA,Ghana,Upper East,GH.UE,GHA,GHA
+31854,GHA,Ghana,Upper West,GH.UW,GHA,GHA
+31855,GHA,Ghana,Volta,GH.TV,GHA,GHA
+31856,GHA,Ghana,Western,GH.WP,GHA,GHA
+31857,GIB,Gibraltar,Gibraltar,,GIB,GIB
+31858,GIN,Guinea,Boké,,GIN,GIN
+31859,GIN,Guinea,Conarky,,GIN,GIN
+31860,GIN,Guinea,Faranah,,GIN,GIN
+31861,GIN,Guinea,Kankan,,GIN,GIN
+31862,GIN,Guinea,Kindia,,GIN,GIN
+31863,GIN,Guinea,Labé,,GIN,GIN
+31864,GIN,Guinea,Mamou,,GIN,GIN
+31865,GIN,Guinea,Nzérékoré,,GIN,GIN
+31866,GLP,Guadeloupe,Basse-Terre,GP.BT,GLP,GLP
+31867,GLP,Guadeloupe,Pointe-à-Pitre,GP.PP,GLP,GLP
+31868,GLP,Guadeloupe,Saint-Martin et Saint-Barthélémy,GP.SS,GLP,GLP
+31869,GMB,Gambia,Banjul,GM.BJ,GMB,GMB
+31870,GMB,Gambia,Lower River,GM.LR,GMB,GMB
+31871,GMB,Gambia,Maccarthy Island,GM.MC,GMB,GMB
+31872,GMB,Gambia,North Bank,GM.NB,GMB,GMB
+31873,GMB,Gambia,Upper River,GM.UR,GMB,GMB
+31874,GMB,Gambia,Western,GM.WE,GMB,GMB
+31875,GNB,Guinea-Bissau,Bafatá,GW.BA,GNB,GNB
+31876,GNB,Guinea-Bissau,Biombo,GW.BM,GNB,GNB
+31877,GNB,Guinea-Bissau,Bissau,GW.BS,GNB,GNB
+31878,GNB,Guinea-Bissau,Bolama,GW.BL,GNB,GNB
+31879,GNB,Guinea-Bissau,Cacheu,GW.CA,GNB,GNB
+31880,GNB,Guinea-Bissau,Gabú,GW.GA,GNB,GNB
+31881,GNB,Guinea-Bissau,Oio,GW.OI,GNB,GNB
+31882,GNB,Guinea-Bissau,Quinara,GW.QU,GNB,GNB
+31883,GNB,Guinea-Bissau,Tombali,GW.TO,GNB,GNB
+31884,GNQ,Equatorial Guinea,Annobón,GQ.AN,GNQ,GNQ
+31885,GNQ,Equatorial Guinea,Bioko Norte,GQ.BN,GNQ,GNQ
+31886,GNQ,Equatorial Guinea,Bioko Sur,GQ.BS,GNQ,GNQ
+31887,GNQ,Equatorial Guinea,Centro Sur,GQ.CS,GNQ,GNQ
+31888,GNQ,Equatorial Guinea,Kié-Ntem,GQ.KN,GNQ,GNQ
+31889,GNQ,Equatorial Guinea,Litoral,GQ.LI,GNQ,GNQ
+31890,GNQ,Equatorial Guinea,Wele-Nzás,GQ.WN,GNQ,GNQ
+31891,GRC,Greece,Anatoliki Makedonia kai Thraki,GR.MT,GRC,GRC
+31892,GRC,Greece,Attiki,GR.AT,GRC,GRC
+31893,GRC,Greece,Ayion Oros,GR.MA,GRC,GRC
+31894,GRC,Greece,Dytiki Ellada,GR.GW,GRC,GRC
+31895,GRC,Greece,Dytiki Makedonia,GR.MW,GRC,GRC
+31896,GRC,Greece,Ionioi Nisoi,GR.II,GRC,GRC
+31897,GRC,Greece,Ipeiros,GR.EP,GRC,GRC
+31898,GRC,Greece,Kentriki Makedonia,GR.MC,GRC,GRC
+31899,GRC,Greece,Kriti,GR.CR,GRC,GRC
+31900,GRC,Greece,Notio Aigaio,GR.AS,GRC,GRC
+31901,GRC,Greece,Peloponnisos,GR.PP,GRC,GRC
+31902,GRC,Greece,Stereá Elláda,GR.GC,GRC,GRC
+31903,GRC,Greece,Thessalia,GR.TS,GRC,GRC
+31904,GRC,Greece,Voreio Aigaio,GR.AN,GRC,GRC
+31905,GRD,Grenada,Carriacou,GD.CA,GRD,GRD
+31906,GRD,Grenada,Saint Andrew,GD.AN,GRD,GRD
+31907,GRD,Grenada,Saint David,GD.DA,GRD,GRD
+31908,GRD,Grenada,Saint George,GD.GE,GRD,GRD
+31909,GRD,Grenada,Saint John,GD.JO,GRD,GRD
+31910,GRD,Grenada,Saint Mark,GD.MA,GRD,GRD
+31911,GRD,Grenada,Saint Patrick,GD.PA,GRD,GRD
+31912,GRL,Greenland,Avannaa,GL.NG,GRL,GRL
+31913,GRL,Greenland,Kitaa,GL.VG,GRL,GRL
+31914,GRL,Greenland,Tunu,GL.EG,GRL,GRL
+31915,GTM,Guatemala,Alta Verapaz,GT.AV,GTM,GTM
+31916,GTM,Guatemala,Baja Verapaz,GT.BV,GTM,GTM
+31917,GTM,Guatemala,Chimaltenango,GT.CM,GTM,GTM
+31918,GTM,Guatemala,Chiquimula,GT.CQ,GTM,GTM
+31919,GTM,Guatemala,El Progreso,GT.PR,GTM,GTM
+31920,GTM,Guatemala,Escuintla,GT.ES,GTM,GTM
+31921,GTM,Guatemala,Guatemala,GT.GU,GTM,GTM
+31922,GTM,Guatemala,Huehuetenango,GT.HU,GTM,GTM
+31923,GTM,Guatemala,Izabal,GT.IZ,GTM,GTM
+31924,GTM,Guatemala,Jalapa,GT.JA,GTM,GTM
+31925,GTM,Guatemala,Jutiapa,GT.JU,GTM,GTM
+31926,GTM,Guatemala,Petén,GT.PE,GTM,GTM
+31927,GTM,Guatemala,Quezaltenango,GT.QZ,GTM,GTM
+31928,GTM,Guatemala,Quiché,GT.QC,GTM,GTM
+31929,GTM,Guatemala,Retalhuleu,GT.RE,GTM,GTM
+31930,GTM,Guatemala,Sacatepéquez,GT.SA,GTM,GTM
+31931,GTM,Guatemala,San Marcos,GT.SM,GTM,GTM
+31932,GTM,Guatemala,Santa Rosa,GT.SR,GTM,GTM
+31933,GTM,Guatemala,Sololá,GT.SO,GTM,GTM
+31934,GTM,Guatemala,Suchitepéquez,GT.SU,GTM,GTM
+31935,GTM,Guatemala,Totonicapán,GT.TO,GTM,GTM
+31936,GTM,Guatemala,Zacapa,GT.ZA,GTM,GTM
+31937,GUF,French Guiana,Cayenne,GF.CY,GUF,GUF
+31938,GUF,French Guiana,Saint-Laurent-du-Maroni,GF.SL,GUF,GUF
+31939,GUM,Guam,Agana Heights,GU.AH,GUM,GUM
+31940,GUM,Guam,Agat,GU.AT,GUM,GUM
+31941,GUM,Guam,Asan,GU.AS,GUM,GUM
+31942,GUM,Guam,Barrigada,GU.BA,GUM,GUM
+31943,GUM,Guam,Chalan-Pago-Ordot,GU.CP,GUM,GUM
+31944,GUM,Guam,Dededo,GU.DD,GUM,GUM
+31945,GUM,Guam,Hagåtña,GU.AN,GUM,GUM
+31946,GUM,Guam,Inarajan,GU.IN,GUM,GUM
+31947,GUM,Guam,Mangilao,GU.MA,GUM,GUM
+31948,GUM,Guam,Merizo,GU.ME,GUM,GUM
+31949,GUM,Guam,Mongmong-Toto-Maite,GU.MT,GUM,GUM
+31950,GUM,Guam,Piti,GU.PI,GUM,GUM
+31951,GUM,Guam,Santa Rita,GU.SR,GUM,GUM
+31952,GUM,Guam,Sinajana,GU.SJ,GUM,GUM
+31953,GUM,Guam,Talofofo,GU.TF,GUM,GUM
+31954,GUM,Guam,Tamuning,GU.TM,GUM,GUM
+31955,GUM,Guam,Umatac,GU.UM,GUM,GUM
+31956,GUM,Guam,Yigo,GU.YG,GUM,GUM
+31957,GUM,Guam,Yona,GU.YN,GUM,GUM
+31958,GUY,Guyana,Barima-Waini,GY.BA,GUY,GUY
+31959,GUY,Guyana,Cuyuni-Mazaruni,GY.CU,GUY,GUY
+31960,GUY,Guyana,Demerara-Mahaica,GY.DE,GUY,GUY
+31961,GUY,Guyana,East Berbice-Corentyne,GY.EB,GUY,GUY
+31962,GUY,Guyana,Essequibo Islands-West Demerara,GY.ES,GUY,GUY
+31963,GUY,Guyana,Mahaica-Berbice,GY.MA,GUY,GUY
+31964,GUY,Guyana,Pomeroon-Supenaam,GY.PM,GUY,GUY
+31965,GUY,Guyana,Potaro-Siparuni,GY.PT,GUY,GUY
+31966,GUY,Guyana,Upper Demerara-Berbice,GY.UD,GUY,GUY
+31967,GUY,Guyana,Upper Takutu-Upper Essequibo,GY.UT,GUY,GUY
+31968,HKG,Hong Kong,Islands,HK.IS,HKG,HKG
+31969,HKG,Hong Kong,Kowloon City,HK.KC,HKG,HKG
+31970,HKG,Hong Kong,Kwai Tsing,HK.KI,HKG,HKG
+31971,HKG,Hong Kong,Kwun Tong,HK.KU,HKG,HKG
+31972,HKG,Hong Kong,North,HK.NO,HKG,HKG
+31973,HKG,Hong Kong,Sai Kung,HK.SK,HKG,HKG
+31974,HKG,Hong Kong,Sha Tin,HK.ST,HKG,HKG
+31975,HKG,Hong Kong,Sham Shui Po,HK.SS,HKG,HKG
+31976,HKG,Hong Kong,Southern,HK.SO,HKG,HKG
+31977,HKG,Hong Kong,Tai Po,HK.TP,HKG,HKG
+31978,HKG,Hong Kong,Tsuen Wan,HK.TW,HKG,HKG
+31979,HKG,Hong Kong,Tuen Mun,HK.TM,HKG,HKG
+31980,HKG,Hong Kong,Wan Chai,HK.WC,HKG,HKG
+31981,HKG,Hong Kong,Central and Western,HK.CW,HKG,HKG
+31982,HKG,Hong Kong,Eastern,HK.EA,HKG,HKG
+31983,HKG,Hong Kong,Wong Tai Sin,HK.WT,HKG,HKG
+31984,HKG,Hong Kong,Yau Tsim Mong,HK.YT,HKG,HKG
+31985,HKG,Hong Kong,Yuen Long,HK.YL,HKG,HKG
+31986,HND,Honduras,Atlántida,HN.AT,HND,HND
+31987,HND,Honduras,Choluteca,HN.CH,HND,HND
+31988,HND,Honduras,Colón,HN.CL,HND,HND
+31989,HND,Honduras,Comayagua,HN.CM,HND,HND
+31990,HND,Honduras,Copán,HN.CP,HND,HND
+31991,HND,Honduras,Cortés,HN.CR,HND,HND
+31992,HND,Honduras,El Paraíso,HN.EP,HND,HND
+31993,HND,Honduras,Francisco Morazán,HN.FM,HND,HND
+31994,HND,Honduras,Gracias a Dios,HN.GD,HND,HND
+31995,HND,Honduras,Intibucá,HN.IN,HND,HND
+31996,HND,Honduras,Islas de la Bahía,HN.IB,HND,HND
+31997,HND,Honduras,La Paz,HN.LP,HND,HND
+31998,HND,Honduras,Lempira,HN.LE,HND,HND
+31999,HND,Honduras,Ocotepeque,HN.OC,HND,HND
+32000,HND,Honduras,Olancho,HN.OL,HND,HND
+32001,HND,Honduras,Santa Bárbara,HN.SB,HND,HND
+32002,HND,Honduras,Valle,HN.VA,HND,HND
+32003,HND,Honduras,Yoro,HN.YO,HND,HND
+32004,HRV,Croatia,Bjelovarska-Bilogorska,HR.BB,HRV,HRV
+32005,HRV,Croatia,Brodsko-Posavska,HR.SP,HRV,HRV
+32006,HRV,Croatia,Dubrovacko-Neretvanska,HR.DN,HRV,HRV
+32007,HRV,Croatia,Grad Zagreb,HR.GZ,HRV,HRV
+32008,HRV,Croatia,Istarska,HR.IS,HRV,HRV
+32009,HRV,Croatia,Karlovacka,HR.KA,HRV,HRV
+32010,HRV,Croatia,Koprivnicko-Križevacka,HR.KK,HRV,HRV
+32011,HRV,Croatia,Krapinsko-Zagorska,HR.KZ,HRV,HRV
+32012,HRV,Croatia,Licko-Senjska,HR.LS,HRV,HRV
+32013,HRV,Croatia,Medimurska,HR.ME,HRV,HRV
+32014,HRV,Croatia,Osjecko-Baranjska,HR.OB,HRV,HRV
+32015,HRV,Croatia,Požeško-Slavonska,HR.PS,HRV,HRV
+32016,HRV,Croatia,Primorsko-Goranska,HR.PG,HRV,HRV
+32017,HRV,Croatia,Šibensko-Kninska,HR.SB,HRV,HRV
+32018,HRV,Croatia,Sisacko-Moslavacka,HR.SM,HRV,HRV
+32019,HRV,Croatia,Splitsko-Dalmatinska,HR.SD,HRV,HRV
+32020,HRV,Croatia,Varaždinska,HR.VA,HRV,HRV
+32021,HRV,Croatia,Viroviticko-Podravska,HR.VP,HRV,HRV
+32022,HRV,Croatia,Vukovarsko-Srijemska,HR.VS,HRV,HRV
+32023,HRV,Croatia,Zadarska,HR.ZD,HRV,HRV
+32024,HRV,Croatia,Zagrebacka,HR.ZG,HRV,HRV
+32025,HTI,Haiti,Centre,HT.CE,HTI,HTI
+32026,HTI,Haiti,Grand'Anse,HT.GR,HTI,HTI
+32027,HTI,Haiti,L'Artibonite,HT.AR,HTI,HTI
+32028,HTI,Haiti,Nippes,HT.NI,HTI,HTI
+32029,HTI,Haiti,Nord,HT.ND,HTI,HTI
+32030,HTI,Haiti,Nord-Est,HT.NE,HTI,HTI
+32031,HTI,Haiti,Nord-Ouest,HT.NO,HTI,HTI
+32032,HTI,Haiti,Ouest,HT.OU,HTI,HTI
+32033,HTI,Haiti,Sud,HT.SD,HTI,HTI
+32034,HTI,Haiti,Sud-Est,HT.SE,HTI,HTI
+32035,HUN,Hungary,Bács-Kiskun,HU.BK,HUN,HUN
+32036,HUN,Hungary,Baranya,HU.BA,HUN,HUN
+32037,HUN,Hungary,Békés,HU.BE,HUN,HUN
+32038,HUN,Hungary,Borsod-Abaúj-Zemplén,HU.BZ,HUN,HUN
+32039,HUN,Hungary,Budapest,HU.BU,HUN,HUN
+32040,HUN,Hungary,Csongrád,HU.CS,HUN,HUN
+32041,HUN,Hungary,Fejér,HU.FE,HUN,HUN
+32042,HUN,Hungary,Gyor-Moson-Sopron,HU.GS,HUN,HUN
+32043,HUN,Hungary,Hajdú-Bihar,HU.HB,HUN,HUN
+32044,HUN,Hungary,Heves,HU.HE,HUN,HUN
+32045,HUN,Hungary,Jász-Nagykun-Szolnok,HU.JN,HUN,HUN
+32046,HUN,Hungary,Komárom-Esztergom,HU.KE,HUN,HUN
+32047,HUN,Hungary,Nógrád,HU.NO,HUN,HUN
+32048,HUN,Hungary,Pest,HU.PE,HUN,HUN
+32049,HUN,Hungary,Somogy,HU.SO,HUN,HUN
+32050,HUN,Hungary,Szabolcs-Szatmár-Bereg,HU.SZ,HUN,HUN
+32051,HUN,Hungary,Tolna,HU.TO,HUN,HUN
+32052,HUN,Hungary,Vas,HU.VA,HUN,HUN
+32053,HUN,Hungary,Veszprém,HU.VE,HUN,HUN
+32054,HUN,Hungary,Zala,HU.ZA,HUN,HUN
+32055,IDN,Indonesia,Aceh,ID.AC,IDN,IDN
+32056,IDN,Indonesia,Bali,ID.BA,IDN,IDN
+32057,IDN,Indonesia,Bangka-Belitung,ID.BB,IDN,IDN
+32058,IDN,Indonesia,Banten,ID.BT,IDN,IDN
+32059,IDN,Indonesia,Bengkulu,ID.BE,IDN,IDN
+32060,IDN,Indonesia,Gorontalo,ID.GO,IDN,IDN
+32061,IDN,Indonesia,Irian Jaya Barat,ID.IB,IDN,IDN
+32062,IDN,Indonesia,Jakarta Raya,ID.JK,IDN,IDN
+32063,IDN,Indonesia,Jambi,ID.JA,IDN,IDN
+32064,IDN,Indonesia,Jawa Barat,ID.JR,IDN,IDN
+32065,IDN,Indonesia,Jawa Tengah,ID.JT,IDN,IDN
+32066,IDN,Indonesia,Jawa Timur,ID.JI,IDN,IDN
+32067,IDN,Indonesia,Kalimantan Barat,ID.KB,IDN,IDN
+32068,IDN,Indonesia,Kalimantan Selatan,ID.KS,IDN,IDN
+32069,IDN,Indonesia,Kalimantan Tengah,ID.KT,IDN,IDN
+32070,IDN,Indonesia,Kalimantan Timur,ID.KI,IDN,IDN
+32071,IDN,Indonesia,Kepulauan Riau,ID.KR,IDN,IDN
+32072,IDN,Indonesia,Lampung,ID.LA,IDN,IDN
+32073,IDN,Indonesia,Maluku,ID.MA,IDN,IDN
+32074,IDN,Indonesia,Maluku Utara,ID.LA,IDN,IDN
+32075,IDN,Indonesia,Nusa Tenggara Barat,ID.NB,IDN,IDN
+32076,IDN,Indonesia,Nusa Tenggara Timur,ID.NT,IDN,IDN
+32077,IDN,Indonesia,Papua,ID.PA,IDN,IDN
+32078,IDN,Indonesia,Riau,ID.RI,IDN,IDN
+32079,IDN,Indonesia,Sulawesi Barat,ID.SR,IDN,IDN
+32080,IDN,Indonesia,Sulawesi Selatan,ID.SE,IDN,IDN
+32081,IDN,Indonesia,Sulawesi Tengah,ID.ST,IDN,IDN
+32082,IDN,Indonesia,Sulawesi Tenggara,ID.SG,IDN,IDN
+32083,IDN,Indonesia,Sulawesi Utara,ID.SW,IDN,IDN
+32084,IDN,Indonesia,Sumatera Barat,ID.SB,IDN,IDN
+32085,IDN,Indonesia,Sumatera Selatan,ID.SL,IDN,IDN
+32086,IDN,Indonesia,Sumatera Utara,ID.SU,IDN,IDN
+32087,IDN,Indonesia,Yogyakarta,ID.YO,IDN,IDN
+32088,IND,India,Andaman and Nicobar,IN.AN,IND,IND
+32089,IND,India,Andhra Pradesh,IN.AP,IND,IND
+32090,IND,India,Arunachal Pradesh,IN.AR,IND,IND
+32091,IND,India,Assam,IN.AS,IND,IND
+32092,IND,India,Bihar,IN.BR,IND,IND
+32093,IND,India,Chandigarh,IN.CH,IND,IND
+32094,IND,India,Chhattisgarh,IN.CT,IND,IND
+32095,IND,India,Dadra and Nagar Haveli,IN.DN,IND,IND
+32096,IND,India,Daman and Diu,IN.DD,IND,IND
+32097,IND,India,Delhi,IN.DL,IND,IND
+32098,IND,India,Goa,IN.GA,IND,IND
+32099,IND,India,Gujarat,IN.GJ,IND,IND
+32100,IND,India,Haryana,IN.HR,IND,IND
+32101,IND,India,Himachal Pradesh,IN.HP,IND,IND
+32102,IND,India,Jammu and Kashmir,IN.JK,IND,IND
+32103,IND,India,Jharkhand,IN.JH,IND,IND
+32104,IND,India,Karnataka,IN.KA,IND,IND
+32105,IND,India,Kerala,IN.KL,IND,IND
+32106,IND,India,Lakshadweep,IN.LD,IND,IND
+32107,IND,India,Madhya Pradesh,IN.MP,IND,IND
+32108,IND,India,Maharashtra,IN.MH,IND,IND
+32109,IND,India,Manipur,IN.MN,IND,IND
+32110,IND,India,Meghalaya,IN.ML,IND,IND
+32111,IND,India,Mizoram,IN.MZ,IND,IND
+32112,IND,India,Nagaland,IN.NL,IND,IND
+32113,IND,India,Orissa,IN.OR,IND,IND
+32114,IND,India,Puducherry,IN.PY,IND,IND
+32115,IND,India,Punjab,IN.PB,IND,IND
+32116,IND,India,Rajasthan,IN.RJ,IND,IND
+32117,IND,India,Sikkim,IN.SK,IND,IND
+32118,IND,India,Tamil Nadu,IN.TN,IND,IND
+32119,IND,India,Tripura,IN.TR,IND,IND
+32120,IND,India,Uttar Pradesh,IN.UP,IND,IND
+32121,IND,India,Uttaranchal,IN.UT,IND,IND
+32122,IND,India,West Bengal,IN.WB,IND,IND
+32123,IRL,Ireland,Carlow,IE.CW,IRL,IRL
+32124,IRL,Ireland,Cavan,IE.CN,IRL,IRL
+32125,IRL,Ireland,Clare,IE.CE,IRL,IRL
+32126,IRL,Ireland,Cork,IE.CK,IRL,IRL
+32127,IRL,Ireland,Donegal,IE.DL,IRL,IRL
+32128,IRL,Ireland,Dublin,IE.DN,IRL,IRL
+32129,IRL,Ireland,Galway,IE.GY,IRL,IRL
+32130,IRL,Ireland,Kerry,IE.KY,IRL,IRL
+32131,IRL,Ireland,Kildare,IE.KE,IRL,IRL
+32132,IRL,Ireland,Kilkenny,IE.KK,IRL,IRL
+32133,IRL,Ireland,Laoighis,IE.LS,IRL,IRL
+32134,IRL,Ireland,Leitrim,IE.LM,IRL,IRL
+32135,IRL,Ireland,Limerick,IE.LK,IRL,IRL
+32136,IRL,Ireland,Longford,IE.LD,IRL,IRL
+32137,IRL,Ireland,Louth,IE.LH,IRL,IRL
+32138,IRL,Ireland,Mayo,IE.MO,IRL,IRL
+32139,IRL,Ireland,Meath,IE.MH,IRL,IRL
+32140,IRL,Ireland,Monaghan,IE.MN,IRL,IRL
+32141,IRL,Ireland,Offaly,IE.OY,IRL,IRL
+32142,IRL,Ireland,Roscommon,IE.RN,IRL,IRL
+32143,IRL,Ireland,Sligo,IE.SO,IRL,IRL
+32144,IRL,Ireland,Tipperary,IE.TY,IRL,IRL
+32145,IRL,Ireland,Waterford,IE.WD,IRL,IRL
+32146,IRL,Ireland,Westmeath,IE.WH,IRL,IRL
+32147,IRL,Ireland,Wexford,IE.WX,IRL,IRL
+32148,IRL,Ireland,Wicklow,IE.WW,IRL,IRL
+32149,IRN,Iran,Ardebil,IR.AR,IRN,IRN
+32150,IRN,Iran,Bushehr,IR.BS,IRN,IRN
+32151,IRN,Iran,Chahar Mahall and Bakhtiari,IR.CM,IRN,IRN
+32152,IRN,Iran,East Azarbaijan,IR.EA,IRN,IRN
+32153,IRN,Iran,Esfahan,IR.ES,IRN,IRN
+32154,IRN,Iran,Fars,IR.FA,IRN,IRN
+32155,IRN,Iran,Gilan,IR.GI,IRN,IRN
+32156,IRN,Iran,Golestan,IR.GO,IRN,IRN
+32157,IRN,Iran,Hamadan,IR.HD,IRN,IRN
+32158,IRN,Iran,Hormozgan,IR.HG,IRN,IRN
+32159,IRN,Iran,Ilam,IR.IL,IRN,IRN
+32160,IRN,Iran,Kerman,IR.KE,IRN,IRN
+32161,IRN,Iran,Kermanshah,IR.BK,IRN,IRN
+32162,IRN,Iran,Khuzestan,IR.KZ,IRN,IRN
+32163,IRN,Iran,Kohgiluyeh and Buyer Ahmad,IR.KB,IRN,IRN
+32164,IRN,Iran,Kordestan,IR.KD,IRN,IRN
+32165,IRN,Iran,Lorestan,IR.LO,IRN,IRN
+32166,IRN,Iran,Markazi,IR.MK,IRN,IRN
+32167,IRN,Iran,Mazandaran,IR.MN,IRN,IRN
+32168,IRN,Iran,North Khorasan,IR.KS,IRN,IRN
+32169,IRN,Iran,Qazvin,IR.QZ,IRN,IRN
+32170,IRN,Iran,Qom,IR.QM,IRN,IRN
+32171,IRN,Iran,Razavi Khorasan,IR.KV,IRN,IRN
+32172,IRN,Iran,Semnan,IR.SM,IRN,IRN
+32173,IRN,Iran,Sistan and Baluchestan,IR.SB,IRN,IRN
+32174,IRN,Iran,South Khorasan,IR.KJ,IRN,IRN
+32175,IRN,Iran,Tehran,IR.TH,IRN,IRN
+32176,IRN,Iran,West Azarbaijan,IR.WA,IRN,IRN
+32177,IRN,Iran,Yazd,IR.YA,IRN,IRN
+32178,IRN,Iran,Zanjan,IR.ZA,IRN,IRN
+32179,IRQ,Iraq,Al-Anbar,IQ.AN,IRQ,IRQ
+32180,IRQ,Iraq,Al-Basrah,IQ.BA,IRQ,IRQ
+32181,IRQ,Iraq,Al-Muthannia,IQ.MU,IRQ,IRQ
+32182,IRQ,Iraq,Al-Qadisiyah,IQ.QA,IRQ,IRQ
+32183,IRQ,Iraq,An-Najaf,IQ.NA,IRQ,IRQ
+32184,IRQ,Iraq,Arbil,IQ.AR,IRQ,IRQ
+32185,IRQ,Iraq,As-Sulaymaniyah,IQ.SU,IRQ,IRQ
+32186,IRQ,Iraq,At-Ta'mim,IQ.TS,IRQ,IRQ
+32187,IRQ,Iraq,Babil,IQ.BB,IRQ,IRQ
+32188,IRQ,Iraq,Baghdad,IQ.BG,IRQ,IRQ
+32189,IRQ,Iraq,Dhi-Qar,IQ.DQ,IRQ,IRQ
+32190,IRQ,Iraq,Dihok,IQ.DA,IRQ,IRQ
+32191,IRQ,Iraq,Diyala,IQ.DI,IRQ,IRQ
+32192,IRQ,Iraq,Karbala',IQ.KA,IRQ,IRQ
+32193,IRQ,Iraq,Maysan,IQ.MA,IRQ,IRQ
+32194,IRQ,Iraq,Ninawa,IQ.NI,IRQ,IRQ
+32195,IRQ,Iraq,Sala ad-Din,IQ.SD,IRQ,IRQ
+32196,IRQ,Iraq,Wasit,IQ.WA,IRQ,IRQ
+32197,ISL,Iceland,Austurland,IS.AL,ISL,ISL
+32198,ISL,Iceland,Hálshreppur,IS.NE,ISL,ISL
+32199,ISL,Iceland,Höfuðborgarsvæði,IS.HO,ISL,ISL
+32200,ISL,Iceland,Norðurland vestra,IS.NV,ISL,ISL
+32201,ISL,Iceland,Suðurland,IS.SL,ISL,ISL
+32202,ISL,Iceland,Suðurnes,IS.SU,ISL,ISL
+32203,ISL,Iceland,Vestfirðir,IS.VF,ISL,ISL
+32204,ISL,Iceland,Vesturland,IS.VL,ISL,ISL
+32205,ISR,Israel,Golan,,ISR,ISR
+32206,ISR,Israel,HaDarom,IL.HD,ISR,ISR
+32207,ISR,Israel,Haifa,IL.HA,ISR,ISR
+32208,ISR,Israel,HaMerkaz,IL.HM,ISR,ISR
+32209,ISR,Israel,HaZafon,IL.HZ,ISR,ISR
+32210,ISR,Israel,Jerusalem,IL.JM,ISR,ISR
+32211,ISR,Israel,Tel Aviv,IL.TA,ISR,ISR
+32212,ITA,Italy,Abruzzo,,ITA,ITA
+32213,ITA,Italy,Apulia,,ITA,ITA
+32214,ITA,Italy,Basilicata,,ITA,ITA
+32215,ITA,Italy,Calabria,,ITA,ITA
+32216,ITA,Italy,Campania,,ITA,ITA
+32217,ITA,Italy,Emilia-Romagna,,ITA,ITA
+32218,ITA,Italy,Friuli-Venezia Giulia,,ITA,ITA
+32219,ITA,Italy,Lazio,,ITA,ITA
+32220,ITA,Italy,Liguria,,ITA,ITA
+32221,ITA,Italy,Lombardia,,ITA,ITA
+32222,ITA,Italy,Marche,,ITA,ITA
+32223,ITA,Italy,Molise,,ITA,ITA
+32224,ITA,Italy,Piemonte,,ITA,ITA
+32225,ITA,Italy,Sardegna,,ITA,ITA
+32226,ITA,Italy,Sicily,,ITA,ITA
+32227,ITA,Italy,Toscana,,ITA,ITA
+32228,ITA,Italy,Trentino-Alto Adige,,ITA,ITA
+32229,ITA,Italy,Umbria,,ITA,ITA
+32230,ITA,Italy,Valle d'Aosta,,ITA,ITA
+32231,ITA,Italy,Veneto,,ITA,ITA
+32232,JAM,Jamaica,Clarendon,JM.CL,JAM,JAM
+32233,JAM,Jamaica,Hanover,JM.HA,JAM,JAM
+32234,JAM,Jamaica,Kingston,JM.KI,JAM,JAM
+32235,JAM,Jamaica,Manchester,JM.MA,JAM,JAM
+32236,JAM,Jamaica,Portland,JM.PO,JAM,JAM
+32237,JAM,Jamaica,Saint Andrew,JM.SD,JAM,JAM
+32238,JAM,Jamaica,Saint Ann,JM.SN,JAM,JAM
+32239,JAM,Jamaica,Saint Catherine,JM.SC,JAM,JAM
+32240,JAM,Jamaica,Saint Elizabeth,JM.SE,JAM,JAM
+32241,JAM,Jamaica,Saint James,JM.SJ,JAM,JAM
+32242,JAM,Jamaica,Saint Mary,JM.SM,JAM,JAM
+32243,JAM,Jamaica,Saint Thomas,JM.ST,JAM,JAM
+32244,JAM,Jamaica,Trelawny,JM.TR,JAM,JAM
+32245,JAM,Jamaica,Westmoreland,JM.WE,JAM,JAM
+32246,JOR,Jordan,Ajlun,JO.AJ,JOR,JOR
+32247,JOR,Jordan,Amman,JO.AM,JOR,JOR
+32248,JOR,Jordan,Aqaba,JO.AQ,JOR,JOR
+32249,JOR,Jordan,Balqa,JO.BA,JOR,JOR
+32250,JOR,Jordan,Irbid,JO.IR,JOR,JOR
+32251,JOR,Jordan,Jarash,JO.JA,JOR,JOR
+32252,JOR,Jordan,Karak,JO.KA,JOR,JOR
+32253,JOR,Jordan,Ma`an,JO.MN,JOR,JOR
+32254,JOR,Jordan,Madaba,JO.MD,JOR,JOR
+32255,JOR,Jordan,Mafraq,JO.MA,JOR,JOR
+32256,JOR,Jordan,Tafilah,JO.AT,JOR,JOR
+32257,JOR,Jordan,Zarqa,JO.AZ,JOR,JOR
+32258,JPN,Japan,Aichi,JP.AI,JPN,JPN
+32259,JPN,Japan,Akita,JP.AK,JPN,JPN
+32260,JPN,Japan,Aomori,JP.AO,JPN,JPN
+32261,JPN,Japan,Chiba,JP.CH,JPN,JPN
+32262,JPN,Japan,Ehime,JP.EH,JPN,JPN
+32263,JPN,Japan,Fukui,JP.FI,JPN,JPN
+32264,JPN,Japan,Fukuoka,JP.FO,JPN,JPN
+32265,JPN,Japan,Fukushima,JP.FS,JPN,JPN
+32266,JPN,Japan,Gifu,JP.GF,JPN,JPN
+32267,JPN,Japan,Gunma,JP.GM,JPN,JPN
+32268,JPN,Japan,Hiroshima,JP.HS,JPN,JPN
+32269,JPN,Japan,Hokkaido,JP.HK,JPN,JPN
+32270,JPN,Japan,Hyogo,JP.HG,JPN,JPN
+32271,JPN,Japan,Ibaraki,JP.IB,JPN,JPN
+32272,JPN,Japan,Ishikawa,JP.IS,JPN,JPN
+32273,JPN,Japan,Iwate,JP.IW,JPN,JPN
+32274,JPN,Japan,Kagawa,JP.KG,JPN,JPN
+32275,JPN,Japan,Kagoshima,JP.KS,JPN,JPN
+32276,JPN,Japan,Kanagawa,JP.KN,JPN,JPN
+32277,JPN,Japan,Kochi,JP.KC,JPN,JPN
+32278,JPN,Japan,Kumamoto,JP.KM,JPN,JPN
+32279,JPN,Japan,Kyoto,JP.KY,JPN,JPN
+32280,JPN,Japan,Mie,JP.ME,JPN,JPN
+32281,JPN,Japan,Miyagi,JP.MG,JPN,JPN
+32282,JPN,Japan,Miyazaki,JP.MZ,JPN,JPN
+32283,JPN,Japan,Nagano,JP.NN,JPN,JPN
+32284,JPN,Japan,Naoasaki,JP.NS,JPN,JPN
+32285,JPN,Japan,Nara,JP.NR,JPN,JPN
+32286,JPN,Japan,Niigata,JP.NI,JPN,JPN
+32287,JPN,Japan,Oita,JP.OT,JPN,JPN
+32288,JPN,Japan,Okayama,JP.OY,JPN,JPN
+32289,JPN,Japan,Okinawa,JP.ON,JPN,JPN
+32290,JPN,Japan,Osaka,JP.OS,JPN,JPN
+32291,JPN,Japan,Saga,JP.SG,JPN,JPN
+32292,JPN,Japan,Saitama,JP.ST,JPN,JPN
+32293,JPN,Japan,Shiga,JP.SH,JPN,JPN
+32294,JPN,Japan,Shimane,JP.SM,JPN,JPN
+32295,JPN,Japan,Shizuoka,JP.SZ,JPN,JPN
+32296,JPN,Japan,Tochigi,JP.TC,JPN,JPN
+32297,JPN,Japan,Tokushima,JP.TS,JPN,JPN
+32298,JPN,Japan,Tokyo,JP.TK,JPN,JPN
+32299,JPN,Japan,Tottori,JP.TT,JPN,JPN
+32300,JPN,Japan,Toyama,JP.TY,JPN,JPN
+32301,JPN,Japan,Wakayama,JP.WK,JPN,JPN
+32302,JPN,Japan,Yamagata,JP.YT,JPN,JPN
+32303,JPN,Japan,Yamaguchi,JP.YC,JPN,JPN
+32304,JPN,Japan,Yamanashi,JP.YN,JPN,JPN
+32305,KAZ,Kazakhstan,Almaty,KZ.AA,KAZ,KAZ
+32306,KAZ,Kazakhstan,Aqmola,KZ.AM,KAZ,KAZ
+32307,KAZ,Kazakhstan,Aqtöbe,KZ.AT,KAZ,KAZ
+32308,KAZ,Kazakhstan,Atyrau,KZ.AR,KAZ,KAZ
+32309,KAZ,Kazakhstan,East Kazakhstan,KZ.EK,KAZ,KAZ
+32310,KAZ,Kazakhstan,Mangghystau,KZ.MG,KAZ,KAZ
+32311,KAZ,Kazakhstan,North Kazakhstan,KZ.NK,KAZ,KAZ
+32312,KAZ,Kazakhstan,Pavlodar,KZ.PA,KAZ,KAZ
+32313,KAZ,Kazakhstan,Qaraghandy,KZ.QG,KAZ,KAZ
+32314,KAZ,Kazakhstan,Qostanay,KZ.QS,KAZ,KAZ
+32315,KAZ,Kazakhstan,Qyzylorda,KZ.QO,KAZ,KAZ
+32316,KAZ,Kazakhstan,South Kazakhstan,KZ.SK,KAZ,KAZ
+32317,KAZ,Kazakhstan,West Kazakhstan,KZ.WK,KAZ,KAZ
+32318,KAZ,Kazakhstan,Zhambyl,KZ.ZM,KAZ,KAZ
+32319,KEN,Kenya,Central,KE.CE,KEN,KEN
+32320,KEN,Kenya,Coast,KE.CO,KEN,KEN
+32321,KEN,Kenya,Eastern,KE.EA,KEN,KEN
+32322,KEN,Kenya,Nairobi,KE.NA,KEN,KEN
+32323,KEN,Kenya,North-Eastern,KE.NE,KEN,KEN
+32324,KEN,Kenya,Nyanza,KE.NY,KEN,KEN
+32325,KEN,Kenya,Rift Valley,KE.RV,KEN,KEN
+32326,KEN,Kenya,Western,KE.WE,KEN,KEN
+32327,KGZ,Kyrgyzstan,Batken,KG.BA,KGZ,KGZ
+32328,KGZ,Kyrgyzstan,Bishkek,KG.GB,KGZ,KGZ
+32329,KGZ,Kyrgyzstan,Jalal-Abad,KG.DA,KGZ,KGZ
+32330,KGZ,Kyrgyzstan,Naryn,KG.NA,KGZ,KGZ
+32331,KGZ,Kyrgyzstan,Osh,KG.OS,KGZ,KGZ
+32332,KGZ,Kyrgyzstan,Talas,KG.TL,KGZ,KGZ
+32333,KGZ,Kyrgyzstan,Ysyk-Köl,KG.YK,KGZ,KGZ
+32334,KHM,Cambodia,Bântéay Méanchey,KH.OM,KHM,KHM
+32335,KHM,Cambodia,Batdâmbâng,KH.BA,KHM,KHM
+32336,KHM,Cambodia,Kâmpóng Cham,KH.KM,KHM,KHM
+32337,KHM,Cambodia,Kâmpóng Chhnang,KH.KG,KHM,KHM
+32338,KHM,Cambodia,Kâmpóng Spœ,KH.KS,KHM,KHM
+32339,KHM,Cambodia,Kâmpóng Thum,KH.KT,KHM,KHM
+32340,KHM,Cambodia,Kâmpôt,KH.KP,KHM,KHM
+32341,KHM,Cambodia,Kândal,KH.KN,KHM,KHM
+32342,KHM,Cambodia,Kaôh Kong,KH.KK,KHM,KHM
+32343,KHM,Cambodia,Kep,KH,KHM,KHM
+32344,KHM,Cambodia,Krâchéh,KH.KH,KHM,KHM
+32345,KHM,Cambodia,Krong Pailin,KH.PL,KHM,KHM
+32346,KHM,Cambodia,Krong Preah Sihanouk,KH.KA,KHM,KHM
+32347,KHM,Cambodia,Môndól Kiri,KH.MK,KHM,KHM
+32348,KHM,Cambodia,Otdar Mean Chey,KH.OC,KHM,KHM
+32349,KHM,Cambodia,Phnom Penh,KH.PP,KHM,KHM
+32350,KHM,Cambodia,Pouthisat,KH.PO,KHM,KHM
+32351,KHM,Cambodia,Preah Vihéar,KH.PH,KHM,KHM
+32352,KHM,Cambodia,Prey Vêng,KH.PY,KHM,KHM
+32353,KHM,Cambodia,Rôtânôkiri,KH.RO,KHM,KHM
+32354,KHM,Cambodia,Siemréab,KH.SI,KHM,KHM
+32355,KHM,Cambodia,Stœng Trêng,KH.ST,KHM,KHM
+32356,KHM,Cambodia,Svay Rieng,KH.SR,KHM,KHM
+32357,KHM,Cambodia,Takêv,KH.TA,KHM,KHM
+32358,KNA,Saint Kitts and Nevis,Christ Church Nichola Town,KN.CC,KNA,KNA
+32359,KNA,Saint Kitts and Nevis,Saint Anne Sandy Point,KN.AS,KNA,KNA
+32360,KNA,Saint Kitts and Nevis,Saint George Basseterre,KN.GB,KNA,KNA
+32361,KNA,Saint Kitts and Nevis,Saint George Gingerland,KN.GG,KNA,KNA
+32362,KNA,Saint Kitts and Nevis,Saint James Windward,KN.JW,KNA,KNA
+32363,KNA,Saint Kitts and Nevis,Saint John Capisterre,KN.JC,KNA,KNA
+32364,KNA,Saint Kitts and Nevis,Saint John Figtree,KN.JF,KNA,KNA
+32365,KNA,Saint Kitts and Nevis,Saint Mary Cayon,KN.MC,KNA,KNA
+32366,KNA,Saint Kitts and Nevis,Saint Paul Capisterre,KN.PP,KNA,KNA
+32367,KNA,Saint Kitts and Nevis,Saint Paul Charlestown,KN.PL,KNA,KNA
+32368,KNA,Saint Kitts and Nevis,Saint Peter Basseterre,KN.PB,KNA,KNA
+32369,KNA,Saint Kitts and Nevis,Saint Thomas Lowland,KN.TL,KNA,KNA
+32370,KNA,Saint Kitts and Nevis,Saint Thomas Middle Island,KN.TM,KNA,KNA
+32371,KNA,Saint Kitts and Nevis,Trinity Palmetto Point,KN.TP,KNA,KNA
+32372,KOR,South Korea,Busan,KR.PU,KOR,KOR
+32373,KOR,South Korea,Chungcheongbuk-do,KR.GB,KOR,KOR
+32374,KOR,South Korea,Chungcheongnam-do,KR.GN,KOR,KOR
+32375,KOR,South Korea,Daegu,KR.TG,KOR,KOR
+32376,KOR,South Korea,Daejeon,KR.TJ,KOR,KOR
+32377,KOR,South Korea,Gangwon-do,KR.KW,KOR,KOR
+32378,KOR,South Korea,Gwangju,KR.KJ,KOR,KOR
+32379,KOR,South Korea,Gyeonggi-do,KR.KG,KOR,KOR
+32380,KOR,South Korea,Gyeongsangbuk-do,KR.KB,KOR,KOR
+32381,KOR,South Korea,Gyeongsangnam-do,KR.KN,KOR,KOR
+32382,KOR,South Korea,Incheon,KR.IN,KOR,KOR
+32383,KOR,South Korea,Jeju,KR.CJ,KOR,KOR
+32384,KOR,South Korea,Jeollabuk-do,KR.CB,KOR,KOR
+32385,KOR,South Korea,Jeollanam-do,KR.CN,KOR,KOR
+32386,KOR,South Korea,Seoul,KR.SO,KOR,KOR
+32387,KOR,South Korea,Ulsan,KR.UL,KOR,KOR
+32388,KO-,Kosovo,Ðakovica,,KO-,KO-
+32389,KO-,Kosovo,Gnjilane,,KO-,KO-
+32390,KO-,Kosovo,Kosovska Mitrovica,RS.KM,KO-,KO-
+32391,KO-,Kosovo,Pecki,RS.PE,KO-,KO-
+32392,KO-,Kosovo,Pristina,,KO-,KO-
+32393,KO-,Kosovo,Prizren,RS.PZ,KO-,KO-
+32394,KWT,Kuwait,Al Ahmadi,KW.AH,KWT,KWT
+32395,KWT,Kuwait,Al Farwaniyah,KW.FA,KWT,KWT
+32396,KWT,Kuwait,Al Jahrah,KW.JA,KWT,KWT
+32397,KWT,Kuwait,Al Kuwayt,KW.KU,KWT,KWT
+32398,KWT,Kuwait,Hawalli,KW.HW,KWT,KWT
+32399,LAO,Laos,Louang Namtha,LA.LM,LAO,LAO
+32400,LAO,Laos,Louangphrabang,LA.LP,LAO,LAO
+32401,LAO,Laos,Oudômxai,LA.OU,LAO,LAO
+32402,LAO,Laos,Phôngsali,LA.PH,LAO,LAO
+32403,LAO,Laos,Saravan,LA.SL,LAO,LAO
+32404,LAO,Laos,Savannakhét,LA.SV,LAO,LAO
+32405,LAO,Laos,Vientiane,LA.VI,LAO,LAO
+32406,LAO,Laos,Vientiane [prefecture],LA.VT,LAO,LAO
+32407,LAO,Laos,Xaignabouri,LA.XA,LAO,LAO
+32408,LAO,Laos,Xaisômboun,LA.XS,LAO,LAO
+32409,LAO,Laos,Xékong,LA.XE,LAO,LAO
+32410,LAO,Laos,Xiangkhoang,LA.XI,LAO,LAO
+32411,LAO,Laos,Attapu,LA.AT,LAO,LAO
+32412,LAO,Laos,Bokeo,LA.BK,LAO,LAO
+32413,LAO,Laos,Bolikhamxai,LA.BL,LAO,LAO
+32414,LAO,Laos,Champasak,LA.CH,LAO,LAO
+32415,LAO,Laos,Houaphan,LA.HO,LAO,LAO
+32416,LAO,Laos,Khammouan,LA.KH,LAO,LAO
+32417,LBN,Lebanon,An Nabatiyah,LB.NA,LBN,LBN
+32418,LBN,Lebanon,Beirut,LB.BA,LBN,LBN
+32419,LBN,Lebanon,Beqaa,LB.BI,LBN,LBN
+32420,LBN,Lebanon,Mount Lebanon,LB.JL,LBN,LBN
+32421,LBN,Lebanon,North Lebanon,LB.AS,LBN,LBN
+32422,LBN,Lebanon,South Lebanon,LB.JA,LBN,LBN
+32423,LBR,Liberia,Lofa,LR.LF,LBR,LBR
+32424,LBR,Liberia,Margibi,LR.MG,LBR,LBR
+32425,LBR,Liberia,Maryland,LR.MY,LBR,LBR
+32426,LBR,Liberia,Montserrado,LR.MO,LBR,LBR
+32427,LBR,Liberia,Nimba,LR.NI,LBR,LBR
+32428,LBR,Liberia,River Cess,LR.RI,LBR,LBR
+32429,LBR,Liberia,River Gee,LR.RG,LBR,LBR
+32430,LBR,Liberia,Sinoe,LR.SI,LBR,LBR
+32431,LBR,Liberia,Bomi,LR.BM,LBR,LBR
+32432,LBR,Liberia,Bong,LR.BG,LBR,LBR
+32433,LBR,Liberia,Gbapolu,LR.GP,LBR,LBR
+32434,LBR,Liberia,Grand Cape Mount,LR.CM,LBR,LBR
+32435,LBR,Liberia,GrandBassa,LR.GB,LBR,LBR
+32436,LBR,Liberia,GrandGedeh,LR.GD,LBR,LBR
+32437,LBR,Liberia,GrandKru,LR.GK,LBR,LBR
+32438,LBY,Libya,Ajdabiya,LY.AJ,LBY,LBY
+32439,LBY,Libya,Al Butnan,LY.BU,LBY,LBY
+32440,LBY,Libya,Al Hizam Al Akhdar,LY.HZ,LBY,LBY
+32441,LBY,Libya,Al Jabal al Akhdar,LY.JA,LBY,LBY
+32442,LBY,Libya,Al Jifarah,LY.JI,LBY,LBY
+32443,LBY,Libya,Al Jufrah,LY.JU,LBY,LBY
+32444,LBY,Libya,Al Kufrah,LY.KF,LBY,LBY
+32445,LBY,Libya,Al Marj,LY.MJ,LBY,LBY
+32446,LBY,Libya,Al Marqab,LY.MB,LBY,LBY
+32447,LBY,Libya,Al Qubbah,LY.QB,LBY,LBY
+32448,LBY,Libya,Al Wahah,LY.WA,LBY,LBY
+32449,LBY,Libya,An Nuqat al Khams,LY.NQ,LBY,LBY
+32450,LBY,Libya,Ash Shati',LY.SH,LBY,LBY
+32451,LBY,Libya,Az Zawiyah,LY.ZA,LBY,LBY
+32452,LBY,Libya,Bani Walid,LY.BW,LBY,LBY
+32453,LBY,Libya,Benghazi,LY.BA,LBY,LBY
+32454,LBY,Libya,Darnah,LY.DR,LBY,LBY
+32455,LBY,Libya,Ghadamis,LY.GD,LBY,LBY
+32456,LBY,Libya,Gharyan,LY.GR,LBY,LBY
+32457,LBY,Libya,Ghat,LY.GT,LBY,LBY
+32458,LBY,Libya,Misratah,LY.MI,LBY,LBY
+32459,LBY,Libya,Mizdah,LY.MZ,LBY,LBY
+32460,LBY,Libya,Murzuq,LY.MQ,LBY,LBY
+32461,LBY,Libya,Nalut,LY.NL,LBY,LBY
+32462,LBY,Libya,Sabha,LY.SB,LBY,LBY
+32463,LBY,Libya,Sabratah Surman,LY.SS,LBY,LBY
+32464,LBY,Libya,Surt,LY.SR,LBY,LBY
+32465,LBY,Libya,Tajura' wa an Nawahi al Arba,LY.TN,LBY,LBY
+32466,LBY,Libya,Tarabulus,LY.TB,LBY,LBY
+32467,LBY,Libya,Tarhunah-Masallatah,LY.TM,LBY,LBY
+32468,LBY,Libya,Wadi Al Hayat,LY.WD,LBY,LBY
+32469,LBY,Libya,Yafran-Jadu,LY.YJ,LBY,LBY
+32470,LCA,Saint Lucia,Anse-la-Raye,LC.AR,LCA,LCA
+32471,LCA,Saint Lucia,Canaries,LC.CN,LCA,LCA
+32472,LCA,Saint Lucia,Castries,LC.CS,LCA,LCA
+32473,LCA,Saint Lucia,Choiseul,LC.CH,LCA,LCA
+32474,LCA,Saint Lucia,Dennery,LC.DE,LCA,LCA
+32475,LCA,Saint Lucia,Gros Islet,LC.GI,LCA,LCA
+32476,LCA,Saint Lucia,Laborie,LC.LB,LCA,LCA
+32477,LCA,Saint Lucia,Micoud,LC.MI,LCA,LCA
+32478,LCA,Saint Lucia,Soufrière,LC.CO,LCA,LCA
+32479,LCA,Saint Lucia,Vieux Fort,LC.VF,LCA,LCA
+32480,LIE,Liechtenstein,Balzers,LI.BA,LIE,LIE
+32481,LIE,Liechtenstein,Eschen,LI.ES,LIE,LIE
+32482,LIE,Liechtenstein,Gamprin,LI.GA,LIE,LIE
+32483,LIE,Liechtenstein,Mauren,LI.MA,LIE,LIE
+32484,LIE,Liechtenstein,Planken,LI.PL,LIE,LIE
+32485,LIE,Liechtenstein,Ruggell,LI.RU,LIE,LIE
+32486,LIE,Liechtenstein,Schaan,LI.SN,LIE,LIE
+32487,LIE,Liechtenstein,Schellenberg,LI.SB,LIE,LIE
+32488,LIE,Liechtenstein,Triesen,LI.TN,LIE,LIE
+32489,LIE,Liechtenstein,Triesenberg,LI.TB,LIE,LIE
+32490,LIE,Liechtenstein,Valduz,LI.VA,LIE,LIE
+32491,LKA,Sri Lanka,Ampara,LK.AP,LKA,LKA
+32492,LKA,Sri Lanka,Anuradhapura,LK.AD,LKA,LKA
+32493,LKA,Sri Lanka,Badulla,LK.BD,LKA,LKA
+32494,LKA,Sri Lanka,Batticaloa,LK.BC,LKA,LKA
+32495,LKA,Sri Lanka,Colombo,LK.CO,LKA,LKA
+32496,LKA,Sri Lanka,Galle,LK.GL,LKA,LKA
+32497,LKA,Sri Lanka,Gampaha,LK.GQ,LKA,LKA
+32498,LKA,Sri Lanka,Hambantota,LK.HB,LKA,LKA
+32499,LKA,Sri Lanka,Jaffna,LK.JA,LKA,LKA
+32500,LKA,Sri Lanka,Kalutara,LK.KT,LKA,LKA
+32501,LKA,Sri Lanka,Kandy,LK.KY,LKA,LKA
+32502,LKA,Sri Lanka,Kegalle,LK.KE,LKA,LKA
+32503,LKA,Sri Lanka,Kilinochchi,LK.KL,LKA,LKA
+32504,LKA,Sri Lanka,Kurunegala,LK.KG,LKA,LKA
+32505,LKA,Sri Lanka,Mannar,LK.MB,LKA,LKA
+32506,LKA,Sri Lanka,Matale,LK.MT,LKA,LKA
+32507,LKA,Sri Lanka,Matara,LK.MH,LKA,LKA
+32508,LKA,Sri Lanka,Moneragala,LK.MJ,LKA,LKA
+32509,LKA,Sri Lanka,Mullaitivu,LK.MP,LKA,LKA
+32510,LKA,Sri Lanka,Nuwara Eliya,LK.NW,LKA,LKA
+32511,LKA,Sri Lanka,Polonnaruwa,LK.PR,LKA,LKA
+32512,LKA,Sri Lanka,Puttalam,LK.PX,LKA,LKA
+32513,LKA,Sri Lanka,Ratnapura,LK.RN,LKA,LKA
+32514,LKA,Sri Lanka,Trincomalee,LK.TC,LKA,LKA
+32515,LKA,Sri Lanka,Vavuniya,LK.VA,LKA,LKA
+32516,LSO,Lesotho,Berea,LS.BE,LSO,LSO
+32517,LSO,Lesotho,Butha-Buthe,LS.BB,LSO,LSO
+32518,LSO,Lesotho,Leribe,LS.LE,LSO,LSO
+32519,LSO,Lesotho,Mafeteng,LS.MF,LSO,LSO
+32520,LSO,Lesotho,Maseru,LS.MS,LSO,LSO
+32521,LSO,Lesotho,Mohale's Hoek,LS.MH,LSO,LSO
+32522,LSO,Lesotho,Mokhotlong,LS.MK,LSO,LSO
+32523,LSO,Lesotho,Qacha's Nek,LS.QN,LSO,LSO
+32524,LSO,Lesotho,Quthing,LS.QT,LSO,LSO
+32525,LSO,Lesotho,Thaba-Tseka,LS.TT,LSO,LSO
+32526,LTU,Lithuania,Alytaus,LT.AS,LTU,LTU
+32527,LTU,Lithuania,Kauno,LT.KS,LTU,LTU
+32528,LTU,Lithuania,Klaipedos,LT.KP,LTU,LTU
+32529,LTU,Lithuania,Marijampoles,LT.MA,LTU,LTU
+32530,LTU,Lithuania,Panevezio,LT.PA,LTU,LTU
+32531,LTU,Lithuania,Šiauliai,LT.SH,LTU,LTU
+32532,LTU,Lithuania,Taurages,LT.TG,LTU,LTU
+32533,LTU,Lithuania,Telšiai,LT.TL,LTU,LTU
+32534,LTU,Lithuania,Utenos,LT.UN,LTU,LTU
+32535,LTU,Lithuania,Vilniaus,LT.VI,LTU,LTU
+32536,LUX,Luxembourg,Diekirch,LU.DI,LUX,LUX
+32537,LUX,Luxembourg,Grevenmacher,LU.GR,LUX,LUX
+32538,LUX,Luxembourg,Luxembourg,LU.LU,LUX,LUX
+32539,LVA,Latvia,Kurzeme,K,LVA,LVA
+32540,LVA,Latvia,Latgale,L,LVA,LVA
+32541,LVA,Latvia,Riga,R,LVA,LVA
+32542,LVA,Latvia,Vidzeme,V,LVA,LVA
+32543,LVA,Latvia,Zemgale,Z,LVA,LVA
+32544,MAC,Macao,Ilhas,MO.IL,MAC,MAC
+32545,MAR,Morocco,Chaouia - Ouardigha,MA.CO,MAR,MAR
+32546,MAR,Morocco,Doukkala - Abda,MA.DA,MAR,MAR
+32547,MAR,Morocco,Fès - Boulemane,MA.FB,MAR,MAR
+32548,MAR,Morocco,Gharb - Chrarda - Béni Hssen,MA.GB,MAR,MAR
+32549,MAR,Morocco,Grand Casablanca,MA.GC,MAR,MAR
+32550,MAR,Morocco,Guelmim - Es-Semara,MA.GE,MAR,MAR
+32551,MAR,Morocco,Laâyoune - Boujdour - Sakia El Hamra,MA.LB,MAR,MAR
+32552,MAR,Morocco,Marrakech - Tensift - Al Haouz,MA.MK,MAR,MAR
+32553,MAR,Morocco,Meknès - Tafilalet,MA.MT,MAR,MAR
+32554,MAR,Morocco,Oriental,MA.OR,MAR,MAR
+32555,MAR,Morocco,Rabat - Salé - Zemmour - Zaer,MA.RZ,MAR,MAR
+32556,MAR,Morocco,Souss - Massa - Draâ,MA.SM,MAR,MAR
+32557,MAR,Morocco,Tadla - Azilal,MA.TD,MAR,MAR
+32558,MAR,Morocco,Tanger - Tétouan,MA.TO,MAR,MAR
+32559,MAR,Morocco,Taza - Al Hoceima - Taounate,MA.TH,MAR,MAR
+32560,MCO,Monaco,Monaco,MC.MC,MCO,MCO
+32561,MDA,Moldova,Balti,MD.BT,MDA,MDA
+32562,MDA,Moldova,Basarabeasca,MD.BA,MDA,MDA
+32563,MDA,Moldova,Bender,MD.BD,MDA,MDA
+32564,MDA,Moldova,Briceni,MD.BR,MDA,MDA
+32565,MDA,Moldova,Cahul,MD.CH,MDA,MDA
+32566,MDA,Moldova,Calarasi,MD.CA,MDA,MDA
+32567,MDA,Moldova,Cantemir,MD.CN,MDA,MDA
+32568,MDA,Moldova,Causeni,MD.CU,MDA,MDA
+32569,MDA,Moldova,Chisinau,MD.CV,MDA,MDA
+32570,MDA,Moldova,Cimislia,MD.CS,MDA,MDA
+32571,MDA,Moldova,Criuleni,MD.CR,MDA,MDA
+32572,MDA,Moldova,Donduseni,MD.DO,MDA,MDA
+32573,MDA,Moldova,Drochia,MD.DR,MDA,MDA
+32574,MDA,Moldova,Anenii Noi,MD.AN,MDA,MDA
+32575,MDA,Moldova,Dubasari,MD.DB,MDA,MDA
+32576,MDA,Moldova,Edinet,MD.ED,MDA,MDA
+32577,MDA,Moldova,Falesti,MD.FA,MDA,MDA
+32578,MDA,Moldova,Floresti,MD.FL,MDA,MDA
+32579,MDA,Moldova,Gagauzia,MD.GA,MDA,MDA
+32580,MDA,Moldova,Glodeni,MD.GL,MDA,MDA
+32581,MDA,Moldova,Hîncesti,MD.HI,MDA,MDA
+32582,MDA,Moldova,Ialoveni,MD.IA,MDA,MDA
+32583,MDA,Moldova,Leova,MD.LE,MDA,MDA
+32584,MDA,Moldova,Nisporeni,MD.NI,MDA,MDA
+32585,MDA,Moldova,Ocnita,MD.OC,MDA,MDA
+32586,MDA,Moldova,Orhei,MD.OH,MDA,MDA
+32587,MDA,Moldova,Rezina,MD.RZ,MDA,MDA
+32588,MDA,Moldova,Rîscani,MD.RS,MDA,MDA
+32589,MDA,Moldova,Sîngerei,MD.SI,MDA,MDA
+32590,MDA,Moldova,Soldanesti,MD.SD,MDA,MDA
+32591,MDA,Moldova,Soroca,MD.SO,MDA,MDA
+32592,MDA,Moldova,Stefan Voda,MD.SV,MDA,MDA
+32593,MDA,Moldova,Straseni,MD.ST,MDA,MDA
+32594,MDA,Moldova,Taraclia,MD.TA,MDA,MDA
+32595,MDA,Moldova,Telenesti,MD.TE,MDA,MDA
+32596,MDA,Moldova,Transnistria,MD.DU,MDA,MDA
+32597,MDA,Moldova,Ungheni,MD.UG,MDA,MDA
+32598,MDG,Madagascar,Antananarivo,MG.AV,MDG,MDG
+32599,MDG,Madagascar,Antsiranana,MG.AS,MDG,MDG
+32600,MDG,Madagascar,Fianarantsoa,MG.FI,MDG,MDG
+32601,MDG,Madagascar,Mahajanga,MG.MA,MDG,MDG
+32602,MDG,Madagascar,Toamasina,MG.TM,MDG,MDG
+32603,MDG,Madagascar,Toliary,MG.TL,MDG,MDG
+32604,MEX,Mexico,Aguascalientes,MX.AG,MEX,MEX
+32605,MEX,Mexico,Baja California,MX.BN,MEX,MEX
+32606,MEX,Mexico,Baja California Sur,MX.BS,MEX,MEX
+32607,MEX,Mexico,Campeche,MX.CM,MEX,MEX
+32608,MEX,Mexico,Chiapas,MX.CP,MEX,MEX
+32609,MEX,Mexico,Chihuahua,MX.CH,MEX,MEX
+32610,MEX,Mexico,Coahuila,MX.CA,MEX,MEX
+32611,MEX,Mexico,Colima,MX.CL,MEX,MEX
+32612,MEX,Mexico,Distrito Federal,MX.DF,MEX,MEX
+32613,MEX,Mexico,Durango,MX.DU,MEX,MEX
+32614,MEX,Mexico,Guanajuato,MX.GJ,MEX,MEX
+32615,MEX,Mexico,Guerrero,MX.GR,MEX,MEX
+32616,MEX,Mexico,Hidalgo,MX.HI,MEX,MEX
+32617,MEX,Mexico,Jalisco,MX.JA,MEX,MEX
+32618,MEX,Mexico,México,MX.MX,MEX,MEX
+32619,MEX,Mexico,Michoacán,MX.MC,MEX,MEX
+32620,MEX,Mexico,Morelos,MX.MR,MEX,MEX
+32621,MEX,Mexico,Nayarit,MX.NA,MEX,MEX
+32622,MEX,Mexico,Nuevo León,MX.NL,MEX,MEX
+32623,MEX,Mexico,Oaxaca,MX.OA,MEX,MEX
+32624,MEX,Mexico,Puebla,MX.PU,MEX,MEX
+32625,MEX,Mexico,Querétaro,MX.QE,MEX,MEX
+32626,MEX,Mexico,Quintana Roo,MX.QR,MEX,MEX
+32627,MEX,Mexico,San Luis Potosí,MX.SL,MEX,MEX
+32628,MEX,Mexico,Sinaloa,MX.SI,MEX,MEX
+32629,MEX,Mexico,Sonora,MX.SO,MEX,MEX
+32630,MEX,Mexico,Tabasco,MX.TB,MEX,MEX
+32631,MEX,Mexico,Tamaulipas,MX.TM,MEX,MEX
+32632,MEX,Mexico,Tlaxcala,MX.TL,MEX,MEX
+32633,MEX,Mexico,Veracruz,MX.VE,MEX,MEX
+32634,MEX,Mexico,Yucatán,MX.YU,MEX,MEX
+32635,MEX,Mexico,Zacatecas,MX.ZA,MEX,MEX
+32636,MKD,Macedonia,Eastern,,MKD,MKD
+32637,MKD,Macedonia,Northeastern,,MKD,MKD
+32638,MKD,Macedonia,Pelagonia,,MKD,MKD
+32639,MKD,Macedonia,Polog,,MKD,MKD
+32640,MKD,Macedonia,Skopje,,MKD,MKD
+32641,MKD,Macedonia,Southeastern,,MKD,MKD
+32642,MKD,Macedonia,Southwestern,,MKD,MKD
+32643,MKD,Macedonia,Vardar,,MKD,MKD
+32644,MLI,Mali,Bamako,ML.KK,MLI,MLI
+32645,MLI,Mali,Gao,ML.GA,MLI,MLI
+32646,MLI,Mali,Kayes,ML.KY,MLI,MLI
+32647,MLI,Mali,Kidal,ML.KD,MLI,MLI
+32648,MLI,Mali,Koulikoro,ML.KK,MLI,MLI
+32649,MLI,Mali,Mopti,ML.MO,MLI,MLI
+32650,MLI,Mali,Ségou,ML.SG,MLI,MLI
+32651,MLI,Mali,Sikasso,ML.SK,MLI,MLI
+32652,MLI,Mali,Timbuktu,ML.TB,MLI,MLI
+32653,MMR,Myanmar,Ayeyarwady,MM.AY,MMR,MMR
+32654,MMR,Myanmar,Bago,MM.BA,MMR,MMR
+32655,MMR,Myanmar,Chin,MM.CH,MMR,MMR
+32656,MMR,Myanmar,Kachin,MM.KC,MMR,MMR
+32657,MMR,Myanmar,Kayah,MM.KH,MMR,MMR
+32658,MMR,Myanmar,Kayin,MM.KN,MMR,MMR
+32659,MMR,Myanmar,Magway,MM.MG,MMR,MMR
+32660,MMR,Myanmar,Mandalay,MM.MD,MMR,MMR
+32661,MMR,Myanmar,Mon,MM.MO,MMR,MMR
+32662,MMR,Myanmar,Rakhine,MM.RA,MMR,MMR
+32663,MMR,Myanmar,Sagaing,MM.SA,MMR,MMR
+32664,MMR,Myanmar,Shan,MM.SH,MMR,MMR
+32665,MMR,Myanmar,Tanintharyi,MM.TN,MMR,MMR
+32666,MMR,Myanmar,Yangon,MM.YA,MMR,MMR
+32667,MNE,Montenegro,Andrijevica,ME.AN,MNE,MNE
+32668,MNE,Montenegro,Bar,ME.BA,MNE,MNE
+32669,MNE,Montenegro,Berane,ME.BE,MNE,MNE
+32670,MNE,Montenegro,Bijelo Polje,ME.BP,MNE,MNE
+32671,MNE,Montenegro,Budva,ME.BU,MNE,MNE
+32672,MNE,Montenegro,Cetinje,ME.CE,MNE,MNE
+32673,MNE,Montenegro,Danilovgrad,ME.DA,MNE,MNE
+32674,MNE,Montenegro,Herceg Novi,ME.HN,MNE,MNE
+32675,MNE,Montenegro,Kolašin,ME.KL,MNE,MNE
+32676,MNE,Montenegro,Kotor,ME.KT,MNE,MNE
+32677,MNE,Montenegro,Mojkovac,ME.MK,MNE,MNE
+32678,MNE,Montenegro,Nikšic,ME.NK,MNE,MNE
+32679,MNE,Montenegro,Plav,ME.PV,MNE,MNE
+32680,MNE,Montenegro,Pljevlja,ME.PL,MNE,MNE
+32681,MNE,Montenegro,Plužine,ME.PU,MNE,MNE
+32682,MNE,Montenegro,Podgorica,ME.PG,MNE,MNE
+32683,MNE,Montenegro,Rožaje,ME.RO,MNE,MNE
+32684,MNE,Montenegro,Šavnik,ME.SA,MNE,MNE
+32685,MNE,Montenegro,Tivat,ME.TI,MNE,MNE
+32686,MNE,Montenegro,Ulcinj,ME.UL,MNE,MNE
+32687,MNE,Montenegro,Žabljak,ME.ZA,MNE,MNE
+32688,MNG,Mongolia,Arhangay,MN.AR,MNG,MNG
+32689,MNG,Mongolia,Bayanhongor,MN.BH,MNG,MNG
+32690,MNG,Mongolia,Bayan-Ölgiy,MN.BO,MNG,MNG
+32691,MNG,Mongolia,Bulgan,MN.BU,MNG,MNG
+32692,MNG,Mongolia,Darhan-Uul,MN.DA,MNG,MNG
+32693,MNG,Mongolia,Dornod,MN.DD,MNG,MNG
+32694,MNG,Mongolia,Dornogovi,MN.DG,MNG,MNG
+32695,MNG,Mongolia,Dundgovi,MN.DU,MNG,MNG
+32696,MNG,Mongolia,Dzavhan,MN.DZ,MNG,MNG
+32697,MNG,Mongolia,Govi-Altay,MN.GA,MNG,MNG
+32698,MNG,Mongolia,Govisümber,MN.GS,MNG,MNG
+32699,MNG,Mongolia,Hentiy,MN.HN,MNG,MNG
+32700,MNG,Mongolia,Hovd,MN.HD,MNG,MNG
+32701,MNG,Mongolia,Hövsgöl,MN.HG,MNG,MNG
+32702,MNG,Mongolia,Ömnögovi,MN.OG,MNG,MNG
+32703,MNG,Mongolia,Orhon,MN.ER,MNG,MNG
+32704,MNG,Mongolia,Övörhangay,MN.OH,MNG,MNG
+32705,MNG,Mongolia,Selenge,MN.SL,MNG,MNG
+32706,MNG,Mongolia,Sühbaatar,MN.SB,MNG,MNG
+32707,MNG,Mongolia,Töv,MN.TO,MNG,MNG
+32708,MNG,Mongolia,Ulaanbaatar,MN.UB,MNG,MNG
+32709,MNG,Mongolia,Uvs,MN.UV,MNG,MNG
+32710,MNP,Northern Mariana Islands,Northern Islands,MP.NI,MNP,MNP
+32711,MNP,Northern Mariana Islands,Rota,MP.RO,MNP,MNP
+32712,MNP,Northern Mariana Islands,Saipan,MP.SA,MNP,MNP
+32713,MNP,Northern Mariana Islands,Tinian,MP.TI,MNP,MNP
+32714,MOZ,Mozambique,Cabo Delgado,MZ.CD,MOZ,MOZ
+32715,MOZ,Mozambique,Gaza,MZ.GA,MOZ,MOZ
+32716,MOZ,Mozambique,Inhambane,MZ.IN,MOZ,MOZ
+32717,MOZ,Mozambique,Manica,MZ.MN,MOZ,MOZ
+32718,MOZ,Mozambique,Maputo,MZ.MP,MOZ,MOZ
+32719,MOZ,Mozambique,Nampula,MZ.NM,MOZ,MOZ
+32720,MOZ,Mozambique,Nassa,MZ.NS,MOZ,MOZ
+32721,MOZ,Mozambique,Sofala,MZ.SO,MOZ,MOZ
+32722,MOZ,Mozambique,Tete,MZ.TE,MOZ,MOZ
+32723,MOZ,Mozambique,Zambezia,MZ.ZA,MOZ,MOZ
+32724,MRT,Mauritania,Adrar,MR.AD,MRT,MRT
+32725,MRT,Mauritania,Assaba,MR.AS,MRT,MRT
+32726,MRT,Mauritania,Brakna,MR.BR,MRT,MRT
+32727,MRT,Mauritania,Dakhlet Nouadhibou,MR.DN,MRT,MRT
+32728,MRT,Mauritania,Gorgol,MR.GO,MRT,MRT
+32729,MRT,Mauritania,Guidimaka,MR.GD,MRT,MRT
+32730,MRT,Mauritania,Hodh ech Chargui,MR.HC,MRT,MRT
+32731,MRT,Mauritania,Hodh el Gharbi,MR.HG,MRT,MRT
+32732,MRT,Mauritania,Inchiri,MR.IN,MRT,MRT
+32733,MRT,Mauritania,Nouakchott,MR.NO,MRT,MRT
+32734,MRT,Mauritania,Tagant,MR.TG,MRT,MRT
+32735,MRT,Mauritania,Tiris Zemmour,MR.TZ,MRT,MRT
+32736,MRT,Mauritania,Trarza,MR.TR,MRT,MRT
+32737,MTQ,Martinique,Fort-de-France,MQ.FF,MTQ,MTQ
+32738,MTQ,Martinique,Le Marin,MQ.MA,MTQ,MTQ
+32739,MTQ,Martinique,Le Trinité,MQ.TR,MTQ,MTQ
+32740,MTQ,Martinique,Saint-Pierre,MQ.SP,MTQ,MTQ
+32741,MUS,Mauritius,Black River,MU.BL,MUS,MUS
+32742,MUS,Mauritius,Coco Island,,MUS,MUS
+32743,MUS,Mauritius,Flacq,MU.FL,MUS,MUS
+32744,MUS,Mauritius,Grand Port,MU.GP,MUS,MUS
+32745,MUS,Mauritius,Moka,MU.MO,MUS,MUS
+32746,MUS,Mauritius,North Island,,MUS,MUS
+32747,MUS,Mauritius,Pamplemousses,MU.PA,MUS,MUS
+32748,MUS,Mauritius,Plaines Wilhems,MU.PW,MUS,MUS
+32749,MUS,Mauritius,Port Louis,MU.PL,MUS,MUS
+32750,MUS,Mauritius,Rivière du Rempart,MU.RR,MUS,MUS
+32751,MUS,Mauritius,Rodriguez,,MUS,MUS
+32752,MUS,Mauritius,Savanne,MU.SA,MUS,MUS
+32753,MWI,Malawi,Balaka,MW.BA,MWI,MWI
+32754,MWI,Malawi,Blantyre,MW.BL,MWI,MWI
+32755,MWI,Malawi,Chikwawa,MW.CK,MWI,MWI
+32756,MWI,Malawi,Chiradzulu,MW.CR,MWI,MWI
+32757,MWI,Malawi,Chitipa,MW.CT,MWI,MWI
+32758,MWI,Malawi,Dedza,MW.DE,MWI,MWI
+32759,MWI,Malawi,Dowa,MW.DO,MWI,MWI
+32760,MWI,Malawi,Karonga,MW.KR,MWI,MWI
+32761,MWI,Malawi,Kasungu,MW.KS,MWI,MWI
+32762,MWI,Malawi,Lilongwe,MW.LI,MWI,MWI
+32763,MWI,Malawi,Machinga,MW.MA,MWI,MWI
+32764,MWI,Malawi,Mangochi,MW.MG,MWI,MWI
+32765,MWI,Malawi,Mchinji,MW.MC,MWI,MWI
+32766,MWI,Malawi,Mulanje,MW.MJ,MWI,MWI
+32767,MWI,Malawi,Mwanza,MW.MW,MWI,MWI
+32768,MWI,Malawi,Mzimba,MW.MZ,MWI,MWI
+32769,MWI,Malawi,Nkhata Bay,MW.NA,MWI,MWI
+32770,MWI,Malawi,Nkhotakota,MW.NK,MWI,MWI
+32771,MWI,Malawi,Nsanje,MW.NS,MWI,MWI
+32772,MWI,Malawi,Ntcheu,MW.NU,MWI,MWI
+32773,MWI,Malawi,Ntchisi,MW.NI,MWI,MWI
+32774,MWI,Malawi,Phalombe,MW.PH,MWI,MWI
+32775,MWI,Malawi,Rumphi,MW.RU,MWI,MWI
+32776,MWI,Malawi,Salima,MW.SA,MWI,MWI
+32777,MWI,Malawi,Thyolo,MW.TH,MWI,MWI
+32778,MWI,Malawi,Zomba,MW.ZO,MWI,MWI
+32779,MYS,Malaysia,Johor,MY.JH,MYS,MYS
+32780,MYS,Malaysia,Kedah,MY.KH,MYS,MYS
+32781,MYS,Malaysia,Kelantan,MY.KN,MYS,MYS
+32782,MYS,Malaysia,Melaka,MY.ME,MYS,MYS
+32783,MYS,Malaysia,Negeri Sembilan,MY.NS,MYS,MYS
+32784,MYS,Malaysia,Pahang,MY.PH,MYS,MYS
+32785,MYS,Malaysia,Perak,MY.PK,MYS,MYS
+32786,MYS,Malaysia,Perlis,MY.PL,MYS,MYS
+32787,MYS,Malaysia,Pulau Pinang,MY.PG,MYS,MYS
+32788,MYS,Malaysia,Sabah,MY.SA,MYS,MYS
+32789,MYS,Malaysia,Sarawak,MY.SK,MYS,MYS
+32790,MYS,Malaysia,Selangor,MY.SL,MYS,MYS
+32791,MYS,Malaysia,Trengganu,MY.TE,MYS,MYS
+32792,NAM,Namibia,Caprivi,NA.CA,NAM,NAM
+32793,NAM,Namibia,Erongo,NA.ER,NAM,NAM
+32794,NAM,Namibia,Hardap,NA.HA,NAM,NAM
+32795,NAM,Namibia,Karas,NA.KA,NAM,NAM
+32796,NAM,Namibia,Kavango,NA.OK,NAM,NAM
+32797,NAM,Namibia,Khomas,NA.KH,NAM,NAM
+32798,NAM,Namibia,Kunene,NA.KU,NAM,NAM
+32799,NAM,Namibia,Ohangwena,NA.OW,NAM,NAM
+32800,NAM,Namibia,Omaheke,NA.OH,NAM,NAM
+32801,NAM,Namibia,Omusati,NA.OS,NAM,NAM
+32802,NAM,Namibia,Oshana,NA.ON,NAM,NAM
+32803,NAM,Namibia,Oshikoto,NA.OT,NAM,NAM
+32804,NAM,Namibia,Otjozondjupa,NA.OD,NAM,NAM
+32805,NCL,New Caledonia,Îles Loyauté,NC.IL,NCL,NCL
+32806,NCL,New Caledonia,Nord,NC.NO,NCL,NCL
+32807,NCL,New Caledonia,Sud,NC.SU,NCL,NCL
+32808,NER,Niger,Dosso,NE.DS,NER,NER
+32809,NER,Niger,Maradi,NE.MA,NER,NER
+32810,NER,Niger,Niamey,NE.NI,NER,NER
+32811,NER,Niger,Tahoua,NE.TH,NER,NER
+32812,NER,Niger,Tillabéry,NE.TL,NER,NER
+32813,NER,Niger,Zinder,NE.ZI,NER,NER
+32814,NER,Niger,Agadez,NE.AG,NER,NER
+32815,NER,Niger,Diffa,NE.DF,NER,NER
+32816,NGA,Nigeria,Abia,NG.AB,NGA,NGA
+32817,NGA,Nigeria,Adamawa,NG.AD,NGA,NGA
+32818,NGA,Nigeria,Akwa Ibom,NG.AK,NGA,NGA
+32819,NGA,Nigeria,Anambra,NG.AN,NGA,NGA
+32820,NGA,Nigeria,Bauchi,NG.BA,NGA,NGA
+32821,NGA,Nigeria,Bayelsa,NG.BY,NGA,NGA
+32822,NGA,Nigeria,Benue,NG.BE,NGA,NGA
+32823,NGA,Nigeria,Borno,NG.BO,NGA,NGA
+32824,NGA,Nigeria,Cross River,NG.CR,NGA,NGA
+32825,NGA,Nigeria,Delta,NG.DE,NGA,NGA
+32826,NGA,Nigeria,Ebonyi,NG.EB,NGA,NGA
+32827,NGA,Nigeria,Edo,NG.ED,NGA,NGA
+32828,NGA,Nigeria,Ekiti,NG.EK,NGA,NGA
+32829,NGA,Nigeria,Enugu,NG.EN,NGA,NGA
+32830,NGA,Nigeria,Federal Capital Territory,NG.FC,NGA,NGA
+32831,NGA,Nigeria,Gombe,NG.GO,NGA,NGA
+32832,NGA,Nigeria,Imo,NG.IM,NGA,NGA
+32833,NGA,Nigeria,Jigawa,NG.JI,NGA,NGA
+32834,NGA,Nigeria,Kaduna,NG.KD,NGA,NGA
+32835,NGA,Nigeria,Kano,NG.KN,NGA,NGA
+32836,NGA,Nigeria,Katsina,NG.KT,NGA,NGA
+32837,NGA,Nigeria,Kebbi,NG.KE,NGA,NGA
+32838,NGA,Nigeria,Kogi,NG.KO,NGA,NGA
+32839,NGA,Nigeria,Kwara,NG.KW,NGA,NGA
+32840,NGA,Nigeria,Lagos,NG.LA,NGA,NGA
+32841,NGA,Nigeria,Nassarawa,NG.NA,NGA,NGA
+32842,NGA,Nigeria,Niger,NG.NI,NGA,NGA
+32843,NGA,Nigeria,Ogun,NG.OG,NGA,NGA
+32844,NGA,Nigeria,Ondo,NG.ON,NGA,NGA
+32845,NGA,Nigeria,Osun,NG.OS,NGA,NGA
+32846,NGA,Nigeria,Oyo,NG.OY,NGA,NGA
+32847,NGA,Nigeria,Plateau,NG.PL,NGA,NGA
+32848,NGA,Nigeria,Rivers,NG.RI,NGA,NGA
+32849,NGA,Nigeria,Sokoto,NG.SO,NGA,NGA
+32850,NGA,Nigeria,Taraba,NG.TA,NGA,NGA
+32851,NGA,Nigeria,Water body,,NGA,NGA
+32852,NGA,Nigeria,Yobe,NG.YO,NGA,NGA
+32853,NGA,Nigeria,Zamfara,NG.ZA,NGA,NGA
+32854,NIC,Nicaragua,Atlántico Norte,NI.AN,NIC,NIC
+32855,NIC,Nicaragua,Atlántico Sur,NI.AS,NIC,NIC
+32856,NIC,Nicaragua,Boaco,NI.BO,NIC,NIC
+32857,NIC,Nicaragua,Carazo,NI.CA,NIC,NIC
+32858,NIC,Nicaragua,Chinandega,NI.CI,NIC,NIC
+32859,NIC,Nicaragua,Chontales,NI.CO,NIC,NIC
+32860,NIC,Nicaragua,Estelí,NI.ES,NIC,NIC
+32861,NIC,Nicaragua,Granada,NI.GR,NIC,NIC
+32862,NIC,Nicaragua,Jinotega,NI.JI,NIC,NIC
+32863,NIC,Nicaragua,León,NI.LE,NIC,NIC
+32864,NIC,Nicaragua,Madriz,NI.MD,NIC,NIC
+32865,NIC,Nicaragua,Managua,NI.MN,NIC,NIC
+32866,NIC,Nicaragua,Masaya,NI.MS,NIC,NIC
+32867,NIC,Nicaragua,Matagalpa,NI.MT,NIC,NIC
+32868,NIC,Nicaragua,Nicaragua,lake,NIC,NIC
+32869,NIC,Nicaragua,Nueva Segovia,NI.NS,NIC,NIC
+32870,NIC,Nicaragua,Río San Juan,NI.SJ,NIC,NIC
+32871,NIC,Nicaragua,Rivas,NI.RI,NIC,NIC
+32872,NIU,Niue,Niue,NU.NU,NIU,NIU
+32873,NLD,Netherlands,Drenthe,NL.DR,NLD,NLD
+32874,NLD,Netherlands,Flevoland,NL.FL,NLD,NLD
+32875,NLD,Netherlands,Friesland,NL.FR,NLD,NLD
+32876,NLD,Netherlands,Gelderland,NL.GE,NLD,NLD
+32877,NLD,Netherlands,Groningen,NL.GR,NLD,NLD
+32878,NLD,Netherlands,IJsselmeer,,NLD,NLD
+32879,NLD,Netherlands,Limburg,NL.LI,NLD,NLD
+32880,NLD,Netherlands,Noord-Brabant,NL.NB,NLD,NLD
+32881,NLD,Netherlands,Noord-Holland,NL.NH,NLD,NLD
+32882,NLD,Netherlands,Overijssel,NL.OV,NLD,NLD
+32883,NLD,Netherlands,Utrecht,NL.UT,NLD,NLD
+32884,NLD,Netherlands,Zeeland,NL.ZE,NLD,NLD
+32885,NLD,Netherlands,Zeeuwse meren,,NLD,NLD
+32886,NLD,Netherlands,Zuid-Holland,NL.ZH,NLD,NLD
+32887,NOR,Norway,Akershus,NO.AK,NOR,NOR
+32888,NOR,Norway,Ãstfold,NO.OF,NOR,NOR
+32889,NOR,Norway,Aust-Agder,NO.AA,NOR,NOR
+32890,NOR,Norway,Buskerud,NO.BU,NOR,NOR
+32891,NOR,Norway,Finnmark,NO.FI,NOR,NOR
+32892,NOR,Norway,Hedmark,NO.HE,NOR,NOR
+32893,NOR,Norway,Hordaland,NO.HO,NOR,NOR
+32894,NOR,Norway,Møre og Romsdal,NO.MR,NOR,NOR
+32895,NOR,Norway,Nordland,NO.NO,NOR,NOR
+32896,NOR,Norway,Nord-Trøndelag,NO.NT,NOR,NOR
+32897,NOR,Norway,Oppland,NO.OP,NOR,NOR
+32898,NOR,Norway,Oslo,NO.OS,NOR,NOR
+32899,NOR,Norway,Rogaland,NO.RO,NOR,NOR
+32900,NOR,Norway,Sogn og Fjordane,NO.SF,NOR,NOR
+32901,NOR,Norway,Sør-Trøndelag,NO.ST,NOR,NOR
+32902,NOR,Norway,Telemark,NO.TE,NOR,NOR
+32903,NOR,Norway,Troms,NO.TR,NOR,NOR
+32904,NOR,Norway,Vest-Agder,NO.VA,NOR,NOR
+32905,NOR,Norway,Vestfold,NO.VF,NOR,NOR
+32906,NPL,Nepal,Central,NP.MM,NPL,NPL
+32907,NPL,Nepal,East,NP.PW,NPL,NPL
+32908,NPL,Nepal,Far-Western,NP.SP,NPL,NPL
+32909,NPL,Nepal,Mid-Western,NP.MP,NPL,NPL
+32910,NPL,Nepal,West,NP.PM,NPL,NPL
+32911,NRU,Nauru,Aiwo,NR.AI,NRU,NRU
+32912,NRU,Nauru,Anabar,NR.AB,NRU,NRU
+32913,NRU,Nauru,Anetan,NR.AT,NRU,NRU
+32914,NRU,Nauru,Anibare,NR.AR,NRU,NRU
+32915,NRU,Nauru,Baiti,NR.BA,NRU,NRU
+32916,NRU,Nauru,Boe,NR.BO,NRU,NRU
+32917,NRU,Nauru,Buada,NR.BU,NRU,NRU
+32918,NRU,Nauru,Denigomodu,NR.DE,NRU,NRU
+32919,NRU,Nauru,Ewa,NR.EW,NRU,NRU
+32920,NRU,Nauru,Ijuw,NR.IJ,NRU,NRU
+32921,NRU,Nauru,Meneng,NR.ME,NRU,NRU
+32922,NRU,Nauru,Nibok,NR.NI,NRU,NRU
+32923,NRU,Nauru,Uaboe,NR.UA,NRU,NRU
+32924,NRU,Nauru,Yaren,NR.YA,NRU,NRU
+32925,NZL,New Zealand,Auckland,NZ.AU,NZL,NZL
+32926,NZL,New Zealand,Bay of Plenty,NZ.BP,NZL,NZL
+32927,NZL,New Zealand,Canterbury,NZ.CA,NZL,NZL
+32928,NZL,New Zealand,Chatham Islands,NZ.CI,NZL,NZL
+32929,NZL,New Zealand,Gisborne,NZ.GI,NZL,NZL
+32930,NZL,New Zealand,Hawke's Bay,NZ.HB,NZL,NZL
+32931,NZL,New Zealand,Manawatu-Wanganui,NZ.MW,NZL,NZL
+32932,NZL,New Zealand,Marlborough,NZ.MA,NZL,NZL
+32933,NZL,New Zealand,Nelson,NZ.NE,NZL,NZL
+32934,NZL,New Zealand,Northland,NZ.NO,NZL,NZL
+32935,NZL,New Zealand,Otago,NZ.OT,NZL,NZL
+32936,NZL,New Zealand,Southland,NZ.SO,NZL,NZL
+32937,NZL,New Zealand,Taranaki,NZ.TK,NZL,NZL
+32938,NZL,New Zealand,Waikato,NZ.WK,NZL,NZL
+32939,NZL,New Zealand,Wellington,NZ.WG,NZL,NZL
+32940,NZL,New Zealand,West Coast,NZ.WC,NZL,NZL
+32941,OMN,Oman,Ad Dakhliyah,OM.DA,OMN,OMN
+32942,OMN,Oman,Al Batnah,OM.BA,OMN,OMN
+32943,OMN,Oman,Al Dhahira,OM.ZA,OMN,OMN
+32944,OMN,Oman,Al Wusta,OM.WU,OMN,OMN
+32945,OMN,Oman,Ash Sharqiyah,OM.SH,OMN,OMN
+32946,OMN,Oman,Dhofar,OM.JA,OMN,OMN
+32947,OMN,Oman,Musandam,OM.MU,OMN,OMN
+32948,OMN,Oman,Muscat,OM.MA,OMN,OMN
+32949,PAK,Pakistan,Azad Kashmir,PK.JK,PAK,PAK
+32950,PAK,Pakistan,Baluchistan,PK.BA,PAK,PAK
+32951,PAK,Pakistan,F.A.T.A.,PK.TA,PAK,PAK
+32952,PAK,Pakistan,F.C.T.,PK.IS,PAK,PAK
+32953,PAK,Pakistan,N.W.F.P.,PK.NW,PAK,PAK
+32954,PAK,Pakistan,Northern Areas,PK.NA,PAK,PAK
+32955,PAK,Pakistan,Punjab,PK.PB,PAK,PAK
+32956,PAK,Pakistan,Sind,PK.SD,PAK,PAK
+32957,PAN,Panama,Bocas del Toro,PA.BC,PAN,PAN
+32958,PAN,Panama,Chiriquí,PA.CH,PAN,PAN
+32959,PAN,Panama,Coclé,PA.CC,PAN,PAN
+32960,PAN,Panama,Colón,PA.CL,PAN,PAN
+32961,PAN,Panama,Darién,PA.DR,PAN,PAN
+32962,PAN,Panama,Emberá,PA.EM,PAN,PAN
+32963,PAN,Panama,Herrera,PA.HE,PAN,PAN
+32964,PAN,Panama,Kuna Yala,PA.SB,PAN,PAN
+32965,PAN,Panama,Los Santos,PA.LS,PAN,PAN
+32966,PAN,Panama,Ngöbe Buglé,PA.NB,PAN,PAN
+32967,PAN,Panama,Panamá,PA.PN,PAN,PAN
+32968,PAN,Panama,Veraguas,PA.VR,PAN,PAN
+32969,PER,Peru,Amazonas,PE.AM,PER,PER
+32970,PER,Peru,Ancash,PE.AN,PER,PER
+32971,PER,Peru,Apurímac,PE.AP,PER,PER
+32972,PER,Peru,Arequipa,PE.AR,PER,PER
+32973,PER,Peru,Ayacucho,PE.AY,PER,PER
+32974,PER,Peru,Cajamarca,PE.CJ,PER,PER
+32975,PER,Peru,Callao,PE.CL,PER,PER
+32976,PER,Peru,Cusco,PE.CS,PER,PER
+32977,PER,Peru,Huancavelica,PE.HV,PER,PER
+32978,PER,Peru,Huánuco,PE.HC,PER,PER
+32979,PER,Peru,Ica,PE.IC,PER,PER
+32980,PER,Peru,Junín,PE.JU,PER,PER
+32981,PER,Peru,La Libertad,PE.LL,PER,PER
+32982,PER,Peru,Lambayeque,PE.LB,PER,PER
+32983,PER,Peru,Lima,PE.LR,PER,PER
+32984,PER,Peru,Loreto,PE.LO,PER,PER
+32985,PER,Peru,Madre de Dios,PE.MD,PER,PER
+32986,PER,Peru,Moquegua,PE.MQ,PER,PER
+32987,PER,Peru,Pasco,PE.PA,PER,PER
+32988,PER,Peru,Piura,PE.PI,PER,PER
+32989,PER,Peru,Puno,PE.PU,PER,PER
+32990,PER,Peru,San Martín,PE.SM,PER,PER
+32991,PER,Peru,Tacna,PE.TA,PER,PER
+32992,PER,Peru,Tumbes,PE.TU,PER,PER
+32993,PER,Peru,Ucayali,PE.UC,PER,PER
+32994,PHL,Philippines,Surigao del Sur,PH.SS,PHL,PHL
+32995,PHL,Philippines,Tarlac,PH.TR,PHL,PHL
+32996,PHL,Philippines,Tawi-Tawi,PH.TT,PHL,PHL
+32997,PHL,Philippines,Zambales,PH.ZM,PHL,PHL
+32998,PHL,Philippines,Zamboanga del Norte,PH.ZN,PHL,PHL
+32999,PHL,Philippines,Zamboanga del Sur,PH.ZS,PHL,PHL
+33000,PHL,Philippines,Zamboanga Sibugay,PH.ZY,PHL,PHL
+33001,PHL,Philippines,Abra,PH.AB,PHL,PHL
+33002,PHL,Philippines,Agusan del Norte,PH.AN,PHL,PHL
+33003,PHL,Philippines,Agusan del Sur,PH.AS,PHL,PHL
+33004,PHL,Philippines,Aklan,PH.AK,PHL,PHL
+33005,PHL,Philippines,Albay,PH.AL,PHL,PHL
+33006,PHL,Philippines,Antique,PH.AQ,PHL,PHL
+33007,PHL,Philippines,Apayao,PH.AP,PHL,PHL
+33008,PHL,Philippines,Aurora,PH.AU,PHL,PHL
+33009,PHL,Philippines,Basilan,PH.BS,PHL,PHL
+33010,PHL,Philippines,Bataan,PH.BA,PHL,PHL
+33011,PHL,Philippines,Batanes,PH.BN,PHL,PHL
+33012,PHL,Philippines,Batangas,PH.BT,PHL,PHL
+33013,PHL,Philippines,Benguet,PH.BG,PHL,PHL
+33014,PHL,Philippines,Biliran,PH.BI,PHL,PHL
+33015,PHL,Philippines,Bohol,PH.BO,PHL,PHL
+33016,PHL,Philippines,Bukidnon,PH.BK,PHL,PHL
+33017,PHL,Philippines,Bulacan,PH.BU,PHL,PHL
+33018,PHL,Philippines,Cagayan,PH.CG,PHL,PHL
+33019,PHL,Philippines,Camarines Norte,PH.CN,PHL,PHL
+33020,PHL,Philippines,Camarines Sur,PH.CS,PHL,PHL
+33021,PHL,Philippines,Camiguin,PH.CM,PHL,PHL
+33022,PHL,Philippines,Capiz,PH.CP,PHL,PHL
+33023,PHL,Philippines,Catanduanes,PH.CT,PHL,PHL
+33024,PHL,Philippines,Cavite,PH.CV,PHL,PHL
+33025,PHL,Philippines,Cebu,PH.CB,PHL,PHL
+33026,PHL,Philippines,Compostela Valley,PH.CL,PHL,PHL
+33027,PHL,Philippines,Davao del Norte,PH.DV,PHL,PHL
+33028,PHL,Philippines,Davao del Sur,PH.DS,PHL,PHL
+33029,PHL,Philippines,Davao Oriental,PH.DO,PHL,PHL
+33030,PHL,Philippines,Dinagat Islands,PH.DI,PHL,PHL
+33031,PHL,Philippines,Eastern Samar,PH.ES,PHL,PHL
+33032,PHL,Philippines,Guimaras,PH.GU,PHL,PHL
+33033,PHL,Philippines,Ifugao,PH.IF,PHL,PHL
+33034,PHL,Philippines,Ilocos Norte,PH.IN,PHL,PHL
+33035,PHL,Philippines,Ilocos Sur,PH.IS,PHL,PHL
+33036,PHL,Philippines,Iloilo,PH.II,PHL,PHL
+33037,PHL,Philippines,Isabela,PH.IB,PHL,PHL
+33038,PHL,Philippines,Kalinga,PH.KA,PHL,PHL
+33039,PHL,Philippines,La Union,PH.LU,PHL,PHL
+33040,PHL,Philippines,Laguna,PH.LG,PHL,PHL
+33041,PHL,Philippines,Lanao del Norte,PH.LN,PHL,PHL
+33042,PHL,Philippines,Lanao del Sur,PH.LS,PHL,PHL
+33043,PHL,Philippines,Leyte,PH.LE,PHL,PHL
+33044,PHL,Philippines,Maguindanao,PH.MG,PHL,PHL
+33045,PHL,Philippines,Marinduque,PH.MQ,PHL,PHL
+33046,PHL,Philippines,Masbate,PH.MB,PHL,PHL
+33047,PHL,Philippines,Metropolitan Manila,PH.MM,PHL,PHL
+33048,PHL,Philippines,Misamis Occidental,PH.MD,PHL,PHL
+33049,PHL,Philippines,Misamis Oriental,PH.MN,PHL,PHL
+33050,PHL,Philippines,Mountain Province,PH.MT,PHL,PHL
+33051,PHL,Philippines,Negros Occidental,PH.ND,PHL,PHL
+33052,PHL,Philippines,Negros Oriental,PH.NR,PHL,PHL
+33053,PHL,Philippines,North Cotabato,PH.NC,PHL,PHL
+33054,PHL,Philippines,Northern Samar,PH.NS,PHL,PHL
+33055,PHL,Philippines,Nueva Ecija,PH.NE,PHL,PHL
+33056,PHL,Philippines,Nueva Vizcaya,PH.NV,PHL,PHL
+33057,PHL,Philippines,Occidental Mindoro,PH.MC,PHL,PHL
+33058,PHL,Philippines,Oriental Mindoro,PH.MR,PHL,PHL
+33059,PHL,Philippines,Palawan,PH.PL,PHL,PHL
+33060,PHL,Philippines,Pampanga,PH.PM,PHL,PHL
+33061,PHL,Philippines,Pangasinan,PH.PN,PHL,PHL
+33062,PHL,Philippines,Quezon,PH.QZ,PHL,PHL
+33063,PHL,Philippines,Quirino,PH.QR,PHL,PHL
+33064,PHL,Philippines,Rizal,PH.RI,PHL,PHL
+33065,PHL,Philippines,Romblon,PH.RO,PHL,PHL
+33066,PHL,Philippines,Samar,PH.SM,PHL,PHL
+33067,PHL,Philippines,Sarangani,PH.SG,PHL,PHL
+33068,PHL,Philippines,Shariff Kabunsuan,PH.SF,PHL,PHL
+33069,PHL,Philippines,Siquijor,PH.SQ,PHL,PHL
+33070,PHL,Philippines,Sorsogon,PH.SR,PHL,PHL
+33071,PHL,Philippines,South Cotabato,PH.SC,PHL,PHL
+33072,PHL,Philippines,Southern Leyte,PH.SL,PHL,PHL
+33073,PHL,Philippines,Sultan Kudarat,PH.SK,PHL,PHL
+33074,PHL,Philippines,Sulu,PH.SU,PHL,PHL
+33075,PHL,Philippines,Surigao del Norte,PH.SN,PHL,PHL
+33076,PLW,Palau,Aimeliik,PW.PW.AM,PLW,PLW
+33077,PLW,Palau,Airai,PW.PW.AR,PLW,PLW
+33078,PLW,Palau,Kayangel,PW.PW.KA,PLW,PLW
+33079,PLW,Palau,Koror,PW.PW.KO,PLW,PLW
+33080,PLW,Palau,Melekeok,PW.PW.ME,PLW,PLW
+33081,PLW,Palau,Ngaraard,PW.PW.ND,PLW,PLW
+33082,PLW,Palau,Ngarchelong,PW.PW.NC,PLW,PLW
+33083,PLW,Palau,Ngardmau,PW.PW.NM,PLW,PLW
+33084,PLW,Palau,Ngatpang,PW.PW.NP,PLW,PLW
+33085,PLW,Palau,Ngchesar,PW.PW.NS,PLW,PLW
+33086,PLW,Palau,Ngeremlengui,PW.PW.NL,PLW,PLW
+33087,PLW,Palau,Ngiwal,PW.PW.NW,PLW,PLW
+33088,PLW,Palau,Peleliu,PW.PW.PE,PLW,PLW
+33089,PNG,Papua New Guinea,Central,PG.CE,PNG,PNG
+33090,PNG,Papua New Guinea,Chimbu,PG.CH,PNG,PNG
+33091,PNG,Papua New Guinea,East New Britain,PG.EN,PNG,PNG
+33092,PNG,Papua New Guinea,East Sepik,PG.ES,PNG,PNG
+33093,PNG,Papua New Guinea,Eastern Highlands,PG.EH,PNG,PNG
+33094,PNG,Papua New Guinea,Enga,PG.EG,PNG,PNG
+33095,PNG,Papua New Guinea,Gulf,PG.GU,PNG,PNG
+33096,PNG,Papua New Guinea,Madang,PG.MD,PNG,PNG
+33097,PNG,Papua New Guinea,Manus,PG.MN,PNG,PNG
+33098,PNG,Papua New Guinea,Milne Bay,PG.MB,PNG,PNG
+33099,PNG,Papua New Guinea,Morobe,PG.MR,PNG,PNG
+33100,PNG,Papua New Guinea,New Ireland,PG.NI,PNG,PNG
+33101,PNG,Papua New Guinea,North Solomons,PG.NS,PNG,PNG
+33102,PNG,Papua New Guinea,Northern,PG.NO,PNG,PNG
+33103,PNG,Papua New Guinea,Sandaun,PG.SA,PNG,PNG
+33104,PNG,Papua New Guinea,Southern Highlands,PG.SH,PNG,PNG
+33105,PNG,Papua New Guinea,West New Britain,PG.WN,PNG,PNG
+33106,PNG,Papua New Guinea,Western,PG.WE,PNG,PNG
+33107,PNG,Papua New Guinea,Western Highlands,PG.WH,PNG,PNG
+33108,POL,Poland,Greater Poland,PL.WP,POL,POL
+33109,POL,Poland,Kuyavian-Pomeranian,PL.KP,POL,POL
+33110,POL,Poland,Lesser Poland,PL.MA,POL,POL
+33111,POL,Poland,Lódz,PL.LD,POL,POL
+33112,POL,Poland,Lower Silesian,PL.DS,POL,POL
+33113,POL,Poland,Lublin,PL.LU,POL,POL
+33114,POL,Poland,Lubusz,PL.LB,POL,POL
+33115,POL,Poland,Masovian,PL.MZ,POL,POL
+33116,POL,Poland,Opole,PL.OP,POL,POL
+33117,POL,Poland,Podlachian,PL.PD,POL,POL
+33118,POL,Poland,Pomeranian,PL.PM,POL,POL
+33119,POL,Poland,Silesian,PL.SL,POL,POL
+33120,POL,Poland,Subcarpathian,PL.PK,POL,POL
+33121,POL,Poland,Swietokrzyskie,PL.SK,POL,POL
+33122,POL,Poland,Warmian-Masurian,PL.WN,POL,POL
+33123,POL,Poland,West Pomeranian,PL.ZP,POL,POL
+33124,PRI,Puerto Rico,Adjuntas,PR.AJ,PRI,PRI
+33125,PRI,Puerto Rico,Aguada,PR.AD,PRI,PRI
+33126,PRI,Puerto Rico,Aguadilla,PR.AL,PRI,PRI
+33127,PRI,Puerto Rico,Aguas Buenas,PR.AB,PRI,PRI
+33128,PRI,Puerto Rico,Aibonito,PR.AI,PRI,PRI
+33129,PRI,Puerto Rico,Añasco,PR.AN,PRI,PRI
+33130,PRI,Puerto Rico,Arecibo,PR.AC,PRI,PRI
+33131,PRI,Puerto Rico,Arroyo,PR.AR,PRI,PRI
+33132,PRI,Puerto Rico,Barceloneta,PR.BC,PRI,PRI
+33133,PRI,Puerto Rico,Barranquitas,PR.BQ,PRI,PRI
+33134,PRI,Puerto Rico,Bayamón,PR.BY,PRI,PRI
+33135,PRI,Puerto Rico,Cabo Rojo,PR.CR,PRI,PRI
+33136,PRI,Puerto Rico,Caguas,PR.CG,PRI,PRI
+33137,PRI,Puerto Rico,Camuy,PR.CA,PRI,PRI
+33138,PRI,Puerto Rico,Canóvanas,PR.CV,PRI,PRI
+33139,PRI,Puerto Rico,Carolina,PR.CN,PRI,PRI
+33140,PRI,Puerto Rico,Cataño,PR.CT,PRI,PRI
+33141,PRI,Puerto Rico,Cayey,PR.CY,PRI,PRI
+33142,PRI,Puerto Rico,Ceiba,PR.CB,PRI,PRI
+33143,PRI,Puerto Rico,Ciales,PR.CL,PRI,PRI
+33144,PRI,Puerto Rico,Cidra,PR.CD,PRI,PRI
+33145,PRI,Puerto Rico,Coamo,PR.CO,PRI,PRI
+33146,PRI,Puerto Rico,Comerío,PR.CM,PRI,PRI
+33147,PRI,Puerto Rico,Corozal,PR.CZ,PRI,PRI
+33148,PRI,Puerto Rico,Culebra,PR.CU,PRI,PRI
+33149,PRI,Puerto Rico,Dorado,PR.DO,PRI,PRI
+33150,PRI,Puerto Rico,Fajardo,PR.FJ,PRI,PRI
+33151,PRI,Puerto Rico,Florida,PR.FL,PRI,PRI
+33152,PRI,Puerto Rico,Guánica,PR.GC,PRI,PRI
+33153,PRI,Puerto Rico,Guayama,PR.GM,PRI,PRI
+33154,PRI,Puerto Rico,Guayanilla,PR.GL,PRI,PRI
+33155,PRI,Puerto Rico,Guaynabo,PR.GB,PRI,PRI
+33156,PRI,Puerto Rico,Gurabo,PR.GR,PRI,PRI
+33157,PRI,Puerto Rico,Hatillo,PR.HA,PRI,PRI
+33158,PRI,Puerto Rico,Hormigueros,PR.HO,PRI,PRI
+33159,PRI,Puerto Rico,Humacao,PR.HU,PRI,PRI
+33160,PRI,Puerto Rico,Isabela,PR.IS,PRI,PRI
+33161,PRI,Puerto Rico,Jayuya,PR.JY,PRI,PRI
+33162,PRI,Puerto Rico,Juana Díaz,PR.JD,PRI,PRI
+33163,PRI,Puerto Rico,Juncos,PR.JC,PRI,PRI
+33164,PRI,Puerto Rico,Lajas,PR.LJ,PRI,PRI
+33165,PRI,Puerto Rico,Lares,PR.LR,PRI,PRI
+33166,PRI,Puerto Rico,Las Marías,PR.LM,PRI,PRI
+33167,PRI,Puerto Rico,Las Piedras,PR.LP,PRI,PRI
+33168,PRI,Puerto Rico,Loíza,PR.LZ,PRI,PRI
+33169,PRI,Puerto Rico,Luquillo,PR.LQ,PRI,PRI
+33170,PRI,Puerto Rico,Manatí,PR.MT,PRI,PRI
+33171,PRI,Puerto Rico,Maricao,PR.MR,PRI,PRI
+33172,PRI,Puerto Rico,Maunabo,PR.MB,PRI,PRI
+33173,PRI,Puerto Rico,Mayaguez,US.PR,PRI,PRI
+33174,PRI,Puerto Rico,Mayagüez,PR.MG,PRI,PRI
+33175,PRI,Puerto Rico,Moca,PR.MC,PRI,PRI
+33176,PRI,Puerto Rico,Morovis,PR.MV,PRI,PRI
+33177,PRI,Puerto Rico,Naguabo,PR.NG,PRI,PRI
+33178,PRI,Puerto Rico,Naranjito,PR.NR,PRI,PRI
+33179,PRI,Puerto Rico,Orocovis,PR.OR,PRI,PRI
+33180,PRI,Puerto Rico,Patillas,PR.PT,PRI,PRI
+33181,PRI,Puerto Rico,Peñuelas,PR.PN,PRI,PRI
+33182,PRI,Puerto Rico,Ponce,PR.PO,PRI,PRI
+33183,PRI,Puerto Rico,Quebradillas,PR.QB,PRI,PRI
+33184,PRI,Puerto Rico,Rincón,PR.RC,PRI,PRI
+33185,PRI,Puerto Rico,Río Grande,PR.RG,PRI,PRI
+33186,PRI,Puerto Rico,Sabana Grande,PR.SB,PRI,PRI
+33187,PRI,Puerto Rico,Salinas,PR.SA,PRI,PRI
+33188,PRI,Puerto Rico,San Germán,PR.SG,PRI,PRI
+33189,PRI,Puerto Rico,San Juan,PR.SJ,PRI,PRI
+33190,PRI,Puerto Rico,San Lorenzo,PR.SL,PRI,PRI
+33191,PRI,Puerto Rico,San Sebastián,PR.SS,PRI,PRI
+33192,PRI,Puerto Rico,Santa Isabel,PR.SI,PRI,PRI
+33193,PRI,Puerto Rico,Toa Alta,PR.TA,PRI,PRI
+33194,PRI,Puerto Rico,Toa Baja,PR.TB,PRI,PRI
+33195,PRI,Puerto Rico,Trujillo Alto,PR.TJ,PRI,PRI
+33196,PRI,Puerto Rico,Utuado,PR.UT,PRI,PRI
+33197,PRI,Puerto Rico,Vega Alta,PR.VA,PRI,PRI
+33198,PRI,Puerto Rico,Vega Baja,PR.VB,PRI,PRI
+33199,PRI,Puerto Rico,Vieques,PR.VQ,PRI,PRI
+33200,PRI,Puerto Rico,Villalba,PR.VL,PRI,PRI
+33201,PRI,Puerto Rico,Yabucoa,PR.YB,PRI,PRI
+33202,PRI,Puerto Rico,Yauco,PR.YU,PRI,PRI
+33203,PRK,North Korea,Chagang-do,KP.CH,PRK,PRK
+33204,PRK,North Korea,Hamgyong-bukto,KP.HG,PRK,PRK
+33205,PRK,North Korea,Hamgyong-namdo,KP.HN,PRK,PRK
+33206,PRK,North Korea,Hwanghae-bukto,KP.WB,PRK,PRK
+33207,PRK,North Korea,Hwanghae-namdo,KP.WN,PRK,PRK
+33208,PRK,North Korea,Kaesong,KP.KS,PRK,PRK
+33209,PRK,North Korea,Kangwon-do,KP.KW,PRK,PRK
+33210,PRK,North Korea,Kumgangsan,,PRK,PRK
+33211,PRK,North Korea,P'yongan-bukto,KP.PB,PRK,PRK
+33212,PRK,North Korea,P'yongan-namdo,KP.PN,PRK,PRK
+33213,PRK,North Korea,P'yongyang,KP.PY,PRK,PRK
+33214,PRK,North Korea,Rason,KP.NJ,PRK,PRK
+33215,PRK,North Korea,Ryanggang,KP.YG,PRK,PRK
+33216,PRK,North Korea,Sinuiju,,PRK,PRK
+33217,PRT,Portugal,Aveiro,PT.AV,PRT,PRT
+33218,PRT,Portugal,Azores,PT.AC,PRT,PRT
+33219,PRT,Portugal,Beja,PT.BE,PRT,PRT
+33220,PRT,Portugal,Braga,PT.BR,PRT,PRT
+33221,PRT,Portugal,Bragança,PT.BA,PRT,PRT
+33222,PRT,Portugal,Castelo Branco,PT.CB,PRT,PRT
+33223,PRT,Portugal,Coimbra,PT.CO,PRT,PRT
+33224,PRT,Portugal,Évora,PT.EV,PRT,PRT
+33225,PRT,Portugal,Faro,PT.FA,PRT,PRT
+33226,PRT,Portugal,Guarda,PT.GU,PRT,PRT
+33227,PRT,Portugal,Leiria,PT.LE,PRT,PRT
+33228,PRT,Portugal,Lisboa,PT.LI,PRT,PRT
+33229,PRT,Portugal,Madeira,,PRT,PRT
+33230,PRT,Portugal,Portalegre,PT.PA,PRT,PRT
+33231,PRT,Portugal,Porto,PT.PO,PRT,PRT
+33232,PRT,Portugal,Santarém,PT.SA,PRT,PRT
+33233,PRT,Portugal,Setúbal,PT.SE,PRT,PRT
+33234,PRT,Portugal,Viana do Castelo,PT.VC,PRT,PRT
+33235,PRT,Portugal,Vila Real,PT.VR,PRT,PRT
+33236,PRT,Portugal,Viseu,PT.VI,PRT,PRT
+33237,PRY,Paraguay,Alto Paraguay,PY.AG,PRY,PRY
+33238,PRY,Paraguay,Alto Paraná,PY.AA,PRY,PRY
+33239,PRY,Paraguay,Amambay,PY.AM,PRY,PRY
+33240,PRY,Paraguay,Asunción,PY.AS,PRY,PRY
+33241,PRY,Paraguay,Boquerón,PY.BQ,PRY,PRY
+33242,PRY,Paraguay,Caaguazú,PY.CG,PRY,PRY
+33243,PRY,Paraguay,Caazapá,PY.CZ,PRY,PRY
+33244,PRY,Paraguay,Canindeyú,PY.CY,PRY,PRY
+33245,PRY,Paraguay,Central,PY.CE,PRY,PRY
+33246,PRY,Paraguay,Concepción,PY.CN,PRY,PRY
+33247,PRY,Paraguay,Cordillera,PY.CR,PRY,PRY
+33248,PRY,Paraguay,Guairá,PY.GU,PRY,PRY
+33249,PRY,Paraguay,Itapúa,PY.IT,PRY,PRY
+33250,PRY,Paraguay,Misiones,PY.MI,PRY,PRY
+33251,PRY,Paraguay,Ñeembucú,PY.NE,PRY,PRY
+33252,PRY,Paraguay,Paraguarí,PY.PG,PRY,PRY
+33253,PRY,Paraguay,Presidente Hayes,PY.PH,PRY,PRY
+33254,PRY,Paraguay,San Pedro,PY.SP,PRY,PRY
+33255,PSE,Palestina,Gaza,PS.GZ,PSE,PSE
+33256,PSE,Palestina,West Bank,PS.WE,PSE,PSE
+33257,QAT,Qatar,Ad Dawhah,QA.DA,QAT,QAT
+33258,QAT,Qatar,Al Ghuwayriyah,QA.GH,QAT,QAT
+33259,QAT,Qatar,Al Jumayliyah,QA.JU,QAT,QAT
+33260,QAT,Qatar,Al Khawr,QA.KH,QAT,QAT
+33261,QAT,Qatar,Al Wakrah,QA.WA,QAT,QAT
+33262,QAT,Qatar,Ar Rayyan,QA.RA,QAT,QAT
+33263,QAT,Qatar,Jariyan al Batnah,QA.JB,QAT,QAT
+33264,QAT,Qatar,Madinat ach Shamal,QA.MS,QAT,QAT
+33265,QAT,Qatar,Umm Salal,QA.US,QAT,QAT
+33266,REU,Reunion,Saint-Benoît,RE.BN,REU,REU
+33267,REU,Reunion,Saint-Denis,RE.DN,REU,REU
+33268,REU,Reunion,Saint-Paul,RE.PL,REU,REU
+33269,REU,Reunion,Saint-Pierre,RE.PR,REU,REU
+33270,ROU,Romania,Alba,RO.AB,ROU,ROU
+33271,ROU,Romania,Arad,RO.AR,ROU,ROU
+33272,ROU,Romania,Arges,RO.AG,ROU,ROU
+33273,ROU,Romania,Bacau,RO.BC,ROU,ROU
+33274,ROU,Romania,Bihor,RO.BH,ROU,ROU
+33275,ROU,Romania,Bistrita-Nasaud,RO.BN,ROU,ROU
+33276,ROU,Romania,Botosani,RO.BT,ROU,ROU
+33277,ROU,Romania,Braila,RO.BR,ROU,ROU
+33278,ROU,Romania,Brasov,RO.BV,ROU,ROU
+33279,ROU,Romania,Bucharest,RO.BI,ROU,ROU
+33280,ROU,Romania,Buzau,RO.BZ,ROU,ROU
+33281,ROU,Romania,Calarasi,RO.CL,ROU,ROU
+33282,ROU,Romania,Caras-Severin,RO.CS,ROU,ROU
+33283,ROU,Romania,Cluj,RO.CJ,ROU,ROU
+33284,ROU,Romania,Constanta,RO.CT,ROU,ROU
+33285,ROU,Romania,Covasna,RO.CV,ROU,ROU
+33286,ROU,Romania,Dâmbovita,RO.DB,ROU,ROU
+33287,ROU,Romania,Dolj,RO.DJ,ROU,ROU
+33288,ROU,Romania,Galati,RO.GL,ROU,ROU
+33289,ROU,Romania,Giurgiu,RO.GR,ROU,ROU
+33290,ROU,Romania,Gorj,RO.GJ,ROU,ROU
+33291,ROU,Romania,Harghita,RO.HR,ROU,ROU
+33292,ROU,Romania,Hunedoara,RO.HD,ROU,ROU
+33293,ROU,Romania,Ialomita,RO.IL,ROU,ROU
+33294,ROU,Romania,Iasi,RO.IS,ROU,ROU
+33295,ROU,Romania,Maramures,RO.MM,ROU,ROU
+33296,ROU,Romania,Mehedinti,RO.MH,ROU,ROU
+33297,ROU,Romania,Mures,RO.MS,ROU,ROU
+33298,ROU,Romania,Neamt,RO.NT,ROU,ROU
+33299,ROU,Romania,Olt,RO.OT,ROU,ROU
+33300,ROU,Romania,Prahova,RO.PH,ROU,ROU
+33301,ROU,Romania,Salaj,RO.SJ,ROU,ROU
+33302,ROU,Romania,Satu Mare,RO.SM,ROU,ROU
+33303,ROU,Romania,Sibiu,RO.SB,ROU,ROU
+33304,ROU,Romania,Suceava,RO.SV,ROU,ROU
+33305,ROU,Romania,Teleorman,RO.TR,ROU,ROU
+33306,ROU,Romania,Timis,RO.TM,ROU,ROU
+33307,ROU,Romania,Tulcea,RO.TL,ROU,ROU
+33308,ROU,Romania,Vâlcea,RO.VL,ROU,ROU
+33309,ROU,Romania,Vaslui,RO.VS,ROU,ROU
+33310,ROU,Romania,Vrancea,RO.VN,ROU,ROU
+33311,RUS,Russia,Karachay-Cherkess,RU.KC,RUS,RUS
+33312,RUS,Russia,Karelia,RU.KI,RUS,RUS
+33313,RUS,Russia,Kemerovo,RU.KE,RUS,RUS
+33314,RUS,Russia,Khabarovsk,RU.KH,RUS,RUS
+33315,RUS,Russia,Khakass,RU.KK,RUS,RUS
+33316,RUS,Russia,Khanty-Mansiy,RU.KM,RUS,RUS
+33317,RUS,Russia,Adygey,RU.AD,RUS,RUS
+33318,RUS,Russia,Aga Buryat,RU.AB,RUS,RUS
+33319,RUS,Russia,Altay,RU.AL,RUS,RUS
+33320,RUS,Russia,Amur,RU.AM,RUS,RUS
+33321,RUS,Russia,Arkhangel'sk,RU.AR,RUS,RUS
+33322,RUS,Russia,Astrakhan',RU.AS,RUS,RUS
+33323,RUS,Russia,Bashkortostan,RU.BK,RUS,RUS
+33324,RUS,Russia,Belgorod,RU.BL,RUS,RUS
+33325,RUS,Russia,Bryansk,RU.BR,RUS,RUS
+33326,RUS,Russia,Buryat,RU.BU,RUS,RUS
+33327,RUS,Russia,Chechnya,RU.CN,RUS,RUS
+33328,RUS,Russia,Chelyabinsk,RU.CL,RUS,RUS
+33329,RUS,Russia,Chita,RU.CT,RUS,RUS
+33330,RUS,Russia,Chukot,RU.CK,RUS,RUS
+33331,RUS,Russia,Chuvash,RU.CV,RUS,RUS
+33332,RUS,Russia,City of St. Petersburg,RU.SP,RUS,RUS
+33333,RUS,Russia,Dagestan,RU.DA,RUS,RUS
+33334,RUS,Russia,Evenk,RU.EN,RUS,RUS
+33335,RUS,Russia,Gorno-Altay,RU.GA,RUS,RUS
+33336,RUS,Russia,Ingush,RU.IN,RUS,RUS
+33337,RUS,Russia,Irkutsk,RU.IR,RUS,RUS
+33338,RUS,Russia,Ivanovo,RU.IV,RUS,RUS
+33339,RUS,Russia,Kabardin-Balkar,RU.KB,RUS,RUS
+33340,RUS,Russia,Kaliningrad,RU.KN,RUS,RUS
+33341,RUS,Russia,Kalmyk,RU.KL,RUS,RUS
+33342,RUS,Russia,Kaluga,RU.KG,RUS,RUS
+33343,RUS,Russia,Kamchatka,RU.KA,RUS,RUS
+33344,RUS,Russia,Kirov,RU.KV,RUS,RUS
+33345,RUS,Russia,Komi,RU.KO,RUS,RUS
+33346,RUS,Russia,Komi-Permyak,RU.KP,RUS,RUS
+33347,RUS,Russia,Koryak,RU.KR,RUS,RUS
+33348,RUS,Russia,Kostroma,RU.KT,RUS,RUS
+33349,RUS,Russia,Krasnodar,RU.KD,RUS,RUS
+33350,RUS,Russia,Krasnoyarsk,RU.KY,RUS,RUS
+33351,RUS,Russia,Kurgan,RU.KU,RUS,RUS
+33352,RUS,Russia,Kursk,RU.KS,RUS,RUS
+33353,RUS,Russia,Leningrad,RU.LN,RUS,RUS
+33354,RUS,Russia,Lipetsk,RU.LP,RUS,RUS
+33355,RUS,Russia,Maga Buryatdan,RU.MG,RUS,RUS
+33356,RUS,Russia,Mariy-El,RU.ME,RUS,RUS
+33357,RUS,Russia,Mordovia,RU.MR,RUS,RUS
+33358,RUS,Russia,Moskva,RU.MS,RUS,RUS
+33359,RUS,Russia,Murmansk,RU.MM,RUS,RUS
+33360,RUS,Russia,Nenets,RU.NN,RUS,RUS
+33361,RUS,Russia,Nizhegorod,RU.NZ,RUS,RUS
+33362,RUS,Russia,North Ossetia,RU.NO,RUS,RUS
+33363,RUS,Russia,Novgorod,RU.NG,RUS,RUS
+33364,RUS,Russia,Novosibirsk,RU.NS,RUS,RUS
+33365,RUS,Russia,Omsk,RU.OM,RUS,RUS
+33366,RUS,Russia,Orel,RU.OL,RUS,RUS
+33367,RUS,Russia,Orenburg,RU.OB,RUS,RUS
+33368,RUS,Russia,Penza,RU.PZ,RUS,RUS
+33369,RUS,Russia,Perm',RU.PE,RUS,RUS
+33370,RUS,Russia,Primor'ye,RU.PR,RUS,RUS
+33371,RUS,Russia,Pskov,RU.PS,RUS,RUS
+33372,RUS,Russia,Rostov,RU.RO,RUS,RUS
+33373,RUS,Russia,Ryazan',RU.RZ,RUS,RUS
+33374,RUS,Russia,Sakha,RU.SK,RUS,RUS
+33375,RUS,Russia,Sakhalin,RU.SL,RUS,RUS
+33376,RUS,Russia,Samara,RU.SA,RUS,RUS
+33377,RUS,Russia,Saratov,RU.SR,RUS,RUS
+33378,RUS,Russia,Smolensk,RU.SM,RUS,RUS
+33379,RUS,Russia,Stavropol',RU.ST,RUS,RUS
+33380,RUS,Russia,Sverdlovsk,RU.SV,RUS,RUS
+33381,RUS,Russia,Tambov,RU.TB,RUS,RUS
+33382,RUS,Russia,Tatarstan,RU.TT,RUS,RUS
+33383,RUS,Russia,Taymyr,RU.TM,RUS,RUS
+33384,RUS,Russia,Tomsk,RU.TO,RUS,RUS
+33385,RUS,Russia,Tula,RU.TL,RUS,RUS
+33386,RUS,Russia,Tuva,RU.TU,RUS,RUS
+33387,RUS,Russia,Tver',RU.TV,RUS,RUS
+33388,RUS,Russia,Tyumen',RU.TY,RUS,RUS
+33389,RUS,Russia,Udmurt,RU.UD,RUS,RUS
+33390,RUS,Russia,Ul'yanovsk,RU.UL,RUS,RUS
+33391,RUS,Russia,Ust-Orda Buryat,RU.UB,RUS,RUS
+33392,RUS,Russia,Vladimir,RU.VL,RUS,RUS
+33393,RUS,Russia,Volgograd,RU.VG,RUS,RUS
+33394,RUS,Russia,Vologda,RU.VO,RUS,RUS
+33395,RUS,Russia,Voronezh,RU.VR,RUS,RUS
+33396,RUS,Russia,Yamal-Nenets,RU.YN,RUS,RUS
+33397,RUS,Russia,Yaroslavl',RU.YS,RUS,RUS
+33398,RUS,Russia,Yevrey,RU.YV,RUS,RUS
+33399,RWA,Rwanda,Butare,RW.BT,RWA,RWA
+33400,RWA,Rwanda,Byumba,RW.BM,RWA,RWA
+33401,RWA,Rwanda,Cyangugu,RW.CY,RWA,RWA
+33402,RWA,Rwanda,Gikongoro,RW.GK,RWA,RWA
+33403,RWA,Rwanda,Gisenyi,RW.GS,RWA,RWA
+33404,RWA,Rwanda,Gitarama,RW.GT,RWA,RWA
+33405,RWA,Rwanda,Kibungu,RW.KN,RWA,RWA
+33406,RWA,Rwanda,Kibuye,RW.KY,RWA,RWA
+33407,RWA,Rwanda,Kigali,RW.KR,RWA,RWA
+33408,RWA,Rwanda,Ruhengeri,RW.RU,RWA,RWA
+33409,SAU,Saudi Arabia,`Asir,SA.AS,SAU,SAU
+33410,SAU,Saudi Arabia,Al Bahah,SA.BA,SAU,SAU
+33411,SAU,Saudi Arabia,Al Hudud ash Shamaliyah,SA.HS,SAU,SAU
+33412,SAU,Saudi Arabia,Al Jawf,SA.JF,SAU,SAU
+33413,SAU,Saudi Arabia,Al Madinah,SA.MD,SAU,SAU
+33414,SAU,Saudi Arabia,Al Quassim,SA.QS,SAU,SAU
+33415,SAU,Saudi Arabia,Ar Riyad,SA.RI,SAU,SAU
+33416,SAU,Saudi Arabia,Ash Sharqiyah,SA.SH,SAU,SAU
+33417,SAU,Saudi Arabia,Ha'il,SA.HA,SAU,SAU
+33418,SAU,Saudi Arabia,Jizan,SA.JZ,SAU,SAU
+33419,SAU,Saudi Arabia,Makkah,SA.MK,SAU,SAU
+33420,SAU,Saudi Arabia,Najran,SA.NJ,SAU,SAU
+33421,SAU,Saudi Arabia,Tabuk,SA.TB,SAU,SAU
+33422,SDN,Sudan,Bahr el Ghazal,,SDN,SDN
+33423,SDN,Sudan,Blue Nile,,SDN,SDN
+33424,SDN,Sudan,Darfur,,SDN,SDN
+33425,SDN,Sudan,Equatoria,,SDN,SDN
+33426,SDN,Sudan,Kassala,,SDN,SDN
+33427,SDN,Sudan,Khartoum,,SDN,SDN
+33428,SDN,Sudan,Kordofan,,SDN,SDN
+33429,SDN,Sudan,Northern,,SDN,SDN
+33430,SDN,Sudan,Upper Nile,,SDN,SDN
+33431,SEN,Senegal,Dakar,SN.DK,SEN,SEN
+33432,SEN,Senegal,Diourbel,SN.DB,SEN,SEN
+33433,SEN,Senegal,Fatick,SN.FK,SEN,SEN
+33434,SEN,Senegal,Kaolack,SN.KL,SEN,SEN
+33435,SEN,Senegal,Kolda,SN.KD,SEN,SEN
+33436,SEN,Senegal,Louga,SN.LG,SEN,SEN
+33437,SEN,Senegal,Matam,SN.SL,SEN,SEN
+33438,SEN,Senegal,Saint-Louis,SN.ST,SEN,SEN
+33439,SEN,Senegal,Tambacounda,SN.TC,SEN,SEN
+33440,SEN,Senegal,Thiès,SN.TH,SEN,SEN
+33441,SEN,Senegal,Ziguinchor,SN.ZG,SEN,SEN
+33442,SHN,Saint Helena,Ascension,SH.AC,SHN,SHN
+33443,SHN,Saint Helena,Saint Helena,SH.SH,SHN,SHN
+33444,SHN,Saint Helena,Tristan da Cunha,SH.TA,SHN,SHN
+33445,SJM,Svalbard and Jan Mayen,Jan Mayen,SJ.JN,SJM,SJM
+33446,SJM,Svalbard and Jan Mayen,Svalbard,SJ.SV,SJM,SJM
+33447,SLB,Solomon Islands,Choiseul,SB.CH,SLB,SLB
+33448,SLB,Solomon Islands,Guadalcanal,SB.GC,SLB,SLB
+33449,SLB,Solomon Islands,Isabel,SB.IS,SLB,SLB
+33450,SLB,Solomon Islands,Makira,SB.MK,SLB,SLB
+33451,SLB,Solomon Islands,Malaita,SB.ML,SLB,SLB
+33452,SLB,Solomon Islands,Rennell and Bellona,SB.RB,SLB,SLB
+33453,SLB,Solomon Islands,Temotu,SB.TE,SLB,SLB
+33454,SLB,Solomon Islands,Western,SB.WE,SLB,SLB
+33455,SLE,Sierra Leone,Eastern,SL.EA,SLE,SLE
+33456,SLE,Sierra Leone,Northern,SL.NO,SLE,SLE
+33457,SLE,Sierra Leone,Southern,SL.SO,SLE,SLE
+33458,SLE,Sierra Leone,Western,SL.WE,SLE,SLE
+33459,SLV,El Salvador,Ahuachapán,SV.AH,SLV,SLV
+33460,SLV,El Salvador,Cabañas,SV.CA,SLV,SLV
+33461,SLV,El Salvador,Chalatenango,SV.CH,SLV,SLV
+33462,SLV,El Salvador,Cuscatlán,SV.CU,SLV,SLV
+33463,SLV,El Salvador,La Libertad,SV.LI,SLV,SLV
+33464,SLV,El Salvador,La Paz,SV.PA,SLV,SLV
+33465,SLV,El Salvador,La Unión,SV.UN,SLV,SLV
+33466,SLV,El Salvador,Morazán,SV.MO,SLV,SLV
+33467,SLV,El Salvador,San Miguel,SV.SM,SLV,SLV
+33468,SLV,El Salvador,San Salvador,SV.SS,SLV,SLV
+33469,SLV,El Salvador,San Vicente,SV.SV,SLV,SLV
+33470,SLV,El Salvador,Santa Ana,SV.SA,SLV,SLV
+33471,SLV,El Salvador,Sonsonate,SV.SO,SLV,SLV
+33472,SLV,El Salvador,Usulután,SV.US,SLV,SLV
+33473,SMR,San Marino,Acquaviva,SM.AC,SMR,SMR
+33474,SMR,San Marino,Borgo Maggiore,SM.BM,SMR,SMR
+33475,SMR,San Marino,Chiesanuova,SM.CH,SMR,SMR
+33476,SMR,San Marino,Domagnano,SM.DO,SMR,SMR
+33477,SMR,San Marino,Faetano,SM.FA,SMR,SMR
+33478,SMR,San Marino,Fiorentino,SM.FI,SMR,SMR
+33479,SMR,San Marino,Montegiardino,SM.MG,SMR,SMR
+33480,SMR,San Marino,San Marino,SM.SM,SMR,SMR
+33481,SMR,San Marino,Serravalle,SM.SE,SMR,SMR
+33482,SOM,Somalia,Awdal,SO.AW,SOM,SOM
+33483,SOM,Somalia,Bakool,SO.BK,SOM,SOM
+33484,SOM,Somalia,Banaadir,SO.BN,SOM,SOM
+33485,SOM,Somalia,Bari,SO.BR,SOM,SOM
+33486,SOM,Somalia,Bay,SO.BY,SOM,SOM
+33487,SOM,Somalia,Galguduud,SO.GA,SOM,SOM
+33488,SOM,Somalia,Gedo,SO.GE,SOM,SOM
+33489,SOM,Somalia,Hiiraan,SO.HI,SOM,SOM
+33490,SOM,Somalia,Jubbada Dhexe,SO.JD,SOM,SOM
+33491,SOM,Somalia,Jubbada Hoose,SO.JH,SOM,SOM
+33492,SOM,Somalia,Mudug,SO.MU,SOM,SOM
+33493,SOM,Somalia,Nugaal,SO.NU,SOM,SOM
+33494,SOM,Somalia,Sanaag,SO.SA,SOM,SOM
+33495,SOM,Somalia,Shabeellaha Dhexe,SO.SD,SOM,SOM
+33496,SOM,Somalia,Shabeellaha Hoose,SO.SH,SOM,SOM
+33497,SOM,Somalia,Sool,SO.SO,SOM,SOM
+33498,SOM,Somalia,Togdheer,SO.TO,SOM,SOM
+33499,SOM,Somalia,Woqooyi Galbeed,SO.WO,SOM,SOM
+33500,SPM,Saint Pierre and Miquelon,Miquelon-Langlade,PM.ML,SPM,SPM
+33501,SPM,Saint Pierre and Miquelon,Saint-Pierre,PM.SP,SPM,SPM
+33502,SRB,Serbia,Borski,RS.BO,SRB,SRB
+33503,SRB,Serbia,Branicevski,RS.BR,SRB,SRB
+33504,SRB,Serbia,Grad Beograd,RS.BG,SRB,SRB
+33505,SRB,Serbia,Jablanicki,RS.JA,SRB,SRB
+33506,SRB,Serbia,Južno-Backi,RS.JC,SRB,SRB
+33507,SRB,Serbia,Južno-Banatski,RS.JN,SRB,SRB
+33508,SRB,Serbia,Kolubarski,RS.KB,SRB,SRB
+33509,SRB,Serbia,Macvanski,RS.MA,SRB,SRB
+33510,SRB,Serbia,Moravicki,RS.MR,SRB,SRB
+33511,SRB,Serbia,Nišavski,RS.NS,SRB,SRB
+33512,SRB,Serbia,Pcinjski,RS.PC,SRB,SRB
+33513,SRB,Serbia,Pirotski,RS.PI,SRB,SRB
+33514,SRB,Serbia,Podunavski,RS.PD,SRB,SRB
+33515,SRB,Serbia,Pomoravski,RS.PM,SRB,SRB
+33516,SRB,Serbia,Rasinski,RS.RN,SRB,SRB
+33517,SRB,Serbia,Raški,RS.RS,SRB,SRB
+33518,SRB,Serbia,Severno-Backi,RS.SC,SRB,SRB
+33519,SRB,Serbia,Severno-Banatski,RS.SN,SRB,SRB
+33520,SRB,Serbia,Srednje-Banatski,RS.SD,SRB,SRB
+33521,SRB,Serbia,Sremski,RS.SM,SRB,SRB
+33522,SRB,Serbia,Šumadijski,RS.SU,SRB,SRB
+33523,SRB,Serbia,Toplicki,RS.TO,SRB,SRB
+33524,SRB,Serbia,Zajecarski,RS.ZJ,SRB,SRB
+33525,SRB,Serbia,Zapadno-Backi,RS.ZC,SRB,SRB
+33526,SRB,Serbia,Zlatiborski,RS.ZL,SRB,SRB
+33527,STP,Sao Tome and Principe,Príncipe,ST.PR,STP,STP
+33528,STP,Sao Tome and Principe,São Tomé,ST.ST,STP,STP
+33529,SUR,Suriname,Brokopondo,SR.BR,SUR,SUR
+33530,SUR,Suriname,Commewijne,SR.CM,SUR,SUR
+33531,SUR,Suriname,Coronie,SR.CR,SUR,SUR
+33532,SUR,Suriname,Marowijne,SR.MA,SUR,SUR
+33533,SUR,Suriname,Nickerie,SR.NI,SUR,SUR
+33534,SUR,Suriname,Para,SR.PR,SUR,SUR
+33535,SUR,Suriname,Paramaribo,SR.PM,SUR,SUR
+33536,SUR,Suriname,Saramacca,SR.SA,SUR,SUR
+33537,SUR,Suriname,Sipaliwini,SR.SI,SUR,SUR
+33538,SUR,Suriname,Wanica,SR.WA,SUR,SUR
+33539,SVK,Slovakia,Banskobystrický,SK.BC,SVK,SVK
+33540,SVK,Slovakia,Bratislavský,SK.BL,SVK,SVK
+33541,SVK,Slovakia,Košický,SK.KI,SVK,SVK
+33542,SVK,Slovakia,Nitriansky,SK.NI,SVK,SVK
+33543,SVK,Slovakia,Prešov,SK.PV,SVK,SVK
+33544,SVK,Slovakia,Trenciansky,SK.TC,SVK,SVK
+33545,SVK,Slovakia,Trnavský,SK.TA,SVK,SVK
+33546,SVK,Slovakia,Žilinský,SK.ZI,SVK,SVK
+33547,SVN,Slovenia,Gorenjska,SI.GO,SVN,SVN
+33548,SVN,Slovenia,Goriška,SI.SP,SVN,SVN
+33549,SVN,Slovenia,Jugovzhodna Slovenija,,SVN,SVN
+33550,SVN,Slovenia,Koroška,SI.KO,SVN,SVN
+33551,SVN,Slovenia,Notranjsko-kraška,SI.NO,SVN,SVN
+33552,SVN,Slovenia,Obalno-kraška,SI.JP,SVN,SVN
+33553,SVN,Slovenia,Osrednjeslovenska,SI.LJ,SVN,SVN
+33554,SVN,Slovenia,Podravska,SI.PD,SVN,SVN
+33555,SVN,Slovenia,Pomurska,SI.PM,SVN,SVN
+33556,SVN,Slovenia,Savinjska,SI.SA,SVN,SVN
+33557,SVN,Slovenia,Spodnjeposavska,SI.PS,SVN,SVN
+33558,SVN,Slovenia,Zasavska,SI.ZS,SVN,SVN
+33559,SWE,Sweden,Blekinge,SE.BL,SWE,SWE
+33560,SWE,Sweden,Dalarna,SE.KO,SWE,SWE
+33561,SWE,Sweden,Gävleborg,SE.GV,SWE,SWE
+33562,SWE,Sweden,Gotland,SE.GT,SWE,SWE
+33563,SWE,Sweden,Halland,SE.HA,SWE,SWE
+33564,SWE,Sweden,Jämtland,SE.JA,SWE,SWE
+33565,SWE,Sweden,Jönköping,SE.JO,SWE,SWE
+33566,SWE,Sweden,Kalmar,SE.KA,SWE,SWE
+33567,SWE,Sweden,Kronoberg,SE.KR,SWE,SWE
+33568,SWE,Sweden,Norrbotten,SE.NB,SWE,SWE
+33569,SWE,Sweden,Orebro,SE.OR,SWE,SWE
+33570,SWE,Sweden,Östergötland,SE.OG,SWE,SWE
+33571,SWE,Sweden,Skåne,SE.SN,SWE,SWE
+33572,SWE,Sweden,Södermanland,SE.SD,SWE,SWE
+33573,SWE,Sweden,Stockholm,SE.ST,SWE,SWE
+33574,SWE,Sweden,Uppsala,SE.UP,SWE,SWE
+33575,SWE,Sweden,Värmland,SE.VR,SWE,SWE
+33576,SWE,Sweden,Västerbotten,SE.VB,SWE,SWE
+33577,SWE,Sweden,Västernorrland,SE.VN,SWE,SWE
+33578,SWE,Sweden,Västmanland,SE.VM,SWE,SWE
+33579,SWE,Sweden,Västra Götaland,SE.VG,SWE,SWE
+33580,SWZ,Swaziland,Hhohho,SZ.HH,SWZ,SWZ
+33581,SWZ,Swaziland,Lubombo,SZ.LU,SWZ,SWZ
+33582,SWZ,Swaziland,Manzini,SZ.MA,SWZ,SWZ
+33583,SWZ,Swaziland,Shiselweni,SZ.SH,SWZ,SWZ
+33584,SYR,Syria,Aleppo (Halab),SY.HL,SYR,SYR
+33585,SYR,Syria,Ar Raqqah,SY.RA,SYR,SYR
+33586,SYR,Syria,As Suwayda',SY.SU,SYR,SYR
+33587,SYR,Syria,Damascus,SY.DI,SYR,SYR
+33588,SYR,Syria,Dar`a,SY.DR,SYR,SYR
+33589,SYR,Syria,Dayr Az Zawr,SY.DY,SYR,SYR
+33590,SYR,Syria,Hamah,SY.HM,SYR,SYR
+33591,SYR,Syria,Hasaka (Al Haksa),SY.HA,SYR,SYR
+33592,SYR,Syria,Homs (Hims),SY.HI,SYR,SYR
+33593,SYR,Syria,Idlib,SY.ID,SYR,SYR
+33594,SYR,Syria,Lattakia (Al Ladhiqiyah),SY.LA,SYR,SYR
+33595,SYR,Syria,Quneitra,SY.QU,SYR,SYR
+33596,SYR,Syria,Rif Dimashq,SY.RD,SYR,SYR
+33597,SYR,Syria,Tartus,SY.TA,SYR,SYR
+33598,TCD,Chad,Batha,TD.BA,TCD,TCD
+33599,TCD,Chad,Bet,TD.BT,TCD,TCD
+33600,TCD,Chad,Chari-Baguirmi,TD.CB,TCD,TCD
+33601,TCD,Chad,Guéra,TD.GR,TCD,TCD
+33602,TCD,Chad,Hadjer-Lamis,TD.HD,TCD,TCD
+33603,TCD,Chad,Kanem,TD.KA,TCD,TCD
+33604,TCD,Chad,Lac,TD.LC,TCD,TCD
+33605,TCD,Chad,Logone Occidental,TD.LO,TCD,TCD
+33606,TCD,Chad,Logone Oriental,TD.LR,TCD,TCD
+33607,TCD,Chad,Mandoul,TD.MA,TCD,TCD
+33608,TCD,Chad,Mayo-Kebbi Est,TD.ME,TCD,TCD
+33609,TCD,Chad,Mayo-Kebbi Ouest,TD.MW,TCD,TCD
+33610,TCD,Chad,Moyen-Chari,TD.MC,TCD,TCD
+33611,TCD,Chad,Ouaddaï,TD.OD,TCD,TCD
+33612,TCD,Chad,Salamat,TD.SA,TCD,TCD
+33613,TCD,Chad,Tandjilé,TD.TA,TCD,TCD
+33614,TCD,Chad,Ville de N'Djamena,TD.NJ,TCD,TCD
+33615,TCD,Chad,Wadi Fira,TD.BI,TCD,TCD
+33616,TGO,Togo,Centre,TG.CE,TGO,TGO
+33617,TGO,Togo,Kara,TG.KA,TGO,TGO
+33618,TGO,Togo,Maritime,TG.MA,TGO,TGO
+33619,TGO,Togo,Plateaux,TG.PL,TGO,TGO
+33620,TGO,Togo,Savanes,TG.SA,TGO,TGO
+33621,THA,Thailand,Chai Nat,TH.CN,THA,THA
+33622,THA,Thailand,Chaiyaphum,TH.CY,THA,THA
+33623,THA,Thailand,Chanthaburi,TH.CT,THA,THA
+33624,THA,Thailand,Chiang Mai,TH.CM,THA,THA
+33625,THA,Thailand,Chiang Rai,TH.CR,THA,THA
+33626,THA,Thailand,Chon Buri,TH.CB,THA,THA
+33627,THA,Thailand,Chumphon,TH.CP,THA,THA
+33628,THA,Thailand,Kalasin,TH.KL,THA,THA
+33629,THA,Thailand,Kamphaeng Phet,TH.KP,THA,THA
+33630,THA,Thailand,Kanchanaburi,TH.KN,THA,THA
+33631,THA,Thailand,Khon Kaen,TH.KK,THA,THA
+33632,THA,Thailand,Krabi,TH.KR,THA,THA
+33633,THA,Thailand,Lampang,TH.LG,THA,THA
+33634,THA,Thailand,Lamphun,TH.LN,THA,THA
+33635,THA,Thailand,Loei,TH.LE,THA,THA
+33636,THA,Thailand,Amnat Charoen,TH.AC,THA,THA
+33637,THA,Thailand,Ang Thong,TH.AT,THA,THA
+33638,THA,Thailand,Bangkok Metropolis,TH.BM,THA,THA
+33639,THA,Thailand,Buri Ram,TH.BR,THA,THA
+33640,THA,Thailand,Chachoengsao,TH.CC,THA,THA
+33641,THA,Thailand,Lop Buri,TH.LB,THA,THA
+33642,THA,Thailand,Mae Hong Son,TH.MH,THA,THA
+33643,THA,Thailand,Maha Sarakham,TH.MS,THA,THA
+33644,THA,Thailand,Mukdahan,TH.MD,THA,THA
+33645,THA,Thailand,Nakhon Nayok,TH.NN,THA,THA
+33646,THA,Thailand,Nakhon Pathom,TH.NP,THA,THA
+33647,THA,Thailand,Nakhon Phanom,TH.NF,THA,THA
+33648,THA,Thailand,Nakhon Ratchasima,TH.NR,THA,THA
+33649,THA,Thailand,Nakhon Sawan,TH.NS,THA,THA
+33650,THA,Thailand,Nakhon Si Thammarat,TH.NT,THA,THA
+33651,THA,Thailand,Nan,TH.NA,THA,THA
+33652,THA,Thailand,Narathiwat,TH.NW,THA,THA
+33653,THA,Thailand,Nong Bua Lam Phu,TH.NB,THA,THA
+33654,THA,Thailand,Nong Khai,TH.NK,THA,THA
+33655,THA,Thailand,Nonthaburi,TH.NO,THA,THA
+33656,THA,Thailand,Pathum Thani,TH.PT,THA,THA
+33657,THA,Thailand,Pattani,TH.PI,THA,THA
+33658,THA,Thailand,Phangnga,TH.PG,THA,THA
+33659,THA,Thailand,Phatthalung,TH.PL,THA,THA
+33660,THA,Thailand,Phatthalung (Songkhla Lake),,THA,THA
+33661,THA,Thailand,Phayao,TH.PY,THA,THA
+33662,THA,Thailand,Phetchabun,TH.PH,THA,THA
+33663,THA,Thailand,Phetchaburi,TH.PE,THA,THA
+33664,THA,Thailand,Phichit,TH.PC,THA,THA
+33665,THA,Thailand,Phitsanulok,TH.PS,THA,THA
+33666,THA,Thailand,Phra Nakhon Si Ayutthaya,TH.PA,THA,THA
+33667,THA,Thailand,Phrae,TH.PR,THA,THA
+33668,THA,Thailand,Phuket,TH.PU,THA,THA
+33669,THA,Thailand,Prachin Buri,TH.PB,THA,THA
+33670,THA,Thailand,Prachuap Khiri Khan,TH.PK,THA,THA
+33671,THA,Thailand,Ranong,TH.RN,THA,THA
+33672,THA,Thailand,Ratchaburi,TH.RT,THA,THA
+33673,THA,Thailand,Rayong,TH.RY,THA,THA
+33674,THA,Thailand,Roi Et,TH.RE,THA,THA
+33675,THA,Thailand,Sa Kaeo,TH.SK,THA,THA
+33676,THA,Thailand,Sakon Nakhon,TH.SN,THA,THA
+33677,THA,Thailand,Samut Prakan,TH.SP,THA,THA
+33678,THA,Thailand,Samut Sakhon,TH.SS,THA,THA
+33679,THA,Thailand,Samut Songkhram,TH.SM,THA,THA
+33680,THA,Thailand,Saraburi,TH.SR,THA,THA
+33681,THA,Thailand,Satun,TH.SA,THA,THA
+33682,THA,Thailand,Si Sa Ket,TH.SI,THA,THA
+33683,THA,Thailand,Sing Buri,TH.SB,THA,THA
+33684,THA,Thailand,Songkhla,TH.SG,THA,THA
+33685,THA,Thailand,Songkhla (Songkhla Lake),,THA,THA
+33686,THA,Thailand,Sukhothai,TH.SO,THA,THA
+33687,THA,Thailand,Suphan Buri,TH.SH,THA,THA
+33688,THA,Thailand,Surat Thani,TH.ST,THA,THA
+33689,THA,Thailand,Surin,TH.SU,THA,THA
+33690,THA,Thailand,Tak,TH.TK,THA,THA
+33691,THA,Thailand,Trang,TH.TG,THA,THA
+33692,THA,Thailand,Trat,TH.TT,THA,THA
+33693,THA,Thailand,Ubon Ratchathani,TH.UR,THA,THA
+33694,THA,Thailand,Udon Thani,TH.UN,THA,THA
+33695,THA,Thailand,Uthai Thani,TH.UT,THA,THA
+33696,THA,Thailand,Uttaradit,TH.UD,THA,THA
+33697,THA,Thailand,Yala,TH.YL,THA,THA
+33698,THA,Thailand,Yasothon,TH.YS,THA,THA
+33699,TJK,Tajikistan,Gorno-Badakhshan,TJ.BK,TJK,TJK
+33700,TJK,Tajikistan,Khatlon,TJ.KL,TJK,TJK
+33701,TJK,Tajikistan,Leninabad,TJ.LE,TJK,TJK
+33702,TJK,Tajikistan,Tadzhikistan Territories,TJ.RR,TJK,TJK
+33703,TKL,Tokelau,Anafu,TK.AT,TKL,TKL
+33704,TKL,Tokelau,Fakaofo,TK.FA,TKL,TKL
+33705,TKL,Tokelau,Nukunonu,TK.NU,TKL,TKL
+33706,TKM,Turkmenistan,Ahal,TM.AL,TKM,TKM
+33707,TKM,Turkmenistan,Balkan,TM.BA,TKM,TKM
+33708,TKM,Turkmenistan,Chardzhou,TM.LE,TKM,TKM
+33709,TKM,Turkmenistan,Mary,TM.MA,TKM,TKM
+33710,TKM,Turkmenistan,Tashauz,TM.DA,TKM,TKM
+33711,TLS,East Timor,Aileu,TP.AL,TLS,TLS
+33712,TLS,East Timor,Ainaro,TP.AN,TLS,TLS
+33713,TLS,East Timor,Ambeno,TP.AM,TLS,TLS
+33714,TLS,East Timor,Baucau,TP.BC,TLS,TLS
+33715,TLS,East Timor,Bobonaro,TP.BB,TLS,TLS
+33716,TLS,East Timor,Cova Lima,TP.CL,TLS,TLS
+33717,TLS,East Timor,Dili,TP.DL,TLS,TLS
+33718,TLS,East Timor,Ermera,TP.ER,TLS,TLS
+33719,TLS,East Timor,Lautem,TP.BT,TLS,TLS
+33720,TLS,East Timor,Liquica,TP.LQ,TLS,TLS
+33721,TLS,East Timor,Manatuto,TP.MT,TLS,TLS
+33722,TLS,East Timor,Manufahi,TP.MF,TLS,TLS
+33723,TLS,East Timor,Viqueque,TP.VQ,TLS,TLS
+33724,TON,Tonga,'Eua,TO.EU,TON,TON
+33725,TON,Tonga,Ha'apai,Ha'apai,TON,TON
+33726,TON,Tonga,Niuas,TO.NI,TON,TON
+33727,TON,Tonga,Tongatapu,TO.TT,TON,TON
+33728,TON,Tonga,Vava'u,TO.VA,TON,TON
+33729,TTO,Trinidad and Tobago,Chaguanas,TT.CH,TTO,TTO
+33730,TTO,Trinidad and Tobago,Couva/Tabaquite/Talparo,TT.CT,TTO,TTO
+33731,TTO,Trinidad and Tobago,Diego Martin,TT.DM,TTO,TTO
+33732,TTO,Trinidad and Tobago,Mayaro/Rio Claro,TT.MR,TTO,TTO
+33733,TTO,Trinidad and Tobago,Penal/Debe,TT.PD,TTO,TTO
+33734,TTO,Trinidad and Tobago,Point Fortin,TT.PF,TTO,TTO
+33735,TTO,Trinidad and Tobago,Port of Spain,TT.PS,TTO,TTO
+33736,TTO,Trinidad and Tobago,Princes Town,TT.PT,TTO,TTO
+33737,TTO,Trinidad and Tobago,San Fernando,TT.SF,TTO,TTO
+33738,TTO,Trinidad and Tobago,San Juan/Laventille,TT.SL,TTO,TTO
+33739,TTO,Trinidad and Tobago,Sangre Grande,TT.SN,TTO,TTO
+33740,TTO,Trinidad and Tobago,Siparia,TT.SI,TTO,TTO
+33741,TTO,Trinidad and Tobago,Tobago,,TTO,TTO
+33742,TTO,Trinidad and Tobago,Tunapuna/Piarco,TT.TP,TTO,TTO
+33743,TUN,Tunisia,Manubah,TN.MN,TUN,TUN
+33744,TUN,Tunisia,Médenine,TN.ME,TUN,TUN
+33745,TUN,Tunisia,Monastir,TN.MS,TUN,TUN
+33746,TUN,Tunisia,Nabeul,TN.NB,TUN,TUN
+33747,TUN,Tunisia,Sfax,TN.SF,TUN,TUN
+33748,TUN,Tunisia,Sidi Bou Zid,TN.SZ,TUN,TUN
+33749,TUN,Tunisia,Siliana,TN.SL,TUN,TUN
+33750,TUN,Tunisia,Sousse,TN.SS,TUN,TUN
+33751,TUN,Tunisia,Ariana,TN.AN,TUN,TUN
+33752,TUN,Tunisia,Béja,TN.BJ,TUN,TUN
+33753,TUN,Tunisia,Ben Arous (Tunis Sud),TN.BA,TUN,TUN
+33754,TUN,Tunisia,Bizerte,TN.BZ,TUN,TUN
+33755,TUN,Tunisia,Gabès,TN.GB,TUN,TUN
+33756,TUN,Tunisia,Gafsa,TN.GF,TUN,TUN
+33757,TUN,Tunisia,Jendouba,TN.JE,TUN,TUN
+33758,TUN,Tunisia,Kairouan,TN.KR,TUN,TUN
+33759,TUN,Tunisia,Kassérine,TN.KS,TUN,TUN
+33760,TUN,Tunisia,Kebili,TN.KB,TUN,TUN
+33761,TUN,Tunisia,Le Kef,TN.KF,TUN,TUN
+33762,TUN,Tunisia,Mahdia,TN.MH,TUN,TUN
+33763,TUN,Tunisia,Tataouine,TN.TA,TUN,TUN
+33764,TUN,Tunisia,Tozeur,TN.TO,TUN,TUN
+33765,TUN,Tunisia,Tunis,TN.TU,TUN,TUN
+33766,TUN,Tunisia,Zaghouan,TN.ZA,TUN,TUN
+33767,TUR,Turkey,Adana,TR.AA,TUR,TUR
+33768,TUR,Turkey,Adiyaman,TR.AD,TUR,TUR
+33769,TUR,Turkey,Afyon,TR.AF,TUR,TUR
+33770,TUR,Turkey,Agri,TR.AG,TUR,TUR
+33771,TUR,Turkey,Aksaray,TR.AK,TUR,TUR
+33772,TUR,Turkey,Amasya,TR.AM,TUR,TUR
+33773,TUR,Turkey,Ankara,TR.AN,TUR,TUR
+33774,TUR,Turkey,Antalya,TR.AL,TUR,TUR
+33775,TUR,Turkey,Artvin,TR.AV,TUR,TUR
+33776,TUR,Turkey,Aydin,TR.AY,TUR,TUR
+33777,TUR,Turkey,Balikesir,TR.BK,TUR,TUR
+33778,TUR,Turkey,Batman,TR.BM,TUR,TUR
+33779,TUR,Turkey,Bayburt,TR.BB,TUR,TUR
+33780,TUR,Turkey,Bilecik,TR.BC,TUR,TUR
+33781,TUR,Turkey,Bingöl,TR.BG,TUR,TUR
+33782,TUR,Turkey,Bitlis,TR.BT,TUR,TUR
+33783,TUR,Turkey,Bolu,TR.BL,TUR,TUR
+33784,TUR,Turkey,Burdur,TR.BD,TUR,TUR
+33785,TUR,Turkey,Bursa,TR.BU,TUR,TUR
+33786,TUR,Turkey,Çanakkale,TR.CK,TUR,TUR
+33787,TUR,Turkey,Çankiri,TR.CI,TUR,TUR
+33788,TUR,Turkey,Çorum,TR.CM,TUR,TUR
+33789,TUR,Turkey,Denizli,TR.DN,TUR,TUR
+33790,TUR,Turkey,Diyarbakir,TR.DY,TUR,TUR
+33791,TUR,Turkey,Edirne,TR.ED,TUR,TUR
+33792,TUR,Turkey,Elazig,TR.EG,TUR,TUR
+33793,TUR,Turkey,Erzincan,TR.EN,TUR,TUR
+33794,TUR,Turkey,Erzurum,TR.EM,TUR,TUR
+33795,TUR,Turkey,Eskisehir,TR.ES,TUR,TUR
+33796,TUR,Turkey,Gaziantep,TR.GA,TUR,TUR
+33797,TUR,Turkey,Giresun,TR.GI,TUR,TUR
+33798,TUR,Turkey,Gümüshane,TR.GU,TUR,TUR
+33799,TUR,Turkey,Hakkari,TR.HK,TUR,TUR
+33800,TUR,Turkey,Hatay,TR.HT,TUR,TUR
+33801,TUR,Turkey,Isparta,TR.IP,TUR,TUR
+33802,TUR,Turkey,Istanbul,TR.IB,TUR,TUR
+33803,TUR,Turkey,Izmir,TR.IZ,TUR,TUR
+33804,TUR,Turkey,K. Maras,TR.KM,TUR,TUR
+33805,TUR,Turkey,Karaman,TR.KR,TUR,TUR
+33806,TUR,Turkey,Kars,TR.KA,TUR,TUR
+33807,TUR,Turkey,Kastamonu,TR.KS,TUR,TUR
+33808,TUR,Turkey,Kayseri,TR.KY,TUR,TUR
+33809,TUR,Turkey,Kinkkale,TR.KK,TUR,TUR
+33810,TUR,Turkey,Kirklareli,TR.KL,TUR,TUR
+33811,TUR,Turkey,Kirsehir,TR.KH,TUR,TUR
+33812,TUR,Turkey,Kocaeli,TR.KC,TUR,TUR
+33813,TUR,Turkey,Konya,TR.KO,TUR,TUR
+33814,TUR,Turkey,Kütahya,TR.KU,TUR,TUR
+33815,TUR,Turkey,Malatya,TR.ML,TUR,TUR
+33816,TUR,Turkey,Manisa,TR.MN,TUR,TUR
+33817,TUR,Turkey,Mardin,TR.MR,TUR,TUR
+33818,TUR,Turkey,Mersin,TR.IC,TUR,TUR
+33819,TUR,Turkey,Mugla,TR.MG,TUR,TUR
+33820,TUR,Turkey,Mus,TR.MS,TUR,TUR
+33821,TUR,Turkey,Nevsehir,TR.NV,TUR,TUR
+33822,TUR,Turkey,Nigde,TR.NG,TUR,TUR
+33823,TUR,Turkey,Ordu,TR.OR,TUR,TUR
+33824,TUR,Turkey,Rize,TR.RI,TUR,TUR
+33825,TUR,Turkey,Sakarya,TR.SK,TUR,TUR
+33826,TUR,Turkey,Samsun,TR.SS,TUR,TUR
+33827,TUR,Turkey,Sanliurfa,TR.SU,TUR,TUR
+33828,TUR,Turkey,Siirt,TR.SI,TUR,TUR
+33829,TUR,Turkey,Sinop,TR.SP,TUR,TUR
+33830,TUR,Turkey,Sirnak,TR.SR,TUR,TUR
+33831,TUR,Turkey,Sivas,TR.SV,TUR,TUR
+33832,TUR,Turkey,Tekirdag,TR.TG,TUR,TUR
+33833,TUR,Turkey,Tokat,TR.TT,TUR,TUR
+33834,TUR,Turkey,Trabzon,TR.TB,TUR,TUR
+33835,TUR,Turkey,Tunceli,TR.TC,TUR,TUR
+33836,TUR,Turkey,Usak,TR.US,TUR,TUR
+33837,TUR,Turkey,Van,TR.VA,TUR,TUR
+33838,TUR,Turkey,Yozgat,TR.YZ,TUR,TUR
+33839,TUR,Turkey,Zinguldak,TR.ZO,TUR,TUR
+33840,TUV,Tuvalu,Funafuti,TV.FN,TUV,TUV
+33841,TUV,Tuvalu,Nanumanga,TV.NG,TUV,TUV
+33842,TUV,Tuvalu,Nanumea,TV.NA,TUV,TUV
+33843,TUV,Tuvalu,Niutao,TV.NT,TUV,TUV
+33844,TUV,Tuvalu,Nui,TV.NU,TUV,TUV
+33845,TUV,Tuvalu,Nukufetau,TV.NF,TUV,TUV
+33846,TUV,Tuvalu,Nukulaelae,TV.NL,TUV,TUV
+33847,TUV,Tuvalu,Vaitupu,TV.VI,TUV,TUV
+33848,TWN,Taiwan,Kaohsiung,TW.KH,TWN,TWN
+33849,TWN,Taiwan,Pratas Islands,,TWN,TWN
+33850,TWN,Taiwan,Taipei,TW.TP,TWN,TWN
+33851,TWN,Taiwan,Taiwan,TW.TW,TWN,TWN
+33852,TZA,Tanzania,Arusha,TZ.AS,TZA,TZA
+33853,TZA,Tanzania,Dar-Es-Salaam,TZ.DS,TZA,TZA
+33854,TZA,Tanzania,Dodoma,TZ.DO,TZA,TZA
+33855,TZA,Tanzania,Iringa,TZ.IR,TZA,TZA
+33856,TZA,Tanzania,Kagera,TZ.KR,TZA,TZA
+33857,TZA,Tanzania,Kaskazini-Pemba,TZ.PN,TZA,TZA
+33858,TZA,Tanzania,Kaskazini-Unguja,TZ.ZN,TZA,TZA
+33859,TZA,Tanzania,Kigoma,TZ.KM,TZA,TZA
+33860,TZA,Tanzania,Kilimanjaro,TZ.KL,TZA,TZA
+33861,TZA,Tanzania,Kusini-Pemba,TZ.PS,TZA,TZA
+33862,TZA,Tanzania,Lindi,TZ.LI,TZA,TZA
+33863,TZA,Tanzania,Manyara,TZ.MY,TZA,TZA
+33864,TZA,Tanzania,Mara,TZ.MA,TZA,TZA
+33865,TZA,Tanzania,Mbeya,TZ.MB,TZA,TZA
+33866,TZA,Tanzania,Morogoro,TZ.MO,TZA,TZA
+33867,TZA,Tanzania,Mtwara,TZ.MT,TZA,TZA
+33868,TZA,Tanzania,Mwanza,TZ.MW,TZA,TZA
+33869,TZA,Tanzania,Pwani,TZ.PW,TZA,TZA
+33870,TZA,Tanzania,Rukwa,TZ.RK,TZA,TZA
+33871,TZA,Tanzania,Ruvuma,TZ.RV,TZA,TZA
+33872,TZA,Tanzania,Shinyanga,TZ.SH,TZA,TZA
+33873,TZA,Tanzania,Singida,TZ.SD,TZA,TZA
+33874,TZA,Tanzania,Tabora,TZ.TB,TZA,TZA
+33875,TZA,Tanzania,Tanga,TZ.TN,TZA,TZA
+33876,TZA,Tanzania,Zanzibar South and Central,TZ.ZS,TZA,TZA
+33877,TZA,Tanzania,Zanzibar West,TZ.ZW,TZA,TZA
+33878,UGA,Uganda,Adjumani,UG.AD,UGA,UGA
+33879,UGA,Uganda,Apac,UG.AC,UGA,UGA
+33880,UGA,Uganda,Arua,UG.AW,UGA,UGA
+33881,UGA,Uganda,Bugiri,UG.BG,UGA,UGA
+33882,UGA,Uganda,Bundibugyo,UG.BN,UGA,UGA
+33883,UGA,Uganda,Bushenyi,UG.BS,UGA,UGA
+33884,UGA,Uganda,Busia,UG.BU,UGA,UGA
+33885,UGA,Uganda,Gulu,UG.GL,UGA,UGA
+33886,UGA,Uganda,Hoima,UG.HO,UGA,UGA
+33887,UGA,Uganda,Iganga,UG.IN,UGA,UGA
+33888,UGA,Uganda,Jinja,UG.JI,UGA,UGA
+33889,UGA,Uganda,Kabale,UG.KA,UGA,UGA
+33890,UGA,Uganda,Kabarole,UG.BR,UGA,UGA
+33891,UGA,Uganda,Kaberamaido,UG.KD,UGA,UGA
+33892,UGA,Uganda,Kalangala,UG.KN,UGA,UGA
+33893,UGA,Uganda,Kampala,UG.KM,UGA,UGA
+33894,UGA,Uganda,Kamuli,UG.KX,UGA,UGA
+33895,UGA,Uganda,Kamwenge,UG.KE,UGA,UGA
+33896,UGA,Uganda,Kanungu,UG.UU,UGA,UGA
+33897,UGA,Uganda,Kapchorwa,UG.KP,UGA,UGA
+33898,UGA,Uganda,Kasese,UG.KS,UGA,UGA
+33899,UGA,Uganda,Katakwi,UG.KK,UGA,UGA
+33900,UGA,Uganda,Kayunga,UG.KY,UGA,UGA
+33901,UGA,Uganda,Kibale,UG.KI,UGA,UGA
+33902,UGA,Uganda,Kiboga,UG.KG,UGA,UGA
+33903,UGA,Uganda,Kisoro,UG.KR,UGA,UGA
+33904,UGA,Uganda,Kitgum,UG.TG,UGA,UGA
+33905,UGA,Uganda,Kotido,UG.KF,UGA,UGA
+33906,UGA,Uganda,Kumi,UG.KU,UGA,UGA
+33907,UGA,Uganda,Kyenjojo,UG.KJ,UGA,UGA
+33908,UGA,Uganda,Lake Albert,,UGA,UGA
+33909,UGA,Uganda,Lake Victoria,,UGA,UGA
+33910,UGA,Uganda,Lira,UG.LA,UGA,UGA
+33911,UGA,Uganda,Luwero,UG.LW,UGA,UGA
+33912,UGA,Uganda,Masaka,UG.MA,UGA,UGA
+33913,UGA,Uganda,Masindi,UG.MC,UGA,UGA
+33914,UGA,Uganda,Mayuge,UG.MG,UGA,UGA
+33915,UGA,Uganda,Mbale,UG.ME,UGA,UGA
+33916,UGA,Uganda,Mbarara,UG.RR,UGA,UGA
+33917,UGA,Uganda,Moroto,UG.MT,UGA,UGA
+33918,UGA,Uganda,Moyo,UG.MY,UGA,UGA
+33919,UGA,Uganda,Mpigi,UG.MI,UGA,UGA
+33920,UGA,Uganda,Mubende,UG.MD,UGA,UGA
+33921,UGA,Uganda,Mukono,UG.MN,UGA,UGA
+33922,UGA,Uganda,Nakapiripirit,UG.NP,UGA,UGA
+33923,UGA,Uganda,Nakasongola,UG.NA,UGA,UGA
+33924,UGA,Uganda,Nebbi,UG.NE,UGA,UGA
+33925,UGA,Uganda,Ntungamo,UG.NT,UGA,UGA
+33926,UGA,Uganda,Pader,UG.PD,UGA,UGA
+33927,UGA,Uganda,Pallisa,UG.PL,UGA,UGA
+33928,UGA,Uganda,Rakai,UG.RA,UGA,UGA
+33929,UGA,Uganda,Rukungiri,UG.RK,UGA,UGA
+33930,UGA,Uganda,Sembabule,UG.SE,UGA,UGA
+33931,UGA,Uganda,Sironko,UG.SI,UGA,UGA
+33932,UGA,Uganda,Soroti,UG.SR,UGA,UGA
+33933,UGA,Uganda,Tororo,UG.TR,UGA,UGA
+33934,UGA,Uganda,Wakiso,UG.WA,UGA,UGA
+33935,UGA,Uganda,Yumbe,UG.YU,UGA,UGA
+33936,UKR,Ukraine,Cherkasy,UA.CK,UKR,UKR
+33937,UKR,Ukraine,Chernihiv,UA.CH,UKR,UKR
+33938,UKR,Ukraine,Chernivtsi,UA.CV,UKR,UKR
+33939,UKR,Ukraine,Crimea,UA.KR,UKR,UKR
+33940,UKR,Ukraine,Dnipropetrovs'k,UA.DP,UKR,UKR
+33941,UKR,Ukraine,Donets'k,UA.DT,UKR,UKR
+33942,UKR,Ukraine,Ivano-Frankivs'k,UA.IF,UKR,UKR
+33943,UKR,Ukraine,Kharkiv,UA.KK,UKR,UKR
+33944,UKR,Ukraine,Kherson,UA.KS,UKR,UKR
+33945,UKR,Ukraine,Khmel'nyts'kyy,UA.KM,UKR,UKR
+33946,UKR,Ukraine,Kiev,UA.KV,UKR,UKR
+33947,UKR,Ukraine,Kiev City,UA.KC,UKR,UKR
+33948,UKR,Ukraine,Kirovohrad,UA.KH,UKR,UKR
+33949,UKR,Ukraine,Luhans'k,UA.LH,UKR,UKR
+33950,UKR,Ukraine,L'viv,UA.LV,UKR,UKR
+33951,UKR,Ukraine,Mykolayiv,UA.MY,UKR,UKR
+33952,UKR,Ukraine,Odessa,UA.OD,UKR,UKR
+33953,UKR,Ukraine,Poltava,UA.PL,UKR,UKR
+33954,UKR,Ukraine,Rivne,UA.RV,UKR,UKR
+33955,UKR,Ukraine,Sevastopol',UA.SC,UKR,UKR
+33956,UKR,Ukraine,Sumy,UA.SM,UKR,UKR
+33957,UKR,Ukraine,Ternopil',UA.TP,UKR,UKR
+33958,UKR,Ukraine,Transcarpathia,UA.ZK,UKR,UKR
+33959,UKR,Ukraine,Vinnytsya,UA.VI,UKR,UKR
+33960,UKR,Ukraine,Volyn,UA.VO,UKR,UKR
+33961,UKR,Ukraine,Zaporizhzhya,UA.ZP,UKR,UKR
+33962,UKR,Ukraine,Zhytomyr,UA.ZT,UKR,UKR
+33963,UMI,United States Minor Outlying Islands,Baker,,UMI,UMI
+33964,UMI,United States Minor Outlying Islands,Howland,,UMI,UMI
+33965,UMI,United States Minor Outlying Islands,Jarvis island,,UMI,UMI
+33966,UMI,United States Minor Outlying Islands,Johnston,,UMI,UMI
+33967,UMI,United States Minor Outlying Islands,Kingman Reef,,UMI,UMI
+33968,UMI,United States Minor Outlying Islands,Midway,,UMI,UMI
+33969,UMI,United States Minor Outlying Islands,Navassa,,UMI,UMI
+33970,UMI,United States Minor Outlying Islands,Palmyra,,UMI,UMI
+33971,UMI,United States Minor Outlying Islands,Wake,,UMI,UMI
+33972,URY,Uruguay,Artigas,UY.AR,URY,URY
+33973,URY,Uruguay,Canelones,UY.CA,URY,URY
+33974,URY,Uruguay,Cerro Largo,UY.CL,URY,URY
+33975,URY,Uruguay,Colonia,UY.CO,URY,URY
+33976,URY,Uruguay,Durazno,UY.DU,URY,URY
+33977,URY,Uruguay,Flores,UY.FS,URY,URY
+33978,URY,Uruguay,Florida,UY.FD,URY,URY
+33979,URY,Uruguay,Lavalleja,UY.LA,URY,URY
+33980,URY,Uruguay,Maldonado,UY.MA,URY,URY
+33981,URY,Uruguay,Montevideo,UY.MO,URY,URY
+33982,URY,Uruguay,Paysandú,UY.PA,URY,URY
+33983,URY,Uruguay,Río Negro,UY.RN,URY,URY
+33984,URY,Uruguay,Rivera,UY.RV,URY,URY
+33985,URY,Uruguay,Rocha,UY.RO,URY,URY
+33986,URY,Uruguay,Salto,UY.SA,URY,URY
+33987,URY,Uruguay,San José,UY.SJ,URY,URY
+33988,URY,Uruguay,Soriano,UY.SO,URY,URY
+33989,URY,Uruguay,Tacuarembó,UY.TA,URY,URY
+33990,URY,Uruguay,Treinta y Tres,UY.TT,URY,URY
+33991,USA,United States,Alabama,US.AL,USA,USA
+33992,USA,United States,Alaska,US.AK,USA,USA
+33993,USA,United States,Arizona,US.AZ,USA,USA
+33994,USA,United States,Arkansas,US.AR,USA,USA
+33995,USA,United States,California,US.CA,USA,USA
+33996,USA,United States,Colorado,US.CO,USA,USA
+33997,USA,United States,Connecticut,US.CT,USA,USA
+33998,USA,United States,Delaware,US.DE,USA,USA
+33999,USA,United States,District of Columbia,US.DC,USA,USA
+34000,USA,United States,Florida,US.FL,USA,USA
+34001,USA,United States,Georgia,US.GA,USA,USA
+34002,USA,United States,Hawaii,US.HI,USA,USA
+34003,USA,United States,Idaho,US.ID,USA,USA
+34004,USA,United States,Illinois,US.IL,USA,USA
+34005,USA,United States,Indiana,US.IN,USA,USA
+34006,USA,United States,Iowa,US.IA,USA,USA
+34007,USA,United States,Kansas,US.KS,USA,USA
+34008,USA,United States,Kentucky,US.KY,USA,USA
+34009,USA,United States,Louisiana,US.LA,USA,USA
+34010,USA,United States,Maine,US.ME,USA,USA
+34011,USA,United States,Maryland,US.MD,USA,USA
+34012,USA,United States,Massachusetts,US.MA,USA,USA
+34013,USA,United States,Michigan,US.MI,USA,USA
+34014,USA,United States,Minnesota,US.MN,USA,USA
+34015,USA,United States,Mississippi,US.MS,USA,USA
+34016,USA,United States,Missouri,US.MO,USA,USA
+34017,USA,United States,Montana,US.MT,USA,USA
+34018,USA,United States,Nebraska,US.NE,USA,USA
+34019,USA,United States,Nevada,US.NV,USA,USA
+34020,USA,United States,New Hampshire,US.NH,USA,USA
+34021,USA,United States,New Jersey,US.NJ,USA,USA
+34022,USA,United States,New Mexico,US.NM,USA,USA
+34023,USA,United States,New York,US.NY,USA,USA
+34024,USA,United States,North Carolina,US.NC,USA,USA
+34025,USA,United States,North Dakota,US.ND,USA,USA
+34026,USA,United States,Ohio,US.OH,USA,USA
+34027,USA,United States,Oklahoma,US.OK,USA,USA
+34028,USA,United States,Oregon,US.OR,USA,USA
+34029,USA,United States,Pennsylvania,US.PA,USA,USA
+34030,USA,United States,Rhode Island,US.RI,USA,USA
+34031,USA,United States,South Carolina,US.SC,USA,USA
+34032,USA,United States,South Dakota,US.SD,USA,USA
+34033,USA,United States,Tennessee,US.TN,USA,USA
+34034,USA,United States,Texas,US.TX,USA,USA
+34035,USA,United States,Utah,US.UT,USA,USA
+34036,USA,United States,Vermont,US.VT,USA,USA
+34037,USA,United States,Virginia,US.VA,USA,USA
+34038,USA,United States,Washington,US.WA,USA,USA
+34039,USA,United States,West Virginia,US.WV,USA,USA
+34040,USA,United States,Wisconsin,US.WI,USA,USA
+34041,USA,United States,Wyoming,US.WY,USA,USA
+34042,UZB,Uzbekistan,Andijon,UZ.AN,UZB,UZB
+34043,UZB,Uzbekistan,Bukhoro,UZ.BU,UZB,UZB
+34044,UZB,Uzbekistan,Ferghana,UZ.FA,UZB,UZB
+34045,UZB,Uzbekistan,Jizzakh,UZ.JI,UZB,UZB
+34046,UZB,Uzbekistan,Karakalpakstan,UZ.QR,UZB,UZB
+34047,UZB,Uzbekistan,Kashkadarya,UZ.QA,UZB,UZB
+34048,UZB,Uzbekistan,Khorezm,UZ.KH,UZB,UZB
+34049,UZB,Uzbekistan,Namangan,UZ.NG,UZB,UZB
+34050,UZB,Uzbekistan,Navoi,UZ.NW,UZB,UZB
+34051,UZB,Uzbekistan,Samarkand,UZ.SA,UZB,UZB
+34052,UZB,Uzbekistan,Sirdaryo,UZ.SI,UZB,UZB
+34053,UZB,Uzbekistan,Surkhandarya,UZ.SU,UZB,UZB
+34054,UZB,Uzbekistan,Tashkent,UZ.TA,UZB,UZB
+34055,UZB,Uzbekistan,Tashkent City,UZ.TK,UZB,UZB
+34056,VCT,Saint Vincent and the Grenadines,Charlotte,VC.CH,VCT,VCT
+34057,VCT,Saint Vincent and the Grenadines,Grenadines,VC.GT,VCT,VCT
+34058,VCT,Saint Vincent and the Grenadines,Saint Andrew,VC.AN,VCT,VCT
+34059,VCT,Saint Vincent and the Grenadines,Saint David,VC.DA,VCT,VCT
+34060,VCT,Saint Vincent and the Grenadines,Saint George,VC.GE,VCT,VCT
+34061,VCT,Saint Vincent and the Grenadines,Saint Patrick,VC.PA,VCT,VCT
+34062,VEN,Venezuela,Amazonas,VE.AM,VEN,VEN
+34063,VEN,Venezuela,Anzoátegui,VE.AN,VEN,VEN
+34064,VEN,Venezuela,Apure,VE.AP,VEN,VEN
+34065,VEN,Venezuela,Aragua,VE.AR,VEN,VEN
+34066,VEN,Venezuela,Barinas,VE.BA,VEN,VEN
+34067,VEN,Venezuela,Bolívar,VE.BO,VEN,VEN
+34068,VEN,Venezuela,Carabobo,VE.CA,VEN,VEN
+34069,VEN,Venezuela,Cojedes,VE.CO,VEN,VEN
+34070,VEN,Venezuela,Delta Amacuro,VE.DA,VEN,VEN
+34071,VEN,Venezuela,Dependencias Federales,VE.DP,VEN,VEN
+34072,VEN,Venezuela,Distrito Capital,VE.DF,VEN,VEN
+34073,VEN,Venezuela,Falcón,VE.FA,VEN,VEN
+34074,VEN,Venezuela,Guárico,VE.GU,VEN,VEN
+34075,VEN,Venezuela,Lara,VE.LA,VEN,VEN
+34076,VEN,Venezuela,Mérida,VE.ME,VEN,VEN
+34077,VEN,Venezuela,Miranda,VE.MI,VEN,VEN
+34078,VEN,Venezuela,Monagas,VE.MO,VEN,VEN
+34079,VEN,Venezuela,Nueva Esparta,VE.NE,VEN,VEN
+34080,VEN,Venezuela,Portuguesa,VE.PO,VEN,VEN
+34081,VEN,Venezuela,Sucre,VE.SU,VEN,VEN
+34082,VEN,Venezuela,Táchira,VE.TA,VEN,VEN
+34083,VEN,Venezuela,Trujillo,VE.TR,VEN,VEN
+34084,VEN,Venezuela,Yaracuy,VE.YA,VEN,VEN
+34085,VEN,Venezuela,Zulia,VE.ZU,VEN,VEN
+34086,VIR,"Virgin Islands, U.S.",Saint Croix,VI.SC,VIR,VIR
+34087,VIR,"Virgin Islands, U.S.",Saint John,VI.SJ,VIR,VIR
+34088,VIR,"Virgin Islands, U.S.",Saint Thomas,VI.ST,VIR,VIR
+34089,VNM,Vietnam,B?c Trung B?,,VNM,VNM
+34090,VNM,Vietnam,Ðông B?c,,VNM,VNM
+34091,VNM,Vietnam,d?ng b?ng sông C?u Long,,VNM,VNM
+34092,VNM,Vietnam,Ð?ng B?ng Sông H?ng,,VNM,VNM
+34093,VNM,Vietnam,Ðông Nam B?,,VNM,VNM
+34094,VNM,Vietnam,Nam Trung B?,,VNM,VNM
+34095,VNM,Vietnam,Tây B?c,,VNM,VNM
+34096,VNM,Vietnam,Tây Nguyên,,VNM,VNM
+34097,VUT,Vanuatu,Malampa,VU.ML,VUT,VUT
+34098,VUT,Vanuatu,Penama,VU.PM,VUT,VUT
+34099,VUT,Vanuatu,Sanma,VU.SN,VUT,VUT
+34100,VUT,Vanuatu,Shefa,VU.SE,VUT,VUT
+34101,VUT,Vanuatu,Tafea,VU.TF,VUT,VUT
+34102,VUT,Vanuatu,Torba,VU.TR,VUT,VUT
+34103,WLF,Wallis and Futuna,Alo,WF.AL,WLF,WLF
+34104,WLF,Wallis and Futuna,Singave,WF.SI,WLF,WLF
+34105,WLF,Wallis and Futuna,Uvéa,WF.UV,WLF,WLF
+34106,WSM,Samoa,A'ana,WS.AA,WSM,WSM
+34107,WSM,Samoa,Aiga-i-le-Tai,WS.AL,WSM,WSM
+34108,WSM,Samoa,Atua,WS.AT,WSM,WSM
+34109,WSM,Samoa,Fa'asaleleaga,WS.FA,WSM,WSM
+34110,WSM,Samoa,Gaga'emauga,WS.GE,WSM,WSM
+34111,WSM,Samoa,Gagaifomauga,WS.GI,WSM,WSM
+34112,WSM,Samoa,Palauli,WS.PA,WSM,WSM
+34113,WSM,Samoa,Satupa'itea,WS.SA,WSM,WSM
+34114,WSM,Samoa,Tuamasaga,WS.TU,WSM,WSM
+34115,WSM,Samoa,Va'a-o-Fonoti,WS.VF,WSM,WSM
+34116,WSM,Samoa,Vaisigano,WS.VS,WSM,WSM
+34117,YEM,Yemen,`Adan,YE.AD,YEM,YEM
+34118,YEM,Yemen,Abyan,YE.AB,YEM,YEM
+34119,YEM,Yemen,Al Bayda',YE.BA,YEM,YEM
+34120,YEM,Yemen,Al Dali',YE.DL,YEM,YEM
+34121,YEM,Yemen,Al Hudaydah,YE.HU,YEM,YEM
+34122,YEM,Yemen,Al Jawf,YE.JA,YEM,YEM
+34123,YEM,Yemen,Al Mahrah,YE.MR,YEM,YEM
+34124,YEM,Yemen,Al Mahwit,YE.MW,YEM,YEM
+34125,YEM,Yemen,Amanat Al Asimah,,YEM,YEM
+34126,YEM,Yemen,Amran,YE.AM,YEM,YEM
+34127,YEM,Yemen,Dhamar,YE.DH,YEM,YEM
+34128,YEM,Yemen,Hadramawt,YE.HD,YEM,YEM
+34129,YEM,Yemen,Hajjah,YE.HJ,YEM,YEM
+34130,YEM,Yemen,Ibb,YE.IB,YEM,YEM
+34131,YEM,Yemen,Lahij,YE.LA,YEM,YEM
+34132,YEM,Yemen,Ma'rib,YE.MA,YEM,YEM
+34133,YEM,Yemen,Raymah,,YEM,YEM
+34134,YEM,Yemen,Sa`dah,YE.SD,YEM,YEM
+34135,YEM,Yemen,San`a',YE.SN,YEM,YEM
+34136,YEM,Yemen,Shabwah,YE.SH,YEM,YEM
+34137,YEM,Yemen,Ta`izz,YE.TA,YEM,YEM
+34138,ZAF,South Africa,Eastern Cape,ZA.EC,ZAF,ZAF
+34139,ZAF,South Africa,Gauteng,ZA.GT,ZAF,ZAF
+34140,ZAF,South Africa,KwaZulu-Natal,ZA.NL,ZAF,ZAF
+34141,ZAF,South Africa,Limpopo,ZA.NP,ZAF,ZAF
+34142,ZAF,South Africa,Mpumalanga,ZA.MP,ZAF,ZAF
+34143,ZAF,South Africa,North West,ZA.NW,ZAF,ZAF
+34144,ZAF,South Africa,Northern Cape,ZA.NC,ZAF,ZAF
+34145,ZAF,South Africa,Orange Free State,ZA.FS,ZAF,ZAF
+34146,ZAF,South Africa,Prince Edward Islands,,ZAF,ZAF
+34147,ZAF,South Africa,Western Cape,ZA.WC,ZAF,ZAF
+34148,ZMB,Zambia,Luapula,ZM.LP,ZMB,ZMB
+34149,ZMB,Zambia,Lusaka,ZM.LS,ZMB,ZMB
+34150,ZMB,Zambia,Northern,ZM.NO,ZMB,ZMB
+34151,ZMB,Zambia,North-Western,ZM.NW,ZMB,ZMB
+34152,ZMB,Zambia,Southern,ZM.SO,ZMB,ZMB
+34153,ZMB,Zambia,Western,ZM.WE,ZMB,ZMB
+34154,ZMB,Zambia,Central,ZM.CE,ZMB,ZMB
+34155,ZMB,Zambia,Copperbelt,ZM.CO,ZMB,ZMB
+34156,ZMB,Zambia,Eastern,ZM.EA,ZMB,ZMB
+34157,ZWE,Zimbabwe,Bulawayo,ZW.BU,ZWE,ZWE
+34158,ZWE,Zimbabwe,Harare,ZW.HA,ZWE,ZWE
+34159,ZWE,Zimbabwe,Manicaland,ZW.MA,ZWE,ZWE
+34160,ZWE,Zimbabwe,Mashonaland Central,ZW.MC,ZWE,ZWE
+34161,ZWE,Zimbabwe,Mashonaland East,ZW.ME,ZWE,ZWE
+34162,ZWE,Zimbabwe,Mashonaland West,ZW.MW,ZWE,ZWE
+34163,ZWE,Zimbabwe,Masvingo,ZW.MV,ZWE,ZWE
+34164,ZWE,Zimbabwe,Matabeleland North,ZW.MN,ZWE,ZWE
+34165,ZWE,Zimbabwe,Matabeleland South,ZW.MS,ZWE,ZWE
+34166,ZWE,Zimbabwe,Midlands,ZW.MI,ZWE,ZWE
+37550,LBY,Libya,Al Kufrah,LY.KF,LBY,LBY
+37551,GRC,Greece,Ipeiros,GR.EP,GRC,GRC

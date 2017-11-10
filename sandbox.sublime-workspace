@@ -4,8 +4,68 @@
 		"selected_items":
 		[
 			[
+				"interset",
+				"intersection"
+			],
+			[
+				"fea",
+				"feature"
+			],
+			[
+				"interse",
+				"intersection"
+			],
+			[
+				"inter",
+				"intersect"
+			],
+			[
 				"all",
-				"allData"
+				"allFeats"
+			],
+			[
+				"intersect",
+				"intersection"
+			],
+			[
+				"prop",
+				"properties"
+			],
+			[
+				"table",
+				"table-container"
+			],
+			[
+				"tel",
+				"text-align"
+			],
+			[
+				"temp",
+				"tempName"
+			],
+			[
+				"inde",
+				"indexOf"
+			],
+			[
+				"cons",
+				"console"
+			],
+			[
+				"prp",
+				"properties"
+			],
+			[
+				"de",
+				"debugger"
+			],
+			[
+				"previ",
+				"previewMap"
+			],
+			[
+				"le",
+				"length"
 			],
 			[
 				"lo",
@@ -60,10 +120,6 @@
 				"parseInt"
 			],
 			[
-				"cons",
-				"console.log"
-			],
-			[
 				"wi",
 				"width"
 			],
@@ -76,42 +132,21 @@
 	"buffers":
 	[
 		{
-			"file": "tiles/tiles/index.html",
+			"file": "tiles/tiles/index8.html",
 			"settings":
 			{
-				"buffer_size": 22454,
+				"buffer_size": 26556,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "tiles/tiles/js/mapDefinition.js",
+			"file": "tiles/tiles/js/mapDefinition0.js",
 			"settings":
 			{
-				"buffer_size": 4126,
+				"buffer_size": 4402,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "Remote:   origin @ https://github.com/rezonski/sandbox.git\nLocal:    v0.1 /var/www/html/sandbox\nHead:     9146179 progress on tiles\n\n\nNothing to commit (working directory clean)\n\n# Movement:\n#    r = refresh status\n#    1-5 = jump to section\n#    n = next item, N = next section\n#    p = previous item, P = previous section\n#\n# Staging:\n#    s = stage file/section, S = stage all unstaged files\n#    ctrl+shift+s = stage all unstaged and untracked files\n#    u = unstage file/section, U = unstage all files\n#    backspace = discard file/section, shift+backspace = discard everything\n#\n# Commit:\n#    c = commit, C = commit -a (add unstaged)\n#    ctrl+shift+c = commit --amend (amend previous commit)\n#\n# Other:\n#    i = ignore file, I = ignore pattern\n#    enter = open file\n#    d = view diff\n#\n# Stashes:\n#    a = apply stash, A = pop stash\n#    z = create stash, Z = create stash including untracked files\n#    backspace = discard stash",
-			"settings":
-			{
-				"buffer_size": 939,
-				"line_ending": "Unix",
-				"name": "*git-status*: sandbox",
-				"read_only": true,
-				"scratch": true
-			}
-		},
-		{
-			"contents": "diff --git a/tiles/tiles/index.html b/tiles/tiles/index.html\nindex 79cb9ce..6cbfd3a 100644\n--- a/tiles/tiles/index.html\n+++ b/tiles/tiles/index.html\n@@ -15,6 +15,7 @@\n     <script src=\"js/editablegrid_charts.js\" ></script>\r\n     <script src=\"https://code.jquery.com/jquery-1.12.4.js\"></script>\r\n     <script src=\"https://code.jquery.com/ui/1.12.1/jquery-ui.js\"></script>\r\n+    <script src=\"https://rawgit.com/mholt/PapaParse/master/papaparse.min.js\"></script>\r\n     <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css\">\r\n     <link rel=\"stylesheet\" href=\"css/editablegrid.css\" type=\"text/css\" media=\"screen\">\r\n     <link href=\"css/app.css\" rel=\"stylesheet\"/>\r\n@@ -104,6 +105,7 @@\n         var currentYear = 2010;\r\n         var selectedUIDs = [];\r\n         var importJSONurl = 'data/data1962.json';\r\n+        var dataJSON;\r\n \r\n         var cursorAction = 'generate'; // [generate, select]\r\n         var hexGridSources = [];\r\n@@ -115,7 +117,7 @@\n             // maxBounds: [[-250,-90],[250,90]]\r\n             center: [0, 0],\r\n             zoom: 1,\r\n-            maxZoom: 6\r\n+            maxZoom: 8\r\n             // pitch: 50,\r\n             // bearing: -10,\r\n         });\r\n@@ -482,6 +484,50 @@\n             document.getElementById('tablecontent').style.top = (-1 * (topOffset - 200)) + 'px';\r\n         }\r\n \r\n+        function loadParseCSV() {\r\n+            $.get('data/allData.csv', (response, status, xhr) => {\r\n+                if ( status === 'error' ) {\r\n+                    console.log('Sorry but there was an error');\r\n+                } else {\r\n+                    const newJSON = csvJSON(response);\r\n+                    dataJSON = {\r\n+                        \"metadata\": [],\r\n+                        \"data\": [],\r\n+                    };\r\n+                    dataJSON.metadata = Object.keys(newJSON[0]).map(k => {\r\n+                        return {\r\n+                            'name': k,\r\n+                            'label': k,\r\n+                            'datatype': (k === 'ID' || k === 'UID') ? 'integer' : 'string',\r\n+                            'editable': (k === 'ISONEW' || k === 'Colony') ? true : false,\r\n+                        }\r\n+                    });\r\n+                    dataJSON.data = newJSON.map((e, i) => {\r\n+                        return {\r\n+                            'id': i,\r\n+                            'values': e\r\n+                        };\r\n+                    });\r\n+                    window.editableGrid.loadJSONFromString(dataJSON);\r\n+                }\r\n+            });\r\n+        }\r\n+\r\n+        function csvJSON(csv){\r\n+            var lines=csv.split(\"\\n\");\r\n+            var result = [];\r\n+            var headers=lines[0].split(\",\");\r\n+            for(var i=1;i<lines.length;i++){\r\n+                var obj = {};\r\n+                var currentline=lines[i].split(\",\");\r\n+                for(var j=0;j<headers.length;j++){\r\n+                    obj[headers[j]] = currentline[j];\r\n+                }\r\n+                result.push(obj);\r\n+            }   \r\n+            return result; //JSON\r\n+        }\r\n+\r\n         window.onload = function() {\r\n             editableGrid = new EditableGrid(\"DemoGridJSON\"); \r\n             editableGrid.tableLoaded = function() {\r\n@@ -491,7 +537,6 @@\n                 console.log('tableRendered');\r\n                 initAutocompleteValuePicker(editableGrid.data);\r\n             };\r\n-            editableGrid.loadJSON(importJSONurl);\r\n         }\r\n     </script>\r\n </body>\r\n",
-			"settings":
-			{
-				"buffer_size": 3491,
-				"line_ending": "Unix",
-				"name": "*git-diff*: tiles/tiles/index.html",
-				"read_only": true,
-				"scratch": true
 			}
 		}
 	],
@@ -122,13 +157,17 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 336.0,
+		"height": 392.0,
 		"last_filter": "git stat",
 		"selected_items":
 		[
 			[
 				"git stat",
 				"Git: Status"
+			],
+			[
+				"json",
+				"Pretty JSON: Format (Pretty Print) JSON"
 			],
 			[
 				"git sta",
@@ -186,31 +225,63 @@
 		"/var/www/html/sandbox",
 		"/var/www/html/sandbox/tiles",
 		"/var/www/html/sandbox/tiles/tiles",
+		"/var/www/html/sandbox/tiles/tiles/css",
 		"/var/www/html/sandbox/tiles/tiles/data",
 		"/var/www/html/sandbox/tiles/tiles/js"
 	],
 	"file_history":
 	[
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition2.js",
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition1.js",
+		"/var/www/html/sandbox/tiles/tiles/css/app.css",
+		"/var/www/html/sandbox/tiles/tiles/data/Adm1-Drawing-2.csv",
+		"/var/www/html/sandbox/tiles/tiles/index1.html",
+		"/var/www/html/sandbox/tiles/tiles/index7.html",
+		"/var/www/html/sandbox/tiles/tiles/index6.html",
+		"/var/www/html/sandbox/tiles/tiles/export/1912.geojson",
+		"/var/www/html/sandbox/tiles/tiles/index4.html",
+		"/var/www/html/sandbox/tiles/tiles/index3.html",
+		"/var/www/html/sandbox/tiles/tiles/data/World_Administrative_area1_2015.csv",
+		"/var/www/html/sandbox/tiles/tiles/index5.html",
+		"/var/www/html/sandbox/tiles/tiles/data/allData.csv",
+		"/var/www/html/sandbox/tiles/tiles/data/data.json",
+		"/var/www/html/sandbox/tiles/tiles/index2.html",
+		"/var/www/html/sandbox/stazenet/app/src/components/map/WPPopup.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/newTrail/NewTrailContainer.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/common/ListSelection.js",
+		"/var/www/html/sandbox/stazenet/app/src/controllers/DataController.js",
+		"/var/www/html/sandbox/stazenet/app/src/helpers/WaypointHelper.js",
+		"/var/www/html/sandbox/stazenet/app/src/helpers/MapHelper.js",
+		"/var/www/html/sandbox/stazenet/app/src/enums/Enum.js",
+		"/var/www/html/sandbox/stazenet/app/src/enums/MessageEvents.js",
+		"/var/www/html/sandbox/stazenet/app/src/objects/Trail.js",
+		"/var/www/html/sandbox/stazenet/app/src/helpers/TrailHelper.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/wpEditor/WPEditorTray.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/common/InputTextBox.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/BusComponent.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/common/ImagePreview.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/map/MapEditControl.js",
+		"/var/www/html/sandbox/stazenet/app/src/helpers/CommonHelper.js",
+		"/var/www/html/sandbox/stazenet/app/src/dataSources/MapModel.js",
+		"/var/www/html/sandbox/stazenet/app/src/helpers/Lang.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/map/SurfaceControl.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/openTrail/OpenTrailContainer.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/newTrail/UploadGeoFile.js",
+		"/var/www/html/sandbox/stazenet/app/template.html",
+		"/var/www/html/sandbox/examples/js/helper.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/newTrail/StepChartPreview.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/newTrail/StepWaypointsPreprocessing.js",
+		"/var/www/html/sandbox/stazenet/app/src/dataSources/TrailsDataModel.js",
+		"/var/www/html/sandbox/stazenet/app/src/helpers/ChartHelper.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/wpEditor/WPDrawer.js",
 		"/var/www/html/sandbox/tiles/tiles/index.html",
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition.js",
 		"/var/www/html/sandbox/tiles/tiles/js/editablegrid.js",
 		"/var/www/html/sandbox/tiles/tiles/index_old.html",
-		"/var/www/html/sandbox/tiles/tiles/data/data.json",
-		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition.js",
-		"/var/www/html/sandbox/stazenet/app/src/components/openTrail/OpenTrailContainer.js",
-		"/var/www/html/sandbox/stazenet/app/src/components/newTrail/StepWaypointsPreprocessing.js",
-		"/var/www/html/sandbox/stazenet/app/src/components/newTrail/NewTrailContainer.js",
 		"/var/www/html/sandbox/examples/gapi.txt",
 		"/var/www/html/sandbox/examples/js/gapi.js",
-		"/var/www/html/sandbox/stazenet/app/src/controllers/DataController.js",
-		"/var/www/html/sandbox/stazenet/app/src/components/wpEditor/WPDrawer.js",
-		"/var/www/html/sandbox/stazenet/app/src/components/wpEditor/WPEditorTray.js",
-		"/var/www/html/sandbox/stazenet/app/src/components/common/ListSelection.js",
-		"/var/www/html/sandbox/stazenet/app/src/enums/Enum.js",
 		"/var/www/html/sandbox/stazenet/app/src/apis/GoogleApi.js",
 		"/var/www/html/sandbox/stazenet/app/src/apis/Api.js",
-		"/var/www/html/sandbox/stazenet/app/src/helpers/Lang.js",
-		"/var/www/html/sandbox/stazenet/app/src/objects/Trail.js",
-		"/var/www/html/sandbox/stazenet/app/src/helpers/WaypointHelper.js",
 		"/var/www/html/sandbox/stazenet/app/src/apis/TrailsApi.js",
 		"/var/www/html/sandbox/geojson.io/src/core/api.js",
 		"/var/www/html/sandbox/TriangleGrid_NorthAfrica.geojson",
@@ -220,7 +291,6 @@
 		"/var/www/html/sandbox/grid1.geojson",
 		"/home/datasoft/Documents/Current/grid.geojson",
 		"/var/www/html/sandbox/examples/dbconnection.php",
-		"/var/www/html/sandbox/tiles/tiles/css/app.css",
 		"/var/www/html/sandbox/tiles/tiles/data/data1962.json",
 		"/var/www/html/sandbox/tiles/tiles/data/grid.json",
 		"/var/www/html/sandbox/tiles/tiles/js/editablegrid_utils.js",
@@ -245,7 +315,7 @@
 	],
 	"find":
 	{
-		"height": 41.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -253,143 +323,145 @@
 		"where_history":
 		[
 			"/var/www/html/sandbox/stazenet/app/src/",
+			"/var/www/html/sandbox/",
+			"/var/www/html/sandbox/stazenet/app/src/",
 			"/var/www/html/sandbox/tiles/tiles",
 			""
 		]
 	},
 	"find_state":
 	{
-		"case_sensitive": true,
+		"case_sensitive": false,
 		"find_history":
 		[
-			"loadParseCSV",
-			"finish",
-			"queryRenderedFeatures",
-			"map",
-			"editablegrid",
-			"loadParseCSV",
-			"window.editableGrid",
-			"dataJSON",
-			"loadJSONFromString",
-			"processJSON",
-			"jsonData",
-			"processJSON",
-			"json",
-			"editableGrid",
-			"window.",
-			"testgrid",
-			"tablecontent",
-			"editableGrid",
-			"processJSON",
-			"callback",
-			"url",
-			"data",
-			"loadLocal",
-			"baseUrl",
-			"_addUrlParameters",
-			"dataOnly",
-			"importJSONurl",
-			"HASC_1",
-			"UID",
-			"ISO",
-			"__ID__",
-			"16891",
-			"columnNarower",
-			"wp.",
-			"description",
-			"newFile",
-			"{}",
-			"_parsedFeaturesCollection",
-			"searchOneToponymLevel",
-			"MuiThemeProvider",
-			"DialogInline",
-			"TransitionGroup",
-			"search4PointsFailed",
-			"search4GooglePoint",
-			"TrailsApi",
-			"Trails",
-			"StepWaypointsSuggestion",
-			"4",
-			"5",
-			"StepMapPreview",
-			"StepChartPreview",
-			"searchOneToponymLevel",
-			"wp.",
-			"getLevel",
-			"w.",
-			"search4GooglePhotosFailed",
-			"Photos",
-			"trailThumbnailGetFailed",
-			"&location='",
-			"&radius",
-			"service",
-			"generateWaypointSuggestions",
-			"replacement",
-			"searchForToponyms",
-			"wps",
-			"generateWaypointSuggestions",
-			"TrailsDataModel.activeTrail.way",
-			"TrailsDataModel.activeTrail.waypoints",
-			"waypoints",
-			"searchStoresLevels",
-			"getLevel",
-			"hexGridSources",
-			"GLU",
-			"elevatedFeaturesCollection",
-			"get ",
-			"parsedFeaturesCollectionFeatures",
-			"parsedFeaturesCollection",
-			"elevatedFeaturesCollection",
-			"uploadTrail",
-			"=\"waypoints\"",
-			" style={styles.columnNarower}",
-			"trail",
-			"name",
-			"save2file",
+			"> 3",
+			"newDifference",
+			"diff",
+			"intersection",
+			"feat",
+			"Feat",
+			"feat",
+			"Feat",
+			"feat",
+			"intersectedPolygons",
+			"intersection",
+			"features",
 			"newFeatures",
-			"hexGridSources",
-			"hexGridSource",
-			"gridLayersIdx",
-			"hexGridSource",
-			"hexGridSources",
-			"mouseDown",
-			"localhost",
-			"'selected'",
-			"mersad",
-			"<br>",
-			"</br>",
-			"[1]",
+			"features",
+			"intersectPolygons",
+			"allFeats",
+			"diff1",
+			"intersection",
+			"intersectedFeatures",
+			"feat, intElement",
+			"intersectedPolygons",
+			"freePolygons",
+			"allFeats",
+			"feature",
+			"feat",
+			"getAll",
+			"importCSV",
+			"NAME_0",
+			"'ID',",
+			"ID",
+			"22837",
+			"csvTable",
+			"save2local",
+			"getRows",
+			"setColumnValue",
 			"selectAllFeaturesByVariable",
-			"Col1962",
-			"ISO1962",
-			"selectAllFeaturesByISO",
-			"selectIso",
-			"loadDataVersion",
-			"\"",
-			"r",
-			"'editableGrid' + ",
-			"dataversion",
-			"dataversions",
-			"dataversion",
-			"feature.columns[1]",
-			"selectAllFeaturesByISO",
-			"feature.properties.UID",
+			"edit",
+			"editable",
+			"columns",
+			"iso",
+			"selectAllFeaturesByVariable",
+			"setColumnValue",
+			"iso",
+			"resetData",
+			"editable",
+			"row.columns",
 			"isos",
-			"dataversion",
-			"parseInt(",
-			"dataversion",
-			"from",
-			"fromIdx",
-			"colonies",
-			"\"data/data1962.json\"",
+			"onchange('",
+			"size=\"4\">",
+			"availableTags",
+			"importJSONurl",
+			"mapbox",
+			"availableDataVersions",
+			"var availableDataVersions",
+			"var availableTags",
+			"availableTags",
+			"1.12.",
+			"source: availableTags,",
+			"// source: availableTags,",
+			"autocomplete",
+			"selectIso",
+			"selectColony",
+			"selectNewIso",
+			"https:",
+			"papaparse",
+			"selectColony",
+			"selectIso",
 			"currentYear",
-			"( event, ui ) {}",
+			"selectNewIso",
+			"selectIso",
+			"colonies",
+			"isos",
+			"label",
+			"'label'",
+			"columns",
+			"initAutocompleteValuePicker",
+			"loadParseCSV",
+			"initAutocompleteValuePicker",
+			"availableTags",
+			"save2local",
+			"getRows",
+			"window.allData",
+			"allData",
+			"window.editableGrid.data",
+			"save2local",
+			"colIdx",
+			"setColumnValue",
+			"ID",
+			"UID",
+			"COUNTRY",
 			"ISO2",
-			"16891p",
+			"'UID',",
+			"16891",
+			"currentYear",
+			"saveGeos2file",
+			"saveGrids2file",
+			"saveCSV2file",
+			"save2file",
+			"save2local",
+			"saveGrids2file",
+			"save2file",
+			"setYear",
+			"dragonfly",
+			"' + currentYear + '",
+			"hexGridIndex",
+			"dragonfly",
+			"\"",
+			"dragonfly",
+			"HASC_1",
+			"ISONEW",
+			"DemoGridJSON",
+			"DemoGridJSON_",
+			"DemoGridJSON",
+			"csvTable",
+			"loadParseCSV",
+			"importCSV",
+			"UID->{ID}",
+			"NAME_1",
+			"NAME_0",
+			"ISO2",
 			"'ISO',",
-			"uid",
-			"setUnsetUID",
-			"isos"
+			"ID2",
+			"16891",
+			"resetData",
+			"importJSONurl",
+			"20807",
+			"reBuildMapLayers",
+			"REBUILD_PATH_LAYERS"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -409,24 +481,24 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "tiles/tiles/index.html",
+					"file": "tiles/tiles/index8.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 22454,
+						"buffer_size": 26556,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								20961,
-								20961
+								26540,
+								26540
 							]
 						],
 						"settings":
@@ -448,27 +520,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 6443.0,
+						"translation.y": 3295.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "tiles/tiles/js/mapDefinition.js",
+					"file": "tiles/tiles/js/mapDefinition0.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4126,
+						"buffer_size": 4402,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								487,
-								487
+								1828,
+								1828
 							]
 						],
 						"settings":
@@ -484,84 +556,16 @@
 									"selector": "text.html"
 								}
 							],
+							"open_with_edit": true,
 							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2160.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 939,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								134,
-								134
-							]
-						],
-						"settings":
-						{
-							"__vi_external_disable": true,
-							"default_dir": "/var/www/html/sandbox",
-							"draw_white_space": "none",
-							"git_repo": "/var/www/html/sandbox",
-							"git_status": true,
-							"git_view": "status",
-							"syntax": "Packages/SublimeGit/syntax/SublimeGit Status.tmLanguage",
-							"translate_tabs_to_spaces": false,
-							"word_wrap": false
-						},
-						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3491,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3414,
-								3451
-							]
-						],
-						"settings":
-						{
-							"default_dir": "/var/www/html/sandbox",
-							"git_diff_cached": false,
-							"git_diff_clean": false,
-							"git_diff_path": "tiles/tiles/index.html",
-							"git_diff_unified": 3,
-							"git_repo": "/var/www/html/sandbox",
-							"git_view": "diff",
-							"syntax": "Packages/SublimeGit/syntax/SublimeGit Diff.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -569,7 +573,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 28.0
+		"height": 23.0
 	},
 	"input":
 	{
@@ -622,7 +626,7 @@
 	"project": "sandbox.sublime-project",
 	"replace":
 	{
-		"height": 52.0
+		"height": 42.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -632,8 +636,108 @@
 		"selected_items":
 		[
 			[
+				"index4",
+				"tiles/tiles/index4.html"
+			],
+			[
+				"mapdefini",
+				"tiles/tiles/js/mapDefinition1.js"
+			],
+			[
+				"index3",
+				"tiles/tiles/index3.html"
+			],
+			[
+				"maphe",
+				"stazenet/app/src/helpers/MapHelper.js"
+			],
+			[
+				"trail",
+				"stazenet/app/src/objects/Trail.js"
+			],
+			[
+				"messa",
+				"stazenet/app/src/enums/MessageEvents.js"
+			],
+			[
+				"enum",
+				"stazenet/app/src/enums/Enum.js"
+			],
+			[
+				"wpop",
+				"stazenet/app/src/components/map/WPPopup.js"
+			],
+			[
+				"waypoin",
+				"stazenet/app/src/helpers/WaypointHelper.js"
+			],
+			[
+				"datac",
+				"stazenet/app/src/controllers/DataController.js"
+			],
+			[
+				"input",
+				"stazenet/app/src/components/common/InputTextBox.js"
+			],
+			[
+				"image",
+				"stazenet/app/src/components/common/ImagePreview.js"
+			],
+			[
+				"bus",
+				"stazenet/app/src/components/BusComponent.js"
+			],
+			[
 				"listsel",
 				"stazenet/app/src/components/common/ListSelection.js"
+			],
+			[
+				"wpedit",
+				"stazenet/app/src/components/wpEditor/WPEditorTray.js"
+			],
+			[
+				"wp",
+				"stazenet/app/src/components/wpEditor/WPEditorTray.js"
+			],
+			[
+				"listse",
+				"stazenet/app/src/components/common/ListSelection.js"
+			],
+			[
+				"waypo",
+				"stazenet/app/src/helpers/WaypointHelper.js"
+			],
+			[
+				"charthe",
+				"stazenet/app/src/helpers/ChartHelper.js"
+			],
+			[
+				"common",
+				"stazenet/app/src/helpers/CommonHelper.js"
+			],
+			[
+				"mapm",
+				"stazenet/app/src/dataSources/MapModel.js"
+			],
+			[
+				"opentr",
+				"stazenet/app/src/components/openTrail/OpenTrailContainer.js"
+			],
+			[
+				"lang",
+				"stazenet/app/src/helpers/Lang.js"
+			],
+			[
+				"wpeditor",
+				"stazenet/app/src/components/wpEditor/WPEditorTray.js"
+			],
+			[
+				"wpdrawe",
+				"stazenet/app/src/components/wpEditor/WPDrawer.js"
+			],
+			[
+				"datacon",
+				"stazenet/app/src/controllers/DataController.js"
 			],
 			[
 				"wpedi",
@@ -656,20 +760,8 @@
 				"stazenet/app/src/helpers/WaypointHelper.js"
 			],
 			[
-				"trail",
-				"stazenet/app/src/objects/Trail.js"
-			],
-			[
-				"lang",
-				"stazenet/app/src/helpers/Lang.js"
-			],
-			[
 				"open",
 				"stazenet/app/src/components/openTrail/OpenTrailContainer.js"
-			],
-			[
-				"enum",
-				"stazenet/app/src/enums/Enum.js"
 			],
 			[
 				"dataco",
@@ -716,7 +808,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 257.0,
+	"side_bar_width": 61.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

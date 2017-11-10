@@ -4,15 +4,28 @@
     <meta charset='utf-8' />
     <title>Interactive map of effects of Iran Nuclear Deal</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    
     <script src="js/turf.min.js"></script>
+    
     <script src="js/dragonfly-dev.js"></script>
-    <script src="js/mapDefinition.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://rawgit.com/mholt/PapaParse/master/papaparse.min.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link href="css/app.css" rel="stylesheet"/>
     <link href="css/dragonfly.css" rel="stylesheet"/>
+    
+    <script src="js/mapDefinition1.js"></script>
+    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+    <link rel="stylesheet" href="awesomplete.css" />
+    <script src="awesomplete.js" async></script>
+    
+    <link href='//api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel='stylesheet' href='//api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.0/mapbox-gl-draw.css' type='text/css'/>
+    <script src='//api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.js'></script>
+    <script src='//api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.0/mapbox-gl-draw.js'></script>
+    
+    <link href="css/app.css" rel="stylesheet"/>
 </head>
 <body>
     <div class="app-container">
@@ -36,11 +49,11 @@
             </div>
             <div class="row">
                 <div class="column">
-                    <label for="isos"> Set ISOs: </label>
+                    <label for="isos"> Set NEW ISO: </label>
                     <input id="isos" size="4">
                 </div>
                 <div class="column">
-                    <label for="colonies"> Set Colony: </label>
+                    <label for="colonies"> Set NEW Colony: </label>
                     <input id="colonies" size="4">
                 </div>
             </div>
@@ -60,13 +73,14 @@
                     <input id="saveDataVersion" name="saveDataVersion" size="15">
                 </div>
                 <div class="column">
-                    <button onclick="save2local()">Save</button>
-                    <button onclick="save2file()">Save CSV</button>
+                    <button onclick="saveGeos2file()">Save GEOs</button>
+                    <button onclick="save2CSVfile()">Save CSV</button>
                 </div>
             </div>
             <div class="row">
                 <div class="column">
                     <button onclick="resetMapTable()">Deselect</button>
+                    Selectable<input type="checkbox" name="selectable" value="0" onclick="toggleSelectable()" checked>
                 </div>
                 <div class="column">
                     <label for="selectIso"> Select ISO</label>
@@ -96,30 +110,31 @@
     </div>
     <script>
         var currentYear = 2010;
-        var selectedUIDs = [];
-        var importJSONurl = 'data/data.json';
+        var selectedIDs = [];
+        var importCSV = 'data/Adm1-Drawing-2.csv';
         var allData;
+        var selectable = true;
+        var availableTags = [];
+        var availableDataVersions = [];
 
         var cursorAction = 'generate'; // [generate, select]
         var hexGridSources = [];
         var hexGridIndex = 0;
-        
+
+        dragonfly.accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
         var map = new dragonfly.Map({
             container: 'map',
-            style: mapStyle,
-            // maxBounds: [[-250,-90],[250,90]]
-            center: [0, 0],
+            style: mapStyle, // 'mapbox://styles/mapbox/basic-v9',
             zoom: 1,
+            center: [0, 0],
             maxZoom: 8
-            // pitch: 50,
-            // bearing: -10,
         });
+
         map.boxZoom.disable();
 
-
-        // var bbox = [-180,-60,180, 70];
-        
-
+        function toggleSelectable() {
+            selectable = !selectable;
+        }
 
         function setYear() {
             var newYear = parseInt(document.getElementById('currentYear').value, 10);
@@ -146,12 +161,12 @@
         }
 
         function resetMapTable() {
-            selectedUIDs.forEach(id => {
-                document.getElementById('DemoGridJSON_' + id).style['background-color'] = null;
+            selectedIDs.forEach(id => {
+                document.getElementById('DataRow' + id).style['background-color'] = null;
             });
             document.getElementById('tablecontent').style.top = '0px';
-            selectedUIDs = [];
-            map.setFilter('hovered', ['in', 'UID', 0]);
+            selectedIDs = [];
+            map.setFilter('hovered', ['in', 'ID', 0]);
         }
         
         map.on('load', function () {
@@ -170,7 +185,7 @@
             
             function mousePos(e) {
                 var rect = canvas.getBoundingClientRect();
-                return new dragonfly.Point(
+                return new mapboxgl.Point(
                     e.clientX - rect.left - canvas.clientLeft,
                     e.clientY - rect.top - canvas.clientTop
                 );
@@ -236,75 +251,47 @@
 
                 // If bbox exists. use this value as the argument for `queryRenderedFeatures`
                 if (bbox) {
-                    if (cursorAction === 'generate') {
-                        var cellSize = 20;
-                        var units = 'miles';
-                        // var newCollection = turf.hexGrid([map.unproject(bbox[0]).lng, map.unproject(bbox[0]).lat,map.unproject(bbox[1]).lng, map.unproject(bbox[1]).lat], cellSize, units);
-                        var newCollection = turf.triangleGrid([map.unproject(bbox[0]).lng, map.unproject(bbox[0]).lat,map.unproject(bbox[1]).lng, map.unproject(bbox[1]).lat], cellSize, units);
-                        if (newCollection.features.length > 0) {
-                            newCollection.features.forEach((feat, findex) => {
-                                feat.properties.id = findex;
-                            });
-                            hexGridSources.push(newCollection);
-                            map.addSource('hexGrid' + hexGridIndex, {
-                                'type': 'geojson',
-                                'data': JSON.parse(JSON.stringify(newCollection)),
-                            });
-                            map.addLayer({
-                                'id': 'hexGrid' + hexGridIndex,
-                                'type': 'line',
-                                'source': 'hexGrid' + hexGridIndex,
-                                'paint': {
-                                    'line-color': 'rgba(255, 0, 0, 0.5)',
-                                    'line-width': 1,
-                                    'line-blur': 1
-                                }
-                            });
-                            hexGridIndex += 1;
-                        }
-                    } else {
-                        var features = map.queryRenderedFeatures(bbox, { layers: ['features'] });
-                        if (features.length >= 1000) {
-                            return window.alert('Select a smaller number of features');
-                        } else if (features.length > 0) {
-                            document.getElementById('tablecontent').style.top = '0px';
-                            features.forEach(feature => {
-                                if (selectedUIDs.indexOf(feature.properties.UID) < 0) {
-                                    selectedUIDs.push(parseInt(feature.properties.UID, 10));
-                                    document.getElementById('DemoGridJSON_' + feature.properties.UID).style['background-color'] = '#F4FF00';
-                                } else {
-                                    selectedUIDs.splice(selectedUIDs.indexOf(feature.properties.UID), 1);
-                                    document.getElementById('DemoGridJSON_' + feature.properties.UID).style['background-color'] = null;
-                                }
-                            });
-                            map.setFilter('hovered', ['in', 'UID', ...selectedUIDs]);
-                            var topOffset = document.getElementById('DemoGridJSON_' + selectedUIDs[selectedUIDs.length - 1]).getBoundingClientRect().top;
-                            document.getElementById('tablecontent').style.top = (-1 * (topOffset - 200)) + 'px';
-                        }
+                    var features = map.queryRenderedFeatures(bbox, { layers: ['features'] });
+                    if (features.length >= 1000) {
+                        return window.alert('Select a smaller number of features');
+                    } else if (features.length > 0) {
+                        document.getElementById('tablecontent').style.top = '0px';
+                        features.forEach(feature => {
+                            if (selectedIDs.indexOf(feature.properties.ID) < 0) {
+                                selectedIDs.push(parseInt(feature.properties.ID, 10));
+                                document.getElementById('DataRow' + feature.properties.ID).style['background-color'] = '#F4FF00';
+                            } else {
+                                selectedIDs.splice(selectedIDs.indexOf(feature.properties.ID), 1);
+                                document.getElementById('DataRow' + feature.properties.ID).style['background-color'] = null;
+                            }
+                        });
+                        map.setFilter('hovered', ['in', 'ID', ...selectedIDs]);
+                        var topOffset = document.getElementById('DataRow' + selectedIDs[selectedIDs.length - 1]).getBoundingClientRect().top;
+                        document.getElementById('tablecontent').style.top = (-1 * (topOffset - 200)) + 'px';
                     }
                 }
                 map.dragPan.enable();
             }
 
-            function setUnsetUID(uid) {
-                console.log('setUnsetUID(' + uid + ')');
-                if (selectedUIDs.indexOf(uid) < 0) {
-                    selectedUIDs.push(parseInt(uid, 10));
-                    map.setFilter('hovered', ['in', 'UID', ...selectedUIDs]);
-                    document.getElementById('DemoGridJSON_' + uid).style['background-color'] = '#F4FF00';
+            function setUnsetID(uid) {
+                console.log('setUnsetID(' + uid + ')');
+                if (selectedIDs.indexOf(uid) < 0) {
+                    selectedIDs.push(parseInt(uid, 10));
+                    map.setFilter('hovered', ['in', 'ID', ...selectedIDs]);
+                    document.getElementById('DataRow' + uid).style['background-color'] = '#F4FF00';
                     scrollTable(uid);
                     
                 } else {
-                    selectedUIDs.splice(selectedUIDs.indexOf(uid), 1);
-                    map.setFilter('hovered', ['in', 'UID', ...selectedUIDs]);
-                    document.getElementById('DemoGridJSON_' + uid).style['background-color'] = null;
-                    scrollTable(selectedUIDs[selectedUIDs.length - 1]);
+                    selectedIDs.splice(selectedIDs.indexOf(uid), 1);
+                    map.setFilter('hovered', ['in', 'ID', ...selectedIDs]);
+                    document.getElementById('DataRow' + uid).style['background-color'] = null;
+                    scrollTable(selectedIDs[selectedIDs.length - 1]);
                 }
             }
 
             function scrollTable(uid) {
                 if (uid) {
-                    var topDiff = $('#DemoGridJSON_' + uid).offset().top - $('#tablecontent').position().top;
+                    var topDiff = $('#DataRow' + uid).offset().top - $('#tablecontent').position().top;
                     $('#table-container').animate({
                         scrollTop: topDiff - 50
                     }, 500);
@@ -312,38 +299,50 @@
             }
 
             map.on('click', function(e) {
-                var features = map.queryRenderedFeatures(e.point, { layers: ['features'] });
-                if (features.length > 0) {
-                    var feature = features[0];
-                    setUnsetUID(feature.properties.UID);
+                if (selectable) {
+                    var features = map.queryRenderedFeatures(e.point, { layers: ['features'] });
+                    if (features.length > 0) {
+                        var feature = features[0];
+                        setUnsetID(feature.properties.ID);
+                    }
                 }
             });
+
+            var draw = new MapboxDraw({
+                displayControlsDefault: false,
+                controls: {
+                    polygon: true,
+                    trash: true
+                }
+            });
+            window.draw = draw;
+            map.addControl(draw);
         });
 
         function initAutocompleteValuePicker(data) {
-            var availableTags = [];
-            var availableDataVersions = Object.keys(localStorage);
-            data.forEach(e => {
-                if (availableTags.indexOf(e.columns[1]) < 0) {
-                    availableTags.push(e.columns[1]);
+            availableTags = [];
+            availableDataVersions = Object.keys(localStorage);
+            data.forEach((e, idx) => {
+                if (availableTags.indexOf(e[1]) < 0 && idx > 0) {
+                    availableTags.push(e[1]);
                 }
             });
             $( "#isos" ).autocomplete({
               source: availableTags,
               select: function(event, ui) {
-                // console.log('ISOs')
-                // console.log(event);
+                console.log('ISOs')
+                console.log(event);
                 // console.log(ui);
-                setColumnValue(3, selectedUIDs, ui.item.value);
+                setColumnValue('ISONEW', selectedIDs, ui.item.value);
               }
             });
             $( "#colonies" ).autocomplete({
               source: availableTags,
               select: function(event, ui) {
-                // console.log('colonies')
-                // console.log(event);
+                console.log('colonies')
+                console.log(event);
                 // console.log(ui);
-                setColumnValue(4, selectedUIDs, ui.item.value);
+                setColumnValue('Colony', selectedIDs, ui.item.value);
               }
             });
             $( "#selectIso" ).autocomplete({
@@ -373,26 +372,27 @@
         }
 
         function getRow(id) {
-            return window.editableGrid.data.filter(r => {return r.columns[0] === id;})[0];
+            return allData.filter(r => {return r.columns[0] === id;})[0];
         }
 
         function getRows(ids) {
-            return window.editableGrid.data.filter(r => {return ids.indexOf(r.columns[0]) >= 0;});
+            return allData.filter(r => {return ids.indexOf(r.columns[0]) >= 0;});
         }
 
-        function setColumnValue(colIdx, ids, value) {
+        function setColumnValue(colName, ids, value) {
+            var colIdx = allData[0].indexOf(colName);
             var rows = getRows(ids);
             rows.forEach(row => {
-                 row.columns[colIdx] = value;
+                debugger;
+                row.columns[colIdx] = value;
             });
-            editableGrid.renderGrid();
             save2local();
         }
 
         function replicateDataColumns() {
             var fromColumnIdx = parseInt(document.getElementById('fromIdx').value, 10);
             var toColumnIdx = parseInt(document.getElementById('toIdx').value, 10);
-            window.editableGrid.data.forEach(row => {
+            allData.forEach(row => {
                 row.columns[toColumnIdx] = row.columns[fromColumnIdx].toString();
             });
             editableGrid.renderGrid();
@@ -400,23 +400,13 @@
 
         function save2local() {
             var saveDataVersion = document.getElementById('saveDataVersion').value;
-            localStorage.setItem(saveDataVersion, JSON.stringify(window.editableGrid.data));
+            localStorage.setItem(saveDataVersion, JSON.stringify(allData));
             alert('Saved version ' + saveDataVersion);
         }
 
-        function save2file() {
-            var header = window.editableGrid.columns.map(c => {
-                return c.name;
-            });
-            var data = [header];
-            window.editableGrid.data.forEach(row => {
-                var newRow = Object.keys(row.columns).map(column => {
-                    return row.columns[column];
-                });
-                data.push(newRow);
-            });
+        function save2CSVfile() {
             var csvContent = 'data:text/csv;charset=utf-8,';
-            data.forEach((infoArray, index) => {
+            allData.forEach((infoArray, index) => {
                var dataString = infoArray.join(',');
                csvContent += (index < data.length )? dataString + '\n' : dataString;
             });
@@ -428,22 +418,20 @@
             link.click(); // This will download the data file named "my_data.csv".
         }
 
-        function saveGrids2file() {
-            hexGridSources.forEach((grid, gi) => {
-                var content = JSON.stringify(grid);
-                var encodedUri = encodeURI(content);
-                var link = document.createElement('a');
-                link.setAttribute('href', encodedUri);
-                link.setAttribute('download', 'grid_' + gi + '.json');
-                document.body.appendChild(link); // Required for FF
-                link.click(); // This will download the data file named "my_data.csv".
-            });
+        function saveGeos2file() {
+            var content = JSON.stringify(window.draw.getAll());
+            var encodedUri = encodeURI(content);
+            var link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', 'geo_overlay_' + currentYear + '.json');
+            document.body.appendChild(link); // Required for FF
+            link.click(); // This will download the data file named "my_data.csv".
         }
 
         function loadLocal() {
             var loadDataVersion = document.getElementById('loadDataVersion').value;
             if (localStorage.getItem(loadDataVersion)) {
-                window.editableGrid.data = JSON.parse(localStorage.getItem(loadDataVersion));
+                allData = JSON.parse(localStorage.getItem(loadDataVersion));
                 window.editableGrid.renderGrid();
                 alert('Loaded version ' + loadDataVersion);
             } else {
@@ -464,30 +452,32 @@
                } 
             });
 
-            var features = window.editableGrid.data.filter(r => {return r.columns[variableIndex] === iso;});
+            var features = allData.filter(r => {return r.columns[variableIndex] === iso;});
             document.getElementById('tablecontent').style.top = '0px';
             features.forEach(feature => {
-                if (selectedUIDs.indexOf(feature.columns[0]) < 0) {
-                    selectedUIDs.push(parseInt(feature.columns[0], 10));
-                    document.getElementById('DemoGridJSON_' + feature.columns[0]).style['background-color'] = '#F4FF00';
+                if (selectedIDs.indexOf(feature.columns[0]) < 0) {
+                    selectedIDs.push(parseInt(feature.columns[0], 10));
+                    document.getElementById('DataRow' + feature.columns[0]).style['background-color'] = '#F4FF00';
                 } else {
-                    selectedUIDs.splice(selectedUIDs.indexOf(feature.columns[0]), 1);
-                    document.getElementById('DemoGridJSON_' + feature.columns[0]).style['background-color'] = null;
+                    selectedIDs.splice(selectedIDs.indexOf(feature.columns[0]), 1);
+                    document.getElementById('DataRow' + feature.columns[0]).style['background-color'] = null;
                 }
             });
-            map.setFilter('hovered', ['in', 'UID', ...selectedUIDs]);
-            var topOffset = document.getElementById('DemoGridJSON_' + selectedUIDs[selectedUIDs.length - 1]).getBoundingClientRect().top;
+            map.setFilter('hovered', ['in', 'ID', ...selectedIDs]);
+            var topOffset = document.getElementById('DataRow' + selectedIDs[selectedIDs.length - 1]).getBoundingClientRect().top;
             document.getElementById('tablecontent').style.top = (-1 * (topOffset - 200)) + 'px';
         }
 
         function loadParseCSV() {
-            $.get('data/allData.csv', (response, status, xhr) => {
+            $.get(importCSV, (response, status, xhr) => {
                 if ( status === 'error' ) {
                     console.log('Sorry but there was an error');
                 } else {
                     allData = response.split('\n').map(line => {
                         return line.split(',');
                     });
+                    initAutocompleteValuePicker(allData);
+                    csvTable(response);
                 }
             });
         }
@@ -509,10 +499,13 @@
 
         function csvTable(csv){
             const tbody = document.createElement('tbody');
-            csv.split('\n').forEach(line => {
+            tbody.id = 
+            csv.split('\n').forEach((line, lindex) => {
                 const row = document.createElement("tr");
-                line.split(',').forEach(column => {
-                    const col = document.createElement('td');
+                const columns = line.split(',');
+                row.id = 'DataRow' + columns[0];
+                columns.forEach(column => {
+                    const col = (lindex > 0) ? document.createElement('td') : document.createElement("th");
                     col.innerText = column;
                     row.appendChild(col);
                     return col;

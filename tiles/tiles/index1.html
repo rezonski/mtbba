@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Interactive map of effects of Iran Nuclear Deal</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src="js/turf.min.js"></script>
+    <script src="js/dragonfly-dev.js"></script>
+    <script src="js/mapDefinition1.js"></script>
+    <script src="js/editablegrid.js"></script>
+    <script src="js/editablegrid_renderers.js" ></script>
+    <script src="js/editablegrid_editors.js" ></script>
+    <script src="js/editablegrid_validators.js" ></script>
+    <script src="js/editablegrid_utils.js" ></script>
+    <script src="js/editablegrid_charts.js" ></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://rawgit.com/mholt/PapaParse/master/papaparse.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="css/editablegrid.css" type="text/css" media="screen">
+    <link href="css/app.css" rel="stylesheet"/>
+    <link href="css/dragonfly.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="app-container">
+        <div class="map-container">
+            <div id="map" class="dragonfly-map"></div>
+        </div>
+        <div id="table-container" class="table-container">
+            <div id="tablecontent"></div>
+        </div>
+        <div class="data-maniputlation controls">
+            <div class="row">
+                <div class="column">
+                    <label for="fromIdx">from idx</label>
+                    <input id="fromIdx" size="2">
+                    <label for="toIdx">to idx</label>
+                    <input id="toIdx" size="2">
+                </div>
+                <div class="column">
+                    <button onclick="replicateDataColumns()">Replicate values</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="isos"> Set ISOs: </label>
+                    <input id="isos" size="4">
+                </div>
+                <div class="column">
+                    <label for="colonies"> Set Colony: </label>
+                    <input id="colonies" size="4">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <input id="loadDataVersion" name="loadDataVersion" size="15">
+                    <button onclick="loadLocal()">Load</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <button onclick="resetData()">Reset</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <input id="saveDataVersion" name="saveDataVersion" size="15">
+                </div>
+                <div class="column">
+                    <button onclick="save2local()">Save</button>
+                    <button onclick="save2file()">Save CSV</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <button onclick="resetMapTable()">Deselect</button>
+                </div>
+                <div class="column">
+                    <label for="selectIso"> Select ISO</label>
+                    <input id="selectIso" size="4">
+                </div>
+                <div class="column">
+                    <label for="selectNewIso"> Select new ISO</label>
+                    <input id="selectNewIso" size="4">
+                </div>
+                <div class="column">
+                    <label for="selectColony"> Select new Colony</label>
+                    <input id="selectColony" size="4">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="currentYear"> Curent year: </label>
+                    <input type="number" id="currentYear" name="currentYear" value="2010" size="4">
+                </div>
+                <div class="column">
+                    <button onclick="setYear()">Set year</button>
+                </div>
+            </div>
+        </div>
+        <div class="year-switch controls">
+        </div>
+    </div>
+    <script>
+        var currentYear = 2010;
+        var selectedUIDs = [];
+        var importJSONurl = 'data/data.json';
+        var dataJSON;
+
+        var cursorAction = 'generate'; // [generate, select]
+        var hexGridSources = [];
+        var hexGridIndex = 0;
+        
+        var map = new dragonfly.Map({
+            container: 'map',
+            style: mapStyle,
+            // maxBounds: [[-250,-90],[250,90]]
+            center: [0, 0],
+            zoom: 1,
+            maxZoom: 8
+            // pitch: 50,
+            // bearing: -10,
+        });
+        map.boxZoom.disable();
+
+
+        // var bbox = [-180,-60,180, 70];
+        
+
+
+        function setYear() {
+            var newYear = parseInt(document.getElementById('currentYear').value, 10);
+            if (currentYear !== newYear) {
+                console.info('Set tiles to ' + newYear);
+                if (map.getSource('rasterSource')) {
+                    map.removeLayer('history-tiles');
+                    map.removeSource('rasterSource');
+                    map.addSource('rasterSource', {
+                        'type': 'raster',
+                        'tiles': ['http://wpc.4693.edgecastcdn.net/004693/tiles/area/' + newYear + '/Z{z}/{y}/{x}.png?v=20'],
+                        'tileSize': 256
+                    });
+                    map.addLayer({
+                        'id': 'history-tiles',
+                        'type': 'raster',
+                        'source': 'rasterSource',
+                        'minzoom': 0,
+                        'maxzoom': 7
+                    }, 'dummy');
+                    currentYear = parseInt(newYear, 10);
+                }
+            }
+        }
+
+        function resetMapTable() {
+            selectedUIDs.forEach(id => {
+                document.getElementById('DemoGridJSON_' + id).style['background-color'] = null;
+            });
+            document.getElementById('tablecontent').style.top = '0px';
+            selectedUIDs = [];
+            map.setFilter('hovered', ['in', 'UID', 0]);
+        }
+        
+        map.on('load', function () {
+            map.fitBounds([[-180,-63],[180,80]]);
+            var canvas = map.getCanvasContainer();
+            var start;
+            var current;
+            var box;
+
+            map.dragRotate.disable();
+
+            canvas.addEventListener('mousedown', mouseDown, true);
+            // Return the xy coordinates of the mouse position
+            function mousePos(e) {
+                var rect = canvas.getBoundingClientRect();
+                return new dragonfly.Point(
+                    e.clientX - rect.left - canvas.clientLeft,
+                    e.clientY - rect.top - canvas.clientTop
+                );
+            }
+
+            function mouseDown(e) {
+                // Continue the rest of the function if the shiftkey is pressed.
+                if (!(e.shiftKey && e.button === 0)) return;
+                // Disable default drag zooming when the shift key is held down.
+                map.dragPan.disable();
+                // Call functions for the following events
+                document.addEventListener('mousemove', onMouseMove);
+                document.addEventListener('mouseup', onMouseUp);
+                document.addEventListener('keydown', onKeyDown);
+                // Capture the first xy coordinates
+                start = mousePos(e);
+            }
+
+            function onMouseMove(e) {
+                // Capture the ongoing xy coordinates
+                current = mousePos(e);
+
+                // Append the box element if it doesnt exist
+                if (!box) {
+                    box = document.createElement('div');
+                    box.classList.add('boxdraw');
+                    canvas.appendChild(box);
+                }
+
+                var minX = Math.min(start.x, current.x),
+                    maxX = Math.max(start.x, current.x),
+                    minY = Math.min(start.y, current.y),
+                    maxY = Math.max(start.y, current.y);
+
+                // Adjust width and xy position of the box element ongoing
+                var pos = 'translate(' + minX + 'px,' + minY + 'px)';
+                box.style.transform = pos;
+                box.style.WebkitTransform = pos;
+                box.style.width = maxX - minX + 'px';
+                box.style.height = maxY - minY + 'px';
+            }
+            
+            function onMouseUp(e) {
+                // Capture xy coordinates
+                finish([start, mousePos(e)]);
+            }
+
+            function onKeyDown(e) {
+                // If the ESC key is pressed
+                if (e.keyCode === 27) finish();
+            }
+
+            function finish(bbox) {
+                // Remove these events now that finish has been called.
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('keydown', onKeyDown);
+                document.removeEventListener('mouseup', onMouseUp);
+
+                if (box) {
+                    box.parentNode.removeChild(box);
+                    box = null;
+                }
+
+                // If bbox exists. use this value as the argument for `queryRenderedFeatures`
+                if (bbox) {
+                    if (cursorAction === 'generate') {
+                        var cellSize = 20;
+                        var units = 'miles';
+                        // var newCollection = turf.hexGrid([map.unproject(bbox[0]).lng, map.unproject(bbox[0]).lat,map.unproject(bbox[1]).lng, map.unproject(bbox[1]).lat], cellSize, units);
+                        var newCollection = turf.triangleGrid([map.unproject(bbox[0]).lng, map.unproject(bbox[0]).lat,map.unproject(bbox[1]).lng, map.unproject(bbox[1]).lat], cellSize, units);
+                        if (newCollection.features.length > 0) {
+                            newCollection.features.forEach((feat, findex) => {
+                                feat.properties.id = findex;
+                            });
+                            hexGridSources.push(newCollection);
+                            map.addSource('hexGrid' + hexGridIndex, {
+                                'type': 'geojson',
+                                'data': JSON.parse(JSON.stringify(newCollection)),
+                            });
+                            map.addLayer({
+                                'id': 'hexGrid' + hexGridIndex,
+                                'type': 'line',
+                                'source': 'hexGrid' + hexGridIndex,
+                                'paint': {
+                                    'line-color': 'rgba(255, 0, 0, 0.5)',
+                                    'line-width': 1,
+                                    'line-blur': 1
+                                }
+                            });
+                            hexGridIndex += 1;
+                        }
+                    } else {
+                        var features = map.queryRenderedFeatures(bbox, { layers: ['features'] });
+                        if (features.length >= 1000) {
+                            return window.alert('Select a smaller number of features');
+                        } else if (features.length > 0) {
+                            document.getElementById('tablecontent').style.top = '0px';
+                            features.forEach(feature => {
+                                if (selectedUIDs.indexOf(feature.properties.UID) < 0) {
+                                    selectedUIDs.push(parseInt(feature.properties.UID, 10));
+                                    document.getElementById('DemoGridJSON_' + feature.properties.UID).style['background-color'] = '#F4FF00';
+                                } else {
+                                    selectedUIDs.splice(selectedUIDs.indexOf(feature.properties.UID), 1);
+                                    document.getElementById('DemoGridJSON_' + feature.properties.UID).style['background-color'] = null;
+                                }
+                            });
+                            map.setFilter('hovered', ['in', 'UID', ...selectedUIDs]);
+                            var topOffset = document.getElementById('DemoGridJSON_' + selectedUIDs[selectedUIDs.length - 1]).getBoundingClientRect().top;
+                            document.getElementById('tablecontent').style.top = (-1 * (topOffset - 200)) + 'px';
+                        }
+                    }
+                }
+                map.dragPan.enable();
+            }
+
+            function setUnsetUID(uid) {
+                console.log('setUnsetUID(' + uid + ')');
+                if (selectedUIDs.indexOf(uid) < 0) {
+                    selectedUIDs.push(parseInt(uid, 10));
+                    map.setFilter('hovered', ['in', 'UID', ...selectedUIDs]);
+                    document.getElementById('DemoGridJSON_' + uid).style['background-color'] = '#F4FF00';
+                    scrollTable(uid);
+                    
+                } else {
+                    selectedUIDs.splice(selectedUIDs.indexOf(uid), 1);
+                    map.setFilter('hovered', ['in', 'UID', ...selectedUIDs]);
+                    document.getElementById('DemoGridJSON_' + uid).style['background-color'] = null;
+                    scrollTable(selectedUIDs[selectedUIDs.length - 1]);
+                }
+            }
+
+            function scrollTable(uid) {
+                if (uid) {
+                    var topDiff = $('#DemoGridJSON_' + uid).offset().top - $('#tablecontent').position().top;
+                    $('#table-container').animate({
+                        scrollTop: topDiff - 50
+                    }, 500);
+                }
+            }
+
+            map.on('click', function(e) {
+                var features = map.queryRenderedFeatures(e.point, { layers: ['features'] });
+                if (features.length > 0) {
+                    var feature = features[0];
+                    setUnsetUID(feature.properties.UID);
+                }
+            });
+        });
+
+        function initAutocompleteValuePicker(data) {
+            var availableTags = [];
+            var availableDataVersions = Object.keys(localStorage);
+            data.forEach(e => {
+                if (availableTags.indexOf(e.columns[1]) < 0) {
+                    availableTags.push(e.columns[1]);
+                }
+            });
+            $( "#isos" ).autocomplete({
+              source: availableTags,
+              select: function(event, ui) {
+                // console.log('ISOs')
+                // console.log(event);
+                // console.log(ui);
+                setColumnValue(3, selectedUIDs, ui.item.value);
+              }
+            });
+            $( "#colonies" ).autocomplete({
+              source: availableTags,
+              select: function(event, ui) {
+                // console.log('colonies')
+                // console.log(event);
+                // console.log(ui);
+                setColumnValue(4, selectedUIDs, ui.item.value);
+              }
+            });
+            $( "#selectIso" ).autocomplete({
+              source: availableTags,
+              select: function(event, ui) {
+                console.log('select all features with ISO code ' + ui.item.value);
+                selectAllFeaturesByVariable('ISO', ui.item.value);
+              }
+            });
+            $( "#selectNewIso" ).autocomplete({
+              source: availableTags,
+              select: function(event, ui) {
+                console.log('select all features with new ISO code ' + ui.item.value);
+                selectAllFeaturesByVariable('ISONEW', ui.item.value);
+              }
+            });
+            $( "#selectColony" ).autocomplete({
+              source: availableTags,
+              select: function(event, ui) {
+                console.log('select all features with colony code ' + ui.item.value);
+                selectAllFeaturesByVariable('Colony', ui.item.value);
+              }
+            });
+            $( "#loadDataVersion" ).autocomplete({
+              source: availableDataVersions,
+            });
+        }
+
+        function getRow(id) {
+            return window.editableGrid.data.filter(r => {return r.columns[0] === id;})[0];
+        }
+
+        function getRows(ids) {
+            return window.editableGrid.data.filter(r => {return ids.indexOf(r.columns[0]) >= 0;});
+        }
+
+        function setColumnValue(colIdx, ids, value) {
+            var rows = getRows(ids);
+            rows.forEach(row => {
+                 row.columns[colIdx] = value;
+            });
+            editableGrid.renderGrid();
+            save2local();
+        }
+
+        function replicateDataColumns() {
+            var fromColumnIdx = parseInt(document.getElementById('fromIdx').value, 10);
+            var toColumnIdx = parseInt(document.getElementById('toIdx').value, 10);
+            window.editableGrid.data.forEach(row => {
+                row.columns[toColumnIdx] = row.columns[fromColumnIdx].toString();
+            });
+            editableGrid.renderGrid();
+        }
+
+        function save2local() {
+            var saveDataVersion = document.getElementById('saveDataVersion').value;
+            localStorage.setItem(saveDataVersion, JSON.stringify(window.editableGrid.data));
+            alert('Saved version ' + saveDataVersion);
+        }
+
+        function save2file() {
+            var header = window.editableGrid.columns.map(c => {
+                return c.name;
+            });
+            var data = [header];
+            window.editableGrid.data.forEach(row => {
+                var newRow = Object.keys(row.columns).map(column => {
+                    return row.columns[column];
+                });
+                data.push(newRow);
+            });
+            var csvContent = 'data:text/csv;charset=utf-8,';
+            data.forEach((infoArray, index) => {
+               var dataString = infoArray.join(',');
+               csvContent += (index < data.length )? dataString + '\n' : dataString;
+            });
+            var encodedUri = encodeURI(csvContent);
+            var link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', 'year_' + currentYear + '_version_' + document.getElementById('saveDataVersion').value + '.csv');
+            document.body.appendChild(link); // Required for FF
+            link.click(); // This will download the data file named "my_data.csv".
+        }
+
+        function saveGrids2file() {
+            hexGridSources.forEach((grid, gi) => {
+                var content = JSON.stringify(grid);
+                var encodedUri = encodeURI(content);
+                var link = document.createElement('a');
+                link.setAttribute('href', encodedUri);
+                link.setAttribute('download', 'grid_' + gi + '.json');
+                document.body.appendChild(link); // Required for FF
+                link.click(); // This will download the data file named "my_data.csv".
+            });
+        }
+
+        function loadLocal() {
+            var loadDataVersion = document.getElementById('loadDataVersion').value;
+            if (localStorage.getItem(loadDataVersion)) {
+                window.editableGrid.data = JSON.parse(localStorage.getItem(loadDataVersion));
+                window.editableGrid.renderGrid();
+                alert('Loaded version ' + loadDataVersion);
+            } else {
+                alert('Unexisting version ' + loadDataVersion);
+            }
+        }
+
+        function resetData() {
+            window.editableGrid.loadJSON(importJSONurl);
+        }
+
+        function selectAllFeaturesByVariable(variable, iso) {
+            var variableIndex = 0;
+
+            window.editableGrid.columns.forEach((element, index) => {
+               if (element.name === variable) {
+                    variableIndex = parseInt(index, 10);
+               } 
+            });
+
+            var features = window.editableGrid.data.filter(r => {return r.columns[variableIndex] === iso;});
+            document.getElementById('tablecontent').style.top = '0px';
+            features.forEach(feature => {
+                if (selectedUIDs.indexOf(feature.columns[0]) < 0) {
+                    selectedUIDs.push(parseInt(feature.columns[0], 10));
+                    document.getElementById('DemoGridJSON_' + feature.columns[0]).style['background-color'] = '#F4FF00';
+                } else {
+                    selectedUIDs.splice(selectedUIDs.indexOf(feature.columns[0]), 1);
+                    document.getElementById('DemoGridJSON_' + feature.columns[0]).style['background-color'] = null;
+                }
+            });
+            map.setFilter('hovered', ['in', 'UID', ...selectedUIDs]);
+            var topOffset = document.getElementById('DemoGridJSON_' + selectedUIDs[selectedUIDs.length - 1]).getBoundingClientRect().top;
+            document.getElementById('tablecontent').style.top = (-1 * (topOffset - 200)) + 'px';
+        }
+
+        function loadParseCSV() {
+            $.get('data/allData.csv', (response, status, xhr) => {
+                if ( status === 'error' ) {
+                    console.log('Sorry but there was an error');
+                } else {
+                    const newJSON = csvJSON(response);
+                    dataJSON = {
+                        "metadata": [],
+                        "data": [],
+                    };
+                    dataJSON.metadata = Object.keys(newJSON[0]).map(k => {
+                        return {
+                            'name': k,
+                            'label': k,
+                            'datatype': (k === 'ID' || k === 'UID') ? 'integer' : 'string',
+                            'editable': (k === 'ISONEW' || k === 'Colony') ? true : false,
+                        }
+                    });
+                    dataJSON.data = newJSON.map((e, i) => {
+                        return {
+                            'id': i,
+                            'values': e
+                        };
+                    });
+                    window.editableGrid.loadJSONFromString(dataJSON);
+                }
+            });
+        }
+
+        function csvJSON(csv){
+            var lines=csv.split("\n");
+            var result = [];
+            var headers=lines[0].split(",");
+            for(var i=1;i<lines.length;i++){
+                var obj = {};
+                var currentline=lines[i].split(",");
+                for(var j=0;j<headers.length;j++){
+                    obj[headers[j]] = currentline[j];
+                }
+                result.push(obj);
+            }   
+            return result; //JSON
+        }
+
+        window.onload = function() {
+            editableGrid = new EditableGrid("DemoGridJSON"); 
+            editableGrid.tableLoaded = function() {
+                this.renderGrid("tablecontent", "testgrid");
+            };
+            editableGrid.tableRendered = function() {
+                console.log('tableRendered');
+                initAutocompleteValuePicker(editableGrid.data);
+            };
+            editableGrid.loadJSON(importJSONurl);
+        }
+    </script>
+</body>
+</html>

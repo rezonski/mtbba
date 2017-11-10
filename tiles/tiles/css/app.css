@@ -13,6 +13,11 @@ body {
   font-weight: 500;
 }
 
+td, th {
+  padding: 0 3px;
+  text-align: left;
+}
+
 h1 { font-size: 15px; }
 a { color: #548dc4; text-decoration: none; }
 a:hover { text-decoration: underline; }
