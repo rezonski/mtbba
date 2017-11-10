@@ -20,7 +20,7 @@ class WPDRawer extends BasePage {
 
     componentDidMount() {
         this.bindGluBusEvents({
-            [Enum.DataEvents.WP_SUGGESTIONS_GENERATED]: this.onWaypointsaRetrieved,
+            [Enum.DataEvents.TRAIL_DATA_RETRIEVED]: this.onWaypointsaRetrieved,
             [Enum.AppEvents.TOGGLE_WP_DRAWER]: this.onToggleOpenDrawer,
         });
     }
@@ -41,6 +41,14 @@ class WPDRawer extends BasePage {
         this.setState({
             drawerOpen: !this.state.drawerOpen,
         });
+        this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA);
+    }
+
+    onWpClick(wp) {
+        // console.log(wp);
+        this.emit(Enum.MapEvents.FOCUS_FEATURE_ON_MAP, {
+            feature: wp,
+        });
     }
 
     render() {
@@ -55,9 +63,9 @@ class WPDRawer extends BasePage {
         };
 
         const steps = this.state.waypoints.map((wp, wpIdx) => {
-            return (<div
-                        id={'wp-step-' + wpIdx}
-                        className={'wp-step'}
+            return (<div id={'wp-step-' + wpIdx}
+                        className={'flex-container row single-wp-edit-box'}
+                        onClick={this.onWpClick.bind(this, wp)}
                         key={'wp-step-' + wpIdx}>
                             <InputTextBox
                                 fieldName={'waypoints'}
@@ -68,7 +76,6 @@ class WPDRawer extends BasePage {
                                 noRows={1}
                                 filedLabel={Lang.label('name')}
                                 filedHintText={Lang.label('name')}
-                                onClick={() => console.log('onClick')}
                             />
                             <InputTextBox
                                 fieldName={'waypoints'}
@@ -79,14 +86,13 @@ class WPDRawer extends BasePage {
                                 noRows={1}
                                 filedLabel={Lang.label('pictogram')}
                                 filedHintText={Lang.label('pictogramHint')}
-                                onClick={() => console.log('onClick')}
                             />
                     </div>);
         });
 
         const content = (<div id="wp-stepper">{steps}</div>);
 
-        console.log('Render WPDRawer');
+        // console.log('Render WPDRawer');
 
         return (<Drawer
                     open={this.state.drawerOpen}

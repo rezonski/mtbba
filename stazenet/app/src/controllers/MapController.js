@@ -1,3 +1,4 @@
+/* global turf */
 import GLU from '/../../glu2.js/src/index';
 import MapModel from '/dataSources/MapModel';
 import TrailsDataModel from '/dataSources/TrailsDataModel';
@@ -19,16 +20,18 @@ class MapController extends GLU.Controller {
             [Enum.MapEvents.SHOW_PREVIEW_MAP]: this.showPreviewMap,
             [Enum.MapEvents.HIDE_PREVIEW_MAP]: this.hidePreviewMap,
             [Enum.MapEvents.PRELOAD_MAP_ICONS]: this.preloadMapIcons,
-            [Enum.MapEvents.FOCUS_POINT_ON_MAP]: this.focusPointOnMap,
+            [Enum.MapEvents.FOCUS_FEATURE_ON_MAP]: this.focusFeatureOnMap,
         });
     }
 
-    focusPointOnMap(payload) {
+    focusFeatureOnMap(payload) {
         const map = MapModel.previewMap;
+        const coords = payload.feature.geometry.coordinates;
         map.flyTo({
-            center: [payload.coordinates[0], payload.coordinates[1]],
+            center: [coords[0], coords[1]],
             zoom: 16,
         });
+        map.getSource('pointFocusCollection').setData(turf.featureCollection([payload.feature]));
     }
 
     getMapInitSetup() {

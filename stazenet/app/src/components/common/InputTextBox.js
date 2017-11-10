@@ -19,9 +19,9 @@ class InputTextBox extends BasePage {
         this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA);
     }
 
-    componentWillUnmount() {
-        this.unbindGluBusEvents();
-    }
+    // componentWillUnmount() {
+    //     this.unbindGluBusEvents();
+    // }
 
     onTextFieldChanged(event) {
         const payload = {
@@ -38,6 +38,8 @@ class InputTextBox extends BasePage {
 
     onTrailDataRetrieved(payload) {
         if (payload[this.props.fieldName] && this.props.fieldIndex !== undefined && this.props.fieldProp) {
+            // console.log(this.props);
+            // console.log(payload);
             if (payload[this.props.fieldName][this.props.fieldIndex].properties[this.props.fieldProp] !== this.state.value) {
                 this.setState({
                     value: payload[this.props.fieldName][this.props.fieldIndex].properties[this.props.fieldProp],

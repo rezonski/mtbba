@@ -65,6 +65,17 @@ class MapHelper {
             previewMap.getSource('tempCollection').setData(intialisedCollection);
         }
 
+        // Add previewCollection source if not exists
+        if (!previewMap.getSource('pointFocusCollection')) {
+            previewMap.addSource('pointFocusCollection', {
+                type: 'geojson',
+                data: turf.featureCollection([]),
+            });
+        } else {
+            console.info('Source&layer "pointFocusCollection" already exists');
+            previewMap.getSource('pointFocusCollection').setData(intialisedCollection);
+        }
+
         // Add preview layer
         if (!previewMap.getLayer('previewCollection')) {
             console.info('Add layer previewCollection');
@@ -94,6 +105,22 @@ class MapHelper {
             tempPointLayerPreview.paint['circle-radius'] = 6;
             tempPointLayerPreview.paint['circle-stroke-width'] = 4;
             tempPointLayerPreview.paint['circle-stroke-color'] = '#FFFFFF';
+            previewMap.addLayer(tempPointLayerPreview);
+        }
+
+        // Add temp layer
+        if (!previewMap.getLayer('pointFocusCollection')) {
+            console.info('Add layer pointFocusCollection');
+            const tempPointLayerPreview = {};
+            tempPointLayerPreview.id = 'pointFocusCollection';
+            tempPointLayerPreview.type = 'circle';
+            tempPointLayerPreview.source = 'pointFocusCollection';
+            tempPointLayerPreview.paint = {};
+            tempPointLayerPreview.paint['circle-color'] = '#F00';
+            tempPointLayerPreview.paint['circle-opacity'] = 0.4;
+            tempPointLayerPreview.paint['circle-radius'] = 10;
+            tempPointLayerPreview.paint['circle-stroke-width'] = 1;
+            tempPointLayerPreview.paint['circle-stroke-color'] = '#900';
             previewMap.addLayer(tempPointLayerPreview);
         }
 

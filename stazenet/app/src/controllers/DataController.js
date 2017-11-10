@@ -291,7 +291,7 @@ class DataController extends GLU.Controller {
     }
 
     searchOneWaypointToponyms(waypoints, widx) {
-        if (waypoints[widx]) {
+        if (!waypoints[widx]) {
             const setup = {
                 coordinates: waypoints[widx].geometry.coordinates[1] + ',' + waypoints[widx].geometry.coordinates[0],
                 key: 'AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis',
