@@ -16,7 +16,7 @@ class InputTextBox extends BasePage {
         this.bindGluBusEvents({
             [Enum.DataEvents.TRAIL_DATA_RETRIEVED]: this.onTrailDataRetrieved,
         });
-        // this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA);
+        this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA);
     }
 
     // componentWillUnmount() {
