@@ -11,21 +11,19 @@ class ImagePreview extends BasePage {
         this.state = {
             value: undefined,
         };
-        this.bindGluBusEvents({
-            [MessageEvents.PICTURE_UPLOAD_STATUS]: this.onPictureUploadStatus,
-        });
     }
 
     componentDidMount() {
         this.bindGluBusEvents({
             [Enum.DataEvents.TRAIL_DATA_RETRIEVED]: this.onTrailDataRetrieved,
+            [MessageEvents.PICTURE_UPLOAD_STATUS]: this.onPictureUploadStatus,
         });
         this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA);
     }
 
-    componentWillUnmount() {
-        this.unbindGluBusEvents();
-    }
+    // componentWillUnmount() {
+    //     this.unbindGluBusEvents();
+    // }
 
     onPictureUploadStatus(payload) {
         if (payload.imgURL) {
@@ -36,11 +34,10 @@ class ImagePreview extends BasePage {
     }
 
     onTrailDataRetrieved(payload) {
-        if (this.props.fieldIndex !== undefined &&
-            payload[this.props.fieldName] &&
-            payload[this.props.fieldName][this.props.fieldIndex] &&
-            payload[this.props.fieldName][this.props.fieldIndex][this.props.fieldProp]) {
-            if (payload[this.props.fieldName][this.props.fieldIndex][this.props.fieldProp] !== this.state.value) {
+        if (payload[this.props.fieldName] && this.props.fieldIndex !== undefined && this.props.fieldProp) {
+            // console.log(this.props);
+            // console.log(payload);
+            if (payload[this.props.fieldName][this.props.fieldIndex].properties[this.props.fieldProp] !== this.state.value) {
                 this.setState({
                     value: payload[this.props.fieldName][this.props.fieldIndex].properties[this.props.fieldProp],
                 });

@@ -38,16 +38,24 @@ class WPDRawer extends BasePage {
     }
 
     onToggleOpenDrawer() {
+        if (this.state.drawerOpen) {
+            this.emit(Enum.AppEvents.PREVIEW_PICTOGRAM, {
+                wpIndex: null,
+            });
+        }
         this.setState({
             drawerOpen: !this.state.drawerOpen,
         });
         this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA);
     }
 
-    onWpClick(wp) {
+    onWpClick(wp, wpIdx) {
         // console.log(wp);
         this.emit(Enum.MapEvents.FOCUS_FEATURE_ON_MAP, {
             feature: wp,
+        });
+        this.emit(Enum.AppEvents.PREVIEW_PICTOGRAM, {
+            wpIndex: wpIdx,
         });
     }
 
@@ -65,7 +73,7 @@ class WPDRawer extends BasePage {
         const steps = this.state.waypoints.map((wp, wpIdx) => {
             return (<div id={'wp-step-' + wpIdx}
                         className={'flex-container row single-wp-edit-box'}
-                        onClick={this.onWpClick.bind(this, wp)}
+                        onClick={this.onWpClick.bind(this, wp, wpIdx)}
                         key={'wp-step-' + wpIdx}>
                             <InputTextBox
                                 fieldName={'waypoints'}

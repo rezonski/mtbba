@@ -6,6 +6,7 @@ import NewEditActionButton from '../components/menu/NewEditActionButton';
 import NewTrailContainer from '../components/newTrail/NewTrailContainer';
 import OpenTrailContainer from '../components/openTrail/OpenTrailContainer';
 import AllWPEditor from '../components/wpEditor/AllWPEditor';
+import PictogramPreview from '../components/wpEditor/PictogramPreview';
 import MainToolbar from '../components/menu/MainToolbar';
 import MapController from '../controllers/MapController';
 import DataController from '../controllers/DataController';
@@ -43,6 +44,7 @@ class Root extends BasePage {
                 <div id="map-container">
                     {this.props.children}
                     <Message />
+                    <PictogramPreview />
                     <NewTrailContainer />
                     <OpenTrailContainer />
                     <AllWPEditor />

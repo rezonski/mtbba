@@ -27,6 +27,9 @@ class WPEditorTray extends BasePage {
         this.emit(Enum.MapEvents.FOCUS_POINT_ON_MAP, {
             coordinates: this.state.wp.geometry.coordinates,
         });
+        this.emit(Enum.AppEvents.PREVIEW_PICTOGRAM, {
+            wpIndex: this.state.wpIndex,
+        });
     }
 
     render() {
