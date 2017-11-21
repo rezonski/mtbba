@@ -42,6 +42,19 @@ class NewTrailContainer extends BasePage {
         this.unbindGluBusEvents();
     }
 
+    componentDidUpdate() {
+        switch (this.state.stepIndex) {
+            case 3:
+                this.emit(Enum.AppEvents.ENABLE_WP_DRAWER);
+                break;
+            case 4:
+                this.emit(Enum.MapEvents.HIDE_PREVIEW_MAP);
+                break;
+            default:
+                break;
+        }
+    }
+
     onOpenFormRequest() {
         this.setState({
             open: true,
@@ -59,16 +72,18 @@ class NewTrailContainer extends BasePage {
             case 0:
                 return (<StepUpload/>);
             case 1:
-                return (<StepWaypointsPreprocessing/>);
-            case 2:
                 return (<StepMapPreview/>);
+            case 2:
+                return (<StepWaypointsPreprocessing/>);
             case 3:
-                return (<StepProcessing/>);
+                return (<StepMapPreview/>);
             case 4:
-                return (<StepParameters/>);
+                return (<StepProcessing/>);
             case 5:
-                return (<StepDescription/>);
+                return (<StepParameters/>);
             case 6:
+                return (<StepDescription/>);
+            case 7:
                 return (<StepChartPreview/>);
         }
     }
@@ -95,22 +110,25 @@ class NewTrailContainer extends BasePage {
                         <StepButton onClick={() => this.setState({ stepIndex: 0 })}>{Lang.label('stepperStepUpload')}</StepButton>
                     </Step>
                     <Step>
-                        <StepButton onClick={() => this.setState({ stepIndex: 1 })}>{Lang.label('stepperWpPreprocess')}</StepButton>
+                        <StepButton onClick={() => this.setState({ stepIndex: 1 })}>{Lang.label('stepperMapPreview')}</StepButton>
                     </Step>
                     <Step>
-                        <StepButton onClick={() => this.setState({ stepIndex: 2 })}>{Lang.label('stepperMapPreview')}</StepButton>
+                        <StepButton onClick={() => this.setState({ stepIndex: 2 })}>{Lang.label('stepperWpPreprocess')}</StepButton>
                     </Step>
                     <Step>
-                        <StepButton onClick={() => this.setState({ stepIndex: 3 })}>{Lang.label('stepperStepProcessing')}</StepButton>
+                        <StepButton onClick={() => this.setState({ stepIndex: 3 })}>{Lang.label('stepperMapPreview')}</StepButton>
                     </Step>
                     <Step>
-                        <StepButton onClick={() => this.setState({ stepIndex: 4 })}>{Lang.label('stepperStepParameters')}</StepButton>
+                        <StepButton onClick={() => this.setState({ stepIndex: 4 })}>{Lang.label('stepperStepProcessing')}</StepButton>
                     </Step>
                     <Step>
-                        <StepButton onClick={() => this.setState({ stepIndex: 5 })}>{Lang.label('stepperStepDescription')}</StepButton>
+                        <StepButton onClick={() => this.setState({ stepIndex: 5 })}>{Lang.label('stepperStepParameters')}</StepButton>
                     </Step>
                     <Step>
-                        <StepButton onClick={() => this.setState({ stepIndex: 6 })}>{Lang.label('stepperStepPreview')}</StepButton>
+                        <StepButton onClick={() => this.setState({ stepIndex: 6 })}>{Lang.label('stepperStepDescription')}</StepButton>
+                    </Step>
+                    <Step>
+                        <StepButton onClick={() => this.setState({ stepIndex: 7 })}>{Lang.label('stepperStepPreview')}</StepButton>
                     </Step>
                 </Stepper>
                 <div className="stepper-container">
@@ -123,7 +141,7 @@ class NewTrailContainer extends BasePage {
                             style={{ marginRight: 12 }}
                         />
                         <RaisedButton
-                            label={stepIndex === 5 ? Lang.label('save') : Lang.label('next')}
+                            label={stepIndex === 7 ? Lang.label('save') : Lang.label('next')}
                             primary={true}
                             onTouchTap={this.state.finished ? this.onSaveAddedTrail : this.onHandleNext}
                         />
@@ -134,8 +152,6 @@ class NewTrailContainer extends BasePage {
     }
 
     handleClose() {
-        // this.emit(Enum.MapEvents.REQUEST_DISPLAY_PATH_LAYERS);
-        this.emit(Enum.MapEvents.REBUILD_PATH_LAYERS);
         this.setState({
             open: false,
             stepIndex: 0,
@@ -144,29 +160,23 @@ class NewTrailContainer extends BasePage {
     }
 
     saveAddedTrail() {
+        this.emit(Enum.MapEvents.REBUILD_PATH_LAYERS);
+        this.emit(Enum.AppEvents.ENABLE_TRAIL_SAVE);
         this.onCloseEvent();
     }
 
     handleNext() {
-        const stepIndex = this.state.stepIndex;
-        if (stepIndex === 1) {
-            this.emit(Enum.MapEvents.HIDE_PREVIEW_MAP);
-        }
         this.setState({
-            stepIndex: (stepIndex < 6) ? (stepIndex + 1) : stepIndex,
-            finished: stepIndex >= 5,
+            stepIndex: (this.state.stepIndex < 7) ? (this.state.stepIndex + 1) : this.state.stepIndex,
+            finished: (this.state.stepIndex === 6),
         });
     }
 
     handlePrev() {
-        const stepIndex = this.state.stepIndex;
-        if (stepIndex === 1) {
-            this.emit(Enum.MapEvents.HIDE_PREVIEW_MAP);
-        }
-        if (stepIndex > 0) {
+        if (this.state.stepIndex > 0) {
             this.setState({
-                stepIndex: stepIndex - 1,
-                finished: stepIndex >= 5,
+                stepIndex: this.state.stepIndex - 1,
+                finished: false,
             });
         }
     }

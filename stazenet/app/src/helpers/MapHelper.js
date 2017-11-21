@@ -55,15 +55,15 @@ class MapHelper {
         }
 
         // Add previewCollection source if not exists
-        if (!previewMap.getSource('tempCollection')) {
-            previewMap.addSource('tempCollection', {
-                type: 'geojson',
-                data: turf.featureCollection([]),
-            });
-        } else {
-            console.info('Source&layer "tempCollection" already exists');
-            previewMap.getSource('tempCollection').setData(intialisedCollection);
-        }
+        // if (!previewMap.getSource('tempCollection')) {
+        //     previewMap.addSource('tempCollection', {
+        //         type: 'geojson',
+        //         data: turf.featureCollection([]),
+        //     });
+        // } else {
+        //     console.info('Source&layer "tempCollection" already exists');
+        //     previewMap.getSource('tempCollection').setData(intialisedCollection);
+        // }
 
         // Add previewCollection source if not exists
         if (!previewMap.getSource('pointFocusCollection')) {
@@ -71,9 +71,6 @@ class MapHelper {
                 type: 'geojson',
                 data: turf.featureCollection([]),
             });
-        } else {
-            console.info('Source&layer "pointFocusCollection" already exists');
-            previewMap.getSource('pointFocusCollection').setData(intialisedCollection);
         }
 
         // Add preview layer
@@ -93,20 +90,20 @@ class MapHelper {
         }
 
         // Add temp layer
-        if (!previewMap.getLayer('tempCollection')) {
-            console.info('Add layer tempCollection');
-            const tempPointLayerPreview = {};
-            tempPointLayerPreview.id = 'tempCollection';
-            tempPointLayerPreview.type = 'circle';
-            tempPointLayerPreview.source = 'tempCollection';
-            tempPointLayerPreview.paint = {};
-            tempPointLayerPreview.paint['circle-color'] = '#0000FF';
-            tempPointLayerPreview.paint['circle-opacity'] = 0.4;
-            tempPointLayerPreview.paint['circle-radius'] = 6;
-            tempPointLayerPreview.paint['circle-stroke-width'] = 4;
-            tempPointLayerPreview.paint['circle-stroke-color'] = '#FFFFFF';
-            previewMap.addLayer(tempPointLayerPreview);
-        }
+        // if (!previewMap.getLayer('tempCollection')) {
+        //     console.info('Add layer tempCollection');
+        //     const tempPointLayerPreview = {};
+        //     tempPointLayerPreview.id = 'tempCollection';
+        //     tempPointLayerPreview.type = 'circle';
+        //     tempPointLayerPreview.source = 'tempCollection';
+        //     tempPointLayerPreview.paint = {};
+        //     tempPointLayerPreview.paint['circle-color'] = '#0000FF';
+        //     tempPointLayerPreview.paint['circle-opacity'] = 0.4;
+        //     tempPointLayerPreview.paint['circle-radius'] = 6;
+        //     tempPointLayerPreview.paint['circle-stroke-width'] = 4;
+        //     tempPointLayerPreview.paint['circle-stroke-color'] = '#FFFFFF';
+        //     previewMap.addLayer(tempPointLayerPreview);
+        // }
 
         // Add temp layer
         if (!previewMap.getLayer('pointFocusCollection')) {
@@ -194,11 +191,11 @@ class MapHelper {
                 const editedCollection = window.Draw.getAll();
                 GLU.bus.emit(Enum.DataEvents.SAVE_MANUAL_EDITED_FILE, editedCollection);
             });
-            previewMap.on('displayTempPoint', p => {
-                const tempPoint = turf.point([p.position.lng, p.position.lat]);
-                const tempCollection = turf.featureCollection([tempPoint]);
-                previewMap.getSource('tempCollection').setData(tempCollection);
-            });
+            // previewMap.on('displayTempPoint', p => {
+            //     const tempPoint = turf.point([p.position.lng, p.position.lat]);
+            //     const tempCollection = turf.featureCollection([tempPoint]);
+            //     previewMap.getSource('tempCollection').setData(tempCollection);
+            // });
             previewMap.on('addNewWaypoint', p => {
                 const newPoint = turf.point([p.position.lng, p.position.lat], { name: p.name, pictogram: p.pictogram });
                 const currentCollection = window.Draw.getAll();
@@ -230,12 +227,12 @@ class MapHelper {
         }
 
         // remove tempCollection
-        if (previewMap.getSource('tempCollection')) {
-            previewMap.removeLayer('tempCollection');
-            previewMap.removeSource('tempCollection');
-        } else {
-            console.warn('No source&layer "tempCollection" found');
-        }
+        // if (previewMap.getSource('tempCollection')) {
+        //     previewMap.removeLayer('tempCollection');
+        //     previewMap.removeSource('tempCollection');
+        // } else {
+        //     console.warn('No source&layer "tempCollection" found');
+        // }
 
         // remove controls
         if (window.editTrail) {
@@ -395,10 +392,16 @@ class MapHelper {
         // reference all features to collection
         sastavPathsCollection.features = sastavPathsArray;
 
-        leftMap.addSource('trailSource', {
-            type: 'geojson',
-            data: sastavPathsCollection,
-        });
+        if (!leftMap.getSource('trailSource')) {
+            leftMap.addSource('trailSource', {
+                type: 'geojson',
+                data: sastavPathsCollection,
+            });
+        } else {
+            console.info('Source&layer "trailSource" already exists');
+            leftMap.getSource('trailSource').setData(sastavPathsCollection);
+        }
+
 
         layersArray.forEach((layer) => {
             if (layer.type === 'line') {

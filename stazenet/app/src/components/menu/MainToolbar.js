@@ -28,7 +28,7 @@ class MainToolbar extends BasePage {
             newEditButtonLabel: Lang.label('new'),
             mapStyles: [],
             openMapLayers: false,
-            disabledWaypoints: false,
+            disabledWaypoints: true,
             disabledSaveTrail: true,
         };
         this.onNewTrailEvent = this.onNewTrail.bind(this);
@@ -39,7 +39,8 @@ class MainToolbar extends BasePage {
         this.onOpenTrailReuestEvent = this.onOpenTrailReuest.bind(this);
         this.bindGluBusEvents({
             [Enum.MapEvents.MAP_STYLES_RETRIEVED]: this.onMapStylesRetrieved,
-            [Enum.MapEvents.REQUEST_DISPLAY_PATH_LAYERS]: this.onWaypointEnabled,
+            [Enum.AppEvents.ENABLE_TRAIL_SAVE]: this.onTrailSaveEnabled,
+            [Enum.AppEvents.ENABLE_WP_DRAWER]: this.onWaypointEnabled,
         });
     }
 
@@ -91,10 +92,15 @@ class MainToolbar extends BasePage {
         });
     }
 
+    onTrailSaveEnabled() {
+        this.setState({
+            disabledSaveTrail: false,
+        });
+    }
+
     onWaypointEnabled() {
         this.setState({
             disabledWaypoints: false,
-            disabledSaveTrail: false,
         });
     }
 
