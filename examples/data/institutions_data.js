@@ -1,4 +1,4 @@
-var institutions = [
+const institutionsArray = [
   {
     "city": "menifee",
     "name": "mt san jacinto-menifee",

@@ -4,15 +4,85 @@
     <meta charset='utf-8' />
     <title>Bike stores</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <link rel='stylesheet' href='//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css'>
-    <script src='https://code.jquery.com/jquery-1.12.4.js'></script>
-    <script src='js/turf.min.js'></script>
+    <script src='//code.jquery.com/jquery-1.12.4.js'></script>
     <script src='data/institutions_data.js'></script>
-    <script src='js/institutions.js'></script>
+    <script src='js/turf.min.js'></script>
 </head>
 <body>
+Test
 <script>
-    console.log(institutions);
+    console.log(institutionsArray);
+    const endpoint = 'https://maps.googleapis.com/maps/api/place/';
+    const key = 'AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis';
+    // const service = 'autocomplete/json?input=';
+    const service = 'textsearch/json?query=';
+    let geoFeatures = [];
+    let skippedIDs = [];
+
+    function getLevel(idx) {
+      if (institutionsArray[idx]) {
+        const e = institutionsArray[idx];
+        e.id = idx;
+        const zipp = (zippIsValid(e.zipcode)) ? `zipcode+${e.zipcode}` : '';
+        const searchString = `${zipp}+${e.name.replace(/ /g, '+')}`
+        const requestURL = endpoint + service + searchString  + '&key=' + key;
+        const detailURL = endpoint + service + searchString  + '&key=' + key;
+        
+        console.info(requestURL);
+        $.ajax(requestURL).done(response => {
+          if (response.status == 'OK' && response.results && response.results.length > 0) {
+            $.ajax('https://maps.googleapis.com/maps/api/place/details/json?placeid=' + response.results[0]['place_id'] + '&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis').done(response => {
+              if (response.status == 'OK' && response.result) {
+                const loc = response.result.geometry.location;
+                const vp = response.result.geometry.viewport;
+                geoFeatures.push(turf.point([loc.lng, loc.lat], {
+                    name: response.result.name,
+                    date: e.date,
+                    address: (response.result['formatted_address']) ? response.result['formatted_address'] : null,
+                    state: getName(response, 'administrative_area_level_1', 'long_name'),
+                    state: getName(response, 'administrative_area_level_1', 'short_name'),
+                    county: getName(response, 'administrative_area_level_2', 'long_name'),
+                    website: (response.result.website) ? response.result.website : null,
+                    bounds: [[vp.southwest.lng, vp.southwest.lat],[vp.northeast.lng, vp.northeast.lat]]
+                }));
+                getLevel(idx + 1);
+              }
+            });
+          } else {
+              skippedIDs.push(idx);
+              console.error('#Failed: ' + requestURL);
+              getLevel(idx + 1);
+          }
+        });
+      } else {
+        window.exportCollection = turf.featureCollection(geoFeatures);
+        console.log('Finished');
+      }
+    }
+
+    function getName(response, level, field) {
+        const found = response.result['address_components'].find(f => {
+            return f.types.indexOf(level) > -1;
+        });
+        if (found && found[field]) {
+            return found[field];
+        }
+        return null;
+    }
+
+    function zippIsValid(input) {
+        if (typeof input === 'number') {
+            return true;
+        } else if (typeof input === 'string') {
+            const test = input.replace(/-/g, '');
+            if (Number(test) > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    getLevel(0);
 </script>
 </body>
 </html>
