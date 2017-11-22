@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"parse",
+				"parseInt"
+			],
+			[
+				"new",
+				"newData"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"pa",
+				"parse"
+			],
+			[
+				"index",
+				"indexOf"
+			],
+			[
 				"interset",
 				"intersection"
 			],
@@ -116,10 +136,6 @@
 				"console.warn"
 			],
 			[
-				"parse",
-				"parseInt"
-			],
-			[
 				"wi",
 				"width"
 			],
@@ -132,21 +148,12 @@
 	"buffers":
 	[
 		{
-			"file": "tiles/tiles/index8.html",
+			"file": "drawer/extended-api.html",
 			"settings":
 			{
-				"buffer_size": 26556,
+				"buffer_size": 22768,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "tiles/tiles/js/mapDefinition0.js",
-			"settings":
-			{
-				"buffer_size": 4402,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
 			}
 		}
 	],
@@ -223,14 +230,21 @@
 	"expanded_folders":
 	[
 		"/var/www/html/sandbox",
+		"/var/www/html/sandbox/drawer",
 		"/var/www/html/sandbox/tiles",
 		"/var/www/html/sandbox/tiles/tiles",
-		"/var/www/html/sandbox/tiles/tiles/css",
-		"/var/www/html/sandbox/tiles/tiles/data",
-		"/var/www/html/sandbox/tiles/tiles/js"
+		"/var/www/html/sandbox/tiles/tiles/data"
 	],
 	"file_history":
 	[
+		"/home/datasoft/Documents/Current/Opening Global System/1912.csv",
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition.js",
+		"/var/www/html/sandbox/tiles/tiles/index0.html",
+		"/var/www/html/sandbox/tiles/tiles/index10.html",
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition3.js",
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition0.js",
+		"/var/www/html/sandbox/tiles/tiles/index8.html",
+		"/var/www/html/sandbox/tiles/tiles/index9.html",
 		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition2.js",
 		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition1.js",
 		"/var/www/html/sandbox/tiles/tiles/css/app.css",
@@ -275,7 +289,6 @@
 		"/var/www/html/sandbox/stazenet/app/src/helpers/ChartHelper.js",
 		"/var/www/html/sandbox/stazenet/app/src/components/wpEditor/WPDrawer.js",
 		"/var/www/html/sandbox/tiles/tiles/index.html",
-		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition.js",
 		"/var/www/html/sandbox/tiles/tiles/js/editablegrid.js",
 		"/var/www/html/sandbox/tiles/tiles/index_old.html",
 		"/var/www/html/sandbox/examples/gapi.txt",
@@ -334,6 +347,51 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"5;",
+			"6;",
+			"dragonfly",
+			"NAME",
+			"{NAME}",
+			"NAME",
+			"10020",
+			"10379",
+			"10168",
+			"data",
+			"Data",
+			"initAutocompleteValuePicker",
+			"isNumeric",
+			"loadParseCSV",
+			"csvJSON",
+			"setColumnValue",
+			"ids",
+			"renderTable",
+			"save2local",
+			"saveDataVersion",
+			"save2local",
+			"setColumnValue",
+			"16891",
+			"                               'VARNAME_1',\n                                'NAME_1->{VARNAME_1}',",
+			"NAME_1",
+			"VARNAME_1",
+			"NAME_0->{NAME}",
+			"->{UID}",
+			"UID",
+			"'UID',",
+			"UID",
+			"newFeatures",
+			"features",
+			")));",
+			"turf.cleanCoords(roundFeature(",
+			"roundFeature",
+			"intersection",
+			"feat",
+			"test",
+			"intIdx",
+			"intElement",
+			"feat.",
+			"Feat",
+			"feat",
+			"debugger;",
 			"> 3",
 			"newDifference",
 			"diff",
@@ -416,52 +474,7 @@
 			"save2local",
 			"getRows",
 			"window.allData",
-			"allData",
-			"window.editableGrid.data",
-			"save2local",
-			"colIdx",
-			"setColumnValue",
-			"ID",
-			"UID",
-			"COUNTRY",
-			"ISO2",
-			"'UID',",
-			"16891",
-			"currentYear",
-			"saveGeos2file",
-			"saveGrids2file",
-			"saveCSV2file",
-			"save2file",
-			"save2local",
-			"saveGrids2file",
-			"save2file",
-			"setYear",
-			"dragonfly",
-			"' + currentYear + '",
-			"hexGridIndex",
-			"dragonfly",
-			"\"",
-			"dragonfly",
-			"HASC_1",
-			"ISONEW",
-			"DemoGridJSON",
-			"DemoGridJSON_",
-			"DemoGridJSON",
-			"csvTable",
-			"loadParseCSV",
-			"importCSV",
-			"UID->{ID}",
-			"NAME_1",
-			"NAME_0",
-			"ISO2",
-			"'ISO',",
-			"ID2",
-			"16891",
-			"resetData",
-			"importJSONurl",
-			"20807",
-			"reBuildMapLayers",
-			"REBUILD_PATH_LAYERS"
+			"allData"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -486,19 +499,23 @@
 			[
 				{
 					"buffer": 0,
-					"file": "tiles/tiles/index8.html",
+					"file": "drawer/extended-api.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 26556,
+						"buffer_size": 22768,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								26540,
-								26540
+								12011,
+								12011
+							],
+							[
+								12057,
+								12057
 							]
 						],
 						"settings":
@@ -514,58 +531,15 @@
 									"selector": "text.html"
 								}
 							],
-							"open_with_edit": true,
 							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3295.0,
+						"translation.y": 4275.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "tiles/tiles/js/mapDefinition0.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4402,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1828,
-								1828
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								}
-							],
-							"open_with_edit": true,
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -808,7 +782,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 61.0,
+	"side_bar_width": 322.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

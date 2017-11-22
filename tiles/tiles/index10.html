@@ -10,7 +10,7 @@
     <script src="js/dragonfly-dev.js"></script>
     <link href="css/dragonfly.css" rel="stylesheet"/>
     
-    <script src="js/mapDefinition3.js"></script>
+    <script src="js/mapDefinition4.js"></script>
     
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.12.4.js"></script>
@@ -371,7 +371,7 @@
                 return returnData;
             });
             allData = newData;
-            renderTable();
+            resetMapTable();
             save2local();
         }
 
@@ -385,6 +385,7 @@
 
         function save2local() {
             var saveDataVersion = document.getElementById('saveDataVersion').value;
+            saveDataVersion = (saveDataVersion.length > 0) ? saveDataVersion : 'temp';
             localStorage.setItem(saveDataVersion, JSON.stringify(allData));
             alert('Saved version ' + saveDataVersion);
         }

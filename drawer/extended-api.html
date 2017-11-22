@@ -6,6 +6,7 @@
     <title>Dragonfly Draw | Social Explorer</title>
     <link href='dragonfly.css' rel='stylesheet'/>
     <link href='dragonfly-draw.css' rel='stylesheet'/>
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script> 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
     <style>
         body {
@@ -77,29 +78,30 @@
     const style = {
         'version': 8,
         'glyphs': '0-65535.pbf',
+        'sprite': 'sprite',
         'sources': {
             'socialexplorer': {
                 'type': 'vector',
                 'tiles': ['https://tiles3.socialexplorer.com/gettile/?source=source-1&x={x}&y={y}&z={z}&layers={layers}&projection=EPSG-3857&columns={columns}'],
                 'layers': [
                     {
-                        'layerId': '10020',
+                        'layerId': '14119',
                         'datasets': [
                             {
                                 'datasetId': 0,
                                 'columns': [
-                                    'NAME'
+                                    'Geo_QName'
                                 ]
                             }
                         ]
                     },
                     {
-                        'layerId': '10020p',
+                        'layerId': '14119p',
                         'datasets': [
                             {
                                 'datasetId': 0,
                                 'columns': [
-                                    'NAME'
+                                    'Geo_QName'
                                 ]
                             }
                         ]
@@ -125,7 +127,30 @@
                                 ]
                             }
                         ]
-                    }
+                    },
+                    {
+                    "layerId": "12016",
+                    "datasets": [
+                      {
+                        "datasetId": 0,
+                        "columns": [
+                          "NAME",
+                          "SCALERANK"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "layerId": "1038",
+                    "datasets": [
+                      {
+                        "datasetId": 0,
+                        "columns": [
+                          "CAPITAL"
+                        ]
+                      }
+                    ]
+                  },
                 ]
             },
         },
@@ -144,22 +169,349 @@
                 },
                 'type': 'fill',
                 'source': 'socialexplorer',
-                'source-layer': '10168'
+                'source-layer': '10379'
             },
             {
                 'id': 'us-landmass-state',
                 'type': 'fill',
                 'source': 'socialexplorer',
-                'source-layer': '10020',
+                'source-layer': '14119',
                 'paint': {
                     'fill-color': 'rgba(236,237,242, 0.5)'
                 }
             },
             {
+            'id': 'world-rivers',
+            'type': 'line',
+            'source': 'socialexplorer',
+            'source-layer': '10315',
+            'paint': {
+                'line-color': '#4DD8E4',
+                'line-dasharray': [2,1],
+                'line-width': 1,
+                'line-blur': 1
+            }
+        },
+        {
+            'id': 'europe-rivers',
+            'type': 'line',
+            'source': 'socialexplorer',
+            'source-layer': '11593',
+            'paint': {
+                'line-color': '#4DD8E4',
+                'line-dasharray': [2,1],
+                'line-width': 1,
+                'line-blur': 1
+            }
+        },
+      {
+        "id": "world-rivers-labels",
+        "type": "symbol",
+        "source": "socialexplorer",
+        "source-layer": "10315",
+        "paint": {
+          "text-color": "rgba(0, 0, 250, 0.7)",
+          "text-halo-color": "rgba(255, 255, 255, 0.8)",
+          "text-halo-width": 1,
+          "text-halo-blur": 1
+        },
+        "layout": {
+          "symbol-placement": "line",
+          "text-field": "{NAME}",
+          "text-offset": [
+            0,
+            1.1
+          ],
+          "text-size": {
+            "stops": [
+              [
+                8,
+                9
+              ],
+              [
+                22,
+                15
+              ]
+            ]
+          }
+        },
+        "minzoom": 7,
+        "maxzoom": 22
+      },
+      {
+        "id": "world-cities-smaller",
+        "type": "symbol",
+        "source": "socialexplorer",
+        "source-layer": "12016",
+        "paint": {
+          "text-color": "rgba(0, 0, 0, 0.7)",
+          "text-halo-color": "rgba(255, 255, 255, 0.8)",
+          "text-halo-width": 1,
+          "icon-opacity": 0.3,
+          "text-halo-blur": 1
+        },
+        "layout": {
+          "icon-image": "small_city",
+          "text-field": "{NAME}",
+          "text-offset": [
+            0,
+            1.1
+          ],
+          "text-size": {
+            "stops": [
+              [
+                4,
+                11
+              ],
+              [
+                22,
+                20
+              ]
+            ]
+          }
+        },
+        "minzoom": 6,
+        "maxzoom": 22,
+        "filter": [
+          "all",
+          [
+            "<=",
+            "SCALERANK",
+            5
+          ],
+          [
+            ">",
+            "SCALERANK",
+            0
+          ]
+        ]
+      },
+      {
+        "id": "world-cities-small",
+        "type": "symbol",
+        "source": "socialexplorer",
+        "source-layer": "12016",
+        "paint": {
+          "text-color": "rgba(0, 0, 0, 0.7)",
+          "text-halo-color": "rgba(255, 255, 255, 0.8)",
+          "text-halo-width": 1,
+          "icon-opacity": 0.6,
+          "text-halo-blur": 1
+        },
+        "layout": {
+          "icon-image": "small_city",
+          "text-field": "{NAME}",
+          "text-offset": [
+            0,
+            1.1
+          ],
+          "text-size": {
+            "stops": [
+              [
+                4,
+                11
+              ],
+              [
+                22,
+                20
+              ]
+            ]
+          }
+        },
+        "minzoom": 5,
+        "maxzoom": 22,
+        "filter": [
+          "all",
+          [
+            "<=",
+            "SCALERANK",
+            7
+          ],
+          [
+            ">",
+            "SCALERANK",
+            5
+          ]
+        ]
+      },
+      {
+        "id": "world-cities-medium",
+        "type": "symbol",
+        "source": "socialexplorer",
+        "source-layer": "12016",
+        "paint": {
+          "text-color": "rgba(0, 0, 0, 0.7)",
+          "text-halo-color": "rgba(255, 255, 255, 0.8)",
+          "text-halo-width": 1,
+          "icon-opacity": 0.5,
+          "text-halo-blur": 1
+        },
+        "layout": {
+          "icon-image": "medium_city",
+          "text-field": "{NAME}",
+          "text-offset": [
+            0,
+            1.1
+          ],
+          "text-size": {
+            "stops": [
+              [
+                4,
+                11
+              ],
+              [
+                22,
+                20
+              ]
+            ]
+          }
+        },
+        "minzoom": 4.5,
+        "maxzoom": 22,
+        "filter": [
+          "all",
+          [
+            "<=",
+            "SCALERANK",
+            8
+          ],
+          [
+            ">",
+            "SCALERANK",
+            7
+          ]
+        ]
+      },
+      {
+        "id": "world-cities-city",
+        "type": "symbol",
+        "source": "socialexplorer",
+        "source-layer": "12016",
+        "paint": {
+          "text-color": "rgba(0, 0, 0, 0.7)",
+          "text-halo-color": "rgba(255, 255, 255, 0.8)",
+          "text-halo-width": 1,
+          "icon-opacity": 0.5,
+          "text-halo-blur": 1
+        },
+        "layout": {
+          "icon-image": "city",
+          "text-field": "{NAME}",
+          "text-offset": [
+            0,
+            1.1
+          ],
+          "text-size": {
+            "stops": [
+              [
+                4,
+                11
+              ],
+              [
+                22,
+                25
+              ]
+            ]
+          }
+        },
+        "minzoom": 4,
+        "maxzoom": 22,
+        "filter": [
+          "all",
+          [
+            "<=",
+            "SCALERANK",
+            9
+          ],
+          [
+            ">",
+            "SCALERANK",
+            8
+          ]
+        ]
+        },
+        {
+            "id": "world-cities-major",
+            "type": "symbol",
+            "source": "socialexplorer",
+            "source-layer": "12016",
+            "paint": {
+              "text-color": "rgba(0, 0, 0, 0.7)",
+              "text-halo-color": "rgba(255, 255, 255, 0.8)",
+              "text-halo-width": 1,
+              "icon-opacity": 0.5,
+              "text-halo-blur": 1
+            },
+            "layout": {
+              "icon-image": "major_city",
+              "text-field": "{NAME}",
+              "text-offset": [
+                0,
+                1.2
+              ],
+              "text-size": {
+                "stops": [
+                  [
+                    4,
+                    11
+                  ],
+                  [
+                    22,
+                    25
+                  ]
+                ]
+              }
+            },
+            "minzoom": 4,
+            "maxzoom": 22,
+            "filter": [
+              "all",
+              [
+                ">",
+                "SCALERANK",
+                9
+              ]
+            ]
+        },
+        {
+            "id": "world-cities-capital",
+            "type": "symbol",
+            "source": "socialexplorer",
+            "source-layer": "1038",
+            "paint": {
+              "text-color": "rgba(0, 0, 0, 1)",
+              "text-halo-color": "rgba(255, 255, 255, 0.8)",
+              "text-halo-width": 1,
+              "text-halo-blur": 1
+            },
+            "layout": {
+              "icon-image": "capital_city",
+              "text-field": "{CAPITAL}",
+              "text-offset": [
+                0,
+                1.4
+              ],
+              "text-size": {
+                "stops": [
+                  [
+                    3,
+                    10
+                  ],
+                  [
+                    12,
+                    25
+                  ]
+                ]
+              }
+            },
+            "minzoom": 3,
+            "maxzoom": 22
+        },
+            {
                 'id': 'us-border-state',
                 'type': 'line',
                 'source': 'socialexplorer',
-                'source-layer': '10020',
+                'source-layer': '14119',
                 'paint': {
                     'line-color': 'rgba(100, 0, 0, 0.8)',
                     'line-width': 3,
@@ -170,7 +522,7 @@
                 'id': 'us-label-state',
                 'type': 'symbol',
                 'source': 'socialexplorer',
-                'source-layer': '10020p',
+                'source-layer': '14119p',
                 'paint': {
                     'text-halo-color': '#fff',
                     'text-color': '#000',
@@ -178,7 +530,7 @@
                     'text-halo-blur': 2
                 },
                 'layout': {
-                    'text-field': '{NAME}',
+                    'text-field': '{Geo_QName}',
                     'text-offset': [0, -1.5],
                     'text-size': 15
                 }
@@ -315,14 +667,14 @@
                     flowArrow1.fillColor = '#FF0000';
                     flowArrow1.minZoom = NaN;
                     flowArrow1.maxZoom = NaN;
-                    flowArrow1.toWidth = 6;
-                    flowArrow1.fromWidth = 6;
-                    flowArrow1.tipWidth = 12;
+                    flowArrow1.toWidth = 2;
+                    flowArrow1.fromWidth = 5;
+                    flowArrow1.tipWidth = 8;
                     flowArrow1.opacity = 0.5;
                     flowArrow1.useFill = true;
                     Draw.delete(e.features[0].id + '1');
                     Draw.extendedApi.drawFlowArrow(flowArrow1);
-                    // 
+                    
                     // const flowArrow2 = {};
                     // flowArrow2.type = 'FlowArrow';
                     // flowArrow2.id = e.features[0].id + '2';
@@ -336,14 +688,14 @@
                     // flowArrow2.fillColor = '#000000';
                     // flowArrow2.minZoom = NaN;
                     // flowArrow2.maxZoom = NaN;
-                    // flowArrow2.toWidth = 6;
-                    // flowArrow2.fromWidth = 6;
-                    // flowArrow2.tipWidth = 12;
+                    // flowArrow2.toWidth = 3;
+                    // flowArrow2.fromWidth = 3;
+                    // flowArrow2.tipWidth = 6;
                     // flowArrow2.opacity = 0.5;
                     // flowArrow2.useFill = true;
                     // Draw.delete(e.features[0].id + '2');
                     // Draw.extendedApi.drawFlowArrow(flowArrow2);
-                    //
+                    
                 } else if (e.features[0].properties.source_for === 'freehand') {
                     const freehand = {};
                     freehand.type = 'freehand';
