@@ -1,4 +1,4 @@
-const institutionsArray = [
+const institutionsArrayInput = [
   {
     "id": 0,
     "country": "",

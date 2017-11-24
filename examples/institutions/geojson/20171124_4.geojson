@@ -1,0 +1,125 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 164,
+        "name": "The Graduate College, North Carolina A&T State University",
+        "date": "8/23/2017",
+        "address": "120 Gibbs Hall, 1601 E Market St, Greensboro, NC 27411, USA",
+        "state": "North Carolina",
+        "abbrev": "NC",
+        "county": "Guilford County",
+        "website": "http://www.ncat.edu/tgc/",
+        "bounds": [
+          [
+            -79.7750123802915,
+            36.07126691970849
+          ],
+          [
+            -79.7723144197085,
+            36.07396488029149
+          ]
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.7733669,
+          36.0725903
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 757,
+        "name": "Coastline Community College",
+        "date": "1/29/2016",
+        "address": "11460 Warner Ave, Fountain Valley, CA 92708, USA",
+        "state": "California",
+        "abbrev": "CA",
+        "county": "Orange County",
+        "website": "http://www.coastline.edu/",
+        "bounds": [
+          [
+            -117.9305924302915,
+            33.7146351697085
+          ],
+          [
+            -117.9278944697085,
+            33.7173331302915
+          ]
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.9292384,
+          33.7155999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 903,
+        "name": "CCC Group Inc",
+        "date": "1/29/2016",
+        "address": "5797 Dietrich Rd, San Antonio, TX 78219, USA",
+        "state": "Texas",
+        "abbrev": "TX",
+        "county": "Bexar County",
+        "website": "http://www.cccgroupinc.com/",
+        "bounds": [
+          [
+            -98.3783860802915,
+            29.4402470197085
+          ],
+          [
+            -98.3756881197085,
+            29.44294498029149
+          ]
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -98.3770372,
+          29.44177059999999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1046,
+        "name": "Foothill College",
+        "date": "1/31/2016",
+        "address": "12345 El Monte Rd, Los Altos Hills, CA 94022, USA",
+        "state": "California",
+        "abbrev": "CA",
+        "county": "Santa Clara County",
+        "website": "http://www.foothill.edu/",
+        "bounds": [
+          [
+            -122.1279120302915,
+            37.3588972697085
+          ],
+          [
+            -122.1252140697085,
+            37.3615952302915
+          ]
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1265617,
+          37.3602775
+        ]
+      }
+    }
+  ]
+}

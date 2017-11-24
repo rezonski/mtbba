@@ -12,22 +12,26 @@
 Test
 <script>
     // console.log(institutionsArray);
-    const currentVersion = 'institutionsLocalData3';
+    const currentVersion = '201711242226';
     const endpoint = 'https://maps.googleapis.com/maps/api/place/';
     const key = 'AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis';
     // const service = 'autocomplete/json?input=';
     const service = 'textsearch/json?query=';
     window.institutionsGlobal = {};
-
+    
+    let institutionsArray = [];
     let geoFeatures = [];
     let skippedIDs = [];
     let parsedIDs = [];
 
     if (window.localStorage.getItem(currentVersion) && window.localStorage.getItem(currentVersion).length > 0) {
         window.institutionsGlobal = JSON.parse(window.localStorage.getItem(currentVersion));
+        institutionsArray = (window.institutionsGlobal.institutionsArray) ? window.institutionsGlobal.institutionsArray : institutionsArrayInput;
         skippedIDs = (window.institutionsGlobal.skippedIDs) ? window.institutionsGlobal.skippedIDs : [];
         parsedIDs = (window.institutionsGlobal.parsedIDs) ? window.institutionsGlobal.parsedIDs : [];
         geoFeatures = (window.institutionsGlobal.exportCollection && window.institutionsGlobal.exportCollection.geoFeatures) ? window.institutionsGlobal.exportCollection.geoFeatures : [];
+    } else {
+        institutionsArray = institutionsArrayInput;
     }
 
 
@@ -37,15 +41,16 @@ Test
                 const e = institutionsArray[idx];
                 // const zipp = (isNumericString(e.zipcode)) ? `zipcode+${e.zipcode}` : '';
                 const zipp = String(e.zipcode);
-                const searchString = `${zipp.replace(/ /g, '+')}+${e.city.replace(/ /g, '+')}+${e.name.replace(/ /g, '+')}+${e.state}`
+                const searchString = `${zipp.replace(/ /g, '+')}+${e.city.replace(/ /g, '+')}+${e.name.replace(/ /g, '+')}+${e.state}`;
                 const requestURL = endpoint + service + searchString  + '&key=' + key;
-                getOption(requestURL, idx, e, true);
+                getOption(requestURL, idx, e, 0);
             } else {
                 // console.info('#Skipped idx: ' + idx);
                 // get next institution
                 getInstitution(idx + 1);
             }
         } else {
+            window.institutionsGlobal.institutionsArray = institutionsArray;
             window.institutionsGlobal.skippedIDs = skippedIDs;
             window.institutionsGlobal.parsedIDs = parsedIDs;
             window.institutionsGlobal.exportCollection = turf.featureCollection(geoFeatures);
@@ -54,11 +59,10 @@ Test
         }
     }
 
-    function getOption(requestURL, idx, e, failover) {
-        console.info(requestURL);
+    function getOption(requestURL, idx, e, failoverLevel) {
+        console.info(idx + '/' + failoverLevel + ' url: ' + requestURL);
         $.ajax(requestURL).done(response => {
             if (response.status == 'OK' && response.results && response.results.length > 0) {
-                
                 const sResults = response.results.map(r => {
                     return {
                         name: r.name,
@@ -66,20 +70,48 @@ Test
                         types: r.types.toString()
                     };
                 });
-
                 const res = sResults.find(r => {
                     return (isValidName(idx, r.name) || isValidName(idx, r.types));
                 });
-
                 if (res && res['place_id']) {
+                    const newLogRecord = {
+                        requestURL: requestURL,
+                        status: response.status,
+                        resultsCount: response.results.length,
+                        name: res.name
+                    };
+                    if (institutionsArray[idx].searches) {
+                        institutionsArray[idx].searches.push(newLogRecord);
+                    } else {
+                        institutionsArray[idx].searches = [newLogRecord];
+                    }
                     const detailURL = endpoint + 'details/json?placeid=' + res['place_id'] + '&key=' + key;
                     getDetails(detailURL, idx, e);
                 } else {
-                    if (failover) {
+                    if (failoverLevel === 0) {
                         const searchString = `${String(e.zipcode).replace(/ /g, '+')}+${e.name.replace(/ /g, '+')}`;
                         const requestURL = endpoint + service + searchString  + '&key=' + key;
-                        getOption(requestURL, idx, e, false);
+                        getOption(requestURL, idx, e, failoverLevel + 1);
+                    } else if (failoverLevel === 1) {
+                        const searchString = `${e.city.replace(/ /g, '+')}+${e.name.replace(/ /g, '+')}+${e.state}`;
+                        const requestURL = endpoint + service + searchString  + '&key=' + key;
+                        getOption(requestURL, idx, e, failoverLevel + 1);
+                    } else if (failoverLevel === 2) {
+                        const searchString = `${e.name.replace(/ /g, '+')}+${e.state}`;
+                        const requestURL = endpoint + service + searchString  + '&key=' + key;
+                        getOption(requestURL, idx, e, failoverLevel + 1);
                     } else {
+                        const newLogRecord = {
+                            requestURL: requestURL,
+                            status: 'FAIL - INVALID NAME',
+                            resultsCount: response.results.length,
+                            name: null
+                        };
+                        if (institutionsArray[idx].searches) {
+                            institutionsArray[idx].searches.push(newLogRecord);
+                        } else {
+                            institutionsArray[idx].searches = [newLogRecord];
+                        }
                         const msg = '#Failed ' + idx + ' (INVALID NAME)';
                         setSkipped(idx);
                         console.error(msg + ' requestURL:' + requestURL);
@@ -87,11 +119,30 @@ Test
                     }
                 }
             } else {
-                if (failover) {
+                if (failoverLevel === 0) {
                     const searchString = `${String(e.zipcode).replace(/ /g, '+')}+${e.name.replace(/ /g, '+')}`;
                     const requestURL = endpoint + service + searchString  + '&key=' + key;
-                    getOption(requestURL, idx, e, false);
+                    getOption(requestURL, idx, e, failoverLevel + 1);
+                } else if (failoverLevel === 1) {
+                    const searchString = `${e.city.replace(/ /g, '+')}+${e.name.replace(/ /g, '+')}+${e.state}`;
+                    const requestURL = endpoint + service + searchString  + '&key=' + key;
+                    getOption(requestURL, idx, e, failoverLevel + 1);
+                } else if (failoverLevel === 2) {
+                    const searchString = `${e.name.replace(/ /g, '+')}+${e.state}`;
+                    const requestURL = endpoint + service + searchString  + '&key=' + key;
+                    getOption(requestURL, idx, e, failoverLevel + 1);
                 } else {
+                    const newLogRecord = {
+                        requestURL: requestURL,
+                        status: 'FAIL - ' + response.status,
+                        resultsCount: null,
+                        name: null
+                    };
+                    if (institutionsArray[idx].searches) {
+                        institutionsArray[idx].searches.push(newLogRecord);
+                    } else {
+                        institutionsArray[idx].searches = [newLogRecord];
+                    }
                     setSkipped(idx);
                     console.error('#Failed ' + idx + ' (' + response.status + '): ' + idx);
                     getInstitution(idx + 1);
@@ -220,7 +271,7 @@ Test
         if (name.toLocaleLowerCase().indexOf('technical') > -1) {
             return true;
         }
-        if (name.toLocaleLowerCase().indexOf('inc.') > -1) {
+        if (name.toLocaleLowerCase().indexOf('inc') > -1) {
             return true;
         }
         if (name.toLocaleLowerCase().indexOf('club') > -1) {
@@ -256,16 +307,28 @@ Test
         if (name.toLocaleLowerCase().indexOf('associated') > -1) {
             return true;
         }
+        if (name.toLocaleLowerCase().indexOf('ccc') > -1) {
+            return true;
+        }
         if (isNumericString(name)) {
             return false;
         }
-        alert('Failed ' + idx + ' : ' + name);
+        // alert('Failed ' + idx + ' : ' + name);
         return false;
     }
 
-    // checkList.forEach(c => { if (!isValidName(c.id, c.name)) { console.log(c.id + ' - ' + c.name); }});
+    // checkList.forEach(c => {
+    //     if (!isValidName(c.id, c.name)) {
+    //         console.log(c.id + ' - ' + c.name);
+    //     }
+    // });
     
-    getInstitution(0);
+    skippedIDs.forEach(sid => {
+       console.log(sid); 
+       console.log(institutionsArray[sid]); 
+    });
+    
+    // getInstitution(0);
 </script>
 </body>
 </html>

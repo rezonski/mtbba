@@ -1,0 +1,35 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1378,
+        "name": "Pearson Canada Inc",
+        "date": "1/10/2017",
+        "address": "26 Prince Andrew Pl, North York, ON M3C 2H4, Canada",
+        "state": "Ontario",
+        "abbrev": "ON",
+        "county": "Toronto Division",
+        "website": "http://www.pearsoncanada.ca/",
+        "bounds": [
+          [
+            -79.3463559802915,
+            43.7241981197085
+          ],
+          [
+            -79.3436580197085,
+            43.7268960802915
+          ]
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.34500700000001,
+          43.7255471
+        ]
+      }
+    }
+  ]
+}
