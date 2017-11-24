@@ -11,8 +11,8 @@
 <body>
 Test
 <script>
-    console.log(institutionsArray);
-    const currentVersion = 'institutionsLocalData1';
+    // console.log(institutionsArray);
+    const currentVersion = 'institutionsLocalData3';
     const endpoint = 'https://maps.googleapis.com/maps/api/place/';
     const key = 'AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis';
     // const service = 'autocomplete/json?input=';
@@ -35,7 +35,7 @@ Test
         if (institutionsArray[idx]) {
             if (parsedIDs.indexOf(idx) < 0) {
                 const e = institutionsArray[idx];
-                // const zipp = (zippIsValid(e.zipcode)) ? `zipcode+${e.zipcode}` : '';
+                // const zipp = (isNumericString(e.zipcode)) ? `zipcode+${e.zipcode}` : '';
                 const zipp = String(e.zipcode);
                 const searchString = `${zipp.replace(/ /g, '+')}+${e.city.replace(/ /g, '+')}+${e.name.replace(/ /g, '+')}+${e.state}`
                 const requestURL = endpoint + service + searchString  + '&key=' + key;
@@ -58,8 +58,34 @@ Test
         console.info(requestURL);
         $.ajax(requestURL).done(response => {
             if (response.status == 'OK' && response.results && response.results.length > 0) {
-                const detailURL = endpoint + 'details/json?placeid=' + response.results[0]['place_id'] + '&key=' + key;
-                getDetails(detailURL, idx, e);
+                
+                const sResults = response.results.map(r => {
+                    return {
+                        name: r.name,
+                        'place_id': r['place_id'],
+                        types: r.types.toString()
+                    };
+                });
+
+                const res = sResults.find(r => {
+                    return (isValidName(idx, r.name) || isValidName(idx, r.types));
+                });
+
+                if (res && res['place_id']) {
+                    const detailURL = endpoint + 'details/json?placeid=' + res['place_id'] + '&key=' + key;
+                    getDetails(detailURL, idx, e);
+                } else {
+                    if (failover) {
+                        const searchString = `${String(e.zipcode).replace(/ /g, '+')}+${e.name.replace(/ /g, '+')}`;
+                        const requestURL = endpoint + service + searchString  + '&key=' + key;
+                        getOption(requestURL, idx, e, false);
+                    } else {
+                        const msg = '#Failed ' + idx + ' (INVALID NAME)';
+                        setSkipped(idx);
+                        console.error(msg + ' requestURL:' + requestURL);
+                        getInstitution(idx + 1);
+                    }
+                }
             } else {
                 if (failover) {
                     const searchString = `${String(e.zipcode).replace(/ /g, '+')}+${e.name.replace(/ /g, '+')}`;
@@ -118,7 +144,7 @@ Test
         return null;
     }
 
-    function zippIsValid(input) {
+    function isNumericString(input) {
         if (typeof input === 'number') {
             return true;
         } else if (typeof input === 'string') {
@@ -153,6 +179,91 @@ Test
             parsedIDs.splice(existingParsedIdx, 1);
         }
     }
+
+    function isValidName(idx, name) {
+        if (name.toLocaleLowerCase().indexOf('university') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('college') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('school') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('science') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('library') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('student') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('academy') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('campus') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('univ') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('center') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('dormitory') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('education') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('technical') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('inc.') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('club') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('usf') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('institute') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('sdsu') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('suny') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('penn') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('sales') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('srjc') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('liu-') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('rutgers') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('associated') > -1) {
+            return true;
+        }
+        if (isNumericString(name)) {
+            return false;
+        }
+        alert('Failed ' + idx + ' : ' + name);
+        return false;
+    }
+
+    // checkList.forEach(c => { if (!isValidName(c.id, c.name)) { console.log(c.id + ' - ' + c.name); }});
     
     getInstitution(0);
 </script>

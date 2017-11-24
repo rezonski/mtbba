@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"setS",
+				"setSkipped"
+			],
+			[
 				"parse",
 				"parseInt"
 			],
@@ -148,12 +152,12 @@
 	"buffers":
 	[
 		{
-			"file": "drawer/extended-api.html",
+			"file": "examples/institutions/institutions.html",
 			"settings":
 			{
-				"buffer_size": 22768,
+				"buffer_size": 6559,
 				"encoding": "UTF-8",
-				"line_ending": "Windows"
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -209,7 +213,7 @@
 				"Git: Push Current Branch"
 			]
 		],
-		"width": 479.0
+		"width": 461.0
 	},
 	"console":
 	{
@@ -230,18 +234,30 @@
 	"expanded_folders":
 	[
 		"/var/www/html/sandbox",
-		"/var/www/html/sandbox/drawer",
-		"/var/www/html/sandbox/tiles",
-		"/var/www/html/sandbox/tiles/tiles",
-		"/var/www/html/sandbox/tiles/tiles/data"
+		"/var/www/html/sandbox/examples",
+		"/var/www/html/sandbox/examples/institutions"
 	],
 	"file_history":
 	[
+		"/var/www/html/sandbox/examples/data/institutions_data.js",
+		"/var/www/html/sandbox/examples/institutions.html",
+		"/home/datasoft/Documents/Current/POC/Revel Power User Map/institutions_reduced.min.json",
+		"/home/datasoft/Documents/Current/POC/Revel Power User Map/institutions_reduced.json",
+		"/home/datasoft/Documents/Current/POC/Revel Power User Map/institutions.json",
+		"/var/www/html/sandbox/examples/js/searchlevels.js",
+		"/var/www/html/sandbox/examples/js/gapi.js",
+		"/var/www/html/sandbox/examples/js/prodavnice.js",
+		"/var/www/html/sandbox/examples/prodavnice_old.html",
+		"/var/www/html/sandbox/examples/js/helper.js",
+		"/var/www/html/sandbox/examples/js/institutions.js",
+		"/var/www/html/sandbox/examples/data/institutions.js",
+		"/var/www/html/sandbox/tiles/tiles/index10.html",
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition4.js",
+		"/var/www/html/sandbox/drawer/extended-api.html",
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition3.js",
 		"/home/datasoft/Documents/Current/Opening Global System/1912.csv",
 		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition.js",
 		"/var/www/html/sandbox/tiles/tiles/index0.html",
-		"/var/www/html/sandbox/tiles/tiles/index10.html",
-		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition3.js",
 		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition0.js",
 		"/var/www/html/sandbox/tiles/tiles/index8.html",
 		"/var/www/html/sandbox/tiles/tiles/index9.html",
@@ -282,7 +298,6 @@
 		"/var/www/html/sandbox/stazenet/app/src/components/openTrail/OpenTrailContainer.js",
 		"/var/www/html/sandbox/stazenet/app/src/components/newTrail/UploadGeoFile.js",
 		"/var/www/html/sandbox/stazenet/app/template.html",
-		"/var/www/html/sandbox/examples/js/helper.js",
 		"/var/www/html/sandbox/stazenet/app/src/components/newTrail/StepChartPreview.js",
 		"/var/www/html/sandbox/stazenet/app/src/components/newTrail/StepWaypointsPreprocessing.js",
 		"/var/www/html/sandbox/stazenet/app/src/dataSources/TrailsDataModel.js",
@@ -292,7 +307,6 @@
 		"/var/www/html/sandbox/tiles/tiles/js/editablegrid.js",
 		"/var/www/html/sandbox/tiles/tiles/index_old.html",
 		"/var/www/html/sandbox/examples/gapi.txt",
-		"/var/www/html/sandbox/examples/js/gapi.js",
 		"/var/www/html/sandbox/stazenet/app/src/apis/GoogleApi.js",
 		"/var/www/html/sandbox/stazenet/app/src/apis/Api.js",
 		"/var/www/html/sandbox/stazenet/app/src/apis/TrailsApi.js",
@@ -310,7 +324,6 @@
 		"/var/www/html/sandbox/tiles/tiles/js/editablegrid_renderers.js",
 		"/var/www/html/sandbox/examples/prodavnice.html",
 		"/var/www/html/sandbox/examples/upload/stores.json",
-		"/var/www/html/sandbox/examples/js/searchlevels.js",
 		"/var/www/html/sandbox/examples/data/stores.geojson",
 		"/home/datasoft/Projects/mapspice-production/01/54/f0b2c9b3-a058-4060-a2d7-5b3c81568517/config/mapDefinitionMiddle.js",
 		"/home/datasoft/Projects/mapspice-production/01/54/f0b2c9b3-a058-4060-a2d7-5b3c81568517/config/mapDefinitionSwiped.js",
@@ -347,6 +360,65 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"getDetails",
+			"92208",
+			"40202",
+			"institutionsGlobal3",
+			"institutionsGlobal2",
+			"getOption",
+			"getInstitution",
+			"skippedIDs",
+			"setParsed",
+			"parsed(",
+			"skippedIDs",
+			"existingParsedIDsIdx",
+			"existingparsedIDsIdx",
+			"skipped",
+			"Skipped",
+			"skipped",
+			"Skipped",
+			"parsedIDs",
+			"e.id",
+			"getInstitution",
+			"Failed",
+			"                }",
+			"skippedIDs",
+			"'institutionsGlobal1'",
+			"getDetails",
+			"getOption",
+			"let",
+			"getOption",
+			"searchString",
+			"getInstitution",
+			"searchString",
+			"Idx",
+			"idx",
+			"getLevel",
+			"existingSkipped",
+			"requestURL",
+			"const",
+			"huntington",
+			"skippedIDs",
+			"'institutionsGlobal1'",
+			"'institutionsGlobal'",
+			" = ;",
+			"skippedIDs",
+			"date",
+			"getLevel",
+			"geobuffer",
+			"25681",
+			"12016",
+			"00B9FE",
+			"rgba(0, 0, 150, 0.5)",
+			"rgba(0, 0, 0, 0.2)",
+			"10315",
+			"save2local",
+			"resetMapTable",
+			"resetMapTable()",
+			"resetMapTable",
+			"resetData",
+			"setColumnValue",
+			"onInputChange",
 			"5;",
 			"6;",
 			"dragonfly",
@@ -415,66 +487,7 @@
 			"intersectedPolygons",
 			"freePolygons",
 			"allFeats",
-			"feature",
-			"feat",
-			"getAll",
-			"importCSV",
-			"NAME_0",
-			"'ID',",
-			"ID",
-			"22837",
-			"csvTable",
-			"save2local",
-			"getRows",
-			"setColumnValue",
-			"selectAllFeaturesByVariable",
-			"edit",
-			"editable",
-			"columns",
-			"iso",
-			"selectAllFeaturesByVariable",
-			"setColumnValue",
-			"iso",
-			"resetData",
-			"editable",
-			"row.columns",
-			"isos",
-			"onchange('",
-			"size=\"4\">",
-			"availableTags",
-			"importJSONurl",
-			"mapbox",
-			"availableDataVersions",
-			"var availableDataVersions",
-			"var availableTags",
-			"availableTags",
-			"1.12.",
-			"source: availableTags,",
-			"// source: availableTags,",
-			"autocomplete",
-			"selectIso",
-			"selectColony",
-			"selectNewIso",
-			"https:",
-			"papaparse",
-			"selectColony",
-			"selectIso",
-			"currentYear",
-			"selectNewIso",
-			"selectIso",
-			"colonies",
-			"isos",
-			"label",
-			"'label'",
-			"columns",
-			"initAutocompleteValuePicker",
-			"loadParseCSV",
-			"initAutocompleteValuePicker",
-			"availableTags",
-			"save2local",
-			"getRows",
-			"window.allData",
-			"allData"
+			"feature"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -499,23 +512,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "drawer/extended-api.html",
+					"file": "examples/institutions/institutions.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 22768,
+						"buffer_size": 6559,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								12011,
-								12011
-							],
-							[
-								12057,
-								12057
+								581,
+								542
 							]
 						],
 						"settings":
@@ -536,7 +545,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4275.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -547,7 +556,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 23.0
+		"height": 24.0
 	},
 	"input":
 	{
@@ -600,7 +609,7 @@
 	"project": "sandbox.sublime-project",
 	"replace":
 	{
-		"height": 42.0
+		"height": 44.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -782,7 +791,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 322.0,
+	"side_bar_width": 340.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
