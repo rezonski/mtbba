@@ -155,7 +155,25 @@
 			"file": "examples/institutions/institutions.html",
 			"settings":
 			{
-				"buffer_size": 6559,
+				"buffer_size": 13975,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "examples/institutions/geojson/20171127_1.geojson",
+			"settings":
+			{
+				"buffer_size": 985000,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "examples/institutions/dump/20171127_1.json",
+			"settings":
+			{
+				"buffer_size": 2055285,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -235,10 +253,17 @@
 	[
 		"/var/www/html/sandbox",
 		"/var/www/html/sandbox/examples",
-		"/var/www/html/sandbox/examples/institutions"
+		"/var/www/html/sandbox/examples/institutions",
+		"/var/www/html/sandbox/examples/institutions/data",
+		"/var/www/html/sandbox/examples/institutions/dump",
+		"/var/www/html/sandbox/examples/institutions/geojson",
+		"/var/www/html/sandbox/examples/js"
 	],
 	"file_history":
 	[
+		"/var/www/html/sandbox/examples/institutions/dump/20171127_1.json",
+		"/var/www/html/sandbox/examples/institutions/institutions.html",
+		"/var/www/html/sandbox/examples/js/prodavnice.js",
 		"/var/www/html/sandbox/examples/data/institutions_data.js",
 		"/var/www/html/sandbox/examples/institutions.html",
 		"/home/datasoft/Documents/Current/POC/Revel Power User Map/institutions_reduced.min.json",
@@ -246,7 +271,6 @@
 		"/home/datasoft/Documents/Current/POC/Revel Power User Map/institutions.json",
 		"/var/www/html/sandbox/examples/js/searchlevels.js",
 		"/var/www/html/sandbox/examples/js/gapi.js",
-		"/var/www/html/sandbox/examples/js/prodavnice.js",
 		"/var/www/html/sandbox/examples/prodavnice_old.html",
 		"/var/www/html/sandbox/examples/js/helper.js",
 		"/var/www/html/sandbox/examples/js/institutions.js",
@@ -341,7 +365,7 @@
 	],
 	"find":
 	{
-		"height": 38.0
+		"height": 23.0
 	},
 	"find_in_files":
 	{
@@ -360,6 +384,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"point_count",
+			"point_count_abbreviated",
 			"getDetails",
 			"92208",
 			"40202",
@@ -485,9 +511,7 @@
 			"intersectedFeatures",
 			"feat, intElement",
 			"intersectedPolygons",
-			"freePolygons",
-			"allFeats",
-			"feature"
+			"freePolygons"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -507,7 +531,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -516,15 +540,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6559,
+						"buffer_size": 13975,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								581,
-								542
+								2452,
+								2452
 							]
 						],
 						"settings":
@@ -545,10 +569,93 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 90.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "examples/institutions/geojson/20171127_1.geojson",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 985000,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								983562,
+								983562
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"open_with_edit": true,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 632597.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "examples/institutions/dump/20171127_1.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2055285,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -556,7 +663,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 24.0
+		"height": 23.0
 	},
 	"input":
 	{
@@ -609,7 +716,7 @@
 	"project": "sandbox.sublime-project",
 	"replace":
 	{
-		"height": 44.0
+		"height": 42.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -769,7 +876,7 @@
 		[
 			[
 				"",
-				"~/Projects/maspice-ui-react.sublime-project"
+				"~/Projects/mapspice-production.sublime-project"
 			]
 		],
 		"width": 380.0

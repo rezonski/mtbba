@@ -12,7 +12,7 @@
 Test
 <script>
     // console.log(institutionsArray);
-    const currentVersion = '201711242226';
+    const currentVersion = '201711270931';
     const endpoint = 'https://maps.googleapis.com/maps/api/place/';
     const key = 'AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis';
     // const service = 'autocomplete/json?input=';
@@ -26,13 +26,14 @@ Test
 
     if (window.localStorage.getItem(currentVersion) && window.localStorage.getItem(currentVersion).length > 0) {
         window.institutionsGlobal = JSON.parse(window.localStorage.getItem(currentVersion));
-        institutionsArray = (window.institutionsGlobal.institutionsArray) ? window.institutionsGlobal.institutionsArray : institutionsArrayInput;
+        // institutionsArray = (window.institutionsGlobal.institutionsArray) ? window.institutionsGlobal.institutionsArray : institutionsArrayInput;
         skippedIDs = (window.institutionsGlobal.skippedIDs) ? window.institutionsGlobal.skippedIDs : [];
         parsedIDs = (window.institutionsGlobal.parsedIDs) ? window.institutionsGlobal.parsedIDs : [];
         geoFeatures = (window.institutionsGlobal.exportCollection && window.institutionsGlobal.exportCollection.geoFeatures) ? window.institutionsGlobal.exportCollection.geoFeatures : [];
     } else {
         institutionsArray = institutionsArrayInput;
     }
+    institutionsArray = institutionsArrayInput;
 
 
     function getInstitution(idx) {
@@ -310,6 +311,12 @@ Test
         if (name.toLocaleLowerCase().indexOf('ccc') > -1) {
             return true;
         }
+        if (name.toLocaleLowerCase().indexOf('columbus') > -1) {
+            return true;
+        }
+        if (name.toLocaleLowerCase().indexOf('schwartz') > -1) {
+            return true;
+        }
         if (isNumericString(name)) {
             return false;
         }
@@ -323,12 +330,12 @@ Test
     //     }
     // });
     
-    skippedIDs.forEach(sid => {
-       console.log(sid); 
-       console.log(institutionsArray[sid]); 
-    });
+    // skippedIDs.forEach(sid => {
+    //   console.log(sid); 
+    //   console.log(institutionsArray[sid]); 
+    // });
     
-    // getInstitution(0);
+    getInstitution(0);
 </script>
 </body>
 </html>

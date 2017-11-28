@@ -1,12 +1,12 @@
 const institutionsArrayInput = [
   {
     "id": 0,
-    "country": "",
-    "city": "",
-    "name": "",
-    "state": "",
-    "zipcode": "",
-    "date": ""
+    "country": "usa",
+    "city": "columbus",
+    "name": "Pearson Education",
+    "state": "oh",
+    "zipcode": 43235,
+    "date": "4/9/2015"
   },
   {
     "id": 1,
@@ -7491,7 +7491,8 @@ const institutionsArrayInput = [
     "id": 832,
     "country": "usa",
     "city": "brooklyn",
-    "name": "a&amp;m schwartz coll pharmacy",
+    "name1": "a&m schwartz coll pharmacy",
+    "name": "a%26m%20schwartz%20coll%20pharmacy",
     "state": "ny",
     "zipcode": "11201-5423",
     "date": "11/23/2016"
@@ -10335,7 +10336,7 @@ const institutionsArrayInput = [
     "id": 1148,
     "country": "usa",
     "city": "columbus",
-    "name": "inside sales",
+    "name": "Pearson Education",
     "state": "oh",
     "zipcode": 43235,
     "date": "4/9/2015"
