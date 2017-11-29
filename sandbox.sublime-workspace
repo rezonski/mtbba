@@ -4,6 +4,50 @@
 		"selected_items":
 		[
 			[
+				"pop",
+				"popup-container"
+			],
+			[
+				"selec",
+				"selectable"
+			],
+			[
+				"background-c",
+				"background-color"
+			],
+			[
+				"bo",
+				"bottom"
+			],
+			[
+				"le",
+				"left"
+			],
+			[
+				"selectC",
+				"selectColony"
+			],
+			[
+				"sele",
+				"select"
+			],
+			[
+				"toggle",
+				"toggleToggable"
+			],
+			[
+				"togg",
+				"toggleSelectable"
+			],
+			[
+				"reset",
+				"resetMapTable"
+			],
+			[
+				"ke",
+				"keyCode"
+			],
+			[
 				"setS",
 				"setSkipped"
 			],
@@ -88,10 +132,6 @@
 				"previewMap"
 			],
 			[
-				"le",
-				"length"
-			],
-			[
 				"lo",
 				"log"
 			],
@@ -152,28 +192,28 @@
 	"buffers":
 	[
 		{
-			"file": "examples/institutions/institutions.html",
+			"file": "tiles/tiles/index12.html",
 			"settings":
 			{
-				"buffer_size": 13975,
+				"buffer_size": 25170,
 				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "examples/institutions/geojson/20171127_1.geojson",
+			"file": "tiles/tiles/css/app.css",
 			"settings":
 			{
-				"buffer_size": 985000,
+				"buffer_size": 1796,
 				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "examples/institutions/dump/20171127_1.json",
+			"file": "tiles/tiles/js/mapDefinition5.js",
 			"settings":
 			{
-				"buffer_size": 2055285,
+				"buffer_size": 12291,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -251,18 +291,17 @@
 	},
 	"expanded_folders":
 	[
-		"/var/www/html/sandbox",
-		"/var/www/html/sandbox/examples",
-		"/var/www/html/sandbox/examples/institutions",
-		"/var/www/html/sandbox/examples/institutions/data",
-		"/var/www/html/sandbox/examples/institutions/dump",
-		"/var/www/html/sandbox/examples/institutions/geojson",
-		"/var/www/html/sandbox/examples/js"
+		"/var/www/html/sandbox"
 	],
 	"file_history":
 	[
-		"/var/www/html/sandbox/examples/institutions/dump/20171127_1.json",
+		"/home/datasoft/Projects/the-ultimate-tile-stitcher/how_to.txt",
+		"/var/www/html/sandbox/tiles/tiles/index11.html",
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition5.js",
 		"/var/www/html/sandbox/examples/institutions/institutions.html",
+		"/var/www/html/sandbox/examples/institutions/geojson/20171127_1.geojson",
+		"/var/www/html/sandbox/examples/institutions/data/institutions_data2.js",
+		"/var/www/html/sandbox/examples/institutions/dump/20171127_1.json",
 		"/var/www/html/sandbox/examples/js/prodavnice.js",
 		"/var/www/html/sandbox/examples/data/institutions_data.js",
 		"/var/www/html/sandbox/examples/institutions.html",
@@ -365,7 +404,7 @@
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -384,6 +423,45 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"setUnsetID",
+			"csvTable",
+			"tablecontent",
+			"scrollTable",
+			"tablecontent",
+			"renderTable",
+			"save2local",
+			"setColumnValue",
+			"onInputChange",
+			"saveDataVersion",
+			"selectAllFeaturesByVariable",
+			"ISO",
+			"function",
+			".value",
+			"() => ",
+			"selectAllFeaturesByVariable",
+			"onInputChange",
+			"selectISO",
+			"mySelect",
+			"allData",
+			"renderTable",
+			"allData",
+			"setColumnValue",
+			"ISONEW",
+			"isos",
+			"toggable",
+			"Toggable",
+			"toggable",
+			"onKeyDown",
+			"selectable",
+			"toggleSelectable",
+			"onKeyDown",
+			"toggleSelectable",
+			"selectable",
+			"toggleSelectable",
+			"selectAllFeaturesByVariable",
+			"onInputChange",
+			"25681",
+			"institutionsArray",
 			"point_count",
 			"point_count_abbreviated",
 			"getDetails",
@@ -472,46 +550,7 @@
 			"NAME_1",
 			"VARNAME_1",
 			"NAME_0->{NAME}",
-			"->{UID}",
-			"UID",
-			"'UID',",
-			"UID",
-			"newFeatures",
-			"features",
-			")));",
-			"turf.cleanCoords(roundFeature(",
-			"roundFeature",
-			"intersection",
-			"feat",
-			"test",
-			"intIdx",
-			"intElement",
-			"feat.",
-			"Feat",
-			"feat",
-			"debugger;",
-			"> 3",
-			"newDifference",
-			"diff",
-			"intersection",
-			"feat",
-			"Feat",
-			"feat",
-			"Feat",
-			"feat",
-			"intersectedPolygons",
-			"intersection",
-			"features",
-			"newFeatures",
-			"features",
-			"intersectPolygons",
-			"allFeats",
-			"diff1",
-			"intersection",
-			"intersectedFeatures",
-			"feat, intElement",
-			"intersectedPolygons",
-			"freePolygons"
+			"->{UID}"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -531,65 +570,24 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "examples/institutions/institutions.html",
+					"file": "tiles/tiles/index12.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 13975,
+						"buffer_size": 25170,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2452,
-								2452
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								}
-							],
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 90.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "examples/institutions/geojson/20171127_1.geojson",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 985000,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								983562,
-								983562
+								9643,
+								9643
 							]
 						],
 						"settings":
@@ -606,32 +604,32 @@
 								}
 							],
 							"open_with_edit": true,
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"tab_size": 2,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 632597.0,
+						"translation.y": 1246.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "examples/institutions/dump/20171127_1.json",
+					"buffer": 1,
+					"file": "tiles/tiles/css/app.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2055285,
+						"buffer_size": 1796,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1782,
+								1782
 							]
 						],
 						"settings":
@@ -647,15 +645,56 @@
 									"selector": "text.html"
 								}
 							],
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"syntax": "Packages/LESS/LESS.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
+						"translation.y": 833.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "tiles/tiles/js/mapDefinition5.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12291,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2067,
+								2067
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 133.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
