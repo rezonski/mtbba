@@ -105,13 +105,26 @@ label, input, button {
 }
 
 .popup {
-  display: block;
+  display: flex;
   position: absolute;
   left: 10px;
   bottom: 10px;
-  width: 150px;
-  height: 100px;
-  padding: 10px;
   background-color: #333;
   color: #fff;
+  flex-flow: row nowrap;
+}
+
+.popup-column {
+  display: flex;
+  flex-direction: column;
+  margin-right: 0px;
+  padding: 10px;
+  border-right: 1px solid #666;
+}
+
+.popup-label {
+  font-weight: bold;
+}
+
+.popup-value {
 }
