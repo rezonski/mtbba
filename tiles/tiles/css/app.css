@@ -69,6 +69,7 @@ label, input, button {
   display: flex;
   flex-direction: row;
   margin-right: 5px;
+  margin-bottom: 2px;
 }
 
 .data-maniputlation {
@@ -127,4 +128,8 @@ label, input, button {
 }
 
 .popup-value {
+}
+
+.faded {
+  opacity: 0.3;
 }

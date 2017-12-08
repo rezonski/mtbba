@@ -352,7 +352,7 @@
                     } else if (features.length > 0) {
                         // document.getElementById('tablecontent').style.top = '0px';
                         features.forEach(feature => {
-                            if (selectedIDs.indexOf(feature.properties.ID) < 0) {
+                            if (selectedIDs.indexOf(feature.properties.ID) < 0 && processedIDs.indexOf(feature.properties.ID) < 0) {
                                 selectedIDs.push(parseInt(feature.properties.ID, 10));
                                 // document.getElementById('DataRow' + feature.properties.ID).style['background-color'] = '#F4FF00';
                             } else {
@@ -456,8 +456,8 @@
         }
 
         function setColumnValue(colName, ids, value) {
-            if (value.length !== 3) {
-                alert('New values must be 3 character long Uppercase string');
+            if (value.length > 7) {
+                alert('New values must be maximum 7 character long Uppercase string');
                 return;
             }
             if (availableTags.indexOf(value) < 0) {
@@ -474,6 +474,7 @@
             allData = newData;
             processedIDs = processedIDs.concat(ids);
             map.setFilter('boundaries',['!in', 'ID', ...processedIDs])
+            map.setFilter('labels',['!in', 'ID', ...processedIDs])
             resetMapTable();
             save2local();
             renderTable();
@@ -559,6 +560,7 @@
             if (localStorage.getItem(loadDataVersion)) {
                 processedIDs = JSON.parse(localStorage.getItem(loadDataVersion)).processedIDs;
                 map.setFilter('boundaries',['!in', 'ID', ...processedIDs])
+                map.setFilter('labels',['!in', 'ID', ...processedIDs])
                 alert('Loaded version ' + loadDataVersion);
             } else {
                 alert('Unexisting version ' + loadDataVersion);
