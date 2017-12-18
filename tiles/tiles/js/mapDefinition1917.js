@@ -1,9 +1,11 @@
 // var importCSV = 'data/World-detail-polygons---for-historical-maps-creation.csv';
 // var importCSV = 'data/years/1914.csv';
-var importCSV = 'data/years/year_1917_version_2017.12.8.17.26.csv';
+var importCSV = 'data/years/year_1917_version_2017.12.11.10.22.csv';
 var processedIDs = [];
-var year1 = 1917;
-var year2 = 1916;
+var currentYear = 1917;
+var year1 = 1916;
+var year2 = 1917;
+var year3 = 1918;
 var mapStyle = {
     'version': 8,
     'glyphs': 'font/Arial Regular/0-255.pbf',
@@ -73,6 +75,16 @@ var mapStyle = {
                   },
             ]
         },
+        'imageRaster': {
+          'type': 'image',
+          'url': 'pics/Image1.png',
+          'coordinates': [
+            [-80.425, 46.437],
+            [-71.516, 46.437],
+            [-71.516, 37.936],
+            [-80.425, 37.936]
+          ]
+        },
         'rasterSource1': {
             'type': 'raster',
             'tiles': ['http://wpc.4693.edgecastcdn.net/004693/tiles/area/' + year1 + '/Z{z}/{y}/{x}.png?v=20'],
@@ -81,6 +93,11 @@ var mapStyle = {
         'rasterSource2': {
             'type': 'raster',
             'tiles': ['http://wpc.4693.edgecastcdn.net/004693/tiles/area/' + year2 + '/Z{z}/{y}/{x}.png?v=20'],
+            'tileSize': 256
+        },
+        'rasterSource3': {
+            'type': 'raster',
+            'tiles': ['http://wpc.4693.edgecastcdn.net/004693/tiles/area/' + year3 + '/Z{z}/{y}/{x}.png?v=20'],
             'tileSize': 256
         }
     },
@@ -105,6 +122,18 @@ var mapStyle = {
             'source': 'rasterSource2',
             'minzoom': 0,
             'maxzoom': 7
+        },
+        {
+            'id': 'history-tiles3',
+            'type': 'raster',
+            'source': 'rasterSource3',
+            'minzoom': 0,
+            'maxzoom': 7
+        },
+        {
+          'id': 'imageRaster',
+          'type': 'raster',
+          'source': 'imageRaster',
         },
         {
             'id': 'dummy',

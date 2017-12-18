@@ -33,23 +33,28 @@
         <div class="data-maniputlation controls">
             <div class="row">
                 <div class="column">
+                    <button onclick="replicateDataColumns()">Replicate</button>
                     <label for="fromIdx">from idx</label>
                     <input id="fromIdx" size="2">
                     <label for="toIdx">to idx</label>
                     <input id="toIdx" size="2">
                 </div>
-                <div class="column">
-                    <button onclick="replicateDataColumns()">Replicate values</button>
-                </div>
             </div>
             <div class="row">
                 <div class="column">
-                    <label for="isos"> Set NEW ISO: </label>
-                    <input id="isos" size="4" onchange="onInputChange('isos')">
+                    <label for="newiso">New ISO/Colony: </label>
+                    <input id="newiso" size="6" onchange="onInputChange('newiso')">
+                    <input id="newcolony" size="6" onchange="onInputChange('newcolony')">
                 </div>
                 <div class="column">
-                    <label for="colonies"> Set NEW Colony: </label>
-                    <input id="colonies" size="4" onchange="onInputChange('colonies')">
+                    <label for="newname">Set NEW Name: </label>
+                    <input id="newname" size="10" onchange="onInputChange('newname')">
+                </div>
+                <div class="column">
+                    <label for="newcolony">Set sides: </label>
+                    <input id="side1" size="5" onchange="onInputChange('side1')">
+                    <input id="side2" size="5" onchange="onInputChange('side2')">
+                    <button onclick="pickCurrent()">Pick current!</button>
                 </div>
             </div>
             <div class="row">
@@ -60,25 +65,19 @@
             </div>
             <div class="row">
                 <div class="column">
-                    <button onclick="resetData()">Reset</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="column">
-                    <input id="saveDataVersion" name="saveDataVersion" size="15" value="tempVersion">
-                </div>
-                <div class="column">
+                    <input id="saveDataVersion" name="saveDataVersion" size="10" value="tempVersion">
                     <label>Save: </label>
                     <button onclick="saveGeos2file()">GEOs</button>
                     <button onclick="save2CSVfile()">CSV</button>
-                    <button onclick="save2local()">to Local</button>
                 </div>
             </div>
             <div class="row">
                 <div class="column">
                     <button onclick="resetMapTable()">(D)eselect</button>
-                    (S)elect<input type="checkbox" name="selectable" value="0" onclick="toggleSelectable()" checked>
-                    (T)oggle<input type="checkbox" name="toggable" value="0" onclick="toggleToggable()" checked>
+                    <label>(S)elect</label>
+                    <input type="checkbox" name="selectable" value="0" onclick="toggleSelectable()" checked>
+                    <label>(T)oggle</label>
+                    <input type="checkbox" name="toggable" value="0" onclick="toggleToggable()" checked>
                 </div>
                 <div class="column">
                     <select id="selectISO" onchange="toggleSelectISO()">
@@ -86,32 +85,46 @@
                         <option value="deselect">Deselect</option>
                         <option value="selectsafe">Select Safe</option>
                     </select>
-                    <label for="selectIso">ISO</label>
+                    <label for="selectIso">Curr. ISO</label>
                     <input id="selectIso" size="4" onchange="onInputChange('selectIso')">
+                    <button onclick="selectAllFeaturesByColumn('ISO')">Select</button>
                 </div>
                 <div class="column">
-                    <select id="selectDN" onchange="toggleSelectDN()">
+                    <select id="selectNEWISO" onchange="toggleSelectNEWISO()">
                         <option value="select">Select</option>
                         <option value="deselect">Deselect</option>
                         <option value="selectsafe">Select Safe</option>
                     </select>
                     <label for="selectNewIso">New ISO</label>
                     <input id="selectNewIso" size="4" onchange="onInputChange('selectNewIso')">
+                    <button onclick="selectAllFeaturesByColumn('NEWISO')">Select</button>
                 </div>
                 <div class="column">
-                    <select id="selectColony" onchange="toggleSelectColony()">
+                    <select id="selectNEWNAME" onchange="toggleSelectNewName()">
                         <option value="select">Select</option>
                         <option value="deselect">Deselect</option>
                         <option value="selectsafe">Select Safe</option>
                     </select>
-                    <label for="selectColony">Colony</label>
-                    <input id="selectColony" size="4" onchange="onInputChange('selectColony')">
+                    <label for="selectNewName">New Name</label>
+                    <input id="selectNewName" size="4" onchange="onInputChange('selectNewName')">
+                    <button onclick="selectAllFeaturesByColumn('NEWNAME')">Select</button>
                 </div>
             </div>
             <div class="row">
                 <div class="column">
-                    <label for="currentYear"> Curent year: </label>
-                    <input type="number" id="currentYear" name="currentYear" value="2010" size="4" onchange="setYear()">
+                    <label for="year1">Year #1: </label>
+                    <input id="year1" name="year1" value="2010" size="4" onchange="setYear1()">
+                    <button onclick="toggleHistoryLayer(1)">Toogle layer #1</button>
+                </div>
+                <div class="column">
+                    <label for="year2">Year #2: </label>
+                    <input id="year2" name="year2" value="2010" size="4" onchange="setYear2()">
+                    <button onclick="toggleHistoryLayer(2)">Toogle layer #2</button>
+                </div>
+                <div class="column">
+                    <label for="year3">Year #3: </label>
+                    <input id="year3" name="year3" value="2010" size="4" onchange="setYear3()">
+                    <button onclick="toggleHistoryLayer(3)">Toogle layer #3</button>
                 </div>
             </div>
         </div>
@@ -119,12 +132,15 @@
         </div>
     </div>
     <script>
-        var currentYear = 2010;
+        
         var selectedIDs = [];
+        var popupedValues = [];
 
         var selectISO = 'select';
-        var selectDN = 'select';
-        var selectColony = 'select';
+        var selectNEWISO = 'select';
+        var selectNEWNAME = 'select';
+        var historyLayerActive = [null, true, true, true];
+        var currentSelectedFeature = {};
         
         var allData;
         var selectable = true;
@@ -137,6 +153,10 @@
         var cursorAction = 'generate'; // [generate, select]
         var hexGridSources = [];
         var hexGridIndex = 0;
+
+        document.getElementById('year1').value = year1;
+        document.getElementById('year2').value = year2;
+        document.getElementById('year3').value = year3;
 
         var ct = new Date();
         var version = '2017.' + (ct.getMonth() + 1) + '.' + ct.getDate() + '.' + ct.getHours() + '.' + ct.getMinutes();
@@ -153,18 +173,30 @@
             maxBounds: [[-200,-85], [200, 85]],
         });
 
+        function toggleHistoryLayer(i) {
+            debugger;
+            if (historyLayerActive[i]) {
+                map.setLayoutProperty('history-tiles' + i, 'visibility', 'none');
+                document.getElementById('year' + i).classList.add('faded');
+            } else {
+                map.setLayoutProperty('history-tiles' + i, 'visibility', 'visible');
+                document.getElementById('year' + i).classList.remove('faded');
+            }
+            historyLayerActive[i] = !historyLayerActive[i];
+        }
+
         map.boxZoom.disable();
 
         function toggleSelectISO() {
             selectISO = document.getElementById('selectISO').value;
         }
 
-        function toggleSelectDN() {
-            selectDN = document.getElementById('selectDN').value;
+        function toggleSelectNEWISO() {
+            selectNEWISO = document.getElementById('selectNEWISO').value;
         }
 
-        function toggleSelectColony() {
-            selectColony = document.getElementById('selectColony').value;
+        function toggleSelectNewName() {
+            selectNEWNAME = document.getElementById('selectNEWNAME').value;
         }
 
         function toggleSelectable() {
@@ -177,30 +209,77 @@
             document.getElementsByName('toggable')[0].checked = toggable;
         }
 
-        function setYear() {
-            var newYear = parseInt(document.getElementById('currentYear').value, 10);
-            if (currentYear !== newYear) {
-                console.info('Set tiles to ' + newYear);
-                if (map.getSource('rasterSource')) {
-                    map.removeLayer('history-tiles');
-                    map.removeSource('rasterSource');
+        function setYear1() {
+            var newYear = parseInt(document.getElementById('year1').value, 10);
+            if (year1 !== newYear) {
+                console.info('Set tiles 1 to ' + newYear);
+                if (map.getSource('rasterSource1')) {
+                    map.removeLayer('history-tiles1');
+                    map.removeSource('rasterSource1');
+                    map.addSource('rasterSource1', {
+                        'type': 'raster',
+                        'tiles': ['http://wpc.4693.edgecastcdn.net/004693/tiles/area/' + newYear + '/Z{z}/{y}/{x}.png?v=20'],
+                        'tileSize': 256
+                    });
+                    map.addLayer({
+                        'id': 'history-tiles1',
+                        'type': 'raster',
+                        'source': 'rasterSource1',
+                        'minzoom': 0,
+                        'maxzoom': 7
+                    }, 'dummy');
+                    year1 = parseInt(newYear, 10);
+                }
+            }
+        }
+
+        function setYear2() {
+            var newYear = parseInt(document.getElementById('year2').value, 10);
+            if (year2 !== newYear) {
+                console.info('Set tiles 2 to ' + newYear);
+                if (map.getSource('rasterSource2')) {
+                    map.removeLayer('history-tiles2');
+                    map.removeSource('rasterSource2');
+                    map.addSource('rasterSource2', {
+                        'type': 'raster',
+                        'tiles': ['http://wpc.4693.edgecastcdn.net/004693/tiles/area/' + newYear + '/Z{z}/{y}/{x}.png?v=20'],
+                        'tileSize': 256
+                    });
+                    map.addLayer({
+                        'id': 'history-tiles2',
+                        'type': 'raster',
+                        'source': 'rasterSource2',
+                        'minzoom': 0,
+                        'maxzoom': 7
+                    }, 'dummy');
+                    year2 = parseInt(newYear, 10);
+                }
+            }
+        }
+
+        function setYear3() {
+            var newYear = parseInt(document.getElementById('year3').value, 10);
+            if (year3 !== newYear) {
+                console.info('Set tiles 3 to ' + newYear);
+                if (map.getSource('rasterSource3')) {
+                    map.removeLayer('history-tiles3');
+                    map.removeSource('rasterSource3');
                     map.addSource('rasterSource', {
                         'type': 'raster',
                         'tiles': ['http://wpc.4693.edgecastcdn.net/004693/tiles/area/' + newYear + '/Z{z}/{y}/{x}.png?v=20'],
                         'tileSize': 256
                     });
                     map.addLayer({
-                        'id': 'history-tiles',
+                        'id': 'history-tiles3',
                         'type': 'raster',
-                        'source': 'rasterSource',
+                        'source': 'rasterSource3',
                         'minzoom': 0,
                         'maxzoom': 7
                     }, 'dummy');
-                    currentYear = parseInt(newYear, 10);
+                    year3 = parseInt(newYear, 10);
                 }
             }
         }
-
         function resetMapTable() {
             // selectedIDs.forEach(id => {
             //     document.getElementById('DataRow' + id).style['background-color'] = null;
@@ -210,63 +289,46 @@
             map.setFilter('hovered', ['in', 'ID', 0]);
         }
 
-        document.addEventListener('keydown', onKeyDown);
-
-        function onKeyDown(e) {
-            // If the ESC key is pressed
-            switch(e.keyCode) {
-                case 27: // ESC - finish selecting
-                    resetMapTable();
-                    // finish();
-                    break;
-                case 68: // D - deselect
-                    resetMapTable();
-                    break;
-                case 83: // S - toggle selectable
-                    toggleSelectable();
-                    break;
-                case 84: // T - toggle toggable
-                    toggleToggable();
-                    break;
-                default:
-                    break;
-            }
-        }
-
         function displayFeatureInfo(id) {
             var feature = allData.find((f) => {
                 return f[0] === id;
             });
             var first = allData[0];
-
+            popupedValues = feature.map((e, i) => {
+                return {
+                    name: first[i],
+                    value: e,
+                }
+            });
             var row = feature.map((e, i) => {
+                currentSelectedFeature[renameLabel(first[i])] = e;
                 return `<div id="column${i}" class="popup-column">
                     <div class="popup-label">${renameLabel(first[i])}</div>
                     <div class="popup-value">${e}</div>
                 </div>`;
                 // return renameLabel(first[i]) + ' : ' + '<strong>' + e + '</strong>';
             });
-            
             document.getElementById('popup-container').innerHTML = row.join('');
         }
 
         function renameLabel(i) {
-            switch(i) {
-                case 'ID2':
-                    return 'Colony';
-                    break;
-                case 'Geo_FIPS':
-                    return 'ISO';
-                    break;
-                case 'DN':
-                    return 'New ISO';
-                    break;
-                case 'Geo_QName':
-                    return 'Name';
-                    break;
-                default:
-                    return i;
-            }
+            return i;
+            // switch(i) {
+            //     case 'NewName':
+            //         return 'NewName';
+            //         break;
+            //     case 'ISO':
+            //         return 'ISO';
+            //         break;
+            //     case 'NEWISO':
+            //         return 'New ISO';
+            //         break;
+            //     case 'Geo_QName':
+            //         return 'Name';
+            //         break;
+            //     default:
+            //         return i;
+            // }
         }
         
         map.on('load', function () {
@@ -336,7 +398,7 @@
             function finish(bbox) {
                 // Remove these events now that finish has been called.
                 document.removeEventListener('mousemove', onMouseMove);
-                document.removeEventListener('keydown', onKeyDown);
+                // document.getElementById('map').removeEventListener('keydown', onKeyDownMap);
                 document.removeEventListener('mouseup', onMouseUp);
 
                 if (box) {
@@ -418,23 +480,47 @@
         function onInputChange(field) {
             const value = document.getElementById(field).value;
             switch(field) {
-                case 'isos':
-                    setColumnValue('DN', selectedIDs, value);
+                case 'newiso':
+                    setColumnValue('NEWISO', selectedIDs, value);
                     break;
-                case 'colonies':
-                    setColumnValue('ID2', selectedIDs, value);
+                case 'newcolony':
+                    setColumnValue('ISOCOLONY', selectedIDs, value);
+                    break;
+                case 'newname':
+                    setColumnValue('NEWNAME', selectedIDs, value);
+                    break;
+                case 'side1':
+                    setColumnValue('SIDE1', selectedIDs, value);
+                    break;
+                case 'side2':
+                    setColumnValue('SIDE2', selectedIDs, value);
                     break;
                 case 'selectIso':
-                    selectAllFeaturesByVariable('Geo_FIPS', value, selectISO);
+                    selectAllFeaturesByVariable('ISO', value, selectISO);
                     break;
                 case 'selectNewIso':
-                    selectAllFeaturesByVariable('DN', value, selectDN);
+                    selectAllFeaturesByVariable('NEWISO', value, selectNEWISO);
                     break;
-                case 'selectColony':
-                    selectAllFeaturesByVariable('ID2', value, selectColony);
+                case 'selectNewName':
+                    selectAllFeaturesByVariable('NEWNAME', value, selectNEWNAME);
                     break;
             }
             document.getElementById(field).value = null;
+        }
+
+        function pickCurrent() {
+            setColumnValue('NEWISO', selectedIDs, currentSelectedFeature['NEWISO']);
+            setColumnValue('ISOCOLONY', selectedIDs, currentSelectedFeature['ISOCOLONY']);
+            setColumnValue('NEWNAME', selectedIDs, currentSelectedFeature['NEWNAME']);
+            setColumnValue('SIDE1', selectedIDs, currentSelectedFeature['SIDE1']);
+            setColumnValue('SIDE2', selectedIDs, currentSelectedFeature['SIDE2']);
+        }
+
+        function selectAllFeaturesByColumn(column) {
+            const value = popupedValues.find(values => {
+                return values.name === column;
+            }).value;
+            selectAllFeaturesByVariable(column, value, 'selectsafe');
         }
 
         function initAutocompleteValuePicker(data) {
@@ -456,13 +542,15 @@
         }
 
         function setColumnValue(colName, ids, value) {
-            if (value.length > 7) {
-                alert('New values must be maximum 7 character long Uppercase string');
+            if (colName === 'NEWISO' && (value.length > 7 || value.length < 3)) {
+                alert('New values must be 3-7 character long Uppercase string');
                 return;
             }
-            if (availableTags.indexOf(value) < 0) {
-                alert('Setting Unexisting ISO code');
+            if (colName === 'NEWISO' && availableTags.indexOf(value) < 0) {
+                // alert('Setting Unexisting ISO code');
+                console.info('Setting Unexisting ISO code');
             }
+            console.info('Setting ' + colName + ' to ' + value);
             var colIdx = allData[0].indexOf(colName);
             const newData = allData.map(d => {
                 let returnData = JSON.parse(JSON.stringify(d));
@@ -475,7 +563,7 @@
             processedIDs = processedIDs.concat(ids);
             map.setFilter('boundaries',['!in', 'ID', ...processedIDs])
             map.setFilter('labels',['!in', 'ID', ...processedIDs])
-            resetMapTable();
+            // resetMapTable();
             save2local();
             renderTable();
         }
@@ -520,24 +608,60 @@
             save2local();
             var saveDataVersion = document.getElementById('saveDataVersion').value;
             saveDataVersion = (saveDataVersion.length > 0) ? saveDataVersion : 'temp';
+            const isoIndex = allData[0].indexOf('NEWISO');
+            const nameIndex = allData[0].indexOf('NEWNAME');
+            const exportData = [];
+            allData.forEach((element, idx) => {
+                if (element.length > 1) {
+                    if (idx === 0) {
+                        // if (element.indexOf('ISOCOLONY') < 0) {
+                        //     element.push('ISOCOLONY');
+                        // }
+                        // if (element.indexOf('COLONYNAME') < 0) {
+                        //     element.push('COLONYNAME');
+                        // }
+                    } else {
+                        const isColony = (element[nameIndex].indexOf('(') > -1);
+                        const isDual = (element[isoIndex].indexOf('-') > -1);
+                        if (isColony) {
+                            const isoColony = element[isoIndex].substr(element[isoIndex].indexOf('-') + 1);
+                            const colonyName = allData.find((a) => {
+                                return a[isoIndex] === isoColony;
+                            })[nameIndex];
+                            element[allData[0].indexOf('ISOCOLONY')] = isoColony;
+                            element[allData[0].indexOf('COLONYNAME')] = colonyName;
+                        }
+                        if (isDual) {
+                            if (element[allData[0].indexOf('SIDE1')].length === 0) {
+                                element[allData[0].indexOf('SIDE1')] = element[isoIndex].substr(0,element[isoIndex].indexOf('-'));
+                            }
+                            if (element[allData[0].indexOf('SIDE2')].length === 0) {
+                                element[allData[0].indexOf('SIDE2')] = element[isoIndex].substr(element[isoIndex].indexOf('-')+1);
+                            }
+                        }
+                    }
+                    exportData.push(element);
+                }
+            });
+
 
             var csvContent = '';
-            allData.forEach((infoArray, index) => {
+            exportData.forEach((infoArray, index) => {
                var dataString = infoArray.join(',');
-               csvContent += (index < allData.length )? dataString + '\n' : dataString;
+               csvContent += (index < exportData.length )? dataString + '\n' : dataString;
             });
 
             var pom = document.createElement('a');
             var blob = new Blob([csvContent],{type: 'text/csv;charset=utf-8;'});
             var url = URL.createObjectURL(blob);
             pom.href = url;
-            pom.setAttribute('download', 'year_' + currentYear + '_version_' + saveDataVersion + '.csv');
+            pom.setAttribute('download', 'year_' + year1 + '_version_' + saveDataVersion + '.csv');
             pom.click();
             
             // var exportLink = document.createElement('a');
             // var encodedUri = encodeURI(csvContent);
             // exportLink.setAttribute('href', encodedUri);
-            // exportLink.setAttribute('download', 'year_' + currentYear + '.csv');
+            // exportLink.setAttribute('download', 'year_' + year1 + '.csv');
             // document.body.appendChild(exportLink); // Required for FF
             // exportLink.click(); // This will download the data file named "my_data.csv".
             
@@ -549,18 +673,18 @@
             var encodedUri = encodeURI(content);
             var exportLink = document.createElement('a');
             exportLink.setAttribute('href', encodedUri);
-            exportLink.setAttribute('download', 'geo_overlay_' + currentYear + '.json');
+            exportLink.setAttribute('download', 'geo_overlay_' + year1 + '.json');
             document.body.appendChild(exportLink); // Required for FF
             exportLink.click(); // This will download the data file named "my_data.csv".
         }
 
         function loadLocal() {
             // var loadDataVersion = document.getElementById('loadDataVersion').value;
-            var loadDataVersion = 'temp' + currentYear;
+            var loadDataVersion = 'temp' + year1;
             if (localStorage.getItem(loadDataVersion)) {
                 processedIDs = JSON.parse(localStorage.getItem(loadDataVersion)).processedIDs;
-                map.setFilter('boundaries',['!in', 'ID', ...processedIDs])
-                map.setFilter('labels',['!in', 'ID', ...processedIDs])
+                map.setFilter('boundaries',['!in', 'ID', ...processedIDs]);
+                map.setFilter('labels',['!in', 'ID', ...processedIDs]);
                 alert('Loaded version ' + loadDataVersion);
             } else {
                 alert('Unexisting version ' + loadDataVersion);
@@ -675,6 +799,81 @@
         function isNumeric(value) {
             return /^\d+$/.test(value);
         }
+
+        // function onKeyDownMap(e) {
+        window.onkeyup = function (e) {
+            // If the ESC key is pressed
+            console.log('Map key ' + e.keyCode);
+            switch(e.keyCode) {
+                case 27: // ESC - finish selecting
+                    resetMapTable();
+                    break;
+                case 113: // F2 saving
+                    pickCurrent();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        function generateRulesets() {
+            let distinctCountries = [];
+            const isoIndex = allData[0].indexOf('NEWISO');
+            const nameIndex = allData[0].indexOf('NEWNAME');
+            allData.forEach((element, index) => {
+                if (index > 0 && element[3] && element[3].indexOf('-') < 0 && distinctCountries.indexOf(element[3]) < 0) {
+                    if (element[3].length > 0) {
+                        distinctCountries.push(element[3]); 
+                    }
+                } else if (index > 0 && element[3] && element[3].indexOf('-') > -1 && distinctCountries.indexOf(element[3].substr(element[3].indexOf('-')+1)) < 0) {
+                    if (element[3].substr(element[3].indexOf('-')+1).length > 0) {
+                        distinctCountries.push(element[3].substr(element[3].indexOf('-')+1)); 
+                    }
+                }
+            });
+            
+            const sorted = distinctCountries;
+            // const sorted = distinctCountries.sort(function(a, b) {
+            //     var nameA = a.toUpperCase(); // ignore upper and lowercase
+            //     var nameB = b.toUpperCase(); // ignore upper and lowercase
+            //     if (nameA < nameB) {
+            //         return -1;
+            //     }
+            //     if (nameA > nameB) {
+            //         return 1;
+            //     }
+            //     // names must be equal
+            //     return 0;
+            // });
+
+            const ruleSets = sorted.map((iso) => {
+                const colonyName = allData.find((a) => {
+                    return a[isoIndex] === iso;
+                })[nameIndex];
+
+                // return {
+                //     'filter': ['any', ['==', 'ISOCOLONY', iso], ['==', 'NEWISO', iso], ['==', 'SIDE2', iso]],
+                //     'metadata': {
+                //         'mapspice:rule-label': colonyName
+                //     }
+                // };
+
+
+                return {
+                    'filter': ['any', 
+                                ['all', ['==', 'NEWISO', iso], ['!has', 'ISOCOLONY'], ['!has', 'SIDE2']], // countries
+                                ['all', ['!=', 'NEWISO', iso], ['!has', 'ISOCOLONY'], ['==', 'SIDE2', iso]], // war sides
+                                ['all', ['!=', 'NEWISO', iso], ['has', 'ISOCOLONY'], ['==', 'SIDE1', iso]], // war sides
+                            ],
+                    'metadata': {
+                        'mapspice:rule-label': colonyName
+                    }
+                };
+            });
+            debugger;
+        }
+
+        // window.document.getElementById("map").addEventListener("onkeydown", onKeyDownMap, false); 
     </script>
 </body>
 </html>
