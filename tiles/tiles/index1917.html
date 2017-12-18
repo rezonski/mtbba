@@ -42,12 +42,19 @@
             </div>
             <div class="row">
                 <div class="column">
-                    <label for="newiso">Set NEW ISO: </label>
-                    <input id="newiso" size="10" onchange="onInputChange('newiso')">
+                    <label for="newiso">New ISO/Colony: </label>
+                    <input id="newiso" size="6" onchange="onInputChange('newiso')">
+                    <input id="newcolony" size="6" onchange="onInputChange('newcolony')">
                 </div>
                 <div class="column">
                     <label for="newname">Set NEW Name: </label>
                     <input id="newname" size="10" onchange="onInputChange('newname')">
+                </div>
+                <div class="column">
+                    <label for="newcolony">Set sides: </label>
+                    <input id="side1" size="5" onchange="onInputChange('side1')">
+                    <input id="side2" size="5" onchange="onInputChange('side2')">
+                    <button onclick="pickCurrent()">Pick current!</button>
                 </div>
             </div>
             <div class="row">
@@ -114,6 +121,11 @@
                     <input id="year2" name="year2" value="2010" size="4" onchange="setYear2()">
                     <button onclick="toggleHistoryLayer(2)">Toogle layer #2</button>
                 </div>
+                <div class="column">
+                    <label for="year3">Year #3: </label>
+                    <input id="year3" name="year3" value="2010" size="4" onchange="setYear3()">
+                    <button onclick="toggleHistoryLayer(3)">Toogle layer #3</button>
+                </div>
             </div>
         </div>
         <div class="year-switch controls">
@@ -128,6 +140,7 @@
         var selectNEWISO = 'select';
         var selectNEWNAME = 'select';
         var historyLayerActive = [null, true, true];
+        var currentSelectedFeature = {};
         
         var allData;
         var selectable = true;
@@ -143,6 +156,7 @@
 
         document.getElementById('year1').value = year1;
         document.getElementById('year2').value = year2;
+        document.getElementById('year3').value = year3;
 
         var ct = new Date();
         var version = '2017.' + (ct.getMonth() + 1) + '.' + ct.getDate() + '.' + ct.getHours() + '.' + ct.getMinutes();
@@ -242,6 +256,29 @@
             }
         }
 
+        function setYear3() {
+            var newYear = parseInt(document.getElementById('year3').value, 10);
+            if (year3 !== newYear) {
+                console.info('Set tiles 3 to ' + newYear);
+                if (map.getSource('rasterSource3')) {
+                    map.removeLayer('history-tiles3');
+                    map.removeSource('rasterSource3');
+                    map.addSource('rasterSource', {
+                        'type': 'raster',
+                        'tiles': ['http://wpc.4693.edgecastcdn.net/004693/tiles/area/' + newYear + '/Z{z}/{y}/{x}.png?v=20'],
+                        'tileSize': 256
+                    });
+                    map.addLayer({
+                        'id': 'history-tiles3',
+                        'type': 'raster',
+                        'source': 'rasterSource3',
+                        'minzoom': 0,
+                        'maxzoom': 7
+                    }, 'dummy');
+                    year3 = parseInt(newYear, 10);
+                }
+            }
+        }
         function resetMapTable() {
             // selectedIDs.forEach(id => {
             //     document.getElementById('DataRow' + id).style['background-color'] = null;
@@ -261,15 +298,15 @@
                     name: first[i],
                     value: e,
                 }
-            });;
+            });
             var row = feature.map((e, i) => {
+                currentSelectedFeature[renameLabel(first[i])] = e;
                 return `<div id="column${i}" class="popup-column">
                     <div class="popup-label">${renameLabel(first[i])}</div>
                     <div class="popup-value">${e}</div>
                 </div>`;
                 // return renameLabel(first[i]) + ' : ' + '<strong>' + e + '</strong>';
             });
-            
             document.getElementById('popup-container').innerHTML = row.join('');
         }
 
@@ -445,8 +482,17 @@
                 case 'newiso':
                     setColumnValue('NEWISO', selectedIDs, value);
                     break;
+                case 'newcolony':
+                    setColumnValue('ISOCOLONY', selectedIDs, value);
+                    break;
                 case 'newname':
                     setColumnValue('NEWNAME', selectedIDs, value);
+                    break;
+                case 'side1':
+                    setColumnValue('SIDE1', selectedIDs, value);
+                    break;
+                case 'side2':
+                    setColumnValue('SIDE2', selectedIDs, value);
                     break;
                 case 'selectIso':
                     selectAllFeaturesByVariable('ISO', value, selectISO);
@@ -459,6 +505,14 @@
                     break;
             }
             document.getElementById(field).value = null;
+        }
+
+        function pickCurrent() {
+            setColumnValue('NEWISO', selectedIDs, currentSelectedFeature['NEWISO']);
+            setColumnValue('ISOCOLONY', selectedIDs, currentSelectedFeature['ISOCOLONY']);
+            setColumnValue('NEWNAME', selectedIDs, currentSelectedFeature['NEWNAME']);
+            setColumnValue('SIDE1', selectedIDs, currentSelectedFeature['SIDE1']);
+            setColumnValue('SIDE2', selectedIDs, currentSelectedFeature['SIDE2']);
         }
 
         function selectAllFeaturesByColumn(column) {
@@ -535,7 +589,7 @@
             //     console.error(e);
             //     alert('error occurred');
             // }
-            var saveDataVersion = 'temp' + year1;
+            var saveDataVersion = 'temp' + currentYear;
             try{
                 localStorage.setItem(saveDataVersion, JSON.stringify({
                     processedIDs: processedIDs
@@ -577,8 +631,12 @@
                             element[allData[0].indexOf('COLONYNAME')] = colonyName;
                         }
                         if (isDual) {
-                            element[allData[0].indexOf('SIDE1')] = element[isoIndex].substr(0,element[isoIndex].indexOf('-'));
-                            element[allData[0].indexOf('SIDE2')] = element[isoIndex].substr(element[isoIndex].indexOf('-')+1);
+                            if (element[allData[0].indexOf('SIDE1')].length === 0) {
+                                element[allData[0].indexOf('SIDE1')] = element[isoIndex].substr(0,element[isoIndex].indexOf('-'));
+                            }
+                            if (element[allData[0].indexOf('SIDE2')].length === 0) {
+                                element[allData[0].indexOf('SIDE2')] = element[isoIndex].substr(element[isoIndex].indexOf('-')+1);
+                            }
                         }
                     }
                     exportData.push(element);
@@ -744,11 +802,13 @@
         // function onKeyDownMap(e) {
         window.onkeyup = function (e) {
             // If the ESC key is pressed
-            // console.log('Map key ' + e.keyCode);
+            console.log('Map key ' + e.keyCode);
             switch(e.keyCode) {
                 case 27: // ESC - finish selecting
                     resetMapTable();
-                    // finish();
+                    break;
+                case 113: // F2 saving
+                    pickCurrent();
                     break;
                 default:
                     break;
