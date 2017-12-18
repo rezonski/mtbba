@@ -386,6 +386,9 @@ class WaypointHelper extends GLU.Controller {
         } else {
             returnDesc = 'Stigli ste na odrediste';
         }
+        console.log('generateDesc');
+        console.log(wp);
+        console.log(returnDesc);
         return returnDesc;
     }
 
