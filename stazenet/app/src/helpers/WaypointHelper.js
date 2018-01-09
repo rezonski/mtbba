@@ -164,7 +164,7 @@ class WaypointHelper extends GLU.Controller {
             tempName = tempName + ' #' + this.usedWpNamesIdxs[tempName].idx;
         }
         wpoint.properties.name = tempName;
-        let tempDescArray, tempDesc, tempPictogram;
+        let tempDescArray = '', tempDesc = '', tempPictogram = '';
         if (wpoint.properties.desc !== undefined && wpoint.properties.desc.indexOf('#') > -1 ) {
             tempDescArray = wpoint.properties.desc.replace('#\n\n', '#\n').replace('#\n\n', '#\n').replace('#\n', '#').replace('#\n', '#').split('#');
             tempDesc = tempDescArray[2];
@@ -182,6 +182,7 @@ class WaypointHelper extends GLU.Controller {
             tempDesc = '';
             tempPictogram = (wpoint.properties.pictogram !== undefined) ? wpoint.properties.pictogram : '90';
         }
+        wpoint.properties.initDesc = tempDesc;
         wpoint.properties.desc = tempDesc;
         wpoint.properties.pictogram = tempPictogram;
         return wpoint;
@@ -313,7 +314,7 @@ class WaypointHelper extends GLU.Controller {
             }
             element.id = index;
             const descgenerated = this.generateDesc(tempWp, surfaceCollection);
-            element.desc = (element.desc && element.desc.length > 0) ? element.desc + descgenerated : descgenerated;
+            element.desc = element.initDesc + descgenerated;
         });
 
         newWaypointsExport.forEach((wp, wpIdx) => {
@@ -330,8 +331,7 @@ class WaypointHelper extends GLU.Controller {
     }
 
     generateDesc(wp, surfaceCollection) {
-        let returnDesc = JSON.stringify(wp);
-        returnDesc = CommonHelper.getElementByKey(this.pointTypes, 'id', 'CROSSROAD', 'name');
+        let returnDesc = CommonHelper.getElementByKey(this.pointTypes, 'id', 'CROSSROAD', 'name');
 
         if (wp.next !== null) {
             let directionText = CommonHelper.getElementByKey(this.pointTypes, 'id', wp.current.symbol, 'name') + ' `' + wp.current.name + '`. Nastaviti ';
@@ -386,9 +386,9 @@ class WaypointHelper extends GLU.Controller {
         } else {
             returnDesc = 'Stigli ste na odrediste';
         }
-        console.log('generateDesc');
-        console.log(wp);
-        console.log(returnDesc);
+        // console.log('generateDesc');
+        // console.log(wp);
+        console.log('generated description: ' + returnDesc.length);
         return returnDesc;
     }
 
