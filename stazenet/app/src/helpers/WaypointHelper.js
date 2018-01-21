@@ -271,7 +271,7 @@ class WaypointHelper extends GLU.Controller {
                         iconMarker: this.getIcon4Symbol(symbol),
                         pictogram: wpoint.properties.pictogram,
                         pictureUrl: (wpoint.properties.pictureUrl !== undefined) ? wpoint.properties.pictureUrl : '',
-                        elevationProfile: true,
+                        elevationProfile: (wpoint.properties.elevationProfile) ? wpoint.properties.elevationProfile : true,
                         lon: (TrailsDataModel.activeTrail.getTrailData().snapWPsToPath) ? inputPathLine[tempIndex].lon : wpoint.geometry.coordinates[0],
                         lat: (TrailsDataModel.activeTrail.getTrailData().snapWPsToPath) ? inputPathLine[tempIndex].lat : wpoint.geometry.coordinates[1],
                         elevation: (TrailsDataModel.activeTrail.getTrailData().snapWPsToPath || !wpoint.geometry.coordinates[2]) ? inputPathLine[tempIndex].elevation : wpoint.geometry.coordinates[2],

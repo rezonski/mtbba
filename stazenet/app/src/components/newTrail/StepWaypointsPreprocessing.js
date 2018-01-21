@@ -4,6 +4,7 @@ import Enum from '/enums/Enum';
 import Lang from '/helpers/Lang';
 import CircularProgress from 'material-ui/CircularProgress';
 import InputTextBox from '../common/InputTextBox';
+import Switch from '../common/Switch';
 import {
     Table,
     TableBody,
@@ -74,6 +75,15 @@ class StepWaypointsPreprocessing extends BasePage {
                                 filedHintText={Lang.label('wpName')}
                             />
                         </TableRowColumn>
+                        <TableRowColumn style={styles.columnNarower}>
+                            <Switch
+                                fieldName={'waypoints'}
+                                fieldIndex={wpIdx}
+                                fieldProp={'elevationProfile'}
+                                label={Lang.label('showOnElevationProfile')}
+                                type={'toggle'}
+                            />
+                        </TableRowColumn>
                         <TableRowColumn>{wp.properties.suggestionNames}</TableRowColumn>
                     </TableRow>);
         });
@@ -85,6 +95,7 @@ class StepWaypointsPreprocessing extends BasePage {
                     >
                         <TableHeader>
                             <TableRow>
+                                <TableHeaderColumn style={styles.columnNarower}>{Lang.label('showOnElevationProfile')}</TableHeaderColumn>
                                 <TableHeaderColumn style={styles.columnNarower}>{Lang.label('wpName')}</TableHeaderColumn>
                                 <TableHeaderColumn style={styles.columnNarower}>{Lang.label('suggestion')}</TableHeaderColumn>
                             </TableRow>

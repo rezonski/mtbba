@@ -6,6 +6,7 @@ import Drawer from 'material-ui/Drawer';
 // import FlatButton from 'material-ui/FlatButton';
 // import WPEditorTray from '../wpEditor/WPEditorTray';
 import InputTextBox from '../common/InputTextBox';
+import Switch from '../common/Switch';
 import Lang from '/helpers/Lang';
 
 class WPDRawer extends BasePage {
@@ -94,6 +95,13 @@ class WPDRawer extends BasePage {
                                 noRows={1}
                                 filedLabel={Lang.label('pictogram')}
                                 filedHintText={Lang.label('pictogramHint')}
+                            />
+                            <Switch
+                                fieldName={'waypoints'}
+                                fieldIndex={wpIdx}
+                                fieldProp={'elevationProfile'}
+                                label={Lang.label('showOnElevationProfile')}
+                                type={'toggle'}
                             />
                     </div>);
         });

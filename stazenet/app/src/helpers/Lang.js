@@ -281,6 +281,10 @@ const labels = {
         bos: 'Prijedlog',
         eng: 'Suggestion',
     },
+    showOnElevationProfile: {
+        bos: 'Profil',
+        eng: 'El.prof',
+    },
 };
 
 const messages = {
