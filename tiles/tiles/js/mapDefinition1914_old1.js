@@ -1,11 +1,11 @@
 // var importCSV = 'data/World-detail-polygons---for-historical-maps-creation.csv';
 // var importCSV = 'data/years/1914.csv';
-var importCSV = 'data/years/year_1918_version_2017.12.18.15.19.csv';
+var importCSV = 'data/years/year_1914_version_1.csv';
 var processedIDs = [];
-var currentYear = 1918;
-var year1 = 1918;
-var year2 = 1919;
-var year3 = 1920;
+var currentYear = 1914;
+var year1 = 1914;
+var year2 = 1914;
+var year3 = 1924;
 var mapStyle = {
     'version': 8,
     'glyphs': 'font/Arial Regular/0-255.pbf',

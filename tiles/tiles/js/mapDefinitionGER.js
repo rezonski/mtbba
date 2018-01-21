@@ -1,11 +1,11 @@
 // var importCSV = 'data/World-detail-polygons---for-historical-maps-creation.csv';
 // var importCSV = 'data/years/1914.csv';
-var importCSV = 'data/years/year_1918_version_2017.12.18.15.19.csv';
+var importCSV = 'data/germany/germany.csv';
 var processedIDs = [];
-var currentYear = 1918;
+var currentYear = 1919;
 var year1 = 1918;
 var year2 = 1919;
-var year3 = 1920;
+var year3 = 1924;
 var mapStyle = {
     'version': 8,
     'glyphs': 'font/Arial Regular/0-255.pbf',
@@ -21,31 +21,33 @@ var mapStyle = {
             'layers': [
                 // STATES
                 {
-                    'layerId': '26852',
+                    'layerId': '27996',
                     'datasets': [
                         {
                             'datasetId': 0,
                             'columns': [
-                                'ID',
+                                'ID_3',
+                                'ID->{ID_3}',
                                 'ISO',
                                 'Geo_FIPS->{ISO}',
-                                'NAME_0',
-                                'Geo_QName->{NAME_0}',
+                                'NAME_1',
+                                'Geo_QName->{NAME_1}',
                             ]
                         }
                     ]
                 },
                 {
-                    'layerId': '26852p',
+                    'layerId': '27996p',
                     'datasets': [
                         {
                             'datasetId': 0,
                             'columns': [
-                                'ID',
+                                'ID_3',
+                                'ID->{ID_3}',
                                 'ISO',
                                 'Geo_FIPS->{ISO}',
-                                'NAME_0',
-                                'Geo_QName->{NAME_0}',
+                                'NAME_1',
+                                'Geo_QName->{NAME_1}',
                             ]
                         }
                     ]
@@ -131,7 +133,7 @@ var mapStyle = {
             'id': 'features',
             'type': 'fill',
             'source': 'geobuffer',
-            'source-layer': '26852',
+            'source-layer': '27996',
             'paint': {
                 'fill-color': 'rgba(0,0,0,0.1)'
             }
@@ -140,7 +142,7 @@ var mapStyle = {
             'id': 'hovered',
             'type': 'fill',
             'source': 'geobuffer',
-            'source-layer': '26852',
+            'source-layer': '27996',
             'paint': {
                 'fill-color': '#F4FF00',
                 'fill-opacity': 0.5
@@ -151,12 +153,23 @@ var mapStyle = {
             'id': 'changed',
             'type': 'fill',
             'source': 'geobuffer',
-            'source-layer': '26852',
+            'source-layer': '27996',
             'paint': {
                 'fill-color': '#FF00B4',
                 'fill-opacity': 0.5
             },
             'filter': ['in', 'ID', 0]
+        },
+        {
+          'id': '1923-boundaries',
+          'type': 'line',
+          'source': 'geobuffer',
+          'source-layer': '11505',
+          'paint': {
+              'line-color': '#FF0000',
+              'line-width': 4,
+              'line-blur': 3
+          },
         },
         {
           "id": "world-cities-smaller",
@@ -431,7 +444,7 @@ var mapStyle = {
               'id': 'boundaries',
               'type': 'line',
               'source': 'geobuffer',
-              'source-layer': '26852',
+              'source-layer': '27996',
               'paint': {
                   'line-color': 'rgba(100, 100, 100, 0.5)',
                   'line-width': 1,
@@ -443,7 +456,7 @@ var mapStyle = {
               'id': 'labels',
               'type': 'symbol',
               'source': 'geobuffer',
-              'source-layer': '26852p',
+              'source-layer': '27996p',
               'paint': {
                   'text-color': 'rgba(0, 0, 0, 0.7)',
                   'text-halo-color': 'rgba(255, 255, 255, 0.8)',

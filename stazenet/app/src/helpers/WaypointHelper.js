@@ -188,6 +188,16 @@ class WaypointHelper extends GLU.Controller {
         return wpoint;
     }
 
+    isTerrainSwitchPoint(properties) {
+        if (properties.type && properties.type === 'terrainSwitch') {
+            return true;
+        }
+        if (properties.name && properties.name.length === 1 && (properties.name === 'A' || properties.name === 'M' || properties.name === 'S' || properties.name === 'N')) {
+            return true;
+        }
+        return false;
+    }
+
     // generateWaypoints(leftMap, rightMap, featuresCollection) {
     generateWaypoints(leftMap, featuresCollection) {
         const inputPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
@@ -244,7 +254,7 @@ class WaypointHelper extends GLU.Controller {
             // console.log(wpoint.properties);
             // console.log('#tempIndex = ' + tempIndex);
             if (tempIndex > -1) {
-                if (wpoint.properties.type && wpoint.properties.type === 'terrainSwitch') {
+                if (this.isTerrainSwitchPoint(wpoint.properties)) {
                     // console.log('Surface: ' + wpoint.properties.surfaceType + ' - ' + JSON.stringify(wpoint.geometry.coordinates) + ' - ' + (Math.round(inputPathLine[tempIndex].odometer * 100) / 100));
                     const payload = {
                         odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
