@@ -226,8 +226,8 @@ const labels = {
         eng: 'Waypoint description',
     },
     pictogram: {
-        bos: 'Shema tačke puta',
-        eng: 'Waypoint pictogram',
+        bos: 'Shema raskrsnice',
+        eng: 'Pictogram',
     },
     pictogramHint: {
         bos: 'npr. 90-v135-z30',
@@ -283,7 +283,7 @@ const labels = {
     },
     showOnElevationProfile: {
         bos: 'Profil',
-        eng: 'El.prof',
+        eng: 'Elev',
     },
 };
 

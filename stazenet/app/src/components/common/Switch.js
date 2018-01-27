@@ -9,7 +9,7 @@ class Switch extends BasePage {
         super(props);
         this.state = {
             fieldName: this.props.fieldName,
-            value: false,
+            value: (this.props.value === undefined) ? false : this.props.value,
             label: (this.props.label) ? this.props.label : '',
             type: (this.props.type) ? this.props.type : 'toggle',
         };
@@ -21,6 +21,15 @@ class Switch extends BasePage {
             [Enum.DataEvents.TRAIL_DATA_RETRIEVED]: this.onDataRetrieved,
         });
         this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            fieldName: nextProps.fieldName,
+            value: (nextProps.value === undefined) ? this.state.value : nextProps.value,
+            label: (nextProps.label) ? nextProps.label : '',
+            type: (nextProps.type) ? nextProps.type : 'toggle',
+        });
     }
 
     componentWillUnmount() {

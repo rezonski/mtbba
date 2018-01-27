@@ -56,6 +56,16 @@ class StepWaypointsPreprocessing extends BasePage {
                 paddingLeft: '0px',
                 paddingRight: '10px',
             },
+            columnWider: {
+                minWidth: '200px',
+                paddingLeft: '0px',
+                paddingRight: '10px',
+            },
+            columnNarow: {
+                width: '80px',
+                paddingLeft: '0px',
+                paddingRight: '10px',
+            },
         };
 
         const wpstable = this.state.waypoints.map((wp, wpIdx) => {
@@ -75,7 +85,7 @@ class StepWaypointsPreprocessing extends BasePage {
                                 filedHintText={Lang.label('wpName')}
                             />
                         </TableRowColumn>
-                        <TableRowColumn style={styles.columnNarower}>
+                        <TableRowColumn style={styles.columnNarow}>
                             <Switch
                                 fieldName={'waypoints'}
                                 fieldIndex={wpIdx}
@@ -84,7 +94,7 @@ class StepWaypointsPreprocessing extends BasePage {
                                 type={'toggle'}
                             />
                         </TableRowColumn>
-                        <TableRowColumn>{wp.properties.suggestionNames}</TableRowColumn>
+                        <TableRowColumn style={styles.columnWider}><span style={{ whiteSpace: 'pre-line' }}>{wp.properties.suggestionNames}</span></TableRowColumn>
                     </TableRow>);
         });
 

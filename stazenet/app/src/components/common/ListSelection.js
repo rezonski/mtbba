@@ -9,7 +9,8 @@ class ListSelection extends BasePage {
         super(props);
         this.state = {
             fieldName: this.props.fieldName,
-            value: undefined,
+            value: (this.props.value === undefined) ? undefined : this.props.value,
+            label: (this.props.label) ? this.props.label : '',
             initialSetup: (this.props.optionList) ? { optionList: this.props.optionList } : {},
         };
         this.onListValueChangedEvent = this.onListValueChanged.bind(this);
@@ -21,6 +22,14 @@ class ListSelection extends BasePage {
             [Enum.MapEvents.INITIAL_DATA_SETUP_RETRIEVED]: this.onInitialSetupRetrieved,
         });
         this.emit(Enum.MapEvents.RETRIEVE_INITIAL_DATA_SETUP);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            fieldName: nextProps.fieldName,
+            value: (nextProps.value === undefined) ? this.state.value : nextProps.value,
+            label: (nextProps.label) ? nextProps.label : '',
+        });
     }
 
     componentWillUnmount() {

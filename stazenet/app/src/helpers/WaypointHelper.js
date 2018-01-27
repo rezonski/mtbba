@@ -185,15 +185,16 @@ class WaypointHelper extends GLU.Controller {
         wpoint.properties.initDesc = tempDesc;
         wpoint.properties.desc = tempDesc;
         wpoint.properties.pictogram = tempPictogram;
+        wpoint.properties.elevationProfile = true;
         return wpoint;
     }
 
     isTerrainSwitchPoint(properties) {
-        if (properties.type && properties.type === 'terrainSwitch') {
-            return true;
+        if (properties.type && properties.type === 'terrainSwitch' && properties.surfaceType) {
+            return properties.surfaceType;
         }
         if (properties.name && properties.name.length === 1 && (properties.name === 'A' || properties.name === 'M' || properties.name === 'S' || properties.name === 'N')) {
-            return true;
+            return properties.name;
         }
         return false;
     }
@@ -254,11 +255,11 @@ class WaypointHelper extends GLU.Controller {
             // console.log(wpoint.properties);
             // console.log('#tempIndex = ' + tempIndex);
             if (tempIndex > -1) {
-                if (this.isTerrainSwitchPoint(wpoint.properties)) {
+                if (this.isTerrainSwitchPoint(wpoint.properties) !== false) {
                     // console.log('Surface: ' + wpoint.properties.surfaceType + ' - ' + JSON.stringify(wpoint.geometry.coordinates) + ' - ' + (Math.round(inputPathLine[tempIndex].odometer * 100) / 100));
                     const payload = {
                         odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
-                        surfaceType: wpoint.properties.surfaceType,
+                        surfaceType: this.isTerrainSwitchPoint(wpoint.properties),
                     };
                     surfaceCollection.push([payload.odometer, payload.surfaceType]);
                     GLU.bus.emit(Enum.DataEvents.ADD_SURFACE_CHANGE, payload);
@@ -281,7 +282,7 @@ class WaypointHelper extends GLU.Controller {
                         iconMarker: this.getIcon4Symbol(symbol),
                         pictogram: wpoint.properties.pictogram,
                         pictureUrl: (wpoint.properties.pictureUrl !== undefined) ? wpoint.properties.pictureUrl : '',
-                        elevationProfile: (wpoint.properties.elevationProfile) ? wpoint.properties.elevationProfile : true,
+                        elevationProfile: (wpoint.properties.elevationProfile !== undefined) ? wpoint.properties.elevationProfile : true,
                         lon: (TrailsDataModel.activeTrail.getTrailData().snapWPsToPath) ? inputPathLine[tempIndex].lon : wpoint.geometry.coordinates[0],
                         lat: (TrailsDataModel.activeTrail.getTrailData().snapWPsToPath) ? inputPathLine[tempIndex].lat : wpoint.geometry.coordinates[1],
                         elevation: (TrailsDataModel.activeTrail.getTrailData().snapWPsToPath || !wpoint.geometry.coordinates[2]) ? inputPathLine[tempIndex].elevation : wpoint.geometry.coordinates[2],

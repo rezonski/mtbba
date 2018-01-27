@@ -145,8 +145,8 @@ class ChartHelper extends GLU.Controller {
                         color: '#808080',
                     },
                 ],
-                min: 0,
-                max: 2000,
+                min: Math.floor(generalFacts.elevMin / 500) * 500,
+                max: Math.ceil(generalFacts.elevMax / 500) * 500,
             },
             tooltip: {
                 shared: true,

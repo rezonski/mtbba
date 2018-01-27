@@ -80,9 +80,10 @@ class WPDRawer extends BasePage {
                                 fieldName={'waypoints'}
                                 fieldIndex={wpIdx}
                                 fieldProp={'name'}
+                                value={wp.properties.name}
                                 inputBoxStyle={{ fontSize: '80%' }}
-                                isMultiline={false}
-                                noRows={1}
+                                isMultiline={true}
+                                noRows={2}
                                 filedLabel={Lang.label('name')}
                                 filedHintText={Lang.label('name')}
                             />
@@ -90,6 +91,7 @@ class WPDRawer extends BasePage {
                                 fieldName={'waypoints'}
                                 fieldIndex={wpIdx}
                                 fieldProp={'pictogram'}
+                                value={wp.properties.pictogram}
                                 inputBoxStyle={{ fontSize: '80%' }}
                                 isMultiline={false}
                                 noRows={1}
@@ -100,6 +102,7 @@ class WPDRawer extends BasePage {
                                 fieldName={'waypoints'}
                                 fieldIndex={wpIdx}
                                 fieldProp={'elevationProfile'}
+                                value={wp.properties.elevationProfile}
                                 label={Lang.label('showOnElevationProfile')}
                                 type={'toggle'}
                             />
@@ -112,7 +115,7 @@ class WPDRawer extends BasePage {
 
         return (<Drawer
                     open={this.state.drawerOpen}
-                    width={300}
+                    width={400}
                     containerStyle={style.drawer}
                 >
                     <div className="wp-drawer-container">

@@ -7,7 +7,9 @@ class InputTextBox extends BasePage {
     constructor(props) {
         super(props);
         this.state = {
-            value: '',
+            fieldName: this.props.fieldName,
+            value: (this.props.value === undefined) ? '' : this.props.value,
+            label: (this.props.label) ? this.props.label : '',
         };
         this.onTextFieldChangedEvent = this.onTextFieldChanged.bind(this);
     }
@@ -17,6 +19,14 @@ class InputTextBox extends BasePage {
             [Enum.DataEvents.TRAIL_DATA_RETRIEVED]: this.onTrailDataRetrieved,
         });
         this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            fieldName: nextProps.fieldName,
+            value: (nextProps.value === undefined) ? this.state.value : nextProps.value,
+            label: (nextProps.label) ? nextProps.label : '',
+        });
     }
 
     componentWillUnmount() {
