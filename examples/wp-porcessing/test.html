@@ -405,37 +405,47 @@
         inputWaypoints.forEach((wpoint, wpindex) => {
             let tempDistance = 9999999;
             let tempIndexes = [];
-            let tempOdometer = -1;
+            let tempOdometer = -2;
             let cought = false;
 
-            // console.log('#' + wpindex + ' - ' + wpoint.properties.name);
+            console.log('#' + wpindex + ' - ' + wpoint.properties.name);
 
             // Calculate closest point on line
             inputPathLine.forEach((ppoint, pindex) => {
-                let currentDistance = turf.distance(turf.point([wpoint.geometry.coordinates[0], wpoint.geometry.coordinates[1]]), turf.point([ppoint.lon, ppoint.lat]));
-                if (currentDistance < 0.2) { // less than 100m
-                    cought = true;
-                    if ((ppoint.odometer - tempOdometer) > 0.3) {
+                const currentDistance = turf.distance(turf.point([wpoint.geometry.coordinates[0], wpoint.geometry.coordinates[1]]), turf.point([ppoint.lon, ppoint.lat]));
+                if (currentDistance < 0.1) { // less than 100m
+                    console.log('#' + wpindex + ' - ' + 'Step1: ' + pindex + ' cought, currentDistance = ' + currentDistance);
+                    // debugger;
+                    if ((ppoint.odometer - tempOdometer) > 1) {
+                        cought = true;
                         if (currentDistance < tempDistance) {
+                            console.log('#' + wpindex + ' - ' + 'Step2: ' + pindex + ' CLOSER than the last one, currentDistance = ' + currentDistance);
+                            // debugger;
                             tempDistance = currentDistance;
                         } else {
+                            console.log('#' + wpindex + ' - ' + 'Step3: ' + pindex + ' TOO FARER from the last WP (' + ppoint.odometer + ' - ' + tempOdometer +' = ' + (ppoint.odometer - tempOdometer) + '), currentDistance = ' + currentDistance);
+                            // debugger;
                             cought = false;
                             tempDistance = 9999999;
-                            tempOdometer = inputPathLine[pindex].odometer;
+                            tempOdometer = inputPathLine[pindex - 1].odometer;
                             tempIndexes.push(pindex - 1);
+                            console.log('#' + wpindex + ' - ' + ' added previous index ' + (pindex - 1) + ' to list, odometer ' + inputPathLine[pindex - 1].odometer);
                         }
                     }
                 } else {
                     if (cought) {
+                        console.log('#' + wpindex + ' - ' + 'Step4: ' + pindex + ' FARER than the last one, currentDistance = ' + currentDistance);
+                        // debugger;
                         cought = false;
                         tempDistance = 9999999;
-                        tempOdometer = inputPathLine[pindex].odometer;
+                        tempOdometer = inputPathLine[pindex - 1].odometer;
+                        console.log('#' + wpindex + ' - ' + ' added previous index ' + (pindex - 1) + ' to list, odometer ' + inputPathLine[pindex - 1].odometer);
                         tempIndexes.push(pindex - 1);
                     }
                 }
             });
 
-            if (tempIndexes.length > 1) {
+            if (tempIndexes.length > 0) {
                 console.log('#' + wpindex + ' - ' + wpoint.properties.name + ' repeats ' + tempIndexes.length + ' times');
                 console.log(tempIndexes);
             } else {
@@ -522,7 +532,7 @@
             const newPoint = turf.point([wp.lon, wp.lat, wp.elevation]);
             newPoint.properties = wp;
             newPoint.properties.id = wpIdx;
-            console.log('#' + newPoint.properties.odometer + ' - ' + newPoint.properties.name);
+            console.log('km ' + newPoint.properties.odometer + ' - ' + newPoint.properties.name);
             mapWaypointsCollection.features.push(newPoint);
         });
         return mapWaypointsCollection.features;

@@ -241,55 +241,73 @@ class WaypointHelper extends GLU.Controller {
 
         inputWaypoints.forEach((wpoint, wpindex) => {
             let tempDistance = 9999999;
-            let tempIndex = -1;
+            let tempIndexes = [];
+            let tempOdometer = -2;
+            let cought = false;
 
-            // Calculate closest point on line
             inputPathLine.forEach((ppoint, pindex) => {
-                // let currentDistance = TrailHelper.getDistanceFromLatLonInMeters(wpoint.geometry.coordinates[0], wpoint.geometry.coordinates[1], ppoint.lon, ppoint.lat);
-                let currentDistance = turf.distance(turf.point([wpoint.geometry.coordinates[0], wpoint.geometry.coordinates[1]]), turf.point([ppoint.lon, ppoint.lat]));
-                if ((currentDistance < tempDistance) && currentDistance < 0.2) { // less than 100m
-                    tempDistance = currentDistance;
-                    tempIndex = pindex;
+                const currentDistance = turf.distance(turf.point([wpoint.geometry.coordinates[0], wpoint.geometry.coordinates[1]]), turf.point([ppoint.lon, ppoint.lat]));
+                if (currentDistance < 0.2) { // less than 100m
+                    if ((ppoint.odometer - tempOdometer) > 1) {
+                        cought = true;
+                        if (currentDistance < tempDistance) {
+                            tempDistance = currentDistance;
+                        } else {
+                            cought = false;
+                            tempDistance = 9999999;
+                            tempOdometer = inputPathLine[pindex - 1].odometer;
+                            tempIndexes.push(pindex - 1);
+                        }
+                    }
+                } else {
+                    if (cought) {
+                        cought = false;
+                        tempDistance = 9999999;
+                        tempOdometer = inputPathLine[pindex - 1].odometer;
+                        tempIndexes.push(pindex - 1);
+                    }
                 }
             });
-            // console.log(wpoint.properties);
-            // console.log('#tempIndex = ' + tempIndex);
-            if (tempIndex > -1) {
-                if (this.isTerrainSwitchPoint(wpoint.properties) !== false) {
-                    // console.log('Surface: ' + wpoint.properties.surfaceType + ' - ' + JSON.stringify(wpoint.geometry.coordinates) + ' - ' + (Math.round(inputPathLine[tempIndex].odometer * 100) / 100));
-                    const payload = {
-                        odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
-                        surfaceType: this.isTerrainSwitchPoint(wpoint.properties),
-                    };
-                    surfaceCollection.push([payload.odometer, payload.surfaceType]);
-                    GLU.bus.emit(Enum.DataEvents.ADD_SURFACE_CHANGE, payload);
-                } else {
-                    let symbol = this.symbolFromDesc(wpoint.properties.desc, wpoint.properties.pictogram, wpoint.properties.name);
-                    const newWaypoint = {
-                        id: wpindex,
-                        time: (wpoint.properties.time !== undefined) ? wpoint.properties.time : null,
-                        name: wpoint.properties.name,
-                        nameEn: wpoint.properties.name,
-                        desc: wpoint.properties.desc,
-                        descEn: null,
-                        elevGain: Math.round(inputPathLine[tempIndex].elevGain * 100) / 100,
-                        elevLoss: Math.round(inputPathLine[tempIndex].elevLoss * 100) / 100,
-                        nextElevGain: 0,
-                        nextElevLoss: 0,
-                        odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
-                        nextStepDist: 0,
-                        symbol,
-                        iconMarker: this.getIcon4Symbol(symbol),
-                        pictogram: wpoint.properties.pictogram,
-                        pictureUrl: (wpoint.properties.pictureUrl !== undefined) ? wpoint.properties.pictureUrl : '',
-                        elevationProfile: (wpoint.properties.elevationProfile !== undefined) ? wpoint.properties.elevationProfile : true,
-                        lon: (TrailsDataModel.activeTrail.getTrailData().snapWPsToPath) ? inputPathLine[tempIndex].lon : wpoint.geometry.coordinates[0],
-                        lat: (TrailsDataModel.activeTrail.getTrailData().snapWPsToPath) ? inputPathLine[tempIndex].lat : wpoint.geometry.coordinates[1],
-                        elevation: (TrailsDataModel.activeTrail.getTrailData().snapWPsToPath || !wpoint.geometry.coordinates[2]) ? inputPathLine[tempIndex].elevation : wpoint.geometry.coordinates[2],
-                    };
-                    this.generateWPointGeoJSON(tempIndex, newWaypoint, inputPathLine);
-                    newWaypoints.push(newWaypoint);
-                }
+
+
+            if (tempIndexes.length > 0) {
+                tempIndexes.forEach(tempIndex => {
+                    if (this.isTerrainSwitchPoint(wpoint.properties) !== false) {
+                        // console.log('Surface: ' + wpoint.properties.surfaceType + ' - ' + JSON.stringify(wpoint.geometry.coordinates) + ' - ' + (Math.round(inputPathLine[tempIndex].odometer * 100) / 100));
+                        const payload = {
+                            odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
+                            surfaceType: this.isTerrainSwitchPoint(wpoint.properties),
+                        };
+                        surfaceCollection.push([payload.odometer, payload.surfaceType]);
+                        GLU.bus.emit(Enum.DataEvents.ADD_SURFACE_CHANGE, payload);
+                    } else {
+                        let symbol = this.symbolFromDesc(wpoint.properties.desc, wpoint.properties.pictogram, wpoint.properties.name);
+                        const newWaypoint = {
+                            id: wpindex,
+                            time: (wpoint.properties.time !== undefined) ? wpoint.properties.time : null,
+                            name: wpoint.properties.name,
+                            nameEn: wpoint.properties.name,
+                            desc: wpoint.properties.desc,
+                            descEn: null,
+                            elevGain: Math.round(inputPathLine[tempIndex].elevGain * 100) / 100,
+                            elevLoss: Math.round(inputPathLine[tempIndex].elevLoss * 100) / 100,
+                            nextElevGain: 0,
+                            nextElevLoss: 0,
+                            odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
+                            nextStepDist: 0,
+                            symbol,
+                            iconMarker: this.getIcon4Symbol(symbol),
+                            pictogram: wpoint.properties.pictogram,
+                            pictureUrl: (wpoint.properties.pictureUrl !== undefined) ? wpoint.properties.pictureUrl : '',
+                            elevationProfile: (wpoint.properties.elevationProfile !== undefined) ? wpoint.properties.elevationProfile : true,
+                            lon: (TrailsDataModel.activeTrail.getTrailData().snapWPsToPath) ? inputPathLine[tempIndex].lon : wpoint.geometry.coordinates[0],
+                            lat: (TrailsDataModel.activeTrail.getTrailData().snapWPsToPath) ? inputPathLine[tempIndex].lat : wpoint.geometry.coordinates[1],
+                            elevation: (TrailsDataModel.activeTrail.getTrailData().snapWPsToPath || !wpoint.geometry.coordinates[2]) ? inputPathLine[tempIndex].elevation : wpoint.geometry.coordinates[2],
+                        };
+                        this.generateWPointGeoJSON(tempIndex, newWaypoint, inputPathLine);
+                        newWaypoints.push(newWaypoint);
+                    }
+                });
             } else {
                 console.warn('wpoint ' + JSON.stringify(wpoint.properties) + ' too far from Path');
                 GLU.bus.emit(MessageEvents.WARNING_MESSAGE, 'wpoint ' + JSON.stringify(wpoint.properties) + ' too far from Path');
