@@ -2,7 +2,7 @@ import React from 'react';
 import BasePage from '../BasePage';
 // import Enum from '/enums/Enum';
 import Lang from '/helpers/Lang';
-import UploadImage from '../newTrail/UploadImage';
+import UploadImage from '../common/UploadImage';
 import ImagePreview from '../common/ImagePreview';
 import StatusProgress from '../common/StatusProgress';
 import InputTextBox from '../common/InputTextBox';
@@ -49,7 +49,10 @@ class StepDescription extends BasePage {
             </div>
             <div className="flex-element column">
                 <div className="flex-container row">
-                    <UploadImage />
+                    <UploadImage
+                        key="imageURL"
+                        fieldName="imageURL"
+                    />
                 </div>
                 <div className="flex-container row">
                 </div>

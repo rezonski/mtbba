@@ -197,7 +197,20 @@ class MapHelper {
             //     previewMap.getSource('tempCollection').setData(tempCollection);
             // });
             previewMap.on('addNewWaypoint', p => {
-                const newPoint = turf.point([p.position.lng, p.position.lat], { name: p.name, pictogram: p.pictogram });
+                let newPoint;
+                if (p.action && p.action === 'newpoint') {
+                    newPoint = turf.point([p.position.lng, p.position.lat], {
+                        name: p.name,
+                        pictogram: p.pictogram,
+                    });
+                } else if (p.action && p.action === 'newphoto') {
+                    newPoint = turf.point([p.position.lng, p.position.lat], {
+                        name: p.name,
+                        pictureUrl: p.pictureUrl,
+                        symbol: 'PHOTO',
+                    });
+                }
+
                 const currentCollection = window.Draw.getAll();
                 currentCollection.features.push(newPoint);
                 previewMap.getSource('previewCollection').setData(currentCollection);

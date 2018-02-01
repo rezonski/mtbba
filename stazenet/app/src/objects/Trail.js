@@ -13,6 +13,7 @@ class Trail {
         this._newTrail = false;
         this._mapPathLayers = [];
         this._levelOfProcess = 0;
+        this._wpProcessItreration = 0;
         this._parsedFeaturesCollection = {};
         this._simplifiedFeaturesCollection = {}; // Simplified
         this._elevatedFeaturesCollection = {}; // Elevated
@@ -253,8 +254,10 @@ class Trail {
     generateWaypoints(maps) {
         if (this._levelOfProcess === 6) {
             const enrichedFeaturesCollection = this.enrichedFeaturesCollection;
-            const computedWaypoints = WaypointHelper.generateWaypoints(maps.leftMap, enrichedFeaturesCollection);
+            const computedWaypoints = WaypointHelper.generateWaypoints(maps.leftMap, enrichedFeaturesCollection, this._wpProcessItreration);
             this.waypoints = computedWaypoints;
+            this._wpProcessItreration += 1;
+            console.log('this._wpProcessItreration = ' + this._wpProcessItreration);
         }
         return this.waypoints;
     }

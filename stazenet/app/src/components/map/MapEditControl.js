@@ -12,7 +12,7 @@ class MapEditControl {
 
         // Splitter
         this._trailSpritterButton = document.createElement('button');
-        this._trailSpritterButton.className = 'mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw-split';
+        this._trailSpritterButton.className = 'mapbox-gl-draw_ctrl-draw-btn split';
         this._trailSpritterButton.title = 'Split trail line string near the selected point on map';
         this._trailSpritterButton.addEventListener('click', () => {
             this._action = 'splitter';
@@ -21,12 +21,21 @@ class MapEditControl {
 
         // Add point
         this._addWaypointButton = document.createElement('button');
-        this._addWaypointButton.className = 'mapbox-gl-draw_ctrl-draw-btn mapbox-gl-draw-add-point';
+        this._addWaypointButton.className = 'mapbox-gl-draw_ctrl-draw-btn add-point';
         this._addWaypointButton.title = 'Add new waypoint clicking on map';
         this._addWaypointButton.addEventListener('click', () => {
             this._action = 'newpoint';
         });
         this._container.appendChild(this._addWaypointButton);
+
+        // Add photo
+        this._addPhotoButton = document.createElement('button');
+        this._addPhotoButton.className = 'mapbox-gl-draw_ctrl-draw-btn add-photo';
+        this._addPhotoButton.title = 'Add new photo clicking on map';
+        this._addPhotoButton.addEventListener('click', () => {
+            this._action = 'newphoto';
+        });
+        this._container.appendChild(this._addPhotoButton);
 
 
         window.leftmap.on('click', e => {
@@ -38,7 +47,13 @@ class MapEditControl {
                     window.leftmap.fire('saveEditedPath');
                 }, 100);
             } else if (this._action === 'newpoint') {
-                GLU.bus.emit(Enum.DataEvents.ADD_NEW_WAYPOINT, { position: clickedPoint });
+                GLU.bus.emit(Enum.DataEvents.ADD_NEW_WAYPOINT, { position: clickedPoint, action: this._action });
+                window.setTimeout(() => {
+                    this._action = null;
+                    window.leftmap.fire('saveEditedPath');
+                }, 100);
+            } else if (this._action === 'newphoto') {
+                GLU.bus.emit(Enum.DataEvents.ADD_NEW_WAYPOINT, { position: clickedPoint, action: this._action });
                 window.setTimeout(() => {
                     this._action = null;
                     window.leftmap.fire('saveEditedPath');

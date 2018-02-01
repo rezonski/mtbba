@@ -4,7 +4,8 @@ function outputJSON($msg, $status = 'error'){
     header('Content-Type: application/json');
     die(json_encode(array(
         'data' => $msg,
-        'status' => $status
+        'status' => $status,
+        'fileName' => $_FILES['SelectedFile']['name']
     )));
 }
 
@@ -29,7 +30,7 @@ if($_FILES['SelectedFile']['size'] > 500000){
 
 // Check if the file exists
 if(file_exists('upload/' . $_FILES['SelectedFile']['name'])){
-    outputJSON('File with that name already exists.');
+    outputJSON('File with that name already exists.', 'success');
 }
 
 // Upload file

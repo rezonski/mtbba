@@ -643,7 +643,8 @@ class DataController extends GLU.Controller {
                         data: 'Unknown error occurred: [' + request.responseText + ']',
                     };
                 }
-                TrailsDataModel.activeTrail.imageURL = Globals.IMAGE_UPLOAD_PATH + payload.fileName;
+                const filePath = Globals.IMAGE_UPLOAD_PATH + payload.fileName;
+                TrailsDataModel.activeTrail.setDataByName(payload.name, payload.index, payload.prop, filePath);
                 const statusPayload = {
                     status: resp.status,
                     message: resp.data,
