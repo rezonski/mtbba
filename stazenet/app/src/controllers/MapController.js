@@ -1,3 +1,4 @@
+/* global turf */
 import GLU from '/../../glu2.js/src/index';
 import MapModel from '/dataSources/MapModel';
 import TrailsDataModel from '/dataSources/TrailsDataModel';
@@ -17,8 +18,20 @@ class MapController extends GLU.Controller {
             [Enum.MapEvents.SAVE_RIGHT_MAP]: this.saveRightMap,
             [Enum.MapEvents.SAVE_PREVIEW_MAP]: this.savePreviewMap,
             [Enum.MapEvents.SHOW_PREVIEW_MAP]: this.showPreviewMap,
-            [Enum.MapEvents.HIDE_PREVIEW_MAP]: this.showPreviewMap,
+            [Enum.MapEvents.HIDE_PREVIEW_MAP]: this.hidePreviewMap,
+            [Enum.MapEvents.PRELOAD_MAP_ICONS]: this.preloadMapIcons,
+            [Enum.MapEvents.FOCUS_FEATURE_ON_MAP]: this.focusFeatureOnMap,
         });
+    }
+
+    focusFeatureOnMap(payload) {
+        const map = MapModel.previewMap;
+        const coords = payload.feature.geometry.coordinates;
+        map.flyTo({
+            center: [coords[0], coords[1]],
+            zoom: 16,
+        });
+        map.getSource('pointFocusCollection').setData(turf.featureCollection([payload.feature]));
     }
 
     getMapInitSetup() {
@@ -61,11 +74,33 @@ class MapController extends GLU.Controller {
     }
 
     hidePreviewMap() {
-        TrailsDataModel.activeTrail.previewParsedInitialFeaturesCollection(MapModel.previewMap);
+        TrailsDataModel.activeTrail.hideParsedInitialFeaturesCollection(MapModel.previewMap);
     }
 
     onDeactivate() {
         this.unbindGluBusEvents();
+    }
+
+    preloadMapIcons(map) {
+        const icons = MapModel.mapIcons;
+        this.loadSingleIcon(map, icons, 0);
+    }
+
+    loadSingleIcon(map, icons, index) {
+        if (icons[index] !== undefined) {
+            map.loadImage('/icons/' + icons[index] + '.png', (error, image) => {
+                if (error) {
+                    GLU.bus.emit(MessageEvents.ERROR_MESSAGE, 'Error loading icon ' + icons[index]);
+                    throw error;
+                } else {
+                    map.addImage(icons[index], image);
+                    this.loadSingleIcon(map, icons, index + 1);
+                }
+            });
+        } else {
+            GLU.bus.emit(MessageEvents.ERROR_MESSAGE, 'All ' + icons.length + ' loaded');
+            GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('firstMapLoaded'));
+        }
     }
 }
 

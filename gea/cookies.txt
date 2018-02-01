@@ -1,0 +1,7 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+geacron.com	TRUE	/	FALSE	1999999999	oiopub_location	BA
+geacron.com	TRUE	/	FALSE	1999999999	PHPSESSID	38pe0ur8cbtrg2khsibit0ov43
+dropboxusercontent.com	TRUE	/	FALSE	1999999999	uc_session	28OXwhiUmQKW4roK9RWR4yKc9b1T812mpiUXUtyDdQKbCyqSc8PmEqf3dLBchr6D
+geacron.com	TRUE	/	FALSE	1999999999	_icl_current_language	en
+

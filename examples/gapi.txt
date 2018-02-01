@@ -1,0 +1,52 @@
+https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=43.650673,18.131688&radius=500&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis
+
+https://maps.googleapis.com/maps/api/place/textsearch/json?query=ponorici&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis
+
+// DETAIL
+https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJ-UwlvHRDSxMREgCl3k5TFv0&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis
+
+
+// PHOTO
+https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=CmRaAAAAWs84wLT2Aht3oOPw743A7yPkBTC62rDV0VfecVvQnIJ_IQvUHENbHHmzaziel24AV6GiyYnLlBXrIkKIXuRr17HVeDqqvYT6BJgSbFoHiICxS5ABJE8l1BwP9spmtd41EhB1wlQ4mQxy9U5uq6EaLIvOGhSkN_CTKgV1TCQ7L6CNV8HUaFTb_Q&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis
+
+
+
+
+https://maps.googleapis.com/maps/api/place/autocomplete/json?input=intersport&location=44.974631,16.705211&radius=15000&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis
+
+https://maps.googleapis.com/maps/api/place/autocomplete/json?input=panex+dinamic+koprivnica&location=43.85730655173586,18.27369689941406&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis
+
+
+# GENERALNO
+https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=43.932696,18.515643&radius=1000&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis
+
+
+# SELO / veci radius
+https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=43.929635,18.445038&radius=1000&type=locality&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis
+
+
+# POI / manji radius
+https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=43.885307,18.434934&radius=200&type=point_of_interest&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis
+
+
+# GEOCODE
+https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=43.932696,18.515643&radius=500&type=geocode&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis
+
+# PRIRODNE LOKACIJE
+https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=43.815551,18.2482736&radius=200&type=natural_feature&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis
+
+# PUT
+https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=43.860372,18.456584&radius=200&type=route&key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis
+
+
+
+
+https://maps.googleapis.com/maps/api/place/nearbysearch/json
+
+location=43.929635,18.445038
+
+radius=1000
+
+type=locality
+
+key=AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis

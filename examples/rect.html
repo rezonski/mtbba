@@ -16,6 +16,21 @@
 <div id='map'></div>
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
+var gUrl = 'https://www.googleapis.com/tile/v1/createSession?key=AIzaSyDJOri7DbQEliNmWM3L7yyVZko6MrAasJE';
+xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = respond;
+xmlhttp.open("POST", gUrl, true);
+xmlhttp.send(JSON.stringify({
+  "mapType": "satellite",
+  "language": "ja-JP",
+  "region": "jp",
+  "layerTypes": [ "layerRoadmap", "layerStreetview" ],
+  "overlay":  true,
+  "scale": "scaleFactor1x"
+}));
+
+https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=43.345154990451135,17.79510498046875&radius=50000&type=bicycle_store&key=AIzaSyCoFoF-hgZqTTBDwcqHNIN8s6hNDyOV2_Y
+
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v9',
@@ -142,6 +157,10 @@ function getRect(line) {
     P4.push(A[0] + d/2 * cos);
     P4.push(A[1] - d/2 * sin);
     return [P1,P2,P3,P4,P1];
+}
+
+function respond(e) {
+    console.log(e);
 }
 
 </script>

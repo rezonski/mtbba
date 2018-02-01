@@ -9,8 +9,9 @@ class ListSelection extends BasePage {
         super(props);
         this.state = {
             fieldName: this.props.fieldName,
-            value: null,
-            initialSetup: {},
+            value: (this.props.value === undefined) ? undefined : this.props.value,
+            label: (this.props.label) ? this.props.label : '',
+            initialSetup: (this.props.optionList) ? { optionList: this.props.optionList } : {},
         };
         this.onListValueChangedEvent = this.onListValueChanged.bind(this);
     }
@@ -21,6 +22,14 @@ class ListSelection extends BasePage {
             [Enum.MapEvents.INITIAL_DATA_SETUP_RETRIEVED]: this.onInitialSetupRetrieved,
         });
         this.emit(Enum.MapEvents.RETRIEVE_INITIAL_DATA_SETUP);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            fieldName: nextProps.fieldName,
+            value: (nextProps.value === undefined) ? this.state.value : nextProps.value,
+            label: (nextProps.label) ? nextProps.label : '',
+        });
     }
 
     componentWillUnmount() {
@@ -41,7 +50,10 @@ class ListSelection extends BasePage {
     }
 
     onDataRetrieved(payload) {
-        if (payload[this.props.fieldName] && this.props.fieldIndex !== undefined && this.props.fieldProp) {
+        if (this.props.fieldIndex !== undefined &&
+            payload[this.props.fieldName] &&
+            payload[this.props.fieldName][this.props.fieldIndex] &&
+            payload[this.props.fieldName][this.props.fieldIndex][this.props.fieldProp]) {
             if (payload[this.props.fieldName][this.props.fieldIndex][this.props.fieldProp] !== this.state.value) {
                 this.setState({
                     value: payload[this.props.fieldName][this.props.fieldIndex].properties[this.props.fieldProp],
@@ -57,14 +69,20 @@ class ListSelection extends BasePage {
     }
 
     onInitialSetupRetrieved(payload) {
-        this.setState({
-            initialSetup: payload,
-            value: payload[this.props.sourceName][this.props.defaultValueIndex].id,
-        });
-        this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA);
+        if (payload[this.props.sourceName]) {
+            this.setState({
+                initialSetup: payload,
+                value: payload[this.props.sourceName][this.props.defaultValueIndex].id,
+            });
+            this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA);
+        }
     }
 
     render() {
+        if (!this.state.value) {
+            return null;
+        }
+
         const style = {
             menuItem: {
                 fontSize: '12px',

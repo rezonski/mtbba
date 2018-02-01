@@ -5,6 +5,15 @@ class CommonHelper {
     constructor() {
     }
 
+    isJSON(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
+        return true;
+    }
+
     getUUID() {
         let d = new Date().getTime();
         if (window.performance && typeof window.performance.now === 'function') {
@@ -85,6 +94,71 @@ class CommonHelper {
             return total;
         }, []);
         return returnCollection;
+    }
+
+    angle2string(inputAngle) {
+        const angle = (360 + inputAngle) % 360;
+        const angles = [
+          {
+            id: 0,
+            fromAngle: -22.5,
+            toAngle: 22.5,
+            desc: 'E',
+          },
+          {
+            id: 1,
+            fromAngle: 22.5,
+            toAngle: 67.5,
+            desc: 'NE',
+          },
+          {
+            id: 2,
+            fromAngle: 67.5,
+            toAngle: 112.5,
+            desc: 'N',
+          },
+          {
+            id: 3,
+            fromAngle: 112.5,
+            toAngle: 157.5,
+            desc: 'NW',
+          },
+          {
+            id: 4,
+            fromAngle: 157.5,
+            toAngle: 202.5,
+            desc: 'W',
+          },
+          {
+            id: 5,
+            fromAngle: 202.5,
+            toAngle: 247.5,
+            desc: 'SW',
+          },
+          {
+            id: 6,
+            fromAngle: 247.5,
+            toAngle: 292.5,
+            desc: 'S',
+          },
+          {
+            id: 7,
+            fromAngle: 292.5,
+            toAngle: 337.5,
+            desc: 'SE',
+          },
+          {
+            id: 0,
+            fromAngle: 337.5,
+            toAngle: 382.5,
+            desc: 'E',
+          },
+        ];
+        const out = angles.filter(f => {
+            return (angle > f.fromAngle && angle <= f.toAngle);
+        })[0].desc;
+        // console.log(out);
+        return out;
     }
 }
 export default new CommonHelper();

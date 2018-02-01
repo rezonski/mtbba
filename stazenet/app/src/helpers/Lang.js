@@ -93,6 +93,10 @@ const labels = {
         bos: 'Pregled staze',
         eng: 'Trail Preview',
     },
+    stepperWpPreprocess: {
+        bos: 'Putne tacke',
+        eng: 'Waypoints',
+    },
     stepperStepDescription: {
         bos: 'Opis i slika',
         eng: 'Description',
@@ -222,8 +226,8 @@ const labels = {
         eng: 'Waypoint description',
     },
     pictogram: {
-        bos: 'Shema tačke puta',
-        eng: 'Waypoint pictogram',
+        bos: 'Shema raskrsnice',
+        eng: 'Pictogram',
     },
     pictogramHint: {
         bos: 'npr. 90-v135-z30',
@@ -236,6 +240,50 @@ const labels = {
     overrideThumbnails: {
         bos: 'Ponovo generisi slicice',
         eng: 'Override Thumbnails',
+    },
+    snapWPsToPath: {
+        bos: 'Vezi tacke puta za putanju',
+        eng: 'Snap waypoints to path',
+    },
+    elevationThreshold: {
+        bos: 'Visinska i tolerancija nagiba',
+        eng: 'Elevation and slope threshold',
+    },
+    absoluteElevationThreshold: {
+        bos: 'Apsolutna',
+        eng: 'Absolute',
+    },
+    absoluteElevationThresholdHint: {
+        bos: 'visinski metri',
+        eng: 'elevation meters',
+    },
+    relativeElevationThreshold: {
+        bos: 'Relativna',
+        eng: 'Relative',
+    },
+    relativeElevationThresholdHint: {
+        bos: 'visinski metri',
+        eng: 'elevation meters',
+    },
+    slopeTreshlod: {
+        bos: 'Nagib',
+        eng: 'Slope',
+    },
+    slopeTreshlodHint: {
+        bos: 'Max. procenat',
+        eng: 'Max Percent',
+    },
+    wpName: {
+        bos: 'Naziv lokacije',
+        eng: 'Waypoint name',
+    },
+    suggestion: {
+        bos: 'Prijedlog',
+        eng: 'Suggestion',
+    },
+    showOnElevationProfile: {
+        bos: 'Profil',
+        eng: 'Elev',
     },
 };
 
@@ -348,6 +396,10 @@ const messages = {
         bos: 'Završeno definisanje parametara staze',
         eng: 'Trail general facts computed',
     },
+    endPathlineEnriching: {
+        bos: 'Završeno obogacivanje tacaka puta',
+        eng: 'Trail path points enriched',
+    },
     endWaypointsGenerating: {
         bos: 'Završena obrada putnih tačaka',
         eng: 'Waypoints generating completed',
@@ -371,6 +423,10 @@ const messages = {
     tooManyPointsSelected: {
         bos: 'Odaberite manji broj tačaka',
         eng: 'Select a smaller number of features',
+    },
+    search4PointsFailed: {
+        bos: 'Greska prilikom pretrage Google tacaka',
+        eng: 'Search for Google Points failed',
     },
 };
 

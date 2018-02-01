@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Interactive map of effects of Iran Nuclear Deal</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script> 
+    
+    <script src="js/dragonfly-dev.js"></script>
+    <link href="css/dragonfly.css" rel="stylesheet"/>
+    
+    <script src="js/mapDefinition.js"></script>
+    
+    <link href='//api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel='stylesheet' href='//api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.0/mapbox-gl-draw.css' type='text/css'/>
+    <script src='//api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.js'></script>
+    <script src='//api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.0/mapbox-gl-draw.js'></script>
+    
+    <link href="css/app.css" rel="stylesheet"/>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        dragonfly.accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
+        var map = new dragonfly.Map({
+            container: 'map',
+            style: mapStyle, // 'mapbox://styles/mapbox/basic-v9',
+            zoom: 1,
+            center: [0, 0],
+            maxZoom: 8,
+            maxBounds: [[-200,-90], [200, 90]],
+        });
+
+        
+        map.on('load', function () {
+            map.fitBounds([[-180,-63],[180,80]]);
+            var canvas = map.getCanvasContainer();
+            var start;
+            var current;
+            var box;
+
+            map.dragRotate.disable();
+
+            var draw = new MapboxDraw({
+                displayControlsDefault: false,
+                controls: {
+                    polygon: true,
+                    trash: true
+                }
+            });
+            window.draw = draw;
+            map.addControl(draw);
+        });
+    </script>
+</body>
+</html>

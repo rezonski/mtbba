@@ -19,7 +19,8 @@
         $sqlpathproperties = "SELECT
                                 trail_id,
                                 point_id,
-                                lon, lat,
+                                lon,
+                                lat,
                                 elevation,
                                 prev_dist,
                                 prev_elev 
@@ -37,7 +38,7 @@
                     $pathproperties .= ',';
                 }
                 $pathproperties .= '
-                ['.$row["lon"].','.$row["lat"].','.$row["elevation"].']';
+                ['.$row["lon"].','.$row["lat"].','.$row["elevation"].','.$row["prev_dist"].','.$row["prev_elev"].']';
                 $tempiterator++;
             }
         } 

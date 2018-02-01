@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <script src='data.js'></script>
+    <script src='turf.min.js'></script>
+</head>
+<body>
+<script>
+    console.log(featureCollection);
+    const snapWPsToPath = true;
+    function getLineStrings(featuresCollection) {
+        // const returnCollection = JSON.parse(JSON.stringify(featuresCollection)).features.reduce(feature => {
+        // const returnCollection = featuresCollection.features.reduce(feature => {
+        //     if (feature.geometry.type === 'LineString') {
+        //         return feature;
+        //     }
+        // });
+        if (!featuresCollection.features) {
+            return null;
+        }
+        const returnCollection = featuresCollection.features.reduce((total, currentValue) => {
+            if (currentValue.geometry.type === 'LineString') {
+                total.push(currentValue);
+            }
+            return total;
+        }, []);
+        return returnCollection;
+    }
+
+    function getPoints(featuresCollection) {
+        // const returnCollection = JSON.parse(JSON.stringify(featuresCollection)).features.reduce(feature => {
+        // const returnCollection = featuresCollection.features.reduce(feature => {
+        //     if (feature.geometry.type === 'Point') {
+        //         return feature;
+        //     }
+        // });
+        if (!featuresCollection.features) {
+            return null;
+        }
+        const returnCollection = featuresCollection.features.reduce((total, currentValue) => {
+            if (currentValue.geometry.type === 'Point') {
+                total.push(currentValue);
+            }
+            return total;
+        }, []);
+        return returnCollection;
+    }
+
+    function sortArrayByKey(array, key) {
+        return array.sort((a, b) => {
+            const x = a[key];
+            const y = b[key];
+            const ret = (x > y) ? 1 : 0;
+            return ((x < y) ? -1 : ret);
+        });
+    }
+
+    function generateWPointGeoJSON(currentIndex, newWaypoint, inputPathLine) {
+        const pointIndex = parseInt(currentIndex, 10);
+        const offset = 20;
+        const pointFromIndex = ((pointIndex - offset) < 0) ? 0 : (pointIndex - offset);
+        const pointToIndex = ((pointIndex + offset) > (inputPathLine.length - 1)) ? (inputPathLine.length - 1) : (pointIndex + offset);
+        let inPathCoordinates = [];
+        let outPathCoordinates = [];
+        let features = [];
+        for (let i = parseInt(pointFromIndex, 10); i <= pointIndex; i++) {
+            inPathCoordinates.push([inputPathLine[i].lon, inputPathLine[i].lat]);
+        }
+        if (inPathCoordinates.length < 2) {
+            inPathCoordinates.push(inPathCoordinates[0]);
+        }
+        for (let j = parseInt(pointIndex, 10); j <= pointToIndex; j++) {
+            outPathCoordinates.push([inputPathLine[j].lon, inputPathLine[j].lat]);
+        }
+        const inPathFeature = turf.lineString(inPathCoordinates, {
+            name: 'Input line',
+            stroke: '#CC1111',
+            'stroke-width': 3,
+        });
+        const outPathFeature = turf.lineString(outPathCoordinates, {
+            name: 'Output line',
+            stroke: '#11FF11',
+            'stroke-width': 3,
+        });
+        const currentWaypoint = turf.point([newWaypoint.lon, newWaypoint.lat], {
+            name: newWaypoint.name,
+            'marker-color': this.getMarkerColor(newWaypoint.symbol),
+            'marker-symbol': this.getMarkerSymbol(newWaypoint.symbol),
+        });
+        if (inPathCoordinates.length > 1) {
+            features.push(inPathFeature);
+        }
+        if (outPathCoordinates.length > 1) {
+            features.push(outPathFeature);
+        }
+        features.push(currentWaypoint);
+        const wpGeoJSON = turf.featureCollection(features);
+        newWaypoint.wpGeoJSON = wpGeoJSON;
+    }
+
+    function isTerrainSwitchPoint(properties) {
+        if (properties.type && properties.type === 'terrainSwitch' && properties.surfaceType) {
+            return properties.surfaceType;
+        }
+        if (properties.name && properties.name.length === 1 && (properties.name === 'A' || properties.name === 'M' || properties.name === 'S' || properties.name === 'N')) {
+            return properties.name;
+        }
+        return false;
+    }
+
+    function symbolFromDesc(inputDesc, inputPictogram, inputName) {
+        let returnVal = 'CROSSROAD';
+        let found = false;
+        let desc = (inputDesc !== undefined && inputDesc.length > 0) ? inputDesc.toLowerCase() : '';
+        let pictogram = (inputPictogram !== undefined && inputPictogram.length > 0) ? inputPictogram.toLowerCase() : '';
+        let name = inputName.toLowerCase();
+
+        // VODA
+        if (!found && (pictogram.indexOf('v') > -1 ||
+                desc.indexOf('voda ') === 0 ||
+                name.indexOf('voda ') === 0 ||
+                desc.indexOf('izvor vode ') === 0 ||
+                name.indexOf('izvor vode ') === 0 ||
+                desc.indexOf('cesma ') === 0 ||
+                name.indexOf('cesma ') === 0)) {
+            found = true;
+            returnVal = 'WATER';
+        }
+
+        // SELO
+        if (!found && (desc.indexOf('selo ') === 0 ||
+                name.indexOf('selo ') === 0 ||
+                desc.indexOf('zaseok ') === 0 ||
+                name.indexOf('zaseok ') === 0)) {
+            found = true;
+            returnVal = 'VILLAGE';
+        }
+        // LOKALITET
+        if (!found && (desc.indexOf('lokalitet ') === 0 ||
+                name.indexOf('lokalitet ') === 0 ||
+                desc.indexOf('lokacija ') === 0 ||
+                name.indexOf('lokacija ') === 0)) {
+            found = true;
+            returnVal = 'PLACE';
+        }
+        // GRAD
+        if (!found && (desc.indexOf('grad ') === 0 ||
+                name.indexOf('grad ') === 0)) {
+            found = true;
+            returnVal = 'CITY';
+        }
+        // MOST
+        if (!found && (desc.indexOf('most ') === 0 ||
+                name.indexOf('most ') === 0 ||
+                desc.indexOf('splav ') === 0 ||
+                name.indexOf('splav ') === 0 ||
+                desc.indexOf('rijeka ') === 0 ||
+                name.indexOf('rijeka ') === 0 ||
+                desc.indexOf('potok ') === 0 ||
+                name.indexOf('potok ') === 0)) {
+            found = true;
+            returnVal = 'RIVER';
+        }
+        // START
+        if (!found && (desc.indexOf('start ') === 0 ||
+                name.indexOf('start ') === 0 ||
+                desc.indexOf('pocetak ture ') === 0 ||
+                name.indexOf('pocetak ture ') === 0 ||
+                desc.indexOf('pocetak staze ') === 0 ||
+                name.indexOf('pocetak staze ') === 0)) {
+            found = true;
+            returnVal = 'START';
+        }
+        // KRAJ
+        if (!found && (desc.indexOf('end ') === 0 ||
+                name.indexOf('end ') === 0 ||
+                desc.indexOf('kraj ture ') === 0 ||
+                name.indexOf('kraj ture ') === 0 ||
+                desc.indexOf('kraj staze ') === 0 ||
+                name.indexOf('kraj staze ') === 0)) {
+            found = true;
+            returnVal = 'END';
+        }
+        // HRANA
+        if (!found && (desc.indexOf('restoran ') === 0 ||
+                name.indexOf('restoran ') === 0 ||
+                desc.indexOf('planinarski dom ') === 0 ||
+                name.indexOf('planinarski dom ') === 0 ||
+                desc.indexOf('pd ') === 0 ||
+                name.indexOf('pd ') === 0 ||
+                desc.indexOf('pd.') === 0 ||
+                name.indexOf('pd.') === 0)) {
+            found = true;
+            returnVal = 'FOOD';
+        }
+        // PREVOJ
+        if (!found && (desc.indexOf('prevoj ') === 0 ||
+                name.indexOf('prevoj ') === 0 ||
+                desc.indexOf('planinski prevoj ') === 0 ||
+                name.indexOf('planinski prevoj ') === 0)) {
+            found = true;
+            returnVal = 'PASS';
+        }
+        // VRH
+        if (!found && (desc.indexOf('vrh ') === 0 ||
+                name.indexOf('vrh ') === 0 ||
+                desc.indexOf('najvisa tacka ') === 0 ||
+                name.indexOf('najvisa tacka ') === 0)) {
+            found = true;
+            returnVal = 'SUMMIT';
+        }
+        // OPREZ
+        if (!found && (desc.indexOf('opasnost') === 0 ||
+                name.indexOf('opasnost') === 0 ||
+                desc.indexOf('oprez') === 0 ||
+                name.indexOf('oprez') === 0 ||
+                desc.indexOf('upozorenje') === 0 ||
+                name.indexOf('upozorenje') === 0)) {
+            found = true;
+            returnVal = 'DANGER';
+        }
+        // MINE
+        if (!found && (desc.indexOf('mine ') === 0 ||
+                name.indexOf('mine ') > -1 ||
+                desc.indexOf(' minsko ') > -1 ||
+                name.indexOf(' minsko ') > -1 ||
+                desc.indexOf(' mina ') > -1 ||
+                name.indexOf(' mina ') > -1 ||
+                desc.indexOf(' nus ') > -1 ||
+                name.indexOf(' nus ') > -1)) {
+            found = true;
+            returnVal = 'MINES';
+        }
+        // FOTO
+        if (!found && (desc.indexOf('vidikovac') === 0 ||
+                name.indexOf('vidikovac') === 0 ||
+                desc.indexOf('foto') === 0 ||
+                name.indexOf('foto') === 0 ||
+                desc.indexOf(' za fotografiju ') > -1 ||
+                name.indexOf(' za fotografiju ') > -1 ||
+                desc.indexOf(' za foto ') > -1 ||
+                name.indexOf(' za foto ') > -1)) {
+            found = true;
+            returnVal = 'PHOTO';
+        }
+        // PRENOCISTE
+        if (!found && (desc.indexOf('hotel') === 0 ||
+                name.indexOf('hotel') === 0 ||
+                desc.indexOf('motel') === 0 ||
+                name.indexOf('motel') === 0 ||
+                desc.indexOf('prenociste') === 0 ||
+                name.indexOf('prenociste') === 0 ||
+                desc.indexOf('apartman') === 0 ||
+                name.indexOf('apartman') === 0 ||
+                desc.indexOf('pansion') === 0 ||
+                name.indexOf('pansion') === 0)) {
+            found = true;
+            returnVal = 'SLEEP';
+        }
+        return returnVal;
+    }
+
+    function getIcon4Symbol(symbol) {
+        switch (symbol) {
+            case 'CROSSROAD':
+                return 'crossroad';
+            case 'DANGER':
+                return 'danger';
+            case 'END':
+                return 'roadblock';
+            case 'FOOD':
+                return 'restaurant';
+            case 'MINES':
+                return 'danger';
+            case 'PASS':
+                return 'pass';
+            case 'PHOTO':
+                return 'photo';
+            case 'PLACE':
+                return 'place';
+            case 'WATER':
+                return 'drinking-water';
+            case 'RIVER':
+                return 'swimming';
+            case 'SLEEP':
+                return 'lodging';
+            case 'START':
+                return 'bicycle2';
+            case 'SUMMIT':
+                return 'summit';
+            default:
+                return 'circle';
+        }
+    }
+
+    function getMarkerColor(symbol) {
+        switch (symbol) {
+            case 'CROSSROAD':
+                return '#FAEA19';
+            case 'DANGER':
+                return '#FF0000';
+            case 'END':
+                return '#C00F0F';
+            case 'FOOD':
+                return '#F937EF';
+            case 'MINES':
+                return '#FF0000';
+            case 'PASS':
+                return '#A0FC98';
+            case 'PHOTO':
+                return '#21B4EE';
+            case 'PLACE':
+                return '#F9B837';
+            case 'WATER':
+                return '#1D57EC';
+            case 'RIVER':
+                return '#1D57EC';
+            case 'SLEEP':
+                return '#8697C2';
+            case 'START':
+                return '#06FF00';
+            case 'SUMMIT':
+                return '#C01013';
+            default:
+                return '#FFFFFF';
+        }
+    }
+
+    function getMarkerSymbol(symbol) {
+        switch (symbol) {
+            case 'CROSSROAD':
+                return 'cross';
+            case 'DANGER':
+                return 'danger';
+            case 'END':
+                return 'roadblock';
+            case 'FOOD':
+                return 'restaurant';
+            case 'MINES':
+                return 'danger';
+            case 'PASS':
+                return 'triangle-stroked';
+            case 'PHOTO':
+                return 'camera';
+            case 'PLACE':
+                return 'circle';
+            case 'WATER':
+                return 'water';
+            case 'RIVER':
+                return 'swimming';
+            case 'SLEEP':
+                return 'lodging';
+            case 'START':
+                return 'bicycle';
+            case 'SUMMIT':
+                return 'triangle';
+            default:
+                return 'circle';
+        }
+    }
+    
+    function generateWaypoints(leftMap, featuresCollection) {
+        const inputPathLine = getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
+        let inputWaypoints = getPoints(JSON.parse(JSON.stringify(featuresCollection)));
+        
+        // START END POINTS
+        const startPathPoint = turf.point([inputPathLine[0].lon, inputPathLine[0].lat], { name: 'Start', pictogram: '90' });
+        const endPathPoint = turf.point([inputPathLine[inputPathLine.length - 1].lon, inputPathLine[inputPathLine.length - 1].lat], { name: 'Finish', pictogram: '270' });
+        
+        const firstWP = inputWaypoints[0];
+        const lasttWP = inputWaypoints[inputWaypoints.length - 1];
+        
+        if (turf.distance(startPathPoint, firstWP, 'kilometers') > 0.2) {
+            inputWaypoints.unshift(startPathPoint);
+        }
+        if (turf.distance(lasttWP, endPathPoint, 'kilometers') > 0.2) {
+            inputWaypoints.push(endPathPoint);
+        }
+        if (inputWaypoints.length === 0) {
+            inputWaypoints = [startPathPoint, endPathPoint];
+        }
+
+        // RECORD SURFACE TRANSITIONS
+        const surfaceCollection = getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].properties.surfaceCollection;
+        let newWaypoints = [];
+        // let newWaypointsChart = [];
+        let newWaypointsExport = [];
+        let waypointsProgressPayload = {
+            status: 'progress',
+            id: 'progressFixWPs',
+            loaded: 0,
+            total: inputWaypoints.length,
+        };
+
+        let mapWaypointsCollection = {
+            type: 'FeatureCollection',
+            features: [],
+        };
+
+        console.log('inputWaypoints');
+        console.log(inputWaypoints);
+
+        inputWaypoints.forEach((wpoint, wpindex) => {
+            let tempDistance = 9999999;
+            let tempIndexes = [];
+            let tempOdometer = -2;
+            let cought = false;
+
+            console.log('#' + wpindex + ' - ' + wpoint.properties.name);
+
+            // Calculate closest point on line
+            inputPathLine.forEach((ppoint, pindex) => {
+                const currentDistance = turf.distance(turf.point([wpoint.geometry.coordinates[0], wpoint.geometry.coordinates[1]]), turf.point([ppoint.lon, ppoint.lat]));
+                if (currentDistance < 0.1) { // less than 100m
+                    console.log('#' + wpindex + ' - ' + 'Step1: ' + pindex + ' cought, currentDistance = ' + currentDistance);
+                    // debugger;
+                    if ((ppoint.odometer - tempOdometer) > 1) {
+                        cought = true;
+                        if (currentDistance < tempDistance) {
+                            console.log('#' + wpindex + ' - ' + 'Step2: ' + pindex + ' CLOSER than the last one, currentDistance = ' + currentDistance);
+                            // debugger;
+                            tempDistance = currentDistance;
+                        } else {
+                            console.log('#' + wpindex + ' - ' + 'Step3: ' + pindex + ' TOO FARER from the last WP (' + ppoint.odometer + ' - ' + tempOdometer +' = ' + (ppoint.odometer - tempOdometer) + '), currentDistance = ' + currentDistance);
+                            // debugger;
+                            cought = false;
+                            tempDistance = 9999999;
+                            tempOdometer = inputPathLine[pindex - 1].odometer;
+                            tempIndexes.push(pindex - 1);
+                            console.log('#' + wpindex + ' - ' + ' added previous index ' + (pindex - 1) + ' to list, odometer ' + inputPathLine[pindex - 1].odometer);
+                        }
+                    }
+                } else {
+                    if (cought) {
+                        console.log('#' + wpindex + ' - ' + 'Step4: ' + pindex + ' FARER than the last one, currentDistance = ' + currentDistance);
+                        // debugger;
+                        cought = false;
+                        tempDistance = 9999999;
+                        tempOdometer = inputPathLine[pindex - 1].odometer;
+                        console.log('#' + wpindex + ' - ' + ' added previous index ' + (pindex - 1) + ' to list, odometer ' + inputPathLine[pindex - 1].odometer);
+                        tempIndexes.push(pindex - 1);
+                    }
+                }
+            });
+
+            if (tempIndexes.length > 0) {
+                console.log('#' + wpindex + ' - ' + wpoint.properties.name + ' repeats ' + tempIndexes.length + ' times');
+                console.log(tempIndexes);
+            } else {
+                console.log('#' + wpindex + ' - ' + wpoint.properties.name + ' SKIPPED');
+            }
+
+            if (tempIndexes.length > 0) {
+                tempIndexes.forEach(tempIndex => {
+                    if (isTerrainSwitchPoint(wpoint.properties) !== false) {
+                        const payload = {
+                            odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
+                            surfaceType: isTerrainSwitchPoint(wpoint.properties),
+                        };
+                        surfaceCollection.push([payload.odometer, payload.surfaceType]);
+                        console.log('Surface: ' + payload.surfaceType + ' - ' + JSON.stringify(wpoint.geometry.coordinates) + ' - ' + (Math.round(inputPathLine[tempIndex].odometer * 100) / 100));
+                        // # GLU.bus.emit(Enum.DataEvents.ADD_SURFACE_CHANGE, payload);
+                    } else {
+                        let symbol = symbolFromDesc(wpoint.properties.desc, wpoint.properties.pictogram, wpoint.properties.name);
+                        const newWaypoint = {
+                            id: wpindex,
+                            time: (wpoint.properties.time !== undefined) ? wpoint.properties.time : null,
+                            name: wpoint.properties.name,
+                            nameEn: wpoint.properties.name,
+                            desc: wpoint.properties.desc,
+                            descEn: null,
+                            elevGain: Math.round(inputPathLine[tempIndex].elevGain * 100) / 100,
+                            elevLoss: Math.round(inputPathLine[tempIndex].elevLoss * 100) / 100,
+                            nextElevGain: 0,
+                            nextElevLoss: 0,
+                            odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
+                            nextStepDist: 0,
+                            symbol,
+                            iconMarker: getIcon4Symbol(symbol),
+                            pictogram: wpoint.properties.pictogram,
+                            pictureUrl: (wpoint.properties.pictureUrl !== undefined) ? wpoint.properties.pictureUrl : '',
+                            elevationProfile: (wpoint.properties.elevationProfile !== undefined) ? wpoint.properties.elevationProfile : true,
+                            lon: (snapWPsToPath) ? inputPathLine[tempIndex].lon : wpoint.geometry.coordinates[0],
+                            lat: (snapWPsToPath) ? inputPathLine[tempIndex].lat : wpoint.geometry.coordinates[1],
+                            elevation: (snapWPsToPath || !wpoint.geometry.coordinates[2]) ? inputPathLine[tempIndex].elevation : wpoint.geometry.coordinates[2],
+                        };
+                        generateWPointGeoJSON(tempIndex, newWaypoint, inputPathLine);
+                        newWaypoints.push(newWaypoint);
+                    }
+                });
+            } else {
+                console.warn('wpoint ' + JSON.stringify(wpoint.properties) + ' too far from Path');
+                // # GLU.bus.emit(MessageEvents.WARNING_MESSAGE, 'wpoint ' + JSON.stringify(wpoint.properties) + ' too far from Path');
+            }
+            waypointsProgressPayload.loaded = parseInt((wpindex + 1), 10);
+            // GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, waypointsProgressPayload);
+        });
+
+        newWaypointsExport = sortArrayByKey(newWaypoints, 'odometer');
+
+        newWaypointsExport[0].symbol = 'START';
+        newWaypointsExport[0].iconMarker = getIcon4Symbol('START');
+        newWaypointsExport[0].elevation = inputPathLine[0].elevation;
+        newWaypointsExport[newWaypointsExport.length - 1].symbol = 'END';
+        newWaypointsExport[newWaypointsExport.length - 1].iconMarker = getIcon4Symbol('END');
+        newWaypointsExport[newWaypointsExport.length - 1].elevation = inputPathLine[inputPathLine.length - 1].elevation;
+
+        newWaypointsExport.forEach((element, index) => {
+            let tempWp = {};
+            if (index < (newWaypointsExport.length - 1)) {
+                tempWp = {
+                    current: element,
+                    next: newWaypointsExport[index + 1],
+                };
+                element.nextStepDist = Math.round((newWaypointsExport[index + 1].odometer - element.odometer) * 100) / 100;
+                element.nextElevGain = Math.round((newWaypointsExport[index + 1].elevGain - element.elevGain) * 100) / 100;
+                element.nextElevLoss = Math.round((newWaypointsExport[index + 1].elevLoss - element.elevLoss) * 100) / 100;
+            } else {
+                tempWp = {
+                    current: element,
+                    next: null,
+                };
+            }
+            element.id = index;
+            // # const descgenerated = generateDesc(tempWp, surfaceCollection);
+            // # element.desc = element.initDesc + descgenerated;
+        });
+
+        newWaypointsExport.forEach((wp, wpIdx) => {
+            const newPoint = turf.point([wp.lon, wp.lat, wp.elevation]);
+            newPoint.properties = wp;
+            newPoint.properties.id = wpIdx;
+            console.log('km ' + newPoint.properties.odometer + ' - ' + newPoint.properties.name);
+            mapWaypointsCollection.features.push(newPoint);
+        });
+        return mapWaypointsCollection.features;
+    }
+
+    generateWaypoints(undefined, featureCollection);
+</script>
+</body>
+</html>

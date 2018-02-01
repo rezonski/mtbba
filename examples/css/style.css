@@ -1,126 +1,469 @@
-html, body {
+body {
+    margin:0;
+    padding:0;
     font-size: 14px;
-    margin: 0;
-    font-family: "Helvetica";
-    overflow: none;
+    font-family: "Roboto",serif,Helvetica,Arial,sans-serif;
 }
 
-.map { 
-    position:absolute; 
-    top:0; 
-    bottom:0; 
-    width:100%; 
+a, a:hover, a:active, a:visited {
+    text-decoration: none;
+    color: #fff;
 }
 
-#rawprofile {
-    position:absolute; 
-    bottom:0; 
-    width:100%;
-    height: 300px; 
+.visualisation {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    flex-direction: column;
+    overflow: hidden;
 }
 
-#rawprofilecontainer {
+.up {
+    display: flex;
+    flex: 1 1 50%;
+    flex-direction: row;
+    background-color: #E0F2A6;
+}
+
+.pointdetails {
+    display: flex;
+    flex: 0 0 40%;
+    flex-direction: column;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.pointrow {
+    flex: 1 1 30px;
+    margin-bottom: 20px;
+}
+
+.piccontainer {
+    display: flex;
+    flex: 5 1 auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.deleted {
+    background-color: #AB3636;
+    text-decoration: line-through;
+}
+
+.confirmed {
+    background-color: #63E46A;
+}
+
+.new {
+    background-color: #fff;
+}
+
+.pointimg {
     display: block;
-    display: none;
     width: 50%;
-    height: 300px;
-    margin: auto;
-    background-color: #ccee00;
-    z-index: 99999;
+    height: 200px;
+    // max-height: 300px;
+    // max-width: 300px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
 }
 
-#sidebar, #waypointscontainer {
+.map {
+    display: block;
+    flex: 1 1 60%;
+    // z-index: 20;
+}
+
+.down {
+    display: flex;
+    flex: 1 1 50%;
+    flex-direction: row;
+    background-color: #D69452;
+}
+
+.dugmad {
     display: block;
     position: absolute;
-    top: 0;
-    width: 345px;
-    height: 100%;
-    overflow-y: scroll;
-    overflow-x: none;
+    left: 10px;
+    top: 10px;
+    z-index: 30;
 }
 
-#sidebar {
-    background-color: #ededed;
-    right: 0;
-}
-#waypointscontainer {
-    display: none;
-    left: 0;
-}
-
-#rawprofile {
-
+.site-logo {
+    display: block;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    z-index: 30;
+    opacity: 0.6;
 }
 
-.waypointform {
-    line-height: 25px;
-    font-size: 95%;
+.site-logo a img {
+    width: 60px;
+}
+
+/* STYLE */
+
+.style-params {
+   background-color: #89bdd3;
+   color: #eee;
+   flex-direction: row;
+}
+
+.style-elevchart {
+   background-color: #9ad3de;
+   color: #eee;
+}
+
+.style-waypoints {
+   background-color: #e3e3e3;
+   color: #c9c9c9;
+}
+
+.style-description {
+   background-color: #c9c9c9;
+   color: #eee;
+}
+
+/* LAYOUT */
+
+
+
+.mapboxgl-ctrl-icon {
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.satellite {
+    background-image: url('../svg/satellite_active.svg');
+}
+
+.home {
+    background-image: url('../svg/home_active.svg');
+}
+
+.danger {
+    background-image: url('../svg/danger_active.svg');
+}
+
+.trail-name {
+    display: flex;
+    flex: 0 0 50px;
+    flex-direction: row;
+    background-color: #60899a;
+    z-index: 10;
+}
+
+.trail-name-icon {
+    display: flex;
+    flex: 0 0 70px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../svg/bike_active.svg');
+}
+
+.trail-name-text {
+    display: block;
+    flex: 1 1 100%;
+    padding: 10px 20px;
+    font-size: 180%;
+    color: #eee;
+}
+
+.trail-download {
+    display: flex;
+    flex: 0 0 auto;
+    background-color: #89bdd3;
+    color: #fff;
+    cursor: pointer;
+    padding: 8px 8px 8px 25px;
+    margin: 8px;
+    border-radius: 3px;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-image: url('../svg/download_active.svg'); 
+}
+
+.trail-download:hover {
+    background-color: #9ad3de;
+}
+
+.details {
+    display: flex;
+    flex: 0 0 200px;
+    flex-direction: row;
+    background-color: #ddd;
+}
+
+/* DETAIL - MENU */
+
+.menu {
+    display: flex;
+    flex: 0 0 70px;
+    flex-direction: column;
+}
+
+.menu-item {
+    display: flex;
+    flex: 1 1 auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    // border-right: 1px solid #fff;
+    // border-top: none;
+    // border-bottom: none;
+}
+
+.menu-item-active {
+    // border-right: none;
+    // border-top: 1px solid #fff;
+    // border-bottom: 1px solid #fff;
+}
+
+/* DETAIL - MENU */
+
+.content {
+    display: block;
+    flex: 1 1 100%;
+    flex-direction: column;
+}
+
+.content-item {
+    display: flex;
+    height: 200px;
+    width: calc(100% - 70px);
+    bottom: 0px;
+    position: absolute;
+    transition: 300ms;
+    opacity: 0;
+    z-index: 1;
+}
+
+/* INFO */
+
+.parameters-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+}
+
+.parameters-row {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 auto;
+    justify-content: center;
+}
+
+.parameters-column {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 25%;
+    justify-content: center;
+}
+
+.parameters-value, .parameters-label {
+    text-align: center;
+    align-content: center;
+}
+
+.trailname {
+    font-size: 180%;
+    padding-left: 50px;
+}
+
+.leftalign {
+    text-align: left;
+}
+
+.odometer {
+    // font-size: 220%;
+}
+
+.parameters-value {
+    font-size: 180%;
+}
+
+.maxelev, .minelev {
+    // font-size: 150%;
+}
+
+.parameters-label {
+    font-size: 70%;
+    opacity: 0.5;
+}
+
+.chart-pie {
+    flex: 0 0 300px;
+}
+
+.info-elevation {
+    font-size: 120%;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-image: url('../svg/ic_landscape_black_24px.svg');
+}
+
+.label {
+}
+
+.value {
     padding-left: 10px;
-    opacity: 0.4;
-    border-bottom: 2px solid #333;
+}
+
+.uphill {
+    color: #932B2B;
+}
+
+.downhill {
+    color: #2B932B;
+}
+
+.inline {
+    display: flex;
+    flex-direction: row;
+}
+
+.chart-elevation { 
+    flex: 1 1 auto;
+}
+
+/* WAYPOINTS */
+.waypoints-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 200px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.waypoint-container {
+    display: flex;
+    padding: 10px;
+    flex: 0 0 180px;
+    max-width: 180px;
+    flex-direction: column;
+    cursor: pointer;
+    border-right: 1px dashed #fff;
+    font-size: 14px;
+    font-family: "Roboto",serif,Helvetica,Arial,sans-serif;
+    color: #999;
+}
+
+.waypoint-container:hover {
     background-color: #eee;
 }
 
-.waypointform:hover {
-    opacity: 1;
-    border-top: 3px solid #ff0000;
-    border-bottom: 3px solid #ff0000;
-    background-color: #FFFBA0;
+.waypoint-header {
+    display: flex;
+    flex: 1 1 50%;
+    min-height: 70px;
+    flex-direction: row;
 }
 
-.waypointform input {
-    margin-right: 0px;
+.waypoint-header-info {
+    display: flex;
+    flex: 0 0 50%;
+    flex-direction: column;
 }
 
-#footer {
-    display: block;
-    width: 40%;
-    height: 295px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    margin: auto;
-    background-color: #F7F953;
+.waypoint-header-iterator {
+    flex: 0 0 17px;
+    width: 20px;
+    background-color: #333;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 70%;
+    font-weight: 600;
+    color: #ccc;
+    justify-content: center;
+    padding-top: 3px;
+    margin-bottom: 10px;
 }
 
-#popupform, #controlform, #inputfileform, #result {
-    display: none;
-    display: block;
-    width: 300px;
-    background-color: #ccc;
-    color: #000;
-    padding: 0.5em;
-    margin-bottom: 0.5em;
+.waypoint-header-odometer {
+    flex: 1 1 40%;
+    font-size: 130%;
 }
 
-#popupform {
-    // display: none;
+.waypoint-header-elevation {
+    flex: 1 1 35%;
+    font-size: 100%;
 }
 
-#popupform label {
-    font-size: 110%;
-    font-style: italic;
-    margin: 0.5em 0;
+.waypoint-header-pictogram {
+    flex: 0 0 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    // background-size: 100% 100%;
+    background-size: contain;
 }
 
-#controlform {
-    background-color: #cc0000;
+.waypoint-trailname {
+    flex: 1 1 10%;
+    font-size: 100%;
+    padding: 10px 0;
+    color: #333;
 }
 
-#listaplanina, #listatipova {
-    display: block;
-    width: 300px;
-    border: 1px solid #666;
-    margin: 0.5em 0;
-    background-color: #ddd;
-    font-size: 90%;
+.waypoint-description {
+    flex: 1 1 40%;
+    font-size: 80%;
 }
 
-#listaplanina {
+/* DESCRIPTION */
+
+.description-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
     height: 200px;
-    overflow-y: scroll;
 }
 
-.countrylabel {
-    font-size: 120%;
+.description-image {
+    flex: 1 1 35%;
+    min-width: 100px;
+    max-width: 600px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.description-text-container {
+    display: flex;
+    flex: 1 1 65%;
+    padding: 10px;
+    font-size: 90%;
+    line-height: 150%;
+    color: #666;
+    overflow-y: auto;
+}
+
+.description-switcher {
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    right: calc(35% + 15px);
+    background-color: #e3e3e3;
+    color: #999;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 70%;
+    border-radius: 3px;
+    z-index: 10;
+}
+
+.description-switcher:hover {
+    background-color: #999;
+    color: #e3e3e3;
+}
+
+/* COMMON */
+
+.content-active {
+    opacity: 1;
+    z-index: 2;
 }

@@ -4,7 +4,10 @@ import Enum from '../../enums/Enum';
 import Drawer from 'material-ui/Drawer';
 // import RaisedButton from 'material-ui/RaisedButton';
 // import FlatButton from 'material-ui/FlatButton';
-import WPEditorTray from '../wpEditor/WPEditorTray';
+// import WPEditorTray from '../wpEditor/WPEditorTray';
+import InputTextBox from '../common/InputTextBox';
+import Switch from '../common/Switch';
+import Lang from '/helpers/Lang';
 
 class WPDRawer extends BasePage {
     constructor(props) {
@@ -14,22 +17,21 @@ class WPDRawer extends BasePage {
             drawerOpen: false,
             stepIndex: 0,
         };
-        this.bindGluBusEvents({
-            [Enum.DataEvents.TRAIL_DATA_RETRIEVED]: this.onTrailDataRetrieved,
-            [Enum.AppEvents.TOGGLE_WP_DRAWER]: this.onToggleOpenDrawer,
-        });
     }
 
     componentDidMount() {
-        this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA, 'waypoints');
+        this.bindGluBusEvents({
+            [Enum.DataEvents.TRAIL_DATA_RETRIEVED]: this.onWaypointsaRetrieved,
+            [Enum.AppEvents.TOGGLE_WP_DRAWER]: this.onToggleOpenDrawer,
+        });
     }
 
     componentWillUnmount() {
         this.unbindGluBusEvents();
     }
 
-    onTrailDataRetrieved(payload) {
-        if (payload.waypoints && payload.waypoints !== this.state.waypoints) {
+    onWaypointsaRetrieved(payload) {
+        if (payload.waypoints) {
             this.setState({
                 waypoints: payload.waypoints,
             });
@@ -37,9 +39,24 @@ class WPDRawer extends BasePage {
     }
 
     onToggleOpenDrawer() {
-        this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA, 'waypoints');
+        if (this.state.drawerOpen) {
+            this.emit(Enum.AppEvents.PREVIEW_PICTOGRAM, {
+                wpIndex: null,
+            });
+        }
         this.setState({
             drawerOpen: !this.state.drawerOpen,
+        });
+        this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA);
+    }
+
+    onWpClick(wp, wpIdx) {
+        // console.log(wp);
+        this.emit(Enum.MapEvents.FOCUS_FEATURE_ON_MAP, {
+            feature: wp,
+        });
+        this.emit(Enum.AppEvents.PREVIEW_PICTOGRAM, {
+            wpIndex: wpIdx,
         });
     }
 
@@ -55,22 +72,50 @@ class WPDRawer extends BasePage {
         };
 
         const steps = this.state.waypoints.map((wp, wpIdx) => {
-            return (<div
-                        id={'wp-step-' + wpIdx}
-                        className={'wp-step'}
+            return (<div id={'wp-step-' + wpIdx}
+                        className={'flex-container row single-wp-edit-box'}
+                        onClick={this.onWpClick.bind(this, wp, wpIdx)}
                         key={'wp-step-' + wpIdx}>
-                            <WPEditorTray
-                                wp={wp.properties}
-                                wpIndex={wpIdx}
+                            <InputTextBox
+                                fieldName={'waypoints'}
+                                fieldIndex={wpIdx}
+                                fieldProp={'name'}
+                                value={wp.properties.name}
+                                inputBoxStyle={{ fontSize: '80%' }}
+                                isMultiline={true}
+                                noRows={2}
+                                filedLabel={Lang.label('name')}
+                                filedHintText={Lang.label('name')}
+                            />
+                            <InputTextBox
+                                fieldName={'waypoints'}
+                                fieldIndex={wpIdx}
+                                fieldProp={'pictogram'}
+                                value={wp.properties.pictogram}
+                                inputBoxStyle={{ fontSize: '80%' }}
+                                isMultiline={false}
+                                noRows={1}
+                                filedLabel={Lang.label('pictogram')}
+                                filedHintText={Lang.label('pictogramHint')}
+                            />
+                            <Switch
+                                fieldName={'waypoints'}
+                                fieldIndex={wpIdx}
+                                fieldProp={'elevationProfile'}
+                                value={wp.properties.elevationProfile}
+                                label={Lang.label('showOnElevationProfile')}
+                                type={'toggle'}
                             />
                     </div>);
         });
 
         const content = (<div id="wp-stepper">{steps}</div>);
 
+        // console.log('Render WPDRawer');
+
         return (<Drawer
                     open={this.state.drawerOpen}
-                    width={500}
+                    width={400}
                     containerStyle={style.drawer}
                 >
                     <div className="wp-drawer-container">

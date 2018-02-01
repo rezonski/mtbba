@@ -18,9 +18,14 @@ class MapModel extends GLU.DataSource {
         };
         this._mapStyles = [
           {
+            name: 'Basic',
+            type: 'terrain',
+            value: 'mapbox://styles/mapbox/basic-v9',
+          },
+          {
             name: 'Outdoors',
             type: 'terrain',
-            value: 'mapbox://styles/mapbox/outdoors-v9',
+            value: 'mapbox://styles/mapbox/outdoors-v10',
           },
           {
             name: 'Satellite',
@@ -32,12 +37,13 @@ class MapModel extends GLU.DataSource {
             type: 'terrain',
             value: 'mapbox://styles/mapbox/dark-v9',
           },
-          {
-            name: 'Basic',
-            type: 'terrain',
-            value: 'mapbox://styles/mapbox/basic-v9',
-          },
         ];
+
+        this._mapIcons = ['bicycle1', 'bicycle2', 'city', 'crossroad', 'danger', 'drinking-water', 'hiking', 'hiking-black', 'lodging', 'pass', 'photo', 'photo-inverted', 'place', 'restaurant', 'restaurant-inverted', 'road', 'roadblock', 'summit', 'swimming' ];
+    }
+
+    get mapIcons() {
+        return this._mapIcons;
     }
 
     get leftMap() {

@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Interactive map of effects of Iran Nuclear Deal</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script> 
+    
+    <script src="js/dragonfly-dev.js"></script>
+    <link href="css/dragonfly.css" rel="stylesheet"/>
+    
+    <script src="js/mapDefinition1917.js"></script>
+    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <link href='//api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel='stylesheet' href='//api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.0/mapbox-gl-draw.css' type='text/css'/>
+    <script src='//api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.js'></script>
+    <script src='//api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.0/mapbox-gl-draw.js'></script>
+    
+    <link href="css/app.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="app-container">
+        <div class="map-container">
+            <div id="map" class="dragonfly-map"></div>
+        </div>
+        <div id="popup-container" class="popup">
+        </div>
+        <div class="data-maniputlation controls">
+            <div class="row">
+                <div class="column">
+                    <button onclick="replicateDataColumns()">Replicate</button>
+                    <label for="fromIdx">from idx</label>
+                    <input id="fromIdx" size="2">
+                    <label for="toIdx">to idx</label>
+                    <input id="toIdx" size="2">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="newiso">Set NEW ISO: </label>
+                    <input id="newiso" size="10" onchange="onInputChange('newiso')">
+                </div>
+                <div class="column">
+                    <label for="newname">Set NEW Name: </label>
+                    <input id="newname" size="10" onchange="onInputChange('newname')">
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <input id="loadDataVersion" name="loadDataVersion" size="15">
+                    <button onclick="loadLocal()">Load</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <input id="saveDataVersion" name="saveDataVersion" size="10" value="tempVersion">
+                    <label>Save: </label>
+                    <button onclick="saveGeos2file()">GEOs</button>
+                    <button onclick="save2CSVfile()">CSV</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <button onclick="resetMapTable()">(D)eselect</button>
+                    <label>(S)elect</label>
+                    <input type="checkbox" name="selectable" value="0" onclick="toggleSelectable()" checked>
+                    <label>(T)oggle</label>
+                    <input type="checkbox" name="toggable" value="0" onclick="toggleToggable()" checked>
+                </div>
+                <div class="column">
+                    <select id="selectISO" onchange="toggleSelectISO()">
+                        <option value="select">Select</option>
+                        <option value="deselect">Deselect</option>
+                        <option value="selectsafe">Select Safe</option>
+                    </select>
+                    <label for="selectIso">Curr. ISO</label>
+                    <input id="selectIso" size="4" onchange="onInputChange('selectIso')">
+                    <button onclick="selectAllFeaturesByColumn('ISO')">Select</button>
+                </div>
+                <div class="column">
+                    <select id="selectNEWISO" onchange="toggleSelectNEWISO()">
+                        <option value="select">Select</option>
+                        <option value="deselect">Deselect</option>
+                        <option value="selectsafe">Select Safe</option>
+                    </select>
+                    <label for="selectNewIso">New ISO</label>
+                    <input id="selectNewIso" size="4" onchange="onInputChange('selectNewIso')">
+                    <button onclick="selectAllFeaturesByColumn('NEWISO')">Select</button>
+                </div>
+                <div class="column">
+                    <select id="selectNEWNAME" onchange="toggleSelectNewName()">
+                        <option value="select">Select</option>
+                        <option value="deselect">Deselect</option>
+                        <option value="selectsafe">Select Safe</option>
+                    </select>
+                    <label for="selectNewName">New Name</label>
+                    <input id="selectNewName" size="4" onchange="onInputChange('selectNewName')">
+                    <button onclick="selectAllFeaturesByColumn('NEWNAME')">Select</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="year1">Year #1: </label>
+                    <input id="year1" name="year1" value="2010" size="4" onchange="setYear1()">
+                    <button onclick="toggleHistoryLayer(1)">Toogle layer #1</button>
+                </div>
+                <div class="column">
+                    <label for="year2">Year #2: </label>
+                    <input id="year2" name="year2" value="2010" size="4" onchange="setYear2()">
+                    <button onclick="toggleHistoryLayer(2)">Toogle layer #2</button>
+                </div>
+            </div>
+        </div>
+        <div class="year-switch controls">
+        </div>
+    </div>
+    <script>
+        
+        var selectedIDs = [];
+        var popupedValues = [];
+
+        var selectISO = 'select';
+        var selectNEWISO = 'select';
+        var selectNEWNAME = 'select';
+        var historyLayerActive = [null, true, true];
+        
+        var allData;
+        var selectable = true;
+        var toggable = true;
+        var availableTags = [];
+        var availableDataVersions = [];
+        let freePolygons = [];
+        let intersectionSets;
+
+        var cursorAction = 'generate'; // [generate, select]
+        var hexGridSources = [];
+        var hexGridIndex = 0;
+
+        document.getElementById('year1').value = year1;
+        document.getElementById('year2').value = year2;
+
+        var ct = new Date();
+        var version = '2017.' + (ct.getMonth() + 1) + '.' + ct.getDate() + '.' + ct.getHours() + '.' + ct.getMinutes();
+
+        document.getElementById('saveDataVersion').value = version;
+
+        dragonfly.accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
+        var map = new dragonfly.Map({
+            container: 'map',
+            style: mapStyle, // 'mapbox://styles/mapbox/basic-v9',
+            zoom: 1,
+            center: [0, 0],
+            maxZoom: 12,
+            maxBounds: [[-200,-85], [200, 85]],
+        });
+
+        function toggleHistoryLayer(i) {
+            if (historyLayerActive[i]) {
+                map.setLayoutProperty('history-tiles' + i, 'visibility', 'none');
+                document.getElementById('year' + i).classList.add('faded');
+            } else {
+                map.setLayoutProperty('history-tiles' + i, 'visibility', 'visible');
+                document.getElementById('year' + i).classList.remove('faded');
+            }
+            historyLayerActive[i] = !historyLayerActive[i];
+        }
+
+        map.boxZoom.disable();
+
+        function toggleSelectISO() {
+            selectISO = document.getElementById('selectISO').value;
+        }
+
+        function toggleSelectNEWISO() {
+            selectNEWISO = document.getElementById('selectNEWISO').value;
+        }
+
+        function toggleSelectNewName() {
+            selectNEWNAME = document.getElementById('selectNEWNAME').value;
+        }
+
+        function toggleSelectable() {
+            selectable = !selectable;
+            document.getElementsByName('selectable')[0].checked = selectable;
+        }
+        
+        function toggleToggable() {
+            toggable = !toggable;
+            document.getElementsByName('toggable')[0].checked = toggable;
+        }
+
+        function setYear1() {
+            var newYear = parseInt(document.getElementById('year1').value, 10);
+            if (year1 !== newYear) {
+                console.info('Set tiles 1 to ' + newYear);
+                if (map.getSource('rasterSource1')) {
+                    map.removeLayer('history-tiles1');
+                    map.removeSource('rasterSource1');
+                    map.addSource('rasterSource1', {
+                        'type': 'raster',
+                        'tiles': ['http://wpc.4693.edgecastcdn.net/004693/tiles/area/' + newYear + '/Z{z}/{y}/{x}.png?v=20'],
+                        'tileSize': 256
+                    });
+                    map.addLayer({
+                        'id': 'history-tiles1',
+                        'type': 'raster',
+                        'source': 'rasterSource1',
+                        'minzoom': 0,
+                        'maxzoom': 7
+                    }, 'dummy');
+                    year1 = parseInt(newYear, 10);
+                }
+            }
+        }
+
+        function setYear2() {
+            var newYear = parseInt(document.getElementById('year2').value, 10);
+            if (year2 !== newYear) {
+                console.info('Set tiles 2 to ' + newYear);
+                if (map.getSource('rasterSource2')) {
+                    map.removeLayer('history-tiles2');
+                    map.removeSource('rasterSource2');
+                    map.addSource('rasterSource2', {
+                        'type': 'raster',
+                        'tiles': ['http://wpc.4693.edgecastcdn.net/004693/tiles/area/' + newYear + '/Z{z}/{y}/{x}.png?v=20'],
+                        'tileSize': 256
+                    });
+                    map.addLayer({
+                        'id': 'history-tiles2',
+                        'type': 'raster',
+                        'source': 'rasterSource2',
+                        'minzoom': 0,
+                        'maxzoom': 7
+                    }, 'dummy');
+                    year2 = parseInt(newYear, 10);
+                }
+            }
+        }
+
+        function resetMapTable() {
+            // selectedIDs.forEach(id => {
+            //     document.getElementById('DataRow' + id).style['background-color'] = null;
+            // });
+            // document.getElementById('tablecontent').style.top = '0px';
+            selectedIDs = [];
+            map.setFilter('hovered', ['in', 'ID', 0]);
+        }
+
+        function displayFeatureInfo(id) {
+            var feature = allData.find((f) => {
+                return f[0] === id;
+            });
+            var first = allData[0];
+            popupedValues = feature.map((e, i) => {
+                return {
+                    name: first[i],
+                    value: e,
+                }
+            });;
+            var row = feature.map((e, i) => {
+                return `<div id="column${i}" class="popup-column">
+                    <div class="popup-label">${renameLabel(first[i])}</div>
+                    <div class="popup-value">${e}</div>
+                </div>`;
+                // return renameLabel(first[i]) + ' : ' + '<strong>' + e + '</strong>';
+            });
+            
+            document.getElementById('popup-container').innerHTML = row.join('');
+        }
+
+        function renameLabel(i) {
+            return i;
+            // switch(i) {
+            //     case 'NewName':
+            //         return 'NewName';
+            //         break;
+            //     case 'ISO':
+            //         return 'ISO';
+            //         break;
+            //     case 'NEWISO':
+            //         return 'New ISO';
+            //         break;
+            //     case 'Geo_QName':
+            //         return 'Name';
+            //         break;
+            //     default:
+            //         return i;
+            // }
+        }
+        
+        map.on('load', function () {
+            map.fitBounds([[-180,-63],[180,80]]);
+            var canvas = map.getCanvasContainer();
+            var start;
+            var current;
+            var box;
+
+            map.dragRotate.disable();
+
+            loadParseCSV();
+
+            canvas.addEventListener('mousedown', mouseDown, true);
+            // Return the xy coordinates of the mouse position
+            
+            function mousePos(e) {
+                var rect = canvas.getBoundingClientRect();
+                return new mapboxgl.Point(
+                    e.clientX - rect.left - canvas.clientLeft,
+                    e.clientY - rect.top - canvas.clientTop
+                );
+            }
+
+            function mouseDown(e) {
+                // Continue the rest of the function if the shiftkey is pressed.
+                if (!(e.shiftKey && e.button === 0)) return;
+                // Disable default drag zooming when the shift key is held down.
+                map.dragPan.disable();
+                // Call functions for the following events
+                document.addEventListener('mousemove', onMouseMove);
+                document.addEventListener('mouseup', onMouseUp);
+                
+                // Capture the first xy coordinates
+                start = mousePos(e);
+            }
+
+            function onMouseMove(e) {
+                // Capture the ongoing xy coordinates
+                current = mousePos(e);
+
+                // Append the box element if it doesnt exist
+                if (!box) {
+                    box = document.createElement('div');
+                    box.classList.add('boxdraw');
+                    canvas.appendChild(box);
+                }
+
+                var minX = Math.min(start.x, current.x),
+                    maxX = Math.max(start.x, current.x),
+                    minY = Math.min(start.y, current.y),
+                    maxY = Math.max(start.y, current.y);
+
+                // Adjust width and xy position of the box element ongoing
+                var pos = 'translate(' + minX + 'px,' + minY + 'px)';
+                box.style.transform = pos;
+                box.style.WebkitTransform = pos;
+                box.style.width = maxX - minX + 'px';
+                box.style.height = maxY - minY + 'px';
+            }
+            
+            function onMouseUp(e) {
+                // Capture xy coordinates
+                finish([start, mousePos(e)]);
+            }
+
+            function finish(bbox) {
+                // Remove these events now that finish has been called.
+                document.removeEventListener('mousemove', onMouseMove);
+                // document.getElementById('map').removeEventListener('keydown', onKeyDownMap);
+                document.removeEventListener('mouseup', onMouseUp);
+
+                if (box) {
+                    box.parentNode.removeChild(box);
+                    box = null;
+                }
+
+                // If bbox exists. use this value as the argument for `queryRenderedFeatures`
+                if (bbox) {
+                    var features = map.queryRenderedFeatures(bbox, { layers: ['features'] });
+                    if (features.length >= 1000) {
+                        return window.alert('Select a smaller number of features');
+                    } else if (features.length > 0) {
+                        // document.getElementById('tablecontent').style.top = '0px';
+                        features.forEach(feature => {
+                            if (selectedIDs.indexOf(feature.properties.ID) < 0 && processedIDs.indexOf(feature.properties.ID) < 0) {
+                                selectedIDs.push(parseInt(feature.properties.ID, 10));
+                                // document.getElementById('DataRow' + feature.properties.ID).style['background-color'] = '#F4FF00';
+                            } else {
+                                if (toggable) {
+                                    selectedIDs.splice(selectedIDs.indexOf(feature.properties.ID), 1);
+                                    // document.getElementById('DataRow' + feature.properties.ID).style['background-color'] = null;
+                                }
+                            }
+                        });
+                        map.setFilter('hovered', ['in', 'ID', ...selectedIDs]);
+                        // var topOffset = document.getElementById('DataRow' + selectedIDs[selectedIDs.length - 1]).getBoundingClientRect().top;
+                        // document.getElementById('tablecontent').style.top = (-1 * (topOffset - 200)) + 'px';
+                    }
+                }
+                map.dragPan.enable();
+            }
+
+            function setUnsetID(uid) {
+                console.log('setUnsetID(' + uid + ')');
+                if (selectedIDs.indexOf(uid) < 0) {
+                    selectedIDs.push(parseInt(uid, 10));
+                    // document.getElementById('DataRow' + uid).style['background-color'] = '#F4FF00';
+                    // scrollTable(uid);
+                } else {
+                    selectedIDs.splice(selectedIDs.indexOf(uid), 1);
+                    // document.getElementById('DataRow' + uid).style['background-color'] = null;
+                    // scrollTable(selectedIDs[selectedIDs.length - 1]);
+                }
+                map.setFilter('hovered', ['in', 'ID', ...selectedIDs]);
+            }
+
+            function scrollTable(uid) {
+                if (uid) {
+                    // var topDiff = $('#DataRow' + uid).offset().top - $('#tablecontent').position().top;
+                    $('#table-container').animate({
+                        scrollTop: topDiff - 50
+                    }, 500);
+                }
+            }
+
+            map.on('click', function(e) {
+                var features = map.queryRenderedFeatures(e.point, { layers: ['features'] });
+                if (features.length > 0) {
+                    var feature = features[0];
+                    if (selectable) {
+                        setUnsetID(feature.properties.ID);
+                    }
+                    displayFeatureInfo(feature.properties.ID);
+                }
+            });
+
+            var draw = new MapboxDraw({
+                displayControlsDefault: false,
+                controls: {
+                    polygon: true,
+                    trash: true
+                }
+            });
+            window.draw = draw;
+            map.addControl(draw);
+        });
+
+        function onInputChange(field) {
+            const value = document.getElementById(field).value;
+            switch(field) {
+                case 'newiso':
+                    setColumnValue('NEWISO', selectedIDs, value);
+                    break;
+                case 'newname':
+                    setColumnValue('NEWNAME', selectedIDs, value);
+                    break;
+                case 'selectIso':
+                    selectAllFeaturesByVariable('ISO', value, selectISO);
+                    break;
+                case 'selectNewIso':
+                    selectAllFeaturesByVariable('NEWISO', value, selectNEWISO);
+                    break;
+                case 'selectNewName':
+                    selectAllFeaturesByVariable('NEWNAME', value, selectNEWNAME);
+                    break;
+            }
+            document.getElementById(field).value = null;
+        }
+
+        function selectAllFeaturesByColumn(column) {
+            const value = popupedValues.find(values => {
+                return values.name === column;
+            }).value;
+            selectAllFeaturesByVariable(column, value, 'selectsafe');
+        }
+
+        function initAutocompleteValuePicker(data) {
+            availableTags = [];
+            availableDataVersions = Object.keys(localStorage);
+            data.forEach((e, idx) => {
+                if (availableTags.indexOf(e[1]) < 0 && idx > 0) {
+                    availableTags.push(e[1]);
+                }
+            });
+        }
+
+        function getRow(id) {
+            return allData.filter(r => {return r[0] === id;})[0];
+        }
+
+        function getRows(ids) {
+            return allData.filter(r => {return ids.indexOf(r[0]) >= 0;});
+        }
+
+        function setColumnValue(colName, ids, value) {
+            if (colName === 'NEWISO' && (value.length > 7 || value.length < 3)) {
+                alert('New values must be 3-7 character long Uppercase string');
+                return;
+            }
+            if (colName === 'NEWISO' && availableTags.indexOf(value) < 0) {
+                // alert('Setting Unexisting ISO code');
+                console.info('Setting Unexisting ISO code');
+            }
+            console.info('Setting ' + colName + ' to ' + value);
+            var colIdx = allData[0].indexOf(colName);
+            const newData = allData.map(d => {
+                let returnData = JSON.parse(JSON.stringify(d));
+                if (ids.indexOf(d[0]) > -1) {
+                    returnData[colIdx] = value;
+                }
+                return returnData;
+            });
+            allData = newData;
+            processedIDs = processedIDs.concat(ids);
+            map.setFilter('boundaries',['!in', 'ID', ...processedIDs])
+            map.setFilter('labels',['!in', 'ID', ...processedIDs])
+            // resetMapTable();
+            save2local();
+            renderTable();
+        }
+
+        function replicateDataColumns() {
+            var fromColumnIdx = parseInt(document.getElementById('fromIdx').value, 10) - 1;
+            var toColumnIdx = parseInt(document.getElementById('toIdx').value, 10) - 1;
+            allData.forEach((row, idx) => {
+                if (idx  > 0 && row[fromColumnIdx]) {
+                    row[toColumnIdx] = String(row[fromColumnIdx]);
+                }
+            });
+        }
+
+        function save2local() {
+            console.warn('save2local disabled due to localStorage limitations');
+            // var saveDataVersion = document.getElementById('saveDataVersion').value;
+            // saveDataVersion = (saveDataVersion.length > 0) ? saveDataVersion : 'temp';
+            // try{
+            //     localStorage.setItem(saveDataVersion, JSON.stringify(allData));
+            //     console.log('Saved version ' + saveDataVersion);
+            // }
+            // catch(e){
+            //     console.error(e);
+            //     alert('error occurred');
+            // }
+            var saveDataVersion = 'temp' + year1;
+            try{
+                localStorage.setItem(saveDataVersion, JSON.stringify({
+                    processedIDs: processedIDs
+                }));
+                console.log('Saved version ' + saveDataVersion);
+            }
+            catch(e){
+                console.error(e);
+                alert('error occurred');
+            }
+        }
+
+        function save2CSVfile() {
+            // var csvContent = 'data:text/csv;charset=utf-8,';
+            save2local();
+            var saveDataVersion = document.getElementById('saveDataVersion').value;
+            saveDataVersion = (saveDataVersion.length > 0) ? saveDataVersion : 'temp';
+            const isoIndex = allData[0].indexOf('NEWISO');
+            const nameIndex = allData[0].indexOf('NEWNAME');
+            const exportData = [];
+            allData.forEach((element, idx) => {
+                if (element.length > 1) {
+                    if (idx === 0) {
+                        // if (element.indexOf('ISOCOLONY') < 0) {
+                        //     element.push('ISOCOLONY');
+                        // }
+                        // if (element.indexOf('COLONYNAME') < 0) {
+                        //     element.push('COLONYNAME');
+                        // }
+                    } else {
+                        const isColony = (element[nameIndex].indexOf('(') > -1);
+                        const isDual = (element[isoIndex].indexOf('-') > -1);
+                        if (isColony) {
+                            const isoColony = element[isoIndex].substr(element[isoIndex].indexOf('-') + 1);
+                            const colonyName = allData.find((a) => {
+                                return a[isoIndex] === isoColony;
+                            })[nameIndex];
+                            element[allData[0].indexOf('ISOCOLONY')] = isoColony;
+                            element[allData[0].indexOf('COLONYNAME')] = colonyName;
+                        }
+                        if (isDual) {
+                            element[allData[0].indexOf('SIDE1')] = element[isoIndex].substr(0,element[isoIndex].indexOf('-'));
+                            element[allData[0].indexOf('SIDE2')] = element[isoIndex].substr(element[isoIndex].indexOf('-')+1);
+                        }
+                    }
+                    exportData.push(element);
+                }
+            });
+
+
+            var csvContent = '';
+            exportData.forEach((infoArray, index) => {
+               var dataString = infoArray.join(',');
+               csvContent += (index < exportData.length )? dataString + '\n' : dataString;
+            });
+
+            var pom = document.createElement('a');
+            var blob = new Blob([csvContent],{type: 'text/csv;charset=utf-8;'});
+            var url = URL.createObjectURL(blob);
+            pom.href = url;
+            pom.setAttribute('download', 'year_' + year1 + '_version_' + saveDataVersion + '.csv');
+            pom.click();
+            
+            // var exportLink = document.createElement('a');
+            // var encodedUri = encodeURI(csvContent);
+            // exportLink.setAttribute('href', encodedUri);
+            // exportLink.setAttribute('download', 'year_' + year1 + '.csv');
+            // document.body.appendChild(exportLink); // Required for FF
+            // exportLink.click(); // This will download the data file named "my_data.csv".
+            
+            // debugger;
+        }
+
+        function saveGeos2file() {
+            var content = JSON.stringify(window.draw.getAll());
+            var encodedUri = encodeURI(content);
+            var exportLink = document.createElement('a');
+            exportLink.setAttribute('href', encodedUri);
+            exportLink.setAttribute('download', 'geo_overlay_' + year1 + '.json');
+            document.body.appendChild(exportLink); // Required for FF
+            exportLink.click(); // This will download the data file named "my_data.csv".
+        }
+
+        function loadLocal() {
+            // var loadDataVersion = document.getElementById('loadDataVersion').value;
+            var loadDataVersion = 'temp' + year1;
+            if (localStorage.getItem(loadDataVersion)) {
+                processedIDs = JSON.parse(localStorage.getItem(loadDataVersion)).processedIDs;
+                map.setFilter('boundaries',['!in', 'ID', ...processedIDs]);
+                map.setFilter('labels',['!in', 'ID', ...processedIDs]);
+                alert('Loaded version ' + loadDataVersion);
+            } else {
+                alert('Unexisting version ' + loadDataVersion);
+            }
+        }
+
+        function resetData() {
+           loadParseCSV();
+        }
+
+        function selectAllFeaturesByVariable(variable, value, action) {
+            var variableIndex = allData[0].indexOf(variable);
+            var features = allData.filter(r => {return r[variableIndex] === value;});
+            // document.getElementById('tablecontent').style.top = '0px';
+            features.forEach(feature => {
+                if (action === 'select') {
+                    if (selectedIDs.indexOf(feature[0]) < 0 && processedIDs.indexOf(feature[0]) < 0) {
+                        selectedIDs.push(parseInt(feature[0], 10));
+                        // document.getElementById('DataRow' + feature[0]).style['background-color'] = '#F4FF00';
+                    }
+                } else if (action === 'selectsafe') {
+                    if (selectedIDs.indexOf(feature[0]) < 0) {
+                        if (processedIDs.indexOf(feature[0]) >= 0) {
+                            processedIDs.splice(selectedIDs.indexOf(feature[0]), 1);
+                        }
+                        selectedIDs.push(parseInt(feature[0], 10));
+                        // document.getElementById('DataRow' + feature[0]).style['background-color'] = '#F4FF00';
+                    }
+                } else if (action === 'deselect') {
+                    if (selectedIDs.indexOf(feature[0]) >= 0) {
+                        selectedIDs.splice(selectedIDs.indexOf(feature[0]), 1);
+                        // document.getElementById('DataRow' + feature[0]).style['background-color'] = null;
+                    }
+                }
+            });
+            map.setFilter('hovered', ['in', 'ID', ...selectedIDs]);
+            // var topOffset = document.getElementById('DataRow' + selectedIDs[selectedIDs.length - 1]).getBoundingClientRect().top;
+            // document.getElementById('tablecontent').style.top = (-1 * (topOffset - 200)) + 'px';
+        }
+
+        function loadParseCSV() {
+            $.get(importCSV, (response, status, xhr) => {
+                if ( status === 'error' ) {
+                    console.log('Sorry but there was an error');
+                } else {
+                    allData = response.split('\n').map(line => {
+                        return newRow = line.split(',').map(r => {
+                            if (isNumeric(r)) {
+                                return parseInt(r, 10);
+                            }
+                            return r;
+                        });
+                    });
+                    initAutocompleteValuePicker(allData);
+                    renderTable();
+                }
+            });
+        }
+
+        function csvJSON(csv){
+            var lines=csv.split("\n");
+            var result = [];
+            
+            for(var i=1;i<lines.length;i++){
+                var obj = {};
+                var currentline=lines[i].split(",");
+                for(var j=0;j<headers.length;j++){
+                    obj[headers[j]] = currentline[j];
+                }
+                result.push(obj);
+            }   
+            return result; //JSON
+        }
+
+        function renderTable() {
+            // const tbody = document.createElement('tbody');
+            // tbody.id = 'tbody-container';
+            // allData.forEach((line, lindex) => {
+            //     const row = document.createElement("tr");
+            //     row.id = 'DataRow' + line[0];
+                
+            //     line.forEach(column => {
+            //         const col = (lindex > 0) ? document.createElement('td') : document.createElement("th");
+            //         col.innerText = column;
+            //         row.appendChild(col);
+            //         return col;
+            //     });
+            //     tbody.appendChild(row);
+            // });
+            // document.getElementById('tablecontent').innerHTML = '';
+            // document.getElementById('tablecontent').appendChild(tbody);
+        }
+
+        function csvTable(csv){
+            const tbody = document.createElement('tbody');
+            tbody.id = 
+            csv.split('\n').forEach((line, lindex) => {
+                const row = document.createElement("tr");
+                const columns = line.split(',');
+                row.id = 'DataRow' + columns[0];
+                columns.forEach(column => {
+                    const col = (lindex > 0) ? document.createElement('td') : document.createElement("th");
+                    col.innerText = column;
+                    row.appendChild(col);
+                    return col;
+                });
+                tbody.appendChild(row);
+            });
+            document.getElementById('tablecontent').appendChild(tbody);
+        }
+
+        function isNumeric(value) {
+            return /^\d+$/.test(value);
+        }
+
+        // function onKeyDownMap(e) {
+        window.onkeyup = function (e) {
+            // If the ESC key is pressed
+            // console.log('Map key ' + e.keyCode);
+            switch(e.keyCode) {
+                case 27: // ESC - finish selecting
+                    resetMapTable();
+                    // finish();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        function generateRulesets() {
+            let distinctCountries = [];
+            const isoIndex = allData[0].indexOf('NEWISO');
+            const nameIndex = allData[0].indexOf('NEWNAME');
+            allData.forEach((element, index) => {
+                if (index > 0 && element[3] && element[3].indexOf('-') < 0 && distinctCountries.indexOf(element[3]) < 0) {
+                    if (element[3].length > 0) {
+                        distinctCountries.push(element[3]); 
+                    }
+                } else if (index > 0 && element[3] && element[3].indexOf('-') > -1 && distinctCountries.indexOf(element[3].substr(element[3].indexOf('-')+1)) < 0) {
+                    if (element[3].substr(element[3].indexOf('-')+1).length > 0) {
+                        distinctCountries.push(element[3].substr(element[3].indexOf('-')+1)); 
+                    }
+                }
+            });
+            
+            const sorted = distinctCountries;
+            // const sorted = distinctCountries.sort(function(a, b) {
+            //     var nameA = a.toUpperCase(); // ignore upper and lowercase
+            //     var nameB = b.toUpperCase(); // ignore upper and lowercase
+            //     if (nameA < nameB) {
+            //         return -1;
+            //     }
+            //     if (nameA > nameB) {
+            //         return 1;
+            //     }
+            //     // names must be equal
+            //     return 0;
+            // });
+
+            const ruleSets = sorted.map((iso) => {
+                const colonyName = allData.find((a) => {
+                    return a[isoIndex] === iso;
+                })[nameIndex];
+
+                // return {
+                //     'filter': ['any', ['==', 'ISOCOLONY', iso], ['==', 'NEWISO', iso], ['==', 'SIDE2', iso]],
+                //     'metadata': {
+                //         'mapspice:rule-label': colonyName
+                //     }
+                // };
+
+
+                return {
+                    'filter': ['any', 
+                                ['all', ['==', 'NEWISO', iso], ['!has', 'ISOCOLONY'], ['!has', 'SIDE2']], // countries
+                                ['all', ['!=', 'NEWISO', iso], ['!has', 'ISOCOLONY'], ['==', 'SIDE2', iso]], // war sides
+                                ['all', ['!=', 'NEWISO', iso], ['has', 'ISOCOLONY'], ['==', 'SIDE1', iso]], // war sides
+                            ],
+                    'metadata': {
+                        'mapspice:rule-label': colonyName
+                    }
+                };
+            });
+            debugger;
+        }
+
+        // window.document.getElementById("map").addEventListener("onkeydown", onKeyDownMap, false); 
+    </script>
+</body>
+</html>

@@ -12,11 +12,38 @@ class Trail {
         this._initialised = false;
         this._newTrail = false;
         this._mapPathLayers = [];
+        this._levelOfProcess = 0;
         this._parsedFeaturesCollection = {};
         this._simplifiedFeaturesCollection = {}; // Simplified
         this._elevatedFeaturesCollection = {}; // Elevated
         this._elevationNivelatedFeaturesCollection = {}; // Flatten elevation LineString
         this._interpolatedFeaturesCollection = {}; // Flatten elevation LineString
+        this._enrichedFeaturesCollection = {}; // Flatten elevation LineString
+    }
+
+    getElevationTreshold() {
+        const generalFacts = this.getGeneralFacts();
+        return {
+            ta: generalFacts.absoluteElevationThreshold, // Absolute elevation threshold
+            tr: generalFacts.relativeElevationThreshold, // Relative elevation threshold
+            sl: generalFacts.slopeTreshlod, // slope threshold
+        };
+    }
+
+    recalculateElevation(enrichedPathLine) {
+        console.info('TrailsDataModel.activeTrail.recalculateElevation(enrichedPathLine)');
+        enrichedPathLine.forEach((pp, idx) => {
+            console.log('this.fixPointElevation(' + idx + ', ' + pp.elevation + ')');
+            // this.fixPointElevation(idx, pp.elevation);
+        });
+    }
+
+    fixPointElevation(index, elevation) {
+        CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].geometry.coordinates[index][2] = elevation;
+        CommonHelper.getLineStrings(this.simplifiedFeaturesCollection)[0].geometry.coordinates[index][2] = elevation;
+        CommonHelper.getLineStrings(this.elevatedFeaturesCollection)[0].geometry.coordinates[index][2] = elevation;
+        CommonHelper.getLineStrings(this.elevationNivelatedFeaturesCollection)[0].geometry.coordinates[index][2] = elevation;
+        CommonHelper.getLineStrings(this.interpolatedFeaturesCollection)[0].geometry.coordinates[index][2] = elevation;
     }
 
     parseInitialFeaturesCollection() {
@@ -29,17 +56,34 @@ class Trail {
                 pathline = pathline.concat(feature.geometry.coordinates);
                 generalFacts = feature.properties;
             } else if (feature.geometry.type === 'Point') {
-                features.push(feature);
+                features.push(WaypointHelper.initialParseOneWP(feature));
             }
         });
-        let path = turf.lineString(pathline);
+        const elevatedPathline = pathline.map(p => {
+            let point = p;
+            if (!p[2]) {
+                point[2] = 0;
+            }
+            return point;
+        });
+        let path = turf.lineString(elevatedPathline);
         path.properties = this.getInitialGeneralFacts(generalFacts);
         features.push(path);
         this.parsedFeaturesCollection = turf.featureCollection(features);
     }
 
+    saveDownloadedFeaturesCollection(featuresCollection) {
+        this.parsedFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
+        this.parseInitialFeaturesCollection();
+        this.simplifiedFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
+        this.elevatedFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
+        this.elevationNivelatedFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
+        this.interpolatedFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
+        this.enrichPathLine();
+    }
+
     previewParsedInitialFeaturesCollection(previewMap) {
-        MapHelper.previewTrailOnMap(this.getPoints4LinePath(this.parsedFeaturesCollection), this.parsedFeaturesCollection, previewMap);
+        MapHelper.previewTrailOnMap(this.parsedFeaturesCollection, previewMap);
     }
 
     hideParsedInitialFeaturesCollection(previewMap) {
@@ -48,7 +92,7 @@ class Trail {
 
     interpolatePathLine() {
         this.interpolatedFeaturesCollection = JSON.parse(JSON.stringify(this.elevationNivelatedFeaturesCollection));
-        console.info('Trails.interpolatePathLine() - do nothing');
+        // console.info('Trails.interpolatePathLine() - do nothing');
     }
 
     translateByOffset(payload) {
@@ -75,20 +119,20 @@ class Trail {
         // console.log(path[0]);
     }
 
-    getPoints4LinePath(featuresCollection) {
-        const outFeaturesCollection = {
-            type: 'FeatureCollection',
-            features: [],
-        };
-        let path = CommonHelper.getLineStrings(featuresCollection)[0].geometry.coordinates;
-        path.forEach((pathPoint, pointIdx) => {
-            outFeaturesCollection.features.push(turf.point(pathPoint, {
-                highlightId: pointIdx,
-                type: 'controlPoint',
-            }));
-        });
-        return outFeaturesCollection;
-    }
+    // getPoints4LinePath(featuresCollection) {
+    //     const outFeaturesCollection = {
+    //         type: 'FeatureCollection',
+    //         features: [],
+    //     };
+    //     let path = CommonHelper.getLineStrings(featuresCollection)[0].geometry.coordinates;
+    //     path.forEach((pathPoint, pointIdx) => {
+    //         outFeaturesCollection.features.push(turf.point(pathPoint, {
+    //             highlightId: pointIdx,
+    //             type: 'controlPoint',
+    //         }));
+    //     });
+    //     return outFeaturesCollection;
+    // }
 
     getInitialGeneralFacts(inputGeneralFacts) {
         let generalFacts = JSON.parse(JSON.stringify(inputGeneralFacts));
@@ -118,6 +162,10 @@ class Trail {
         generalFacts.externalLink = (generalFacts.externalLink === undefined) ? '' : generalFacts.externalLink;
         generalFacts.imageURL = (generalFacts.imageURL === undefined) ? '' : generalFacts.imageURL;
         generalFacts.overrideThumbnails = false;
+        generalFacts.absoluteElevationThreshold = 30; // between measured and google height
+        generalFacts.relativeElevationThreshold = 10; // between two points
+        generalFacts.slopeTreshlod = 20;
+        generalFacts.snapWPsToPath = false;
         return generalFacts;
     }
 
@@ -135,6 +183,10 @@ class Trail {
 
     nivelatePathLine() {
         this.elevationNivelatedFeaturesCollection = TrailHelper.nivelatePathLine(this.elevatedFeaturesCollection);
+    }
+
+    enrichPathLine() {
+        this.enrichedFeaturesCollection = TrailHelper.enrichPathLine(this.elevationNivelatedFeaturesCollection);
     }
 
     getSimplifiedFeatureCollectionPathOnly() {
@@ -155,14 +207,9 @@ class Trail {
         return simplified;
     }
 
-    getEnrichedFeatureCollection() {
-        const enriched = TrailHelper.enrichPathLine(this.elevationNivelatedFeaturesCollection);
-        return enriched;
-    }
-
     getGeneralFacts() {
-        if (this.interpolatedFeaturesCollection.features) {
-            return JSON.parse(JSON.stringify(CommonHelper.getLineStrings(this.interpolatedFeaturesCollection)[0].properties));
+        if (this.enrichedFeaturesCollection.features) {
+            return JSON.parse(JSON.stringify(CommonHelper.getLineStrings(this.enrichedFeaturesCollection)[0].properties));
         }
         return JSON.parse(JSON.stringify(CommonHelper.getLineStrings(this.parsedFeaturesCollection)[0].properties));
     }
@@ -183,11 +230,13 @@ class Trail {
         if (this.interpolatedFeaturesCollection.features) {
             CommonHelper.getLineStrings(this.interpolatedFeaturesCollection)[0].properties = newGeneralFacts;
         }
+        if (this.enrichedFeaturesCollection.features) {
+            CommonHelper.getLineStrings(this.enrichedFeaturesCollection)[0].properties = newGeneralFacts;
+        }
     }
 
     generateGeneralFacts() {
-        const trail = this.getEnrichedFeatureCollection();
-        const generalFacts = TrailHelper.getGeneralFacts(trail);
+        const generalFacts = TrailHelper.getGeneralFacts(this.enrichedFeaturesCollection, this.interpolatedFeaturesCollection);
         this.setGeneralFacts(generalFacts);
     }
 
@@ -202,16 +251,16 @@ class Trail {
     }
 
     generateWaypoints(maps) {
-        const enrichedFeaturesCollection = this.getEnrichedFeatureCollection();
-        const computedWaypoints = WaypointHelper.generateWaypoints(maps.leftMap, enrichedFeaturesCollection);
-        this.waypoints = computedWaypoints;
+        if (this._levelOfProcess === 6) {
+            const enrichedFeaturesCollection = this.enrichedFeaturesCollection;
+            const computedWaypoints = WaypointHelper.generateWaypoints(maps.leftMap, enrichedFeaturesCollection);
+            this.waypoints = computedWaypoints;
+        }
         return this.waypoints;
     }
 
     reBuildMapLayers(maps) {
-        // this.mapPathLayers = MapHelper.reBuildPathLayers(this.mapPathLayers, maps.leftMap, maps.rightMap, this.surfaceCollection, this.pathLine, this.generalFact);
-        const enrichedFeaturesCollection = this.getEnrichedFeatureCollection();
-        // this.mapPathLayers = MapHelper.reBuildPathLayers(this.mapPathLayers, maps.leftMap, maps.rightMap, enrichedFeaturesCollection);
+        const enrichedFeaturesCollection = this.enrichedFeaturesCollection;
         this.mapPathLayers = MapHelper.reBuildPathLayers(this.mapPathLayers, maps.leftMap, enrichedFeaturesCollection);
     }
 
@@ -251,8 +300,8 @@ class Trail {
             externalLink: trailFacts.externalLink,
             imageURL: trailFacts.imageURL,
             trailTypeID: trailFacts.trailTypeID,
-            fitnessLevelID: trailFacts.fitnessLevelID,
-            techniqueLevelID: trailFacts.techniqueLevelID,
+            requiredFitness: trailFacts.requiredFitness,
+            requiredTechnique: trailFacts.requiredTechnique,
             mntns: trailFacts.mntns,
             surfaceCollection: trailFacts.surfaceCollection,
             generalFact: trailFacts.generalFact,
@@ -263,11 +312,15 @@ class Trail {
             progressFixWPs: trailFacts.progressFixWPs,
             waypoints: this.waypoints,
             overrideThumbnails: trailFacts.overrideThumbnails,
+            absoluteElevationThreshold: trailFacts.absoluteElevationThreshold,
+            relativeElevationThreshold: trailFacts.relativeElevationThreshold,
+            slopeTreshlod: trailFacts.slopeTreshlod,
+            snapWPsToPath: trailFacts.snapWPsToPath,
         };
     }
 
     get waypoints() {
-        return CommonHelper.getPoints(this.interpolatedFeaturesCollection);
+        return CommonHelper.getPoints(this.enrichedFeaturesCollection);
     }
 
     get chartWaypoints() {
@@ -300,11 +353,15 @@ class Trail {
         const interpolatedFeaturesCollectionFeatures = JSON.parse(JSON.stringify(waypoints));
         interpolatedFeaturesCollectionFeatures.push(CommonHelper.getLineStrings(this.interpolatedFeaturesCollection)[0]);
         this.interpolatedFeaturesCollection = turf.featureCollection(interpolatedFeaturesCollectionFeatures);
+
+        const enrichedFeaturesCollectionFeatures = JSON.parse(JSON.stringify(waypoints));
+        enrichedFeaturesCollectionFeatures.push(CommonHelper.getLineStrings(this.enrichedFeaturesCollection)[0]);
+        this.enrichedFeaturesCollection = turf.featureCollection(enrichedFeaturesCollectionFeatures);
     }
 
     getChartData(containerId) {
         // const chartData = ChartHelper.getChartSetup(containerId, trailFacts.trailName, this.chartWaypoints, this.profileMapPathLine, this.surfaceCollection);
-        const enrichedFeaturesCollection = this.getEnrichedFeatureCollection();
+        const enrichedFeaturesCollection = this.enrichedFeaturesCollection;
         const chartData = ChartHelper.getChartSetup(containerId, enrichedFeaturesCollection);
         return chartData;
     }
@@ -325,9 +382,15 @@ class Trail {
         return this._parsedFeaturesCollection;
     }
 
-    set parsedFeaturesCollection(newFile) {
-        if (newFile) {
-            this._parsedFeaturesCollection = newFile;
+    set parsedFeaturesCollection(newFeaturesCollection) {
+        if (newFeaturesCollection) {
+            this._levelOfProcess = 1;
+            this._parsedFeaturesCollection = newFeaturesCollection;
+            this._simplifiedFeaturesCollection = newFeaturesCollection; // Simplified
+            this._elevatedFeaturesCollection = newFeaturesCollection; // Elevated
+            this._elevationNivelatedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineString
+            this._interpolatedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineString
+            this._enrichedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineString
         }
     }
 
@@ -337,7 +400,12 @@ class Trail {
 
     set simplifiedFeaturesCollection(newFeaturesCollection) {
         if (newFeaturesCollection) {
+            this._levelOfProcess = 2;
             this._simplifiedFeaturesCollection = newFeaturesCollection;
+            this._elevatedFeaturesCollection = newFeaturesCollection; // Elevated
+            this._elevationNivelatedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineString
+            this._interpolatedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineString
+            this._enrichedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineString
         }
     }
 
@@ -347,7 +415,11 @@ class Trail {
 
     set elevatedFeaturesCollection(newFeaturesCollection) {
         if (newFeaturesCollection) {
+            this._levelOfProcess = 3;
             this._elevatedFeaturesCollection = newFeaturesCollection;
+            this._elevationNivelatedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineString
+            this._interpolatedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineString
+            this._enrichedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineString
         }
     }
 
@@ -357,7 +429,10 @@ class Trail {
 
     set elevationNivelatedFeaturesCollection(newFeaturesCollection) {
         if (newFeaturesCollection) {
+            this._levelOfProcess = 4;
             this._elevationNivelatedFeaturesCollection = newFeaturesCollection;
+            this._interpolatedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineString
+            this._enrichedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineString
         }
     }
 
@@ -367,7 +442,20 @@ class Trail {
 
     set interpolatedFeaturesCollection(newFeaturesCollection) {
         if (newFeaturesCollection) {
+            this._levelOfProcess = 5;
             this._interpolatedFeaturesCollection = newFeaturesCollection;
+            this._enrichedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineStri
+        }
+    }
+
+    get enrichedFeaturesCollection() {
+        return this._enrichedFeaturesCollection;
+    }
+
+    set enrichedFeaturesCollection(newFeaturesCollection) {
+        if (newFeaturesCollection) {
+            this._levelOfProcess = 6;
+            this._enrichedFeaturesCollection = newFeaturesCollection;
         }
     }
 

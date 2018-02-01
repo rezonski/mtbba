@@ -39,7 +39,8 @@ class MainToolbar extends BasePage {
         this.onOpenTrailReuestEvent = this.onOpenTrailReuest.bind(this);
         this.bindGluBusEvents({
             [Enum.MapEvents.MAP_STYLES_RETRIEVED]: this.onMapStylesRetrieved,
-            [Enum.MapEvents.REQUEST_DISPLAY_PATH_LAYERS]: this.onWaypointEnabled,
+            [Enum.AppEvents.ENABLE_TRAIL_SAVE]: this.onTrailSaveEnabled,
+            [Enum.AppEvents.ENABLE_WP_DRAWER]: this.onWaypointEnabled,
         });
     }
 
@@ -73,8 +74,8 @@ class MainToolbar extends BasePage {
     }
 
     onToggleWPDrawer() {
-        // this.emit(Enum.AppEvents.TOGGLE_WP_DRAWER);
-        this.emit(Enum.AppEvents.OPEN_FORM_EDIT_WAYPOINTS);
+        this.emit(Enum.AppEvents.TOGGLE_WP_DRAWER);
+        // this.emit(Enum.AppEvents.OPEN_FORM_EDIT_WAYPOINTS);
     }
 
     onSaveTrail() {
@@ -91,10 +92,15 @@ class MainToolbar extends BasePage {
         });
     }
 
+    onTrailSaveEnabled() {
+        this.setState({
+            disabledSaveTrail: false,
+        });
+    }
+
     onWaypointEnabled() {
         this.setState({
             disabledWaypoints: false,
-            disabledSaveTrail: false,
         });
     }
 

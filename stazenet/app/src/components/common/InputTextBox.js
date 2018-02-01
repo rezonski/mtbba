@@ -7,7 +7,9 @@ class InputTextBox extends BasePage {
     constructor(props) {
         super(props);
         this.state = {
-            value: '',
+            fieldName: this.props.fieldName,
+            value: (this.props.value === undefined) ? '' : this.props.value,
+            label: (this.props.label) ? this.props.label : '',
         };
         this.onTextFieldChangedEvent = this.onTextFieldChanged.bind(this);
     }
@@ -17,6 +19,14 @@ class InputTextBox extends BasePage {
             [Enum.DataEvents.TRAIL_DATA_RETRIEVED]: this.onTrailDataRetrieved,
         });
         this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            fieldName: nextProps.fieldName,
+            value: (nextProps.value === undefined) ? this.state.value : nextProps.value,
+            label: (nextProps.label) ? nextProps.label : '',
+        });
     }
 
     componentWillUnmount() {
@@ -37,8 +47,10 @@ class InputTextBox extends BasePage {
     }
 
     onTrailDataRetrieved(payload) {
-        if (payload[this.props.fieldName] && this.props.fieldIndex !== undefined && this.props.fieldProp) {
-            if (payload[this.props.fieldName][this.props.fieldIndex][this.props.fieldProp] !== this.state.value) {
+        if (payload[this.props.fieldName] && this.props.fieldIndex >= 0 && this.props.fieldProp) {
+            // console.log(this.props);
+            // console.log(payload);
+            if (payload[this.props.fieldName][this.props.fieldIndex].properties[this.props.fieldProp] !== this.state.value) {
                 this.setState({
                     value: payload[this.props.fieldName][this.props.fieldIndex].properties[this.props.fieldProp],
                 });
@@ -57,12 +69,12 @@ class InputTextBox extends BasePage {
         const inputBoxStyle = (this.props.inputBoxStyle !== undefined) ? this.props.inputBoxStyle : {};
         return (<TextField
                     key={key}
+                    value={this.state.value}
                     inputStyle={(this.props.isMultiline) ? {} : inputBoxStyle}
                     textareaStyle={(this.props.isMultiline) ? inputBoxStyle : { }}
                     onChange={this.onTextFieldChangedEvent}
                     multiLine={this.props.isMultiline}
                     rows={this.props.noRows}
-                    value={this.state.value}
                     fullWidth={true}
                     hintText={this.props.filedHintText}
                     floatingLabelText={this.props.filedLabel}/>

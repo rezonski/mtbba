@@ -1,0 +1,918 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"curre",
+				"currentSelectedFeature"
+			],
+			[
+				"is",
+				"isColony"
+			],
+			[
+				"valu",
+				"values"
+			],
+			[
+				"fin",
+				"find"
+			],
+			[
+				"popu",
+				"popupedValues"
+			],
+			[
+				"selectNEW",
+				"selectNEWNAME"
+			],
+			[
+				"pro",
+				"processedIDs"
+			],
+			[
+				"fon",
+				"font-weight"
+			],
+			[
+				"fle",
+				"flex-direction"
+			],
+			[
+				"pop",
+				"popup-container"
+			],
+			[
+				"selec",
+				"selectable"
+			],
+			[
+				"background-c",
+				"background-color"
+			],
+			[
+				"bo",
+				"bottom"
+			],
+			[
+				"le",
+				"left"
+			],
+			[
+				"selectC",
+				"selectColony"
+			],
+			[
+				"sele",
+				"select"
+			],
+			[
+				"toggle",
+				"toggleToggable"
+			],
+			[
+				"togg",
+				"toggleSelectable"
+			],
+			[
+				"reset",
+				"resetMapTable"
+			],
+			[
+				"ke",
+				"keyCode"
+			],
+			[
+				"setS",
+				"setSkipped"
+			],
+			[
+				"parse",
+				"parseInt"
+			],
+			[
+				"new",
+				"newData"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"pa",
+				"parse"
+			],
+			[
+				"index",
+				"indexOf"
+			],
+			[
+				"interset",
+				"intersection"
+			],
+			[
+				"fea",
+				"feature"
+			],
+			[
+				"interse",
+				"intersection"
+			],
+			[
+				"inter",
+				"intersect"
+			],
+			[
+				"all",
+				"allFeats"
+			],
+			[
+				"intersect",
+				"intersection"
+			],
+			[
+				"prop",
+				"properties"
+			],
+			[
+				"table",
+				"table-container"
+			],
+			[
+				"tel",
+				"text-align"
+			],
+			[
+				"temp",
+				"tempName"
+			],
+			[
+				"inde",
+				"indexOf"
+			],
+			[
+				"cons",
+				"console"
+			],
+			[
+				"prp",
+				"properties"
+			],
+			[
+				"de",
+				"debugger"
+			],
+			[
+				"previ",
+				"previewMap"
+			],
+			[
+				"lo",
+				"log"
+			],
+			[
+				"mar",
+				"margin-left"
+			],
+			[
+				"margi",
+				"margin-right"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"flex",
+				"flex-direction"
+			],
+			[
+				"cosno",
+				"console.log"
+			],
+			[
+				"consol",
+				"console.log"
+			],
+			[
+				"back",
+				"background"
+			],
+			[
+				"for",
+				"forEach"
+			],
+			[
+				"pase",
+				"parseInt"
+			],
+			[
+				"con",
+				"console.warn"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"pos",
+				"position"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "tiles/tiles/v2.1.html",
+			"settings":
+			{
+				"buffer_size": 38783,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 336.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"git stat",
+				"Git: Status"
+			],
+			[
+				"json",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"git sta",
+				"Git: Status"
+			],
+			[
+				"prett",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"git statu",
+				"Git: Status"
+			],
+			[
+				"git pull ",
+				"Git: Pull Current Branch"
+			],
+			[
+				"git push",
+				"Git: Push Current Branch"
+			],
+			[
+				"git st",
+				"Git: Status"
+			],
+			[
+				"git push ",
+				"Git: Push Current Branch"
+			]
+		],
+		"width": 479.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/var/www/html/sandbox",
+		"/var/www/html/sandbox/examples",
+		"/var/www/html/sandbox/examples/institutions",
+		"/var/www/html/sandbox/examples/institutions/js",
+		"/var/www/html/sandbox/revel"
+	],
+	"file_history":
+	[
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinitionGER.js",
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition1919.js",
+		"/var/www/html/sandbox/tiles/tiles/index1919.html",
+		"/var/www/html/sandbox/tiles/tiles/index1924.html",
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition1924.js",
+		"/var/www/html/sandbox/revel/widget_test2.html",
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition1914.js",
+		"/var/www/html/sandbox/tiles/tiles/index1914.html",
+		"/var/www/html/sandbox/tiles/tiles/index1917.html",
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition1917.js",
+		"/var/www/html/sandbox/drawer/extended-api.html",
+		"/var/www/html/sandbox/tiles/tiles/index1916a.html",
+		"/var/www/html/sandbox/tiles/tiles/data/years/year_1916_version_2017.12.7.13.49.csv",
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition1916a.js",
+		"/var/www/html/sandbox/tiles/tiles/data/years/year_1916_version_2017.12.7.13.38.csv",
+		"/var/www/html/sandbox/tiles/tiles/data/years/year_1916_version_2017.12.7.13.37.csv",
+		"/var/www/html/sandbox/tiles/tiles/data/years/year_1916_version_2017.12.7.11.18.csv",
+		"/var/www/html/sandbox/tiles/tiles/data/years/year_1916_version_2017.12.7.11.9.csv",
+		"/var/www/html/sandbox/tiles/tiles/data/years/year_1916_version_2017.12.7.10.48.csv",
+		"/var/www/html/sandbox/tiles/tiles/data/years/year_1916_version_2017.12.7.9.22.csv",
+		"/var/www/html/sandbox/tiles/tiles/css/app.css",
+		"/var/www/html/sandbox/tiles/tiles/data/years/year_1916.csv",
+		"/var/www/html/sandbox/tiles/tiles/data/years/year_1916_version_2017.12.4.14.34_3.csv",
+		"/var/www/html/sandbox/tiles/tiles/data/years/year_1916_version_2017.12.4.15.59_dissolve.csv",
+		"/var/www/html/sandbox/tiles/tiles/data/years/year_1914_version_2017.12.4.10.56.csv",
+		"/var/www/html/sandbox/tiles/tiles/data/years/year_1914_version_2017.12.1.16.13.csv",
+		"/var/www/html/sandbox/tiles/tiles/data/years/1914.csv",
+		"/var/www/html/sandbox/tiles/tiles/index12.html",
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition5.js",
+		"/home/datasoft/Projects/the-ultimate-tile-stitcher/how_to.txt",
+		"/var/www/html/sandbox/tiles/tiles/index11.html",
+		"/var/www/html/sandbox/examples/institutions/institutions.html",
+		"/var/www/html/sandbox/examples/institutions/geojson/20171127_1.geojson",
+		"/var/www/html/sandbox/examples/institutions/data/institutions_data2.js",
+		"/var/www/html/sandbox/examples/institutions/dump/20171127_1.json",
+		"/var/www/html/sandbox/examples/js/prodavnice.js",
+		"/var/www/html/sandbox/examples/data/institutions_data.js",
+		"/var/www/html/sandbox/examples/institutions.html",
+		"/home/datasoft/Documents/Current/POC/Revel Power User Map/institutions_reduced.min.json",
+		"/home/datasoft/Documents/Current/POC/Revel Power User Map/institutions_reduced.json",
+		"/home/datasoft/Documents/Current/POC/Revel Power User Map/institutions.json",
+		"/var/www/html/sandbox/examples/js/searchlevels.js",
+		"/var/www/html/sandbox/examples/js/gapi.js",
+		"/var/www/html/sandbox/examples/prodavnice_old.html",
+		"/var/www/html/sandbox/examples/js/helper.js",
+		"/var/www/html/sandbox/examples/js/institutions.js",
+		"/var/www/html/sandbox/examples/data/institutions.js",
+		"/var/www/html/sandbox/tiles/tiles/index10.html",
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition4.js",
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition3.js",
+		"/home/datasoft/Documents/Current/Opening Global System/1912.csv",
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition.js",
+		"/var/www/html/sandbox/tiles/tiles/index0.html",
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition0.js",
+		"/var/www/html/sandbox/tiles/tiles/index8.html",
+		"/var/www/html/sandbox/tiles/tiles/index9.html",
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition2.js",
+		"/var/www/html/sandbox/tiles/tiles/js/mapDefinition1.js",
+		"/var/www/html/sandbox/tiles/tiles/data/Adm1-Drawing-2.csv",
+		"/var/www/html/sandbox/tiles/tiles/index1.html",
+		"/var/www/html/sandbox/tiles/tiles/index7.html",
+		"/var/www/html/sandbox/tiles/tiles/index6.html",
+		"/var/www/html/sandbox/tiles/tiles/export/1912.geojson",
+		"/var/www/html/sandbox/tiles/tiles/index4.html",
+		"/var/www/html/sandbox/tiles/tiles/index3.html",
+		"/var/www/html/sandbox/tiles/tiles/data/World_Administrative_area1_2015.csv",
+		"/var/www/html/sandbox/tiles/tiles/index5.html",
+		"/var/www/html/sandbox/tiles/tiles/data/allData.csv",
+		"/var/www/html/sandbox/tiles/tiles/data/data.json",
+		"/var/www/html/sandbox/tiles/tiles/index2.html",
+		"/var/www/html/sandbox/stazenet/app/src/components/map/WPPopup.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/newTrail/NewTrailContainer.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/common/ListSelection.js",
+		"/var/www/html/sandbox/stazenet/app/src/controllers/DataController.js",
+		"/var/www/html/sandbox/stazenet/app/src/helpers/WaypointHelper.js",
+		"/var/www/html/sandbox/stazenet/app/src/helpers/MapHelper.js",
+		"/var/www/html/sandbox/stazenet/app/src/enums/Enum.js",
+		"/var/www/html/sandbox/stazenet/app/src/enums/MessageEvents.js",
+		"/var/www/html/sandbox/stazenet/app/src/objects/Trail.js",
+		"/var/www/html/sandbox/stazenet/app/src/helpers/TrailHelper.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/wpEditor/WPEditorTray.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/common/InputTextBox.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/BusComponent.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/common/ImagePreview.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/map/MapEditControl.js",
+		"/var/www/html/sandbox/stazenet/app/src/helpers/CommonHelper.js",
+		"/var/www/html/sandbox/stazenet/app/src/dataSources/MapModel.js",
+		"/var/www/html/sandbox/stazenet/app/src/helpers/Lang.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/map/SurfaceControl.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/openTrail/OpenTrailContainer.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/newTrail/UploadGeoFile.js",
+		"/var/www/html/sandbox/stazenet/app/template.html",
+		"/var/www/html/sandbox/stazenet/app/src/components/newTrail/StepChartPreview.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/newTrail/StepWaypointsPreprocessing.js",
+		"/var/www/html/sandbox/stazenet/app/src/dataSources/TrailsDataModel.js",
+		"/var/www/html/sandbox/stazenet/app/src/helpers/ChartHelper.js",
+		"/var/www/html/sandbox/stazenet/app/src/components/wpEditor/WPDrawer.js",
+		"/var/www/html/sandbox/tiles/tiles/index.html",
+		"/var/www/html/sandbox/tiles/tiles/js/editablegrid.js",
+		"/var/www/html/sandbox/tiles/tiles/index_old.html",
+		"/var/www/html/sandbox/examples/gapi.txt",
+		"/var/www/html/sandbox/stazenet/app/src/apis/GoogleApi.js",
+		"/var/www/html/sandbox/stazenet/app/src/apis/Api.js",
+		"/var/www/html/sandbox/stazenet/app/src/apis/TrailsApi.js",
+		"/var/www/html/sandbox/geojson.io/src/core/api.js",
+		"/var/www/html/sandbox/TriangleGrid_NorthAfrica.geojson",
+		"/var/www/html/sandbox/stazenet/app/src/components/newTrail/StepUpload.js",
+		"/var/www/html/sandbox/.gitignore",
+		"/var/www/html/sandbox/grid_Africa_North.geojson",
+		"/var/www/html/sandbox/grid1.geojson",
+		"/home/datasoft/Documents/Current/grid.geojson",
+		"/var/www/html/sandbox/examples/dbconnection.php",
+		"/var/www/html/sandbox/tiles/tiles/data/data1962.json",
+		"/var/www/html/sandbox/tiles/tiles/data/grid.json",
+		"/var/www/html/sandbox/tiles/tiles/js/editablegrid_utils.js",
+		"/var/www/html/sandbox/tiles/tiles/js/editablegrid_renderers.js",
+		"/var/www/html/sandbox/examples/prodavnice.html",
+		"/var/www/html/sandbox/examples/upload/stores.json",
+		"/var/www/html/sandbox/examples/data/stores.geojson",
+		"/home/datasoft/Projects/mapspice-production/01/54/f0b2c9b3-a058-4060-a2d7-5b3c81568517/config/mapDefinitionMiddle.js",
+		"/home/datasoft/Projects/mapspice-production/01/54/f0b2c9b3-a058-4060-a2d7-5b3c81568517/config/mapDefinitionSwiped.js",
+		"/home/datasoft/Projects/mapspice-production/00/00/README.md",
+		"/home/datasoft/Projects/mapspice-production/listall.sh",
+		"/home/datasoft/Projects/mapspice-production/testall.sh",
+		"/home/datasoft/Projects/mapspice-production/README.md",
+		"/home/datasoft/Projects/mapspice-production/00/00/1.0.8/package.json",
+		"/home/datasoft/Desktop/untitled.html",
+		"/home/datasoft/Projects/mapspice-production/updateIndexAll.sh"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 356.0,
+		"where_history":
+		[
+			"/var/www/html/sandbox/stazenet/app/src/",
+			"/var/www/html/sandbox/",
+			"/var/www/html/sandbox/stazenet/app/src/",
+			"/var/www/html/sandbox/tiles/tiles",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"ID_0",
+			"Geo_QName",
+			"NAME_0",
+			"ID",
+			"26852",
+			"pickCurrent",
+			"year1",
+			"save2CSVfile",
+			"toggleHistoryLayer",
+			"true",
+			"toggleHistoryLayer",
+			"imageRaster",
+			"SIDE2",
+			"SIDE1",
+			"SIDE",
+			"save2CSVfile",
+			"14119",
+			"imageRaster",
+			"geobuffer",
+			"save2CSVfile",
+			"value",
+			"displayFeatureInfo",
+			"current",
+			"onInputChange",
+			"8",
+			"newcolony",
+			"10",
+			"newiso",
+			"2",
+			"ear2",
+			"year1",
+			"year2",
+			"year1",
+			".name",
+			"a.",
+			"COLONYNAME",
+			"save2CSVfile",
+			"'OSM'",
+			"[4]",
+			"Swaziland,SWZ",
+			"United Arab Emirates,ARE,",
+			"ARE,Trucial",
+			"YEM-OSM",
+			"OSM-YEM",
+			"IND-NLD",
+			"-NL",
+			"-SPA",
+			"ESP,Spain,SPA",
+			"ESP,Spain,ESP,Spain",
+			"Sin",
+			"SIN-UK",
+			"OSM-EGY",
+			"-POR",
+			"(JPN)",
+			"GBR,United Kingdom,GBR,United Kingdom",
+			"GBR",
+			"-GBR",
+			"allData",
+			"a.",
+			"save2CSVfile",
+			"processedIDs",
+			"onKeyDownMap",
+			"onKeyDown",
+			"setColumnValue",
+			"onInputChange",
+			"onKeyDown",
+			"selectSafe",
+			"selectAllFeaturesByColumn",
+			"feature",
+			".find",
+			"selectAllFeaturesBy(",
+			"selectAllFeaturesBy",
+			"popupedValues",
+			"pop",
+			"popup-container",
+			"selectedIDs",
+			"Geo_FIPS",
+			"onInputChange",
+			"resetMapTable",
+			"toggleHistoryLayer",
+			"setColumnValue",
+			"onInputChange",
+			"resetMapTable",
+			"setColumnValue",
+			"onInputChange",
+			"selectNEWNAME",
+			"selectAllFeaturesByVariable",
+			"onInputChange",
+			"selectNEWNAME",
+			"selectNewName",
+			"toggleSelectNewName",
+			"selectNewName",
+			"onInputChange",
+			"selectNewName",
+			"toggleSelectNewName",
+			"renderTable",
+			"resetMapTable",
+			"onInputChange",
+			"NewName",
+			"selectAllFeaturesByVariable",
+			"selectNewName",
+			"Colony",
+			"ID2",
+			"NEWISO",
+			"DN",
+			"newiso",
+			"isos",
+			"ID2",
+			"newname",
+			"colonies",
+			"\"",
+			"save2local",
+			"\"",
+			"\"Virgin Islands, U.S.\"",
+			"resetData",
+			"type=\"number\"",
+			"historyLayerActive",
+			"toggleHistoryLayer",
+			"history-tiles",
+			"rasterSource",
+			"ear1",
+			"setYear1",
+			"setYear",
+			"year1",
+			"rasterSource1916",
+			"rasterSource",
+			"currentYear",
+			"#1"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"YEAR1",
+			"-NLD",
+			"-ESP",
+			"-PRT",
+			"(Jpn)",
+			"GBR,United Kingdom,UK,United Kingdom",
+			"-UK",
+			", ",
+			"StepWaypointsPreprocessing",
+			"GT"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "tiles/tiles/v2.1.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 38783,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1806,
+								1806
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 40.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.CSS Extended Completions":
+	{
+		"height": 0.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git-commit":
+	{
+		"height": 114.0
+	},
+	"output.git-pull":
+	{
+		"height": 114.0
+	},
+	"output.git-push":
+	{
+		"height": 289.0
+	},
+	"pinned_build_system": "",
+	"project": "sandbox.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"index4",
+				"tiles/tiles/index4.html"
+			],
+			[
+				"mapdefini",
+				"tiles/tiles/js/mapDefinition1.js"
+			],
+			[
+				"index3",
+				"tiles/tiles/index3.html"
+			],
+			[
+				"maphe",
+				"stazenet/app/src/helpers/MapHelper.js"
+			],
+			[
+				"trail",
+				"stazenet/app/src/objects/Trail.js"
+			],
+			[
+				"messa",
+				"stazenet/app/src/enums/MessageEvents.js"
+			],
+			[
+				"enum",
+				"stazenet/app/src/enums/Enum.js"
+			],
+			[
+				"wpop",
+				"stazenet/app/src/components/map/WPPopup.js"
+			],
+			[
+				"waypoin",
+				"stazenet/app/src/helpers/WaypointHelper.js"
+			],
+			[
+				"datac",
+				"stazenet/app/src/controllers/DataController.js"
+			],
+			[
+				"input",
+				"stazenet/app/src/components/common/InputTextBox.js"
+			],
+			[
+				"image",
+				"stazenet/app/src/components/common/ImagePreview.js"
+			],
+			[
+				"bus",
+				"stazenet/app/src/components/BusComponent.js"
+			],
+			[
+				"listsel",
+				"stazenet/app/src/components/common/ListSelection.js"
+			],
+			[
+				"wpedit",
+				"stazenet/app/src/components/wpEditor/WPEditorTray.js"
+			],
+			[
+				"wp",
+				"stazenet/app/src/components/wpEditor/WPEditorTray.js"
+			],
+			[
+				"listse",
+				"stazenet/app/src/components/common/ListSelection.js"
+			],
+			[
+				"waypo",
+				"stazenet/app/src/helpers/WaypointHelper.js"
+			],
+			[
+				"charthe",
+				"stazenet/app/src/helpers/ChartHelper.js"
+			],
+			[
+				"common",
+				"stazenet/app/src/helpers/CommonHelper.js"
+			],
+			[
+				"mapm",
+				"stazenet/app/src/dataSources/MapModel.js"
+			],
+			[
+				"opentr",
+				"stazenet/app/src/components/openTrail/OpenTrailContainer.js"
+			],
+			[
+				"lang",
+				"stazenet/app/src/helpers/Lang.js"
+			],
+			[
+				"wpeditor",
+				"stazenet/app/src/components/wpEditor/WPEditorTray.js"
+			],
+			[
+				"wpdrawe",
+				"stazenet/app/src/components/wpEditor/WPDrawer.js"
+			],
+			[
+				"datacon",
+				"stazenet/app/src/controllers/DataController.js"
+			],
+			[
+				"wpedi",
+				"stazenet/app/src/components/wpEditor/WPEditorTray.js"
+			],
+			[
+				"trailsapi",
+				"stazenet/app/src/apis/TrailsApi.js"
+			],
+			[
+				"apis",
+				"stazenet/app/src/apis/Api.js"
+			],
+			[
+				"api",
+				"geojson.io/src/core/api.js"
+			],
+			[
+				"wphel",
+				"stazenet/app/src/helpers/WaypointHelper.js"
+			],
+			[
+				"open",
+				"stazenet/app/src/components/openTrail/OpenTrailContainer.js"
+			],
+			[
+				"dataco",
+				"stazenet/app/src/controllers/DataController.js"
+			],
+			[
+				"searc",
+				"examples/js/searchlevels.js"
+			],
+			[
+				"gapi",
+				"examples/js/gapi.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Projects/mapspice-production.sublime-project"
+			],
+			[
+				"map",
+				"~/Projects/mapspice-production.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 435.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

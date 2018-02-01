@@ -136,6 +136,18 @@
       <polyline id=\"bridge02_3_\" fill=\"none\" stroke=\"#333333\" stroke-width=\"40\" points=\"636.75,352.72 680.387,385.294,833.113,385.294 876.75,352.72\"/>
     </g>";
   }
+  //Spomenik
+  function printSpomenik($ugao,$offset) { 
+    echo "<g id=\"spomenik-".$ugao."\" transform=\"translate(".getCoordinates($ugao)[0]*$offset.",".getCoordinates($ugao)[1]*$offset.")\">
+      <polygon style=\"fill:#333333;\" points=\"25.656,55.841 37.73,55.841 39.542,111.381 24.148,111.381\"/>
+      <polygon style=\"fill:#333333;\" points=\"15.394,114.4 133.115,114.4 133.115,120.738 142.17,120.738 142.17,129.794 
+        148.508,129.794 148.508,136.133 0,136.133 0,129.794 6.338,129.794 6.338,120.738 15.394,120.738\"/>
+      <polygon style=\"fill:#333333;\" points=\"139.15,39.541 74.253,12.375 9.357,39.541 9.357,43.466 139.15,43.466\"/>
+      <polygon style=\"fill:#333333;\" points=\"110.475,55.841 122.547,55.841 124.359,111.381 108.965,111.381\"/>
+      <polygon style=\"fill:#333333;\" points=\"82.102,55.841 94.477,55.841 96.289,111.381 80.592,111.381\"/>
+      <polygon style=\"fill:#333333;\" points=\"54.029,55.841 66.103,55.841 67.914,111.381 52.218,111.381\"/>
+    </g>";
+  }
   //Rijeka
   function printRijekaPotok($ugao) { 
     echo "<g id=\"rijeka-potok-".$ugao."\" transform=\"rotate(-".$ugao." 450 450)\">
@@ -226,47 +238,53 @@
   for ($i = sizeof($elementi) - 1; $i >= 0; $i--) {
     
     $prvoSlovo = substr($elementi[$i],0,1);
+    $drugoSlovo = substr($elementi[$i],1,1);
+    $ugao = substr($elementi[$i],1);
 
     switch($prvoSlovo) {
       case "v":
-        printVoda(substr($elementi[$i],1),300);
+        printVoda($ugao,300);
         break;
       case "z":
-        printZabrana(substr($elementi[$i],1),300);
+        printZabrana($ugao,300);
         break;
       case "d":
-        printPD(substr($elementi[$i],1),300);
+        printPD($ugao,300);
         break;
       case "o":
-        printOdmor(substr($elementi[$i],1),300);
+        printOdmor($ugao,300);
         break;
       case "h":
-        printHrana(substr($elementi[$i],1),300);
+        printHrana($ugao,300);
         break;
       case "n":
-        printNaselje(substr($elementi[$i],1),300);
+        printNaselje($ugao,300);
         break;
       case "r":
-        printRijekaPotok(substr($elementi[$i],1));
+        printRijekaPotok($ugao);
         break;
       case "m":
-        printMost(substr($elementi[$i],1));
+        printMost($ugao);
         if ($i == 0) {
-          printPutanja(substr($elementi[$i],1));
+          printPutanja($ugao);
         } else {
-          printSmjer(substr($elementi[$i],1));
+          printSmjer($ugao);
         }
         break;
       case "p":
-        printPrevoj(substr($elementi[$i],1));
+        printPrevoj($ugao);
         if ($i == 0) {
-          printPutanja(substr($elementi[$i],1));
+          printPutanja($ugao);
         } else {
-          printSmjer(substr($elementi[$i],1));
+          printSmjer($ugao);
         }
         break;
       case "s":
-        printBackgroundSuma();
+        if ($drugoSlovo == "p") {
+          printSpomenik($ugao,300);
+        } else {
+          printBackgroundSuma();
+        }
         break;
       case "l":
         printBackgroundLivada();

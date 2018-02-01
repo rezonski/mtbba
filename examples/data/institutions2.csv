@@ -1,0 +1,1416 @@
+id,country,city,name,institution_stat,zipcode,date
+1,usa,menifee,mt san jacinto-menifee,ca,92584,
+2,usa,redwood city,canada college,ca,94061,
+3,usa,santa ana,santa ana college,ca,92706,
+4,usa,panama city,gulf coast state college,fl,32401-1041,
+5,usa,mount berry,berry college,ga,30149,
+6,usa,kahului maui,univ of hawaii maui college,hi,96732,
+7,usa,marion,indiana wesleyan u,in,46953,
+8,usa,newport,northern kentucky univ,ky,41099,
+9,usa,madison,north florida comm coll,fl,32340-1611,8/23/2017
+10,usa,dade city,pasco hernando st coll - east,fl,33525,8/23/2017
+11,usa,monticello,u of arkansas at monticello,ar,71655,8/23/2017
+12,usa,wesson,copiah-lincoln cc-wesson,ms,39191-0649,8/23/2017
+13,usa,bismarck,north dakota university system,nd,58505,8/23/2017
+14,usa,moberly,moberly area comm college,mo,65270-1304,8/23/2017
+15,usa,albuquerque,univ of new mexico,nm,87131,8/23/2017
+16,usa,spartanburg,spartanburg methodist coll,sc,29301,8/23/2017
+17,usa,long beach,cal state u - long beach,ca,90840,8/23/2017
+18,usa,nashville,belmont university,tn,37212-3758,8/23/2017
+19,usa,asheville,univ of nc - asheville,nc,28804-3024,8/23/2017
+20,usa,chattanooga,univ of tenn-chattanooga,tn,37403-2504,8/23/2017
+21,usa,kennesaw,kennesaw state university,ga,30144-5588,8/23/2017
+22,usa,greenville,east carolina univ,nc,27858,8/23/2017
+23,usa,san antonio,univ of texas - san antonio,tx,78249,8/23/2017
+24,usa,boise,boise state university,id,83725,8/23/2017
+25,usa,tulsa,tulsa comm coll-metro cmps,ok,74119,8/23/2017
+26,usa,winter haven,polk state coll - winter haven,fl,33881,8/23/2017
+27,usa,cedar falls,university of northern iowa,ia,50614-0012,8/23/2017
+28,usa,hillsboro,hill college - hillsboro campu,tx,76645,8/23/2017
+29,usa,charlotte,univ of nc - charlotte,nc,28223-0001,8/23/2017
+30,usa,baton rouge,louisiana state university,la,70803,8/23/2017
+31,usa,charlotte,ctrl piedmont cc - e 7th st,nc,28204-2019,8/23/2017
+32,usa,cedar rapids,kirkwood community college,ia,52404-5260,8/23/2017
+33,usa,chapel hill,univ of nc - chapel hill,nc,27599,8/23/2017
+34,usa,alexandria,no virginia cc - alexandria,va,22311,8/23/2017
+35,usa,fayetteville,fayetteville tech comm coll,nc,28303-4761,8/23/2017
+36,usa,coral gables,university of miami,fl,33146-2440,8/23/2017
+37,usa,chula vista,southwestern college,ca,91910,8/23/2017
+38,usa,boca raton,florida atlantic university,fl,33431-6424,8/23/2017
+39,usa,clemson,clemson university,sc,29634,8/23/2017
+40,usa,state university,arkansas state u-main,ar,72467,8/23/2017
+41,usa,raleigh,shaw university,nc,27601-2341,8/23/2017
+42,usa,san luis obispo,cuesta college,ca,93405,8/23/2017
+43,usa,archbold,northwest state c c,oh,43502-9517,8/23/2017
+44,usa,palatine,wm rainey harper college,il,60067-7373,8/23/2017
+45,usa,delaware,ohio wesleyan university,oh,43015-2333,8/23/2017
+46,usa,savannah,savannah technical college,ga,31405-5521,8/23/2017
+47,usa,springfield,missouri st univ-sprngfl,mo,65897-0027,8/23/2017
+48,usa,washington,howard university,dc,20059,8/23/2017
+49,usa,richmond,eastern kentucky university,ky,40475-3100,8/23/2017
+50,usa,london,kctcs-somerset-laurel north,ky,40741-6737,8/23/2017
+51,usa,west lafayette,purdue univ,in,47907,8/23/2017
+52,usa,caldwell,coll of western idaho,id,83605,8/23/2017
+53,usa,saint charles,st charles cty cmty college,mo,63301-4414,8/23/2017
+54,usa,arkadelphia,henderson state univ,ar,71999-0001,8/23/2017
+55,usa,davie,broward coll-central,fl,33314-1604,8/23/2017
+56,usa,lincoln,univ of nebraska - lincoln,ne,68588,8/23/2017
+57,usa,lexington,university of kentucky,ky,40506,8/23/2017
+58,usa,peoria,bradley university,il,61625-0001,8/23/2017
+59,usa,mankato,minnesota st univ-mankato,mn,56001,8/23/2017
+60,usa,evansville,univ of southern indiana,in,47712-3534,8/23/2017
+61,usa,mesquite,dallas cty comm coll,tx,75150,8/23/2017
+62,usa,notre dame,saint marys college - in,in,46556,8/23/2017
+63,usa,ridgecrest,cerro coso cmty college,ca,93555,8/23/2017
+64,usa,huntington,marshall university,wv,25755-0001,8/23/2017
+65,usa,louisville,university of louisville,ky,40292,8/23/2017
+66,usa,cleburn,hills college - cleburne,tx,76033,8/23/2017
+67,usa,troy,troy univ - main campus,al,36082,8/23/2017
+68,usa,springfield,ozarks tech comm college,mo,65802,8/23/2017
+69,usa,stockton,san joaquin delta college,ca,95207,8/23/2017
+70,usa,fullerton,cal state u - fullerton,ca,92831,8/23/2017
+71,usa,kirksville,truman state university,mo,63501-4200,8/23/2017
+72,usa,phoenix,phoenix college,az,85013,8/23/2017
+73,usa,sacramento,american river college,ca,95841,8/23/2017
+74,usa,houston,univ of houston,tx,77004,8/23/2017
+75,usa,pullman,washington state university,wa,99164,8/23/2017
+76,usa,charlottesville,university of virginia,va,22904,8/23/2017
+77,usa,cedar bluff,vccs - southwest va cc,va,24609-9364,8/23/2017
+78,usa,winona,winona state univ,mn,559875838,8/23/2017
+79,usa,norfolk,northeast community college,ne,68701-6831,8/23/2017
+80,usa,cincinnati,university of cincinnati,oh,45221-0001,8/23/2017
+81,usa,huntsville,sam houston state univ,tx,77340,8/23/2017
+82,usa,salem,corban university,or,97317-9392,8/23/2017
+83,usa,so holland,south suburban college,il,60473,8/23/2017
+84,usa,memphis,rhodes college,tn,38112-1624,8/23/2017
+85,usa,bowling green,bowling green state univ,oh,43403,8/23/2017
+86,usa,center valley,de sales university,pa,18034-9565,8/23/2017
+87,usa,glen ellyn,college of dupage,il,60137-6708,8/23/2017
+88,usa,rock hill,winthrop university,sc,29733-7001,8/23/2017
+89,usa,clinton,presbyterian college,sc,29325-2865,8/23/2017
+90,usa,bethlehem,northampton cmty coll,pa,18020-7568,8/23/2017
+91,usa,tuscaloosa,univ of ala-tuscaloosa,al,35487,8/23/2017
+92,usa,south charleston,bridgevalley ctc,wv,25303,8/23/2017
+93,usa,gainesville,university of florida,fl,32611,8/23/2017
+94,usa,columbia,univ of missouri-columbia,mo,65211,8/23/2017
+95,usa,leesburg,lake sumter state college,fl,34788-3950,8/23/2017
+96,usa,pleasant hill,diablo valley college,ca,94523,8/23/2017
+97,usa,wichita,wichita state university,ks,67260-9700,8/23/2017
+98,usa,fayetteville,u of arkansas-fayetteville,ar,72701,8/23/2017
+99,usa,neosho,crowder college,mo,64850-9165,8/23/2017
+100,usa,greenwood,lander university,sc,29649-2056,8/23/2017
+101,usa,curtis,university of nebraska,ne,69025-9525,8/23/2017
+102,usa,waleska,reinhardt college,ga,30183-2981,8/23/2017
+103,usa,decatur,east central community coll,ms,39327-8985,8/23/2017
+104,usa,springfield,wittenberg university,oh,45504-2534,8/23/2017
+105,usa,mount olive,university of mount olive,nc,28365-1263,8/23/2017
+106,usa,n charleston,trident tech coll,sc,29406-4607,8/23/2017
+107,usa,coeur d alene,north idaho college,id,83814,8/23/2017
+108,usa,pembroke pines,broward coll-south,fl,33024,8/23/2017
+109,usa,turlock,cal state u - stanislaus,ca,95382,8/23/2017
+110,usa,fresno,fresno city college,ca,93741,8/23/2017
+111,usa,chico,butte college - chico,ca,95928,8/23/2017
+112,usa,bakersfield,bakersfield college,ca,93305,8/23/2017
+113,usa,grand junction,colorado mesa university,co,81501-3122,8/23/2017
+114,usa,gainesville,santa fe college,fl,32606-6210,8/23/2017
+115,usa,belton,univ of mary hardin baylor,tx,76513,8/23/2017
+116,usa,kent,kent state university,oh,44242,8/23/2017
+117,usa,ames,iowa state university,ia,50011,8/23/2017
+118,usa,durham,north carolina central univ,nc,27707-3129,8/23/2017
+119,usa,denison,grayson county college,tx,75020,8/23/2017
+120,usa,auburn university,auburn u main campus,al,36849,8/23/2017
+121,usa,usaf academy,u s air force academy,co,80840,8/23/2017
+122,usa,los lunas,unm-main campus,nm,87031,8/23/2017
+123,usa,farmington,san juan college,nm,87402-4699,8/23/2017
+124,usa,mission,metropolitan community college,bc,v2v 3v5,8/23/2017
+125,usa,los angeles,univ of southern california,ca,90089,8/23/2017
+126,usa,anderson,anderson university,sc,29621-4002,8/23/2017
+127,usa,hattiesburg,u of southern mississippi,ms,39406-0001,8/23/2017
+128,usa,norfolk,norfolk state university,va,23504-8050,8/23/2017
+129,usa,normal,illinois state university,il,61790,8/23/2017
+130,usa,el dorado,butler co comm coll-el dora,ks,67042-3225,8/23/2017
+131,usa,fort worth,texas christian university,tx,76129,8/23/2017
+132,usa,las cruces,new mexico state university,nm,88003,8/23/2017
+133,usa,hilo,hawaii community college,hi,96720,8/23/2017
+134,usa,bowling green,western kentucky university,ky,42101-1000,8/23/2017
+135,usa,merced,merced college,ca,95348,8/23/2017
+136,usa,honolulu,univ of hawaii manoa campus,hi,96822,8/23/2017
+137,usa,bradenton,state coll of florida - bradenton,fl,34207-3522,8/23/2017
+138,usa,tampa,fl gulf coast chapter abc,fl,33607-3104,8/23/2017
+139,usa,ocala,college of central florida,fl,34474-4415,8/23/2017
+140,usa,bloomington,indiana univ bloomington,in,47405-7104,8/23/2017
+141,usa,statesboro,georgia southern university,ga,30460,8/23/2017
+142,usa,hammond,southeastern louisiana univ,la,70402,8/23/2017
+143,usa,amarillo,amarillo college,tx,79109-2411,8/23/2017
+144,usa,warren,macomb community college,mi,48088,8/23/2017
+145,usa,modesto,modesto junior college,ca,95350,8/23/2017
+146,usa,lake worth,palm beach state coll - lake worth,fl,33461-4705,8/23/2017
+147,usa,miami,fiu -  university park campus,fl,33199,8/23/2017
+148,usa,butler,butler county cmty college,pa,16001,8/23/2017
+149,usa,brookings,south dakota state univ -br,sd,57007,8/23/2017
+150,usa,raleigh,north carolina state univ,nc,27695,8/23/2017
+151,usa,williston,williston state college,nd,58801-4464,8/23/2017
+152,usa,el reno,redlands community college,ok,73036,8/23/2017
+153,usa,cleburn,hill college - johnson campus,tx,76033,8/23/2017
+154,usa,tahlequah,northeastern state univ,ok,74464,8/23/2017
+155,usa,rocklin,sierra college,ca,95677,8/23/2017
+156,usa,newtown,bucks county cmty coll,pa,18940-4106,8/23/2017
+157,usa,arkadelphia,ouachita baptist university,ar,71998-0001,8/23/2017
+158,usa,waco,baylor university,tx,76798,8/23/2017
+159,usa,ste anne bellevu,john abbott college,qc,h9x 3l9,8/23/2017
+160,usa,lawrenceville,gwinnett technical college,ga,30043-5702,8/23/2017
+161,usa,tempe,arizona state university,az,85281,8/23/2017
+162,usa,union,east central college,mo,63084-0529,8/23/2017
+163,usa,san bruno,skyline college,ca,94066,8/23/2017
+164,usa,greensboro,north carolina a&amp; st univ,nc,27411-0002,8/23/2017
+165,usa,plant city,hillsborough cmty coll pc,fl,33563-1540,8/23/2017
+166,usa,edwardsville,so illinois u-edwardsville,il,62026-0001,8/23/2017
+167,usa,cullowhee,western carolina university,nc,28723,8/23/2017
+168,usa,saint cloud,saint cloud state univ,mn,56301,8/23/2017
+169,usa,anchorage,univ of alaska - anchorage,ak,99508,8/23/2017
+170,usa,muncie,ball state university,in,47306-1022,8/23/2017
+171,usa,greeley,univ of northern colorado,co,80639,8/23/2017
+172,usa,omaha,creighton university,ne,68178-0001,8/23/2017
+173,usa,west columbia,midlands tech coll,sc,29170-2176,8/23/2017
+174,usa,montgomery,alabama state university,al,36104-5732,8/23/2017
+175,usa,coolidge,central arizona coll,az,85128,8/23/2017
+176,usa,cumberland,allegany college of maryland,md,215022596,8/23/2017
+177,usa,salt lake city,university of utah,ut,84112-9156,8/23/2017
+178,usa,plainview,wayland baptist university,tx,79072,8/23/2017
+179,usa,raleigh,wake technical comm coll,nc,27603-5655,8/23/2017
+180,usa,madison,dakota state university,sd,57042,8/23/2017
+181,usa,stillwater,oklahoma state university,ok,74078,8/23/2017
+182,usa,indianapolis,iupui,in,46202,8/23/2017
+183,usa,fort myers,florida gulf coast univ,fl,33965-6565,8/23/2017
+184,usa,virginia beach,tidewater cc-virginia beach,va,23453-1918,8/23/2017
+185,usa,tampa,hillsborough cc/admin,fl,33606,8/23/2017
+186,usa,tucson,university of arizona,az,85721,8/23/2017
+187,usa,denver,univ of colorado denver,co,80202,8/23/2017
+188,usa,honolulu,kapiolani community college,hi,96816,8/23/2017
+189,usa,minneapolis,minneapolis comm &amp;tech coll,mn,55403-1710,8/23/2017
+190,usa,bloomington,normandale cmty college,mn,55431,8/23/2017
+191,usa,carrollton,west ga tech - carroll,ga,30116-6476,8/23/2017
+192,usa,columbus,columbus tech,ga,31904-6535,8/23/2017
+193,usa,muscle shoals,nw-shoals comm college-ms,al,35661,8/23/2017
+194,usa,west haven,university of new haven,ct,06516-1916,8/23/2017
+195,usa,lafayette,univ of louisiana - lafayette,la,70506,8/23/2017
+196,usa,leesburg,beacon college,fl,34748,8/23/2017
+197,usa,wichita falls,vernon  college - wichita fall,tx,76308,8/23/2017
+198,usa,mesquite,eastfield college,tx,75150,8/23/2017
+199,usa,marietta,chattahoochee technical college,ga,30066,8/23/2017
+200,usa,hammond,northshore tech cc - hammond,la,70401-9501,8/23/2017
+201,usa,st george,dixie state university,ut,84770,8/23/2017
+202,usa,phoenix,arizona state univ - downtown,az,85004,8/23/2017
+203,usa,tucson,pima college downtown,az,85709,8/23/2017
+204,usa,springfield,ozarks technical college,mo,65802-3625,8/23/2017
+205,usa,mayville,mayville state university,nd,58257-1217,8/23/2017
+206,usa,fresno,cal state u - fresno,ca,93740,8/23/2017
+207,usa,university,university of mississippi,ms,38677,8/23/2017
+208,usa,poplar bluff,three rivers cmty college,mo,63901,8/23/2017
+209,usa,selma,wallace comm coll - selma,al,36703-2867,8/23/2017
+210,usa,omaha,univ of nebraska - omaha,ne,68182-2000,8/23/2017
+211,usa,sugar grove,waubonsee comm coll,il,60554,8/23/2017
+212,usa,morehead,morehead state university,ky,40351,8/23/2017
+213,usa,kansas city,univ missouri - kansas city,mo,64110-2446,8/23/2017
+214,usa,chandler,chandler-gilbert cc - chandler,az,85225,8/23/2017
+215,usa,athens,university of georgia,ga,30602,8/23/2017
+216,usa,manhattan,kansas state university,ks,66506,8/23/2017
+217,usa,bentonville,northwest arkansas cmty col,ar,72712,8/23/2017
+218,usa,orlando,univ of central florida,fl,32816-0001,8/23/2017
+219,usa,new port richey,pasco hernando st coll - npr,fl,34654,8/23/2017
+220,usa,dallas,southern methodist univ,tx,75205,8/23/2017
+221,usa,wahpeton,north dakota global online campus,nd,58076,8/23/2017
+222,usa,clearwater,st petersburg coll-clearwater,fl,33765-2816,8/23/2017
+223,usa,wilmington,cape fear community college,nc,28401-3910,8/23/2017
+224,usa,colorado springs,univ colorado-colorado sprg,co,80918,8/23/2017
+225,usa,wausau,north cntrl tech c-wausau,wi,54401-1880,8/23/2017
+226,usa,university park,penn state univ-univ park,pa,16802,8/23/2017
+227,usa,rock island,augustana college,il,61201,8/23/2017
+228,usa,tulsa,university of tulsa,ok,74104,8/23/2017
+229,usa,mankato,mankato state university,mn,56001,8/23/2017
+230,usa,macon,central ga tech - macon,ga,31206-3628,8/23/2017
+231,usa,dallas,gaston college,nc,28034-1402,8/23/2017
+232,usa,prescott,yavapai college,az,86301,8/23/2017
+233,usa,jacksonville,edward waters college,fl,32209-6167,8/23/2017
+234,usa,altamonte springs,seminole state - altamonte spring,fl,32714,8/23/2017
+235,usa,chico,cal state u - chico,ca,95929,8/23/2017
+236,usa,oroville,butte college,ca,95965,8/23/2017
+237,usa,pittsburg,los medanos college,ca,94565,8/23/2017
+238,usa,conway,univ of sc - coastal carolina,sc,29526,8/23/2017
+239,usa,south bend,ivy tech comm coll - south bend,in,46601-3415,8/23/2017
+240,usa,tyler,tyler junior college,tx,75701,8/23/2017
+241,usa,greensboro,univ of nc - greensboro,nc,27403,8/23/2017
+242,usa,tucson,pima college-west campus,az,85709,8/23/2017
+243,usa,melrose park,triton college,il,60160,8/23/2017
+244,usa,savannah,armstrong state university,ga,314191997,8/23/2017
+245,usa,portales,eastern nm univ - portales,nm,88130,8/23/2017
+246,usa,linn,state tech coll of missouri,mo,65051,8/23/2017
+247,usa,dallas,el centro college,tx,75202,8/23/2017
+248,usa,deerfield,trinity international univ,il,60015-1241,8/23/2017
+249,usa,brooksville,pasco-hernando st coll -  north,fl,34601,8/23/2017
+250,usa,coconut creek,broward coll-north,fl,33066-1615,8/23/2017
+251,usa,poplarville,pearl river cc-poplarville,ms,39470-2216,8/23/2017
+252,usa,conway,coastal carolina university,sc,29526-8279,8/23/2017
+253,usa,keysville,vccs - southside va cc - daniel,va,23947-3559,8/23/2017
+254,usa,berea,baldwin wallace college,oh,44017-2005,8/23/2017
+255,usa,hickory,lenoir rhyne university,nc,28601,8/23/2017
+256,usa,apache junction,central az coll - apache junct,az,85119,8/23/2017
+257,usa,st louis,univ of missouri-st louis,mo,63121,8/23/2017
+258,usa,corning,corning cmty coll,ny,14830-3297,8/23/2017
+259,usa,visalia,college of the sequoias,ca,93277,8/23/2017
+260,usa,providence,rhode island college,ri,2908,8/23/2017
+261,usa,austin,austin c c - highland bus ctr,tx,78752,8/23/2017
+262,usa,cicero,morton college,il,60804-4300,8/23/2017
+263,usa,minot,minot state university,nd,58707-0001,8/23/2017
+264,usa,lawrence,university of kansas,ks,66045,8/23/2017
+265,usa,jacksonville,university of north florida,fl,32224-7699,8/23/2017
+266,usa,saint louis,st louis cc - forest park,mo,63110-1316,8/23/2017
+267,usa,greenwood,piedmont technical college,sc,29648-1467,8/23/2017
+268,usa,elgin,elgin community college,il,60123-7189,8/23/2017
+269,usa,greenville,greenville technical coll,sc,29607-2418,8/23/2017
+270,usa,ada,east central university,ok,74820,8/23/2017
+271,usa,mississippi stat,mississippi state univ,ms,39762,8/23/2017
+272,usa,lafayette,ivy tech comm coll - lafayette,in,47905-5241,8/23/2017
+273,usa,lake city,florida gateway college,fl,32025-2006,8/23/2017
+274,usa,rocky mount,nash community college,nc,27804-9708,8/23/2017
+275,usa,charleston,charleston southern univ,sc,29406-9121,8/23/2017
+276,usa,belleville,southwestern illinois college,il,62221-5859,8/23/2017
+277,usa,mesa,mesa community college,az,85202,8/23/2017
+278,usa,westminster,front range c c - westminster,co,80031,8/23/2017
+279,usa,dahlonega,univ of n georgia -dahlonega,ga,30597,8/23/2017
+280,usa,lake charles,mcneese state university,la,70609-0001,8/23/2017
+281,usa,north little rock,pulaski technical college,ar,72118-3347,8/23/2017
+282,usa,crystal lake,mchenry county college,il,60012-2738,8/23/2017
+283,usa,joplin,ozark christian college,mo,64801,8/23/2017
+284,usa,gaffney,limestone college gaffney,sc,29340-3778,8/23/2017
+285,usa,fredonia,state univ coll at fredonia,ny,14063-1127,8/23/2017
+286,usa,vermillion,university of south dakota,sd,57069-2307,8/23/2017
+287,usa,beaufort,tech coll of the low ctry,sc,29902-5441,8/23/2017
+288,usa,saint petersburg,univ of south florida st petersburg,fl,33701-5016,8/23/2017
+289,usa,scooba,east mississippi comm coll,ms,39358,8/23/2017
+290,usa,cocoa,eastern fl st coll - cocoa,fl,32922-6598,8/23/2017
+291,usa,new york,city college of cuny,ny,10031-9101,8/23/2017
+292,usa,kearney,u of nebraska-kearney,ne,68849-0001,8/23/2017
+293,usa,duluth,lake superior college,mn,55811-3349,8/23/2017
+294,usa,wesley chapel,pasco hernando st coll - porter,fl,33543,8/23/2017
+295,usa,san jacinto,mount san jacinto college,ca,92583,8/23/2017
+296,usa,salisbury,rowan cabarrus comm coll,nc,28146-8357,8/23/2017
+297,usa,charleston,college of charleston,sc,29424-0001,8/23/2017
+298,usa,milledgeville,georgia coll &amp; state univ,ga,31061,8/23/2017
+299,usa,columbus,capital university,oh,43209,8/23/2017
+300,usa,meridian,meridian cc,ms,39307-5801,8/23/2017
+301,usa,albany,albany state university,ga,31705-2717,8/23/2017
+302,usa,chicago,depaul university,il,60614-3282,8/23/2017
+303,usa,san marcos,texas state univ - san marcos,tx,78666,8/23/2017
+304,usa,wildwood,st louis comm coll - wildwood,mo,63040-1168,8/23/2017
+305,usa,galesburg,carl sandburg coll-galesburg,il,61401-9574,8/23/2017
+306,usa,senatobia,northwest miss comm coll,ms,38668-1714,8/23/2017
+307,usa,fort wayne,in univ-purdue univ - ft wayne,in,46805,8/23/2017
+308,usa,augusta,georgia regents univ,ga,30904-4562,8/23/2017
+309,usa,albuquerque,univ of new mexico sch med,nm,87131,8/23/2017
+310,usa,spruce pine,mayland community college,nc,28777-8434,8/23/2017
+311,usa,tarpon springs,st petersburg  coll-tarpon spg,fl,34689-1299,8/23/2017
+312,usa,fredericksburg,university of mary washington,va,22401-5300,8/23/2017
+313,usa,iowa city,university of iowa,ia,52242,8/23/2017
+314,usa,booneville,northeast miss cc,ms,38829-1726,8/23/2017
+315,usa,fargo,north dakota st university,nd,58102,8/23/2017
+316,usa,high point,high point university,nc,27262-4221,8/23/2017
+317,usa,hilo,univ of hawaii at hilo,hi,967204091,8/23/2017
+318,usa,aurora,metropolitan st univ of denver,co,80014,8/23/2017
+319,usa,tupelo,itawamba cc-tupelo,ms,38804-5981,8/23/2017
+320,usa,oceanside,mira costa college,ca,92056,8/23/2017
+321,usa,san diego,san diego miramar college,ca,92126,8/23/2017
+322,usa,pembroke,univ of nc - pembroke,nc,28372,8/23/2017
+323,usa,richland,wsu - tri cities,wa,99354-1671,8/23/2017
+324,usa,kutztown,kutztown university,pa,19530,8/23/2017
+325,usa,council bluffs,iowa wstn cc-council bluffs,ia,51503-1057,8/23/2017
+326,usa,wilmington,univ of nc - wilmington,nc,28403-3201,8/23/2017
+327,usa,hampden sydney,hampden-sydney college,va,23943,8/23/2017
+328,usa,fort smith,ua fort smith,ar,72904,8/23/2017
+329,usa,charleston,trident tech - palmer,sc,29403-5637,8/23/2017
+330,usa,morgantown,west virginia university,wv,26506,8/23/2017
+331,usa,lakeland,polk state coll - lakeland,fl,33803,8/23/2017
+332,usa,east peoria,illinois central college,il,61635-0001,8/23/2017
+333,usa,north las vegas,coll of s nv - cheyenne,nv,89030,8/23/2017
+334,usa,winchester,shenandoah university,va,22601-5100,8/23/2017
+335,usa,dover,del tech &amp; cc - dover,de,19904-1383,8/23/2017
+336,usa,dickinson,dickinson state univ,nd,58601-4853,8/23/2017
+337,usa,st leo,saint leo university,fl,33574,8/23/2017
+338,usa,carbondale,so illinois univ-carbondale,il,62901,8/23/2017
+339,usa,columbus,ohio state univ - main,oh,43210,8/23/2017
+340,usa,weatherford,southwestern okla state unv,ok,73096,8/23/2017
+341,usa,los lunas,unm-valencia,nm,87031,8/23/2017
+342,usa,south bend,indiana univ - south bend,in,46615-1408,8/23/2017
+343,usa,fort collins,colorado st univ - ft collins,co,80523,8/23/2017
+344,usa,springfield,lincoln land cmty college,il,62794-9256,8/23/2017
+345,usa,crookston,university of minnesota - crookston,mn,56716-5000,8/23/2017
+346,usa,hays,fort hays state university,ks,67601-4009,8/23/2017
+347,usa,tallahassee,tallahassee community colle,fl,32304-2815,8/23/2017
+348,usa,farmville,longwood university,va,23909,8/23/2017
+349,usa,tampa,hillsborough cmty coll dm,fl,33614-7810,8/23/2017
+350,usa,arlington,univ of texas - arlington,tx,76019,8/23/2017
+351,usa,aurora,community coll of aurora,co,80011,8/23/2017
+352,usa,dayton,sinclair community college,oh,45402-1421,8/23/2017
+353,usa,atlanta,atlanta metro college,ga,30310-4448,8/23/2017
+354,usa,naples,southwest florida college,fl,33962,8/23/2017
+355,usa,lawrenceburg,ivy tech comm coll - lawrenceb,in,47025,8/23/2017
+356,usa,gary,indiana univ northwest,in,46408-1101,8/23/2017
+357,usa,hartford,connecticut state colleges & universities,ct,6105,8/23/2017
+358,usa,palatka,st johns river st coll - palatka,fl,32177-3807,8/23/2017
+359,usa,grand forks,university of north dakota,nd,58202,8/23/2017
+360,usa,overland park,johnson county cmty college,ks,66210,8/23/2017
+361,usa,middletown,lord fairfax cc - middletown,va,22645-1745,8/23/2017
+362,usa,athens,ohio university - athens,oh,45701,8/23/2017
+363,usa,savannah,savannah state university,ga,31404-5254,8/23/2017
+364,usa,san jose,san jose state university,ca,95192,8/23/2017
+365,usa,detroit,wayne state university,mi,48202,8/23/2017
+366,usa,bettendorf,scott comm coll,ia,52722-5649,8/23/2017
+367,usa,rochester,rochester comm &amp; tech coll,mn,55904-4915,8/23/2017
+368,usa,laredo,texas a&amp;m international u,tx,78041,8/23/2017
+369,usa,new albany,indiana univ-southeast cmp,in,47150-2158,8/23/2017
+370,usa,knoxville,university of tennessee,tn,37996-0341,8/23/2017
+371,usa,smithfield,johnston community college,nc,27577-2350,8/23/2017
+372,usa,denton,texas womans university,tx,76204,8/23/2017
+373,usa,yuma,arizona western college,az,85365,8/23/2017
+374,usa,arcata,humboldt state university,ca,95521,8/23/2017
+375,usa,west columbia,midlands tech c-airport,sc,29170-2176,8/23/2017
+376,usa,adrian,adrian college,mi,49221-2518,8/23/2017
+377,usa,mc kenzie,bethel univ - mckenzie,tn,38201-1769,8/23/2017
+378,usa,oglesby,ill valley comm coll,il,61348-9692,8/23/2017
+379,usa,philadelphia,la salle university,pa,19141-1108,8/23/2017
+380,usa,pleasanton,chabot-las positas cc,ca,94588,8/23/2017
+381,usa,nelsonville,hocking college,oh,45764-9582,8/23/2017
+382,usa,shalimar,univ of florida-gainesville,fl,32579-1163,8/23/2017
+383,usa,palos hills,moraine valley cmty coll,il,60465-1444,8/23/2017
+384,usa,fredericksburg,germanna comm coll,va,22408,8/23/2017
+385,usa,newark,del tech stanton/newark,de,19713-2111,8/23/2017
+386,usa,las vegas,new mexico highlands univ,nm,87701,8/23/2017
+387,usa,white bear lake,century comm tech college,mn,55110-1842,8/23/2017
+388,usa,richmond,indiana univ east,in,47374-1220,8/23/2017
+389,usa,roswell,eastern nm univ - roswell,nm,88201,8/23/2017
+390,usa,salt lake city,salt lake community college,ut,84123,8/23/2017
+391,usa,perrysburg,owens community college,oh,43551,8/23/2017
+392,usa,joliet,joliet junior college,il,60431-8938,8/23/2017
+393,usa,tucson,pima cc - comm campus,az,857096000,8/23/2017
+394,usa,universal city,accd - ne lakeview campus,tx,78148,8/23/2017
+395,usa,lancaster,univ of sc - lancaster,sc,29720-5615,8/23/2017
+396,usa,morganton,western piedmont cc,nc,28655-4504,8/23/2017
+397,usa,tuscaloosa,shelton state cc,al,35405-8522,8/23/2017
+398,usa,monterey park,east los angeles coll - mp,ca,91754,2/10/2015
+399,usa,worcester,worcester state university,ma,01602-2861,2/10/2015
+400,usa,boulder,univ of colorado boulder,co,80309,2/10/2015
+401,usa,pasadena,pasadena city college,ca,91106,2/10/2015
+402,usa,toledo,university of toledo,oh,43606-3328,2/10/2015
+403,usa,edison,middlesex cnty coll-edison,nj,8818,2/10/2015
+404,usa,bronx,bronx community college,ny,10453-2804,2/10/2015
+405,usa,beeville,coastal bend college,tx,78102,2/10/2015
+406,usa,tulsa,tulsa comm coll se,ok,74133,2/10/2015
+407,usa,college station,texas a&amp;m univ - college stn,tx,77843,2/10/2015
+408,usa,college park,univ maryland college park,md,20742,2/10/2015
+409,usa,huntington beach,golden west college,ca,92647,2/10/2015
+410,usa,warwick,cmty coll of r i-warwick,ri,02886-1805,2/10/2015
+411,usa,palm desert,college of the desert,ca,92260,2/10/2015
+412,usa,rochester,rochester inst of tech,ny,14623-5603,2/10/2015
+413,usa,valencia,college of the canyons,ca,91355,2/10/2015
+414,usa,rockville,montgomery coll-rockville,md,20855-2811,2/10/2015
+415,usa,york,hacc york,pa,17404,2/10/2015
+416,usa,houston,univ of houston-downtown,tx,77002,2/10/2015
+417,usa,austin,univ of texas - austin,tx,78712,2/10/2015
+418,usa,baltimore,maryland inst coll of art,md,21217-4134,2/10/2015
+419,usa,saint petersburg,st petersburg coll-st pete/gib,fl,33710-6801,2/10/2015
+420,usa,san diego,san diego state university,ca,92182,2/10/2015
+421,usa,san diego,san diego mesa college,ca,92111,2/11/2015
+422,usa,irvine,irvine valley college,ca,92618,2/11/2015
+423,usa,menifee,mt san jacinto coll - menifee,ca,92584,2/11/2015
+424,usa,san marcos,palomar college,ca,92069,2/11/2015
+425,usa,new york,new york university,ny,10012,2/11/2015
+426,usa,oregon city,clackamas community college,or,97045,2/11/2015
+427,usa,baltimore,university of maryland-baltimore cty,md,21250-0001,2/11/2015
+428,usa,alice,coastal bend coll/alice cmp,tx,78332,2/11/2015
+429,usa,portsmouth,tidewater cc-portsmouth,va,23701,2/11/2015
+430,usa,flagstaff,northern arizona university,az,86011,2/11/2015
+431,usa,holyoke,holyoke comm coll,ma,01040-1091,2/11/2015
+432,usa,paramus,bergen community college,nj,07652-1508,2/11/2015
+433,usa,nashville,lipscomb university,tn,37204,2/11/2015
+434,usa,trinidad,trinidad state jr college,co,81082,2/11/2015
+435,usa,millersville,millersville university,pa,17551,2/11/2015
+436,usa,indianapolis,ivy tech comm coll - central,in,46208-5752,2/11/2015
+437,usa,burlington,univ of vermont,vt,05405-0001,2/11/2015
+438,usa,lynnwood,edmonds cmty coll-lynnwood,wa,98036,2/11/2015
+439,usa,teaneck,fdu teaneck,nj,7666,2/11/2015
+440,usa,carrollton,univ of west ga - carrollton,ga,30118-0001,2/11/2015
+441,usa,des plaines,oakton community college,il,60016-1234,2/11/2015
+442,usa,reedley,reedley clg,ca,93654,2/11/2015
+443,usa,sweet briar,sweet briar college,va,24595-5001,2/11/2015
+444,usa,ypsilanti,eastern michigan univ,mi,48197,2/11/2015
+445,usa,terre haute,indiana state university,in,47809-1902,2/11/2015
+446,usa,saint petersburg,eckerd college,fl,33711-4744,2/11/2015
+447,usa,albany,university at albany,ny,12222-0001,2/11/2015
+448,usa,cincinnati,xavier university,oh,45207-1035,2/11/2015
+449,usa,spearfish,black hills state univ,sd,57799-8840,2/11/2015
+450,usa,tucson,pima comm coll/desert vista,az,857096000,2/11/2015
+451,usa,dearborn,univ of michigan-dearborn,mi,48128-2406,2/11/2015
+452,usa,casper,university of wyoming,wy,82601,2/11/2015
+453,usa,dekalb,northern illinois univ,il,60115,2/11/2015
+454,usa,norfolk,tidewater comm coll/norfolk,va,23510-1910,2/11/2015
+455,usa,valley glen,los angeles valley college,ca,914014096,2/11/2015
+456,usa,worcester,clark university,ma,1610,2/11/2015
+457,usa,cheney,eastern washington univ,wa,99004,2/12/2015
+458,usa,avon park,south florida state coll,fl,33825,2/12/2015
+459,usa,west barnstable,cape cod comm coll,ma,02668-1532,2/12/2015
+460,usa,russellville,arkansas tech university,ar,72801,2/12/2015
+461,usa,chesapeake,tidewater cc-chesapeake,va,23322-7108,2/12/2015
+462,usa,irving,univ of dallas,tx,75062,2/12/2015
+463,usa,norfolk,george washington univ,va,23502,2/12/2015
+464,usa,glendale,arizona state univ - west,az,85306-4908,2/12/2015
+465,usa,poughkeepsie,marist college,ny,12601-1350,2/12/2015
+466,usa,kalamazoo,western michigan univ,mi,49008,2/12/2015
+467,usa,delhi,suny - delhi,ny,13753,2/12/2015
+468,usa,schuylkill haven,penn state u schuylkill,pa,17972-2202,2/12/2015
+469,usa,marion,marion technical college,oh,43302,2/12/2015
+470,usa,cedar city,southern utah university,ut,84720,2/12/2015
+471,usa,oakland,laney college,ca,94607,2/12/2015
+472,usa,long beach,long beach city college - a,ca,90808,2/12/2015
+473,usa,clarinda,iowa western cc-clarinda,ia,51632,2/12/2015
+474,usa,honolulu,hawaii pacific university,hi,96813,2/12/2015
+475,usa,milwaukee,univ of wisconsin - milwaukee,wi,53211,2/12/2015
+476,usa,torrance,el camino college,ca,90506,2/13/2015
+477,usa,chicago,univ of illinois at chicago,il,60607-7100,2/13/2015
+478,usa,new orleans,university of new orleans,la,70148-0001,2/13/2015
+479,usa,malta,kishwaukee community coll,il,60150,2/13/2015
+480,usa,honolulu,chaminade university,hi,96816,2/13/2015
+481,usa,new york,cuny hunter college,ny,10021,2/13/2015
+482,usa,canton,walsh university,oh,44720-3336,2/13/2015
+483,usa,commerce,texas a&amp;m univ - commerce,tx,75428,2/13/2015
+484,usa,blacksburg,virginia tech,va,24061,2/13/2015
+485,usa,denver,community college of denver,co,80204,2/14/2015
+486,usa,kingsville,coastal bend college-kingsvill,tx,78363,2/14/2015
+487,usa,seminole,st petersburg  coll - seminole,fl,33772-2800,2/14/2015
+488,usa,hayward,chabot college,ca,94545,2/15/2015
+489,usa,watertown,jefferson community college,ny,13601-1822,2/15/2015
+490,usa,university center,saginaw valley state univ,mi,48710-0001,2/15/2015
+491,usa,louisville,kctcs-jefferson-downtown,ky,40202-2005,2/16/2015
+492,usa,logan,utah state university,ut,84322,2/16/2015
+493,usa,battle creek,kellogg community college,mi,49017-3306,2/16/2015
+494,usa,saddle river,prentice hall university,nj,07458-1813,2/16/2015
+495,usa,portland,portland cc-cascade,or,97217,2/16/2015
+496,usa,tallahassee,florida state university,fl,32306,2/16/2015
+497,usa,glendale,glendale community college,ca,91208,2/16/2015
+498,usa,sioux falls,university of sioux falls,sd,57105,2/17/2015
+499,usa,montclair,montclair state university,nj,07043-1624,2/17/2015
+500,usa,bellingham,western washington univ,wa,98225,2/17/2015
+501,usa,columbus,columbus state university,ga,31907-5679,2/17/2015
+502,usa,valhalla,westchester cmty college,ny,10595-1550,2/17/2015
+503,usa,bristol,roger williams university,ri,02809-2923,2/17/2015
+504,usa,orange,chapman univ-orange,ca,92866,2/17/2015
+505,usa,tallahassee,florida agric &amp; mech univ,fl,32307,2/17/2015
+506,usa,las vegas,univ of nevada las vegas,nv,89154,2/18/2015
+507,usa,bellevue,bellevue university,ne,68005-3058,2/18/2015
+508,usa,norfolk,old dominion university,va,23529-0001,2/19/2015
+509,usa,big rapids,ferris state university,mi,49307-2251,2/19/2015
+510,usa,riverside,riverside city college,ca,92506,2/19/2015
+511,usa,memphis,university of memphis,tn,38152-0001,2/19/2015
+512,usa,medford,delta college,or,97504,2/19/2015
+513,usa,portland,portland cmty coll sylvania,or,97219,2/19/2015
+514,usa,norco,norco college,ca,92860-2600,2/19/2015
+515,usa,los angeles,los angeles city college,ca,90029,2/19/2015
+516,usa,wheeling,wheeling jesuit university,wv,26003,2/20/2015
+517,usa,boaz,snead state comm college,al,35957-1650,2/20/2015
+518,usa,moreno valley,moreno valley college,ca,92551-2045,2/20/2015
+519,usa,ft wayne,univeristy of st francis,in,46807,2/21/2015
+520,usa,bayside,queensborough cc of cuny,ny,11364,2/22/2015
+521,usa,new york,fashion institute of tech,ny,10001,2/22/2015
+522,usa,rockford,rock valley college,il,61114-5640,2/22/2015
+523,usa,tucson,pima cc northwest,az,85709,2/23/2015
+524,usa,walnut,mount san antonio college,ca,91789,2/23/2015
+525,usa,villanova,villanova university,pa,19085-1603,2/23/2015
+526,usa,pearl city,leeward community college,hi,96782,2/24/2015
+527,usa,forest grove,pacific university,or,97116,2/24/2015
+528,usa,oakdale,dowling college,ny,11769-1906,2/24/2015
+529,usa,edinburg,univ of texas - pan american,tx,785412999,2/25/2015
+530,usa,santa rosa,santa rosa junior college,ca,95401,2/25/2015
+531,usa,nacogdoches,stephen f austin state univ,tx,75961,2/25/2015
+532,usa,rohnert park,sonoma state university,ca,94928,2/26/2015
+533,usa,valparaiso,valparaiso university,in,46383,2/27/2015
+534,usa,columbus,sales associates,oh,43235,3/1/2015
+535,usa,santa monica,santa monica college,ca,90405,3/4/2015
+536,usa,west plains,missouri st u-west plain,mo,65775-2715,3/4/2015
+537,usa,san francisco,golden gate univ-san francisco,ca,94105,3/4/2015
+538,usa,petaluma,santa rosa jr college,ca,94954,3/4/2015
+539,usa,chicago,loyola - chicago,il,60660,3/5/2015
+540,usa,naples,fl southwestern st coll - naples,fl,34113-8976,3/6/2015
+541,usa,batavia,genesee cc batavia,ny,14020,3/8/2015
+542,usa,scottsdale,scottsdale cmty college,az,85256,3/10/2015
+543,usa,grants,new mexico st u-grants,nm,87020,3/10/2015
+544,usa,laredo,laredo community college,tx,78040,11/8/2016
+545,usa,gainesville,brenau university,ga,30501,11/8/2016
+546,usa,new britain,central conn state univ,ct,06050-2439,11/8/2016
+547,usa,east stroudsburg,east stroudsburg university,pa,18301-2956,11/8/2016
+548,usa,knoxville,pellissippi st cmty coll,tn,37932,11/8/2016
+549,usa,jacksonville,fl st coll - jacksonville deerwood,fl,32256-8102,11/8/2016
+550,usa,westminster,mcdaniel college,md,21157-4303,11/8/2016
+551,usa,midland,midland college,tx,79705,11/8/2016
+552,usa,fountain valley,coastline cmty coll,ca,92708,11/8/2016
+553,usa,albuquerque,central new mexico comm coll,nm,87106,11/8/2016
+554,usa,sacramento,sacramento city college,ca,95822,11/8/2016
+555,usa,bend,central oregon cmty college,or,97701,11/8/2016
+556,usa,allendale,gvsu - allendale,mi,49401-9401,11/8/2016
+557,usa,grand rapids,grand rapids cmty coll,mi,49503,11/8/2016
+558,usa,fond du lac,moraine park tech coll,wi,54935-2884,11/8/2016
+559,usa,fort yates,sitting bull college,nd,58538-9721,11/8/2016
+560,usa,buffalo,university at buffalo,ny,14260-1660,11/8/2016
+561,usa,chicago,harold washington college,il,60601-2408,11/8/2016
+562,usa,wichita falls,midwestern state university,tx,76308,11/8/2016
+563,usa,midwest city,rose state college,ok,73110,11/8/2016
+564,usa,campbellsville,campbellsville universtiy,ky,42718-2190,11/8/2016
+565,usa,irving,north lake college,tx,75038,11/8/2016
+566,usa,collegedale,southern adventist univ,tn,37315,11/8/2016
+567,usa,wilkesboro,wilkes community college,nc,28697-2102,11/8/2016
+568,usa,paris,paris jr coll-paris,tx,75460,11/8/2016
+569,usa,new olreans,delta intl univ of new orleans,la,70170,11/8/2016
+570,usa,evanston,northwestern university,il,60208-0873,11/8/2016
+571,usa,troy,hudson valley community col,ny,12180-6037,11/8/2016
+572,usa,selden,suffolk county cc (ammerman),ny,11784-2851,11/8/2016
+573,usa,provo,brigham young univ-provo,ut,84602,11/8/2016
+574,usa,san diego,western american university,ca,92108,11/8/2016
+575,usa,manchester,manchester community college,nh,03102-8528,11/8/2016
+576,usa,reno,univ of nevada sch medicine,nv,89557,11/8/2016
+577,usa,bloomsburg,bloomsburg university,pa,17815-1301,11/8/2016
+578,usa,fremont,ohlone college,ca,94539,11/8/2016
+579,usa,ridgeland,holmes comm coll-ridgeland,ms,39157-1815,11/8/2016
+580,usa,kankakee,kankakee community college,il,60901-6505,11/8/2016
+581,usa,lancaster,antelope valley college,ca,93536,11/9/2016
+582,usa,dowagiac,southwestern michigan coll,mi,49047,11/9/2016
+583,usa,brooklyn,long island univ (brooklyn),ny,11201-5301,11/9/2016
+584,usa,duluth,univ of minnesota-duluth,mn,55812-2403,11/9/2016
+585,usa,acworth,chatt tech - north metro,ga,30102-3129,11/9/2016
+586,usa,sylmar,los angeles mission college,ca,91342,11/9/2016
+587,usa,brooklyn,kingsborough cmty college,ny,11235,11/9/2016
+588,usa,victorville,victor valley college,ca,92395,11/9/2016
+589,usa,lebanon,mckendree university,il,62254-1291,11/9/2016
+590,usa,dallas,richland college,tx,75243,11/9/2016
+591,usa,nashville,tennessee st univ-main camp,tn,37209-1500,11/9/2016
+592,usa,philadelphia,comm college of philadelphi,pa,19130-3936,11/9/2016
+593,usa,pikeville,kctcs-big sandy-pikeville,ky,41501,11/9/2016
+594,usa,mount pleasant,central michigan university,mi,48859,11/9/2016
+595,usa,orange,career networks institute,ca,92868,11/9/2016
+596,usa,columbia,univ of sc - columbia,sc,29208,11/9/2016
+597,usa,kirtland,lakeland comm college,oh,44094-5198,11/9/2016
+598,usa,tomball,lonestar college - tomball,tx,77375,11/9/2016
+599,usa,shelby,cleveland county comm coll,nc,28152-6224,11/9/2016
+600,usa,oshkosh,univ of wisconsin - oshkosh,wi,54901-3551,11/9/2016
+601,usa,melbourne,eastern fl st coll - melbourne,fl,32935-2310,11/9/2016
+602,usa,blackwood,camden county college,nj,8012,11/9/2016
+603,usa,buffalo,erie cmty coll-city campus,ny,14203-2601,11/9/2016
+604,usa,elizabethtown,kctcs-elizabethtown,ky,42701-3053,11/10/2016
+605,usa,vancouver,clark college,wa,98663,11/10/2016
+606,usa,lubbock,wayland baptist univ lubboc,tx,79407,11/10/2016
+607,usa,santa maria,allan hancock college,ca,93454,11/10/2016
+608,usa,ellensburg,central washington univ,wa,98926,11/10/2016
+609,usa,biloxi,william carey univ - gulfport,ms,39532,11/10/2016
+610,usa,napa,napa valley college,ca,94558,11/10/2016
+611,usa,goodman,holmes community college,ms,39079,11/10/2016
+612,usa,odessa,odessa college,tx,79764,11/10/2016
+613,usa,dover,delaware state university,de,19901-2202,11/10/2016
+614,usa,welland,niagara college,on,l3c 7l3,11/10/2016
+615,usa,portland,portland state university,or,97201,11/10/2016
+616,usa,new york,american business institute,ny,10019-6700,11/10/2016
+617,usa,clarksville,austin peay state univ,tn,37040-3086,11/10/2016
+618,usa,plymouth,quincy -plymouth college,ma,02360-3309,11/10/2016
+619,usa,jackson,jackson community college,mi,49201-8395,11/10/2016
+620,usa,new castle,wilmington university,de,19720-6434,11/11/2016
+621,usa,south euclid,notre dame college of ohio,oh,44121-4228,11/11/2016
+622,usa,ft worth,tarrant cnty  coll nw,tx,76179,11/11/2016
+623,usa,rock hill,york technical college,sc,29730-7318,11/11/2016
+624,usa,ashland,southern oregon university,or,97520,11/11/2016
+625,usa,cupertino,de anza college,ca,95014,11/11/2016
+626,usa,kissimmee,valencia coll - osceola,fl,34744-3714,11/11/2016
+627,usa,new orleans,delgado cmty clg,la,70119-4399,11/11/2016
+628,usa,santa fe,santa fe comm college,nm,87508,11/11/2016
+629,usa,new brunswick,rutgers state univ nj,nj,8903,11/11/2016
+630,usa,new york,borough manhattan cc,ny,10007-1044,11/11/2016
+631,usa,danville,kctcs-bluegrass-danville,ky,40422-9690,11/11/2016
+632,usa,sturgeon bay,northeast wi tech coll,wi,54235-1317,11/11/2016
+633,usa,canton,stark state collof technology,oh,44720-7228,11/12/2016
+634,usa,el paso,univ of texas - el paso,tx,79968,11/12/2016
+635,usa,anchorage,alaska whole health inst,ak,99503,11/12/2016
+636,usa,houston,lonestar college - univ park,tx,77070-2607,11/12/2016
+637,usa,palm beach gardens,palm beach state coll - north,fl,33410-2802,11/12/2016
+638,usa,killeen,central texas college,tx,76549,11/12/2016
+639,usa,kansas city,univ of kansas,ks,66100,11/12/2016
+640,usa,kaneohe,windward community college,hi,96744,11/12/2016
+641,usa,arnold,anne arundel cmty college,md,21012-1857,11/13/2016
+642,usa,rancho cucamonga,chaffey clg,ca,91737,11/13/2016
+643,usa,porterville,porterville college,ca,93257,11/13/2016
+644,usa,beaumont,lamar university,tx,77710,11/13/2016
+645,usa,university heights,john carroll university,oh,44118,11/13/2016
+646,usa,corvallis,oregon state university,or,97331,11/14/2016
+647,usa,st petersburg,st petersburg coll - downtown,fl,33701,11/14/2016
+648,usa,huntington,mountwest comm &amp;tech college,wv,25701,11/14/2016
+649,usa,harrisonburg,james madison university,va,22807-0001,11/14/2016
+650,usa,levelland,south plains college,tx,79336,11/14/2016
+651,usa,auburn,green river comm college,wa,98092,11/14/2016
+652,usa,coon rapids,anoka ramsey cc - coon rapids,mn,55433,11/14/2016
+653,usa,galveston,galveston college,tx,77550,11/14/2016
+654,usa,cincinnati,univ of cincinnati/univ clg,oh,45221-0001,11/14/2016
+655,usa,fort worth,tarrant county college district,texas,76102,11/14/2016
+656,usa,sanford,seminole st coll of florida,fl,32773-6132,11/14/2016
+657,usa,california,california univ of pa,pa,15419-1341,11/14/2016
+658,usa,towson,towson university,md,21252-0001,11/14/2016
+659,usa,canandaigua,finger lakes comm coll,ny,14424-8347,11/14/2016
+660,usa,west long branch,monmouth univ,nj,07764-1804,11/15/2016
+661,usa,worcester,quinsigamond community coll,ma,01606-2064,11/15/2016
+662,usa,irvine,univ of calif - irvine,ca,92717,11/15/2016
+663,usa,utica,mohawk valley cmty college,ny,13501-5308,11/15/2016
+664,usa,indianapolis,ivy tech state coll - indianap,in,46208-4777,11/15/2016
+665,usa,radford,radford university,va,24142,11/15/2016
+666,usa,shelbyville,kctcs-jefferson-shelby county,ky,40065-9447,11/15/2016
+667,usa,san antonio,texas a&amp;m university-san antonio,tx,78224,11/15/2016
+668,usa,grayslake,college of lake county,il,60030,1/29/2016
+669,usa,phoenix,paradise valley comm coll,az,85032,1/29/2016
+670,usa,chicago,loyola univ - water tower,il,60611,1/29/2016
+671,usa,frisco,collin college - preston rdge,tx,75035,1/29/2016
+672,usa,oxford,miami univ - oxford,oh,45056-1846,1/29/2016
+673,usa,san marcos,cal state u - san marcos,ca,92096,1/29/2016
+674,usa,waukesha,uwc - waukesha,wi,53188-2720,1/29/2016
+675,usa,storrs,univ of connecticut-storrs,ct,6269,1/29/2016
+676,usa,green bay,ne wisconsin tech clg-gb,wi,54303,1/29/2016
+677,usa,northridge,cal state u - northridge,ca,91330,1/29/2016
+678,usa,sacramento,cal state u - sacramento,ca,95819,1/29/2016
+679,usa,new paltz,suny at new paltz,ny,12561-2447,1/29/2016
+680,usa,slippery rock,slippery rock univ of pa,pa,16057-1313,1/29/2016
+681,usa,monroe,univ of louisiana at monroe,la,71209-9000,1/29/2016
+682,usa,davie,florida  atlantic u-davie,fl,33314,1/29/2016
+683,usa,durham,univ of new hampshire,nh,3824,1/29/2016
+684,usa,martin,univ of tennessee - martin,tn,38238-0001,1/29/2016
+685,usa,corsicana,navarro coll - corsicana,tx,75110,1/29/2016
+686,usa,sioux city,western iowa tech cc,ia,51106-1918,1/29/2016
+687,usa,missoula,university of montana,mt,59812-0003,1/29/2016
+688,usa,east lansing,michigan state university,mi,48824,1/29/2016
+689,usa,new haven,gateway cc - new haven,ct,6510,1/29/2016
+690,usa,dearborn,henry ford cmty college,mi,48128-2407,1/29/2016
+691,usa,kingston,university of rhode island,ri,02881-1124,1/29/2016
+692,usa,philadelphia,st josephs university,pa,19131-1308,1/29/2016
+693,usa,dayton,wright state university,oh,45435-0001,1/29/2016
+694,usa,sioux city,morningside college,ia,51106-1717,1/29/2016
+695,usa,cleveland,cleveland st cmty coll,tn,37312-2813,1/29/2016
+696,usa,frostburg,frostburg state university,md,21532-2303,1/29/2016
+697,usa,phoenix,south mountain comm college,az,85042,1/29/2016
+698,usa,shreveport,southern univ-shreveport,la,71107,1/29/2016
+699,usa,jamaica,st johns univ (queens),ny,11439-0001,1/29/2016
+700,usa,lubbock,texas tech university,tx,79409,1/29/2016
+701,usa,westfield,westfield state college,ma,01085-2580,1/29/2016
+702,usa,la junta,otero junior college,co,81050,1/29/2016
+703,usa,rio grande,university of rio grande,oh,45674-3100,1/29/2016
+704,usa,boca raton,palm beach state coll - south,fl,33431-6418,1/29/2016
+705,usa,salinas,hartnell community college,ca,93901,1/29/2016
+706,usa,spokane,spokane falls comm coll,wa,99224,1/29/2016
+707,usa,austin,austin c c - northridge,tx,787583190,1/29/2016
+708,usa,murfreesboro,middle tennessee state univ,tn,37132-0001,1/29/2016
+709,usa,batavia,univ cincinnati-clermont,oh,45103,1/29/2016
+710,usa,kalispell,flathead vly comm college,mt,59901-2622,1/29/2016
+711,usa,youngwood,westmoreland cnty cmty coll,pa,15697-1801,1/29/2016
+712,usa,champaign,univ of illinois - champaign,il,61820,1/29/2016
+713,usa,stephenville,tarleton state univ,tx,76402,1/29/2016
+714,usa,salem,salem state university,ma,01970-5348,1/29/2016
+715,usa,auburn hills,oakland cc - auburn hills,mi,48326,1/29/2016
+716,usa,indianapolis,university of indianapolis,in,46227-3630,1/29/2016
+717,usa,milwaukee,alverno college,wi,53215-4020,1/29/2016
+718,usa,tyler,univ of texas - tyler,tx,75799,1/29/2016
+719,usa,san diego,university of san diego,ca,92110,1/29/2016
+720,usa,reading,reading area comm college,pa,19602-1014,1/29/2016
+721,usa,largo,prince georges cmty college,md,20774-2109,1/29/2016
+722,usa,pomona,cal state polytech u-pomona,ca,91768,1/29/2016
+723,usa,billings,montana state univ - billings,mt,59101-0245,1/29/2016
+724,usa,johnstown,fulton montgomery cmty coll,ny,12095-3749,1/29/2016
+725,usa,lancaster,hacc  lancaster,pa,17602-2633,1/29/2016
+726,usa,colorado spg,univ of colo-colo spr,co,80918,1/29/2016
+727,usa,lufkin,angelina college,tx,75904,1/29/2016
+728,usa,nashville,vanderbilt university,tn,37235-0001,1/29/2016
+729,usa,plattsburgh,suny - plattsburgh,ny,12901-2637,1/29/2016
+730,usa,wayne,william paterson university,nj,07470-2103,1/29/2016
+731,usa,north miami,fiu -  biscayne bay campus,fl,33181,1/29/2016
+732,usa,plano,collin college - spr crk,tx,75074,1/29/2016
+733,usa,morrilton,univ of arkansas cc-morrilton,ar,72110,1/29/2016
+734,usa,lock haven,lock haven  university,pa,17745-2342,1/29/2016
+735,usa,clermont,lake sumter cc - southlake campus,fl,34711,1/29/2016
+736,usa,chicago,malcolm x college,il,60612-3145,1/29/2016
+737,usa,paterson,passaic county cmty college,nj,7509,1/29/2016
+738,usa,la crosse,western tech coll,wi,54601-3368,1/29/2016
+739,usa,bridgewater,bridgewater state university,ma,2325,1/29/2016
+740,usa,frederick,frederick cmty college,md,21702-2964,1/29/2016
+741,usa,denver,colorado community college onl,co,80230,1/29/2016
+742,usa,brockton,massasoit community college,ma,2302,1/29/2016
+743,usa,macomb,western illinois university,il,61455-1367,1/29/2016
+744,usa,new haven,southern conn state univ,ct,06515-1330,1/29/2016
+745,usa,youngstown,youngstown state university,oh,44555-0001,1/29/2016
+746,usa,mission viejo,saddleback college,ca,92692,1/29/2016
+747,usa,bloomfield hills,oakland community college,mi,48304-2223,1/29/2016
+748,usa,wharton,wharton county jr college,tx,77488,1/29/2016
+749,usa,emporia,emporia state university,ks,66801,1/29/2016
+750,usa,menasha,uwc - fox valley,wi,54952-8002,1/29/2016
+751,usa,austin,austin c c - riverside,tx,78741,1/29/2016
+752,usa,san bernardino,cal state u - san bernardino,ca,92407,1/29/2016
+753,usa,buffalo,buffalo state college,ny,14222-1004,1/29/2016
+754,usa,patchogue,st josephs college - long island,ny,11772-2325,1/29/2016
+755,usa,morristown,walters st cmty coll,tn,37813-1908,1/29/2016
+756,usa,wilmington,del tech &amp;cc wilmington,de,19801-2412,1/29/2016
+757,usa,huntington bch,coastline cc-huntngtn wstmn,ca,92649,1/29/2016
+758,usa,sugarland,wharton cty jr coll - sugarland,tx,77479,1/29/2016
+759,usa,rochester,oakland university,mi,48309-4402,1/29/2016
+760,usa,burlington,university of vermont,vt,05405-0001,1/29/2016
+761,usa,chicago,chicago state university,il,60628,1/29/2016
+762,usa,pine bluff,u arkansas-pine bluff,ar,71601-2799,1/29/2016
+763,usa,huntington,queens   huntington college,ny,11743,1/29/2016
+764,usa,fullerton,fullerton college,ca,92832,1/29/2016
+765,usa,tampa,university of tampa,fl,33606-1450,1/29/2016
+766,usa,colorado springs,pikes peak cc - centennial cmps,co,80906,1/29/2016
+767,usa,new york,john jay coll criminal just,ny,10019-1104,1/29/2016
+768,usa,hazard,kctcs-hazard,ky,41701,1/29/2016
+769,usa,aptos,cabrillo college,ca,95003,1/29/2016
+770,usa,las vegas,coll of s nv - charleston,nv,89146,1/29/2016
+771,usa,springfield,nvcc medical educ campus,va,22150-1913,1/29/2016
+772,usa,frankfort,kentucky state university,ky,40601-2334,1/29/2016
+773,usa,nanticoke,luzerne cty comm college,pa,18634-3814,1/29/2016
+774,usa,manchester,sthrn nh univ cont/online educ,nh,3101,1/29/2016
+775,usa,yakima,yakima valley comm coll,wa,98902,1/29/2016
+776,usa,richmond,virginia commonwealth university,va,23284,1/29/2016
+777,usa,athens,trinity valley cc - athens,tx,75751,1/29/2016
+778,usa,woodbridge,no virginia cc - woodbridge,va,22191,1/29/2016
+779,usa,phoenix,grand canyon university,az,85017,1/29/2016
+780,usa,jamestown,guilford tech comm coll,nc,27282-0309,1/29/2016
+781,usa,washington,trinity univeristy,dc,20017,1/29/2016
+782,usa,cleveland,cleveland state university,oh,44115-2214,1/29/2016
+783,usa,belle glade,palm beach state coll - glades,fl,33430-3611,1/29/2016
+784,usa,hurst,tarrant cnty  coll ne,tx,76054,1/29/2016
+785,usa,columbus,ivy tech comm coll - columbus,in,47203-1868,1/29/2016
+786,usa,west windsor,mercer cnty c c-trenton,nj,08550-3407,1/29/2016
+787,usa,columbus,franklin university,oh,43215-5301,1/29/2016
+788,usa,el cajon,grossmont college,ca,92020,1/29/2016
+789,usa,marion,marion military institute,al,36756,1/29/2016
+790,usa,green bay,university of wisconsin - green bay,wi,54311,1/29/2016
+791,usa,buies creek,campbell university,nc,27506,1/29/2016
+792,usa,miami,miami-dade  coll north,fl,33167,1/29/2016
+793,usa,kyle,austin cc - hays,tx,78640,11/15/2016
+794,usa,pittsburgh,univ of pittsburgh,pa,15260-0001,11/15/2016
+795,usa,farmington,tunxis cmty technical college,ct,06032-3324,11/15/2016
+796,usa,tuscaloosa,univ of alabama -nursing,al,35487-0001,11/15/2016
+797,usa,richmond,ivy tech comm coll - richmond,in,47374-1220,11/15/2016
+798,usa,san diego,advanced college of tech,ca,92123,11/16/2016
+799,usa,new orleans,delgado cc-west bank campus,la,70114-3047,11/16/2016
+800,usa,branchburg,raritan valley comm coll,nj,8876,11/16/2016
+801,usa,nj,test school s1,nj,1234,11/16/2016
+802,usa,lincoln,southeast cmty coll-lincoln,ne,68520,11/16/2016
+803,usa,newark,rutgers univ newark,nj,07102-1811,11/16/2016
+804,usa,placerville,folsom lake coll - el dorado,ca,95667,11/16/2016
+805,usa,hayward,cal state u - east bay,ca,94542,11/17/2016
+806,usa,asheville,ashevl buncombe tech coll,nc,28801-4816,11/17/2016
+807,usa,thibodaux,nicholls state university,la,70310,11/17/2016
+808,usa,sheboygan,uwc-sheboygan county,wi,53081,11/17/2016
+809,usa,dover,wesley college dover,de,19901-3835,11/18/2016
+810,usa,newport news,christopher newport university,va,23606-0070,11/18/2016
+811,usa,reno,university of nevada - reno,nv,89557-0042,11/18/2016
+812,usa,blountville,northeast st cmty coll,tn,37617-6350,11/18/2016
+813,usa,fort wayne,univ of st francis,in,46808,11/18/2016
+814,usa,nashville,nashville state comm coll,tn,37209-4515,11/18/2016
+815,usa,durango,fort lewis college,co,813013000,11/19/2016
+816,usa,chicago,wilbur wright college-south,il,60634,11/20/2016
+817,usa,waco,texas st tech coll-waco,tx,76705,11/20/2016
+818,usa,deerfield bch,north broward tech ctr,fl,33442,11/20/2016
+819,usa,milwaukee,technology institute,wi,53202-1806,11/20/2016
+820,usa,brenham,blinn college-brenham camp,tx,77833,11/21/2016
+821,usa,poteau,carl albert state college,ok,74953,11/21/2016
+822,usa,hanceville,wallace st comm coll-hancevil,al,35077,11/21/2016
+823,usa,edmond,ok christian univ,ok,73013,11/21/2016
+824,usa,fairbury,southeast community college,ne,68352,11/21/2016
+825,usa,barnesville,gordon state college - ga,ga,30204-1746,11/22/2016
+826,usa,mesa,mesa comm coll - red mtn,az,85207-1908,11/22/2016
+827,usa,williamsville,erie cmty clg north campus,ny,14221,11/22/2016
+828,usa,bronx,fordham university-rose hil,ny,10458-5149,11/22/2016
+829,usa,miami,miami-dade  coll-kendal,fl,33176,11/22/2016
+830,usa,fresno,willow/intnl coll ctr,ca,93730-5401,11/22/2016
+831,usa,chicago,wright city college,il,60634-1591,11/22/2016
+832,usa,brooklyn,a&amp;m schwartz coll pharmacy,ny,11201-5423,11/23/2016
+833,usa,ebensburg,admiral peary vo-tech,pa,15931,11/23/2016
+834,usa,woodland hills,pierce college - la,ca,91371,11/25/2016
+835,usa,sacramento,cosumnes river college,ca,95823,11/25/2016
+836,usa,louisville,spalding university,ky,40203-2115,11/26/2016
+837,usa,decatur,inst for construction educ,il,62526-2158,11/27/2016
+838,usa,chicago,richard j daley college,il,60652-1369,11/28/2016
+839,usa,peoria,univ of illinois,il,61656,11/28/2016
+840,usa,oskaloosa,william penn university,ia,52577-1757,11/28/2016
+841,usa,fairfield,fairfield university,ct,06824-5171,11/28/2016
+842,usa,macon,middle ga st coll - macon,ga,31206,11/28/2016
+843,usa,san jose,everest coll - san jose,ca,95117,11/28/2016
+844,usa,doral,miami dade coll - west cmps,fl,33178-4856,11/28/2016
+845,usa,tsaile,dine college - arizona,az,86556,11/28/2016
+846,usa,memphis,univ of memphis,tn,38152,11/28/2016
+847,usa,takoma park,washington adventist univ,md,20912-7744,11/28/2016
+848,usa,waterbury,naugatuck vly comm tech col,ct,06708-3011,11/29/2016
+849,usa,gallatin,volunteer st cmty college,tn,37066,11/29/2016
+850,usa,dalton,dalton state college,ga,30720-3778,11/29/2016
+851,usa,orlando,central florida reception ctr,fl,32831-2518,11/29/2016
+852,usa,fairbanks,univ of alaska - fairbanks,ak,99775,11/30/2016
+853,usa,moline,black hawk college,il,61265-5870,11/30/2016
+854,usa,long island city,laguardia cc of cuny,ny,11101-3007,11/30/2016
+855,usa,fremont,midland university,ne,68025-4254,11/30/2016
+856,usa,dallas,univ of north texas - dallas,tx,75241,11/30/2016
+857,usa,mahwah,ramapo c of new jersey,nj,07430-1623,11/30/2016
+858,usa,lima,ohio state univ-lima,oh,45804,12/1/2016
+859,usa,kapolei,univ of hawaii west oahu,hi,96707,12/1/2016
+860,usa,elyria,lorain county cmty college,oh,44035-1613,12/1/2016
+861,usa,ontario,treasure valley cmty coll,or,97914,12/2/2016
+862,usa,omaha,metro comm -e college,ne,68103,12/2/2016
+863,usa,omaha,metropolitan cmty coll,ne,68111,12/2/2016
+864,usa,boston,northeastern university,ma,02115-5005,12/3/2016
+865,usa,toledo,univ of toledo - health sci cmps,oh,43614-2595,12/5/2016
+866,usa,fort myers,southwest florida coll bus,fl,33907-1157,1/29/2016
+867,usa,waxahachie,navarro coll - waxahachie,tx,75165,1/29/2016
+868,usa,arlington,tarrant cnty coll se,tx,76018,1/29/2016
+869,usa,oklahoma city,oklahoma city comm coll,ok,73159,1/29/2016
+870,usa,valley city,valley city state univ,nd,58072,1/29/2016
+871,usa,marietta,chattahoochee tech,ga,30060-3304,1/29/2016
+872,usa,midlothian,navarro coll - midlothian,tx,76065,1/29/2016
+873,usa,rapid city,south dakota sch mines tech,sd,57701-3901,1/29/2016
+874,usa,elkins,davis &amp;elkins college,wv,26241-3971,1/29/2016
+875,usa,twin falls,college of southern idaho,id,83301,1/29/2016
+876,usa,south burlington,comm coll of vermont,vt,05403-6241,1/29/2016
+877,usa,freeport,highland community college,il,61032-9338,1/29/2016
+878,usa,olean,jamestown cmty coll (olean),ny,14760-2662,1/29/2016
+879,usa,cedar rapids,mount mercy university,ia,52402,1/29/2016
+880,usa,homestead,miami dade coll - homestead,fl,33030,1/29/2016
+881,usa,salisbury,salisbury university,md,21801-6837,1/29/2016
+882,usa,fort worth,tarrant cc - trinity river,tx,76102,1/29/2016
+883,usa,san pablo,contra costa college,ca,94806,1/29/2016
+884,usa,orchard park,erie cmty coll south campus,ny,14127-2100,1/29/2016
+885,usa,brockport,state univ coll brockport,ny,14420-2997,1/29/2016
+886,usa,chester,widener university,pa,19013-5700,1/29/2016
+887,usa,laramie,univ of wyoming - laramie,wy,82071,1/29/2016
+888,usa,rock springs,w wyoming comm coll,wy,82901,1/29/2016
+889,usa,columbus,columbus state comm coll,oh,43215-1722,1/29/2016
+890,usa,hagerstown,hagerstown community college,md,21742,1/29/2016
+891,usa,waco,mclennan community college,tx,76708,1/29/2016
+892,usa,newburgh,mt st mary college,ny,12550-3412,1/29/2016
+893,usa,hamden,quinnipiac university,ct,06518-1905,1/29/2016
+894,usa,flint,charles s mott comm coll,mi,48503-6208,1/29/2016
+895,usa,azusa,azusa pacific university,ca,91702,1/29/2016
+896,usa,tigerville,north greenville university,sc,29688,1/29/2016
+897,usa,tucson,pima college east campus,az,85709,1/29/2016
+898,usa,brentwood,suffolk county cc (grant),ny,11717,1/29/2016
+899,usa,orangeburg,orangeburg calhoun tec coll,sc,29115,1/29/2016
+900,usa,philadelphia,temple univ,pa,19122-6003,1/29/2016
+901,usa,alexandria,louisiana state univ-alexandri,la,71302-9119,1/29/2016
+902,usa,la plata,college of southern maryland,md,20646-0910,1/29/2016
+903,usa,san antonio,ccc group inc,tx,78219,1/29/2016
+904,usa,murray,murray state university,ky,42071,1/29/2016
+905,usa,stony brook,stony brook university,ny,11794,1/29/2016
+906,usa,madison,madison area tech coll,wi,53704,1/30/2016
+907,usa,dallas,mountain view college,tx,75211,1/30/2016
+908,usa,willimantic,eastern conn state univ,ct,06226-2211,1/30/2016
+909,usa,parma heights,cuyahoga cmty coll - westrn,oh,44130,1/30/2016
+910,usa,new york,barnard coll-columbia univ,ny,10027-6909,1/30/2016
+911,usa,aurora,waubonsee cc-aurora,il,60505,1/30/2016
+912,usa,savannah,savannah coll of art &amp;design,ga,31415-2105,1/30/2016
+913,usa,orlando,valencia coll - east,fl,32825-6404,1/30/2016
+914,usa,daytona beach,bethune cookman university,fl,32114-3012,1/30/2016
+915,usa,kealakekua,u h ctr  west hawaii,hi,96750,1/30/2016
+916,usa,moorhead,mississippi delta cmty coll,ms,38761,1/30/2016
+917,usa,denver,university of denver,co,80208,1/30/2016
+918,usa,honolulu,honolulu community college,hi,96817,1/30/2016
+919,usa,phoenix,gateway community college,az,85034,1/30/2016
+920,usa,greenvale,long island univ - cw post ctr,ny,11548-1319,1/30/2016
+921,usa,saint peters,st charles comm coll,mo,63376-2865,12/5/2016
+922,usa,jackson,univ of mississippi med ctr,ms,39216-4500,12/5/2016
+923,usa,chicago,olive harvey college,il,60628,12/5/2016
+924,usa,omaha,metro comm -f college,ne,68111-1646,12/5/2016
+925,usa,sewell,rowan coll at gloucester cty,nj,8080,12/5/2016
+926,usa,oswego,suny at oswego,ny,13126-3501,12/5/2016
+927,usa,chicago,robert morris univ  chicago,il,60605-1229,12/6/2016
+928,usa,corpus christi,texas a&amp;m univ - corpus christi,tx,78412,12/6/2016
+929,usa,madison,univ of wisconsin - madison,wi,53706,12/6/2016
+930,usa,highland hills,cuyahoga cmty coll - east,oh,44122-6104,12/6/2016
+931,usa,reading,albright college,pa,19604-1752,12/7/2016
+932,usa,piscataway,umdnj - piscataway,nj,08854-8021,12/7/2016
+933,usa,cambridge,harvard university,ma,2138,12/7/2016
+934,usa,cazenovia,cazenovia college,ny,13035-1054,12/8/2016
+935,usa,syracuse,onondaga community coll,ny,13215-4580,12/8/2016
+936,usa,san rafael,dominican university of calif,ca,94901,12/8/2016
+937,usa,omaha,metro comm -s college,ne,68103,12/11/2016
+938,usa,norman,university of oklahoma,ok,73019,12/11/2016
+939,usa,syracuse,syracuse univ,ny,13244,12/11/2016
+940,usa,jacksonville,jacksonville college,tx,75766,12/12/2016
+941,usa,harrisburg,hacc harrisburg,pa,17110-2903,12/12/2016
+942,usa,castleton,castleton state college,vt,05735-4453,12/12/2016
+943,usa,beatrice,southeast cmty coll-beatrice,ne,68310-7042,12/13/2016
+944,usa,prosser,washington state univ,wa,99350,12/13/2016
+945,usa,spartanburg,spartanburg comm coll,sc,29303,12/14/2016
+946,usa,jackson,jackson state cmty college,tn,38301-3722,12/15/2016
+947,usa,littleton,arapahoe comm coll,co,80160,12/15/2016
+948,usa,supply,brunswick community college,nc,28462-0030,12/16/2016
+949,usa,piscataway,rutgers u-busch campus,nj,8854,12/16/2016
+950,usa,canton,saint lawrence university,ny,13617-1423,12/18/2016
+951,usa,deland,daytona state coll - deland,fl,32724,12/19/2016
+952,usa,bellevue,bellevue college,wa,98007,12/19/2016
+953,usa,redding,simpson university,ca,96003,12/20/2016
+954,usa,miami,miami-dade coll - virtual coll,fl,33132,1/30/2016
+955,usa,gresham,mt hood community college,or,97030,1/30/2016
+956,usa,jacksonville,fl st coll - jacksonville downtown,fl,32202-3099,1/30/2016
+957,usa,new york,new york career institute,ny,10007,1/30/2016
+958,usa,lincoln,cmty coll of r i-lincoln,ri,2865,1/30/2016
+959,usa,bowling green,southcentral ky ctc - bowling green,ky,42101-3601,1/30/2016
+960,usa,conway,univ of central arkansas,ar,72035-5001,1/30/2016
+961,usa,cleveland,lakeshore tech college,wi,53015-1412,1/30/2016
+962,usa,wingate,wingate univeristy,nc,28174,1/30/2016
+963,usa,arlington,argosy univ/washington dc,va,22209-2490,1/30/2016
+964,usa,palm bay,eastern fl st coll - palm bay,fl,32909-2206,1/30/2016
+965,usa,beverly,endicott college,ma,01915-2096,1/30/2016
+966,usa,monaca,community college of beaver cty,pa,15061-2566,1/30/2016
+967,usa,midlothian,vccs - john tyler cc-midlothia,va,23114-4383,1/30/2016
+968,usa,pocatello,idaho state university,id,83209,1/30/2016
+969,usa,lincroft,brookdale community college,nj,07738-1399,1/30/2016
+970,usa,galveston,texas a&amp;m univ - galveston,tx,77553,1/30/2016
+971,usa,minneapolis,univ of minnesota - mpls,mn,55455-0110,1/30/2016
+972,usa,great falls,great falls coll - msu,mt,59406-6010,1/30/2016
+973,usa,lexington,davidson cty comm coll,nc,27295,1/30/2016
+974,usa,tanner,calhoun cc,al,35671-4028,1/30/2016
+975,usa,warren,kent state u-trumbull,oh,44483-1931,1/30/2016
+976,usa,tacoma,university of puget sound,wa,98416,1/30/2016
+977,usa,pewaukee,waukesha county tech coll,wi,53072,1/30/2016
+978,usa,lewiston,lewis clark state college,id,83501,1/30/2016
+979,usa,little rock,univ arkansas little rock,ar,72204-1000,1/30/2016
+980,usa,river forest,concordia university,il,60305-1402,1/30/2016
+981,usa,boston,boston univ,ma,2215,1/30/2016
+982,usa,johnson city,east tennessee state univ,tn,37614,1/30/2016
+983,usa,philippi,alderson broaddus university,wv,26416,1/31/2016
+984,usa,orlando,valencia coll - lake nona,fl,32832,1/31/2016
+985,usa,germantown,montgomery coll - germantown,md,20876,1/31/2016
+986,usa,providence,comm college rhode island,ri,29052304,1/31/2016
+987,usa,fall river,bristol community college,ma,02720-7307,1/31/2016
+988,usa,washington,american university,dc,20016,1/31/2016
+989,usa,pasco,columbia basin college,wa,99301,1/31/2016
+990,usa,mobile,university of south alabama,al,36688-3053,8/23/2017
+991,usa,galva,black hawk coll - e campus,il,61434-9476,8/23/2017
+992,usa,cambridge,anoka ramsey cc - cambridge,mn,55008-5706,8/23/2017
+993,usa,florence,francis marion univ,sc,29506,8/23/2017
+994,usa,middletown,penn state u harrisburg,pa,17057-4846,8/23/2017
+995,usa,colorado springs,csu pueblo,co,80909,8/23/2017
+996,usa,kingsville,texas a&amp;m univ - kingsville,tx,78363,8/23/2017
+997,usa,purchase,manhattanville college,ny,10577-2131,8/23/2017
+998,usa,ft collins,front range c c - larimer,co,805263812,8/23/2017
+999,usa,milwaukee,mount mary univ - wi,wi,53222-4545,8/23/2017
+1000,usa,raleigh,meredith college,nc,27607-5237,8/23/2017
+1001,usa,baltimore,morgan state university,md,21251-0001,8/23/2017
+1002,usa,jackson,jackson state university,ms,39204-2335,8/23/2017
+1003,usa,hiram,hiram college,oh,44234,8/23/2017
+1004,usa,owensboro,kctcs-owensboro,ky,42303-1800,8/23/2017
+1005,usa,ukiah,mendocino college,ca,95482,8/23/2017
+1006,usa,mountain home,arkansas st univ-mtn home,ar,72653,8/23/2017
+1007,usa,augusta,augusta college,ga,30904-4562,8/23/2017
+1008,usa,baton rouge,baton rouge cmty college,la,70806-4156,8/23/2017
+1009,usa,blue ash,uc - blue ash,oh,45236-1007,8/23/2017
+1010,usa,inver grove heights,inver hills comm college,mn,55076-3224,8/23/2017
+1011,usa,new rochelle,iona college,ny,10801-1830,8/23/2017
+1012,usa,los angeles,cal state u - los angeles,ca,90032,8/23/2017
+1013,usa,huntingdon,juniata college,pa,16652-2119,8/23/2017
+1014,usa,cheraw,northeast technical college,sc,29520,8/23/2017
+1015,usa,weyers cave,vccs - blue ridge cc,va,24486-0080,8/23/2017
+1016,usa,quebec,Vanier College,montreal,H4L 3X9,8/23/2017
+1017,usa,brooklyn park,north hennepin cmty college,mn,55445-2231,8/23/2017
+1018,usa,danville,centre college,ky,40422-1309,12/22/2016
+1019,usa,virginia beach,regent university,va,23464,12/22/2016
+1020,usa,schenectady,union college,ny,12308-3103,12/22/2016
+1021,usa,indianapolis,indiana univ-purdue u-indy,in,46202,12/25/2016
+1022,usa,davis,univ of calif - davis,ca,95616,12/26/2016
+1023,usa,perrysburg,healing arts institute,oh,43551-3138,12/28/2016
+1024,usa,kokomo,indiana univ - kokomo,in,46904,12/29/2016
+1025,usa,ironton,ohio univ southern campus,oh,45638-2279,12/29/2016
+1026,usa,eureka,college of the redwoods,ca,95501,12/29/2016
+1027,usa,westminster,carroll comm college,md,21157,12/30/2016
+1028,usa,lakewood,clover park technical colle,wa,98499,12/31/2016
+1029,usa,santa clara,mission college,ca,95054,1/1/2017
+1030,usa,chicago,depaul univ-loop campus,il,60604-2201,1/1/2017
+1031,usa,albany,excelsior college,ny,12203,1/2/2017
+1032,usa,de pere,saint norbert college,wi,54115-2002,1/2/2017
+1033,usa,los angeles,la coll of microtechnology,ca,90017,1/2/2017
+1034,usa,spokane,spokane community college,wa,99217,1/2/2017
+1035,usa,tacoma,tacoma community college,wa,98466,1/2/2017
+1036,usa,naperville,north central college,il,60540-4607,1/2/2017
+1037,usa,somerset,kctcs-somerset,ky,42501-2973,1/2/2017
+1038,usa,longview,lower columbia college,wa,98632,1/3/2017
+1039,usa,columbia,howard community college,md,21044,1/3/2017
+1040,usa,glendora,citrus college,ca,91741-1899,1/3/2017
+1041,usa,notre dame,university of notre dame,in,46556,1/3/2017
+1042,usa,el cajon,cuyamaca college,ca,92019,1/3/2017
+1043,usa,moses lake,big bend community college,wa,98837,1/3/2017
+1044,usa,wilkes barre,wilkes university,pa,18766-0997,1/3/2017
+1045,usa,philadelphia,drexel university,pa,19104-2816,1/4/2017
+1046,usa,los altos hills,foothill c -los altos hills,ca,94022,1/31/2016
+1047,usa,oneonta,suny at oneonta,ny,13820-2685,1/31/2016
+1048,usa,venice,state coll of florida - venice,fl,34293-5113,1/31/2016
+1049,usa,austin,austin c c - pinnacle,tx,78736,1/31/2016
+1050,usa,pittsburgh,duquesne university,pa,15282,1/31/2016
+1051,usa,lexington,kctcs-bluegrass-cooper,ky,40506-0001,1/31/2016
+1052,usa,harriman,roane st cmty college,tn,37748-8615,1/31/2016
+1053,usa,sidney,montcalm comm college,mi,48885-9723,1/31/2016
+1054,usa,brunswick,college of coastal georgia,ga,31520-3632,1/31/2016
+1055,usa,avondale,estrella mountain cc,az,85392,1/31/2016
+1056,usa,westerville,otterbein university,oh,43081,1/31/2016
+1057,usa,bloomington,ivy tech comm coll - bloomington,in,47404-9772,1/31/2016
+1058,usa,cypress,cypress college,ca,90630,1/31/2016
+1059,usa,folsom,folsom lake college,ca,95630,1/31/2016
+1060,usa,ft pierce,indian river state college,fl,34981,1/31/2016
+1061,usa,centralia,centralia college,wa,98531,1/31/2016
+1062,usa,new york,pace university,ny,10038-1502,1/31/2016
+1063,usa,schenectady,schenectady county cc,ny,12305,1/31/2016
+1064,usa,livonia,madonna university,mi,48150,1/31/2016
+1065,usa,elyria,ashland univ - elyria,oh,44035,1/31/2016
+1066,usa,dixon,sauk valley college,il,61021,1/31/2016
+1067,usa,anderson,ivy tech comm coll - anderson,in,46013-1502,1/31/2016
+1068,usa,rochester,monroe community college,ny,14623-5701,1/31/2016
+1069,usa,estherville,iowa lakes cc-estherville,ia,51334-2721,1/31/2016
+1070,usa,orono,univ of maine at orono,me,4469,1/31/2016
+1071,usa,olney,olney central college,il,62450-1043,8/23/2017
+1072,usa,tampa,hillsborough cmty coll ybor,fl,33605,8/23/2017
+1073,usa,charlottesville,vccs - piedmont virginia cc,va,22902-7589,8/23/2017
+1074,usa,goldsboro,wayne community coll goldsb,nc,27534-8212,8/23/2017
+1075,usa,bel air,harford community college,md,21015-1627,8/23/2017
+1076,usa,raymond,hinds cc- raymond,ms,39154,8/23/2017
+1077,usa,springfield,drury university-springfield,mo,65802-3712,8/23/2017
+1078,usa,fairfield,solano community college,ca,945344017,8/23/2017
+1079,usa,beebe,arkansas state u beebe br,ar,72012-3109,8/23/2017
+1080,usa,ankeny,des moines area c c-ankeny,ia,50023-8995,8/23/2017
+1081,usa,san antonio,our lady of the lake univ,tx,78207,8/23/2017
+1082,usa,forrest city,east arkansas comm coll,ar,72335,8/23/2017
+1083,usa,temple terrace,univ of south florida,fl,33637,8/23/2017
+1084,usa,helena,carroll college,mt,59625-0001,8/23/2017
+1085,usa,chicago heights,prairie state college,il,60411-8200,8/23/2017
+1086,usa,institute,west virginia st univ,wv,25112,8/23/2017
+1087,usa,bemidji,bemidji state university,mn,56601,8/23/2017
+1088,usa,devils lake,lake region state college,nd,58301-1598,8/23/2017
+1089,usa,tampa,university of south florida,fl,33620-9951,8/23/2017
+1090,usa,lumberton,robeson community college,nc,28360-2158,8/23/2017
+1091,usa,ottawa,ottawa university,ks,66067-3341,8/23/2017
+1092,usa,madison,ivy tech comm coll - madison,in,47250,8/23/2017
+1093,usa,lawrenceville,georgia gwinnett college,ga,30043-7409,8/23/2017
+1094,usa,burnaby,simon fraser university,bc,v5a 1s6,8/23/2017
+1095,usa,jamestown,jamestown cmty clg jamestwn,ny,14701-1920,8/23/2017
+1096,usa,marietta,kennesaw state univ - marietta cmps,ga,30060-2855,8/23/2017
+1097,usa,berkeley,univ of calif -  berkeley,ca,94720,8/23/2017
+1098,usa,wichita,friends university,ks,67213-3379,8/23/2017
+1099,usa,winston salem,forsyth technical comm coll,nc,27103-5150,8/24/2017
+1100,usa,overland park,univ of kansas-overland par,ks,66225,8/24/2017
+1101,usa,sayre,s w ok st univ-sayre,ok,73662,8/24/2017
+1102,usa,media,penn state u brandywine,pa,19063-5522,8/24/2017
+1103,usa,keene,southwestern adventist univ,tx,76059,8/24/2017
+1104,usa,fairfax,george mason university,va,22030-4422,8/24/2017
+1105,usa,lima,j a rhodes state college,oh,45804-3576,8/24/2017
+1106,usa,wilmington,southern state cc - north,oh,45177-7146,8/24/2017
+1107,usa,mandeville,northshore tech cc - mandeville,la,70471,8/24/2017
+1108,usa,san mateo,college of san mateo,ca,94402,8/24/2017
+1109,usa,alfred,alfred university,ny,14802,8/24/2017
+1110,usa,raleigh,nc state university,nc,27606-1428,8/24/2017
+1111,usa,merced,uc merced,ca,95343,8/24/2017
+1112,usa,cresson,mount aloysius college,pa,16630-1902,8/24/2017
+1113,usa,moscow,university of idaho,id,83844,8/24/2017
+1114,usa,orange park,st johns river st coll - org park,fl,32065-7639,8/24/2017
+1115,usa,new orleans,loyola university,la,70118-6143,8/24/2017
+1116,usa,cleveland,truett mcconnell college,ga,30528-1264,8/24/2017
+1117,usa,greensburg,seton hill university,pa,15601,8/24/2017
+1118,usa,notre dame,holy cross college,in,46556,8/24/2017
+1119,usa,west liberty,west liberty university,wv,26074,8/24/2017
+1120,usa,west des moines,des moines area cc-west,ia,50266-5302,8/24/2017
+1121,usa,huntsville,univ of alabama-huntsville,al,35899-1911,8/24/2017
+1122,usa,lakeland,florida southern college,fl,33801-5607,8/24/2017
+1123,usa,greensburg,northshore tech cc - greensburg,la,70441,8/24/2017
+1124,usa,tamp,saint leo univ - tampa,fl,336198317,8/24/2017
+1125,usa,altoona,penn state u altoona,pa,16601-3777,8/24/2017
+1126,usa,tulsa,tulsa comm coll-west campus,ok,74107,3/10/2015
+1127,usa,medford,tufts university,ma,2155,3/11/2015
+1128,usa,pensacola,pensacola state college,fl,32504-8910,3/11/2015
+1129,usa,spokane,whitworth university,wa,99251,3/12/2015
+1130,usa,albemarle,stanly community college,nc,28001-7458,3/12/2015
+1131,usa,newton,boston college,ma,02459-1148,3/12/2015
+1132,usa,redlands,community christian college,ca,92373,3/12/2015
+1133,usa,detroit,wayne cnty cc-nw,mi,48219-3580,3/12/2015
+1134,usa,grand rapids,aquinas college,mi,49506-1741,3/18/2015
+1135,usa,kingwood,lonestar college - kingwood,tx,77339,3/18/2015
+1136,usa,orlando,valencia coll - west,fl,32811-2302,3/24/2015
+1137,usa,owensboro,kctcs-owensboro-downtown,ky,42301-4806,3/24/2015
+1138,usa,saint paul,macalester college,mn,55105-1801,3/26/2015
+1139,usa,los angeles,ucla - los angeles,ca,90095,3/30/2015
+1140,usa,bryan,blinn -occ ed college,tx,77801,3/30/2015
+1141,usa,kaneohe,hawaii pacific univ-loa,hi,96744,3/31/2015
+1142,usa,orlando,adventist univ of health sci,fl,32803-1237,3/31/2015
+1143,usa,seminole,seminole state college,ok,74868,4/1/2015
+1144,usa,nashville,tenn state university,tn,37209,4/5/2015
+1145,usa,lenexa,a&amp;l underground inc,ks,66215,4/7/2015
+1146,usa,mount vernon,skagit valley college,wa,98273,4/7/2015
+1147,usa,presque isle,northern maine comm coll,me,04769-2016,4/7/2015
+1148,usa,columbus,inside sales,oh,43235,4/9/2015
+1149,usa,colchester,saint michaels college,vt,05439-0001,4/9/2015
+1150,usa,aberdeen,grays harbor cmty college,wa,98520,4/13/2015
+1151,usa,mobile,spring hill college,al,36608-1780,4/15/2015
+1152,usa,media,pennsylvania inst tech,pa,19063-4036,4/17/2015
+1153,usa,garden city,nassau community college,ny,11530,4/18/2015
+1154,usa,hartsville,coker college,sc,29550-3742,4/18/2015
+1155,usa,olympia,south puget sound cmty coll,wa,98512,4/20/2015
+1156,usa,tifton,abraham baldwin agric coll,ga,31793,4/21/2015
+1157,usa,brooklyn,brooklyn college,ny,11210-2850,4/21/2015
+1158,usa,sumter,central carolina tech coll,sc,29150,4/22/2015
+1159,usa,rockville,johns hopkins university,md,20850-3330,4/22/2015
+1160,usa,keuka park,keuka college,ny,14478,4/24/2015
+1161,usa,cortland,suny at cortland,ny,13045,4/25/2015
+1162,usa,parkville,park university,mo,64152-4358,4/27/2015
+1163,usa,glassboro,rowan university of new jersey,nj,08028-1700,4/29/2015
+1164,usa,jacksonville,fl st coll - jacksonville south,fl,32246,1/4/2017
+1165,usa,johnstown,univ of pitts at johnstown,pa,15904-2912,1/4/2017
+1166,usa,greenville,thiel college,pa,16125-2186,1/4/2017
+1167,usa,boston,wentworth inst of tech,ma,02115-5901,1/4/2017
+1168,usa,portland,portland cmty coll cascade,or,97217,1/4/2017
+1169,usa,meridan,univ of phoenix - id,id,83642,1/4/2017
+1170,usa,greensburg,univ of pitts at greensburg,pa,15601-5804,1/4/2017
+1171,usa,titusville,univ of pitts at titusville,pa,16354,1/4/2017
+1172,usa,portland,portland cmty coll rock crk,or,97229,1/5/2017
+1173,usa,nashua,rivier university,nh,3060,1/5/2017
+1174,usa,jacksonville,jacksonville st university,al,36265-1602,1/5/2017
+1175,usa,santa clara,santa clara university,ca,95053,1/5/2017
+1176,usa,tampa,southwest florida coll,fl,33619-1344,1/5/2017
+1177,usa,oakwood,lanier tech coll - oakwood,ga,30566,1/5/2017
+1178,usa,hanceville,wallace st comm coll-hanceville,al,35077,1/5/2017
+1179,usa,warren,macomb cmty coll-south cp,mi,48088,1/31/2016
+1180,usa,west chester,west chester university,pa,19383,2/1/2016
+1181,usa,hobbs,new mexico junior college,nm,88240,2/1/2016
+1182,usa,portsmouth,great bay community coll,nh,03801-2879,2/1/2016
+1183,usa,takoma park,montgomery coll-takoma park,md,20912-4141,2/1/2016
+1184,usa,texarkana,texarkana college,tx,75501,2/1/2016
+1185,usa,indianapolis,marian university - in,in,46222-1960,2/1/2016
+1186,usa,franklin springs,emmanuel college,ga,30639,1/6/2017
+1187,usa,pensacola,university of west florida,fl,32514,1/6/2017
+1188,usa,columbia,columbia college,sc,29203,1/6/2017
+1189,usa,flint,univ of michigan-flint,mi,48502,1/6/2017
+1190,usa,chicago,university of chicago,il,60637,1/6/2017
+1191,usa,lancaster,ohio univ-lancaster,oh,43130-1037,1/6/2017
+1192,usa,greenville,furman university,sc,29613-0002,1/6/2017
+1193,usa,aberdeen,presentation college,sd,57401,1/6/2017
+1194,usa,eugene,university of oregon,or,97403-1253,1/6/2017
+1195,usa,portland,univ of oregon,or,97204,1/7/2017
+1196,usa,fort myers,fl southwestern st coll - lee campus,fl,33919-5566,1/7/2017
+1197,usa,chester,vccs - john tyler cc-chester,va,23831,1/7/2017
+1198,usa,riverside,univ of calif - riverside,ca,92521,2/1/2016
+1199,usa,hudson,caldwell community college,nc,28638-2672,2/1/2016
+1200,usa,seattle,shoreline cmty college,wa,98133,2/1/2016
+1201,usa,boone,des moines area cc-boone,ia,50036-5326,2/1/2016
+1202,usa,malibu,pepperdine univ - malibu,ca,90263,2/1/2016
+1203,usa,mexia,navarro coll - mexia,tx,76667,2/1/2016
+1204,usa,springfield,american international coll,ma,01109-3151,2/1/2016
+1205,usa,hamilton,colgate university,ny,13346-1338,2/1/2016
+1206,usa,madisonville,kctcs-madisonville,ky,42431-9185,2/1/2016
+1207,usa,whittier,rio hondo college,ca,90601,2/1/2016
+1208,usa,bennington,southern vermont college,vt,05201-9269,2/1/2016
+1209,usa,costa mesa,orange coast college,ca,92626,2/1/2016
+1210,usa,allentown,cedar crest college,pa,18104-6132,2/1/2016
+1211,usa,new orleans,tulane university,la,70118-5665,2/1/2016
+1212,usa,ft worth,tarrant cnty coll so,tx,76119,2/1/2016
+1213,usa,farmington hills,oakland cc -orchard ridge,mi,48334,2/1/2016
+1214,usa,bismarck,bismarck state college,nd,58501-1276,2/1/2016
+1215,usa,angwin,pacific union college,ca,94508,1/8/2017
+1216,usa,aiken,univ of sc - aiken,sc,29801-6389,1/8/2017
+1217,usa,portland,university of portland,or,97203,1/8/2017
+1218,usa,wayne,wayne state college,ne,68787,1/8/2017
+1219,usa,saint augustine,st johns river st coll -st augustine,fl,32084-1197,1/9/2017
+1220,usa,plymouth,lakeland college,wi,53073,2/1/2016
+1221,usa,bradford,univ of pitts at bradford,pa,16701-2812,2/1/2016
+1222,usa,akron,univ of akron,oh,44325-0001,2/1/2016
+1223,usa,winchester,kctcs-bluegrass-winchester-clark,ky,40391-1804,2/1/2016
+1224,usa,champaign,parkland college,il,61821-1806,2/1/2016
+1225,usa,altoona,penn state univ-altoona,pa,16601-3777,2/2/2016
+1226,usa,casper,casper college,wy,82601,2/2/2016
+1227,usa,roxboro,piedmont community college,nc,27573,2/2/2016
+1228,usa,ashtabula,kent state u-ashtabula,oh,44004-2316,2/2/2016
+1229,usa,fort morgan,morgan comm coll,co,80701,8/24/2017
+1230,usa,pueblo,pueblo community college,co,81004,8/24/2017
+1231,usa,st marys city,st marys college,md,20686,8/24/2017
+1232,usa,berkeley,berkeley city college,ca,94704,8/24/2017
+1233,usa,st louis,st louis cc - meramec,mo,631225799,8/24/2017
+1234,usa,norwalk,cerritos college,ca,90650,1/9/2017
+1235,usa,weldon,halifax cmty coll,nc,27890-0700,1/9/2017
+1236,usa,chesapeake,st leo univ - chesapeake,va,23322,1/9/2017
+1237,usa,des moines,grand view university,ia,50316-1529,1/9/2017
+1238,usa,alameda,college of alameda,ca,94501,2/2/2016
+1239,usa,la verne,university of la verne,ca,91750,2/2/2016
+1240,usa,albany,darton college,ga,31707-3023,2/2/2016
+1241,usa,san antonio,st philips college,tx,78203,2/2/2016
+1242,usa,west allis,milwaukee atc w camp west,wi,53214-3110,2/2/2016
+1243,usa,southaven,northwest miss cmty coll,ms,38671-8403,2/2/2016
+1244,usa,auburndale,lasell college,ma,02466-2709,2/2/2016
+1245,usa,gardner,mount wachusett cmty coll,ma,01440-1378,2/2/2016
+1246,usa,terrell,trinity valley cc - terrell,tx,75160,2/2/2016
+1247,usa,iowa city,kirkwood cc,ia,52240-3102,2/2/2016
+1248,usa,wilson,barton college,nc,27893,2/2/2016
+1249,usa,bolivar,southwest baptist univ,mo,65613-2578,2/2/2016
+1250,usa,winston salem,salem college,nc,27101-5318,8/24/2017
+1251,usa,canyon,west texas a&amp; university,tx,79015,8/24/2017
+1252,usa,san francisco,university of san francisco,ca,94117,8/24/2017
+1253,usa,warrensburg,university of central missouri,mo,64093,8/24/2017
+1254,usa,yucaipa,crafton hills college,ca,92399,8/24/2017
+1255,usa,peru,peru state college,ne,68421-3073,8/24/2017
+1256,usa,san diego,san diego city coll,ca,92101,8/24/2017
+1257,usa,boiling springs,gardner-webb university,nc,28017,8/24/2017
+1258,usa,wentworth,rockingham community coll,nc,27375-0038,8/24/2017
+1259,usa,alamosa,adams state university,co,81102,8/24/2017
+1260,usa,riverdale,manhattan college,ny,10471,8/24/2017
+1261,usa,imperial,imperial valley college,ca,92251,8/24/2017
+1262,usa,west point,point university,ga,31833,8/24/2017
+1263,usa,cedar rapids,coe college,ia,52402,8/24/2017
+1264,usa,madera,madera cmty clg ctr,ca,93637,8/24/2017
+1265,usa,plymouth,plymouth state university,nh,03264-1595,8/24/2017
+1266,usa,columbus,miss university  for women,ms,39701-5821,8/24/2017
+1267,usa,syracuse,le moyne college,ny,13214-1302,8/24/2017
+1268,usa,los alamos,univ of nm-los alamos,nm,87544,8/24/2017
+1269,usa,great bend,barton cnty cc-great bend,ks,67530-9803,8/24/2017
+1270,usa,dallas,misericordia university,pa,18612-1008,8/24/2017
+1271,usa,clinton,mississippi college,ms,39058-0001,8/24/2017
+1272,usa,roanoke,virginia western cmty coll,va,24015-4705,8/24/2017
+1273,usa,clovis,clovis community college,nm,88101,8/24/2017
+1274,usa,dothan,troy univ dothan,al,36303-1568,8/24/2017
+1275,usa,centennial,pearson internal test,co,80122,8/24/2017
+1276,usa,milwaukee,marquette univ,wi,53233-2207,8/24/2017
+1277,usa,new westminster,douglas college,bc,v3l 5b2,8/24/2017
+1278,usa,davidson,davidson college,nc,28035-0001,8/24/2017
+1279,usa,north east,cecil  college,md,21901-1900,5/5/2015
+1280,usa,naples,ave maria university,fl,34119-1376,5/5/2015
+1281,usa,eden prairie,wol-abc minnesota,mn,55344,5/7/2015
+1282,usa,san luis obispo,california polytech st univ,ca,93407,5/14/2015
+1283,usa,miami,miami-dade  coll wolfsn,fl,33132-2204,5/14/2015
+1284,usa,orange city,northwestern college,ia,51041-1923,5/15/2015
+1285,usa,racine,gateway tech coll,wi,53403-1518,5/18/2015
+1286,usa,atlanta,georgia inst of technology,ga,30308,5/18/2015
+1287,usa,clinton,ashford university,ia,52732-3910,5/19/2015
+1288,usa,kenosha,gateway tech inst-kenosha,wi,53144-1619,5/22/2015
+1289,usa,boston,caritas laboure college,ma,02124-5617,5/26/2015
+1290,usa,springfield,clark state cmty college,oh,45501-0570,5/27/2015
+1291,usa,carson,cal state u - dominguez hills,ca,90747,5/27/2015
+1292,usa,santa cruz,univ of calif - santa cruz,ca,95064,5/29/2015
+1293,usa,providence,providence college,ri,02918-7000,5/29/2015
+1294,usa,fulton,westminster college,mo,65251-1230,5/29/2015
+1295,usa,charlotte,queens univ - charlotte,nc,28274-0001,5/31/2015
+1296,usa,lowell,umasslowell,ma,01854-2827,5/31/2015
+1297,usa,martinsville,vccs - patrick henry cc,va,24112-6693,6/1/2015
+1298,usa,clarion,clarion university of pa,pa,16214-1240,6/1/2015
+1299,usa,north dartmouth,umassdartmouth,ma,02747-2356,6/2/2015
+1300,usa,seattle,university of washington,wa,98195,6/10/2015
+1301,usa,framingham,framingham state university,ma,01702-2499,6/14/2015
+1302,usa,spartanburg,univ of sc - upstate,sc,29303-4932,1/9/2017
+1303,usa,ogden,weber state university,ut,84408,1/9/2017
+1304,usa,new bern,craven community college,nc,28562,1/9/2017
+1305,usa,morrow,clayton state univ,ga,30260-1293,1/9/2017
+1306,usa,alpena,alpena community college,mi,49707-1410,2/2/2016
+1307,usa,staten island,college of staten island,ny,10314-6609,2/2/2016
+1308,usa,greenvale,long island university (cw post),ny,11548-1319,2/2/2016
+1309,usa,henderson,nevada state college,nv,89015,2/2/2016
+1310,usa,san angelo,angelo state university,tx,76909,2/3/2016
+1311,usa,dyersburg,dyersburg st comm coll,tn,38024,2/3/2016
+1312,usa,cambridge,massachusetts inst of tech,ma,2139,1/9/2017
+1313,usa,new concord,muskingum university,oh,43762-1118,1/9/2017
+1314,usa,hammond,purdue university calumet,in,46323,1/9/2017
+1315,usa,san bernardino,san bernardino valley coll,ca,92410,2/3/2016
+1316,usa,fort lauderdale,broward coll-downtown,fl,33301-2208,2/3/2016
+1317,usa,kansas city,penn valley cmty college,mo,64111,2/3/2016
+1318,usa,colorado springs,pikes peak cc - downtown cmps,co,80903,2/3/2016
+1319,usa,heathrow,seminole state - heathrow,fl,32746,2/3/2016
+1320,usa,purchase,suny at purchase,ny,10577-1402,2/3/2016
+1321,usa,south bend,indiana univ at so bend,in,46615-1408,2/3/2016
+1322,usa,monmouth,western oregon university,or,97361,1/10/2017
+1323,usa,sarasota,univ of south florida sarasota/manatee,fl,34243-2049,1/10/2017
+1324,usa,catonsville,cc baltimore cty - catonsville,md,21228-5317,2/3/2016
+1325,usa,new york,baruch college of cuny,ny,10010-5518,2/3/2016
+1326,usa,hempstead,hofstra university,ny,11549,2/3/2016
+1327,usa,cambridge,lesley university,ma,02138-2702,2/4/2016
+1328,usa,the pas,univ coll of the north - the pas,mb,r9a 1m7,8/24/2017
+1329,usa,worthington,mn west comm &amp;tech coll- wort,mn,56187-3024,8/24/2017
+1330,usa,harrisburg,temple univ - harrisburg,pa,17101-1817,8/24/2017
+1331,usa,portland,univ of so maine - portland,me,04103-4864,8/24/2017
+1332,usa,newark,university of delaware,de,19716,8/24/2017
+1333,usa,salt lake city,salt lake city comm coll-s,ut,84115,1/10/2017
+1334,usa,jupiter,florida atlantic u - north/mac,fl,33458-2906,1/10/2017
+1335,usa,salt lake city,brigham young univ-salt lak,ut,84124,1/10/2017
+1336,usa,douglas,south ga state coll - douglas,ga,31533-5020,1/10/2017
+1337,usa,terre haute,ivy tech comm coll - terre haute,in,47802-4883,2/4/2016
+1338,usa,belmont,notre dame de namur university,ca,94002,2/4/2016
+1339,usa,plattsburgh,clinton community college,ny,12901-6002,2/4/2016
+1340,usa,marietta,marietta college,oh,45750-4033,2/4/2016
+1341,usa,birmingham,univ alabama-birmingham,al,35294-0001,2/4/2016
+1342,usa,magnolia,sthrn arkansas u-magnolia,ar,71753,2/4/2016
+1343,usa,san francisco,san francisco state univ,ca,94132,8/24/2017
+1344,usa,colby,colby comm coll,ks,67701-4007,8/24/2017
+1345,usa,burton,kent state u-geauga co,oh,44021,8/24/2017
+1346,usa,augusta,augusta technical college,ga,30906-8243,8/24/2017
+1347,usa,opelika,southern union cc-opelika,al,36801-3113,8/24/2017
+1348,usa,columbia,benedict college,sc,29204-1058,8/24/2017
+1349,usa,shepherdstown,shepherd university,wv,25443,8/24/2017
+1350,usa,creston,southwestern community coll,ia,50801-1042,8/24/2017
+1351,usa,south orange,seton hall university,nj,07079-2646,8/24/2017
+1352,usa,kenosha,univ of wisconsin - parkside,wi,53144-1133,8/24/2017
+1353,usa,lincoln univ,lincoln university,pa,19352,8/24/2017
+1354,usa,bogalusa,northshore tech cc - bogalusa,la,70427-5866,8/24/2017
+1355,usa,childersburg,central alabama cc,al,35044,8/24/2017
+1356,usa,tampa,hillsborough c c-d mabry,fl,33614-7810,8/24/2017
+1357,usa,media,delaware cty comm college,pa,19063-1027,8/24/2017
+1358,usa,mayhew,east ms cc - golden triangle campus,ms,39753,8/24/2017
+1359,usa,ellisville,jones county junior college,ms,39437-3901,8/24/2017
+1360,usa,douglasville,west ga tech - douglas,ga,30135,8/24/2017
+1361,usa,kennesaw,duplicate,ga,30144,8/24/2017
+1362,usa,bryan,s-con inc,tx,77807,6/18/2015
+1363,usa,la grande,eastern oregon university,or,97850,6/18/2015
+1364,usa,san francisco,ccsf - ocean,ca,94112,6/19/2015
+1365,usa,puyallup,pierce college,wa,98374-2210,6/29/2015
+1366,usa,indiana,indiana university of pa,pa,15705,7/6/2015
+1367,usa,lakewood,rockmont college,co,80226,7/22/2015
+1368,usa,philadelphia,holy family university,pa,19114-2009,1/10/2017
+1369,usa,chicago,northeastern illinois univ,il,60625,1/10/2017
+1370,usa,elizabethtown,kentucky tech elizabethtown,ky,42701-3149,1/10/2017
+1371,usa,detroit,univ of detroit-dental schl,mi,48207-4288,1/10/2017
+1372,usa,austin,austin c c - rio grande,tx,78701,2/4/2016
+1373,usa,denton,university of north texas,tx,76203,2/4/2016
+1374,usa,cincinnati,raymond walters college,oh,45236,2/5/2016
+1375,usa,chicago,city college of chicago,il,60609-2325,2/5/2016
+1376,usa,winston salem,wake forest university,nc,27106,1/10/2017
+1377,usa,erie,penn state u behrend campus,pa,16563-4101,1/10/2017
+1378,usa,don mills,pearson university,on,m3c 2t8,1/10/2017
+1379,usa,grenada,holmes cc-grenada,ms,38901-5095,1/10/2017
+1380,usa,bangor,husson university,me,4401,2/5/2016
+1381,usa,pittsburgh,cc allegheny co-allegheny,pa,15212-6003,2/5/2016
+1382,usa,new york,fordham univ-lincoln ctr,ny,10023-7414,2/5/2016
+1383,usa,elkhorn,gateway tech coll elkhorn,wi,53121-2035,2/5/2016
+1384,usa,chicago,kennedy king college,il,60621-2709,2/6/2016
+1385,usa,seattle,north seattle cmty college,wa,98103,2/6/2016
+1386,usa,emory,emory and henry college,va,24327,1/10/2017
+1387,usa,wahpeton,no dakota st college of sci,nd,58076-0001,1/10/2017
+1388,usa,vincennes,vincennes univ - vincennes,in,47591-1504,1/11/2017
+1389,usa,edinboro,edinboro university of pa,pa,16444,2/6/2016
+1390,usa,randolph,county college of morris,nj,7869,2/6/2016
+1391,usa,river forest,dominican university,il,60305,2/6/2016
+1392,usa,plainfield,union county college,nj,07060-1308,2/7/2016
+1393,usa,eau claire,chippewa valley tech coll,wi,54701-6120,8/24/2017
+1394,usa,brownwood,texas state tech - brownwood,tx,76801,8/25/2017
+1395,usa,odessa,univ of texas - permian basin,tx,79762,8/25/2017
+1396,usa,peoria,midstate college,il,61614-3542,8/25/2017
+1397,usa,washington,univ district of columbia,dc,20008,1/11/2017
+1398,usa,pineville,louisiana college,la,71360,1/11/2017
+1399,usa,erie,gannon university,pa,16541-0002,1/11/2017
+1400,usa,pinehurst,sandhills community college,nc,28374-8778,1/11/2017
+1401,usa,newnan,univ of west ga - newnan,ga,30265,8/25/2017
+1402,usa,greeley,aims comm coll-greeley,co,80634,8/25/2017
+1403,usa,ft lauderdale,nova southeastern univ,fl,33314,8/25/2017
+1404,usa,saint louis,univ of mo-st louis,mo,63121,8/25/2017
+1405,usa,coalinga,west hills college,ca,93210,8/25/2017
+1406,usa,moraga,saint marys college,ca,94575,8/25/2017
+1407,usa,albany,albany tech college,ga,31701-2648,8/25/2017
+1408,usa,indianapolis,ball state univ - indiana,in,46220,8/25/2017
+1409,usa,independence,blue river community colleg,mo,64057,8/25/2017
+1410,usa,lansing,lansing community college,mi,48933-1215,8/25/2017
+1411,usa,mars hill,mars hill college,nc,28754-9134,8/25/2017
+1412,usa,hickory,catawba valley comm coll,nc,28602-8302,8/25/2017
+1413,usa,watkinsville,univ of n georgia -oconee,ga,30677,8/25/2017
+1414,usa,hammond,north shore career coll,la,70401,8/25/2017
+1415,usa,gambier,kenyon college,oh,43022,8/25/2017

@@ -1,0 +1,543 @@
+body {
+    margin:0;
+    padding:0;
+    font-size: 14px;
+    font-family: "Roboto",serif,Helvetica,Arial,sans-serif;
+}
+
+a, a:hover, a:active, a:visited {
+    text-decoration: none;
+}
+
+.visualisation {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    overflow: hidden;
+}
+
+.site-logo {
+    display: block;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    z-index: 30;
+    opacity: 0.6;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+}
+
+.site-logo a img {
+    width: 60px;
+}
+
+/* STYLE */
+
+.style-params {
+   background-color: #89bdd3;
+   color: #eee;
+   -webkit-box-orient: horizontal;
+   -webkit-box-direction: normal;
+       -ms-flex-direction: row;
+           flex-direction: row;
+}
+
+.style-elevchart {
+   background-color: #9ad3de;
+   color: #eee;
+}
+
+.style-waypoints {
+   background-color: #e3e3e3;
+   color: #c9c9c9;
+}
+
+.style-description {
+   background-color: #c9c9c9;
+   color: #eee;
+}
+
+/* LAYOUT */
+
+.map {
+    display: block;
+    width:100%;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+    z-index: 20;
+}
+
+.mapboxgl-ctrl-icon {
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.satellite {
+    background-image: url('//www.mtb.ba/stazenew/svg/satellite_active.svg');
+}
+
+.home {
+    background-image: url('//www.mtb.ba/stazenew/svg/home_active.svg');
+}
+
+.danger {
+    background-image: url('//www.mtb.ba/stazenew/svg/danger_active.svg');
+}
+
+.trail-name {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 50px;
+            flex: 0 0 50px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    background-color: #60899a;
+    z-index: 10;
+}
+
+.trail-name-icon {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 70px;
+            flex: 0 0 70px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('//www.mtb.ba/stazenew/svg/bike_active.svg');
+}
+
+.trail-name-text {
+    display: block;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 100%;
+            flex: 1 1 100%;
+    padding: 10px 20px;
+    font-size: 180%;
+    color: #eee;
+}
+
+.trail-download {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+    background-color: #89bdd3;
+    color: #fff;
+    cursor: pointer;
+    padding: 8px 8px 8px 25px;
+    margin: 8px;
+    border-radius: 3px;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-image: url('//www.mtb.ba/stazenew/svg/download_active.svg'); 
+}
+
+.trail-download:hover {
+    background-color: #9ad3de;
+}
+
+.details {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 200px;
+            flex: 0 0 200px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    background-color: #ddd;
+}
+
+/* DETAIL - MENU */
+
+.menu {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 70px;
+            flex: 0 0 70px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+.menu-item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    // border-right: 1px solid #fff;
+    // border-top: none;
+    // border-bottom: none;
+}
+
+.menu-item-active {
+    // border-right: none;
+    // border-top: 1px solid #fff;
+    // border-bottom: 1px solid #fff;
+}
+
+/* DETAIL - MENU */
+
+.content {
+    display: block;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 100%;
+            flex: 1 1 100%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+.content-item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 200px;
+    width: calc(100% - 70px);
+    bottom: 0px;
+    position: absolute;
+    -webkit-transition:300ms;
+    transition: 300ms;
+    opacity: 0;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    z-index: 1;
+}
+
+/* INFO */
+
+.parameters-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+}
+
+.parameters-row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+
+.parameters-column {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 25%;
+            flex: 1 1 25%;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+
+.parameters-value, .parameters-label {
+    text-align: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
+}
+
+.trailname {
+    font-size: 180%;
+    padding-left: 50px;
+}
+
+.leftalign {
+    text-align: left;
+}
+
+.odometer {
+    // font-size: 220%;
+}
+
+.parameters-value {
+    font-size: 180%;
+}
+
+.maxelev, .minelev {
+    // font-size: 150%;
+}
+
+.parameters-label {
+    font-size: 70%;
+    opacity: 0.5;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+}
+
+.chart-pie {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 300px;
+            flex: 0 0 300px;
+}
+
+.info-elevation {
+    font-size: 120%;
+    background-repeat: no-repeat;
+    background-position: left;
+    background-image: url('//www.mtb.ba/stazenew/svg/ic_landscape_black_24px.svg');
+}
+
+.label {
+}
+
+.value {
+    padding-left: 10px;
+}
+
+.uphill {
+    color: #932B2B;
+}
+
+.downhill {
+    color: #2B932B;
+}
+
+.inline {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+}
+
+.chart-elevation { 
+    -webkit-box-flex: 1; 
+        -ms-flex: 1 1 auto; 
+            flex: 1 1 auto;
+}
+
+/* WAYPOINTS */
+.waypoints-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    width: 100%;
+    height: 200px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.waypoint-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 10px;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 180px;
+            flex: 0 0 180px;
+    max-width: 180px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    cursor: pointer;
+    border-right: 1px dashed #fff;
+    font-size: 14px;
+    font-family: "Roboto",serif,Helvetica,Arial,sans-serif;
+    color: #999;
+}
+
+.waypoint-container:hover {
+    background-color: #eee;
+}
+
+.waypoint-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 50%;
+            flex: 1 1 50%;
+    min-height: 70px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+}
+
+.waypoint-header-info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+.waypoint-header-iterator {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 17px;
+            flex: 0 0 17px;
+    width: 20px;
+    background-color: #333;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 70%;
+    font-weight: 600;
+    color: #ccc;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding-top: 3px;
+    margin-bottom: 10px;
+}
+
+.waypoint-header-odometer {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 40%;
+            flex: 1 1 40%;
+    font-size: 130%;
+}
+
+.waypoint-header-elevation {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 35%;
+            flex: 1 1 35%;
+    font-size: 100%;
+}
+
+.waypoint-header-pictogram {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    // background-size: 100% 100%;
+    background-size: contain;
+}
+
+.waypoint-trailname {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 10%;
+            flex: 1 1 10%;
+    font-size: 100%;
+    padding: 10px 0;
+    color: #333;
+}
+
+.waypoint-description {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 40%;
+            flex: 1 1 40%;
+    font-size: 80%;
+}
+
+/* DESCRIPTION */
+
+.description-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    width: 100%;
+    height: 200px;
+}
+
+.description-image {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 35%;
+            flex: 1 1 35%;
+    min-width: 100px;
+    max-width: 600px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.description-text-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 65%;
+            flex: 1 1 65%;
+    padding: 10px;
+    font-size: 90%;
+    line-height: 150%;
+    color: #666;
+    overflow-y: auto;
+}
+
+.description-switcher {
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    right: calc(35% + 15px);
+    background-color: #e3e3e3;
+    color: #999;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 70%;
+    border-radius: 3px;
+    z-index: 10;
+}
+
+.description-switcher:hover {
+    background-color: #999;
+    color: #e3e3e3;
+}
+
+/* COMMON */
+
+.content-active {
+    opacity: 1;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    z-index: 2;
+}

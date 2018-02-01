@@ -8,10 +8,10 @@ class NewTrail extends BasePage {
         super(params);
     }
 
-    componentDidMount() {
+    // componentDidMount() {
         // console.info('NewTrail DidMount');
-        this.emit('RETRIEVE_MAP_INIT');
-    }
+        // this.emit('RETRIEVE_MAP_INIT');
+    // }
 
     componentWillUnmount() {
         this.deactivateControllers();

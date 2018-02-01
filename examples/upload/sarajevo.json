@@ -1,0 +1,31 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sarajevo 1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.27369689941406,
+          43.85730655173586
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sarajevo 2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.409652709960938,
+          43.84690817091638
+        ]
+      }
+    }
+  ]
+}

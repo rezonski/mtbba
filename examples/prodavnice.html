@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Bike stores</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href='//fonts.googleapis.com/css?family=Roboto:200,300,400,500,700' rel='stylesheet' type='text/css'>
+    <script src='//api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.js'></script>
+    <link href='//api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl.css' rel='stylesheet' />
+    <script src='//code.highcharts.com/highcharts.js'></script>
+    <script src='//code.highcharts.com/modules/exporting.js'></script>
+    <link href='css/prodavnice_style.css' rel='stylesheet' />
+    <!-- <script src='js/jquery.min.js'></script> -->
+    <link rel='stylesheet' href='//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css'>
+    <script src='https://code.jquery.com/jquery-1.12.4.js'></script>
+    <script src='https://code.jquery.com/ui/1.12.1/jquery-ui.js'></script>
+    <link href="//cdn.muicss.com/mui-0.9.27/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <script src="//cdn.muicss.com/mui-0.9.27/js/mui.min.js"></script>
+    <script src='js/togeojson.js'></script>
+    <script src='js/turf.min.js'></script>
+    <script src='js/prodavnice.js'></script>
+</head>
+<body>
+<div class="app">
+  <div class="mui-appbar appbar">
+    <div class="mui-textfield mui-textfield--float-label appbar-element">
+      <input id="brands" type="text">
+      <label>Robna marka / brend</label>
+    </div>
+    <div class="mui-textfield mui-textfield--float-label appbar-element">
+      <input id="cities" type="text">
+      <label>Grad / mjesto</label>
+    </div>
+    <div class="mui-textfield mui-textfield--float-label appbar-element">
+      <input id="vendors" type="text">
+      <label>Kompanija</label>
+    </div>
+    <div class="appbar-element"></div>
+    <button class="mui-btn mui-btn--small dugme">Shop</button>
+    <button class="mui-btn mui-btn--small mui-btn--primary dugme">Servis</button>
+    <button class="mui-btn mui-btn--small dugme">Rent</button>
+    <div class="appbar-element"></div>
+  </div>
+  <div class="appcontent">
+    <div id="map" class="map"></div>
+    <div id="sidebar" class="sidebar"></div>
+  </div>
+</div>
+<script>
+    loadJson();
+    mapboxgl.accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';  
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        zoom: 6,
+        maxZoom: 19,
+        center: [18.19, 44.13],
+        maxBounds: [[12, 40], [25, 47]]
+    });
+    window.map = map;  
+    map.on('load', function() {
+        map.fitBounds([[14, 42], [22, 46]]);
+        addControls(map);
+        startLoadingProcess();
+    });
+</script>
+</body>
+</html>

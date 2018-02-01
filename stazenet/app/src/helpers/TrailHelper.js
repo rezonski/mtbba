@@ -4,6 +4,7 @@ import MessageEvents from '/enums/MessageEvents';
 import Enum from '/enums/Enum';
 import Lang from '/helpers/Lang';
 import CommonHelper from '/helpers/CommonHelper';
+import TrailsDataModel from '/dataSources/TrailsDataModel';
 
 class TrailHelper extends GLU.Controller {
     constructor(props) {
@@ -24,20 +25,22 @@ class TrailHelper extends GLU.Controller {
         const squared = turf.bboxPolygon(turf.square(bbox));
         const area = turf.area(squared) / 1000000; // in square kilometers
         const radius = Math.sqrt(area);
-        if (radius > 100) {
+        if (radius > 110) {
             return 7;
-        } else if (radius > 60) {
+        } else if (radius > 75) {
             return 8;
-        } else if (radius > 30) {
+        } else if (radius > 50) {
             return 9;
-        } else if (radius > 15) {
+        } else if (radius > 30) {
             return 10;
-        } else if (radius > 10) {
+        } else if (radius > 15) {
             return 11;
-        } else if (radius > 5) {
+        } else if (radius > 10) {
             return 12;
+        } else if (radius > 5) {
+            return 13;
         }
-        return 13;
+        return 14;
         // const pt0 = turf.point(bounds[0]);
         // const pt1 = turf.point(bounds[1]);
         // const distance = turf.distance(pt0, pt1);
@@ -73,31 +76,32 @@ class TrailHelper extends GLU.Controller {
     }
 
     nivelatePathLine(featuresCollection) {
-        let pathLineMasterd = [];
-        let prevLoc = {};
-        const pathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
-        let flattenProgressPayload = {
-            status: 'progress',
-            id: 'progressFlattenPath',
-            loaded: 0,
-            total: pathLine.length,
-        };
-        pathLine.forEach((location, index) => {
-            let elevationCalc = 0;
-            if (index > 0) {
-                elevationCalc = (!location[2]) ? prevLoc.elevation : location[2];
-            } else {
-                elevationCalc = (location[2] === undefined) ? 0 : location[2];
-            }
-            pathLineMasterd.push([location[0], location[1], elevationCalc]);
-            if (index % 10 === 0) {
-                flattenProgressPayload.loaded = parseInt(index / 2, 10);
-                GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, flattenProgressPayload);
-            }
-        });
-        let elevationNivelatedFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
-        CommonHelper.getLineStrings(elevationNivelatedFeaturesCollection)[0].geometry.coordinates = pathLineMasterd;
-        return elevationNivelatedFeaturesCollection;
+        // let pathLineMasterd = [];
+        // let prevLoc = {};
+        // const pathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
+        // let flattenProgressPayload = {
+        //     status: 'progress',
+        //     id: 'progressFlattenPath',
+        //     loaded: 0,
+        //     total: pathLine.length,
+        // };
+        // pathLine.forEach((location, index) => {
+        //     let elevationCalc = 0;
+        //     if (index > 0) {
+        //         elevationCalc = (!location[2]) ? prevLoc.elevation : location[2];
+        //     } else {
+        //         elevationCalc = (location[2] === undefined) ? 0 : location[2];
+        //     }
+        //     pathLineMasterd.push([location[0], location[1], elevationCalc]);
+        //     if (index % 10 === 0) {
+        //         flattenProgressPayload.loaded = parseInt(index / 2, 10);
+        //         GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, flattenProgressPayload);
+        //     }
+        // });
+        // let elevationNivelatedFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
+        // CommonHelper.getLineStrings(elevationNivelatedFeaturesCollection)[0].geometry.coordinates = pathLineMasterd;
+        // return elevationNivelatedFeaturesCollection;
+        return featuresCollection;
     }
 
     // interpolatePathLine(featuresCollection) {
@@ -144,15 +148,27 @@ class TrailHelper extends GLU.Controller {
         let enrichedPathLine = [];
         let prevLoc = {};
         let prevPoint = [];
+        // let recalculateElevation = false;
         // let currLocOut = {};
-        const pathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
+        const inputLines = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)));
+        const pathLine = inputLines[0].geometry.coordinates;
+
         pathLine.forEach((location, index) => {
             let elevationCalc = 0;
             let currLoc;
             if (index > 0) {
                 elevationCalc = (!location[2]) ? prevLoc.elevation : location[2];
                 const prevDist = turf.distance(turf.point([prevPoint[0], prevPoint[1]]), turf.point([location[0], location[1]]));
-                const elevDelta = elevationCalc - prevLoc.elevation;
+                let elevDelta = elevationCalc - prevLoc.elevation;
+                const slope = (elevDelta / (prevDist * 1000)) * 100;
+
+                if (Math.abs(slope) > TrailsDataModel.activeTrail.getElevationTreshold().sl) {
+                    // console.info('Fix elevation ' + elevationCalc + ' on index ' + index + ' slope overload');
+                    elevationCalc = (elevationCalc + prevLoc.elevation) / 2;
+                    elevDelta = elevationCalc - prevLoc.elevation;
+                    // recalculateElevation = true;
+                }
+
                 currLoc = {
                     lon: location[0],
                     lat: location[1],
@@ -162,6 +178,7 @@ class TrailHelper extends GLU.Controller {
                     elevLoss: (elevDelta < 0) ? (prevLoc.elevLoss + elevDelta) : prevLoc.elevLoss,
                     odometer: prevLoc.odometer + prevDist,
                     prevDist,
+                    slope,
                 };
             } else {
                 elevationCalc = (location[2] === undefined) ? 0 : location[2];
@@ -174,6 +191,7 @@ class TrailHelper extends GLU.Controller {
                     elevLoss: 0,
                     odometer: 0,
                     prevDist: 0,
+                    slope: 0,
                 };
             }
             enrichedPathLine.push(currLoc);
@@ -184,20 +202,25 @@ class TrailHelper extends GLU.Controller {
 
         let enrichedFeaturesCollection = JSON.parse(JSON.stringify(featuresCollection));
         CommonHelper.getLineStrings(enrichedFeaturesCollection)[0].geometry.coordinates = enrichedPathLine;
+
+        // if (recalculateElevation) {
+        //     TrailsDataModel.activeTrail.recalculateElevation(enrichedPathLine);
+        // }
+
         return enrichedFeaturesCollection;
     }
 
-    getGeneralFacts(featuresCollection) {
-        let maxLon = 0;
-        let minLon = 999999;
-        let maxLat = 0;
-        let minLat = 999999;
+    getGeneralFacts(enrichedFeaturesCollection, interpolatedFeaturesCollection) {
+        // let maxLon = 0;
+        // let minLon = 999999;
+        // let maxLat = 0;
+        // let minLat = 999999;
         let maxElev = 0;
         let minElev = 999999;
         let totaldistance = 0; // in kms
         let totalelevGain = 0; // in kms
         let totalelevloss = 0; // in kms
-        let exportGeneralFacts = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].properties;
+        let exportGeneralFacts = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(interpolatedFeaturesCollection)))[0].properties;
         let generateGeneralFactsProgressPayload = {
             status: 'progress',
             id: 'progressFlattenPath',
@@ -205,13 +228,13 @@ class TrailHelper extends GLU.Controller {
             total: 100,
         };
 
-        const newPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
+        const newPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(enrichedFeaturesCollection)))[0].geometry.coordinates;
 
         newPathLine.forEach((location) => {
-            maxLon = Math.max(maxLon, location.lon);
-            minLon = Math.min(minLon, location.lon);
-            maxLat = Math.max(maxLat, location.lat);
-            minLat = Math.min(minLat, location.lat);
+            // maxLon = Math.max(maxLon, location.lon);
+            // minLon = Math.min(minLon, location.lon);
+            // maxLat = Math.max(maxLat, location.lat);
+            // minLat = Math.min(minLat, location.lat);
             maxElev = Math.max(maxElev, location.elevation);
             minElev = Math.min(minElev, location.elevation);
         });
@@ -237,19 +260,28 @@ class TrailHelper extends GLU.Controller {
         // const lonDelta = (maxLon - minLon) / 1;
         // const latDelta = (maxLat - minLat) / 1;
         // exportGeneralFacts.bounds = [[(maxLon + lonDelta), (maxLat + latDelta)], [(minLon - lonDelta), (minLat - latDelta)]];
-        const cBounds = turf.bbox(featuresCollection);
+        const cBounds = turf.bbox(interpolatedFeaturesCollection);
         exportGeneralFacts.bounds = [[cBounds[0], cBounds[1]], [cBounds[2], cBounds[3]]];
 
         // Center
         // const lonCenter = (maxLon + minLon) / 2;
         // const latCenter = (maxLat + minLat) / 2;
         // exportGeneralFacts.center = [lonCenter, latCenter];
-        const centerOfMass = turf.center(featuresCollection);
+        const centerOfMass = turf.center(interpolatedFeaturesCollection);
         exportGeneralFacts.center = centerOfMass.geometry.coordinates;
 
         // Elevation extremes
         exportGeneralFacts.elevMin = minElev;
         exportGeneralFacts.elevMax = maxElev;
+
+        // Technique level
+        exportGeneralFacts.requiredTechnique = this.calculateTechniqueLevelID(exportGeneralFacts.surfaceCollection, totalelevGain);
+
+        // Fitness level
+        exportGeneralFacts.requiredFitness = this.calculateFitnessLevelID(totaldistance, totalelevGain);
+
+        // trailTypeID
+        exportGeneralFacts.trailTypeID = this.calculateTrailTypeID(exportGeneralFacts.requiredTechnique, exportGeneralFacts.requiredFitness);
 
         generateGeneralFactsProgressPayload.loaded = 100;
         GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, generateGeneralFactsProgressPayload);
@@ -257,15 +289,91 @@ class TrailHelper extends GLU.Controller {
         return exportGeneralFacts;
     }
 
-    // getDistanceFromLatLonInMeters(lon1, lat1, lon2, lat2) {
-    //     const R = 6371;
-    //     const dLat = this.deg2rad(lat2 - lat1);
-    //     const dLon = this.deg2rad(lon2 - lon1);
-    //     const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    //     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    //     const d = R * c * 1000;
-    //     return d;
-    // }
+    calculateTrailTypeID(t, f) {
+        if (t === 1 && f === 4) {
+            return 4;
+        }
+        if (t >= 3 && f >= 2) {
+            return 3;
+        }
+        if (t >= 2 && f >= 1) {
+            return 2;
+        }
+        if (t >= 1 && f >= 0) {
+            return 1;
+        }
+        return 0;
+    }
+
+    calculateFitnessLevelID(distance, elevation) {
+        const idx = parseInt(elevation + distance * 10, 10);
+        if (idx < 750) {
+            return 1;
+        } else if (idx < 1700) {
+            return 2;
+        } else if (idx < 3000) {
+            return 3;
+        }
+        return 4;
+    }
+
+    calculateTechniqueLevelID(surfaceCollection, totaldistance) {
+        const temp = surfaceCollection.map((s, idx) => {
+            if (idx < (surfaceCollection.length - 1)) {
+                return {
+                    type: s[1],
+                    start: s[0],
+                    end: surfaceCollection[idx + 1][0],
+                    distance: surfaceCollection[idx + 1][0] - s[0],
+                    percent: ((surfaceCollection[idx + 1][0] - s[0]) / totaldistance) * 100,
+                };
+            }
+            return {
+                type: s[1],
+                start: s[0],
+                end: totaldistance,
+                distance: totaldistance - s[0],
+                percent: ((totaldistance - s[0]) / totaldistance) * 100,
+            };
+        });
+        let surface = {};
+        ['A', 'M', 'S', 'N'].forEach(t => {
+            surface[t] = {
+                distance: 0,
+                percent: 0,
+            };
+            const segment = temp.filter(s => {
+                return s.type === t;
+            });
+            segment.forEach(s => {
+                surface[t].distance += s.total;
+                surface[t].percent += s.percent;
+            });
+        });
+        // 4
+        if (surface.N.percent > 5 ||
+            surface.S.percent > 20 ||
+            surface.M.percent > 80 ||
+            surface.N.distance > 2 ||
+            surface.S.distance > 10) {
+            return 4;
+        }
+        // 3
+        if (surface.N.percent > 1 ||
+            surface.S.percent > 5 ||
+            surface.M.percent > 50 ||
+            surface.S.distance > 2 ||
+            surface.M.distance > 20) {
+            return 3;
+        }
+        // 2
+        if (surface.S.percent > 1 ||
+            surface.M.percent > 20 ||
+            surface.S.distance > 1) {
+            return 2;
+        }
+        return 1;
+    }
 
     deg2rad(deg) {
         return deg * (Math.PI / 180);

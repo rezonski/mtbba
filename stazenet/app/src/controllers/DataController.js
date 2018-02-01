@@ -1,5 +1,6 @@
 /* global toGeoJSON */
 /* global polyline */
+/* global turf */
 import GLU from '/../../glu2.js/src/index';
 import CommonDataModel from '/dataSources/CommonDataModel';
 import TrailsDataModel from '/dataSources/TrailsDataModel';
@@ -39,6 +40,7 @@ class DataController extends GLU.Controller {
             [Enum.DataEvents.RETRIEVE_TRAILS_LIST]: this.getTrailsList,
             [Enum.DataEvents.DOWNLOAD_TRAIL]: this.downloadTrail,
             [Enum.DataEvents.UPLOAD_TRAIL]: this.uploadTrail,
+            [Enum.DataEvents.GENERATE_WP_SUGGESTIONS]: this.generateWaypointSuggestions,
             [Enum.DataEvents.START_IMAGE_UPLOAD]: this.uploadImage,
             [Enum.DataEvents.SAVE_INITIAL_GEO_FILE]: this.saveInitalGeoFile,
             [Enum.DataEvents.SAVE_MANUAL_EDITED_FILE]: this.saveManualyEditedGeoFile,
@@ -103,6 +105,7 @@ class DataController extends GLU.Controller {
             leftMap: MapModel.leftMap,
             // rightMap: MapModel.rightMap,
         };
+        TrailsDataModel.activeTrail.enrichPathLine();
         TrailsDataModel.activeTrail.generateWaypoints(maps);
         const pathLayers = TrailsDataModel.activeTrail.mapPathLayers;
         GLU.bus.emit(Enum.MapEvents.DISPLAY_PATH_LAYERS_ON_MAP, pathLayers);
@@ -149,13 +152,14 @@ class DataController extends GLU.Controller {
     }
 
     addSurfaceChange(payload) {
-        console.log('addSurfaceChange(' + payload.odometer + ', ' + payload.surfaceType + ')');
+        // console.log('addSurfaceChange(' + payload.odometer + ', ' + payload.surfaceType + ')');
         let currentSurfaceCollection = TrailsDataModel.activeTrail.getTrailData().surfaceCollection;
         currentSurfaceCollection.push([payload.odometer, payload.surfaceType]);
         TrailsDataModel.activeTrail.setDataByName('surfaceCollection', null, null, currentSurfaceCollection);
     }
 
     getChartData(containerId) {
+        TrailsDataModel.activeTrail.enrichPathLine();
         const chartData = TrailsDataModel.activeTrail.getChartData(containerId);
         GLU.bus.emit(Enum.DataEvents.CHART_DATA_RETRIEVED, chartData);
     }
@@ -224,17 +228,15 @@ class DataController extends GLU.Controller {
         API.Trails.getTrail({ query })
             .then((response) => {
                 TrailsDataModel.trail = new Trail();
-                TrailsDataModel.activeTrail.parsedFeaturesCollection = JSON.parse(response.text);
-                TrailsDataModel.activeTrail.parseInitialFeaturesCollection();
+                TrailsDataModel.activeTrail.saveDownloadedFeaturesCollection(JSON.parse(response.text));
                 const geoSetup = TrailsDataModel.activeTrail.getTrailGeoLocation(); // Runs parsing
                 MapModel.initialCenter = JSON.parse(JSON.stringify(geoSetup.center));
                 MapModel.initialMaxBounds = JSON.parse(JSON.stringify(geoSetup.bounds));
-                console.info('# 1');
-                this.onSimplifyRequest();
                 TrailsDataModel.activeTrail.setProgressFinished();
                 const trailData = TrailsDataModel.activeTrail.getTrailData();
                 GLU.bus.emit(Enum.DataEvents.TRAIL_DOWNLOADED, trailData);
                 GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
+                GLU.bus.emit(Enum.MapEvents.REBUILD_PATH_LAYERS);
             })
             .catch((err) => {
                 const msg = (err && err.response) ? err.response.text : err.toString();
@@ -248,7 +250,8 @@ class DataController extends GLU.Controller {
     }
 
     uploadTrail() {
-        const trail = JSON.parse(JSON.stringify(TrailsDataModel.activeTrail.getEnrichedFeatureCollection()));
+        TrailsDataModel.activeTrail.enrichPathLine();
+        const trail = JSON.parse(JSON.stringify(TrailsDataModel.activeTrail.enrichedFeaturesCollection));
         const lines = CommonHelper.getLineStrings(trail);
         const waypoints = CommonHelper.getPoints(trail);
         const generalFacts = JSON.parse(JSON.stringify(TrailsDataModel.activeTrail.getGeneralFacts()));
@@ -257,16 +260,116 @@ class DataController extends GLU.Controller {
             waypoints,
             generalFacts,
         });
+        // console.log({
+        //     lines,
+        //     waypoints,
+        //     generalFacts,
+        // });
         // Connection
         const destination = appConfig.constants.server + 'setTrail.php';
         const xmlhttpUpload = new XMLHttpRequest();
         xmlhttpUpload.onreadystatechange = () => {
             if (xmlhttpUpload.readyState === 4 && xmlhttpUpload.status === 200) {
-                console.log(xmlhttpUpload.responseText);
+                const resp = JSON.parse(xmlhttpUpload.responseText);
+                if (resp.status && resp.newTrail) {
+                    GLU.bus.emit(MessageEvents.INFO_MESSAGE, `New trail/version ${resp.trailID}/${resp.newVersionID} upladed successfully`);
+                } else {
+                    console.warn('#TrailUpladFailure');
+                    console.info(resp.log);
+                    GLU.bus.emit(MessageEvents.ERROR_MESSAGE, `Upload failed. See console log for details`);
+                }
             }
         };
         xmlhttpUpload.open('POST', destination, true);
         xmlhttpUpload.send(uploadPayload);
+    }
+
+    generateWaypointSuggestions() {
+        const parsedFeaturesCollection = TrailsDataModel.activeTrail.parsedFeaturesCollection;
+        const waypoints = CommonHelper.getPoints(parsedFeaturesCollection);
+        this.searchOneWaypointToponyms(waypoints, 0);
+    }
+
+    searchOneWaypointToponyms(waypoints, widx) {
+        if (waypoints.length > 0 && !waypoints[widx]) { // skinuti !
+            const setup = {
+                coordinates: waypoints[widx].geometry.coordinates[1] + ',' + waypoints[widx].geometry.coordinates[0],
+                key: 'AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis',
+                lvl: [
+                  {
+                    type: 'locality',
+                    radius: 1000,
+                    prefix: 'Selo ',
+                  },
+                  {
+                    type: 'geocode',
+                    radius: 300,
+                    prefix: 'Lokacija ',
+                  },
+                  {
+                    type: 'natural_feature',
+                    radius: 500,
+                    prefix: '',
+                  },
+                  {
+                    type: 'route',
+                    radius: 200,
+                    prefix: 'Put ',
+                  },
+                ],
+              };
+            this.searchOneToponymLevel(waypoints, widx, setup, 0);
+        } else {
+            TrailsDataModel.activeTrail.waypoints = waypoints;
+            GLU.bus.emit(Enum.DataEvents.WP_SUGGESTIONS_GENERATED, {
+                waypoints,
+            });
+        }
+    }
+
+    searchOneToponymLevel(waypoints, widx, setup, indexLvl) {
+        if (setup.lvl[indexLvl]) {
+            const wp = waypoints[widx];
+            const query = {
+                location: setup.coordinates,
+                radius: setup.lvl[indexLvl].radius,
+                type: setup.lvl[indexLvl].type,
+                key: setup.key,
+            };
+            API.Google.search4Point({ query })
+            .then((responseRaw) => {
+                const response = JSON.parse(responseRaw.text);
+                if (response.status === 'OK' && response.results) {
+                    const suggestions = response.results.reduce((total, currentValue) => {
+                        // console.log('add ' + currentValue.name);
+                        const toPoint = turf.point([currentValue.geometry.location.lng, currentValue.geometry.location.lat]);
+                        const distance = turf.distance(wp, toPoint).toFixed(2);
+                        const angle = turf.bearing(wp, toPoint);
+                        const angleDesc = CommonHelper.angle2string(angle);
+                        // return total + ', ' + setup.lvl[indexLvl].prefix + currentValue.name;
+                        return `${total}, ${setup.lvl[indexLvl].prefix} ${currentValue.name} (${distance}km ${angleDesc})`;
+                    }, '');
+                    // console.log('waypoints[' + widx + '] = ' + suggestions);
+                    if (wp.properties.suggestionNames !== undefined) {
+                        wp.properties.suggestionNames = wp.properties.suggestionNames + suggestions;
+                    } else {
+                        wp.properties.suggestionNames = suggestions;
+                    }
+                }
+                this.searchOneToponymLevel(waypoints, widx, setup, indexLvl + 1);
+            });
+            // .catch((err) => {
+            //     const msg = (err && err.response) ? err.response.text : err.toString();
+            //     console.error('API.Trails.search4Point()');
+            //     console.error(err);
+            //     GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('search4PointsFailed') + msg);
+            //     throw msg;
+            // });
+        } else {
+            const currentSuggestionNames = (waypoints[widx].properties.suggestionNames) ? waypoints[widx].properties.suggestionNames : '';
+            waypoints[widx].properties.suggestionNames = (currentSuggestionNames.length > 0) ? currentSuggestionNames.substr(2) : '';
+            this.searchOneWaypointToponyms(waypoints, widx + 1);
+        }
     }
 
     onSimplifyRequest() {
@@ -278,46 +381,29 @@ class DataController extends GLU.Controller {
     }
 
     onElevatePathRequest() {
-        let badPoints = [];
         TrailsDataModel.activeTrail.elevatedFeaturesCollection = JSON.parse(JSON.stringify(TrailsDataModel.activeTrail.simplifiedFeaturesCollection));
         const elevatedFeaturesCollection = TrailsDataModel.activeTrail.elevatedFeaturesCollection;
         const elevatedPathLines = CommonHelper.getLineStrings(elevatedFeaturesCollection);
         let elevatedPathLine = elevatedPathLines[0].geometry.coordinates;
-        elevatedPathLine.forEach((location, index) => {
-            if (location[2] === undefined || location[2] === 0) {
-                badPoints.push({
-                    pathIndex: index,
-                    point: location,
-                });
-            }
-        });
-        if (badPoints.length > 0) {
-            // this.checkAddElevation();
-            GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('totalBadElevatedPoints') + badPoints.length);
-            this.checkAddElevation(elevatedPathLine, badPoints, 0);
-        } else {
-            this.progressPayload.loaded = 70;
-            GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, this.progressPayload);
-            GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endAddingElevation'));
-
-            let elevationProgressPayload = {
-                status: 'progress',
-                id: 'progressElevationPath',
-                loaded: 1,
-                total: 1,
+        const badPoints = elevatedPathLine.map((location, index) => {
+            return {
+                pathIndex: index,
+                point: location,
             };
-            GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, elevationProgressPayload);
-            GLU.bus.emit(Enum.DataEvents.START_FLATTENING_PATH);
-        }
+        });
+        GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('totalBadElevatedPoints') + badPoints.length);
+        this.checkAddElevation(elevatedPathLine, badPoints, 0);
     }
+
     checkAddElevation(elevatedPathLine, badPoints, startIndex) {
         // console.log('checkAddElevation(' + badPoints.length + ', ' + startIndex + ')');
+        // debugger;
         let currentProgressPayload = {
-                                status: 'progress',
-                                id: 'progressElevationPath',
-                                loaded: null,
-                                total: badPoints.length,
-                            };
+                                        status: 'progress',
+                                        id: 'progressElevationPath',
+                                        loaded: null,
+                                        total: badPoints.length,
+                                    };
         let requestPayloadPointsString = '';
         let pointsContainerIndex = 0;
         let passLoopCounter = 0;
@@ -334,7 +420,7 @@ class DataController extends GLU.Controller {
                 passLoopCounter = parseInt(loopCounter + 1, 10);
             }
         }
-
+        // debugger;
         if (tempBadPoints.length > 0) {
             const xmlhttpElevation = new XMLHttpRequest();
             xmlhttpElevation.onreadystatechange = () => {
@@ -342,18 +428,35 @@ class DataController extends GLU.Controller {
                     // console.log('response xmlhttpElevation');
                     const response = JSON.parse(xmlhttpElevation.responseText);
                     const elevatedPoints = response.results;
-                    let tempElevation = 0;
                     elevatedPoints.forEach((elPoint, pointIndex) => {
-                        const calculatedElevation = (elPoint.ele || elPoint.elevation) ? parseInt(elPoint.elevation, 10) : parseInt(tempElevation, 10);
+                        // threshold
+                        const ta = TrailsDataModel.activeTrail.getElevationTreshold().ta;
+                        const tr = TrailsDataModel.activeTrail.getElevationTreshold().tr;
+                        // Fix index
                         const pointIndexToFix = parseInt(tempBadPoints[pointIndex].pathIndex, 10);
+                        // 0 - lng
+                        // 1 - lat
+                        // 2 - original elevation
+                        const originalElevation = parseInt(elevatedPathLine[pointIndexToFix][2], 10);
+                        const googleElevation = (elPoint.ele || elPoint.elevation) ? parseInt(elPoint.elevation, 10) : 0;
+                        const previousElevation = (pointIndexToFix > 0) ? parseInt(elevatedPathLine[pointIndexToFix - 1][2], 10) : parseInt(originalElevation, 10);
+                        let calculatedElevation = parseInt(originalElevation, 10);
+                        // Fix huge elevation faults
+                        if (originalElevation <= 0 || Math.abs(originalElevation - googleElevation) > ta || Math.abs(originalElevation - previousElevation) > tr) {
+                            calculatedElevation = googleElevation;
+                        }
+                        // Assign final elevation
                         elevatedPathLine[pointIndexToFix][2] = calculatedElevation;
+                        // Progress notification
                         if (pointIndexToFix % 10 === 0) {
                             currentProgressPayload.loaded = parseInt(pointIndexToFix, 10);
                             GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, currentProgressPayload);
                         }
                     });
                     // this.checkAddElevation(badPoints, loopCounter);
-                    setTimeout(this.checkAddElevation(badPoints, parseInt(passLoopCounter, 10)), 10);
+                    setTimeout(() => {
+                        this.checkAddElevation(elevatedPathLine, badPoints, parseInt(passLoopCounter, 10));
+                    }, 10);
                 }
             };
             const endpoint = Globals.ELEVATION_SERVICE_PATH + requestPayloadPointsString.substring(0, requestPayloadPointsString.length - 1) + Globals.ELEVATION_SERVICE_KEY;
@@ -380,9 +483,15 @@ class DataController extends GLU.Controller {
         GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, this.progressPayload);
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endPathInterpolating'));
 
-        TrailsDataModel.activeTrail.generateGeneralFacts();
+        TrailsDataModel.activeTrail.enrichPathLine();
         // console.info('# 23');
         this.progressPayload.loaded = 86;
+        GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, this.progressPayload);
+        GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endPathlineEnriching'));
+
+        TrailsDataModel.activeTrail.generateGeneralFacts();
+        // console.info('# 23');
+        this.progressPayload.loaded = 88;
         GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, this.progressPayload);
         GLU.bus.emit(MessageEvents.INFO_MESSAGE, Lang.msg('endGeneralFactsGenerating'));
 
@@ -397,6 +506,7 @@ class DataController extends GLU.Controller {
                 mapParams: trailCenter[0] + ',' + trailCenter[1] + ',' + TrailHelper.calculateZoomLevel(simplifiedPolyline),
                 fileName: CommonHelper.getUUID() + '.png',
                 deleteFile: (trailFacts.imageURL) ? trailFacts.imageURL.replace(appConfig.constants.server, '') : '',
+                accessToken: MapModel.accessToken,
             };
             // console.log('getTrailThumbnail');
             // console.log(query);
@@ -426,7 +536,7 @@ class DataController extends GLU.Controller {
     }
 
     onFixWaypointsRequest() {
-        if (CommonHelper.getPoints(TrailsDataModel.activeTrail.getEnrichedFeatureCollection()).length > 0) {
+        if (CommonHelper.getPoints(TrailsDataModel.activeTrail.enrichedFeaturesCollection).length > 0) {
             const maps = {
                 leftMap: MapModel.leftMap,
                 // rightMap: MapModel.rightMap,
@@ -457,33 +567,43 @@ class DataController extends GLU.Controller {
                     mapParams: waypoints[WPindex].geometry.coordinates[0] + ',' + waypoints[WPindex].geometry.coordinates[1] + ',17',
                     fileName: CommonHelper.getUUID() + '.png',
                     deleteFile: (waypoints[WPindex].properties.pictureUrl) ? waypoints[WPindex].properties.pictureUrl.replace(appConfig.constants.server, '') : '',
+                    accessToken: MapModel.accessToken,
                 };
-                // console.log('setWaypointsThumbnails(' + waypoints + ',' + WPindex + ')');
-                // console.log(query);
+                const getURL = 'https://api.mapbox.com/v4/mapbox.satellite/geojson(' + encodeURIComponent(query.geojson) + ')/' + query.mapParams + '/300x300.png?access_token=' + query.accessToken;
                 API.Trails.getWPThumbnail({ query })
                 .then((responseRaw) => {
-                    const response = JSON.parse(responseRaw.text);
-                    if (!response.success) {
-                        GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('wpThumbnailGetFailed') + response.msg);
-                        console.warn(Lang.msg('wpThumbnailGetFailed') + response.msg);
-                        throw response.msg;
-                    } else if (response.success) {
-                        TrailsDataModel.activeTrail.setDataByName('waypoints', WPindex, 'pictureUrl', appConfig.constants.server + response.url);
-                        GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, {
-                            status: 'progress',
-                            id: 'progressFixWPs',
-                            loaded: WPindex,
-                            total: waypoints.length,
-                        });
-                        setTimeout(() => {
-                            this.setWaypointsThumbnails(waypoints, WPindex + 1, overrideThumbnails);
-                        }, 100);
+                    // console.log(responseRaw);
+                    if (responseRaw.text && CommonHelper.isJSON(responseRaw.text)) {
+                        // console.info('responseRaw.text is OK using URL:');
+                        // console.log(getURL);
+                        const response = JSON.parse(responseRaw.text);
+                        if (!response.success) {
+                            GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('wpThumbnailGetFailed') + response.msg);
+                            console.warn(Lang.msg('wpThumbnailGetFailed') + response.msg);
+                            throw response.msg;
+                        } else if (response.success) {
+                            TrailsDataModel.activeTrail.setDataByName('waypoints', WPindex, 'pictureUrl', appConfig.constants.server + response.url);
+                            GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, {
+                                status: 'progress',
+                                id: 'progressFixWPs',
+                                loaded: WPindex,
+                                total: waypoints.length,
+                            });
+                            setTimeout(() => {
+                                this.setWaypointsThumbnails(waypoints, WPindex + 1, overrideThumbnails);
+                            }, 100);
+                        }
+                    } else {
+                        const erMsg = 'Faulted URL';
+                        console.info('responseRaw.text is not JSON, faulted URL');
+                        console.info(getURL);
+                        GLU.bus.emit(MessageEvents.ERROR_MESSAGE, erMsg);
+                        throw erMsg;
                     }
                 })
                 .catch((err) => {
                     const msg = (err && err.response) ? err.response.text : err.toString();
-                    console.error('API.Trails.getWPThumbnail()');
-                    console.error(err);
+                    console.error('API.Trails.getWPThumbnail(): ' + err);
                     GLU.bus.emit(MessageEvents.ERROR_MESSAGE, Lang.msg('wpThumbnailGetFailed') + msg);
                     setTimeout(() => {
                         this.setWaypointsThumbnails(waypoints, WPindex + 1, overrideThumbnails);

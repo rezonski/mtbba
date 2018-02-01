@@ -1,0 +1,20 @@
+.map-popup {
+  display: none!important;
+  background-color: @color-white;
+  box-shadow: @popup-shadow;
+  border-radius: @borderRadiusCommon;
+  padding: @padding;
+  flex-direction: column;
+  color: @color-gray;
+  min-width: 25%;
+  width: 100%;
+  min-width: 250px;
+  max-width: 300px;
+  transition: all 100ms linear;
+  z-index: 10;
+
+
+  &.visible {
+    display: flex!important;
+  }
+}

@@ -1,9 +1,10 @@
 /* global turf */
 import GLU from '/../../glu2.js/src/index';
-// import MessageEvents from '/enums/MessageEvents';
+import MessageEvents from '/enums/MessageEvents';
 import Enum from '/enums/Enum';
 import CommonHelper from '/helpers/CommonHelper';
 import TrailHelper from '/helpers/TrailHelper';
+import TrailsDataModel from '/dataSources/TrailsDataModel';
 
 class WaypointHelper extends GLU.Controller {
     constructor(props) {
@@ -12,6 +13,9 @@ class WaypointHelper extends GLU.Controller {
         this.bindGluBusEvents({
             [Enum.MapEvents.INITIAL_DATA_SETUP_RETRIEVED]: this.onInitialSetupRetrieved,
         });
+
+        this.usedWpNames = [];
+        this.usedWpNamesIdxs = {};
     }
 
     getMarkerColor(symbol) {
@@ -62,9 +66,42 @@ class WaypointHelper extends GLU.Controller {
             case 'PASS':
                 return 'triangle-stroked';
             case 'PHOTO':
-                return 'attraction';
+                return 'camera';
             case 'PLACE':
                 return 'circle';
+            case 'WATER':
+                return 'water';
+            case 'RIVER':
+                return 'swimming';
+            case 'SLEEP':
+                return 'lodging';
+            case 'START':
+                return 'bicycle';
+            case 'SUMMIT':
+                return 'triangle';
+            default:
+                return 'circle';
+        }
+    }
+
+    getIcon4Symbol(symbol) {
+        switch (symbol) {
+            case 'CROSSROAD':
+                return 'crossroad';
+            case 'DANGER':
+                return 'danger';
+            case 'END':
+                return 'roadblock';
+            case 'FOOD':
+                return 'restaurant';
+            case 'MINES':
+                return 'danger';
+            case 'PASS':
+                return 'pass';
+            case 'PHOTO':
+                return 'photo';
+            case 'PLACE':
+                return 'place';
             case 'WATER':
                 return 'drinking-water';
             case 'RIVER':
@@ -72,9 +109,9 @@ class WaypointHelper extends GLU.Controller {
             case 'SLEEP':
                 return 'lodging';
             case 'START':
-                return 'bicycle-share';
+                return 'bicycle2';
             case 'SUMMIT':
-                return 'mountain';
+                return 'summit';
             default:
                 return 'circle';
         }
@@ -82,7 +119,7 @@ class WaypointHelper extends GLU.Controller {
 
     generateWPointGeoJSON(currentIndex, newWaypoint, inputPathLine) {
         const pointIndex = parseInt(currentIndex, 10);
-        const offset = 30;
+        const offset = 20;
         const pointFromIndex = ((pointIndex - offset) < 0) ? 0 : (pointIndex - offset);
         const pointToIndex = ((pointIndex + offset) > (inputPathLine.length - 1)) ? (inputPathLine.length - 1) : (pointIndex + offset);
         let inPathCoordinates = [];
@@ -120,22 +157,68 @@ class WaypointHelper extends GLU.Controller {
         newWaypoint.wpGeoJSON = wpGeoJSON;
     }
 
+    initialParseOneWP(wpoint) {
+        let tempName = (wpoint.properties.name) ? wpoint.properties.name : 'Raskrsnica';
+        if (this.usedWpNames.indexOf(tempName) > -1) {
+            this.usedWpNamesIdxs[tempName].idx = (this.usedWpNamesIdxs[tempName].idx) ? (this.usedWpNamesIdxs[tempName].idx + 1) : 1;
+            tempName = tempName + ' #' + this.usedWpNamesIdxs[tempName].idx;
+        }
+        wpoint.properties.name = tempName;
+        let tempDescArray = '', tempDesc = '', tempPictogram = '';
+        if (wpoint.properties.desc !== undefined && wpoint.properties.desc.indexOf('#') > -1 ) {
+            tempDescArray = wpoint.properties.desc.replace('#\n\n', '#\n').replace('#\n\n', '#\n').replace('#\n', '#').replace('#\n', '#').split('#');
+            tempDesc = tempDescArray[2];
+            tempPictogram = tempDescArray[1];
+            delete wpoint.properties.desc;
+        } else if (wpoint.properties.cmt !== undefined && wpoint.properties.cmt.indexOf('#') > -1 ) {
+            tempDescArray = wpoint.properties.cmt.replace('#\n\n', '#\n').replace('#\n\n', '#\n').replace('#\n', '#').replace('#\n', '#').split('#');
+            tempDesc = tempDescArray[2];
+            tempPictogram = tempDescArray[1];
+            delete wpoint.properties.cmt;
+        } else if (wpoint.properties.desc !== undefined) {
+            tempDesc = wpoint.properties.desc;
+            tempPictogram = (wpoint.properties.pictogram !== undefined) ? wpoint.properties.pictogram : '90';
+        } else {
+            tempDesc = '';
+            tempPictogram = (wpoint.properties.pictogram !== undefined) ? wpoint.properties.pictogram : '90';
+        }
+        wpoint.properties.initDesc = tempDesc;
+        wpoint.properties.desc = tempDesc;
+        wpoint.properties.pictogram = tempPictogram;
+        wpoint.properties.elevationProfile = true;
+        return wpoint;
+    }
+
+    isTerrainSwitchPoint(properties) {
+        if (properties.type && properties.type === 'terrainSwitch' && properties.surfaceType) {
+            return properties.surfaceType;
+        }
+        if (properties.name && properties.name.length === 1 && (properties.name === 'A' || properties.name === 'M' || properties.name === 'S' || properties.name === 'N')) {
+            return properties.name;
+        }
+        return false;
+    }
+
     // generateWaypoints(leftMap, rightMap, featuresCollection) {
     generateWaypoints(leftMap, featuresCollection) {
         const inputPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].geometry.coordinates;
         // const elevatedPathLine = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(elevatedFeaturesCollection)))[0].geometry.coordinates;
         let inputWaypoints = CommonHelper.getPoints(JSON.parse(JSON.stringify(featuresCollection)));
+        // console.log('inputWaypoints on enter');
+        // console.log(inputWaypoints.filter(f => { return f.properties.type && f.properties.type === 'terrainSwitch'; }));
         const startPathPoint = turf.point([inputPathLine[0].lon, inputPathLine[0].lat], { name: 'Start', pictogram: '90' });
         const endPathPoint = turf.point([inputPathLine[inputPathLine.length - 1].lon, inputPathLine[inputPathLine.length - 1].lat], { name: 'Finish', pictogram: '270' });
-        // const firstWP = inputWaypoints[0];
-        // const lasttWP = inputWaypoints[inputWaypoints.length - 1];
+        const firstWP = inputWaypoints[0];
+        const lasttWP = inputWaypoints[inputWaypoints.length - 1];
+        if (turf.distance(startPathPoint, firstWP, 'kilometers') > 0.2) {
+            inputWaypoints.unshift(startPathPoint);
+        }
+        if (turf.distance(lasttWP, endPathPoint, 'kilometers') > 0.2) {
+            inputWaypoints.push(endPathPoint);
+        }
         if (inputWaypoints.length === 0) {
             inputWaypoints = [startPathPoint, endPathPoint];
-        } /* else if (turf.distance(startPathPoint, firstWP, 'kilometers') > 0.2) {
-            inputWaypoints.unshift(startPathPoint);
-        } else if (turf.distance(lasttWP, endPathPoint, 'kilometers') > 0.2) {
-            inputWaypoints.push(endPathPoint);
-        }*/
+        }
 
         const surfaceCollection = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].properties.surfaceCollection;
         let newWaypoints = [];
@@ -153,75 +236,94 @@ class WaypointHelper extends GLU.Controller {
             features: [],
         };
 
+        // console.log('inputWaypoints before edit');
+        // console.log(inputWaypoints.filter(f => { return f.properties.type && f.properties.type === 'terrainSwitch'; }));
 
         inputWaypoints.forEach((wpoint, wpindex) => {
             let tempDistance = 9999999;
-            let tempIndex = -1;
-            let tempDesc = '';
-            let tempPictogram = '';
+            let tempIndexes = [];
+            let tempOdometer = -2;
+            let cought = false;
 
-            // Calculate closest point on line
             inputPathLine.forEach((ppoint, pindex) => {
-                // let currentDistance = TrailHelper.getDistanceFromLatLonInMeters(wpoint.geometry.coordinates[0], wpoint.geometry.coordinates[1], ppoint.lon, ppoint.lat);
-                let currentDistance = turf.distance(turf.point([wpoint.geometry.coordinates[0], wpoint.geometry.coordinates[1]]), turf.point([ppoint.lon, ppoint.lat]));
-                if ((currentDistance < tempDistance) && currentDistance < 0.1) { // less than 100m
-                    tempDistance = currentDistance;
-                    tempIndex = pindex;
+                const currentDistance = turf.distance(turf.point([wpoint.geometry.coordinates[0], wpoint.geometry.coordinates[1]]), turf.point([ppoint.lon, ppoint.lat]));
+                if (currentDistance < 0.2) { // less than 100m
+                    if ((ppoint.odometer - tempOdometer) > 1) {
+                        cought = true;
+                        if (currentDistance < tempDistance) {
+                            tempDistance = currentDistance;
+                        } else {
+                            cought = false;
+                            tempDistance = 9999999;
+                            tempOdometer = inputPathLine[pindex - 1].odometer;
+                            tempIndexes.push(pindex - 1);
+                        }
+                    }
+                } else {
+                    if (cought) {
+                        cought = false;
+                        tempDistance = 9999999;
+                        tempOdometer = inputPathLine[pindex - 1].odometer;
+                        tempIndexes.push(pindex - 1);
+                    }
                 }
             });
-            if (tempIndex > -1) {
-                if (wpoint.properties.desc !== undefined && wpoint.properties.desc.indexOf('#') > -1 ) {
-                    let tempDescArray = wpoint.properties.desc.replace('#\n\n', '#\n').replace('#\n\n', '#\n').replace('#\n', '#').replace('#\n', '#').split('#');
-                    tempDesc = tempDescArray[2];
-                    tempPictogram = tempDescArray[1];
-                } else if (wpoint.properties.desc !== undefined) {
-                    tempDesc = wpoint.properties.desc;
-                    tempPictogram = (wpoint.properties.pictogram !== undefined) ? wpoint.properties.pictogram : '90';
-                } else {
-                    tempDesc = '';
-                    tempPictogram = (wpoint.properties.pictogram !== undefined) ? wpoint.properties.pictogram : '90';
-                }
 
-                if (wpoint.properties.type && wpoint.properties.type === 'terrainSwitch') {
-                    console.log(wpoint.properties.surfaceType + ' - ' + JSON.stringify(wpoint.geometry.coordinates) + ' - ' + (Math.round(inputPathLine[tempIndex].odometer * 100) / 100));
-                    const payload = {
-                        odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
-                        surfaceType: wpoint.properties.surfaceType,
-                    };
-                    GLU.bus.emit(Enum.DataEvents.ADD_SURFACE_CHANGE, payload);
-                } else {
-                    const newWaypoint = {
-                        id: wpindex,
-                        time: (wpoint.properties.time !== undefined) ? wpoint.properties.time : null,
-                        name: wpoint.properties.name,
-                        nameEn: wpoint.properties.name,
-                        desc: tempDesc,
-                        descEn: null,
-                        elevGain: Math.round(inputPathLine[tempIndex].elevGain * 100) / 100,
-                        elevLoss: Math.round(inputPathLine[tempIndex].elevLoss * 100) / 100,
-                        nextElevGain: 0,
-                        nextElevLoss: 0,
-                        odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
-                        nextStepDist: 0,
-                        symbol: this.symbolFromDesc(tempDesc, tempPictogram, wpoint.properties.name),
-                        pictogram: tempPictogram,
-                        pictureUrl: (wpoint.properties.pictureUrl !== undefined) ? wpoint.properties.pictureUrl : '',
-                        elevationProfile: true,
-                        // lon: inputPathLine[tempIndex].lon,
-                        // lat: inputPathLine[tempIndex].lat,
-                        lon: wpoint.geometry.coordinates[0],
-                        lat: wpoint.geometry.coordinates[1],
-                        elevation: inputPathLine[tempIndex].elevation,
-                    };
-                    this.generateWPointGeoJSON(tempIndex, newWaypoint, inputPathLine);
-                    newWaypoints.push(newWaypoint);
-                }
+
+            if (tempIndexes.length > 0) {
+                tempIndexes.forEach(tempIndex => {
+                    if (this.isTerrainSwitchPoint(wpoint.properties) !== false) {
+                        // console.log('Surface: ' + wpoint.properties.surfaceType + ' - ' + JSON.stringify(wpoint.geometry.coordinates) + ' - ' + (Math.round(inputPathLine[tempIndex].odometer * 100) / 100));
+                        const payload = {
+                            odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
+                            surfaceType: this.isTerrainSwitchPoint(wpoint.properties),
+                        };
+                        surfaceCollection.push([payload.odometer, payload.surfaceType]);
+                        GLU.bus.emit(Enum.DataEvents.ADD_SURFACE_CHANGE, payload);
+                    } else {
+                        let symbol = this.symbolFromDesc(wpoint.properties.desc, wpoint.properties.pictogram, wpoint.properties.name);
+                        const newWaypoint = {
+                            id: wpindex,
+                            time: (wpoint.properties.time !== undefined) ? wpoint.properties.time : null,
+                            name: wpoint.properties.name,
+                            nameEn: wpoint.properties.name,
+                            desc: wpoint.properties.desc,
+                            descEn: null,
+                            elevGain: Math.round(inputPathLine[tempIndex].elevGain * 100) / 100,
+                            elevLoss: Math.round(inputPathLine[tempIndex].elevLoss * 100) / 100,
+                            nextElevGain: 0,
+                            nextElevLoss: 0,
+                            odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
+                            nextStepDist: 0,
+                            symbol,
+                            iconMarker: this.getIcon4Symbol(symbol),
+                            pictogram: wpoint.properties.pictogram,
+                            pictureUrl: (wpoint.properties.pictureUrl !== undefined) ? wpoint.properties.pictureUrl : '',
+                            elevationProfile: (wpoint.properties.elevationProfile !== undefined) ? wpoint.properties.elevationProfile : true,
+                            lon: (TrailsDataModel.activeTrail.getTrailData().snapWPsToPath) ? inputPathLine[tempIndex].lon : wpoint.geometry.coordinates[0],
+                            lat: (TrailsDataModel.activeTrail.getTrailData().snapWPsToPath) ? inputPathLine[tempIndex].lat : wpoint.geometry.coordinates[1],
+                            elevation: (TrailsDataModel.activeTrail.getTrailData().snapWPsToPath || !wpoint.geometry.coordinates[2]) ? inputPathLine[tempIndex].elevation : wpoint.geometry.coordinates[2],
+                        };
+                        this.generateWPointGeoJSON(tempIndex, newWaypoint, inputPathLine);
+                        newWaypoints.push(newWaypoint);
+                    }
+                });
+            } else {
+                console.warn('wpoint ' + JSON.stringify(wpoint.properties) + ' too far from Path');
+                GLU.bus.emit(MessageEvents.WARNING_MESSAGE, 'wpoint ' + JSON.stringify(wpoint.properties) + ' too far from Path');
             }
             waypointsProgressPayload.loaded = parseInt((wpindex + 1), 10);
             // GLU.bus.emit(MessageEvents.PROGRESS_MESSAGE, waypointsProgressPayload);
         });
 
         newWaypointsExport = CommonHelper.sortArrayByKey(newWaypoints, 'odometer');
+
+        newWaypointsExport[0].symbol = 'START';
+        newWaypointsExport[0].iconMarker = this.getIcon4Symbol('START');
+        newWaypointsExport[0].elevation = inputPathLine[0].elevation;
+        newWaypointsExport[newWaypointsExport.length - 1].symbol = 'END';
+        newWaypointsExport[newWaypointsExport.length - 1].iconMarker = this.getIcon4Symbol('END');
+        newWaypointsExport[newWaypointsExport.length - 1].elevation = inputPathLine[inputPathLine.length - 1].elevation;
 
         newWaypointsExport.forEach((element, index) => {
             let tempWp = {};
@@ -240,7 +342,8 @@ class WaypointHelper extends GLU.Controller {
                 };
             }
             element.id = index;
-            element.descgenerated = this.generateDesc(tempWp, surfaceCollection);
+            const descgenerated = this.generateDesc(tempWp, surfaceCollection);
+            element.desc = element.initDesc + descgenerated;
         });
 
         newWaypointsExport.forEach((wp, wpIdx) => {
@@ -249,47 +352,6 @@ class WaypointHelper extends GLU.Controller {
             newPoint.properties.id = wpIdx;
             mapWaypointsCollection.features.push(newPoint);
         });
-
-        // Adding to map
-        if (leftMap.getSource('waypoints')) {
-            leftMap.removeLayer('waypoints');
-            leftMap.removeSource('waypoints');
-        }
-        // if (rightMap.getSource('waypoints')) {
-        //     rightMap.removeLayer('waypoints');
-        //     rightMap.removeSource('waypoints');
-        // }
-        leftMap.addSource('waypoints', {
-            type: 'geojson',
-            data: mapWaypointsCollection,
-        });
-        // rightMap.addSource('waypoints', {
-        //     type: 'geojson',
-        //     data: mapWaypointsCollection,
-        // });
-
-        const pointLayer = {};
-        pointLayer.id = 'waypoints';
-        pointLayer.type = 'symbol';
-        pointLayer.source = 'waypoints';
-        pointLayer.layout = {};
-        pointLayer.layout['icon-image'] = 'monument-15';
-        pointLayer.layout['text-field'] = '{id}';
-        pointLayer.layout['text-anchor'] = 'top';
-        pointLayer.layout['text-offset'] = [0, 1];
-        pointLayer.paint = {};
-        pointLayer.paint['icon-color'] = '#FF0000';
-        pointLayer.paint['icon-halo-color'] = '#FFFFFF';
-
-        leftMap.addLayer(pointLayer);
-        // rightMap.addLayer(pointLayer);
-
-        // return {
-        //     waypoints: newWaypointsExport,
-        //     chartWaypoints: newWaypointsChart,
-        //     mapWaypoints: mapWaypointsCollection.features,
-        // };
-
         return mapWaypointsCollection.features;
     }
 
@@ -298,11 +360,10 @@ class WaypointHelper extends GLU.Controller {
     }
 
     generateDesc(wp, surfaceCollection) {
-        let returnDesc = JSON.stringify(wp);
-        returnDesc = CommonHelper.getElementByKey(this.pointTypes, 'id', 'CROSSROAD', 'name');
+        let returnDesc = CommonHelper.getElementByKey(this.pointTypes, 'id', 'CROSSROAD', 'name');
 
         if (wp.next !== null) {
-            let directionText = CommonHelper.getElementByKey(this.pointTypes, 'id', wp.current.symbol, 'name') + ' "' + wp.current.name + '". Nastaviti ';
+            let directionText = CommonHelper.getElementByKey(this.pointTypes, 'id', wp.current.symbol, 'name') + ' `' + wp.current.name + '`. Nastaviti ';
             let otherDirections = ' Sporedni putevi: ';
             let waterSupplyText = ' Izvor vode: ';
             let forbiddenDirectionText = ' Zabranjen smjer: ';
@@ -349,11 +410,14 @@ class WaypointHelper extends GLU.Controller {
             }
             // console.log('wp.current.odometer = ' + wp.current.odometer + ' , wp.next.odometer = ' + wp.next.odometer);
             directionText += this.parseSurfaceTransition(wp.current.odometer, wp.next.odometer, surfaceCollection);
-            directionText += '. Sljedeca kontrolna tacka je ' + CommonHelper.getElementByKey(this.pointTypes, 'id', wp.next.symbol, 'name') + ' "' + wp.next.name + '" (' + wp.next.odometer + ' km od starta na ' + parseInt(wp.next.elevation, 10) + ' mnv).';
+            directionText += '. Sljedeca kontrolna tacka je ' + CommonHelper.getElementByKey(this.pointTypes, 'id', wp.next.symbol, 'name') + ' `' + wp.next.name + '` (' + wp.next.odometer + ' km od starta na ' + parseInt(wp.next.elevation, 10) + ' mnv).';
             returnDesc = directionText;
         } else {
             returnDesc = 'Stigli ste na odrediste';
         }
+        // console.log('generateDesc');
+        // console.log(wp);
+        console.log('generated description: ' + returnDesc.length);
         return returnDesc;
     }
 
