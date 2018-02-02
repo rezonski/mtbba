@@ -2,11 +2,11 @@
   "local": {
     "environment": "local",
     "projects": "projects/",
-    "server": "http://localhost/sandbox/examples/"
+    "server": "http://www.staze.net/"
   },
   "production": {
     "environment": "production",
     "projects": "projects/",
-    "server": "http://localhost/sandbox/examples/"
+    "server": "http://www.staze.net/"
   }
 }

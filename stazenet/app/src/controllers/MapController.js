@@ -47,7 +47,7 @@ class MapController extends GLU.Controller {
                 query: {},
             })
             .then((payload) => {
-                const newToken = payload.text;
+                const newToken = JSON.parse(payload.text);
                 MapModel.accessToken = newToken;
                 this.getMapInitSetup();
             })

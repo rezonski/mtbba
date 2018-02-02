@@ -4,6 +4,7 @@ import Enum from '../../enums/Enum';
 import Lang from '../../helpers/Lang';
 import TrailHelper from '../../helpers/TrailHelper';
 import DeleteSweep from 'material-ui/svg-icons/content/delete-sweep';
+import ModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import IconButton from 'material-ui/IconButton';
 // import CommonHelper from '../../helpers/CommonHelper';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
@@ -89,6 +90,13 @@ class SurfaceCollectionEditor extends BasePage {
                                     onTouchTap={this.onDeleteRow.bind(this, rowIndex)}
                                 >
                                     <DeleteSweep />
+                                </IconButton>
+                            </TableRowColumn>
+                            <TableRowColumn style={tableStyle.column}>
+                                <IconButton
+                                    onTouchTap={this.onEditRow.bind(this, rowIndex)}
+                                >
+                                    <ModeEdit />
                                 </IconButton>
                             </TableRowColumn>
                             <TableRowColumn style={tableStyle.column}>

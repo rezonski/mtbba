@@ -266,7 +266,7 @@ class DataController extends GLU.Controller {
         //     generalFacts,
         // });
         // Connection
-        const destination = appConfig.constants.server + 'setTrail.php';
+        const destination = appConfig.constants.server + 'api/db/setTrail.php';
         const xmlhttpUpload = new XMLHttpRequest();
         xmlhttpUpload.onreadystatechange = () => {
             if (xmlhttpUpload.readyState === 4 && xmlhttpUpload.status === 200) {
@@ -506,7 +506,7 @@ class DataController extends GLU.Controller {
                 mapParams: trailCenter[0] + ',' + trailCenter[1] + ',' + TrailHelper.calculateZoomLevel(simplifiedPolyline),
                 fileName: CommonHelper.getUUID() + '.png',
                 deleteFile: (trailFacts.imageURL) ? trailFacts.imageURL.replace(appConfig.constants.server, '') : '',
-                accessToken: MapModel.accessToken,
+                accessToken: MapModel.accessToken.token,
             };
             // console.log('getTrailThumbnail');
             // console.log(query);
@@ -567,7 +567,7 @@ class DataController extends GLU.Controller {
                     mapParams: waypoints[WPindex].geometry.coordinates[0] + ',' + waypoints[WPindex].geometry.coordinates[1] + ',17',
                     fileName: CommonHelper.getUUID() + '.png',
                     deleteFile: (waypoints[WPindex].properties.pictureUrl) ? waypoints[WPindex].properties.pictureUrl.replace(appConfig.constants.server, '') : '',
-                    accessToken: MapModel.accessToken,
+                    accessToken: MapModel.accessToken.token,
                 };
                 const getURL = 'https://api.mapbox.com/v4/mapbox.satellite/geojson(' + encodeURIComponent(query.geojson) + ')/' + query.mapParams + '/300x300.png?access_token=' + query.accessToken;
                 API.Trails.getWPThumbnail({ query })

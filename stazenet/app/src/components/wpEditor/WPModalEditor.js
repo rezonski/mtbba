@@ -6,7 +6,6 @@ import Dialog from 'material-ui/Dialog';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
-import appConfig from '../../appConfig';
 import Globals from '../../Globals';
 
 class WPModalEditor extends BasePage {
@@ -93,7 +92,7 @@ class WPModalEditor extends BasePage {
             newpoint: {
                 width: 300,
                 height: 300,
-                backgroundImage: 'url("' + appConfig.constants.server + '/svg/getsvg.php?opis=' + this.state.pictogram + '")',
+                backgroundImage: 'url("' + Globals.IMAGE_UPLOAD_PATH + 'svg/getsvg.php?opis=' + this.state.pictogram + '")',
             },
             newphoto: {
                 width: 300,

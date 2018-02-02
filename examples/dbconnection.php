@@ -9,8 +9,14 @@
 
     // $servername = "localhost";
     // $username = "root";
-    // $password = "";
-    // $dbname = "mytrails";
+    // $password = "vJF;1GlzU$r7";
+    // $dbname = "mermtb11_staze";
+    // $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // $servername = "localhost";
+    // $username = "mermtb11_stazeadmin";
+    // $password = "iU*87MI^.T[A";
+    // $dbname = "mermtb11_staze";
     // $conn = new mysqli($servername, $username, $password, $dbname);
 
     if (!$conn) {

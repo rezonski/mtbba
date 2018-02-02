@@ -2,8 +2,7 @@ import React from 'react';
 import BasePage from '../BasePage';
 import MessageEvents from '../../enums/MessageEvents';
 import Enum from '../../enums/Enum';
-import appConfig from '../../appConfig';
-import AppConfig from '/appConfig';
+import Globals from '../../Globals';
 
 class ImagePreview extends BasePage {
     constructor(props) {
@@ -57,11 +56,11 @@ class ImagePreview extends BasePage {
         }
 
         let contentStyle = { backgroundImage: 'url("' + this.state.value + '")' };
-        let content = <img src={AppConfig.constants.server + 'upload/watermark/watermark.png'} />;
+        let content = <img src={Globals.IMAGE_UPLOAD_PATH + 'watermarks/watermark.png'} />;
 
         if (this.props.fieldName === 'waypoints' && this.props.fieldProp === 'pictogram') {
             contentStyle = {
-                backgroundImage: 'url("' + appConfig.constants.server + '/svg/getsvg.php?opis=' + this.state.value + '")',
+                backgroundImage: 'url("' + Globals.IMAGE_UPLOAD_PATH + 'svg/getsvg.php?opis=' + this.state.value + '")',
             };
             content = null;
         }

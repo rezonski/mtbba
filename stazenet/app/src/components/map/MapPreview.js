@@ -30,7 +30,7 @@ class MapPreview extends BasePage {
     }
 
     componentDidUpdate() {
-        mapboxgl.accessToken = this.state.setup.accessToken;
+        mapboxgl.accessToken = this.state.setup.accessToken.token;
         this.mappreview = new mapboxgl.Map({
             container: 'mappreview',
             style: this.state.setup.primaryStyle.value,

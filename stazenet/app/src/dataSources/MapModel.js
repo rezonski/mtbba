@@ -4,7 +4,7 @@ class MapModel extends GLU.DataSource {
     constructor() {
         super();
         this._collection = [];
-        this._accessToken = null;
+        this._accessToken = {};
         this._initialMaxBounds = [[10, 39], [25, 48]];
         this._initialBounds = [[14.69, 42.12], [20.36, 45.67]];
         this._initialCenter = [17.67696, 43.920101];
@@ -80,6 +80,12 @@ class MapModel extends GLU.DataSource {
         return this._accessToken;
     }
 
+    set accessToken(newToken) {
+        if (newToken) {
+            this._accessToken = newToken;
+        }
+    }
+
     get initialBounds() {
         return this._initialBounds;
     }
@@ -144,12 +150,6 @@ class MapModel extends GLU.DataSource {
                 return style;
             }
         });
-    }
-
-    set accessToken(newToken) {
-        if (newToken) {
-            this._accessToken = newToken;
-        }
     }
 }
 

@@ -53,14 +53,14 @@ class SingleMap extends BasePage {
                 // Add mines source
                 this.state.map.addSource('mineTiles', {
                     type: 'vector',
-                    url: 'mapbox://mersadpasic.bdixpo9t',
+                    url: 'mapbox://' + this.state.setup.accessToken.sid,
                 });
                 // Add mines layer
                 this.state.map.addLayer({
                     id: 'minesLayer',
                     type: 'fill',
                     source: 'mineTiles',
-                    'source-layer': 'BHMACmine_sistematskoizvidjanje',
+                    'source-layer': this.state.setup.accessToken.lid,
                     paint: {
                         'fill-color': '#ff0000',
                         'fill-opacity': 0.3,
@@ -108,7 +108,7 @@ class SingleMap extends BasePage {
 
     initMap(initSetup) {
         if (initSetup) {
-            mapboxgl.accessToken = initSetup.accessToken;
+            mapboxgl.accessToken = initSetup.accessToken.token;
             const newMap = new mapboxgl.Map({
                 container: 'leftmap',
                 style: initSetup.primaryStyle.value,

@@ -28,7 +28,7 @@ class SwipeMap extends BasePage {
 
     componentDidUpdate() {
         // console.info('SwipeMap DidUpdate');
-        mapboxgl.accessToken = this.state.setup.accessToken;
+        mapboxgl.accessToken = this.state.setup.accessToken.token;
         this.leftmap = new mapboxgl.Map({
             container: 'leftmap',
             style: this.state.setup.primaryStyle.value,
