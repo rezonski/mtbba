@@ -16,6 +16,8 @@ class SurfaceCollectionEditor extends BasePage {
             id: 'surfaceCollection',
             surfaceCollection: null,
         };
+        this.action = 'new';
+        this.selectedIndex = null;
         this.keyListener = this.onKeyDown.bind(this);
     }
 
@@ -49,7 +51,13 @@ class SurfaceCollectionEditor extends BasePage {
     onKeyDown(e) {
         if (e.keyCode === 77 || e.keyCode === 65 || e.keyCode === 83 || e.keyCode === 78) {
             e.preventDefault();
-            this.state.surfaceCollection.push([this.newSurfaceOdometer, String.fromCharCode(e.keyCode)]);
+            if (this.action === 'new') {
+                this.state.surfaceCollection.push([this.newSurfaceOdometer, String.fromCharCode(e.keyCode)]);
+            } else if (this.action === 'edit' && this.selectedIndex !== null) {
+                this.state.surfaceCollection[this.selectedIndex][1] = String.fromCharCode(e.keyCode);
+                this.action = 'new';
+                this.selectedIndex = null;
+            }
             const payload = {
                 name: this.state.id,
                 value: this.state.surfaceCollection,
@@ -65,6 +73,11 @@ class SurfaceCollectionEditor extends BasePage {
             value: this.state.surfaceCollection,
         };
         this.emit(Enum.DataEvents.UPDATE_TRAILDATA2MODEL, payload);
+    }
+
+    onEditRow(index) {
+        this.action = 'edit';
+        this.selectedIndex = index;
     }
 
     onAddNewSurface(payload) {
