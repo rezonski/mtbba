@@ -17,6 +17,7 @@ import NavTerrain from 'material-ui/svg-icons/maps/terrain';
 import NavSatellite from 'material-ui/svg-icons/maps/satellite';
 // import ArrowDropDown from 'material-ui/svg-icons/navigation/arrow-drop-down';
 import SaveTrailIcon from 'material-ui/svg-icons/file/cloud-upload';
+import PublishTrailIcon from 'material-ui/svg-icons/social/public';
 import OpenTrailIcon from 'material-ui/svg-icons/file/cloud-download';
 
 class MainToolbar extends BasePage {
@@ -36,6 +37,7 @@ class MainToolbar extends BasePage {
         this.onCloseMapLayersEvent = this.onCloseMapLayers.bind(this);
         this.onToggleWPDrawerEvent = this.onToggleWPDrawer.bind(this);
         this.onSaveTrailEvent = this.onSaveTrail.bind(this);
+        this.onPublishTrailEvent = this.onPublishTrail.bind(this);
         this.onOpenTrailReuestEvent = this.onOpenTrailReuest.bind(this);
         this.bindGluBusEvents({
             [Enum.MapEvents.MAP_STYLES_RETRIEVED]: this.onMapStylesRetrieved,
@@ -80,6 +82,10 @@ class MainToolbar extends BasePage {
 
     onSaveTrail() {
         this.emit(Enum.DataEvents.UPLOAD_TRAIL);
+    }
+
+    onPublishTrail() {
+        this.emit(Enum.DataEvents.PUBLISH_TRAIL);
     }
 
     onOpenTrailReuest() {
@@ -146,6 +152,13 @@ class MainToolbar extends BasePage {
                         disabled={this.state.disabledSaveTrail}
                         onTouchTap={this.onSaveTrailEvent}
                         icon={<SaveTrailIcon />}
+                    />
+                    <FlatButton
+                        label={Lang.label('publishtrail')}
+                        primary={true}
+                        disabled={this.state.disabledSaveTrail}
+                        onTouchTap={this.onPublishTrailEvent}
+                        icon={<PublishTrailIcon />}
                     />
                     <FlatButton
                         label={Lang.label('waypoints')}

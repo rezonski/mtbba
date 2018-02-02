@@ -197,6 +197,10 @@ const labels = {
         bos: 'Spasi',
         eng: 'Save',
     },
+    publishtrail: {
+        bos: 'Objavi',
+        eng: 'Publish',
+    },
     opentrail: {
         bos: 'Otvori',
         eng: 'Open',

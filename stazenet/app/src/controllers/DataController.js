@@ -40,6 +40,7 @@ class DataController extends GLU.Controller {
             [Enum.DataEvents.RETRIEVE_TRAILS_LIST]: this.getTrailsList,
             [Enum.DataEvents.DOWNLOAD_TRAIL]: this.downloadTrail,
             [Enum.DataEvents.UPLOAD_TRAIL]: this.uploadTrail,
+            [Enum.DataEvents.PUBLISH_TRAIL]: this.publishTrail,
             [Enum.DataEvents.GENERATE_WP_SUGGESTIONS]: this.generateWaypointSuggestions,
             [Enum.DataEvents.START_IMAGE_UPLOAD]: this.uploadImage,
             [Enum.DataEvents.SAVE_INITIAL_GEO_FILE]: this.saveInitalGeoFile,
@@ -274,9 +275,33 @@ class DataController extends GLU.Controller {
                 if (resp.status && resp.newTrail) {
                     GLU.bus.emit(MessageEvents.INFO_MESSAGE, `New trail/version ${resp.trailID}/${resp.newVersionID} upladed successfully`);
                 } else {
-                    console.warn('#TrailUpladFailure');
+                    console.warn('#TrailUploadFailure');
                     console.info(resp.log);
                     GLU.bus.emit(MessageEvents.ERROR_MESSAGE, `Upload failed. See console log for details`);
+                }
+            }
+        };
+        xmlhttpUpload.open('POST', destination, true);
+        xmlhttpUpload.send(uploadPayload);
+    }
+
+    publishTrail() {
+        const uploadPayload = JSON.stringify({
+            collection: JSON.parse(JSON.stringify(TrailsDataModel.activeTrail.enrichedFeaturesCollection)),
+            uuid: CommonHelper.getUUID(),
+        });
+        // Connection
+        const destination = appConfig.constants.server + 'api/file/publishTrail.php';
+        const xmlhttpUpload = new XMLHttpRequest();
+        xmlhttpUpload.onreadystatechange = () => {
+            if (xmlhttpUpload.readyState === 4 && xmlhttpUpload.status === 200) {
+                const resp = JSON.parse(xmlhttpUpload.responseText);
+                if (resp.status) {
+                    GLU.bus.emit(MessageEvents.INFO_MESSAGE, `Trail published, UUID: ${uploadPayload.uuid}`);
+                } else {
+                    console.warn('#TrailPublishFailure');
+                    console.info(resp.log);
+                    GLU.bus.emit(MessageEvents.ERROR_MESSAGE, `Publish failed. See console log for details`);
                 }
             }
         };
