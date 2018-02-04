@@ -14,12 +14,23 @@ class Trail {
         this._mapPathLayers = [];
         this._levelOfProcess = 0;
         this._wpProcessItreration = 0;
+        this._publishedUUID = false;
         this._parsedFeaturesCollection = {};
         this._simplifiedFeaturesCollection = {}; // Simplified
         this._elevatedFeaturesCollection = {}; // Elevated
         this._elevationNivelatedFeaturesCollection = {}; // Flatten elevation LineString
         this._interpolatedFeaturesCollection = {}; // Flatten elevation LineString
         this._enrichedFeaturesCollection = {}; // Flatten elevation LineString
+    }
+
+    get publishedUUID() {
+        return this._publishedUUID;
+    }
+
+    set publishedUUID(newUUID) {
+        if (newUUID) {
+            this._publishedUUID = newUUID;
+        }
     }
 
     getElevationTreshold() {
@@ -449,6 +460,16 @@ class Trail {
             this._interpolatedFeaturesCollection = newFeaturesCollection;
             this._enrichedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineStri
         }
+    }
+
+    get publishedFeaturesCollection() {
+        const returnCollection = JSON.parse(JSON.stringify(this._enrichedFeaturesCollection));
+        returnCollection.features.forEach(feature => {
+            if (feature.properties.wpGeoJSON) {
+                delete feature.properties.wpGeoJSON;
+            }
+        });
+        return returnCollection;
     }
 
     get enrichedFeaturesCollection() {
