@@ -5,6 +5,7 @@ import Lang from '/helpers/Lang';
 import CircularProgress from 'material-ui/CircularProgress';
 import InputTextBox from '../common/InputTextBox';
 import Switch from '../common/Switch';
+import ListSelection from '../common/ListSelection';
 import {
     Table,
     TableBody,
@@ -73,6 +74,26 @@ class StepWaypointsPreprocessing extends BasePage {
                         key={'waypoint-suggestion-row-' + wpIdx}
                         selectable={false}
                     >
+                        <TableRowColumn style={styles.columnNarow}>
+                            <Switch
+                                fieldName={'waypoints'}
+                                fieldIndex={wpIdx}
+                                fieldProp={'elevationProfile'}
+                                label={''}
+                                type={'toggle'}
+                            />
+                        </TableRowColumn>
+                        <TableRowColumn style={styles.columnNarower}>
+                            <ListSelection
+                                key="pointTypes"
+                                fieldName={'waypoints'}
+                                sourceName="pointTypes"
+                                defaultValueIndex={0}
+                                fieldIndex={this.props.wpIndex}
+                                fieldProp={'symbol'}
+                                floatingLabelText={Lang.label('pointTypes')}
+                            />
+                        </TableRowColumn>
                         <TableRowColumn style={styles.columnNarower}>
                             <InputTextBox
                                 fieldName={'waypoints'}
@@ -85,16 +106,9 @@ class StepWaypointsPreprocessing extends BasePage {
                                 filedHintText={Lang.label('wpName')}
                             />
                         </TableRowColumn>
-                        <TableRowColumn style={styles.columnNarow}>
-                            <Switch
-                                fieldName={'waypoints'}
-                                fieldIndex={wpIdx}
-                                fieldProp={'elevationProfile'}
-                                label={Lang.label('showOnElevationProfile')}
-                                type={'toggle'}
-                            />
+                        <TableRowColumn style={styles.columnWider}>
+                            <span style={{ whiteSpace: 'pre-line' }}>{wp.properties.suggestionNames}</span>
                         </TableRowColumn>
-                        <TableRowColumn style={styles.columnWider}><span style={{ whiteSpace: 'pre-line' }}>{wp.properties.suggestionNames}</span></TableRowColumn>
                     </TableRow>);
         });
 
@@ -106,6 +120,7 @@ class StepWaypointsPreprocessing extends BasePage {
                         <TableHeader>
                             <TableRow>
                                 <TableHeaderColumn style={styles.columnNarower}>{Lang.label('showOnElevationProfile')}</TableHeaderColumn>
+                                <TableHeaderColumn style={styles.columnNarower}>{Lang.label('pointTypes')}</TableHeaderColumn>
                                 <TableHeaderColumn style={styles.columnNarower}>{Lang.label('wpName')}</TableHeaderColumn>
                                 <TableHeaderColumn style={styles.columnNarower}>{Lang.label('suggestion')}</TableHeaderColumn>
                             </TableRow>
