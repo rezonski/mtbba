@@ -65,6 +65,33 @@ class SingleMap extends BasePage {
                         'fill-color': '#ff0000',
                         'fill-opacity': 0.3,
                     },
+                    layout: {
+                        visibility: 'none',
+                    },
+                    minzoom: 0,
+                    maxzoom: 22,
+                }, 'contour-line-index');
+                // Add STRAVA source
+                this.state.map.addSource('stravaTiles', {
+                    type: 'raster',
+                    tiles: [
+                        '//heatmap-external-a.strava.com/tiles/ride/hot/{z}/{x}/{y}.png?v=19',
+                        '//heatmap-external-b.strava.com/tiles/ride/hot/{z}/{x}/{y}.png?v=19',
+                        '//heatmap-external-c.strava.com/tiles/ride/hot/{z}/{x}/{y}.png?v=19',
+                    ],
+                    tileSize: 512,
+                });
+                // Add STRAVA layer
+                this.state.map.addLayer({
+                    id: 'stravaLayer',
+                    type: 'raster',
+                    source: 'stravaTiles',
+                    paint: {
+                        'raster-opacity': 0.8,
+                    },
+                    layout: {
+                        visibility: 'none',
+                    },
                     minzoom: 0,
                     maxzoom: 22,
                 }, 'contour-line-index');

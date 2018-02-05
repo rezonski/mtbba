@@ -4,6 +4,7 @@ import BasePage from '../BasePage';
 import Lang from '/helpers/Lang';
 import MountainMultiSelection from '../newTrail/MountainMultiSelection';
 import ListSelection from '../common/ListSelection';
+import InputTextBox from '../common/InputTextBox';
 
 class StepParameters extends BasePage {
     constructor(props) {
@@ -35,8 +36,8 @@ class StepParameters extends BasePage {
                 </div>
                 <div className="flex-container row">
                     <ListSelection
-                        key="fitnessLevelID"
-                        fieldName="fitnessLevelID"
+                        key="requiredFitness"
+                        fieldName="requiredFitness"
                         sourceName="fitnessLevels"
                         defaultValueIndex={1}
                         floatingLabelText={Lang.label('chooseFitnessLevel')}
@@ -44,12 +45,32 @@ class StepParameters extends BasePage {
                 </div>
                 <div className="flex-container row">
                     <ListSelection
-                        key="techniqueLevelID"
-                        fieldName="techniqueLevelID"
+                        key="requiredTechnique"
+                        fieldName="requiredTechnique"
                         sourceName="techniqueLevels"
                         defaultValueIndex={1}
                         floatingLabelText={Lang.label('chooseTechniqueLevel')}
                     />
+                </div>
+                <div className="flex-container row">
+                    <div className="flex-container margined-right">
+                        <InputTextBox
+                            key="reviewLandscape"
+                            fieldName="reviewLandscape"
+                            isMultiline={false}
+                            noRows={1}
+                            filedLabel={Lang.label('reviewLandscape')}
+                        />
+                    </div>
+                    <div className="flex-container margined-right">
+                        <InputTextBox
+                            key="reviewFun"
+                            fieldName="reviewFun"
+                            isMultiline={false}
+                            noRows={1}
+                            filedLabel={Lang.label('reviewFun')}
+                        />
+                    </div>
                 </div>
             </div>
             <div className="flex-element column">

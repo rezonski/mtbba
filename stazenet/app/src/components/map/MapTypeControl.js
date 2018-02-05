@@ -11,10 +11,16 @@ class MapTypeControl {
         this._container.appendChild(this._button1);
 
         this._button2 = document.createElement('button');
-        this._button2.className = 'mapbox-gl-draw_ctrl-draw-btn mines on';
+        this._button2.className = 'mapbox-gl-draw_ctrl-draw-btn mines off';
         this._button2.title = 'Toggle mine danger zones';
         this._button2.addEventListener('click', this.onToggleMines.bind(this));
         this._container.appendChild(this._button2);
+
+        this._button3 = document.createElement('button');
+        this._button3.className = 'mapbox-gl-draw_ctrl-draw-btn strava off';
+        this._button3.title = 'Toggle STRAVA heat map';
+        this._button3.addEventListener('click', this.onToggleStrava.bind(this));
+        this._container.appendChild(this._button3);
 
         return this._container;
     }
@@ -46,6 +52,18 @@ class MapTypeControl {
             } else {
                 window.leftmap.setLayoutProperty('minesLayer', 'visibility', 'visible');
                 this._button2.className = 'mapbox-gl-draw_ctrl-draw-btn mines on';
+            }
+        }
+    }
+
+    onToggleStrava() {
+        if (window.leftmap.getLayer('stravaLayer')) {
+            if (window.leftmap.getLayoutProperty('stravaLayer', 'visibility') === 'visible') {
+                window.leftmap.setLayoutProperty('stravaLayer', 'visibility', 'none');
+                this._button3.className = 'mapbox-gl-draw_ctrl-draw-btn strava off';
+            } else {
+                window.leftmap.setLayoutProperty('stravaLayer', 'visibility', 'visible');
+                this._button3.className = 'mapbox-gl-draw_ctrl-draw-btn strava on';
             }
         }
     }

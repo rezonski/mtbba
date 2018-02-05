@@ -164,8 +164,8 @@ class Trail {
         generalFacts.elevMax = (generalFacts.elevMax === undefined) ? 0 : generalFacts.elevMax;
         generalFacts.elevGain = (generalFacts.elevGain === undefined) ? 0 : generalFacts.elevGain;
         generalFacts.elevLoss = (generalFacts.elevLoss === undefined) ? 0 : generalFacts.elevLoss;
-        generalFacts.reviewLandscape = (generalFacts.reviewLandscape === undefined) ? 0 : generalFacts.reviewLandscape;
-        generalFacts.reviewFun = (generalFacts.reviewFun === undefined) ? 0 : generalFacts.reviewFun;
+        generalFacts.reviewLandscape = (generalFacts.reviewLandscape === undefined) ? 1 : generalFacts.reviewLandscape;
+        generalFacts.reviewFun = (generalFacts.reviewFun === undefined) ? 1 : generalFacts.reviewFun;
         generalFacts.requiredFitness = (generalFacts.requiredFitness === undefined) ? 0 : generalFacts.requiredFitness;
         generalFacts.requiredTechnique = (generalFacts.requiredTechnique === undefined) ? 0 : generalFacts.requiredTechnique;
         generalFacts.center = (generalFacts.center === undefined) ? [] : generalFacts.center;
@@ -373,6 +373,18 @@ class Trail {
         this.enrichedFeaturesCollection = turf.featureCollection(enrichedFeaturesCollectionFeatures);
     }
 
+    get publishedFeaturesCollection() {
+        const lineStrings = CommonHelper.getLineStrings(this.interpolatedFeaturesCollection);
+        const waypoints = CommonHelper.getPoints(this.enrichedFeaturesCollection);
+        waypoints.forEach(feature => {
+            if (feature.properties.wpGeoJSON) {
+                delete feature.properties.wpGeoJSON;
+            }
+        });
+        const returnCollection = turf.featureCollection([...lineStrings, ...waypoints]);
+        return returnCollection;
+    }
+
     getChartData(containerId) {
         // const chartData = ChartHelper.getChartSetup(containerId, trailFacts.trailName, this.chartWaypoints, this.profileMapPathLine, this.surfaceCollection);
         const enrichedFeaturesCollection = this.enrichedFeaturesCollection;
@@ -460,16 +472,6 @@ class Trail {
             this._interpolatedFeaturesCollection = newFeaturesCollection;
             this._enrichedFeaturesCollection = newFeaturesCollection; // Flatten elevation LineStri
         }
-    }
-
-    get publishedFeaturesCollection() {
-        const returnCollection = JSON.parse(JSON.stringify(this._enrichedFeaturesCollection));
-        returnCollection.features.forEach(feature => {
-            if (feature.properties.wpGeoJSON) {
-                delete feature.properties.wpGeoJSON;
-            }
-        });
-        return returnCollection;
     }
 
     get enrichedFeaturesCollection() {

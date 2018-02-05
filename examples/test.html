@@ -3,9 +3,32 @@
 <head>
     <meta charset='utf-8' />
     <title></title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='data/publishCollection.js'></script>
 </head>
 <body>
-    <img src="svg/getsvg.php?opis=m100-p170-v315-n230" style="border: 1px solid #000;" width="500">
+<script>
+    const uuid = '8ac71363-7f50-4d0b-9711-13149253d6f9';
+    const uploadPayload = JSON.stringify({
+        collection: JSON.parse(JSON.stringify(publishCollection)),
+        uuid,
+    });
+    // Connection
+    // const destination = 'upload/publishTrail.php';
+    const destination = 'http://www.staze.net/api/file/publishTrail.php';
+    const xmlhttpUpload = new XMLHttpRequest();
+    xmlhttpUpload.onreadystatechange = () => {
+        if (xmlhttpUpload.readyState === 4 && xmlhttpUpload.status === 200) {
+            const resp = JSON.parse(xmlhttpUpload.responseText);
+            if (resp.status) {
+                console.log(`Trail published, UUID: ${uuid}`);
+            } else {
+                console.warn('#TrailPublishFailure');
+                console.info(resp.log);
+            }
+        }
+    };
+    xmlhttpUpload.open('POST', destination, true);
+    xmlhttpUpload.send(uploadPayload);
+</script>
 </body>
 </html>

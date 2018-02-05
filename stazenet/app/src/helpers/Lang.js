@@ -81,6 +81,14 @@ const labels = {
         bos: 'Odaberi nivo potrebne tehničke vještine',
         eng: 'Choose required riding technique level',
     },
+    reviewLandscape: {
+        bos: 'Ocjena krajolika (1-5)',
+        eng: 'Landscape (1-5)',
+    },
+    reviewFun: {
+        bos: 'Zanimljivo (1-5)',
+        eng: 'Fun factor (1-5)',
+    },
     listSelectionHint: {
         bos: 'Odaberi jednu od ponuđenih opcija',
         eng: 'Choose only one from list',
