@@ -6,6 +6,7 @@ import CircularProgress from 'material-ui/CircularProgress';
 import InputTextBox from '../common/InputTextBox';
 import Switch from '../common/Switch';
 import ListSelection from '../common/ListSelection';
+import RaisedButton from 'material-ui/RaisedButton';
 import {
     Table,
     TableBody,
@@ -22,14 +23,14 @@ class StepWaypointsPreprocessing extends BasePage {
             [Enum.DataEvents.WP_SUGGESTIONS_GENERATED]: this.onWpSuggestionsGenerated,
         });
         this.state = {
-            loading: true,
+            step: 'intro', // ['intro', 'loading', 'loaded']
             height: '300px',
         };
     }
 
-    componentDidMount() {
-        this.emit(Enum.DataEvents.GENERATE_WP_SUGGESTIONS);
-    }
+    // componentDidMount() {
+    //     this.emit(Enum.DataEvents.GENERATE_WP_SUGGESTIONS);
+    // }
 
     componentWillUnmount() {
         // this.emit(Enum.MapEvents.HIDE_PREVIEW_MAP);
@@ -38,13 +39,38 @@ class StepWaypointsPreprocessing extends BasePage {
 
     onWpSuggestionsGenerated(payload) {
         this.setState({
-            loading: false,
+            step: false,
             waypoints: payload.waypoints,
         });
     }
 
     render() {
-        if (this.state.loading) {
+        if (this.state.step === 'intro') {
+            return (<div className="flex-container row">
+                <RaisedButton
+                    label={Lang.label('suggestion') + ' ' + Lang.label('yes')}
+                    secondary={true}
+                    className="margined-right"
+                    style={{ minWidth: '200px' }}
+                    onTouchTap={() => {
+                        this.emit(Enum.DataEvents.GENERATE_WP_SUGGESTIONS, {
+                            suggestions: true,
+                        });
+                    }}
+                />
+                <RaisedButton
+                    label={Lang.label('suggestion') + ' ' + Lang.label('no')}
+                    secondary={true}
+                    className="margined-right"
+                    style={{ minWidth: '200px' }}
+                    onTouchTap={() => {
+                        this.emit(Enum.DataEvents.GENERATE_WP_SUGGESTIONS, {
+                            suggestions: false,
+                        });
+                    }}
+                />
+            </div>);
+        } else if (this.state.step === 'loading') {
             return (<div className="flex-container row">
                 <CircularProgress />
             </div>);

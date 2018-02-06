@@ -9,7 +9,8 @@ class ListSelection extends BasePage {
         super(props);
         this.state = {
             fieldName: this.props.fieldName,
-            value: (this.props.value === undefined) ? undefined : this.props.value,
+            sourceName: this.props.sourceName,
+            defaultValueIndex: (this.props.defaultValueIndex !== undefined) ? this.props.defaultValueIndex : 0,
             label: (this.props.label) ? this.props.label : '',
             initialSetup: (this.props.optionList) ? { optionList: this.props.optionList } : {},
         };
@@ -27,7 +28,8 @@ class ListSelection extends BasePage {
     componentWillReceiveProps(nextProps) {
         this.setState({
             fieldName: nextProps.fieldName,
-            value: (nextProps.value === undefined) ? this.state.value : nextProps.value,
+            sourceName: nextProps.sourceName,
+            defaultValueIndex: (nextProps.defaultValueIndex !== undefined) ? nextProps.defaultValueIndex : 0,
             label: (nextProps.label) ? nextProps.label : '',
         });
     }
@@ -69,10 +71,10 @@ class ListSelection extends BasePage {
     }
 
     onInitialSetupRetrieved(payload) {
-        if (payload[this.props.sourceName]) {
+        if (payload[this.props.sourceName] && (!this.state.initialSetup[this.props.sourceName] || this.state.initialSetup[this.props.sourceName][this.state.defaultValueIndex].id !== this.state.value)) {
             this.setState({
                 initialSetup: payload,
-                value: payload[this.props.sourceName][this.props.defaultValueIndex].id,
+                value: payload[this.props.sourceName][this.state.defaultValueIndex].id,
             });
             this.emit(Enum.DataEvents.RETRIEVE_TRAIL_DATA);
         }

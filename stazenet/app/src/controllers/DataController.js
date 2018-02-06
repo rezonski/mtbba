@@ -25,6 +25,7 @@ class DataController extends GLU.Controller {
             loaded: 0,
             total: 100,
         };
+        this.generateWaypointSuggestionsFlag = false;
     }
     onActivate() {
         this.bindGluBusEvents({
@@ -315,14 +316,15 @@ class DataController extends GLU.Controller {
         xmlhttpUpload.send(uploadPayload);
     }
 
-    generateWaypointSuggestions() {
+    generateWaypointSuggestions(payload) {
         const parsedFeaturesCollection = TrailsDataModel.activeTrail.parsedFeaturesCollection;
         const waypoints = CommonHelper.getPoints(parsedFeaturesCollection);
+        this.generateWaypointSuggestionsFlag = payload.suggestions;
         this.searchOneWaypointToponyms(waypoints, 0);
     }
 
     searchOneWaypointToponyms(waypoints, widx) {
-        if (waypoints.length > 0 && waypoints[widx]) { // skinuti !
+        if (this.generateWaypointSuggestionsFlag && waypoints.length > 0 && waypoints[widx]) { // skinuti !
             const setup = {
                 coordinates: waypoints[widx].geometry.coordinates[1] + ',' + waypoints[widx].geometry.coordinates[0],
                 key: 'AIzaSyDRi_-A_op267m9UYOEVWFJ_L17Gq5Klis',

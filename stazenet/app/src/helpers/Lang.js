@@ -290,12 +290,20 @@ const labels = {
         eng: 'Waypoint name',
     },
     suggestion: {
-        bos: 'Prijedlog',
-        eng: 'Suggestion',
+        bos: 'Prijedlozi',
+        eng: 'Suggestions',
     },
     showOnElevationProfile: {
         bos: 'Profil',
         eng: 'Elev',
+    },
+    yes: {
+        bos: 'Da',
+        eng: 'Yes',
+    },
+    no: {
+        bos: 'Ne',
+        eng: 'No',
     },
 };
 
