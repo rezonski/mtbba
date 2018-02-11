@@ -12,8 +12,11 @@ class App extends React.Component {
     componentDidMount() {
         const map = new mapboxgl.Map({
             container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v9'
-        }); 
+            style: 'mapbox://styles/mapbox/streets-v9',
+        });
+        map.on('load', () => {
+            console.log('loaded');
+        });
     }
 
     render() {
