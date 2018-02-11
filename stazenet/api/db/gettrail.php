@@ -3,6 +3,7 @@
 
     if (isset($_GET['trailid'])) {
         $id = $_GET['trailid'];
+        
         $conn = new mysqli($servername, $username, $password, $dbname);
         
         /* change character set to utf8 */
@@ -82,6 +83,9 @@
         
         $sqltrailproperties = 
         "SELECT trail_id,
+                trail_uuid,
+                owner_id,
+                publish_status,
                 trail_name,
                 trail_name_en,
                 trail_desc,
@@ -116,6 +120,9 @@
             "type": "Feature",
             "properties": {
                 "trailID": "'.$row["trail_id"].'",
+                "trailUUID": "'.$row["trail_uuid"].'",
+                "ownerID": "'.$row["owner_id"].'",
+                "publishStatus": '.$row["publish_status"].',
                 "trailName": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_name"]).'",
                 "trailNameEn": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_name_en"]).'",
                 "trailDesc": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_desc"]).'",

@@ -27,7 +27,7 @@ class WaypointHelper extends GLU.Controller {
         // console.log(inputWaypoints.filter(f => { return f.properties.type && f.properties.type === 'terrainSwitch'; }));
         // }
 
-        const surfaceCollection = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].properties.surfaceCollection;
+        let surfaceCollection = CommonHelper.getLineStrings(JSON.parse(JSON.stringify(featuresCollection)))[0].properties.surfaceCollection;
         let newWaypoints = [];
         // let newWaypointsChart = [];
         let newWaypointsExport = [];
@@ -116,14 +116,20 @@ class WaypointHelper extends GLU.Controller {
                     if (tempIndexes.length > 0) {
                         console.log('#' + wpindex + ' - ' + wpoint.properties.name + ' repeats ' + tempIndexes.length + ' times');
                         console.log(tempIndexes);
-                        tempIndexes.forEach(tempIndex => {
+                        tempIndexes.forEach((tempIndex, order) => {
                             if (this.isTerrainSwitchPoint(wpoint.properties) !== false) {
                                 // console.log('Surface: ' + wpoint.properties.surfaceType + ' - ' + JSON.stringify(wpoint.geometry.coordinates) + ' - ' + (Math.round(inputPathLine[tempIndex].odometer * 100) / 100));
+                                let currentSurfaceCollection = JSON.parse(JSON.stringify(surfaceCollection));
                                 const payload = {
                                     odometer: Math.round(inputPathLine[tempIndex].odometer * 100) / 100,
                                     surfaceType: this.isTerrainSwitchPoint(wpoint.properties),
                                 };
-                                surfaceCollection.push([payload.odometer, payload.surfaceType]);
+                                if (order > 0) {
+                                    payload.surfaceType = currentSurfaceCollection[currentSurfaceCollection.length - 1][1];
+                                }
+                                currentSurfaceCollection.push([payload.odometer, payload.surfaceType]);
+                                const sortedSurfaceCollection = CommonHelper.sortArrayByKey(currentSurfaceCollection, 0);
+                                surfaceCollection = sortedSurfaceCollection;
                                 GLU.bus.emit(Enum.DataEvents.ADD_SURFACE_CHANGE, payload);
                             } else {
                                 let symbol = this.symbolFromDesc(wpoint.properties.desc, wpoint.properties.pictogram, wpoint.properties.name);

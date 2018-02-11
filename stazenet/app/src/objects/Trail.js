@@ -149,6 +149,9 @@ class Trail {
     getInitialGeneralFacts(inputGeneralFacts) {
         let generalFacts = JSON.parse(JSON.stringify(inputGeneralFacts));
         generalFacts.trailID = (generalFacts.trailID === undefined) ? null : generalFacts.trailID;
+        generalFacts.ownerID = (generalFacts.ownerID === undefined) ? '33d7d4b6-0f1b-11e8-ba89-0ed5f89f718b' : generalFacts.ownerID;
+        generalFacts.trailUUID = (generalFacts.trailUUID === undefined) ? CommonHelper.getUUID() : generalFacts.trailUUID;
+        generalFacts.publishStatus = (generalFacts.publishStatus === undefined) ? 0 : generalFacts.publishStatus;
         generalFacts.trailVersionID = (generalFacts.trailVersionID === undefined) ? null : generalFacts.trailVersionID;
         generalFacts.trailName = (generalFacts.trailName === undefined) ? '' : generalFacts.trailName;
         generalFacts.trailNameEn = (generalFacts.trailNameEn === undefined) ? '' : generalFacts.trailNameEn;
@@ -309,6 +312,9 @@ class Trail {
         const trailFacts = this.getGeneralFacts();
         return {
             trailID: trailFacts.trailID,
+            trailUUID: trailFacts.trailUUID,
+            ownerID: trailFacts.ownerID,
+            publishStatus: trailFacts.publishStatus,
             trailName: trailFacts.trailName,
             trailDesc: trailFacts.trailDesc,
             externalLink: trailFacts.externalLink,

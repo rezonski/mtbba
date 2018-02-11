@@ -92,7 +92,7 @@ class OpenTrailContainer extends BasePage {
             <FlatButton
                 label={Lang.label('cancel')}
                 primary={true}
-                onTouchTap={this.handleClose}
+                onTouchTap={this.onCloseEvent}
             />,
             <RaisedButton
                 label={Lang.label('opentrail')}

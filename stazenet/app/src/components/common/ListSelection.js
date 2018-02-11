@@ -81,7 +81,7 @@ class ListSelection extends BasePage {
     }
 
     render() {
-        if (!this.state.value) {
+        if (this.state.value === undefined) {
             return null;
         }
 

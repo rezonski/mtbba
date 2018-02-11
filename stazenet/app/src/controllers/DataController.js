@@ -155,9 +155,10 @@ class DataController extends GLU.Controller {
 
     addSurfaceChange(payload) {
         // console.log('addSurfaceChange(' + payload.odometer + ', ' + payload.surfaceType + ')');
-        let currentSurfaceCollection = TrailsDataModel.activeTrail.getTrailData().surfaceCollection;
+        let currentSurfaceCollection = JSON.parse(JSON.stringify(TrailsDataModel.activeTrail.getTrailData().surfaceCollection));
         currentSurfaceCollection.push([payload.odometer, payload.surfaceType]);
-        TrailsDataModel.activeTrail.setDataByName('surfaceCollection', null, null, currentSurfaceCollection);
+        const sortedSurfaceCollection = CommonHelper.sortArrayByKey(currentSurfaceCollection, 0);
+        TrailsDataModel.activeTrail.setDataByName('surfaceCollection', null, null, sortedSurfaceCollection);
     }
 
     getChartData(containerId) {
@@ -239,6 +240,7 @@ class DataController extends GLU.Controller {
                 GLU.bus.emit(Enum.DataEvents.TRAIL_DOWNLOADED, trailData);
                 GLU.bus.emit(Enum.DataEvents.TRAIL_DATA_RETRIEVED, trailData);
                 GLU.bus.emit(Enum.MapEvents.REBUILD_PATH_LAYERS);
+                GLU.bus.emit(Enum.AppEvents.ENABLE_TRAIL_SAVE);
             })
             .catch((err) => {
                 const msg = (err && err.response) ? err.response.text : err.toString();
@@ -287,15 +289,11 @@ class DataController extends GLU.Controller {
     }
 
     publishTrail() {
-        let uuid = TrailsDataModel.activeTrail.publishedUUID;
-        if (!uuid) {
-            uuid = CommonHelper.getUUID();
-            TrailsDataModel.activeTrail.publishedUUID = uuid;
-        }
+        const generalFacts = JSON.parse(JSON.stringify(TrailsDataModel.activeTrail.getGeneralFacts()));
         const collection4publish = TrailsDataModel.activeTrail.publishedFeaturesCollection;
         const uploadPayload = JSON.stringify({
             collection: JSON.parse(JSON.stringify(collection4publish)),
-            uuid,
+            uuid: generalFacts.trailUUID,
         });
         // Connection
         const destination = appConfig.constants.server + 'api/file/publishTrail.php';
@@ -304,7 +302,7 @@ class DataController extends GLU.Controller {
             if (xmlhttpUpload.readyState === 4 && xmlhttpUpload.status === 200) {
                 const resp = JSON.parse(xmlhttpUpload.responseText);
                 if (resp.status) {
-                    GLU.bus.emit(MessageEvents.INFO_MESSAGE, `Trail published, UUID: ${uuid}`);
+                    GLU.bus.emit(MessageEvents.INFO_MESSAGE, `Trail published, UUID: ${uploadPayload.uuid}`);
                 } else {
                     console.warn('#TrailPublishFailure');
                     console.info(resp.log);

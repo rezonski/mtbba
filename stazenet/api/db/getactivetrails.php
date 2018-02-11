@@ -7,6 +7,8 @@
     $sql = "SELECT 
                 trail_id,
                 trail_slug,
+                owner_id,
+                publish_status,
                 trail_name,
                 trail_desc,
                 type_id,
@@ -27,7 +29,7 @@
                 inputfilename,
                 external_link,
                 image_url
-            FROM active_trails";
+            FROM active_trails ORDER BY trail_id DESC";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         // output data of each row
@@ -64,6 +66,8 @@
                 {
                     "name": "'.$row["trail_name"].'",
                     "trailID": '.$row["trail_id"].',
+                    "ownerID": "'.$row["owner_id"].'",
+                    "publishStatus": '.$row["publish_status"].',
                     "trailSlug": "'.$row["trail_slug"].'",
                     "mntns": '.$mntarray.',
                     "trailName": "'.str_replace(array("\r\n", "\n\r", "\r", "\n"), "", $row["trail_name"]).'",

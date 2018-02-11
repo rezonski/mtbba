@@ -48,6 +48,9 @@
         if(!$newTrail) {
             // UPDATE TRAIL DATA
             $sql = "UPDATE `trails` SET
+                        `uuid` = '".$generalFacts['trailUUID']."',
+                        `owner_id` = '".$generalFacts['ownerID']."',
+                        `publish_status` = ".$generalFacts['publishStatus'].",
                         `name` = '".$generalFacts['trailName']."',
                         `name_en` = '".$generalFacts['trailNameEn']."',
                         `slug` = '".str_replace(
@@ -72,6 +75,9 @@
             $sql = "INSERT INTO `trails`
                         (
                             `id`,
+                            `uuid`,
+                            `owner_id`,
+                            `publish_status`,
                             `name`,
                             `name_en`,
                             `slug`,
@@ -81,6 +87,9 @@
                     VALUES
                         (
                             ".$trailID.", 
+                            '".$generalFacts['trailUUID']."',
+                            '".$generalFacts['ownerID']."',
+                            ".$generalFacts['publishStatus'].",
                             '".$generalFacts['trailName']."',
                             '".$generalFacts['trailNameEn']."',
                             '".str_replace(array("š","đ","ž","č","ć","!","?",")","(","&"," "), array("s","dj","z","c","c","","","","","","-"), mb_strtolower($generalFacts['trailName']))."-".$trailID."',

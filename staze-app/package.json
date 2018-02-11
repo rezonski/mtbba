@@ -1,0 +1,50 @@
+{
+  "name": "staze.net",
+  "version": "0.1",
+  "description": "staze.net app",
+  "main": "dist/js/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "staze.net",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "5.8.38",
+    "babel-core": "6.17.0",
+    "babel-eslint": "4.1.8",
+    "babel-preset-es2015": "6.16.0",
+    "babelify": "6.4.0",
+    "browserify": "10.2.6",
+    "connect-modrewrite": "0.9.0",
+    "detachkify": "0.0.7",
+    "eslint": "1.10.3",
+    "eslint-plugin-formatting": "0.0.4",
+    "eslint-plugin-no-console-log": "1.0.0",
+    "eslint-plugin-react": "2.6.4",
+    "gulp": "3.9.1",
+    "gulp-autoprefixer": "2.3.1",
+    "gulp-clean-css": "2.0.13",
+    "gulp-concat": "2.6.0",
+    "gulp-connect": "2.3.1",
+    "gulp-eslint": "1.1.1",
+    "gulp-header": "1.8.8",
+    "gulp-less": "3.1.0",
+    "gulp-livereload": "3.8.1",
+    "gulp-rename": "1.2.2",
+    "gulp-sequence": "0.3.2 ",
+    "gulp-uglify": "1.5.4",
+    "gulp-util": "3.0.7",
+    "less-plugin-clean-css": "1.5.1",
+    "merge-stream": "0.1.8",
+    "mold-source-map": "0.4.0",
+    "rimraf": "2.5.4",
+    "vinyl-buffer": "1.0.0",
+    "vinyl-source-stream": "1.1.0",
+    "watchify": "3.7.0"
+  },
+  "dependencies": {
+    "mapbox-gl": "0.44.0",
+    "react": "16.2.0",
+    "react-dom": "16.2.0"
+  }
+}
