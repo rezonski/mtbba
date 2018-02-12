@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import BaseTheme from '/themes/BaseTheme';
-import AppBar from 'material-ui/AppBar';
+import TrailList from '/components/TrailList';
 import mapboxgl from 'mapbox-gl';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import axios from 'axios';
+import MapHelper from '/helpers/MapHelper';
 
 class App extends React.Component {
     constructor(props) {
@@ -26,21 +28,29 @@ class App extends React.Component {
         window.map = map;
         map.on('load', () => {
             console.log('loaded');
+            this.setState({
+                map,
+            });
+            axios.get('//www.staze.net/api/db/getactivetrails.php')
+            .then(response => {
+                this.setState({ trails: response.data });
+                MapHelper.createGeoJSONcentroid4AllTrails(map, response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
         });
     }
 
     render() {
         return (<MuiThemeProvider muiTheme={getMuiTheme(BaseTheme)}>
             <div className="app">
-                <AppBar title="My AppBar" className="app__header"/>
                 <div className="app__content">
                     <div className="app__content__map__container">
                         <div id="map" className="map"></div>
                     </div>
                     <div className="app__content__content__container">
-                        <div className="content">
-                            Neki sadrzaj
-                        </div>
+                        <TrailList map={this.state.map} trails={this.state.trails}/>
                     </div>
                 </div>
             </div>
