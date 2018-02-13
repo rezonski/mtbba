@@ -6,10 +6,13 @@
     right: 0;
     width: 100%;
     height: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
 
     .app {
         display: flex;
         flex-direction: column;
+        height: 100%;
 
         &__header {
             flex: 1 1 auto;
@@ -33,11 +36,13 @@
 
             &__content__container {
                 flex: 0 0 50%;
+                display: flex;
+                flex-direction: column;
                 
                 .content {
                     display: flex;
-                    background: #aa0000;
                     color: #fff;
+                    height: 100%;
                 }
             }
         }
