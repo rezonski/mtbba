@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Display a map</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='//api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
+    <!-- <script src='//api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js'></script> -->
+    <script src='turf.min.js'></script>
+    <script src='data/radusa.js'></script>
+    <link href='//api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        .container { position:absolute; top:0; bottom:0; width:100%; display: flex; flex-direction: row; height: 100% }
+        .map { flex: 0 0 50%; height: 100%; border-left: 2px solid #000 }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id='leftmap' class="map"></div>
+    <div id='rightmap' class="map"></div>
+</div>
+<script>
+function mapConfig(container) {
+    return {
+        container: container,
+        style: 'mapbox://styles/mapbox/basic-v9',
+        center: [17.35238837629553, 43.82759185921813,],
+        zoom: 11
+    };
+}
+
+mapboxgl.accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
+var leftmap = new mapboxgl.Map(mapConfig('leftmap'));
+var rightmap = new mapboxgl.Map(mapConfig('rightmap'));
+
+leftmap.on('move', () => {
+    const newCenter = leftmap.getCenter();
+    const newZoom = leftmap.getZoom();
+    rightmap.setCenter(newCenter);
+    rightmap.setZoom(newZoom);
+});
+
+leftmap.on('load', () => {
+    leftmap.addSource('left-source', {
+        type: 'geojson',
+        data: radusa
+    });
+    leftmap.addLayer({
+        id: 'test-line',
+        type: 'line',
+        source: 'left-source',
+        paint: {
+            'line-width': 2,
+            'line-color': '#c00'
+        }
+    })
+});
+
+rightmap.on('load', () => {
+    const options = { tolerance: 0.00001, highQuality: true };
+    const testLine = turf.lineString(radusa.features.find(f => f.geometry.type === 'LineString');
+    const simplifiedLine = turf.simplify(testLine, options);
+    rightmap.addSource('right-source', {
+        type: 'geojson',
+        data: turf.featureCollection([simplifiedLine])
+    });
+    rightmap.addLayer({
+        id: 'test-line',
+        type: 'line',
+        source: 'right-source',
+        paint: {
+            'line-width': 2,
+            'line-color': '#c00'
+        }
+    })
+});
+
+</script>
+
+</body>
+</html>
