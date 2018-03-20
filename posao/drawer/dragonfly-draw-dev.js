@@ -12018,19 +12018,24 @@ module.exports = function (ctx) {
         var pointsFeatures = [];
         var linesFeatures = [];
         var polygonsFeatures = [];
-        ctx.api.getAll().features.forEach(feature => {
-          switch (feature.geometry.type) {
+        ctx.api.getAll().features.forEach((feature, idx) => {
+          delete feature.properties['source_for'];
+          feature.properties.id = idx + 1;
+          feature.properties.type = feature.geometry.type;
+          feature.properties.name = '';
+          const newFeature = turf.simplify(feature, {tolerance: 0.01, highQuality: true});
+          switch (newFeature.geometry.type) {
             case 'Point':
-              pointsFeatures.push(feature);
+              pointsFeatures.push(newFeature);
               break;
             case 'LineString':
-              linesFeatures.push(feature);
+              linesFeatures.push(newFeature);
               break;
             case 'Polygon':
-              polygonsFeatures.push(feature);
+              polygonsFeatures.push(newFeature);
               break;
             default:
-              console.log(feature);
+              console.log(newFeature);
           }
         });
         
@@ -12038,30 +12043,35 @@ module.exports = function (ctx) {
           "type": "FeatureCollection",
           "features": pointsFeatures
         };
+        localStorage.setItem('anotations_points', JSON.stringify(pointsFeatureCollection));
+
         var linesFeatureCollection = {
           "type": "FeatureCollection",
           "features": linesFeatures
         };
+        localStorage.setItem('anotations_lines', JSON.stringify(linesFeatureCollection));
+
         var polygonsFeatureCollection = {
           "type": "FeatureCollection",
           "features": polygonsFeatures
         };
+        localStorage.setItem('anotations_polygons', JSON.stringify(polygonsFeatureCollection));
 
-        var anotations = {
-          "points": pointsFeatureCollection,
-          "lines": linesFeatureCollection,
-          "polygons": polygonsFeatureCollection
-        }
+        // var anotations = {
+        //   "points": pointsFeatureCollection,
+        //   "lines": linesFeatureCollection,
+        //   "polygons": polygonsFeatureCollection
+        // }
 
-        var stringified = JSON.stringify(anotations);
+        // var stringified = JSON.stringify(anotations);
 
-        // console.log('stringified: ' + stringified);
+        // // console.log('stringified: ' + stringified);
 
-        localStorage.setItem('anotations', stringified);
+        // localStorage.setItem('anotations', stringified);
 
-        console.log('saved to localStorage');
+        // console.log('saved to localStorage');
 
-        alert("saved");
+        alert("saved to localStorage, open annotations using local geojson tool");
 
         /*console.log('Points');
         if (pointsFeatures.length > 0) {
