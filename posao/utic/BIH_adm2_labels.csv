@@ -1,0 +1,19 @@
+ID_2,name_bos,name_hrv,name_srb,name_eng,type_bos,type_hrv,type_srb,type_eng,parent_bos,parent_hrv,parent_srb,parent_eng
+1,Brčko,Brčko,Брчко,Brčko,Distrikt,Distrikt,Дистрикт,District,Bosna i Hercegovina,Bosna i Hercegovina,Босна и Херцеговина,Bosnia and Herzegovina
+2,Bosansko-podrinjski,Bosansko-podrinjska,Босанско-подрињски,Bosnian Podrinje,Kanton,Županija,Кантон,Canton,Federacija Bosna i Hercegovina,Federacija Bosna i Hercegovina,Федерација Босна и Херцеговина,Federation of Bosnia and Herzegovina
+3,Kanton 10,Kanton 10,Кантон 10,Canton 10,Kanton,Županija,Кантон,Canton,Federacija Bosna i Hercegovina,Federacija Bosna i Hercegovina,Федерација Босна и Херцеговина,Federation of Bosnia and Herzegovina
+4,Srednjobosanski,Srednjobosanska,Средњобосански,Central Bosnia,Kanton,Županija,Кантон,Canton,Federacija Bosna i Hercegovina,Federacija Bosna i Hercegovina,Федерација Босна и Херцеговина,Federation of Bosnia and Herzegovina
+5,Hercegovačko-neretvanski,Hercegovačko-neretvanska,Херцеговачконеретвански,Herzegovina-Neretva,Kanton,Županija,Кантон,Canton,Federacija Bosna i Hercegovina,Federacija Bosna i Hercegovina,Федерација Босна и Херцеговина,Federation of Bosnia and Herzegovina
+6,Bosansko-posavski,Posavska,Босанскопосавски,Posavina,Kanton,Županija,Кантон,Canton,Federacija Bosna i Hercegovina,Federacija Bosna i Hercegovina,Федерација Босна и Херцеговина,Federation of Bosnia and Herzegovina
+7,Sarajevski,Sarajevska,Сарајевски,Sarajevo,Kanton,Županija,Кантон,Canton,Federacija Bosna i Hercegovina,Federacija Bosna i Hercegovina,Федерација Босна и Херцеговина,Federation of Bosnia and Herzegovina
+8,Tuzlanski,Tuzlanska,Тузлански,Tuzla,Kanton,Županija,Кантон,Canton,Federacija Bosna i Hercegovina,Federacija Bosna i Hercegovina,Федерација Босна и Херцеговина,Federation of Bosnia and Herzegovina
+9,Unsko-sanski,Unsko-sanska,Унско-сански,Una-Sana,Kanton,Županija,Кантон,Canton,Federacija Bosna i Hercegovina,Federacija Bosna i Hercegovina,Федерација Босна и Херцеговина,Federation of Bosnia and Herzegovina
+10,Zapadnohercegovački,Zapadnohercegovačka,Западнохерцеговачки,West Herzegovina,Kanton,Županija,Кантон,Canton,Federacija Bosna i Hercegovina,Federacija Bosna i Hercegovina,Федерација Босна и Херцеговина,Federation of Bosnia and Herzegovina
+11,Zeničko-dobojski,Zeničko-dobojska,Зеничко-добојски,Zenica-Doboj,Kanton,Županija,Кантон,Canton,Federacija Bosna i Hercegovina,Federacija Bosna i Hercegovina,Федерација Босна и Херцеговина,Federation of Bosnia and Herzegovina
+12,Banja Luka,Banja Luka,Банја Лука,Banja Luka,Regija,Regija,Регија,Region,Repuplika Srpska,Repuplika Srpska,Република Српска,Serbian Republic
+13,Bijeljina,Bijeljina,Бијељина,Bijeljina,Regija,Regija,Регија,Region,Repuplika Srpska,Repuplika Srpska,Република Српска,Serbian Republic
+14,Doboj,Doboj,Добој,Doboj,Regija,Regija,Регија,Region,Repuplika Srpska,Repuplika Srpska,Република Српска,Serbian Republic
+15,Foča,Foča,Фоча,Foča,Regija,Regija,Регија,Region,Repuplika Srpska,Repuplika Srpska,Република Српска,Serbian Republic
+16,Istočno Sarajevo,Istočno Sarajevo,Источно Сарајево,East Sarajevo,Regija,Regija,Регија,Region,Repuplika Srpska,Repuplika Srpska,Република Српска,Serbian Republic
+17,Trebinje,Trebinje,Требинје,Trebinje,Regija,Regija,Регија,Region,Repuplika Srpska,Repuplika Srpska,Република Српска,Serbian Republic
+18,Vlasenica,Vlasenica,Власеница,Vlasenica,Regija,Regija,Регија,Region,Repuplika Srpska,Repuplika Srpska,Република Српска,Serbian Republic

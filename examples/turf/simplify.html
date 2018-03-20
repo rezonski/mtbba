@@ -5,8 +5,8 @@
     <title>Display a map</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='//api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
-    <!-- <script src='//api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js'></script> -->
-    <script src='turf.min.js'></script>
+    <script src='//api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js'></script>
+    <!-- <script src='turf.min.js'></script> -->
     <script src='data/radusa.js'></script>
     <link href='//api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
     <style>
@@ -58,12 +58,12 @@ leftmap.on('load', () => {
 });
 
 rightmap.on('load', () => {
-    const options = { tolerance: 0.00001, highQuality: true };
-    const testLine = turf.lineString(radusa.features.find(f => f.geometry.type === 'LineString');
-    const simplifiedLine = turf.simplify(testLine, options);
+    const testLine = radusa.features.find(f => f.geometry.type === 'LineString');
+    const simplifiedLine = turf.simplify(testLine, 0.0001, true);
+    const newFeatureCollection = turf.featureCollection([simplifiedLine]);
     rightmap.addSource('right-source', {
         type: 'geojson',
-        data: turf.featureCollection([simplifiedLine])
+        data: newFeatureCollection
     });
     rightmap.addLayer({
         id: 'test-line',
