@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8"/>
     <title>CodeMirror: Internals</title>
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans:bold"/>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans:bold"/>
     <link rel="stylesheet" type="text/css" href="docs.css"/>
     <style>dl dl {margin: 0;} .update {color: #d40 !important}</style>
   </head>
   <body>
 
-<h1><span class="logo-braces">{ }</span> <a href="http://codemirror.net/">CodeMirror</a></h1>
+<h1><span class="logo-braces">{ }</span> <a href="//codemirror.net/">CodeMirror</a></h1>
 
 <div class="grey">
 <img src="baboon.png" class="logo" alt="logo"/>
@@ -32,11 +32,11 @@ version 2 was initially written. It no longer (even including the
 update at the bottom) fully represents the current implementation. I'm
 leaving it here as a historic document. For more up-to-date
 information, look at the entries
-tagged <a href="http://marijnhaverbeke.nl/blog/#cm-internals">cm-internals</a>
+tagged <a href="//marijnhaverbeke.nl/blog/#cm-internals">cm-internals</a>
 on my blog.</p>
 
 <p>This is a followup to
-my <a href="http://codemirror.net/story.html">Brutal Odyssey to the
+my <a href="//codemirror.net/story.html">Brutal Odyssey to the
 Dark Side of the DOM Tree</a> story. That one describes the
 mind-bending process of implementing (what would become) CodeMirror 1.
 This one describes the internals of CodeMirror 2, a complete rewrite
@@ -49,14 +49,14 @@ engineering, requiring no serious mind-bending whatsoever.</p>
 activity and general search-engine presence, that it has been
 integrated into about a thousand systems by now. The most prominent
 one, since a few weeks,
-being <a href="http://googlecode.blogspot.com/2011/01/make-quick-fixes-quicker-on-google.html">Google
+being <a href="//googlecode.blogspot.com/2011/01/make-quick-fixes-quicker-on-google.html">Google
 code's project hosting</a>. It works, and it's being used widely.</p>
 
 <p>Still, I did not start replacing it because I was bored. CodeMirror
 1 was heavily reliant on <code>designMode</code>
 or <code>contentEditable</code> (depending on the browser). Neither of
 these are well specified (HTML5 tries
-to <a href="http://www.w3.org/TR/html5/editing.html#contenteditable">specify</a>
+to <a href="//www.w3.org/TR/html5/editing.html#contenteditable">specify</a>
 their basics), and, more importantly, they tend to be one of the more
 obscure and buggy areas of browser functionality—CodeMirror, by using
 this functionality in a non-typical way, was constantly running up
@@ -98,7 +98,7 @@ few dodgy features, I put the system in a vulnerable position—any
 incompatibility and bugginess in these features, I had to paper over
 with my own code. Not only did I have to do some serious stunt-work to
 get it to work on older browsers (as detailed in the
-previous <a href="http://codemirror.net/story.html">story</a>), things
+previous <a href="//codemirror.net/story.html">story</a>), things
 also kept breaking in newly released versions, requiring me to come up
 with <em>new</em> scary hacks in order to keep up. This was starting
 to lose its appeal.</p>
@@ -107,13 +107,13 @@ to lose its appeal.</p>
 
 <p>What CodeMirror 2 does is try to sidestep most of the hairy hacks
 that came up in version 1. I owe a lot to the
-<a href="http://ace.ajax.org">ACE</a> editor for inspiration on how to
+<a href="//ace.ajax.org">ACE</a> editor for inspiration on how to
 approach this.</p>
 
 <p>I absolutely did not want to be completely reliant on key events to
 generate my input. Every JavaScript programmer knows that key event
 information is horrible and incomplete. Some people (most awesomely
-Mihai Bazon with <a href="http://ymacs.org">Ymacs</a>) have been able
+Mihai Bazon with <a href="//ymacs.org">Ymacs</a>) have been able
 to build more or less functioning editors by directly reading key
 events, but it takes a lot of work (the kind of never-ending, fragile
 work I described earlier), and will never be able to properly support
@@ -278,11 +278,11 @@ single <code>innerHTML</code> update to do the refresh.</p>
 <h2 id="parse">Parsers can be Simple</h2>
 
 <p>When I wrote CodeMirror 1, I
-thought <a href="http://codemirror.net/story.html#parser">interruptable
+thought <a href="//codemirror.net/story.html#parser">interruptable
 parsers</a> were a hugely scary and complicated thing, and I used a
 bunch of heavyweight abstractions to keep this supposed complexity
 under control: parsers
-were <a href="http://bob.pythonmac.org/archives/2005/07/06/iteration-in-javascript/">iterators</a>
+were <a href="//bob.pythonmac.org/archives/2005/07/06/iteration-in-javascript/">iterators</a>
 that consumed input from another iterator, and used funny
 closure-resetting tricks to copy and resume themselves.</p>
 

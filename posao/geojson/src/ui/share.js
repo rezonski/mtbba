@@ -38,7 +38,7 @@ function share(context) {
                 var container = content.append('div').attr('class', 'pad2');
                 var url = container.append('input')
                     .style('width', '100%')
-                    .property('value', 'http://bl.ocks.org/d/' + res.id);
+                    .property('value', '//bl.ocks.org/d/' + res.id);
                 container.append('p')
                     .text('URL to the full-screen map in that embed');
             }

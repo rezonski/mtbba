@@ -13,15 +13,15 @@
   <body>
     <h1>CodeMirror: SPARQL mode</h1>
     <form><textarea id="code" name="code">
-PREFIX a: &lt;http://www.w3.org/2000/10/annotation-ns#>
-PREFIX dc: &lt;http://purl.org/dc/elements/1.1/>
-PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/>
+PREFIX a: &lt;//www.w3.org/2000/10/annotation-ns#>
+PREFIX dc: &lt;//purl.org/dc/elements/1.1/>
+PREFIX foaf: &lt;//xmlns.com/foaf/0.1/>
 
 # Comment!
 
 SELECT ?given ?family
 WHERE {
-  ?annot a:annotates &lt;http://www.w3.org/TR/rdf-sparql-query/> .
+  ?annot a:annotates &lt;//www.w3.org/TR/rdf-sparql-query/> .
   ?annot dc:creator ?c .
   OPTIONAL {?c foaf:given ?given ;
                foaf:family ?family } .

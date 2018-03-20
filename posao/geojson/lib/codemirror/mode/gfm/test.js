@@ -87,26 +87,26 @@
      "foo [link bar/hello#1] world");
 
   MT("vanillaLink",
-     "foo [link http://www.example.com/] bar");
+     "foo [link //www.example.com/] bar");
 
   MT("vanillaLinkPunctuation",
-     "foo [link http://www.example.com/]. bar");
+     "foo [link //www.example.com/]. bar");
 
   MT("vanillaLinkExtension",
-     "foo [link http://www.example.com/index.html] bar");
+     "foo [link //www.example.com/index.html] bar");
 
   MT("notALink",
      "[comment ```css]",
      "[tag foo] {[property color][operator :][keyword black];}",
-     "[comment ```][link http://www.example.com/]");
+     "[comment ```][link //www.example.com/]");
 
   MT("notALink",
-     "[comment ``foo `bar` http://www.example.com/``] hello");
+     "[comment ``foo `bar` //www.example.com/``] hello");
 
   MT("notALink",
      "[comment `foo]",
-     "[link http://www.example.com/]",
+     "[link //www.example.com/]",
      "[comment `foo]",
      "",
-     "[link http://www.example.com/]");
+     "[link //www.example.com/]");
 })();

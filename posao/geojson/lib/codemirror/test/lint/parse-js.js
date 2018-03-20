@@ -9,7 +9,7 @@
   of parse-js [1], a JavaScript parser library written in Common Lisp
   by Marijn Haverbeke.  Thank you Marijn!
 
-  [1] http://marijn.haverbeke.nl/parse-js/
+  [1] //marijn.haverbeke.nl/parse-js/
 
   Exported functions:
 
@@ -22,12 +22,12 @@
 
                            Author: Mihai Bazon
                          <mihai.bazon@gmail.com>
-                       http://mihai.bazon.net/blog
+                       //mihai.bazon.net/blog
 
   Distributed under the BSD license:
 
     Copyright 2010 (c) Mihai Bazon <mihai.bazon@gmail.com>
-    Based on parse-js (http://marijn.haverbeke.nl/parse-js/).
+    Based on parse-js (//marijn.haverbeke.nl/parse-js/).
 
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions

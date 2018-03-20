@@ -16,7 +16,7 @@ CodeMirror.defineMode("gas", function(_config, parserConfig) {
   // Machine specific directives should go in their respective
   // architecture initialization function.
   // Reference:
-  // http://sourceware.org/binutils/docs/as/Pseudo-Ops.html#Pseudo-Ops
+  // //sourceware.org/binutils/docs/as/Pseudo-Ops.html#Pseudo-Ops
   var directives = {
     ".abort" : "builtin",
     ".align" : "builtin",
@@ -177,8 +177,8 @@ CodeMirror.defineMode("gas", function(_config, parserConfig) {
 
   function armv6(_parserConfig) {
     // Reference:
-    // http://infocenter.arm.com/help/topic/com.arm.doc.qrc0001l/QRC0001_UAL.pdf
-    // http://infocenter.arm.com/help/topic/com.arm.doc.ddi0301h/DDI0301H_arm1176jzfs_r0p7_trm.pdf
+    // //infocenter.arm.com/help/topic/com.arm.doc.qrc0001l/QRC0001_UAL.pdf
+    // //infocenter.arm.com/help/topic/com.arm.doc.ddi0301h/DDI0301H_arm1176jzfs_r0p7_trm.pdf
     lineCommentStartSymbol = "@";
     directives.syntax = "builtin";
 

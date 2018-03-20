@@ -1,5 +1,5 @@
 /*
- Leaflet, a JavaScript library for mobile-friendly interactive maps. http://leafletjs.com
+ Leaflet, a JavaScript library for mobile-friendly interactive maps. //leafletjs.com
  (c) 2010-2013, Vladimir Agafonkin, CloudMade
 */
 (function (window, document, undefined) {
@@ -154,7 +154,7 @@ L.Util = {
 
 (function () {
 
-	// inspired by http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+	// inspired by //paulirish.com/2011/requestanimationframe-for-smart-animating/
 
 	function getPrefixed(name) {
 		var i, fn,
@@ -1129,7 +1129,7 @@ L.LatLng.prototype = {
 		        L.Util.formatNum(this.lng, precision) + ')';
 	},
 
-	// Haversine distance formula, see http://en.wikipedia.org/wiki/Haversine_formula
+	// Haversine distance formula, see //en.wikipedia.org/wiki/Haversine_formula
 	// TODO move to projection code, LatLng shouldn't know about Earth
 	distanceTo: function (other) { // (LatLng) -> Number
 		other = L.latLng(other);
@@ -4367,7 +4367,7 @@ L.Map.include({
  * Extends L.Path with SVG-specific rendering code.
  */
 
-L.Path.SVG_NS = 'http://www.w3.org/2000/svg';
+L.Path.SVG_NS = '//www.w3.org/2000/svg';
 
 L.Browser.svg = !!(document.createElementNS && document.createElementNS(L.Path.SVG_NS, 'svg').createSVGRect);
 
@@ -5013,7 +5013,7 @@ L.LineUtil = {
 		return this._sqClosestPointOnSegment(p, p1, p2);
 	},
 
-	// Douglas-Peucker simplification, see http://en.wikipedia.org/wiki/Douglas-Peucker_algorithm
+	// Douglas-Peucker simplification, see //en.wikipedia.org/wiki/Douglas-Peucker_algorithm
 	_simplifyDP: function (points, sqTolerance) {
 
 		var len = points.length,
@@ -7622,7 +7622,7 @@ L.control.zoom = function (options) {
 L.Control.Attribution = L.Control.extend({
 	options: {
 		position: 'bottomright',
-		prefix: '<a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>'
+		prefix: '<a href="//leafletjs.com" title="A JS library for interactive maps">Leaflet</a>'
 	},
 
 	initialize: function (options) {
@@ -8002,7 +8002,7 @@ L.Control.Layers = L.Control.extend({
 		}
 	},
 
-	// IE7 bugs out if you create a radio dynamically, so you have to do it this hacky way (see http://bit.ly/PqYLBe)
+	// IE7 bugs out if you create a radio dynamically, so you have to do it this hacky way (see //bit.ly/PqYLBe)
 	_createRadioElement: function (name, checked) {
 
 		var radioHtml = '<input type="radio" class="leaflet-control-layers-selector" name="' + name + '"';

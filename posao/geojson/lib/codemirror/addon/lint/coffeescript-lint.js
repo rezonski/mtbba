@@ -1,4 +1,4 @@
-// Depends on coffeelint.js from http://www.coffeelint.org/js/coffeelint.js
+// Depends on coffeelint.js from //www.coffeelint.org/js/coffeelint.js
 
 CodeMirror.coffeeValidator = function(text) {
   var found = [];

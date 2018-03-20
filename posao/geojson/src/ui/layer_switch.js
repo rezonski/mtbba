@@ -25,12 +25,12 @@ module.exports = function(context) {
             }, {
                 title: 'OCM',
                 layer: L.tileLayer('https://a.tile.thunderforest.com/cycle/{z}/{x}/{y}.png', {
-                   attribution: 'Maps &copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, Data &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                   attribution: 'Maps &copy; <a href="//www.thunderforest.com/">Thunderforest</a>, Data &copy; <a href="//osm.org/copyright">OpenStreetMap</a> contributors'
                 })
             }, {
                 title: 'OSM',
                 layer: L.tileLayer('https://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    attribution: '&copy; <a href="//osm.org/copyright">OpenStreetMap</a> contributors'
                 })
             }];
         }

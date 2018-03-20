@@ -2,11 +2,11 @@
 //
 // Acorn was written by Marijn Haverbeke and released under an MIT
 // license. The Unicode regexps (for identifiers and whitespace) were
-// taken from [Esprima](http://esprima.org) by Ariya Hidayat.
+// taken from [Esprima](//esprima.org) by Ariya Hidayat.
 //
 // Git repositories for Acorn are available at
 //
-//     http://marijnhaverbeke.nl/git/acorn
+//     //marijnhaverbeke.nl/git/acorn
 //     https://github.com/marijnh/acorn.git
 //
 // Please use the [github bug tracker][ghbt] to report issues.
@@ -803,7 +803,7 @@
   // functions to specify precedence, for all of the ten binary
   // precedence levels that JavaScript defines.
   //
-  // [opp]: http://en.wikipedia.org/wiki/Operator-precedence_parser
+  // [opp]: //en.wikipedia.org/wiki/Operator-precedence_parser
 
   // ### Parser utilities
 

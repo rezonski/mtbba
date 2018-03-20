@@ -412,7 +412,7 @@ CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
   var savedInlineRE = [];
   function inlineRE(endChar) {
     if (!savedInlineRE[endChar]) {
-      // Escape endChar for RegExp (taken from http://stackoverflow.com/a/494122/526741)
+      // Escape endChar for RegExp (taken from //stackoverflow.com/a/494122/526741)
       endChar = (endChar+'').replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
       // Match any non-endChar, escaped character, as well as the closing
       // endChar.

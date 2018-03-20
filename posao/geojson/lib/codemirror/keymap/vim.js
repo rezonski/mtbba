@@ -661,7 +661,7 @@
 
     /*
      * vim registers allow you to keep many independent copy and paste buffers.
-     * See http://usevim.com/2012/04/13/registers/ for an introduction.
+     * See //usevim.com/2012/04/13/registers/ for an introduction.
      *
      * RegisterController keeps the state of all the registers.  An initial
      * state may be passed in.  The unnamed register '"' will always be

@@ -51,7 +51,7 @@
      "[comment ``foo ` bar``]");
 
   // Tests based on Dingus
-  // http://daringfireball.net/projects/markdown/dingus
+  // //daringfireball.net/projects/markdown/dingus
   //
   // Multiple backticks within an inline code block
   MT("consecutiveBackticks",
@@ -70,7 +70,7 @@
      "[comment ``foo ``` bar` hello``] world");
 
   // atx headers
-  // http://daringfireball.net/projects/markdown/syntax#header
+  // //daringfireball.net/projects/markdown/syntax#header
 
   MT("atxH1",
      "[header # foo]");
@@ -91,13 +91,13 @@
      "[header ###### foo]");
 
   // H6 - 7x '#' should still be H6, per Dingus
-  // http://daringfireball.net/projects/markdown/dingus
+  // //daringfireball.net/projects/markdown/dingus
   MT("atxH6NotH7",
      "[header ####### foo]");
 
   // Setext headers - H1, H2
   // Per documentation, "Any number of underlining =’s or -’s will work."
-  // http://daringfireball.net/projects/markdown/syntax#header
+  // //daringfireball.net/projects/markdown/syntax#header
   // Ideally, the text would be marked as `header` as well, but this is
   // not really feasible at the moment. So, instead, we're testing against
   // what works today, to avoid any regressions.
@@ -394,7 +394,7 @@
      "hello");
 
   // Following tests directly from official Markdown documentation
-  // http://daringfireball.net/projects/markdown/syntax#hr
+  // //daringfireball.net/projects/markdown/syntax#hr
 
   MT("hrSpace",
      "[hr * * *]");
@@ -413,39 +413,39 @@
 
   // Inline link with title
   MT("linkTitle",
-     "[link [[foo]]][string (http://example.com/ \"bar\")] hello");
+     "[link [[foo]]][string (//example.com/ \"bar\")] hello");
 
   // Inline link without title
   MT("linkNoTitle",
-     "[link [[foo]]][string (http://example.com/)] bar");
+     "[link [[foo]]][string (//example.com/)] bar");
 
   // Inline link with image
   MT("linkImage",
-     "[link [[][tag ![[foo]]][string (http://example.com/)][link ]]][string (http://example.com/)] bar");
+     "[link [[][tag ![[foo]]][string (//example.com/)][link ]]][string (//example.com/)] bar");
 
   // Inline link with Em
   MT("linkEm",
-     "[link [[][link&em *foo*][link ]]][string (http://example.com/)] bar");
+     "[link [[][link&em *foo*][link ]]][string (//example.com/)] bar");
 
   // Inline link with Strong
   MT("linkStrong",
-     "[link [[][link&strong **foo**][link ]]][string (http://example.com/)] bar");
+     "[link [[][link&strong **foo**][link ]]][string (//example.com/)] bar");
 
   // Inline link with EmStrong
   MT("linkEmStrong",
-     "[link [[][link&strong **][link&em&strong *foo**][link&em *][link ]]][string (http://example.com/)] bar");
+     "[link [[][link&strong **][link&em&strong *foo**][link&em *][link ]]][string (//example.com/)] bar");
 
   // Image with title
   MT("imageTitle",
-     "[tag ![[foo]]][string (http://example.com/ \"bar\")] hello");
+     "[tag ![[foo]]][string (//example.com/ \"bar\")] hello");
 
   // Image without title
   MT("imageNoTitle",
-     "[tag ![[foo]]][string (http://example.com/)] bar");
+     "[tag ![[foo]]][string (//example.com/)] bar");
 
   // Image with asterisks
   MT("imageAsterisks",
-     "[tag ![[*foo*]]][string (http://example.com/)] bar");
+     "[tag ![[*foo*]]][string (//example.com/)] bar");
 
   // Not a link. Should be normal text due to square brackets being used
   // regularly in text, especially in quoted material, and no space is allowed
@@ -488,53 +488,53 @@
   // Link label, for reference-style links (taken from documentation)
 
   MT("labelNoTitle",
-     "[link [[foo]]:] [string http://example.com/]");
+     "[link [[foo]]:] [string //example.com/]");
 
   MT("labelIndented",
-     "   [link [[foo]]:] [string http://example.com/]");
+     "   [link [[foo]]:] [string //example.com/]");
 
   MT("labelSpaceTitle",
-     "[link [[foo bar]]:] [string http://example.com/ \"hello\"]");
+     "[link [[foo bar]]:] [string //example.com/ \"hello\"]");
 
   MT("labelDoubleTitle",
-     "[link [[foo bar]]:] [string http://example.com/ \"hello\"] \"world\"");
+     "[link [[foo bar]]:] [string //example.com/ \"hello\"] \"world\"");
 
   MT("labelTitleDoubleQuotes",
-     "[link [[foo]]:] [string http://example.com/  \"bar\"]");
+     "[link [[foo]]:] [string //example.com/  \"bar\"]");
 
   MT("labelTitleSingleQuotes",
-     "[link [[foo]]:] [string http://example.com/  'bar']");
+     "[link [[foo]]:] [string //example.com/  'bar']");
 
   MT("labelTitleParenthese",
-     "[link [[foo]]:] [string http://example.com/  (bar)]");
+     "[link [[foo]]:] [string //example.com/  (bar)]");
 
   MT("labelTitleInvalid",
-     "[link [[foo]]:] [string http://example.com/] bar");
+     "[link [[foo]]:] [string //example.com/] bar");
 
   MT("labelLinkAngleBrackets",
-     "[link [[foo]]:] [string <http://example.com/>  \"bar\"]");
+     "[link [[foo]]:] [string <//example.com/>  \"bar\"]");
 
   MT("labelTitleNextDoubleQuotes",
-     "[link [[foo]]:] [string http://example.com/]",
+     "[link [[foo]]:] [string //example.com/]",
      "[string \"bar\"] hello");
 
   MT("labelTitleNextSingleQuotes",
-     "[link [[foo]]:] [string http://example.com/]",
+     "[link [[foo]]:] [string //example.com/]",
      "[string 'bar'] hello");
 
   MT("labelTitleNextParenthese",
-     "[link [[foo]]:] [string http://example.com/]",
+     "[link [[foo]]:] [string //example.com/]",
      "[string (bar)] hello");
 
   MT("labelTitleNextMixed",
-     "[link [[foo]]:] [string http://example.com/]",
+     "[link [[foo]]:] [string //example.com/]",
      "(bar\" hello");
 
   MT("linkWeb",
-     "[link <http://example.com/>] foo");
+     "[link <//example.com/>] foo");
 
   MT("linkWebDouble",
-     "[link <http://example.com/>] foo [link <http://example.com/>]");
+     "[link <//example.com/>] foo [link <//example.com/>]");
 
   MT("linkEmail",
      "[link <user@example.com>] foo");

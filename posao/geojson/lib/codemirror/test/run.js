@@ -21,7 +21,7 @@ var server = require('http').createServer(function (req, res) {
   var child_process = require('child_process');
   child_process.exec("which phantomjs", function (err) {
     if (err) {
-      console.error("PhantomJS is not installed. Download from http://phantomjs.org");
+      console.error("PhantomJS is not installed. Download from //phantomjs.org");
       process.exit(1);
     }
     var cmd = 'phantomjs test/phantom_driver.js';

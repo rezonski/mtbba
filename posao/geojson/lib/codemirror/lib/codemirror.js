@@ -5547,7 +5547,7 @@ window.CodeMirror = (function() {
   }
 
   // Bidirectional ordering algorithm
-  // See http://unicode.org/reports/tr9/tr9-13.html for the algorithm
+  // See //unicode.org/reports/tr9/tr9-13.html for the algorithm
   // that this (partially) implements.
 
   // One-char codes used for character types:

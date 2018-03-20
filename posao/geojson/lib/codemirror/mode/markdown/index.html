@@ -14,7 +14,7 @@
   <body>
     <h1>CodeMirror: Markdown mode</h1>
 
-<!-- source: http://daringfireball.net/projects/markdown/basics.text -->
+<!-- source: //daringfireball.net/projects/markdown/basics.text -->
 <form><textarea id="code" name="code">
 Markdown: Basics
 ================
@@ -212,20 +212,20 @@ text you want to turn into a link.
 Inline-style links use parentheses immediately after the link text.
 For example:
 
-    This is an [example link](http://example.com/).
+    This is an [example link](//example.com/).
 
 Output:
 
-    &lt;p&gt;This is an &lt;a href="http://example.com/"&gt;
+    &lt;p&gt;This is an &lt;a href="//example.com/"&gt;
     example link&lt;/a&gt;.&lt;/p&gt;
 
 Optionally, you may include a title attribute in the parentheses:
 
-    This is an [example link](http://example.com/ "With a Title").
+    This is an [example link](//example.com/ "With a Title").
 
 Output:
 
-    &lt;p&gt;This is an &lt;a href="http://example.com/" title="With a Title"&gt;
+    &lt;p&gt;This is an &lt;a href="//example.com/" title="With a Title"&gt;
     example link&lt;/a&gt;.&lt;/p&gt;
 
 Reference-style links allow you to refer to your links by names, which
@@ -234,15 +234,15 @@ you define elsewhere in your document:
     I get 10 times more traffic from [Google][1] than from
     [Yahoo][2] or [MSN][3].
 
-    [1]: http://google.com/        "Google"
-    [2]: http://search.yahoo.com/  "Yahoo Search"
-    [3]: http://search.msn.com/    "MSN Search"
+    [1]: //google.com/        "Google"
+    [2]: //search.yahoo.com/  "Yahoo Search"
+    [3]: //search.msn.com/    "MSN Search"
 
 Output:
 
-    &lt;p&gt;I get 10 times more traffic from &lt;a href="http://google.com/"
-    title="Google"&gt;Google&lt;/a&gt; than from &lt;a href="http://search.yahoo.com/"
-    title="Yahoo Search"&gt;Yahoo&lt;/a&gt; or &lt;a href="http://search.msn.com/"
+    &lt;p&gt;I get 10 times more traffic from &lt;a href="//google.com/"
+    title="Google"&gt;Google&lt;/a&gt; than from &lt;a href="//search.yahoo.com/"
+    title="Yahoo Search"&gt;Yahoo&lt;/a&gt; or &lt;a href="//search.msn.com/"
     title="MSN Search"&gt;MSN&lt;/a&gt;.&lt;/p&gt;
 
 The title attribute is optional. Link names may contain letters,
@@ -251,12 +251,12 @@ numbers and spaces, but are *not* case sensitive:
     I start my morning with a cup of coffee and
     [The New York Times][NY Times].
 
-    [ny times]: http://www.nytimes.com/
+    [ny times]: //www.nytimes.com/
 
 Output:
 
     &lt;p&gt;I start my morning with a cup of coffee and
-    &lt;a href="http://www.nytimes.com/"&gt;The New York Times&lt;/a&gt;.&lt;/p&gt;
+    &lt;a href="//www.nytimes.com/"&gt;The New York Times&lt;/a&gt;.&lt;/p&gt;
 
 
 ### Images ###

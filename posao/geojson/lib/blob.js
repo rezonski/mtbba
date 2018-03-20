@@ -2,7 +2,7 @@
  * A Blob implementation.
  * 2013-06-20
  * 
- * By Eli Grey, http://eligrey.com
+ * By Eli Grey, //eligrey.com
  * By Devin Samarin, https://github.com/eboyjr
  * License: X11/MIT
  *   See LICENSE.md
@@ -12,7 +12,7 @@
 /*jslint bitwise: true, regexp: true, confusion: true, es5: true, vars: true, white: true,
   plusplus: true */
 
-/*! @source http://purl.eligrey.com/github/Blob.js/blob/master/Blob.js */
+/*! @source //purl.eligrey.com/github/Blob.js/blob/master/Blob.js */
 
 if (typeof Blob !== "function" || typeof URL === "undefined")
 if (typeof Blob === "function" && typeof webkitURL !== "undefined") self.URL = webkitURL;

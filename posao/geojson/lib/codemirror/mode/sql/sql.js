@@ -23,17 +23,17 @@ CodeMirror.defineMode("sql", function(config, parserConfig) {
       ((ch == "0" && stream.match(/^[xX][0-9a-fA-F]+/))
       || (ch == "x" || ch == "X") && stream.match(/^'[0-9a-fA-F]+'/))) {
       // hex
-      // ref: http://dev.mysql.com/doc/refman/5.5/en/hexadecimal-literals.html
+      // ref: //dev.mysql.com/doc/refman/5.5/en/hexadecimal-literals.html
       return "number";
     } else if (support.binaryNumber == true &&
       (((ch == "b" || ch == "B") && stream.match(/^'[01]+'/))
       || (ch == "0" && stream.match(/^b[01]+/)))) {
       // bitstring
-      // ref: http://dev.mysql.com/doc/refman/5.5/en/bit-field-literals.html
+      // ref: //dev.mysql.com/doc/refman/5.5/en/bit-field-literals.html
       return "number";
     } else if (ch.charCodeAt(0) > 47 && ch.charCodeAt(0) < 58) {
       // numbers
-      // ref: http://dev.mysql.com/doc/refman/5.5/en/number-literals.html
+      // ref: //dev.mysql.com/doc/refman/5.5/en/number-literals.html
           stream.match(/^[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?/);
       support.decimallessFloat == true && stream.eat('.');
       return "number";
@@ -42,14 +42,14 @@ CodeMirror.defineMode("sql", function(config, parserConfig) {
       return "variable-3";
     } else if (ch == "'" || (ch == '"' && support.doubleQuote)) {
       // strings
-      // ref: http://dev.mysql.com/doc/refman/5.5/en/string-literals.html
+      // ref: //dev.mysql.com/doc/refman/5.5/en/string-literals.html
       state.tokenize = tokenLiteral(ch);
       return state.tokenize(stream, state);
     } else if ((((support.nCharCast == true && (ch == "n" || ch == "N"))
         || (support.charsetCast == true && ch == "_" && stream.match(/[a-z][a-z0-9]*/i)))
         && (stream.peek() == "'" || stream.peek() == '"'))) {
       // charset casting: _utf8'str', N'str', n'str'
-      // ref: http://dev.mysql.com/doc/refman/5.5/en/string-literals.html
+      // ref: //dev.mysql.com/doc/refman/5.5/en/string-literals.html
       return "keyword";
     } else if (/^[\(\),\;\[\]]/.test(ch)) {
       // no highlightning
@@ -75,7 +75,7 @@ CodeMirror.defineMode("sql", function(config, parserConfig) {
         return "number";
       }
       // .table_name (ODBC)
-      // // ref: http://dev.mysql.com/doc/refman/5.6/en/identifier-qualifiers.html
+      // // ref: //dev.mysql.com/doc/refman/5.6/en/identifier-qualifiers.html
       if (support.ODBCdotTable == true && stream.match(/^[a-zA-Z_]+/)) {
         return "variable-2";
       }
@@ -86,13 +86,13 @@ CodeMirror.defineMode("sql", function(config, parserConfig) {
     } else if (ch == '{' &&
         (stream.match(/^( )*(d|D|t|T|ts|TS)( )*'[^']*'( )*}/) || stream.match(/^( )*(d|D|t|T|ts|TS)( )*"[^"]*"( )*}/))) {
       // dates (weird ODBC syntax)
-      // ref: http://dev.mysql.com/doc/refman/5.5/en/date-and-time-literals.html
+      // ref: //dev.mysql.com/doc/refman/5.5/en/date-and-time-literals.html
       return "number";
     } else {
       stream.eatWhile(/^[_\w\d]/);
       var word = stream.current().toLowerCase();
       // dates (standard SQL syntax)
-      // ref: http://dev.mysql.com/doc/refman/5.5/en/date-and-time-literals.html
+      // ref: //dev.mysql.com/doc/refman/5.5/en/date-and-time-literals.html
       if (dateSQL.hasOwnProperty(word) && (stream.match(/^( )+'[^']*'/) || stream.match(/^( )+"[^"]*"/)))
         return "number";
       if (atoms.hasOwnProperty(word)) return "atom";
@@ -190,7 +190,7 @@ CodeMirror.defineMode("sql", function(config, parserConfig) {
   // `identifier`
   function hookIdentifier(stream) {
     // MySQL/MariaDB identifiers
-    // ref: http://dev.mysql.com/doc/refman/5.6/en/identifier-qualifiers.html
+    // ref: //dev.mysql.com/doc/refman/5.6/en/identifier-qualifiers.html
     var ch;
     while ((ch = stream.next()) != null) {
       if (ch == "`" && !stream.eat("`")) return "variable-2";
@@ -203,7 +203,7 @@ CodeMirror.defineMode("sql", function(config, parserConfig) {
     // variables
     // @@prefix.varName @varName
     // varName can be quoted with ` or ' or "
-    // ref: http://dev.mysql.com/doc/refman/5.5/en/user-variables.html
+    // ref: //dev.mysql.com/doc/refman/5.5/en/user-variables.html
     if (stream.eat("@")) {
       stream.match(/^session\./);
       stream.match(/^local\./);
@@ -228,12 +228,12 @@ CodeMirror.defineMode("sql", function(config, parserConfig) {
   // short client keyword token
   function hookClient(stream) {
     // \N means NULL
-    // ref: http://dev.mysql.com/doc/refman/5.5/en/null-values.html
+    // ref: //dev.mysql.com/doc/refman/5.5/en/null-values.html
     if (stream.eat("N")) {
         return "atom";
     }
     // \g, etc
-    // ref: http://dev.mysql.com/doc/refman/5.5/en/mysql-commands.html
+    // ref: //dev.mysql.com/doc/refman/5.5/en/mysql-commands.html
     return stream.match(/^[a-zA-Z.#!?]/) ? "variable-2" : null;
   }
 

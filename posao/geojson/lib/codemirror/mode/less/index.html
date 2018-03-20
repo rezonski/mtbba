@@ -73,7 +73,7 @@ LI.red.level    /* a=0 b=2 c=1 -> specificity =  21 */
 #x34y           /* a=1 b=0 c=0 -> specificity = 100 */
 #s12:not(FOO)   /* a=1 b=0 c=1 -> specificity = 101 */
 
-@namespace foo url(http://www.example.com);
+@namespace foo url(//www.example.com);
 foo|h1 { color: blue }  /* first rule */
 foo|* { color: yellow } /* second rule */
 |h1 { color: red }      /* ...*/
@@ -83,7 +83,7 @@ h1 { color: green }
 span[hello="Ocean"][goodbye="Land"]
 
 a[rel~="copyright"] { ... }
-a[href="http://www.w3.org/"] { ... }
+a[href="//www.w3.org/"] { ... }
 
 DIALOGUE[character=romeo]
 DIALOGUE[character=juliet]
@@ -92,7 +92,7 @@ DIALOGUE[character=juliet]
 [att$=val]
 [att*=val]
 
-@namespace foo "http://www.example.com";
+@namespace foo "//www.example.com";
 [foo|att=val] { color: blue }
 [*|att] { color: yellow }
 [|att] { color: green }
@@ -144,8 +144,8 @@ button {
     margin: 4px;
     cursor: pointer;
 }
-button.icon-plus { background: url(http://dahlström.net/tmp/sharp-icons/svg-icon-target.svg#plus) no-repeat; }
-button.icon-chart { background: url(http://dahlström.net/tmp/sharp-icons/svg-icon-target.svg#chart) no-repeat; }
+button.icon-plus { background: url(//dahlström.net/tmp/sharp-icons/svg-icon-target.svg#plus) no-repeat; }
+button.icon-chart { background: url(//dahlström.net/tmp/sharp-icons/svg-icon-target.svg#chart) no-repeat; }
 
 button:hover { background-color: #999; }
 button:active { background-color: #666; }

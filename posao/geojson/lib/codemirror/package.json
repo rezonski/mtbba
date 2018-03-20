@@ -4,16 +4,16 @@
     "main": "lib/codemirror.js",
     "description": "In-browser code editing made bearable",
     "licenses": [{"type": "MIT",
-                  "url": "http://codemirror.net/LICENSE"}],
+                  "url": "//codemirror.net/LICENSE"}],
     "directories": {"lib": "./lib"},
     "scripts": {"test": "node ./test/run.js"},
     "devDependencies": {"node-static": "0.6.0"},
-    "bugs": "http://github.com/marijnh/CodeMirror/issues",
+    "bugs": "//github.com/marijnh/CodeMirror/issues",
     "keywords": ["JavaScript", "CodeMirror", "Editor"],
-    "homepage": "http://codemirror.net",
+    "homepage": "//codemirror.net",
     "maintainers":[{"name": "Marijn Haverbeke",
                     "email": "marijnh@gmail.com",
-                    "web": "http://marijnhaverbeke.nl"}],
+                    "web": "//marijnhaverbeke.nl"}],
     "repository": {"type": "git",
-                   "url": "http://marijnhaverbeke.nl/git/codemirror"}
+                   "url": "//marijnhaverbeke.nl/git/codemirror"}
 }

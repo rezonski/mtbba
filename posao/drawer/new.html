@@ -125,7 +125,7 @@
                 },
                 'rasterSource': {
                     'type': 'raster',
-                    'tiles': ['http://wpc.4693.edgecastcdn.net/004693/tiles/area/' + currentYear + '/Z{z}/{y}/{x}.png?v=20'],
+                    'tiles': ['//wpc.4693.edgecastcdn.net/004693/tiles/area/' + currentYear + '/Z{z}/{y}/{x}.png?v=20'],
                     'tileSize': 256
                 }
             },
@@ -519,7 +519,7 @@
                         map.removeSource('rasterSource');
                         map.addSource('rasterSource', {
                             'type': 'raster',
-                            'tiles': ['http://wpc.4693.edgecastcdn.net/004693/tiles/area/' + newYear + '/Z{z}/{y}/{x}.png?v=20'],
+                            'tiles': ['//wpc.4693.edgecastcdn.net/004693/tiles/area/' + newYear + '/Z{z}/{y}/{x}.png?v=20'],
                             'tileSize': 256
                         });
                         map.addLayer({

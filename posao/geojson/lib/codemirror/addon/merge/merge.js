@@ -2,7 +2,7 @@
   "use strict";
 
   var Pos = CodeMirror.Pos;
-  var svgNS = "http://www.w3.org/2000/svg";
+  var svgNS = "//www.w3.org/2000/svg";
 
   function DiffView(mv, type) {
     this.mv = mv;
