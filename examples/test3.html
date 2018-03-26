@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Swipe between maps</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<style>
+body {
+    overflow: hidden;
+}
+
+body * {
+   -webkit-touch-callout: none;
+     -webkit-user-select: none;
+        -moz-user-select: none;
+         -ms-user-select: none;
+             user-select: none;
+}
+
+.map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+</style>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.css' type='text/css' />
+
+<div id='before' class='map'></div>
+<div id='after' class='map'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoibWVyc2FkcGFzaWMiLCJhIjoiY2lqenc1ZnpkMDA2N3ZrbHo4MzQ2Z2YzZyJ9.TIDhGaRGIYtw9_f_Yb3Ptg';
+var beforeMap = new mapboxgl.Map({
+    container: 'before',
+    style: {
+      "version": 8,
+      "name": "test OSM streets-copy",
+      "metadata": {
+        "mapbox:autocomposite": true,
+        "mapbox:type": "default",
+        "mapbox:origin": "streets-v10",
+        "mapbox:groups": {
+          "1444855786460.0557": {
+            "name": "Roads",
+            "collapsed": false
+          }
+        }
+      },
+      "center": [-74.0059021827227, 40.71522670396445],
+      "zoom": 15.35,
+      "bearing": 0,
+      "pitch": 0,
+      "sprite": "mapbox://sprites/mersadpasic/cjf8a33kb3ypl2sqnqmv1qoyi",
+      "glyphs": "mapbox://fonts/mersadpasic/{fontstack}/{range}.pbf",
+      "sources": {
+        "composite": {
+          "type": "vector",
+          "url": "mapbox://mapbox.mapbox-streets-v7"
+        },
+        "rasterTiles": {
+            "type": "raster",
+            "url": "mapbox://mapbox.satellite",
+            "tileSize": 256,
+        }
+      },
+      "layers": [
+        {
+            "id": "satelliteLayer",
+            "type": "raster",
+            "source": "rasterTiles",
+            "paint": {
+                "raster-opacity": 0.5,
+            }
+        },
+        {
+          "id": "osm-roads",
+          "type": "line",
+          "source": "composite",
+          "source-layer": "road",
+          "paint": {
+            "line-opacity": 0.6,
+            "line-color": "#F00",
+            "line-width": 4
+          },
+          "minzoom": 12
+        }
+      ]
+    },
+    center: [-74.0059021827227, 40.71522670396445],
+    zoom: 15.35
+});
+window.beforeMap = beforeMap;
+var afterMap = new mapboxgl.Map({
+    container: 'after',
+    style: {
+      "version": 8,
+      "name": "test OSM streets-copy",
+      "metadata": {
+        "mapbox:autocomposite": true,
+        "mapbox:type": "default",
+        "mapbox:origin": "streets-v10",
+      },
+      "center": [-74.0059021827227, 40.71522670396445],
+      "zoom": 15.35,
+      "bearing": 0,
+      "pitch": 0,
+      "sprite": "mapbox://sprites/mersadpasic/cjf8a33kb3ypl2sqnqmv1qoyi",
+      "glyphs": "mapbox://fonts/mersadpasic/{fontstack}/{range}.pbf",
+      "sources": {
+        "SE-roads": {
+          "type": "vector",
+          "tiles": [
+            "https://tiles3.socialexplorer.com/gettile/?x={x}&y={y}&z={z}&layers=30848&projection=EPSG-3857&columns="
+          ]
+        },
+        "rasterTiles": {
+            "type": "raster",
+            "url": "mapbox://mapbox.satellite",
+            "tileSize": 256,
+        }
+      },
+      "layers": [
+        {
+            "id": "satelliteLayer",
+            "type": "raster",
+            "source": "rasterTiles",
+            "paint": {
+                "raster-opacity": 0.5,
+            }
+        },
+        {
+          "id": "SE-roads",
+          "type": "line",
+          "source": "SE-roads",
+          "source-layer": "30848",
+          "paint": {
+            "line-opacity": 0.6,
+            "line-color": "#FFFF00",
+            "line-width": 4
+          },
+          "minzoom": 12
+        }
+      ]
+    },
+    center: [-74.0059021827227, 40.71522670396445],
+    zoom: 15.35
+});
+window.afterMap = afterMap;
+
+var map = new mapboxgl.Compare(beforeMap, afterMap, {
+    // Set this to enable comparing two maps by mouse movement:
+    // mousemove: true
+});
+</script>
+
+</body>
+</html>
