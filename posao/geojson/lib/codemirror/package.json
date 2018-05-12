@@ -1,0 +1,19 @@
+{
+    "name": "codemirror",
+    "version":"3.14.0",
+    "main": "lib/codemirror.js",
+    "description": "In-browser code editing made bearable",
+    "licenses": [{"type": "MIT",
+                  "url": "//codemirror.net/LICENSE"}],
+    "directories": {"lib": "./lib"},
+    "scripts": {"test": "node ./test/run.js"},
+    "devDependencies": {"node-static": "0.6.0"},
+    "bugs": "//github.com/marijnh/CodeMirror/issues",
+    "keywords": ["JavaScript", "CodeMirror", "Editor"],
+    "homepage": "//codemirror.net",
+    "maintainers":[{"name": "Marijn Haverbeke",
+                    "email": "marijnh@gmail.com",
+                    "web": "//marijnhaverbeke.nl"}],
+    "repository": {"type": "git",
+                   "url": "//marijnhaverbeke.nl/git/codemirror"}
+}

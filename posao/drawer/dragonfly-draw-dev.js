@@ -490,7 +490,7 @@ function polygonArea(coords) {
  * Reference:
  * Robert. G. Chamberlain and William H. Duquette, "Some Algorithms for
  *     Polygons on a Sphere", JPL Publication 07-03, Jet Propulsion
- *     Laboratory, Pasadena, CA, June 2007 http://trs-new.jpl.nasa.gov/dspace/handle/2014/40409
+ *     Laboratory, Pasadena, CA, June 2007 //trs-new.jpl.nasa.gov/dspace/handle/2014/40409
  *
  * Returns:
  * {float} The approximate signed geodesic area of the polygon in square
@@ -1209,7 +1209,7 @@ function hint(gj, options) {
         }
     }
 
-    // http://geojson.org/geojson-spec.html#feature-collection-objects
+    // //geojson.org/geojson-spec.html#feature-collection-objects
     function FeatureCollection(featureCollection) {
         crs(featureCollection);
         bbox(featureCollection);
@@ -1236,7 +1236,7 @@ function hint(gj, options) {
         }
     }
 
-    // http://geojson.org/geojson-spec.html#positions
+    // //geojson.org/geojson-spec.html#positions
     function position(_, line) {
         if (!Array.isArray(_)) {
             return errors.push({
@@ -1404,7 +1404,7 @@ function hint(gj, options) {
         }
     }
 
-    // http://geojson.org/geojson-spec.html#point
+    // //geojson.org/geojson-spec.html#point
     function Point(point) {
         crs(point);
         bbox(point);
@@ -1414,7 +1414,7 @@ function hint(gj, options) {
         }
     }
 
-    // http://geojson.org/geojson-spec.html#polygon
+    // //geojson.org/geojson-spec.html#polygon
     function Polygon(polygon) {
         crs(polygon);
         bbox(polygon);
@@ -1425,7 +1425,7 @@ function hint(gj, options) {
         }
     }
 
-    // http://geojson.org/geojson-spec.html#multipolygon
+    // //geojson.org/geojson-spec.html#multipolygon
     function MultiPolygon(multiPolygon) {
         crs(multiPolygon);
         bbox(multiPolygon);
@@ -1436,7 +1436,7 @@ function hint(gj, options) {
         }
     }
 
-    // http://geojson.org/geojson-spec.html#linestring
+    // //geojson.org/geojson-spec.html#linestring
     function LineString(lineString) {
         crs(lineString);
         bbox(lineString);
@@ -1445,7 +1445,7 @@ function hint(gj, options) {
         }
     }
 
-    // http://geojson.org/geojson-spec.html#multilinestring
+    // //geojson.org/geojson-spec.html#multilinestring
     function MultiLineString(multiLineString) {
         crs(multiLineString);
         bbox(multiLineString);
@@ -1454,7 +1454,7 @@ function hint(gj, options) {
         }
     }
 
-    // http://geojson.org/geojson-spec.html#multipoint
+    // //geojson.org/geojson-spec.html#multipoint
     function MultiPoint(multiPoint) {
         crs(multiPoint);
         bbox(multiPoint);
@@ -1525,7 +1525,7 @@ function hint(gj, options) {
         }
         requiredProperty(feature, 'properties', 'object');
         if (!requiredProperty(feature, 'geometry', 'object')) {
-            // http://geojson.org/geojson-spec.html#feature-objects
+            // //geojson.org/geojson-spec.html#feature-objects
             // tolerate null geometry
             if (feature.geometry) root(feature.geometry);
         }
@@ -2391,7 +2391,7 @@ hat.rack = function (bits, base, expandBy) {
  * Build: `lodash modularize exports="npm" -o ./`
  * Copyright jQuery Foundation and other contributors <https://jquery.org/>
  * Released under MIT license <https://lodash.com/license>
- * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Based on Underscore.js 1.8.3 <//underscorejs.org/LICENSE>
  * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
  */
 
@@ -2440,7 +2440,7 @@ var arrayBufferTag = '[object ArrayBuffer]',
 
 /**
  * Used to match `RegExp`
- * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
+ * [syntax characters](//ecma-international.org/ecma-262/7.0/#sec-patterns).
  */
 var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
 
@@ -2652,7 +2652,7 @@ var hasOwnProperty = objectProto.hasOwnProperty;
 
 /**
  * Used to resolve the
- * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * [`toStringTag`](//ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
  * of values.
  */
 var objectToString = objectProto.toString;
@@ -3447,7 +3447,7 @@ function equalByTag(object, other, tag, equalFunc, customizer, bitmask, stack) {
     case regexpTag:
     case stringTag:
       // Coerce regexes to strings and treat strings, primitives and objects,
-      // as equal. See http://www.ecma-international.org/ecma-262/7.0/#sec-regexp.prototype.tostring
+      // as equal. See //www.ecma-international.org/ecma-262/7.0/#sec-regexp.prototype.tostring
       // for more details.
       return object == (other + '');
 
@@ -3697,7 +3697,7 @@ function toSource(func) {
 
 /**
  * Performs a
- * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+ * [`SameValueZero`](//ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
  * comparison between two values to determine if they are equivalent.
  *
  * @static
@@ -3898,7 +3898,7 @@ function isFunction(value) {
  * Checks if `value` is a valid array-like length.
  *
  * **Note:** This method is loosely based on
- * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
+ * [`ToLength`](//ecma-international.org/ecma-262/7.0/#sec-tolength).
  *
  * @static
  * @memberOf _
@@ -3927,7 +3927,7 @@ function isLength(value) {
 
 /**
  * Checks if `value` is the
- * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * [language type](//www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
  * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
  *
  * @static
@@ -4006,7 +4006,7 @@ var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedA
  * Creates an array of the own enumerable property names of `object`.
  *
  * **Note:** Non-object values are coerced to objects. See the
- * [ES spec](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
+ * [ES spec](//ecma-international.org/ecma-262/7.0/#sec-object.keys)
  * for more details.
  *
  * @static
@@ -12018,19 +12018,24 @@ module.exports = function (ctx) {
         var pointsFeatures = [];
         var linesFeatures = [];
         var polygonsFeatures = [];
-        ctx.api.getAll().features.forEach(feature => {
-          switch (feature.geometry.type) {
+        ctx.api.getAll().features.forEach((feature, idx) => {
+          delete feature.properties['source_for'];
+          feature.properties.id = idx + 1;
+          feature.properties.type = feature.geometry.type;
+          feature.properties.name = '';
+          const newFeature = turf.simplify(feature, {tolerance: 0.01, highQuality: true});
+          switch (newFeature.geometry.type) {
             case 'Point':
-              pointsFeatures.push(feature);
+              pointsFeatures.push(newFeature);
               break;
             case 'LineString':
-              linesFeatures.push(feature);
+              linesFeatures.push(newFeature);
               break;
             case 'Polygon':
-              polygonsFeatures.push(feature);
+              polygonsFeatures.push(newFeature);
               break;
             default:
-              console.log(feature);
+              console.log(newFeature);
           }
         });
         
@@ -12038,30 +12043,35 @@ module.exports = function (ctx) {
           "type": "FeatureCollection",
           "features": pointsFeatures
         };
+        localStorage.setItem('anotations_points', JSON.stringify(pointsFeatureCollection));
+
         var linesFeatureCollection = {
           "type": "FeatureCollection",
           "features": linesFeatures
         };
+        localStorage.setItem('anotations_lines', JSON.stringify(linesFeatureCollection));
+
         var polygonsFeatureCollection = {
           "type": "FeatureCollection",
           "features": polygonsFeatures
         };
+        localStorage.setItem('anotations_polygons', JSON.stringify(polygonsFeatureCollection));
 
-        var anotations = {
-          "points": pointsFeatureCollection,
-          "lines": linesFeatureCollection,
-          "polygons": polygonsFeatureCollection
-        }
+        // var anotations = {
+        //   "points": pointsFeatureCollection,
+        //   "lines": linesFeatureCollection,
+        //   "polygons": polygonsFeatureCollection
+        // }
 
-        var stringified = JSON.stringify(anotations);
+        // var stringified = JSON.stringify(anotations);
 
-        // console.log('stringified: ' + stringified);
+        // // console.log('stringified: ' + stringified);
 
-        localStorage.setItem('anotations', stringified);
+        // localStorage.setItem('anotations', stringified);
 
-        console.log('saved to localStorage');
+        // console.log('saved to localStorage');
 
-        alert("saved");
+        alert("saved to localStorage, open annotations using local geojson tool");
 
         /*console.log('Points');
         if (pointsFeatures.length > 0) {
